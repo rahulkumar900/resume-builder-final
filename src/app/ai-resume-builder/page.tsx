@@ -21,11 +21,18 @@ import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 
 export const metadata: Metadata = {
-  title: 'AI Resume Builder: Generate Job-Tailored Resumes in Minutes | ResumeBuilder',
+  title: 'Free AI Resume Builder & AI Resume Maker: Tailor Resumes in Minutes | ResumeBuilder',
   description:
-    'Tailor your resume to any job description using advanced AI. Automatically rewrite bullet points using the Google XYZ formula, optimize ATS keywords, and boost interview callbacks.',
+    'Free AI resume builder and smart AI resume maker. Automatically rewrite bullet points using the Google XYZ formula, optimize ATS keywords for any job description, and download vector PDFs with zero paywalls.',
   keywords: [
     'ai resume builder',
+    'ai resume maker',
+    'free ai resume builder',
+    'best ai resume builder',
+    'free ai resume maker',
+    'ai resume builder free',
+    'ai cv maker',
+    'ai resume generator free',
     'generate resume',
     'resume generator online',
     'smart resume maker',
@@ -35,7 +42,7 @@ export const metadata: Metadata = {
     'jd to resume ai'
   ],
   openGraph: {
-    title: 'AI Resume Builder & Job Tailoring Engine | ResumeBuilder',
+    title: 'Free AI Resume Builder & Smart AI Resume Maker | ResumeBuilder',
     description:
       'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
     type: 'website',

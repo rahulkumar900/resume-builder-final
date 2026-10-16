@@ -4422,6 +4422,9 @@
   .text-purple-300 {
     color: var(--color-purple-300);
   }
+  .text-purple-400 {
+    color: var(--color-purple-400);
+  }
   .text-purple-500 {
     color: var(--color-purple-500);
   }
