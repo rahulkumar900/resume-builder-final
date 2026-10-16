@@ -21,7 +21,7 @@ import { COMPETITORS } from '@/lib/competitors-data';
 export const metadata: Metadata = {
   title: 'Best Resume Builder Alternatives & Comparisons (2026) | ResumeBuilder',
   description:
-    'Unbiased, side-by-side technical comparisons of top resume builders: Zety, Canva, Teal, Indeed, and LiveCareer. Compare ATS scores, pricing traps, and download guarantees.',
+    'Unbiased, side-by-side technical comparisons of top resume builders: Zety, Canva, Teal, Indeed, LiveCareer, Novorésumé, Kickresume, FlowCV, and Naukri. Compare ATS scores, pricing traps, and download guarantees.',
   keywords: [
     'resume builder alternatives',
     'zety alternative',
@@ -29,13 +29,17 @@ export const metadata: Metadata = {
     'teal alternative',
     'indeed resume alternative',
     'livecareer alternative',
+    'novoresume alternative',
+    'kickresume alternative',
+    'flowcv alternative',
+    'naukri resume builder alternative',
     'best free resume builder',
     'ats resume builder comparison'
   ],
   openGraph: {
     title: 'Top Resume Builder Comparisons & Free Alternatives (2026)',
     description:
-      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, and LiveCareer.',
+      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
     type: 'website',
     url: 'https://resumebuilder.app/alternatives',
   },
@@ -129,7 +133,7 @@ export default function AlternativesIndexPage() {
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <span className="text-xl font-black text-slate-900">{c.name}</span>
                     <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
-                      {c.slug === 'canva' ? 'Graphic Tool' : 'Paid Builder'}
+                      {c.slug === 'canva' ? 'Graphic Tool' : c.slug === 'naukri' ? 'Agency Writing' : 'Paid Builder'}
                     </span>
                   </div>
 
