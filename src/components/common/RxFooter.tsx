@@ -14,18 +14,28 @@ export function RxFooter() {
             </span>
             <ul className="space-y-2">
               <li>
-                <Link href="/templates" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
-                  28+ Templates
+                <Link href="/free-resume-builder" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Free Resume Builder
                 </Link>
               </li>
               <li>
-                <Link href="/ats-checker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
-                  ATS Score Checker
+                <Link href="/resume-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Online Resume Maker
                 </Link>
               </li>
               <li>
-                <Link href="/create" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
-                  Resume Creator
+                <Link href="/resume-builder-for-freshers" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Resume for Freshers
+                </Link>
+              </li>
+              <li>
+                <Link href="/cv-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  CV Maker Online
+                </Link>
+              </li>
+              <li>
+                <Link href="/templates/ats-friendly" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  ATS Resume Templates
                 </Link>
               </li>
               <li>
