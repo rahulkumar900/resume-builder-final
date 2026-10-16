@@ -54,6 +54,11 @@ export function RxFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/resume-format-download" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Resume Format Download
+                </Link>
+              </li>
+              <li>
                 <Link href="/examples" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   Resume Examples
                 </Link>

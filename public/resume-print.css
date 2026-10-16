@@ -2270,6 +2270,12 @@
       border-color: color-mix(in oklab, var(--color-rose-500) 20%, transparent);
     }
   }
+  .border-rose-500\/30 {
+    border-color: color-mix(in srgb, oklch(64.5% 0.246 16.439) 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-rose-500) 30%, transparent);
+    }
+  }
   .border-rose-600 {
     border-color: var(--color-rose-600);
   }
