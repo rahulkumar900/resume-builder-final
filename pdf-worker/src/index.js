@@ -20,6 +20,20 @@ app.use((req, res, next) => {
   next();
 });
 
+// Root status endpoint for browser visits
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    service: 'resume-pdf-worker',
+    message: 'PDF Worker is operational and ready to receive jobs',
+    health: '/health',
+    endpoints: {
+      generatePdf: 'POST /generate-pdf',
+      queueJob: 'POST /queue-job',
+    },
+  });
+});
+
 // 1. Health Check Endpoint (Required for Railway / container orchestrators)
 app.get('/health', (req, res) => {
   res.json({
