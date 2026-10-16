@@ -1,4 +1,5 @@
 import express from 'express';
+import http from 'http';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { generatePdf } from './generator.js';
@@ -159,23 +160,52 @@ app.get('/job-status/:id', authMiddleware, async (req, res) => {
 // Initialize background queue if Redis is configured
 initQueue();
 
-const server = app.listen(port, '0.0.0.0', () => {
-  console.log(`=========================================`);
-  console.log(`🚀 PDF Worker running on 0.0.0.0:${port}`);
-  console.log(`👉 Health check: http://0.0.0.0:${port}/health`);
-  console.log(`🔒 Secret Auth: ${workerSecret ? 'ENABLED' : 'DISABLED'}`);
-  console.log(`=========================================`);
-});
+// Bind to all potential Railway ports (process.env.PORT, 8080, 3001) on 0.0.0.0
+const portsToListen = Array.from(
+  new Set(
+    [
+      parseInt(process.env.PORT || '8080', 10),
+      8080,
+      3001,
+    ].filter((p) => !isNaN(p) && p > 0)
+  )
+);
+
+const activeServers = [];
+console.log(`=========================================`);
+console.log(`🔒 Secret Auth: ${workerSecret ? 'ENABLED' : 'DISABLED'}`);
+for (const p of portsToListen) {
+  try {
+    const s = http.createServer(app).listen(p, '0.0.0.0', () => {
+      console.log(`🚀 PDF Worker running on 0.0.0.0:${p}`);
+      console.log(`👉 Health check: http://0.0.0.0:${p}/health`);
+    });
+    s.on('error', (err) => {
+      // Ignore EADDRINUSE if port was already bound
+      if (err.code !== 'EADDRINUSE') {
+        console.warn(`[Server] Port ${p} notice: ${err.message}`);
+      }
+    });
+    activeServers.push(s);
+  } catch (err) {
+    console.warn(`[Server] Could not bind to port ${p}:`, err.message);
+  }
+}
+console.log(`=========================================`);
 
 // Graceful termination handling
 async function handleShutdown(signal) {
   console.log(`[Worker] Received ${signal}. Shutting down gracefully...`);
-  server.close(async () => {
-    await closeBrowser();
-    console.log('[Worker] Server and browser closed cleanly.');
-    process.exit(0);
-  });
+  for (const s of activeServers) {
+    try {
+      s.close();
+    } catch {}
+  }
+  await closeBrowser();
+  console.log('[Worker] Server and browser closed cleanly.');
+  process.exit(0);
 }
 
 process.on('SIGINT', () => handleShutdown('SIGINT'));
 process.on('SIGTERM', () => handleShutdown('SIGTERM'));
+
