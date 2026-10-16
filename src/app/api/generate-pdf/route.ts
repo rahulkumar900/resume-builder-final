@@ -37,11 +37,63 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing resumeData in request body' }, { status: 400 });
     }
 
+    const origin = req.nextUrl.origin || 'http://localhost:3000';
+    const safeTitle = (resumeData.personalInfo?.fullName || resumeData.title || 'Resume')
+      .replace(/[^a-z0-9]/gi, '_');
+
+    // 2. Offload to Dedicated PDF Worker (Railway / Render / Fly.io container) if configured
+    const workerUrl = process.env.PDF_WORKER_URL?.replace(/\/+$/, '');
+    if (workerUrl) {
+      console.log(`[Next.js API] Offloading PDF generation to external worker: ${workerUrl}`);
+      try {
+        const workerRes = await fetch(`${workerUrl}/generate-pdf`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(process.env.PDF_WORKER_SECRET
+              ? { 'x-worker-secret': process.env.PDF_WORKER_SECRET }
+              : {}),
+          },
+          body: JSON.stringify({
+            resumeData,
+            targetUrl: `${origin}/print/render`,
+            safeTitle,
+            userId: user.id,
+          }),
+        });
+
+        if (!workerRes.ok) {
+          const errText = await workerRes.text();
+          console.error('[Next.js API] PDF Worker returned error:', workerRes.status, errText);
+          throw new Error(`Worker service returned error HTTP ${workerRes.status}: ${errText}`);
+        }
+
+        const pdfArrayBuffer = await workerRes.arrayBuffer();
+        const pdfBuffer = Buffer.from(pdfArrayBuffer);
+
+        return new NextResponse(pdfBuffer, {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="${safeTitle}_Resume.pdf"`,
+            'Content-Length': pdfBuffer.length.toString(),
+            'X-Generated-By': 'pdf-worker',
+          },
+        });
+      } catch (workerErr: any) {
+        console.error('[Next.js API] Failed to delegate to PDF Worker:', workerErr);
+        return NextResponse.json(
+          { error: 'PDF Worker Service error', details: workerErr.message },
+          { status: 502 }
+        );
+      }
+    }
+
+    // 3. Fallback: Local Puppeteer Execution (for local development or single-server hosting)
     // Register resume data in the render store
     renderId = `render_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     setRenderResume(renderId, resumeData);
 
-    const origin = req.nextUrl.origin || 'http://localhost:3000';
     const targetUrl = `${origin}/print/render?id=${renderId}`;
 
     // Launch Puppeteer with optimized cross-platform headless flags
@@ -122,9 +174,6 @@ export async function POST(req: NextRequest) {
     if (renderId) {
       deleteRenderResume(renderId);
     }
-
-    const safeTitle = (resumeData.personalInfo?.fullName || resumeData.title || 'Resume')
-      .replace(/[^a-z0-9]/gi, '_');
 
     return new NextResponse(pdfBuffer, {
       status: 200,
