@@ -24,6 +24,11 @@ export function RxFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/simple-resume-builder" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Simple Resume Builder
+                </Link>
+              </li>
+              <li>
                 <Link href="/resume-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   Online Resume Maker
                 </Link>
