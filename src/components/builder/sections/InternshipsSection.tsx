@@ -1,0 +1,425 @@
+'use client';
+
+import React, { useState } from 'react';
+import { InternshipItem } from '@/types/resume';
+import { SectionComponentProps } from '@/types/builder';
+import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, GraduationCap, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { RichTextEditor } from '@/components/ui/RichTextEditor';
+import { AiSuggestionModal } from '@/components/builder/AiSuggestionModal';
+
+interface InternshipsSectionProps extends SectionComponentProps<InternshipItem[]> {
+  targetRole?: string;
+  hideHeader?: boolean;
+}
+
+export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
+  data = [],
+  onChange,
+  targetRole,
+  hideHeader = false,
+}) => {
+  const [collapsedItemIds, setCollapsedItemIds] = useState<Set<string>>(new Set());
+  const [aiModalState, setAiModalState] = useState<{
+    isOpen: boolean;
+    intIndex: number;
+    anchorRect: DOMRect | null;
+  }>({
+    isOpen: false,
+    intIndex: 0,
+    anchorRect: null,
+  });
+
+  const toggleCollapse = (id: string) => {
+    setCollapsedItemIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const addInternship = () => {
+    const newItem: InternshipItem = {
+      id: `int-${Date.now()}`,
+      role: '',
+      company: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      current: false,
+      highlights: [''],
+    };
+    onChange([newItem, ...data]);
+  };
+
+  const updateInternship = (index: number, updated: Partial<InternshipItem>) => {
+    const next = [...data];
+    next[index] = { ...next[index], ...updated };
+    onChange(next);
+  };
+
+  const moveInternship = (index: number, direction: 'up' | 'down') => {
+    const next = [...data];
+    const targetIdx = direction === 'up' ? index - 1 : index + 1;
+    if (targetIdx < 0 || targetIdx >= next.length) return;
+    const temp = next[index];
+    next[index] = next[targetIdx];
+    next[targetIdx] = temp;
+    onChange(next);
+  };
+
+  const removeInternship = (index: number) => {
+    onChange(data.filter((_, i) => i !== index));
+  };
+
+  // Convert highlights array to HTML for rich text editor
+  const getHtmlForInt = (item: InternshipItem): string => {
+    if (!item.highlights || item.highlights.length === 0) return '';
+    if (item.highlights.length === 1 && /<(ul|ol|p|div)/i.test(item.highlights[0])) {
+      return item.highlights[0];
+    }
+    if (item.highlights.some((h) => /<(ul|ol|p|div)/i.test(h))) {
+      return item.highlights.join('');
+    }
+    return `<ul>${item.highlights.map((h) => `<li>${h}</li>`).join('')}</ul>`;
+  };
+
+  // Convert HTML back to highlights array
+  const extractHighlightsFromHtml = (html: string): string[] => {
+    if (!html || html.trim() === '') return [];
+
+    const liMatches = html.match(/<li[^>]*>([\s\S]*?)<\/li>/gi);
+    if (liMatches && liMatches.length > 0) {
+      return liMatches
+        .map((li) => li.replace(/<\/?li[^>]*>/gi, '').trim())
+        .filter(Boolean);
+    }
+
+    const pMatches = html.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+    if (pMatches && pMatches.length > 0) {
+      return pMatches
+        .map((p) => p.replace(/<\/?p[^>]*>/gi, '').trim())
+        .filter(Boolean);
+    }
+
+    return html
+      .split(/\n+/)
+      .map((line) => line.replace(/^[•\-\*]\s*/, '').trim())
+      .filter(Boolean);
+  };
+
+  const handleRichTextChange = (index: number, html: string) => {
+    if (!html || html.trim() === '' || html === '<br>' || html === '<p><br></p>') {
+      updateInternship(index, { highlights: [] });
+      return;
+    }
+    updateInternship(index, { highlights: [html] });
+  };
+
+  const openAiModal = (index: number, rect?: DOMRect) => {
+    setAiModalState({
+      isOpen: true,
+      intIndex: index,
+      anchorRect: rect || null,
+    });
+  };
+
+  const currentIntForAi = data[aiModalState.intIndex];
+
+  return (
+    <div className="space-y-5">
+      {!hideHeader && (
+        <>
+          {/* Helpful Fresher Callout */}
+          <div className="rounded-2xl border border-emerald-200/80 dark:border-emerald-800/40 bg-emerald-50/60 dark:bg-emerald-950/20 p-4 text-xs sm:text-sm text-emerald-900 dark:text-emerald-200 flex items-start gap-3.5 shadow-2xs">
+            <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 shrink-0 mt-0.5">
+              <Info className="w-4 h-4" />
+            </div>
+            <div className="space-y-1">
+              <p className="font-bold text-emerald-950 dark:text-emerald-100">
+                Internships &amp; Practical Training
+              </p>
+              <p className="text-emerald-800 dark:text-emerald-300/90 leading-relaxed text-xs sm:text-[13px]">
+                Internships give fresh graduates a strong competitive edge by showcasing real-world application, teamwork, and deliverables. You can add summer internships, industrial training, or co-ops here. If you don&apos;t have any internships yet, this section can remain blank!
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-foreground tracking-tight">Internships</h2>
+            <p className="text-sm text-slate-500 dark:text-muted-foreground mt-1">
+              Summer internships, industrial training, co-ops, or trainee roles
+            </p>
+          </div>
+        </>
+      )}
+
+      {data.length === 0 && (
+        <div className="rounded-2xl border-2 border-dashed border-slate-200 dark:border-border bg-slate-50/70 dark:bg-card/40 p-8 text-center space-y-4">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-200/60 dark:border-emerald-800">
+            <GraduationCap className="w-6 h-6" />
+          </div>
+          <div className="max-w-md mx-auto space-y-1.5">
+            <h3 className="text-base font-bold text-slate-900 dark:text-foreground">
+              No internships added yet
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-muted-foreground">
+              Listing 1&ndash;2 internships or training programs highlights hands-on experience for entry-level roles. Click below to add an internship.
+            </p>
+          </div>
+          <div className="pt-2">
+            <Button
+              type="button"
+              variant="default"
+              size="sm"
+              onClick={addInternship}
+              className="gap-1.5 font-semibold"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add Internship</span>
+            </Button>
+          </div>
+        </div>
+      )}
+
+      <div className="space-y-4">
+        {data.map((item, idx) => {
+          const isCollapsed = collapsedItemIds.has(item.id);
+
+          return (
+            <div
+              key={item.id}
+              className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
+            >
+              <div
+                onClick={() => toggleCollapse(item.id)}
+                className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
+              >
+                <div className="flex items-center gap-3 min-w-0 pr-2">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0 border border-emerald-200/60 dark:border-emerald-800">
+                    #{idx + 1}
+                  </div>
+                  <div className="truncate">
+                    <span className="font-bold text-sm text-slate-900 dark:text-foreground block truncate">
+                      {item.role || 'New Internship'} {item.company ? `@ ${item.company}` : ''}
+                    </span>
+                    <span className="text-[11px] text-slate-400 dark:text-muted-foreground block truncate">
+                      {item.startDate || 'Start date'} &ndash; {item.current ? 'Present' : item.endDate || 'End date'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => moveInternship(idx, 'up')}
+                    disabled={idx === 0}
+                    title="Move up"
+                    className="h-7 w-7 text-slate-400 hover:text-slate-700"
+                  >
+                    <ArrowUp className="w-3.5 h-3.5" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => moveInternship(idx, 'down')}
+                    disabled={idx === data.length - 1}
+                    title="Move down"
+                    className="h-7 w-7 text-slate-400 hover:text-slate-700"
+                  >
+                    <ArrowDown className="w-3.5 h-3.5" />
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => removeInternship(idx)}
+                    className="h-7 w-7 text-slate-400 hover:text-rose-600 hover:bg-rose-50"
+                    title="Delete internship"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </Button>
+                  <button
+                    type="button"
+                    onClick={() => toggleCollapse(item.id)}
+                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    title={isCollapsed ? 'Expand internship' : 'Collapse internship'}
+                  >
+                    {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {!isCollapsed && (
+                <div className="p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                  <div className="space-y-4 sm:space-y-4.5 pt-3">
+                    {/* Internship Role / Title - Full Width */}
+                    <div className="space-y-2">
+                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Internship Role / Title
+                      </Label>
+                      <Input
+                        type="text"
+                        value={item.role}
+                        placeholder="e.g. Software Engineering Intern"
+                        onChange={(e) => updateInternship(idx, { role: e.target.value })}
+                        className="h-10 text-sm font-semibold"
+                      />
+                    </div>
+
+                    {/* Company / Organization - Full Width */}
+                    <div className="space-y-2">
+                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Company / Organization
+                      </Label>
+                      <Input
+                        type="text"
+                        value={item.company}
+                        placeholder="e.g. Acme Technologies"
+                        onChange={(e) => updateInternship(idx, { company: e.target.value })}
+                        className="h-10 text-sm font-semibold"
+                      />
+                    </div>
+
+                    {/* Location - Full Width */}
+                    <div className="space-y-2">
+                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Location
+                      </Label>
+                      <Input
+                        type="text"
+                        value={item.location || ''}
+                        placeholder="e.g. Remote / San Francisco, CA"
+                        onChange={(e) => updateInternship(idx, { location: e.target.value })}
+                        className="h-10 text-sm"
+                      />
+                    </div>
+
+                    {/* Start Date & End Date - 1/2 Width (2 columns) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                      <div className="space-y-2">
+                        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                          Start Date
+                        </Label>
+                        <Input
+                          type="text"
+                          value={item.startDate}
+                          placeholder="e.g. May 2024"
+                          onChange={(e) => updateInternship(idx, { startDate: e.target.value })}
+                          className="h-10 text-sm"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                            End Date
+                          </Label>
+                          <label className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground cursor-pointer select-none">
+                            <input
+                              type="checkbox"
+                              checked={item.current || false}
+                              onChange={(e) => updateInternship(idx, { current: e.target.checked })}
+                              className="rounded border-slate-300 text-primary focus:ring-0"
+                            />
+                            <span>Ongoing</span>
+                          </label>
+                        </div>
+                        <Input
+                          type="text"
+                          value={item.current ? 'Present' : item.endDate || ''}
+                          disabled={item.current}
+                          placeholder="e.g. Aug 2024"
+                          onChange={(e) => updateInternship(idx, { endDate: e.target.value })}
+                          className="h-10 text-sm disabled:opacity-60"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+            {/* Rich Text Editor for Key Responsibilities & Highlights */}
+            <div className="space-y-2.5 pt-2 border-t border-slate-100">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label className="text-sm font-semibold text-slate-800">
+                    Key Projects &amp; Accomplishments
+                  </Label>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Describe features built, tools used, and deliverables accomplished during your internship
+                  </p>
+                </div>
+              </div>
+
+              <RichTextEditor
+                value={getHtmlForInt(item)}
+                placeholder="• Assisted in building customer-facing dashboard using React and TypeScript...&#10;• Reduced unit test run times by 20% by refactoring test fixtures..."
+                minHeight="110px"
+                onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
+                aiButtonLabel="AI Suggestions"
+                sectionName="Internships"
+                roleContext={item.role}
+                defaultBulletList={true}
+                onChange={(html) => handleRichTextChange(idx, html)}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+      {data.length > 0 && (
+        <button
+          type="button"
+          onClick={addInternship}
+          className="w-full py-3 px-4 rounded-2xl border-2 border-dashed border-slate-200 dark:border-border hover:border-emerald-600/60 dark:hover:border-emerald-500/60 hover:bg-emerald-50/40 dark:hover:bg-emerald-950/20 text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-2xs group cursor-pointer"
+        >
+          <Plus className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
+          <span>Add Another Internship</span>
+        </button>
+      )}
+
+      {/* AI Suggestions Modal */}
+      {aiModalState.isOpen && currentIntForAi && (
+        <AiSuggestionModal
+          isOpen={aiModalState.isOpen}
+          onClose={() => setAiModalState((prev) => ({ ...prev, isOpen: false }))}
+          anchorRect={aiModalState.anchorRect}
+          type="bullet"
+          roleContext={currentIntForAi.role || targetRole || 'Software Engineering Intern'}
+          companyContext={currentIntForAi.company}
+          onUpdateRole={(newRole) => {
+            updateInternship(aiModalState.intIndex, { role: newRole });
+          }}
+          onInsert={(text, mode) => {
+            const intIdx = aiModalState.intIndex;
+            const currentHighlights = data[intIdx]?.highlights || [];
+            if (mode === 'replace' || currentHighlights.length === 0) {
+              updateInternship(intIdx, { highlights: [`<ul><li>${text}</li></ul>`] });
+            } else {
+              const first = currentHighlights[0] || '';
+              if (/<ul[^>]*>([\s\S]*)<\/ul>/i.test(first)) {
+                const updated = first.replace(/<\/ul>/i, `<li>${text}</li></ul>`);
+                updateInternship(intIdx, { highlights: [updated] });
+              } else if (/<ol[^>]*>([\s\S]*)<\/ol>/i.test(first)) {
+                const updated = first.replace(/<\/ol>/i, `<li>${text}</li></ol>`);
+                updateInternship(intIdx, { highlights: [updated] });
+              } else {
+                updateInternship(intIdx, { highlights: [...currentHighlights, text] });
+              }
+            }
+          }}
+        />
+      )}
+    </div>
+  );
+};

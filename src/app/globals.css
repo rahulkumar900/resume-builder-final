@@ -1,0 +1,481 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root,
+  [data-theme="emerald"] {
+    --background: hsl(43 25% 97%);
+    --foreground: hsl(20 14% 8%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(20 14% 8%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(20 14% 8%);
+    --primary: hsl(142.1 76.2% 36.3%);
+    --primary-foreground: hsl(0 0% 100%);
+    --secondary: hsl(40 20% 93%);
+    --secondary-foreground: hsl(20 14% 12%);
+    --muted: hsl(40 15% 92%);
+    --muted-foreground: hsl(20 10% 40%);
+    --accent: hsl(40 20% 93%);
+    --accent-foreground: hsl(20 14% 12%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(40 12% 88%);
+    --input: hsl(40 12% 88%);
+    --ring: hsl(142.1 76.2% 36.3%);
+    --radius: 0.75rem;
+  }
+
+  .dark,
+  .dark[data-theme="emerald"] {
+    --background: hsl(0 0% 6.3%);
+    --foreground: hsl(0 0% 98%);
+    --card: hsl(0 0% 10%);
+    --card-foreground: hsl(0 0% 98%);
+    --popover: hsl(0 0% 10%);
+    --popover-foreground: hsl(0 0% 98%);
+    --primary: hsl(142.1 70.6% 45.3%);
+    --primary-foreground: hsl(144.9 80.4% 10%);
+    --secondary: hsl(0 0% 14%);
+    --secondary-foreground: hsl(0 0% 98%);
+    --muted: hsl(0 0% 14%);
+    --muted-foreground: hsl(0 0% 65%);
+    --accent: hsl(0 0% 14%);
+    --accent-foreground: hsl(0 0% 98%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(0 0% 18%);
+    --input: hsl(0 0% 18%);
+    --ring: hsl(142.4 71.8% 29.2%);
+  }
+
+  /* Zinc Theme Preset */
+  [data-theme="zinc"] {
+    --primary: hsl(240 5.9% 10%);
+    --primary-foreground: hsl(0 0% 98%);
+    --ring: hsl(240 5% 64.9%);
+  }
+  .dark[data-theme="zinc"] {
+    --primary: hsl(0 0% 98%);
+    --primary-foreground: hsl(240 5.9% 10%);
+    --ring: hsl(240 4.9% 83.9%);
+  }
+
+  /* Violet Theme Preset */
+  [data-theme="violet"] {
+    --primary: hsl(262.1 83.3% 57.8%);
+    --primary-foreground: hsl(210 40% 98%);
+    --ring: hsl(262.1 83.3% 57.8%);
+  }
+  .dark[data-theme="violet"] {
+    --primary: hsl(263.4 70% 50.4%);
+    --primary-foreground: hsl(210 40% 98%);
+    --ring: hsl(263.4 70% 50.4%);
+  }
+
+  /* Emerald Theme Preset */
+  [data-theme="emerald"] {
+    --primary: hsl(142.1 76.2% 36.3%);
+    --primary-foreground: hsl(355.7 100% 97.3%);
+    --ring: hsl(142.1 76.2% 36.3%);
+  }
+  .dark[data-theme="emerald"] {
+    --primary: hsl(142.1 70.6% 45.3%);
+    --primary-foreground: hsl(144.9 80.4% 10%);
+    --ring: hsl(142.4 71.8% 29.2%);
+  }
+
+  /* Rose Theme Preset */
+  [data-theme="rose"] {
+    --primary: hsl(346.8 77.2% 49.8%);
+    --primary-foreground: hsl(355.7 100% 97.3%);
+    --ring: hsl(346.8 77.2% 49.8%);
+  }
+  .dark[data-theme="rose"] {
+    --primary: hsl(346.8 77.2% 49.8%);
+    --primary-foreground: hsl(355.7 100% 97.3%);
+    --ring: hsl(346.8 77.2% 49.8%);
+  }
+
+  /* Orange Theme Preset */
+  [data-theme="orange"] {
+    --primary: hsl(24.6 95% 53.1%);
+    --primary-foreground: hsl(60 9.1% 97.8%);
+    --ring: hsl(24.6 95% 53.1%);
+  }
+  .dark[data-theme="orange"] {
+    --primary: hsl(20.5 90.2% 48.2%);
+    --primary-foreground: hsl(60 9.1% 97.8%);
+    --ring: hsl(20.5 90.2% 48.2%);
+  }
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-inter {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-roboto {
+  font-family: var(--font-roboto), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-sourcesans {
+  font-family: var(--font-sourcesans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+.font-lato {
+  font-family: var(--font-lato), sans-serif;
+}
+
+.font-raleway {
+  font-family: var(--font-raleway), sans-serif;
+}
+
+.font-rubik {
+  font-family: var(--font-rubik), sans-serif;
+}
+
+.font-opensans {
+  font-family: var(--font-opensans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-garamond {
+  font-family: var(--font-garamond), Georgia, 'Times New Roman', serif;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), Georgia, Cambria, serif;
+}
+
+.font-merriweather {
+  font-family: var(--font-merriweather), Georgia, Cambria, serif;
+}
+
+.font-outfit {
+  font-family: var(--font-outfit), sans-serif;
+}
+
+.font-jakarta {
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), var(--font-merriweather), var(--font-garamond), Georgia, Cambria, serif;
+}
+
+.font-sans {
+  font-family: var(--font-inter), var(--font-jakarta), var(--font-outfit), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Resume document font inheritance guarantee:
+   Prevents child template classes (.font-sans, .font-serif) from overriding the user-selected or template font */
+#a4-resume-document,
+.a4-page-sheet,
+[data-ghost-measurer="true"] {
+  font-family: var(--resume-font, var(--font-inter), sans-serif);
+}
+
+#a4-resume-document .font-sans,
+.a4-page-sheet .font-sans,
+[data-ghost-measurer="true"] .font-sans {
+  font-family: inherit;
+}
+
+#a4-resume-document .font-serif,
+.a4-page-sheet .font-serif,
+[data-ghost-measurer="true"] .font-serif {
+  font-family: inherit;
+}
+
+/* Print Specific Rules */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+.break-inside-avoid {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}
+
+.break-after-avoid {
+  break-after: avoid !important;
+  page-break-after: avoid !important;
+}
+
+.page-break {
+  break-before: page !important;
+  page-break-before: always !important;
+}
+
+/* Rich text editor and rendered resume list styles with guaranteed indentation */
+.rich-text-content ul,
+[contenteditable] ul,
+#a4-resume-document ul,
+.a4-page-sheet ul,
+[data-ghost-measurer] ul {
+  list-style-type: disc !important;
+  padding-left: 1.35rem !important;
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.rich-text-content ol,
+[contenteditable] ol,
+#a4-resume-document ol,
+.a4-page-sheet ol,
+[data-ghost-measurer] ol {
+  list-style-type: decimal !important;
+  padding-left: 1.35rem !important;
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.rich-text-content li,
+[contenteditable] li,
+#a4-resume-document li,
+.a4-page-sheet li,
+[data-ghost-measurer] li {
+  display: list-item !important;
+  padding-left: 0.2rem !important;
+  margin-bottom: 0.2rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Smooth horizontal touch scrolling without visible scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* RxResume Inspired Fluid Animations & Interactions */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes scan-beam {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 6s ease-in-out infinite;
+}
+
+.animate-scan-beam {
+  animation: scan-beam 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-text-shimmer {
+  background-size: 200% 200%;
+  animation: text-shimmer 4s ease infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* RxResume Marquee & Continuous Motion */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 40s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* RxResume Floating Fragments / Chips */
+@keyframes float-drift {
+  0%, 100% {
+    transform: translateY(0px) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(calc(var(--rot, 0deg) + 2deg));
+  }
+}
+
+@keyframes float-chip {
+  0%, 100% {
+    transform: translate(0, 0) rotate(var(--rot, 0deg));
+  }
+  33% {
+    transform: translate(-3px, -7px) rotate(calc(var(--rot, 0deg) - 1.5deg));
+  }
+  66% {
+    transform: translate(3px, -4px) rotate(calc(var(--rot, 0deg) + 1.5deg));
+  }
+}
+
+.animate-float-drift {
+  animation: float-drift 7s ease-in-out infinite;
+}
+
+.animate-float-chip {
+  animation: float-chip 6.5s ease-in-out infinite;
+}
+
+/* RxResume Pop-in Checkmark Spring */
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-pop-in {
+  animation: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* RxResume Typewriter Blinking Cursor */
+@keyframes blink-cursor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink-cursor 0.9s infinite;
+}
+
