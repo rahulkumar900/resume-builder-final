@@ -39,6 +39,11 @@ export function RxFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/btech-resume-builder" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  B.Tech Resume Builder
+                </Link>
+              </li>
+              <li>
                 <Link href="/cv-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   CV Maker Online
                 </Link>

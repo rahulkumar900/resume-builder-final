@@ -2363,6 +2363,12 @@
       border-color: color-mix(in oklab, var(--color-slate-700) 60%, transparent);
     }
   }
+  .border-slate-700\/80 {
+    border-color: color-mix(in srgb, oklch(37.2% 0.044 257.287) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-slate-700) 80%, transparent);
+    }
+  }
   .border-slate-800 {
     border-color: var(--color-slate-800);
   }

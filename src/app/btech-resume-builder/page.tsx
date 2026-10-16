@@ -1,0 +1,520 @@
+import React from 'react';
+import { Metadata } from 'next';
+import Link from 'next/link';
+import {
+  GraduationCap,
+  Sparkles,
+  Code2,
+  CheckCircle2,
+  ArrowRight,
+  BookOpen,
+  FileText,
+  Briefcase,
+  Layers,
+  ChevronRight,
+  Award,
+  ShieldCheck,
+  Star,
+  Terminal,
+  Cpu,
+  Laptop,
+  Check
+} from 'lucide-react';
+import { Navbar } from '@/components/dashboard/Navbar';
+import { Footer } from '@/components/dashboard/Footer';
+import { TEMPLATES } from '@/lib/templates';
+
+export const metadata: Metadata = {
+  title: 'B.Tech Resume Builder: Free Resume Maker for Engineering Freshers & CSE | ResumeBuilder',
+  description:
+    'Free B.Tech resume builder for engineering freshers and Computer Science students. Campus placement formats for TCS, Infosys, Wipro, and product companies. 100% free vector PDF download.',
+  keywords: [
+    'btech resume builder',
+    'resume format for btech cse freshers',
+    'btech fresher resume format',
+    'engineering resume format',
+    'software engineer resume format',
+    'tcs resume format',
+    'infosys resume format for freshers',
+    'btech cse resume builder online free',
+    'resume builder for engineering students',
+    'campus placement resume builder',
+    'btech it resume format',
+    'resume format for freshers 12th pass engineering'
+  ],
+  openGraph: {
+    title: 'B.Tech Resume Builder - Campus Placement Ready Engineering Formats',
+    description:
+      'Land your first software engineering or campus placement job. Pre-structured sections for CGPA, coding profiles (GitHub, LeetCode), and capstone projects.',
+    type: 'website',
+    url: 'https://resumebuilder.app/btech-resume-builder',
+  },
+  alternates: {
+    canonical: 'https://resumebuilder.app/btech-resume-builder',
+  },
+};
+
+export default function BTechResumeBuilderPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'ResumeBuilder B.Tech & Engineering Resume Maker',
+    description:
+      'Specialized resume maker calibrated for B.Tech, B.E., and MCA engineering students and freshers applying for campus placements and off-campus tech roles.',
+    url: 'https://resumebuilder.app/btech-resume-builder',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'All',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: [
+      'Campus placement formats compliant with TCS, Infosys, Wipro, and Cognizant',
+      'Dedicated GitHub, LeetCode, and HackerRank profile integrations',
+      'Pre-formatted academic project and capstone matrices',
+      'Free vector PDF download with zero watermarks',
+      'A4 single-page fit protection',
+    ],
+  };
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the best resume format for B.Tech CSE freshers?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For Computer Science engineering freshers, the best format places Education and Technical Skills right at the top, followed immediately by Academic Projects and Coding Profiles (GitHub, LeetCode). Our Fresher and Naukri templates are pre-structured with this exact hierarchy.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Should B.Tech students include 10th and 12th marks on their resume?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For Indian campus placements (TCS, Infosys, Wipro, Accenture), recruiters explicitly check 60% or 6.0 CGPA criteria across 10th, 12th/Diploma, and B.Tech. For off-campus tech startups and international remote jobs, you only need to list your college degree and CGPA.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I describe projects if I have no corporate internship experience?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Use the Google X-Y-Z formula: "Built [Project Name] using [Tech Stack] that accomplished [Goal], solving [Problem]." Always include a live demo link or GitHub repository link so interviewers can verify your code.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will this resume pass TCS NQT, Infosys, and Cognizant screening?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! Our engineering layouts are strictly ATS-compliant, using standard HTML heading tags and vector typography that parse accurately in Taleo, iCIMS, and proprietary Indian placement recruitment portals.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this B.Tech resume builder free to download?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, 100% free. You can build, customize, and download high-resolution vector PDF resumes with zero payment, zero watermarks, and no sign-up trial paywalls.',
+        },
+      },
+    ],
+  };
+
+  const engineeringTemplates = TEMPLATES.filter((t) =>
+    ['fresher', 'naukri', 'ats', 'minimalist', 'classic'].includes(t.id)
+  );
+
+  return (
+    <div className="min-w-[320px] bg-slate-50 min-h-screen flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <Navbar />
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-white border-b border-slate-200/80 pt-16 pb-20 sm:pt-24 sm:pb-28">
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60" />
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-300/60 text-emerald-800 text-xs font-semibold mb-6">
+              <GraduationCap className="w-4 h-4 text-emerald-700" />
+              <span>Campus Placement &amp; Off-Campus IT Approved</span>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] max-w-4xl mx-auto">
+              B.Tech Resume Builder:{' '}
+              <span className="bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-900 bg-clip-text text-transparent">
+                Crack Campus Placements &amp; SDE Roles
+              </span>
+            </h1>
+
+            <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Designed specifically for engineering students and CSE freshers. Highlight your CGPA, coding profiles, full-stack projects, and hackathons with zero paywalls.
+            </p>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/builder?template=fresher"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-700 text-white font-bold text-sm hover:bg-emerald-800 transition shadow-lg shadow-emerald-700/20"
+              >
+                <span>Build B.Tech Resume Free</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/examples"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-sm hover:bg-slate-200 transition border border-slate-200"
+              >
+                <span>View Engineering Examples</span>
+              </Link>
+            </div>
+
+            {/* Quick Badges */}
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-medium text-slate-600">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>TCS, Infosys &amp; Wipro Verified</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>GitHub &amp; LeetCode Profile Badges</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>Academic Project Showcase</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>100% Free Vector PDF</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Both Placement Worlds: Service MNCs vs Product Companies */}
+        <section className="bg-slate-900 text-white py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold">
+                Dual Placement Architecture
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-1">
+                One Builder for Both Campus &amp; Product Company Hiring
+              </h2>
+              <p className="text-xs text-slate-400 mt-2">
+                Different recruiters look for completely different signals. Our builder accommodates both seamlessly.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Service MNCs Card */}
+              <div className="bg-slate-800/80 rounded-2xl border border-slate-700/80 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                      <Briefcase className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Mass Campus Placements</h3>
+                      <span className="text-xs text-blue-400 font-medium">TCS, Infosys, Wipro, Cognizant, Accenture</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-3 text-xs text-slate-300 mt-6">
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span><strong>Rigid CGPA &amp; Percentage Matrix:</strong> Clear breakdown of 10th (CBSE/ICSE/State), 12th/Diploma, and B.Tech semester aggregate.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span><strong>Standard Section Labels:</strong> Pre-programmed with orthodox section names required by campus placement cells.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span><strong>Strict Single-Page Discipline:</strong> Eliminates accidental page-breaks during bulk placement office printouts.</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-8 pt-6 border-t border-slate-700/60">
+                  <Link
+                    href="/builder?template=naukri"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition"
+                  >
+                    <span>Use Campus Placement Format</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Product Companies & Startups */}
+              <div className="bg-slate-800/80 rounded-2xl border border-slate-700/80 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                      <Terminal className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">Product Companies &amp; Startups</h3>
+                      <span className="text-xs text-emerald-400 font-medium">Amazon, Microsoft, Swiggy, Uber, High-Growth Startups</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-3 text-xs text-slate-300 mt-6">
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span><strong>Code &amp; Problem Solving Signals:</strong> Live clickable links to GitHub repos, LeetCode (e.g. 500+ problems solved, Knight/Guardian), Codeforces.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span><strong>Deep Capstone Architecture:</strong> Highlight full-stack, distributed systems, machine learning, or microservice projects with live deployments.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span><strong>Modern Clean Typography:</strong> Executive aesthetic matching Silicon Valley and Bengaluru engineering standards.</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="mt-8 pt-6 border-t border-slate-700/60">
+                  <Link
+                    href="/builder?template=fresher"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition"
+                  >
+                    <span>Use Product Engineering Format</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* The 5 Key Sections of a B.Tech Resume */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-bold">
+              Engineering Architecture
+            </span>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
+              5 Sections Every B.Tech Fresher Resume Must Have
+            </h2>
+            <p className="text-sm text-slate-500 mt-2">
+              How to organize your college career when you have limited full-time work experience.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+              <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xs mb-3">
+                01
+              </span>
+              <h3 className="font-bold text-slate-900 text-sm mb-2">Education &amp; CGPA Matrix</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                List your B.Tech Degree, Branch (CSE, IT, ECE, Mechanical), University, CGPA, and expected graduation year.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+              <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xs mb-3">
+                02
+              </span>
+              <h3 className="font-bold text-slate-900 text-sm mb-2">Grouped Technical Stack</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Group skills into: Languages (C++, Java, Python), Web (React, Node.js), Databases (PostgreSQL, MongoDB), and Tools (Git, Linux, Docker).
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+              <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xs mb-3">
+                03
+              </span>
+              <h3 className="font-bold text-slate-900 text-sm mb-2">Capstone &amp; Major Projects</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Include 2–3 substantial projects with live demo URLs, GitHub repository links, and metrics (e.g. &ldquo;Handled 500+ requests/sec with Redis caching&rdquo;).
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+              <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xs mb-3">
+                04
+              </span>
+              <h3 className="font-bold text-slate-900 text-sm mb-2">Coding Profiles &amp; CP</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Highlight your LeetCode problem count, CodeChef stars, HackerRank badges, or Smart India Hackathon participation.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs">
+              <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xs mb-3">
+                05
+              </span>
+              <h3 className="font-bold text-slate-900 text-sm mb-2">Internships &amp; Training</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Summer internships, industrial training, open-source contributions (GSoC, Hacktoberfest), or college tech club leadership.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs flex flex-col justify-between">
+              <div>
+                <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xs mb-3">
+                  06
+                </span>
+                <h3 className="font-bold text-slate-900 text-sm mb-2">Automated A4 Single Page Fit</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Our GhostDOM engine ensures all 5 sections fit onto exactly 1 standard A4 page with zero blank page spillover.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Engineering Templates Showcase */}
+        <section className="bg-white border-y border-slate-200/80 py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+              <div>
+                <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 font-bold">
+                  Recruiter Calibrated
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                  B.Tech &amp; Engineering Resume Formats
+                </h2>
+                <p className="text-xs text-slate-500 mt-1">
+                  Pre-configured layouts ready to fill out in 3 minutes.
+                </p>
+              </div>
+              <Link
+                href="/templates/ats-friendly"
+                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 inline-flex items-center gap-1 shrink-0"
+              >
+                <span>View all templates</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {engineeringTemplates.map((tpl) => (
+                <div
+                  key={tpl.id}
+                  className="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden hover:border-emerald-500 transition group flex flex-col justify-between"
+                >
+                  <div className="p-5">
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-base font-bold text-slate-900">{tpl.name}</span>
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                        {tpl.id === 'fresher' ? 'Campus Favorite' : 'Placement Ready'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-500 mb-4 line-clamp-2">{tpl.description}</p>
+
+                    <div className="space-y-1.5 text-[11px] text-slate-600 bg-white rounded-xl p-3 border border-slate-200/60">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Layout Format:</span>
+                        <span className="font-semibold text-slate-800">
+                          {tpl.layout === 'double' ? 'Two Column' : 'Single Column'}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Best For:</span>
+                        <span className="font-semibold text-slate-800">B.Tech, B.E., MCA, BCA</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 pt-0">
+                    <Link
+                      href={`/builder?template=${tpl.id}`}
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-emerald-700 transition"
+                    >
+                      <span>Use {tpl.name} Template</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="bg-white border-t border-slate-200/80 py-16 sm:py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                Frequently Asked Questions for B.Tech Freshers
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-xl border border-slate-200 p-5 bg-slate-50/50">
+                <h3 className="font-bold text-slate-900 text-sm mb-2">
+                  What if my CGPA is below 7.0? Should I still mention it?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  For mass campus recruitment (TCS, Infosys, Wipro), eligibility criteria usually mandate at least 60% or 6.0 CGPA. If your CGPA meets the cutoff, list it clearly. If you are applying to off-campus product companies and your projects/skills are stronger than your academic grades, you can choose to omit your CGPA and highlight your GitHub repos and technical achievements instead.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 p-5 bg-slate-50/50">
+                <h3 className="font-bold text-slate-900 text-sm mb-2">
+                  How many projects should a B.Tech CSE fresher include?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Include 2 to 3 high-quality projects rather than 6 basic tutorial clones (like simple to-do lists). Prioritize projects that involve database design, user authentication, REST APIs, or third-party integrations with a live deployed URL on Vercel, Render, or GitHub Pages.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 p-5 bg-slate-50/50">
+                <h3 className="font-bold text-slate-900 text-sm mb-2">
+                  Can non-CS students (ECE, Mechanical, Civil) use this for IT placements?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Yes! Thousands of students from ECE, Electrical, and Mechanical branches transition into software roles every year. Our builder lets you showcase your programming skills (Python, Java, DSA) and software projects right alongside your core engineering degree.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-slate-200 p-5 bg-slate-50/50">
+                <h3 className="font-bold text-slate-900 text-sm mb-2">
+                  Is downloading the PDF really free with no watermarks?
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Yes, 100% free. We know students don&apos;t want to pay $24 or get hit by hidden subscriptions when applying for their first job. You can build and download as many vector PDFs as you need completely free.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bottom CTA Banner */}
+        <section className="bg-slate-900 text-white py-16">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
+              Get Placed Faster with a Recruiter-Grade Engineering Resume
+            </h2>
+            <p className="text-slate-400 text-sm max-w-xl mx-auto mb-8">
+              Join engineering graduates from IITs, NITs, and top universities who cracked placements at leading tech firms.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/builder?template=fresher"
+                className="px-8 py-4 rounded-xl bg-emerald-700 text-white font-bold text-sm hover:bg-emerald-600 transition shadow-xl inline-flex items-center gap-2"
+              >
+                <span>Create B.Tech Resume Free</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
