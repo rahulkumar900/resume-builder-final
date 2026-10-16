@@ -42,7 +42,10 @@ export async function POST(req: NextRequest) {
       .replace(/[^a-z0-9]/gi, '_');
 
     // 2. Offload to Dedicated PDF Worker (Railway / Render / Fly.io container) if configured
-    const workerUrl = process.env.PDF_WORKER_URL?.replace(/\/+$/, '');
+    let workerUrl = process.env.PDF_WORKER_URL?.trim().replace(/\/+$/, '');
+    if (workerUrl && !/^https?:\/\//i.test(workerUrl)) {
+      workerUrl = `https://${workerUrl}`;
+    }
     if (workerUrl) {
       console.log(`[Next.js API] Offloading PDF generation to external worker: ${workerUrl}`);
       try {
