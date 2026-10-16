@@ -14,6 +14,12 @@ const workerSecret = process.env.WORKER_SECRET;
 app.use(cors());
 app.use(express.json({ limit: '15mb' }));
 
+// Request logging for observability in Railway
+app.use((req, res, next) => {
+  console.log(`[HTTP] ${req.method} ${req.path}`);
+  next();
+});
+
 // 1. Health Check Endpoint (Required for Railway / container orchestrators)
 app.get('/health', (req, res) => {
   res.json({
@@ -139,10 +145,10 @@ app.get('/job-status/:id', authMiddleware, async (req, res) => {
 // Initialize background queue if Redis is configured
 initQueue();
 
-const server = app.listen(port, () => {
+const server = app.listen(port, '0.0.0.0', () => {
   console.log(`=========================================`);
-  console.log(`🚀 PDF Worker running on port ${port}`);
-  console.log(`👉 Health check: http://localhost:${port}/health`);
+  console.log(`🚀 PDF Worker running on 0.0.0.0:${port}`);
+  console.log(`👉 Health check: http://0.0.0.0:${port}/health`);
   console.log(`🔒 Secret Auth: ${workerSecret ? 'ENABLED' : 'DISABLED'}`);
   console.log(`=========================================`);
 });
