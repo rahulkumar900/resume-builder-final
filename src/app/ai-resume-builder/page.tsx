@@ -47,6 +47,22 @@ export const metadata: Metadata = {
       'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
     type: 'website',
     url: 'https://resumebuilder.app/ai-resume-builder',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free AI Resume Builder - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free AI Resume Builder & Smart AI Resume Maker',
+    description:
+      'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/ai-resume-builder',

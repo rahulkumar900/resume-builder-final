@@ -38,6 +38,22 @@ export const metadata: Metadata = {
       'Generate a professional, ATS-ready resume with pre-written industry bullet points and instant vector PDF export.',
     type: 'website',
     url: 'https://resumebuilder.app/generate-resume',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Generate Resume Online in 5 Minutes - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Generate Resume Online in 5 Minutes | Free Resume Creator',
+    description:
+      'Generate a professional, ATS-ready resume with pre-written industry bullet points and instant vector PDF export.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/generate-resume',

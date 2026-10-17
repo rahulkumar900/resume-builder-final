@@ -26,6 +26,22 @@ export const metadata: Metadata = {
     siteName: 'ResumeBuilder',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Resume Examples & Samples - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Resume Examples & Samples for Every Job Title (2026)',
+    description:
+      'Proven, high-scoring resume samples tailored for top Indian and global hiring bars. 1-click editable and ATS-optimized.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
 };
 

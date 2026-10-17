@@ -53,6 +53,22 @@ export const metadata: Metadata = {
       'Tired of spending 45 minutes formatting only to hit a $24.95 download paywall? Use our 100% free resume builder with instant vector PDF download.',
     type: 'website',
     url: 'https://resumebuilder.app/free-resume-builder',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: '100% Free Resume Builder - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '100% Free Resume Builder & PDF Download | No Paywalls',
+    description:
+      'Tired of spending 45 minutes formatting only to hit a $24.95 download paywall? Use our 100% free resume builder with instant vector PDF download.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/free-resume-builder',

@@ -47,6 +47,22 @@ export const metadata: Metadata = {
       'Looking for a clean resume format for your next job application? Edit, customize, and download verified ATS formats instantly with no paywall.',
     type: 'website',
     url: 'https://resumebuilder.app/resume-format-download',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free Resume Format Download - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Resume Format Download (Word, Doc & PDF Formats)',
+    description:
+      'Looking for a clean resume format for your next job application? Edit, customize, and download verified ATS formats instantly with no paywall.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/resume-format-download',

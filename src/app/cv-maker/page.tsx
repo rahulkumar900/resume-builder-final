@@ -45,6 +45,22 @@ export const metadata: Metadata = {
       'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
     type: 'website',
     url: 'https://resumebuilder.app/cv-maker',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free CV Maker Online - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free CV Maker Online (Curriculum Vitae Builder)',
+    description:
+      'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/cv-maker',

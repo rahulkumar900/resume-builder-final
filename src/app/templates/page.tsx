@@ -27,6 +27,22 @@ export const metadata: Metadata = {
     siteName: 'ResumeBuilder',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: '30+ Free ATS-Friendly Resume Templates - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '30+ Free ATS-Friendly Resume Templates',
+    description:
+      'Browse and customize 30+ ATS-optimized resume templates. 100% free with real-time vector PDF export.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
 };
 

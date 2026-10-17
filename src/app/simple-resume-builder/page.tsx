@@ -45,6 +45,22 @@ export const metadata: Metadata = {
       'Skip the complicated graphic design tools. Build a clean, recruiter-approved one-page resume with guaranteed ATS compliance and free PDF export.',
     type: 'website',
     url: 'https://resumebuilder.app/simple-resume-builder',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Simple Resume Builder - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Simple Resume Builder - Clean 1-Page Resumes in 3 Minutes',
+    description:
+      'Skip the complicated graphic design tools. Build a clean, recruiter-approved one-page resume with guaranteed ATS compliance and free PDF export.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/simple-resume-builder',

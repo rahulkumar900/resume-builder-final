@@ -43,6 +43,22 @@ export const metadata: Metadata = {
       'Land your first campus placement or entry-level job. Pre-built sections for college projects, certifications, degrees, and extracurriculars.',
     type: 'website',
     url: 'https://resumebuilder.app/resume-builder-for-freshers',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free Resume Builder for Freshers - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Resume Builder for Freshers & Students (No Experience Needed)',
+    description:
+      'Land your first campus placement or entry-level job. Pre-built sections for college projects, certifications, degrees, and extracurriculars.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/resume-builder-for-freshers',

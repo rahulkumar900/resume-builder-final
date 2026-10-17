@@ -45,6 +45,22 @@ export const metadata: Metadata = {
       'Make an ATS-approved professional resume online for free. Instant PDF download, real-time page formatting, zero watermarks.',
     type: 'website',
     url: 'https://resumebuilder.app/resume-maker',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free Resume Maker Online - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Resume Maker Online - Create Your Resume in Minutes',
+    description:
+      'Make an ATS-approved professional resume online for free. Instant PDF download, real-time page formatting, zero watermarks.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/resume-maker',

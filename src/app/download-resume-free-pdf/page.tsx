@@ -40,6 +40,22 @@ export const metadata: Metadata = {
       'Generate and download your resume in pixel-perfect vector PDF format. Fast, free, and 100% ATS readable.',
     type: 'website',
     url: 'https://resumebuilder.app/download-resume-free-pdf',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Download Resume in Free Vector PDF - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Download Resume in Free Vector PDF | No Watermarks & No Paywalls',
+    description:
+      'Generate and download your resume in pixel-perfect vector PDF format. Fast, free, and 100% ATS readable.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/download-resume-free-pdf',

@@ -9,6 +9,29 @@ export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
     'Read the terms of service and user agreement for ResumeBuilder. Learn about your intellectual property rights, data ownership, acceptable use, and subscription terms.',
+  openGraph: {
+    title: 'Terms of Service | ResumeBuilder',
+    description:
+      'Read the terms of service and user agreement for ResumeBuilder.',
+    type: 'website',
+    url: 'https://resumebuilder.app/terms',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ResumeBuilder Terms of Service',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service | ResumeBuilder',
+    description:
+      'Read the terms of service and user agreement for ResumeBuilder.',
+    images: ['https://resumebuilder.app/og-image.png'],
+  },
   alternates: {
     canonical: 'https://resumebuilder.app/terms',
   },

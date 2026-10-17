@@ -26,6 +26,22 @@ export const metadata: Metadata = {
       'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
     type: 'website',
     url: 'https://resumebuilder.app/blog',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Career & Resume Strategy Blog - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Career & Resume Strategy Blog',
+    description:
+      'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/blog',

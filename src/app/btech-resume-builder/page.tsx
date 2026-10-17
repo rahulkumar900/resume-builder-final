@@ -48,6 +48,22 @@ export const metadata: Metadata = {
       'Land your first software engineering or campus placement job. Pre-structured sections for CGPA, coding profiles (GitHub, LeetCode), and capstone projects.',
     type: 'website',
     url: 'https://resumebuilder.app/btech-resume-builder',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'B.Tech Resume Builder - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'B.Tech Resume Builder - Campus Placement Ready Engineering Formats',
+    description:
+      'Land your first software engineering or campus placement job. Pre-structured sections for CGPA, coding profiles (GitHub, LeetCode), and capstone projects.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/btech-resume-builder',

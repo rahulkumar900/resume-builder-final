@@ -48,6 +48,22 @@ export const metadata: Metadata = {
       'Engineered with strict semantic HTML, standard section hierarchies, and instant keyword auditing. Download your free ATS resume PDF now.',
     type: 'website',
     url: 'https://resumebuilder.app/ats-resume-builder',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free ATS Resume Builder - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free ATS Resume Builder - 98% Pass Rate on Workday & Taleo',
+    description:
+      'Engineered with strict semantic HTML, standard section hierarchies, and instant keyword auditing. Download your free ATS resume PDF now.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/ats-resume-builder',

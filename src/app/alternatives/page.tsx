@@ -42,6 +42,22 @@ export const metadata: Metadata = {
       'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
     type: 'website',
     url: 'https://resumebuilder.app/alternatives',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Resume Builder Alternatives & Comparisons - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Top Resume Builder Comparisons & Free Alternatives (2026)',
+    description:
+      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/alternatives',

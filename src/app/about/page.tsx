@@ -21,6 +21,29 @@ export const metadata: Metadata = {
   title: 'About Us & Mission',
   description:
     'Learn about ResumeBuilder. We are on a mission to democratize job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
+  openGraph: {
+    title: 'About Us & Mission | ResumeBuilder',
+    description:
+      'Democratizing job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
+    type: 'website',
+    url: 'https://resumebuilder.app/about',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'About ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us & Mission | ResumeBuilder',
+    description:
+      'Democratizing job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
+    images: ['https://resumebuilder.app/og-image.png'],
+  },
   alternates: {
     canonical: 'https://resumebuilder.app/about',
   },

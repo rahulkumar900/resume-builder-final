@@ -38,6 +38,22 @@ export const metadata: Metadata = {
       'Format comprehensive multi-page CVs with peer-reviewed publications, research grants, and teaching appointments. Free vector PDF export.',
     type: 'website',
     url: 'https://resumebuilder.app/curriculum-vitae-maker',
+    images: [
+      {
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Curriculum Vitae Maker - ResumeBuilder',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Curriculum Vitae Maker | Academic, Medical & Research CVs',
+    description:
+      'Format comprehensive multi-page CVs with peer-reviewed publications, research grants, and teaching appointments. Free vector PDF export.',
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   alternates: {
     canonical: 'https://resumebuilder.app/curriculum-vitae-maker',

@@ -142,10 +142,18 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Resume Checker',
     description:
@@ -156,10 +164,18 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/opengraph-image',
+        url: 'https://resumebuilder.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Checker',
+        type: 'image/png',
+      },
+      {
+        url: 'https://resumebuilder.app/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'ResumeBuilder - Free AI Resume Builder & ATS Checker',
+        type: 'image/png',
       },
     ],
   },
@@ -169,7 +185,7 @@ export const metadata: Metadata = {
     description:
       'Create an ATS-friendly resume tailored to any job description. 100% free forever with real-time vector PDF export.',
     creator: '@resumebuilder',
-    images: ['/opengraph-image'],
+    images: ['https://resumebuilder.app/og-image.png'],
   },
   robots: {
     index: true,
