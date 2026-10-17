@@ -2430,6 +2430,9 @@
   .bg-\[\#F8F7F3\]\/95 {
     background-color: color-mix(in oklab, #F8F7F3 95%, transparent);
   }
+  .bg-\[\#F8F7F3\]\/98 {
+    background-color: color-mix(in oklab, #F8F7F3 98%, transparent);
+  }
   .bg-\[\#cbd5e1\]\/60 {
     background-color: color-mix(in oklab, #cbd5e1 60%, transparent);
   }
@@ -4070,10 +4073,6 @@
     --tw-tracking: 0.15em;
     letter-spacing: 0.15em;
   }
-  .tracking-\[0\.16em\] {
-    --tw-tracking: 0.16em;
-    letter-spacing: 0.16em;
-  }
   .tracking-\[0\.25em\] {
     --tw-tracking: 0.25em;
     letter-spacing: 0.25em;
@@ -5186,6 +5185,14 @@
     .hover\:bg-amber-700:hover {
       background-color: var(--color-amber-700);
     }
+    .hover\:bg-black\/5:hover {
+      background-color: color-mix(in srgb, #000 5%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-black\/5:hover {
+        background-color: color-mix(in oklab, var(--color-black) 5%, transparent);
+      }
+    }
     .hover\:bg-black\/\[0\.01\]:hover {
       background-color: color-mix(in srgb, #000 1%, transparent);
     }
@@ -6151,6 +6158,10 @@
     .sm\:text-\[25px\] {
       font-size: 25px;
     }
+    .sm\:tracking-\[0\.16em\] {
+      --tw-tracking: 0.16em;
+      letter-spacing: 0.16em;
+    }
   }
   @media (width >= 48rem) {
     .md\:col-span-5 {
@@ -6543,6 +6554,12 @@
   .dark\:border-slate-800:where(.dark, .dark *) {
     border-color: var(--color-slate-800);
   }
+  .dark\:border-slate-800\/80:where(.dark, .dark *) {
+    border-color: color-mix(in srgb, oklch(27.9% 0.041 260.031) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-slate-800) 80%, transparent);
+    }
+  }
   .dark\:border-slate-900:where(.dark, .dark *) {
     border-color: var(--color-slate-900);
   }
@@ -6614,6 +6631,9 @@
   }
   .dark\:bg-\[\#100F0C\]\/95:where(.dark, .dark *) {
     background-color: color-mix(in oklab, #100F0C 95%, transparent);
+  }
+  .dark\:bg-\[\#100F0C\]\/98:where(.dark, .dark *) {
+    background-color: color-mix(in oklab, #100F0C 98%, transparent);
   }
   .dark\:bg-\[\#20201e\]:where(.dark, .dark *) {
     background-color: #20201e;
@@ -7552,6 +7572,14 @@
     }
     .dark\:hover\:bg-slate-800:where(.dark, .dark *):hover {
       background-color: var(--color-slate-800);
+    }
+    .dark\:hover\:bg-white\/5:where(.dark, .dark *):hover {
+      background-color: color-mix(in srgb, #fff 5%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .dark\:hover\:bg-white\/5:where(.dark, .dark *):hover {
+        background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+      }
     }
     .dark\:hover\:bg-white\/\[0\.1\]:where(.dark, .dark *):hover {
       background-color: color-mix(in srgb, #fff 10%, transparent);
