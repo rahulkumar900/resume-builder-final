@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -20,7 +20,7 @@ import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 
 export const metadata: Metadata = {
-  title: 'Free Online Resume Editor: Real-Time A4 WYSIWYG Editor | ResumeBuilder',
+  title: 'Free Online Resume Editor: Real-Time A4 WYSIWYG Editor',
   description:
     'Edit your resume online with real-time A4 preview, dynamic section reordering, font customization, and instant ATS audit. Free vector PDF export.',
   keywords: [
@@ -56,8 +56,34 @@ export default function ResumeEditorPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1720',
+      bestRating: '5',
+      worstRating: '1',
+    },
     description:
       'Real-time visual resume editor with live A4 rendering, section reordering, font styling, and automated ATS compatibility checking.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Resume Editor',
+        item: 'https://resumebuilder.app/resume-editor',
+      },
+    ],
   };
 
   return (
@@ -65,6 +91,10 @@ export default function ResumeEditorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 

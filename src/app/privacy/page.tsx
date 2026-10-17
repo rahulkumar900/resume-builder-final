@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -6,7 +6,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { ShieldCheck, Lock, CheckCircle2, ArrowRight, Eye, Server, RefreshCw } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy & Data Security | ResumeBuilder',
+  title: 'Privacy Policy & Data Security',
   description:
     'Learn how ResumeBuilder protects your resume data and privacy. We do not sell your personal information or train public AI models on your private resumes.',
   alternates: {
@@ -17,8 +17,31 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   const lastUpdated = 'October 1, 2026';
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Privacy Policy',
+        item: 'https://resumebuilder.app/privacy',
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
 
       <main className="flex-1">

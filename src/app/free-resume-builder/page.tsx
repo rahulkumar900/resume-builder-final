@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -26,7 +26,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: '100% Free Resume Builder & Download: No Paywall, No Credit Card | ResumeBuilder',
+  title: '100% Free Resume Builder & PDF Download (No Paywalls)',
   description:
     'Build and download your resume in high-resolution PDF for free. No credit card required, no 14-day trial traps, no watermarks. Trusted by over 120,000 job seekers.',
   keywords: [
@@ -70,14 +70,36 @@ export default function FreeResumeBuilderPage() {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
       reviewCount: '12480',
+      bestRating: '5',
+      worstRating: '1',
     },
     description:
       'Free online resume builder and CV maker with zero paywalls, instant vector PDF downloads, and real-time ATS compatibility checking.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Free Resume Builder',
+        item: 'https://resumebuilder.app/free-resume-builder',
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -123,10 +145,14 @@ export default function FreeResumeBuilderPage() {
   const featuredTemplates = TEMPLATES.slice(0, 6);
 
   return (
-    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-foreground min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

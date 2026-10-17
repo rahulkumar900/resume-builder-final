@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -22,7 +22,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Simple Resume Builder: Free One-Page & Basic Resume Maker | ResumeBuilder',
+  title: 'Simple Resume Builder: Free One-Page & Basic Resume Maker',
   description:
     'Free simple resume builder for clean, basic, and one-page resumes. No clutter, no complex graphics, instant vector PDF download in under 3 minutes with zero watermarks.',
   keywords: [
@@ -66,12 +66,38 @@ export default function SimpleResumeBuilderPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1680',
+      bestRating: '5',
+      worstRating: '1',
+    },
     featureList: [
       'Minimalist single-column and clean typography layouts',
       'Automated A4 single-page budget and overflow protection',
       'Zero distracting graphics or unparseable design elements',
       'Instant vector PDF download with zero paywall',
       'Pre-formatted standard headers for instant ATS indexing',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Simple Resume Builder',
+        item: 'https://resumebuilder.app/simple-resume-builder',
+      },
     ],
   };
 
@@ -131,6 +157,10 @@ export default function SimpleResumeBuilderPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

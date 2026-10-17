@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,7 +21,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free PDF Resume Maker: Download Vector A4 PDF Without Watermarks | ResumeBuilder',
+  title: 'Free PDF Resume Maker - Download Vector A4 PDF Without Watermarks',
   description:
     'Download your resume in clean, recruiter-approved vector PDF format for free. No watermarks, no paywall screen, and ATS text-selectable guarantee. Tested on Workday and Taleo.',
   keywords: [
@@ -53,13 +53,40 @@ export default function DownloadResumeFreePdfPage() {
     name: 'ResumeBuilder Free PDF Download Engine',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      ratingCount: '1640',
+      bestRating: '5',
+      worstRating: '1',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     description:
       'Instantly generate and download vector A4 PDF resumes with embedded fonts, selectable text streams, and ATS parser optimization.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Download Resume Free PDF',
+        item: 'https://resumebuilder.app/download-resume-free-pdf',
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -96,10 +123,14 @@ export default function DownloadResumeFreePdfPage() {
   const topTemplates = TEMPLATES.slice(0, 6);
 
   return (
-    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-foreground min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

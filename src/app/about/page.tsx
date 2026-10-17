@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us & Mission | ResumeBuilder',
+  title: 'About Us & Mission',
   description:
     'Learn about ResumeBuilder. We are on a mission to democratize job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
   alternates: {
@@ -27,8 +27,31 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About',
+        item: 'https://resumebuilder.app/about',
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <Navbar />
 
       <main className="flex-1">

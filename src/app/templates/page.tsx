@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { TemplatesShowcaseClient } from '@/components/templates/TemplatesShowcaseClient';
 
 export const metadata: Metadata = {
-  title: '30+ Free ATS-Friendly Resume Templates | ResumeBuilder',
+  title: '30+ Free ATS-Friendly Resume Templates',
   description:
     'Explore 30+ professionally engineered, ATS-compliant resume templates. Tested across Workday, Taleo, and Greenhouse with instant A4 pagination and custom color palettes.',
   keywords: [
@@ -31,5 +31,45 @@ export const metadata: Metadata = {
 };
 
 export default function TemplatesShowcasePage() {
-  return <TemplatesShowcaseClient />;
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Templates',
+        item: 'https://resumebuilder.app/templates',
+      },
+    ],
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: '30+ Free ATS-Friendly Resume Templates',
+    description:
+      'Explore 30+ professionally engineered, ATS-compliant resume templates tested across Workday, Taleo, and Greenhouse with instant A4 pagination.',
+    url: 'https://resumebuilder.app/templates',
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <TemplatesShowcaseClient />
+    </>
+  );
 }

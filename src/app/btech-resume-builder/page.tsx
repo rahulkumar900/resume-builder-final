@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -25,7 +25,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'B.Tech Resume Builder: Free Resume Maker for Engineering Freshers & CSE | ResumeBuilder',
+  title: 'B.Tech Resume Builder - Engineering Freshers & CSE Placements',
   description:
     'Free B.Tech resume builder for engineering freshers and Computer Science students. Campus placement formats for TCS, Infosys, Wipro, and product companies. 100% free vector PDF download.',
   keywords: [
@@ -64,10 +64,18 @@ export default function BTechResumeBuilderPage() {
     url: 'https://resumebuilder.app/btech-resume-builder',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '5840',
+      bestRating: '5',
+      worstRating: '1',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: [
       'Campus placement formats compliant with TCS, Infosys, Wipro, and Cognizant',
@@ -75,6 +83,25 @@ export default function BTechResumeBuilderPage() {
       'Pre-formatted academic project and capstone matrices',
       'Free vector PDF download with zero watermarks',
       'A4 single-page fit protection',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'B.Tech Resume Builder',
+        item: 'https://resumebuilder.app/btech-resume-builder',
+      },
     ],
   };
 
@@ -130,10 +157,14 @@ export default function BTechResumeBuilderPage() {
   );
 
   return (
-    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

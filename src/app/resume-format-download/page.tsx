@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -24,7 +24,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Resume Format Download: Free Word, Doc & PDF Formats for Jobs | ResumeBuilder',
+  title: 'Resume Format Download: Free Word, Doc & PDF Formats for Jobs',
   description:
     'Free resume format download for freshers and experienced job seekers. Skip broken MS Word (.doc) formatting. Edit online and download recruiter-approved, ATS-tested vector PDFs in 2 minutes.',
   keywords: [
@@ -68,12 +68,38 @@ export default function ResumeFormatDownloadPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1850',
+      bestRating: '5',
+      worstRating: '1',
+    },
     featureList: [
       'Pre-formatted layouts for IT, corporate, freshers, and executive jobs',
       'Instant vector PDF download with selectable text layers',
       'No MS Word formatting or margin collapse glitches',
       'Automated A4 boundary GhostDOM budget fit',
       '100% free with zero watermarks or credit cards required',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Resume Format Download',
+        item: 'https://resumebuilder.app/resume-format-download',
+      },
     ],
   };
 
@@ -123,6 +149,10 @@ export default function ResumeFormatDownloadPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

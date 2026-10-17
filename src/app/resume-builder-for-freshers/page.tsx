@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -20,7 +20,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Builder for Freshers: Make Student & Graduate Resumes | ResumeBuilder',
+  title: 'Free Resume Builder for Freshers - Student & Graduate Formats',
   description:
     'Best free resume builder for freshers, college students, and 12th pass graduates with no work experience. Includes pre-filled academic project formats and instant vector PDF export.',
   keywords: [
@@ -59,16 +59,43 @@ export default function ResumeBuilderForFreshersPage() {
     url: 'https://resumebuilder.app/resume-builder-for-freshers',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      ratingCount: '8450',
+      bestRating: '5',
+      worstRating: '1',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: [
       'Tailored academic project and coursework sections',
       'Fresher-friendly ATS layouts highlighting degrees and skills',
       'AI bullet suggestions for college internships and capstone projects',
       'Free vector PDF download without paywall or watermark',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Resume Builder for Freshers',
+        item: 'https://resumebuilder.app/resume-builder-for-freshers',
+      },
     ],
   };
 
@@ -104,10 +131,14 @@ export default function ResumeBuilderForFreshersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

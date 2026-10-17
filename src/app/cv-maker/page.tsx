@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,7 +21,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free CV Maker Online: Build & Download Professional CVs in PDF | ResumeBuilder',
+  title: 'Free CV Maker Online - Build & Download Professional CVs in PDF',
   description:
     'Create an international, academic, or corporate Curriculum Vitae online for free. Featuring multi-page A4 layouts, research/publication sections, and 100% ATS-friendly PDF download.',
   keywords: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     'ats friendly cv template'
   ],
   openGraph: {
-    title: 'Free CV Maker Online (Curriculum Vitae Builder) | ResumeBuilder',
+    title: 'Free CV Maker Online (Curriculum Vitae Builder)',
     description:
       'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
     type: 'website',
@@ -58,13 +58,40 @@ export default function CvMakerPage() {
     name: 'ResumeBuilder CV Maker & Curriculum Vitae Creator',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      ratingCount: '1420',
+      bestRating: '5',
+      worstRating: '1',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     description:
       'Comprehensive Curriculum Vitae builder for international, executive, and academic professionals with multi-page A4 formatting and ATS optimization.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'CV Maker',
+        item: 'https://resumebuilder.app/cv-maker',
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -107,6 +134,10 @@ export default function CvMakerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

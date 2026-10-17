@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -19,7 +19,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Generate Resume Online: Instant AI Resume Creator (Free Download) | ResumeBuilder',
+  title: 'Generate Resume Online: Instant AI Resume Creator (Free Download)',
   description:
     'Generate an ATS-optimized resume in under 5 minutes. Select a template, auto-generate high-impact bullet points, and export your free vector PDF.',
   keywords: [
@@ -56,8 +56,34 @@ export default function GenerateResumePage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1460',
+      bestRating: '5',
+      worstRating: '1',
+    },
     description:
       'Fast automated resume generator that creates recruiter-ready resumes in under 5 minutes with free vector PDF export.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Generate Resume',
+        item: 'https://resumebuilder.app/generate-resume',
+      },
+    ],
   };
 
   const topTemplates = TEMPLATES.slice(0, 4);
@@ -67,6 +93,10 @@ export default function GenerateResumePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 

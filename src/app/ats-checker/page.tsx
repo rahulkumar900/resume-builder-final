@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -30,7 +30,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { AtsCheckerClient } from '@/components/ats/AtsCheckerClient';
 
 export const metadata: Metadata = {
-  title: 'Free ATS Resume Checker & Score Calculator (2026) | ResumeBuilder',
+  title: 'Free ATS Resume Checker & Score Calculator (2026)',
   description:
     'Free online ATS resume checker. Scan your resume against top Applicant Tracking Systems (Workday, Taleo, Greenhouse). Get an instant 0-100 score, keyword gap analysis, metric density, and duplicate detection.',
   keywords: [
@@ -74,12 +74,32 @@ export default function AtsCheckerPage() {
           '@type': 'Offer',
           price: '0',
           priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
         },
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: '4.9',
           reviewCount: '18420',
+          bestRating: '5',
+          worstRating: '1',
         },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://resumebuilder.app',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'ATS Resume Checker',
+            item: 'https://resumebuilder.app/ats-checker',
+          },
+        ],
       },
       {
         '@type': 'FAQPage',
@@ -122,7 +142,7 @@ export default function AtsCheckerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-800 dark:text-slate-100 pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-foreground pt-16 transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

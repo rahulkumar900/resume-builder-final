@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
@@ -7,7 +7,7 @@ import { BLOG_POSTS } from '@/lib/blog-data';
 import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Career & Resume Strategy Blog: ATS Guides, Bullet Formulas & Tips | ResumeBuilder',
+  title: 'Career & Resume Strategy Blog: ATS Guides, Bullet Formulas & Tips',
   description:
     'Actionable career advice, ATS technical audits, fresher resume strategies, and the Google XYZ bullet formula written by executive recruiters and career mentors.',
   keywords: [
@@ -33,6 +33,25 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndexPage() {
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://resumebuilder.app/blog',
+      },
+    ],
+  };
+
   const blogJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -56,6 +75,10 @@ export default function BlogIndexPage() {
 
   return (
     <div className="min-w-[320px] bg-background min-h-screen flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300 selection:bg-emerald-100 selection:text-emerald-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}

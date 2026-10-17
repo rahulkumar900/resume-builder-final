@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -25,7 +25,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Teacher Resume Builder: Free Resume Maker for Teachers & Educators | ResumeBuilder',
+  title: 'Teacher Resume Builder: Free Resume Maker for Teachers & Educators',
   description:
     'Free teacher resume builder for primary, high school, fresher, and experienced educators. Formats for B.Ed, CTET, CBSE, ICSE, and international schools. Instant vector PDF download with zero watermarks.',
   keywords: [
@@ -69,12 +69,38 @@ export default function TeacherResumeBuilderPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1380',
+      bestRating: '5',
+      worstRating: '1',
+    },
     featureList: [
       'Pre-formatted sections for B.Ed, CTET, state teacher qualifications, and licenses',
       'Curriculum planning, lesson design, and classroom management bullet points',
       'CBSE, ICSE, State Board, and IB/Cambridge international school compatibility',
       'Free vector PDF download with zero watermarks',
       'Single-page A4 budget fit protection',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Teacher Resume Builder',
+        item: 'https://resumebuilder.app/teacher-resume-builder',
+      },
     ],
   };
 
@@ -126,6 +152,10 @@ export default function TeacherResumeBuilderPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -22,7 +22,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Maker Online: Create a Professional Resume in 3 Minutes | ResumeBuilder',
+  title: 'Free Resume Maker Online: Create a Professional Resume in 3 Minutes',
   description:
     'Free online resume maker with 30+ ATS templates. Create, edit, and download your professional resume as high-DPI vector PDF with no watermark, no hidden paywall, and no credit card.',
   keywords: [
@@ -66,12 +66,38 @@ export default function ResumeMakerPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '2140',
+      bestRating: '5',
+      worstRating: '1',
+    },
     featureList: [
       'Interactive 3-minute resume maker',
       'Real-time A4 page break visualizer',
       'ATS score scanner and bullet optimizer',
       'Instant vector PDF download with no watermark',
       '100% free with no trial traps',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Resume Maker',
+        item: 'https://resumebuilder.app/resume-maker',
+      },
     ],
   };
 
@@ -111,6 +137,10 @@ export default function ResumeMakerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

@@ -5,7 +5,9 @@ import { RxStoryScenes } from '@/components/home/RxStoryScenes';
 import { ScrollProgressBar } from '@/components/home/ScrollProgressBar';
 
 export const metadata: Metadata = {
-  title: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Checker',
+  title: {
+    absolute: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Resume Checker',
+  },
   description:
     'Build an ATS-friendly resume tailored to any job description. 30 professional templates, instant real-time A4 formatting, and vector PDF exports without paywalls or hidden watermarks.',
   alternates: {

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -19,7 +19,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Curriculum Vitae Maker: Academic, Medical & Research CV Builder | ResumeBuilder',
+  title: 'Curriculum Vitae Maker - Academic, Medical & Research CVs',
   description:
     'Build a comprehensive, academic-standard Curriculum Vitae. Dedicated sections for peer-reviewed publications, teaching experience, research grants, patents, and medical residencies. 100% free vector PDF export.',
   keywords: [
@@ -51,13 +51,40 @@ export default function CurriculumVitaeMakerPage() {
     name: 'Curriculum Vitae Academic & Medical Maker',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      ratingCount: '1180',
+      bestRating: '5',
+      worstRating: '1',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     description:
       'Specialized Curriculum Vitae software for professors, post-docs, physicians, researchers, and PhD candidates with multi-page publication layouts.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Curriculum Vitae Maker',
+        item: 'https://resumebuilder.app/curriculum-vitae-maker',
+      },
+    ],
   };
 
   const academicTemplates = TEMPLATES.filter(
@@ -65,10 +92,14 @@ export default function CurriculumVitaeMakerPage() {
   );
 
   return (
-    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-foreground min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -42,16 +42,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!competitor) {
     return {
-      title: 'Competitor Alternative | ResumeBuilder',
+      title: 'Competitor Alternative',
     };
   }
 
+  const cleanTitle = competitor.title.replace(/\s*\|\s*ResumeBuilder$/i, '');
+
   return {
-    title: competitor.title,
+    title: cleanTitle,
     description: competitor.metaDescription,
     keywords: competitor.targetKeywords,
     openGraph: {
-      title: competitor.title,
+      title: cleanTitle,
       description: competitor.metaDescription,
       type: 'article',
       url: `https://resumebuilder.app/alternatives/${competitor.slug}`,

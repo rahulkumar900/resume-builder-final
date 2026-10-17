@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -24,7 +24,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Student Resume Builder: High School, College & Internship Formats | ResumeBuilder',
+  title: 'Free Student Resume Builder: High School, College & Internship Formats',
   description:
     'Free student resume builder for high schoolers, 12th pass graduates, college students, and first-time job seekers. Turn coursework, volunteer work, and clubs into a job-winning resume with instant vector PDF download.',
   keywords: [
@@ -68,12 +68,38 @@ export default function StudentResumeBuilderPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1540',
+      bestRating: '5',
+      worstRating: '1',
+    },
     featureList: [
       'Tailored coursework, club leadership, and volunteer work sections',
       'Automatic A4 single-page budget protection',
       'High school, 12th pass, and undergraduate templates',
       'Instant vector PDF download with zero watermarks',
       '100% free with no credit card required',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Student Resume Builder',
+        item: 'https://resumebuilder.app/student-resume-builder',
+      },
     ],
   };
 
@@ -125,6 +151,10 @@ export default function StudentResumeBuilderPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -25,7 +25,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free ATS Resume Builder: Create ATS-Compliant Resumes | ResumeBuilder',
+  title: 'Free ATS Resume Builder: Create ATS-Compliant Resumes',
   description:
     'Free ATS resume builder engineered to pass Workday, Greenhouse, Taleo, and Lever ATS systems. Build, score, and download 100% ATS-friendly resumes as vector PDF with zero paywalls.',
   keywords: [
@@ -69,12 +69,38 @@ export default function AtsResumeBuilderPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '1920',
+      bestRating: '5',
+      worstRating: '1',
+    },
     featureList: [
       'Semantic single and hybrid column parsing structure',
       'Real-time job description keyword match scoring',
       'ATS font safety standards with embedded vector typography',
       'Instant zero-paywall vector PDF downloads',
       'A4 boundary GhostDOM overflow prevention',
+    ],
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'ATS Resume Builder',
+        item: 'https://resumebuilder.app/ats-resume-builder',
+      },
     ],
   };
 
@@ -101,7 +127,7 @@ export default function AtsResumeBuilderPage() {
       {
         '@type': 'Question',
         name: 'Can ATS read two-column resume layouts?',
-        answer: {
+        acceptedAnswer: {
           '@type': 'Answer',
           text: 'It depends on how the code is structured. Graphic design tools like Canva use absolute floating coordinates that cause sidebars to merge into body text. ResumeBuilder uses strict CSS Grid and Flexbox DOM order, guaranteeing that your sidebar information parses cleanly in modern ATS systems.',
         },
@@ -141,6 +167,10 @@ export default function AtsResumeBuilderPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

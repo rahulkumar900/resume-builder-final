@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -20,7 +20,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'ATS-Friendly Resume Templates: Recruiter-Approved (Free PDF Download) | ResumeBuilder',
+  title: 'ATS-Friendly Resume Templates: Recruiter-Approved (Free PDF Download)',
   description:
     'Free ATS-friendly resume templates guaranteed to pass Workday, Greenhouse, and Taleo ATS scanners. Clean single-column and hybrid layouts with 98%+ parsing rates.',
   keywords: [
@@ -52,6 +52,31 @@ export default function AtsFriendlyTemplatesPage() {
     description:
       'Verified ATS-friendly resume and CV templates engineered to pass Fortune 500 applicant tracking systems.',
     url: 'https://resumebuilder.app/templates/ats-friendly',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Templates',
+        item: 'https://resumebuilder.app/templates',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'ATS Friendly',
+        item: 'https://resumebuilder.app/templates/ats-friendly',
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -95,6 +120,10 @@ export default function AtsFriendlyTemplatesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

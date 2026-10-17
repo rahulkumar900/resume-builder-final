@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -19,7 +19,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { COMPETITORS } from '@/lib/competitors-data';
 
 export const metadata: Metadata = {
-  title: 'Best Resume Builder Alternatives & Comparisons (2026) | ResumeBuilder',
+  title: 'Best Resume Builder Alternatives & Comparisons (2026)',
   description:
     'Unbiased, side-by-side technical comparisons of top resume builders: Zety, Canva, Teal, Indeed, LiveCareer, Novorésumé, Kickresume, FlowCV, and Naukri. Compare ATS scores, pricing traps, and download guarantees.',
   keywords: [
@@ -64,12 +64,35 @@ export default function AlternativesIndexPage() {
     })),
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Alternatives',
+        item: 'https://resumebuilder.app/alternatives',
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans relative selection:bg-emerald-500 selection:text-white">
       <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <Navbar />
 

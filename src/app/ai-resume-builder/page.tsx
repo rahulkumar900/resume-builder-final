@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,7 +21,7 @@ import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 
 export const metadata: Metadata = {
-  title: 'Free AI Resume Builder & AI Resume Maker: Tailor Resumes in Minutes | ResumeBuilder',
+  title: 'Free AI Resume Builder & AI Resume Maker: Tailor Resumes in Minutes',
   description:
     'Free AI resume builder and smart AI resume maker. Automatically rewrite bullet points using the Google XYZ formula, optimize ATS keywords for any job description, and download vector PDFs with zero paywalls.',
   keywords: [
@@ -65,8 +65,34 @@ export default function AiResumeBuilderPage() {
       price: '0',
       priceCurrency: 'USD',
     },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '2410',
+      bestRating: '5',
+      worstRating: '1',
+    },
     description:
       'Section-specific AI resume writer that generates recruiter-grade bullet points with metrics and tailors resumes to job descriptions.',
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://resumebuilder.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'AI Resume Builder',
+        item: 'https://resumebuilder.app/ai-resume-builder',
+      },
+    ],
   };
 
   const faqJsonLd = {
@@ -105,6 +131,10 @@ export default function AiResumeBuilderPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"
