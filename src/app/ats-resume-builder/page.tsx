@@ -150,35 +150,37 @@ export default function AtsResumeBuilderPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-[#F8F7F3] dark:from-emerald-950/20 dark:via-[#141310] dark:to-[#100F0C] pt-12 pb-20 border-b border-black/[0.06] dark:border-white/[0.08]">
+        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
               <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
               <span>98% Pass Rate Across Workday, Taleo &amp; Greenhouse</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
               Free ATS Resume Builder:{' '}
-              <span className="bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-900 dark:from-emerald-400 dark:via-teal-400 dark:to-emerald-200 bg-clip-text text-transparent">
+              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">
                 Beat the Bot, Get the Interview
               </span>
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
               75% of qualified resumes get dropped by automated Applicant Tracking Systems before a human recruiter sees them. Build an ATS-certified resume with guaranteed machine readability and instant PDF export.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/builder?template=ats"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Launch ATS Resume Builder</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/ats-checker"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white dark:bg-white/[0.06] hover:bg-slate-50 dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-sm transition border border-slate-200 dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <Search className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                 <span>Check Your ATS Score Free</span>
@@ -186,7 +188,7 @@ export default function AtsResumeBuilderPage() {
             </div>
 
             {/* Quick Feature Badges */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-medium text-slate-600 dark:text-slate-400">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono font-medium text-slate-600 dark:text-slate-400">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Zero Paywalls or Watermarks</span>
@@ -208,16 +210,16 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* ATS System Benchmark Pass Rates */}
-        <section className="bg-slate-900 dark:bg-[#161512] text-white py-14 border-b border-slate-800 dark:border-white/[0.08]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
                 Automated Verification
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-1">
-                Audited Against Fortune 500 ATS Algorithms
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Audited Against Fortune 500 ATS Algorithms<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
-              <p className="text-xs text-slate-400 mt-2">
+              <p className="text-base text-slate-600 dark:text-slate-400 mt-3 font-sans">
                 Every template in our ATS builder is pre-tested against standard enterprise ingestion engines.
               </p>
             </div>
@@ -226,14 +228,14 @@ export default function AtsResumeBuilderPage() {
               {atsEngines.map((engine, i) => (
                 <div
                   key={i}
-                  className="bg-slate-800/80 dark:bg-[#1F1E1A] rounded-xl p-4 border border-slate-700/60 dark:border-white/[0.08] text-center flex flex-col justify-between"
+                  className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-5 border border-black/[0.06] dark:border-white/[0.08] text-center flex flex-col justify-between shadow-xs hover:border-emerald-500/40 transition"
                 >
                   <div>
-                    <span className="text-xs font-semibold text-slate-300 block mb-1">{engine.name}</span>
-                    <span className="text-2xl font-black text-emerald-400">{engine.passRate}</span>
-                    <span className="text-[10px] text-emerald-500/90 block mt-1 font-medium">{engine.status}</span>
+                    <span className="font-serif text-xs font-bold text-slate-900 dark:text-white block mb-1">{engine.name}</span>
+                    <span className="text-2xl font-black text-emerald-700 dark:text-emerald-400 font-mono">{engine.passRate}</span>
+                    <span className="text-[10px] text-emerald-800 dark:text-emerald-300 block mt-1 font-mono font-medium">{engine.status}</span>
                   </div>
-                  <p className="text-[10px] text-slate-400 mt-3 pt-2 border-t border-slate-700/40 dark:border-white/[0.06] leading-snug">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-3 pt-2 border-t border-black/[0.06] dark:border-white/[0.08] leading-snug font-sans">
                     {engine.notes}
                   </p>
                 </div>
@@ -243,55 +245,58 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* Why Graphic Builders Fail ATS vs How Our Engine Wins */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              Why Canva &amp; Word Resumes Fail ATS Screeners
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Architecture Comparison
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Why Canva &amp; Word Resumes Fail ATS Screeners<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+            <p className="text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed mt-4">
               Understanding the mechanical differences between a graphic file and an ATS-optimized vector document.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Failure Path */}
-            <div className="bg-rose-50/50 dark:bg-rose-950/20 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/60 flex items-center justify-center text-rose-600 dark:text-rose-400">
                   <XCircle className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">Graphic Builders (Canva, Word, Photoshop)</h3>
-                  <span className="text-xs text-rose-600 dark:text-rose-400 font-semibold">Average ATS Pass Rate: 32% – 65%</span>
+                  <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Graphic Builders (Canva, Word, Photoshop)</h3>
+                  <span className="text-xs font-mono text-rose-600 dark:text-rose-400 font-semibold">Average ATS Pass Rate: 32% – 65%</span>
                 </div>
               </div>
 
-              <ul className="space-y-4 text-xs text-slate-700 dark:text-slate-300">
+              <ul className="space-y-4 text-xs text-slate-700 dark:text-slate-300 font-sans">
                 <li className="flex items-start gap-2.5">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Unparseable Text Frames:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Unparseable Text Frames:</strong>
                     Text is compiled into unanchored graphical coordinate boxes. ATS bots read this as chaotic disconnected fragments.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Graphic Icons for Contact Info:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Graphic Icons for Contact Info:</strong>
                     Using a telephone icon instead of the word &ldquo;Phone&rdquo; causes scanners to miss your mobile number and email.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Rating Bars &amp; Star Icons:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Rating Bars &amp; Star Icons:</strong>
                     Displaying &ldquo;Python: ★★★★☆&rdquo; results in zero skill score because bots cannot interpret star images.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Rasterized Image Flattening:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Rasterized Image Flattening:</strong>
                     Many online builders export flat raster images instead of real selectable text, rendering the file unsearchable.
                   </div>
                 </li>
@@ -299,43 +304,43 @@ export default function AtsResumeBuilderPage() {
             </div>
 
             {/* The Solution Path */}
-            <div className="bg-emerald-50/50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/40 p-6 sm:p-8">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800/80 p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">ResumeBuilder ATS Engine</h3>
-                  <span className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold">Average ATS Pass Rate: 98%+</span>
+                  <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">ResumeBuilder ATS Engine</h3>
+                  <span className="text-xs font-mono text-emerald-700 dark:text-emerald-400 font-semibold">Average ATS Pass Rate: 98%+</span>
                 </div>
               </div>
 
-              <ul className="space-y-4 text-xs text-slate-700 dark:text-slate-300">
+              <ul className="space-y-4 text-xs text-slate-700 dark:text-slate-300 font-sans">
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Pure Semantic A4 Structure:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Pure Semantic A4 Structure:</strong>
                     Standard HTML5 heading tags (&lt;h1&gt;, &lt;h2&gt;, &lt;ul&gt;, &lt;li&gt;) allow bots to index your career chronologically.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Text-Based Contact Anchors:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Text-Based Contact Anchors:</strong>
                     Every email, phone, LinkedIn URL, and portfolio link is explicitly formatted with clear label metadata.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">Categorized Semantic Skills Lists:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">Categorized Semantic Skills Lists:</strong>
                     Skills are structured as searchable text tokens (e.g., Languages, Frameworks, Cloud, Databases) with full keyword weight.
                   </div>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 dark:text-white block">High-DPI Vector PDF Export:</strong>
+                    <strong className="text-slate-900 dark:text-white block font-serif">High-DPI Vector PDF Export:</strong>
                     100% selectable text layers that look gorgeous to human eyes while scanning instantly in recruiter databases.
                   </div>
                 </li>
@@ -345,63 +350,63 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* 4-Step ATS Optimization Process */}
-        <section className="bg-white dark:bg-[#141310] border-y border-black/[0.06] dark:border-white/[0.08] py-16 sm:py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-bold">
-                The ATS Optimization Workflow
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Workflow
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-                From Blank Page to ATS-Certified PDF in 4 Steps
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                From Blank Page to ATS-Certified PDF in 4 Steps<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] rounded-2xl p-6 border border-slate-200/80 dark:border-white/[0.08] relative">
-                <span className="w-8 h-8 rounded-full bg-emerald-700 text-white font-bold text-sm flex items-center justify-center mb-4">
-                  1
+              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+                <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
+                  01
                 </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">Select ATS Layout</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Select ATS Layout</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   Choose from single-column or hybrid layouts with verified heading hierarchies and standard margins.
                 </p>
               </div>
 
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] rounded-2xl p-6 border border-slate-200/80 dark:border-white/[0.08] relative">
-                <span className="w-8 h-8 rounded-full bg-emerald-700 text-white font-bold text-sm flex items-center justify-center mb-4">
-                  2
+              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+                <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
+                  02
                 </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">Audit Against JD</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Audit Against JD</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   Paste your target job description. Our scanner flags missing skills and computes your match percentage.
                 </p>
               </div>
 
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] rounded-2xl p-6 border border-slate-200/80 dark:border-white/[0.08] relative">
-                <span className="w-8 h-8 rounded-full bg-emerald-700 text-white font-bold text-sm flex items-center justify-center mb-4">
-                  3
+              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+                <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
+                  03
                 </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">Enhance Bullets</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Enhance Bullets</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   Apply Google&apos;s X-Y-Z formula (&ldquo;Accomplished [X] as measured by [Y], by doing [Z]&rdquo;) with strong action verbs.
                 </p>
               </div>
 
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] rounded-2xl p-6 border border-slate-200/80 dark:border-white/[0.08] relative">
-                <span className="w-8 h-8 rounded-full bg-emerald-700 text-white font-bold text-sm flex items-center justify-center mb-4">
-                  4
+              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+                <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
+                  04
                 </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">Export Vector PDF</h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Export Vector PDF</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   Download your publication-grade vector PDF. Zero paywalls, zero watermarks, and ready for 1-click job application.
                 </p>
               </div>
             </div>
 
-            <div className="text-center mt-10">
+            <div className="text-center mt-12">
               <Link
                 href="/builder?template=ats"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Start Building ATS Resume Free</span>
                 <ArrowRight className="w-4 h-4" />
@@ -411,22 +416,22 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* ATS Template Showcase */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-bold">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
                 Recruiter-Approved Designs
               </span>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-                ATS-Optimized Resume Formats
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                ATS-Optimized Resume Formats<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
                 Every layout is calibrated for standard single-page or two-page printing with crisp typography.
               </p>
             </div>
             <Link
               href="/templates/ats-friendly"
-              className="text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 inline-flex items-center gap-1 shrink-0"
+              className="text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 inline-flex items-center gap-1 shrink-0"
             >
               <span>View all ATS templates</span>
               <ChevronRight className="w-4 h-4" />
@@ -437,18 +442,18 @@ export default function AtsResumeBuilderPage() {
             {atsTemplates.map((tpl) => (
               <div
                 key={tpl.id}
-                className="bg-white dark:bg-[#191815] rounded-2xl border border-slate-200/90 dark:border-white/[0.08] overflow-hidden shadow-xs hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500 transition group flex flex-col justify-between"
+                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
               >
-                <div className="p-5">
+                <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-base font-bold text-slate-900 dark:text-white">{tpl.name}</span>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                    <span className="font-serif text-lg font-bold text-slate-900 dark:text-white">{tpl.name}</span>
+                    <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                       98%+ ATS Match
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">{tpl.description}</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mb-6 line-clamp-2 leading-relaxed">{tpl.description}</p>
 
-                  <div className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-white/[0.04] rounded-xl p-3 border border-slate-100 dark:border-white/[0.06]">
+                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-black/[0.02] dark:bg-white/[0.04] rounded-xl p-3.5 border border-black/[0.06] dark:border-white/[0.08] mb-6">
                     <div className="flex justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Layout Format:</span>
                       <span className="font-semibold text-slate-800 dark:text-white">
@@ -462,10 +467,10 @@ export default function AtsResumeBuilderPage() {
                   </div>
                 </div>
 
-                <div className="p-4 pt-0">
+                <div>
                   <Link
                     href={`/builder?template=${tpl.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-700 dark:bg-white dark:text-slate-900 dark:hover:bg-emerald-400 text-white font-bold text-xs transition"
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs transition shadow-sm"
                   >
                     <span>Use This ATS Template</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -477,59 +482,67 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="bg-white dark:bg-[#141310] border-t border-black/[0.06] dark:border-white/[0.08] py-16 sm:py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                Frequently Asked Questions About ATS Resume Builders
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Frequently Asked Questions
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Questions About ATS Resume Builders<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+              <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
                 Everything you need to know about passing automated candidate screeners.
               </p>
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-xl border border-slate-200/80 dark:border-white/[0.08] p-5 bg-[#F8F7F3] dark:bg-[#1A1916]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
+              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   What makes a resume ATS-compliant?
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
                   An ATS-compliant resume utilizes standard section headings (Work Experience, Education, Skills), simple linear hierarchy, selectable text layers without rasterization, and standard fonts (Inter, Helvetica, Roboto). It avoids floating text boxes, tables inside tables, and skill rating graphics.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-200/80 dark:border-white/[0.08] p-5 bg-[#F8F7F3] dark:bg-[#1A1916]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
+              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Are two-column resume templates safe for ATS?
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
                   When built in graphic tools like Canva, two columns frequently cause text from the right column to bleed horizontally into the left column during parsing. On ResumeBuilder, our hybrid templates are coded with strict DOM ordering so parsers read Column A first, then Column B, ensuring 100% data integrity.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-200/80 dark:border-white/[0.08] p-5 bg-[#F8F7F3] dark:bg-[#1A1916]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
+              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Why is PDF better than Word for modern job applications?
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
                   While older 2010s guidance recommended .DOCX files, modern ATS systems like Workday and Greenhouse parse vector PDFs with high accuracy. PDFs guarantee that the human recruiter sees the exact fonts, margins, and layout you designed, without font substitution or version glitches.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-200/80 dark:border-white/[0.08] p-5 bg-[#F8F7F3] dark:bg-[#1A1916]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
+              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Does this tool charge any fee at download?
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
                   No. We believe access to high-quality career tools should be universal. You can create, edit, customize, and export unlimited high-resolution vector PDF resumes completely free.
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-200/80 dark:border-white/[0.08] p-5 bg-[#F8F7F3] dark:bg-[#1A1916]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
+              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Can I tailor my resume for each job application?
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
                   Yes! We encourage candidates to paste the job listing into our built-in ATS Job Description Matcher. It instantly checks for matching keywords, hard skills, and certifications, helping you reach an 85%+ match score before applying.
                 </p>
               </div>
@@ -538,21 +551,22 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* Bottom CTA Banner */}
-        <section className="bg-gradient-to-r from-emerald-800 via-teal-800 to-slate-900 text-white py-16 border-t border-emerald-700/30">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
-              Stop Getting Filtered Out by ATS Bots
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Stop Getting Filtered Out by <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">ATS Bots.</span>
             </h2>
-            <p className="text-emerald-100 text-sm max-w-xl mx-auto mb-8">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
               Build an ATS-optimized, recruiter-approved resume in 5 minutes. Free vector PDF export with zero watermarks.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link
                 href="/builder?template=ats"
-                className="px-8 py-4 rounded-xl bg-white text-slate-900 font-bold text-sm hover:bg-emerald-50 transition shadow-xl inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Create ATS Resume Free</span>
-                <ArrowRight className="w-4 h-4 text-slate-900" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

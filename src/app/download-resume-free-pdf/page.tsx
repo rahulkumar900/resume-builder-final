@@ -109,37 +109,37 @@ export default function DownloadResumeFreePdfPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white dark:bg-[#141310] border-b border-slate-200/80 dark:border-white/[0.08] pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60 dark:opacity-20" />
+        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
               <Download className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
               <span>Instant High-Resolution Vector PDF Export</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
               Download Your Resume in{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">
                 Free, ATS-Ready PDF
               </span>
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
               No watermarks. No trial credit card signups. Download a crisp, searchable, vector A4 PDF designed to pass every corporate ATS parser without formatting breakdown.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/create"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-base transition shadow-xl shadow-blue-600/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Build &amp; Download PDF Free</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/templates"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 font-bold text-base hover:bg-slate-200 dark:hover:bg-white/[0.1] transition border border-slate-200 dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>View ATS Templates</span>
               </Link>
@@ -148,42 +148,45 @@ export default function DownloadResumeFreePdfPage() {
         </section>
 
         {/* The PDF Technical Standard */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              Why Our Vector PDF Outperforms Generic Resume Generators
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Technical Standards
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Why Our Vector PDF Outperforms Generic Generators<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed mt-4">
               Most online resume generators render low-resolution canvas snapshots that ATS parsers cannot read. Here is how our PDF architecture solves this.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 flex items-center justify-center">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
                 <FileCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">100% Selectable Text Stream</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">100% Selectable Text Stream</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Every character is embedded using standard PDF typography streams. Workday, Taleo, and Greenhouse parse your contact info, skills, and bullets with zero OCR errors.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
                 <Layers className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">GhostDOM Precision Page Fit</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">GhostDOM Precision Page Fit</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Never worry about accidental 2-line overflow onto page 2. Our browser-level engine calculates millimeter margins in real-time while you type.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
                 <Printer className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">300 DPI Print &amp; Screen Clarity</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">300 DPI Print &amp; Screen Clarity</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Whether reviewed on a 4K monitor by an executive recruiter or printed in an interview room, your resume renders razor-sharp without pixelation.
               </p>
@@ -192,17 +195,17 @@ export default function DownloadResumeFreePdfPage() {
         </section>
 
         {/* Template Selector with Direct PDF Launch */}
-        <section className="bg-white dark:bg-[#141310] border-y border-slate-200/80 dark:border-white/[0.08] py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
                   Instant Export
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-                  Pick a Template &amp; Download in PDF
+                <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  Pick a Template &amp; Download in PDF<span className="text-emerald-700 dark:text-emerald-400">.</span>
                 </h2>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
                   All templates include free, unlimited vector PDF downloads with no credit card required.
                 </p>
               </div>
@@ -219,23 +222,23 @@ export default function DownloadResumeFreePdfPage() {
               {topTemplates.map((tpl) => (
                 <div
                   key={tpl.id}
-                  className="bg-slate-50 dark:bg-[#191815] rounded-2xl border border-slate-200 dark:border-white/[0.08] p-5 hover:border-emerald-500 dark:hover:border-emerald-500/60 hover:shadow-md transition flex flex-col justify-between"
+                  className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-base font-bold text-slate-900 dark:text-white">{tpl.name}</span>
-                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-serif text-lg font-bold text-slate-900 dark:text-white">{tpl.name}</span>
+                      <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                         Vector PDF
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mb-6 line-clamp-2 leading-relaxed">
                       {tpl.description}
                     </p>
                   </div>
 
                   <Link
                     href={`/create?template=${tpl.id}`}
-                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm inline-flex items-center justify-center gap-2"
+                    className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm inline-flex items-center justify-center gap-2"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download {tpl.name} PDF</span>
@@ -247,47 +250,53 @@ export default function DownloadResumeFreePdfPage() {
         </section>
 
         {/* FAQs */}
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              PDF Download FAQs
-            </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-              Common questions about resume formatting, ATS parsing, and vector downloads.
-            </p>
-          </div>
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Frequently Asked Questions
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                PDF Download FAQs<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              </h2>
+              <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
+                Common questions about resume formatting, ATS parsing, and vector downloads.
+              </p>
+            </div>
 
-          <div className="space-y-4">
-            {faqJsonLd.mainEntity.map((faq, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-xl border border-slate-200/90 dark:border-white/[0.08] bg-white dark:bg-[#191815] shadow-xs space-y-2"
-              >
-                <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <span className="text-emerald-700 dark:text-emerald-400 font-black">Q:</span>
-                  {faq.name}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6">
-                  {faq.acceptedAnswer.text}
-                </p>
-              </div>
-            ))}
+            <div className="space-y-4">
+              {faqJsonLd.mainEntity.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2"
+                >
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
+                    {faq.name}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
+                    {faq.acceptedAnswer.text}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="bg-slate-900 dark:bg-[#141310] text-white py-16 sm:py-20 border-t border-slate-800 dark:border-white/[0.08]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-white">
-              Get Your Job-Ready Vector PDF Resume Today
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Get Your Job-Ready <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Vector PDF Resume Today.</span>
             </h2>
-            <p className="text-slate-400 text-base max-w-xl mx-auto mb-8">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
               Free forever. No credit card required. Download as many PDF versions as you need.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link
                 href="/create"
-                className="px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-xl shadow-blue-500/25 inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Build Resume &amp; Download PDF</span>
                 <ArrowRight className="w-4 h-4" />

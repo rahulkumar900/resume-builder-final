@@ -136,59 +136,55 @@ export default function FreeResumeBuilderPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white dark:bg-[#141310] border-b border-slate-200/80 dark:border-white/[0.08] pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60 dark:opacity-20" />
+        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32 border-b border-black/[0.06] dark:border-white/[0.08]">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-300 text-xs font-bold mb-6">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
+              <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
               <span>Zero Paywall Guarantee · No Credit Card Required</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
-              The Truly{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
-                Free Resume Builder
-              </span>{' '}
-              With Instant PDF Download
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
+              The Truly <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Free Resume Builder</span> with instant PDF download.
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
               No subscription traps. No 14-day auto-renewing trials. No blurry watermarks. Build your ATS-optimized resume in under 10 minutes and export it immediately.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/create"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-base transition shadow-xl shadow-blue-600/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Build Free Resume Now</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/templates"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 font-bold text-base hover:bg-slate-200 dark:hover:bg-white/[0.1] transition border border-slate-200 dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Explore Free Templates</span>
               </Link>
             </div>
 
             {/* Micro Trust Proof */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono font-medium text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>100% Free Vector PDF</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>No Credit Card at Checkout</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>98% ATS Pass Rate</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Zero Watermarks</span>
               </div>
             </div>
@@ -196,24 +192,27 @@ export default function FreeResumeBuilderPage() {
         </section>
 
         {/* The Truth About "Free" Resume Builders */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              How Most &quot;Free&quot; Resume Builders Trick Candidates
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <div className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
+              SUBSCRIPTION TRAP COMPARISON
+            </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              How Most &quot;Free&quot; Builders Trick Candidates<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
               The bait-and-switch subscription model is broken. Here is why job seekers are switching to our platform.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Competitor Trap */}
-            <div className="bg-rose-50/50 dark:bg-rose-950/20 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8">
-              <div className="flex items-center gap-3 text-rose-700 dark:text-rose-400 font-black text-lg mb-4">
+            <div className="bg-rose-50/40 dark:bg-rose-950/20 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8 space-y-4">
+              <div className="flex items-center gap-3 text-rose-700 dark:text-rose-400 font-serif text-lg font-bold">
                 <XCircle className="w-6 h-6 text-rose-600 dark:text-rose-400" />
                 <span>Other &quot;Free&quot; Builders (Zety, LiveCareer, etc.)</span>
               </div>
-              <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+              <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300 font-sans leading-relaxed">
                 <li className="flex items-start gap-3">
                   <span className="text-rose-500 font-bold">✗</span>
                   <span><strong>The Sunk Cost Trap:</strong> Let you spend 45 minutes writing your resume, then reveal a $24.95 paywall at the download button.</span>
@@ -230,12 +229,12 @@ export default function FreeResumeBuilderPage() {
             </div>
 
             {/* Our Platform Guarantee */}
-            <div className="bg-emerald-50/50 dark:bg-emerald-950/20 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/40 p-6 sm:p-8">
-              <div className="flex items-center gap-3 text-emerald-700 dark:text-emerald-400 font-black text-lg mb-4">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800 p-6 sm:p-8 space-y-4 shadow-xs">
+              <div className="flex items-center gap-3 text-emerald-800 dark:text-emerald-300 font-serif text-lg font-bold">
                 <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 <span>ResumeBuilder (Our Guarantee)</span>
               </div>
-              <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
+              <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300 font-sans leading-relaxed">
                 <li className="flex items-start gap-3">
                   <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
                   <span><strong>Genuinely Free PDF Export:</strong> Download crisp, high-resolution vector A4 PDFs anytime without paying a dime.</span>
@@ -254,17 +253,17 @@ export default function FreeResumeBuilderPage() {
         </section>
 
         {/* Free Templates Showcase */}
-        <section className="bg-white dark:bg-[#141310] border-y border-slate-200/80 dark:border-white/[0.08] py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
                   Ready-to-Use Layouts
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-                  100% Free ATS-Compliant Resume Templates
+                <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  100% Free ATS-Compliant Resume Templates<span className="text-emerald-700 dark:text-emerald-400">.</span>
                 </h2>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
                   Single-column and double-column formats calibrated for corporate ATS systems and executive recruiters.
                 </p>
               </div>
@@ -281,20 +280,20 @@ export default function FreeResumeBuilderPage() {
               {featuredTemplates.map((tpl) => (
                 <div
                   key={tpl.id}
-                  className="bg-slate-50 dark:bg-[#191815] rounded-2xl border border-slate-200 dark:border-white/[0.08] p-5 hover:border-emerald-500 dark:hover:border-emerald-500/60 hover:shadow-md transition flex flex-col justify-between"
+                  className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-base font-bold text-slate-900 dark:text-white">{tpl.name}</span>
-                      <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                      <span className="font-serif text-lg font-bold text-slate-900 dark:text-white">{tpl.name}</span>
+                      <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
                         Free PDF
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 line-clamp-2 leading-relaxed">
                       {tpl.description}
                     </p>
-                    <div className="flex items-center gap-2 text-xs font-medium text-slate-600 dark:text-slate-400 mb-5">
-                      <span className="px-2 py-1 rounded bg-white dark:bg-[#1F1E1A] border border-slate-200 dark:border-white/[0.08]">
+                    <div className="flex items-center gap-2 text-xs font-mono text-slate-600 dark:text-slate-400 mb-6">
+                      <span className="px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08]">
                         {tpl.layout === 'single' ? 'Single Column (Strict ATS)' : 'Two-Column Hybrid'}
                       </span>
                     </div>
@@ -302,7 +301,7 @@ export default function FreeResumeBuilderPage() {
 
                   <Link
                     href={`/create?template=${tpl.id}`}
-                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm"
+                    className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm"
                   >
                     Use Free &amp; Download PDF
                   </Link>
@@ -313,52 +312,55 @@ export default function FreeResumeBuilderPage() {
         </section>
 
         {/* 4-Step Free Resume Workflow */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              Create Your Free Resume in 4 Simple Steps
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Workflow
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Create Your Free Resume in 4 Simple Steps<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed mt-3">
               From blank page to job application in less than 10 minutes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-black flex items-center justify-center text-base">
-                1
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                01
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Select Free Template</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Select Free Template</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Choose an ATS-compliant single or two-column layout tailored to your industry and experience level.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-black flex items-center justify-center text-base">
-                2
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                02
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Add Experience &amp; Skills</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Add Experience &amp; Skills</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Use built-in bullet points or let our AI rephrase your achievements into high-impact metric statements.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 font-black flex items-center justify-center text-base">
-                3
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                03
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Check ATS Score</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Check ATS Score</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Run an instant 6-pillar ATS audit to ensure zero formatting errors, missing keywords, or overflow clipping.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 font-black flex items-center justify-center text-base">
-                4
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                04
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Instant Vector Download</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Instant Vector Download</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Click download and instantly receive your pixel-perfect, recruiter-ready A4 PDF without watermarks.
               </p>
@@ -367,13 +369,16 @@ export default function FreeResumeBuilderPage() {
         </section>
 
         {/* FAQs Section */}
-        <section className="bg-white dark:bg-[#141310] border-t border-slate-200/80 dark:border-white/[0.08] py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                Frequently Asked Questions About Our Free Resume Maker
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Frequently Asked Questions
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Questions About Our Free Resume Maker<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+              <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
                 Everything you need to know about our zero-paywall policy and PDF download engine.
               </p>
             </div>
@@ -382,13 +387,13 @@ export default function FreeResumeBuilderPage() {
               {faqJsonLd.mainEntity.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50/50 dark:bg-[#191815] space-y-2"
+                  className="p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2"
                 >
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span className="text-emerald-700 dark:text-emerald-400 font-black">Q:</span>
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                     {faq.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
                     {faq.acceptedAnswer.text}
                   </p>
                 </div>
@@ -398,18 +403,19 @@ export default function FreeResumeBuilderPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-slate-900 dark:bg-[#141310] text-white py-16 sm:py-20 border-t border-slate-800 dark:border-white/[0.08]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-white">
-              Stop Paying For Resume Downloads. Build Yours Free Now.
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Stop Paying For Resume Downloads. <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Build Yours Free Now.</span>
             </h2>
-            <p className="text-slate-400 text-base max-w-xl mx-auto mb-8">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
               Join 120,000+ candidates who got hired without paying a single dollar for resume formatting.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link
                 href="/create"
-                className="px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-xl shadow-blue-500/25 inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Create Your Free Resume Now</span>
                 <ArrowRight className="w-4 h-4" />

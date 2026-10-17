@@ -121,18 +121,17 @@ export default function ResumeMakerPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-[#F8F7F3] dark:from-emerald-950/20 dark:via-[#141310] dark:to-[#100F0C] pt-12 pb-20 border-b border-black/[0.06] dark:border-white/[0.08]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-6 border border-emerald-200 dark:border-emerald-800">
-              <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+        <section className="relative overflow-hidden pt-20 pb-24 sm:pt-32 sm:pb-36">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+          <div className="max-w-5xl mx-auto px-4 sm:px-8 text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
               <span>Fastest Free Resume Maker • Zero Watermark</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
-              Make a Job-Winning Resume in{' '}
-              <span className="text-emerald-700 dark:text-emerald-400 underline decoration-emerald-300 dark:decoration-emerald-500 decoration-wavy underline-offset-8">
-                3 Minutes
-              </span>
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
+              Make a job-winning resume in{' '}
+              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">3 minutes</span>.
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
@@ -140,17 +139,17 @@ export default function ResumeMakerPage() {
             </p>
 
             {/* Primary CTA */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/builder"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white text-base font-bold rounded-xl shadow-lg shadow-emerald-700/20 hover:shadow-emerald-700/30 transition-all hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Make My Resume Free</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/templates/ats-friendly"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 bg-white dark:bg-white/[0.06] hover:bg-slate-50 dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 text-base font-semibold rounded-xl border border-slate-300 dark:border-white/[0.1] shadow-xs transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <Layers className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                 <span>Explore 30+ Templates</span>
@@ -158,7 +157,7 @@ export default function ResumeMakerPage() {
             </div>
 
             {/* Trust Badges */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-600 dark:text-slate-400">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> 100% Free PDF Export
               </span>
@@ -176,157 +175,163 @@ export default function ResumeMakerPage() {
         </section>
 
         {/* 3 Step Workflow */}
-        <section className="py-16 bg-white dark:bg-[#141310] border-b border-black/[0.06] dark:border-white/[0.08]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                How Our Online Resume Maker Works
-              </h2>
-              <p className="mt-3 text-slate-600 dark:text-slate-400 text-base">
-                Three simple steps to go from blank page to a recruiter-ready resume.
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Simple Workflow
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              How our online resume maker works<span className="text-emerald-700 dark:text-emerald-400">.</span>
+            </h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+              Three simple steps to go from blank page to a recruiter-ready resume.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-serif font-bold text-xl mb-5 border border-emerald-200 dark:border-emerald-800">
+                1
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Pick an ATS Template</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Choose from modern, executive, traditional, or fresher templates engineered to pass corporate screening software.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] p-6 rounded-2xl border border-slate-200/80 dark:border-white/[0.08] flex flex-col items-start">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-black text-xl mb-4">
-                  1
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Pick an ATS Template</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Choose from modern, executive, traditional, or fresher templates engineered to pass corporate screening software.
-                </p>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-serif font-bold text-xl mb-5 border border-emerald-200 dark:border-emerald-800">
+                2
               </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Fill with AI Suggestions</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Add your experience, skills, and education. Let our AI tailor bullet points to match your dream job title with high-impact action verbs.
+              </p>
+            </div>
 
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] p-6 rounded-2xl border border-slate-200/80 dark:border-white/[0.08] flex flex-col items-start">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-black text-xl mb-4">
-                  2
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Fill with AI Suggestions</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Add your experience, skills, and education. Let our AI tailor bullet points to match your dream job title with high-impact action verbs.
-                </p>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-serif font-bold text-xl mb-5 border border-emerald-200 dark:border-emerald-800">
+                3
               </div>
-
-              <div className="bg-[#F8F7F3] dark:bg-[#1A1916] p-6 rounded-2xl border border-slate-200/80 dark:border-white/[0.08] flex flex-col items-start">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-black text-xl mb-4">
-                  3
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Download Clean PDF</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Click download and receive your crisp vector PDF instantly. No surprise charges, no blurry scans, no watermarks.
-                </p>
-              </div>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Download Clean PDF</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Click download and receive your crisp vector PDF instantly. No surprise charges, no blurry scans, no watermarks.
+              </p>
             </div>
           </div>
         </section>
 
         {/* Templates Showcase */}
-        <section className="py-16 bg-[#F8F7F3] dark:bg-[#100F0C] border-b border-black/[0.06] dark:border-white/[0.08]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                  Popular Resume Maker Templates
-                </h2>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
-                  Single-column and two-column formats designed for real job seekers.
-                </p>
-              </div>
-              <Link
-                href="/templates/ats-friendly"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300"
-              >
-                <span>View all templates</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Curated Designs
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Popular Resume Maker Templates<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm mt-2">
+                Single-column and two-column formats designed for real job seekers.
+              </p>
             </div>
+            <Link
+              href="/templates/ats-friendly"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300"
+            >
+              <span>View all templates</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-              {TEMPLATES.slice(0, 8).map((tpl) => (
-                <Link
-                  key={tpl.id}
-                  href={`/builder?template=${tpl.id}`}
-                  className="group bg-white dark:bg-[#191815] rounded-xl border border-slate-200/90 dark:border-white/[0.08] overflow-hidden shadow-xs hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500 transition-all flex flex-col"
-                >
-                  <div className="h-44 bg-slate-100 dark:bg-black/30 flex items-center justify-center relative overflow-hidden">
-                    <div className="w-28 h-36 bg-white dark:bg-[#161512] shadow-xs rounded border border-slate-200 dark:border-white/[0.08] p-2 flex flex-col gap-1 group-hover:scale-105 transition-transform">
-                      <div className="h-2 w-12 bg-emerald-700/80 rounded-2xs" />
-                      <div className="h-1.5 w-20 bg-slate-200 dark:bg-white/[0.1] rounded-2xs" />
-                      <div className="h-px w-full bg-slate-200 dark:bg-white/[0.1] my-1" />
-                      <div className="space-y-1">
-                        <div className="h-1 w-full bg-slate-100 dark:bg-white/[0.05] rounded-2xs" />
-                        <div className="h-1 w-4/5 bg-slate-100 dark:bg-white/[0.05] rounded-2xs" />
-                        <div className="h-1 w-3/4 bg-slate-100 dark:bg-white/[0.05] rounded-2xs" />
-                      </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            {TEMPLATES.slice(0, 8).map((tpl) => (
+              <Link
+                key={tpl.id}
+                href={`/builder?template=${tpl.id}`}
+                className="group bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-xs hover:border-emerald-500/40 transition-all flex flex-col"
+              >
+                <div className="h-44 bg-[#F8F7F3] dark:bg-[#100F0C] flex items-center justify-center relative overflow-hidden">
+                  <div className="w-28 h-36 bg-white dark:bg-[#161512] shadow-xs rounded-lg border border-black/[0.06] dark:border-white/[0.08] p-2 flex flex-col gap-1 group-hover:scale-105 transition-transform">
+                    <div className="h-2 w-12 bg-emerald-700/80 rounded-2xs" />
+                    <div className="h-1.5 w-20 bg-slate-200 dark:bg-white/[0.1] rounded-2xs" />
+                    <div className="h-px w-full bg-black/[0.06] dark:bg-white/[0.08] my-1" />
+                    <div className="space-y-1">
+                      <div className="h-1 w-full bg-slate-100 dark:bg-white/[0.05] rounded-2xs" />
+                      <div className="h-1 w-4/5 bg-slate-100 dark:bg-white/[0.05] rounded-2xs" />
+                      <div className="h-1 w-3/4 bg-slate-100 dark:bg-white/[0.05] rounded-2xs" />
                     </div>
                   </div>
-                  <div className="p-3 bg-white dark:bg-[#191815] flex items-center justify-between border-t border-slate-100 dark:border-white/[0.06]">
-                    <span className="font-bold text-xs text-slate-800 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
-                      {tpl.name}
-                    </span>
-                    <span className="text-[10px] uppercase font-mono font-bold text-slate-400 dark:text-slate-500">
-                      {tpl.layout === 'double' ? 'Two Column' : 'Single Column'}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+                <div className="p-4 bg-white/90 dark:bg-[#141310]/90 flex items-center justify-between border-t border-black/[0.06] dark:border-white/[0.08]">
+                  <span className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
+                    {tpl.name}
+                  </span>
+                  <span className="text-[10px] uppercase font-mono font-medium text-slate-500 dark:text-slate-400">
+                    {tpl.layout === 'double' ? 'Two Col' : 'Single'}
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 bg-white dark:bg-[#141310]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight text-center mb-10">
-              Frequently Asked Questions About Our Resume Maker
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Common Questions
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Resume Maker FAQs<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
+          </div>
 
-            <div className="space-y-6">
-              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#1A1916] border border-slate-200/80 dark:border-white/[0.08]">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Why is this resume maker free while others charge?
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Most resume services use aggressive subscription traps—they advertise as free, make you build your resume for 45 minutes, and then lock your PDF behind a $20+ recurring fee. We believe job seekers shouldn&apos;t have to pay to get hired. You can create and export your PDF without ever entering payment information.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#1A1916] border border-slate-200/80 dark:border-white/[0.08]">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  What format does the resume maker export?
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Our system exports standard vector PDF files. Vector PDFs preserve selectable text, hyperlink data, and high-DPI font sharpness, which is essential for passing corporate ATS scanners and looking professional when printed.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#1A1916] border border-slate-200/80 dark:border-white/[0.08]">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
-                  Can I make a resume on my mobile phone?
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Yes! Our resume maker includes dedicated mobile live previews and a bottom customization sheet. You can edit sections, change templates, and export directly from your phone.
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom Call to Action */}
-            <div className="mt-12 text-center p-8 bg-gradient-to-r from-emerald-800 to-teal-900 rounded-3xl text-white shadow-xl shadow-emerald-900/10 border border-emerald-700/30">
-              <h3 className="text-2xl sm:text-3xl font-black mb-3">
-                Ready to Create Your New Resume?
+          <div className="space-y-4">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                Why is this resume maker free while others charge?
               </h3>
-              <p className="text-emerald-100 text-sm sm:text-base max-w-xl mx-auto mb-6">
-                Join thousands of candidates who landed interviews at Google, Amazon, Microsoft, and top Indian startups.
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Most resume services use aggressive subscription traps—they advertise as free, make you build your resume for 45 minutes, and then lock your PDF behind a $20+ recurring fee. We believe job seekers shouldn&apos;t have to pay to get hired. You can create and export your PDF without ever entering payment information.
               </p>
-              <Link
-                href="/builder"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-emerald-800 hover:bg-emerald-50 font-black rounded-xl text-base shadow-md transition-all hover:scale-105"
-              >
-                <span>Launch Free Resume Maker</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
             </div>
+
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                What format does the resume maker export?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Our system exports standard vector PDF files. Vector PDFs preserve selectable text, hyperlink data, and high-DPI font sharpness, which is essential for passing corporate ATS scanners and looking professional when printed.
+              </p>
+            </div>
+
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                Can I make a resume on my mobile phone?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Yes! Our resume maker includes dedicated mobile live previews and a bottom customization sheet. You can edit sections, change templates, and export directly from your phone.
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Call to Action */}
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+            <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+            <h3 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
+              Ready to Create Your New Resume?<span className="text-emerald-700 dark:text-emerald-400">.</span>
+            </h3>
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+              Join thousands of candidates who landed interviews at Google, Amazon, Microsoft, and top startups.
+            </p>
+            <Link
+              href="/builder"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
+            >
+              <span>Launch Free Resume Maker</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </section>
       </main>

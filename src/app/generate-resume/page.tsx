@@ -72,37 +72,37 @@ export default function GenerateResumePage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white dark:bg-[#141310] border-b border-slate-200/80 dark:border-white/[0.08] pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60 dark:opacity-20" />
+        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
               <Zap className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
               <span>Fast 5-Minute Resume Generation Engine</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
               Generate a Professional Resume{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">
                 in Under 5 Minutes
               </span>
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
               Skip hours of blank-page paralysis. Choose an ATS-approved layout, auto-generate metric-driven bullets with AI, and download your free vector PDF right away.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/create"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-base transition shadow-xl shadow-blue-600/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Generate Your Resume Free</span>
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/templates"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 font-bold text-base hover:bg-slate-200 dark:hover:bg-white/[0.1] transition border border-slate-200 dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Browse Formats</span>
               </Link>
@@ -111,42 +111,45 @@ export default function GenerateResumePage() {
         </section>
 
         {/* 3-Step Instant Generator */}
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              The Fastest Way to Build Your Next Resume
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Workflow
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              The Fastest Way to Build Your Next Resume<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed mt-3">
               Three streamlined steps from start to download.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-black flex items-center justify-center text-lg">
-                1
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                01
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Choose Proven Template</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Choose Proven Template</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Select from 12 recruiter-approved templates calibrated for Fortune 500 ATS screening algorithms.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-black flex items-center justify-center text-lg">
-                2
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                02
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Auto-Generate Bullets</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Auto-Generate Bullets</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Enter your job title and let our intelligent engine provide pre-written, quantifiable accomplishment statements.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 font-black flex items-center justify-center text-lg">
-                3
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold flex items-center justify-center text-sm">
+                03
               </div>
-              <h3 className="font-bold text-base text-slate-900 dark:text-white">Instant PDF Download</h3>
+              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Instant PDF Download</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Download your high-resolution vector PDF immediately with zero watermarks and no hidden paywalls.
               </p>
@@ -155,15 +158,15 @@ export default function GenerateResumePage() {
         </section>
 
         {/* Templates Grid */}
-        <section className="bg-white dark:bg-[#141310] border-y border-slate-200/80 dark:border-white/[0.08] py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
                   Instant Starters
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-                  Ready-to-Generate Templates
+                <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  Ready-to-Generate Templates<span className="text-emerald-700 dark:text-emerald-400">.</span>
                 </h2>
               </div>
               <Link
@@ -179,18 +182,18 @@ export default function GenerateResumePage() {
               {topTemplates.map((tpl) => (
                 <div
                   key={tpl.id}
-                  className="bg-slate-50 dark:bg-[#191815] rounded-2xl border border-slate-200 dark:border-white/[0.08] p-5 hover:border-emerald-500 dark:hover:border-emerald-500/60 hover:shadow-md transition flex flex-col justify-between"
+                  className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-base font-bold text-slate-900 dark:text-white block mb-1">{tpl.name}</span>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
+                    <span className="font-serif text-lg font-bold text-slate-900 dark:text-white block mb-2">{tpl.name}</span>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mb-6 line-clamp-2 leading-relaxed">
                       {tpl.description}
                     </p>
                   </div>
 
                   <Link
                     href={`/create?template=${tpl.id}`}
-                    className="w-full py-2 px-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm"
+                    className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm"
                   >
                     Generate With This
                   </Link>
@@ -201,18 +204,19 @@ export default function GenerateResumePage() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-slate-900 dark:bg-[#141310] text-white py-16 sm:py-20 border-t border-slate-800 dark:border-white/[0.08]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-white">
-              Stop Staring at a Blank Screen. Generate Your Resume Now.
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Stop Staring at a Blank Screen. <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Generate Your Resume Now.</span>
             </h2>
-            <p className="text-slate-400 text-base max-w-xl mx-auto mb-8">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
               Free, fast, and recruiter-approved. Join over 120,000 active job seekers today.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link
                 href="/create"
-                className="px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-xl shadow-blue-500/25 inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Start Free Resume Generator</span>
                 <ArrowRight className="w-4 h-4" />

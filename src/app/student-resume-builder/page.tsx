@@ -134,44 +134,42 @@ export default function StudentResumeBuilderPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white dark:bg-[#141310] border-b border-slate-200/80 dark:border-white/[0.08] pt-12 pb-20 sm:pt-16 sm:pb-24">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60" />
+        <section className="relative overflow-hidden pt-20 pb-24 sm:pt-32 sm:pb-36">
+          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
 
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300/60 dark:border-emerald-700/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold mb-6">
-              <Backpack className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
+          <div className="max-w-5xl mx-auto px-4 sm:px-8 text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
+              <Backpack className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
               <span>For High Schoolers, 12th Pass &amp; College Students</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
-              Student Resume Builder:{' '}
-              <span className="bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-900 dark:from-emerald-400 dark:via-teal-300 dark:to-emerald-200 bg-clip-text text-transparent">
-                Land Your First Job or Internship
-              </span>
+            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
+              Student resume builder:{' '}
+              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">land your first internship</span>.
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
               No formal employment history? You don&apos;t need one. Turn your class projects, leadership roles, volunteer hours, and skills into an interview-winning resume in under 3 minutes.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link
                 href="/builder?template=fresher"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Build Student Resume Free</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/templates/ats-friendly"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-200 dark:hover:bg-white/[0.1] transition border border-slate-200 dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Browse Student Templates</span>
               </Link>
             </div>
 
             {/* Quick Badges */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-medium text-slate-600 dark:text-slate-400">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-slate-600 dark:text-slate-400">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Zero Experience Required</span>
@@ -193,110 +191,108 @@ export default function StudentResumeBuilderPage() {
         </section>
 
         {/* The Student Experience Matrix: What to Include */}
-        <section className="bg-slate-900 dark:bg-[#141310] text-white py-16 border-b border-black/[0.06] dark:border-white/[0.08]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold">
-                Zero Experience Strategy
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight mt-1 text-white">
-                What to Put on Your Resume When You Have No Job History
-              </h2>
-              <p className="text-xs text-slate-400 mt-2">
-                Recruiters hiring students look for work ethic, curiosity, and capability—not 5 years of tenure.
-              </p>
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Zero Experience Strategy
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              What to put when you have no job history<span className="text-emerald-700 dark:text-emerald-400">.</span>
+            </h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+              Recruiters hiring students look for work ethic, curiosity, and capability—not 5 years of tenure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 mb-4">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Education &amp; Honors</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  School or college name, GPA or percentage, Honor Roll, AP / IB coursework, Dean&apos;s List, or relevant electives.
+                </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-slate-800/80 dark:bg-[#1C1B17] rounded-2xl border border-slate-700/80 dark:border-white/[0.08] p-6 flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4">
-                    <BookOpen className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-2">Education &amp; Honors</h3>
-                  <p className="text-xs text-slate-300 dark:text-slate-300 leading-relaxed">
-                    School or college name, GPA or percentage, Honor Roll, AP / IB coursework, Dean&apos;s List, or relevant electives.
-                  </p>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-400 mb-4">
+                  <Users className="w-5 h-5" />
                 </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Clubs &amp; Leadership</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Student council, debate club, robotics, school newspaper, cultural committee, or sports team captain roles.
+                </p>
               </div>
+            </div>
 
-              <div className="bg-slate-800/80 dark:bg-[#1C1B17] rounded-2xl border border-slate-700/80 dark:border-white/[0.08] p-6 flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-                    <Users className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-2">Clubs &amp; Leadership</h3>
-                  <p className="text-xs text-slate-300 dark:text-slate-300 leading-relaxed">
-                    Student council, debate club, robotics, school newspaper, cultural committee, or sports team captain roles.
-                  </p>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 mb-4">
+                  <Heart className="w-5 h-5" />
                 </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Volunteering &amp; Service</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Community food drives, peer tutoring, animal shelter assistance, NGO volunteering, or school event organizing.
+                </p>
               </div>
+            </div>
 
-              <div className="bg-slate-800/80 dark:bg-[#1C1B17] rounded-2xl border border-slate-700/80 dark:border-white/[0.08] p-6 flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
-                    <Heart className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-2">Volunteering &amp; Service</h3>
-                  <p className="text-xs text-slate-300 dark:text-slate-300 leading-relaxed">
-                    Community food drives, peer tutoring, animal shelter assistance, NGO volunteering, or school event organizing.
-                  </p>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-amber-700 dark:text-amber-400 mb-4">
+                  <Award className="w-5 h-5" />
                 </div>
-              </div>
-
-              <div className="bg-slate-800/80 dark:bg-[#1C1B17] rounded-2xl border border-slate-700/80 dark:border-white/[0.08] p-6 flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
-                    <Award className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-2">Projects &amp; Side Gigs</h3>
-                  <p className="text-xs text-slate-300 dark:text-slate-300 leading-relaxed">
-                    Science fair projects, coding experiments, freelance graphic design, video editing, pet sitting, or lawn care.
-                  </p>
-                </div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Projects &amp; Side Gigs</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Science fair projects, coding experiments, freelance graphic design, video editing, pet sitting, or lawn care.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
         {/* 3 Step Quick Creation */}
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-bold">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Simple 3-Step Process
             </span>
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-              From Blank Page to Job-Ready PDF in 3 Minutes
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+              From blank page to job-ready PDF in 3 minutes<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-[#191815] rounded-2xl p-7 border border-slate-200/90 dark:border-white/[0.08] shadow-xs hover:shadow-md transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-5 border border-emerald-200 dark:border-emerald-800">
                 1
               </div>
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">Choose Fresher Layout</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Select a layout that highlights your academics, coursework, and technical skills rather than 5 years of missing work history.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] rounded-2xl p-7 border border-slate-200/90 dark:border-white/[0.08] shadow-xs hover:shadow-md transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-4">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-5 border border-emerald-200 dark:border-emerald-800">
                 2
               </div>
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">Enter Your Highlights</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Add your school, expected graduation date, honors, and clubs. Our auto-formatting engine takes care of fonts, margins, and line height.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-[#191815] rounded-2xl p-7 border border-slate-200/90 dark:border-white/[0.08] shadow-xs hover:shadow-md transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-4">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-5 border border-emerald-200 dark:border-emerald-800">
                 3
               </div>
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">Instant Download</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Click export to get a clean, high-resolution vector PDF ready to email to hiring managers or attach to job applications.
               </p>
             </div>
@@ -304,135 +300,133 @@ export default function StudentResumeBuilderPage() {
         </section>
 
         {/* Templates Showcase */}
-        <section className="bg-white dark:bg-[#141310] border-y border-slate-200/80 dark:border-white/[0.08] py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-              <div>
-                <span className="text-xs font-mono uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-bold">
-                  Recommended For Students
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
-                  Student &amp; Internship Resume Formats
-                </h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  Single-page formats that maximize your academic and extracurricular credentials.
-                </p>
-              </div>
-              <Link
-                href="/templates/ats-friendly"
-                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300 inline-flex items-center gap-1 shrink-0"
-              >
-                <span>View all templates</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Recommended For Students
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Student &amp; Internship Formats<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+                Single-page formats that maximize your academic and extracurricular credentials.
+              </p>
             </div>
+            <Link
+              href="/templates/ats-friendly"
+              className="text-sm font-bold text-emerald-700 hover:text-emerald-800 dark:text-emerald-400 dark:hover:text-emerald-300 inline-flex items-center gap-1 shrink-0"
+            >
+              <span>View all templates</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {studentTemplates.map((tpl) => (
-                <div
-                  key={tpl.id}
-                  className="bg-slate-50 dark:bg-[#191815] rounded-2xl border border-slate-200 dark:border-white/[0.08] overflow-hidden hover:border-emerald-500 dark:hover:border-emerald-500 transition group flex flex-col justify-between"
-                >
-                  <div className="p-5">
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-base font-bold text-slate-900 dark:text-white">{tpl.name}</span>
-                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
-                        Student Ready
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {studentTemplates.map((tpl) => (
+              <div
+                key={tpl.id}
+                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden hover:border-emerald-500/40 transition-all group flex flex-col justify-between shadow-xs"
+              >
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="text-base font-bold text-slate-900 dark:text-white">{tpl.name}</span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                      Student Ready
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-5 line-clamp-2 leading-relaxed">{tpl.description}</p>
+
+                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-[#F8F7F3] dark:bg-[#161512] rounded-xl p-3.5 border border-black/[0.06] dark:border-white/[0.08]">
+                    <div className="flex justify-between">
+                      <span className="text-slate-500 dark:text-slate-400">Layout:</span>
+                      <span className="font-semibold text-slate-800 dark:text-slate-200">
+                        {tpl.layout === 'double' ? 'Two Column' : 'Single Column'}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">{tpl.description}</p>
-
-                    <div className="space-y-1.5 text-[11px] text-slate-600 dark:text-slate-300 bg-white dark:bg-[#1F1E1A] rounded-xl p-3 border border-slate-200/60 dark:border-white/[0.08]">
-                      <div className="flex justify-between">
-                        <span className="text-slate-500 dark:text-slate-400">Layout:</span>
-                        <span className="font-semibold text-slate-800 dark:text-slate-200">
-                          {tpl.layout === 'double' ? 'Two Column' : 'Single Column'}
-                        </span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500 dark:text-slate-400">Ideal For:</span>
-                        <span className="font-semibold text-slate-800 dark:text-slate-200">High School, College, Internships</span>
-                      </div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-500 dark:text-slate-400">Ideal For:</span>
+                      <span className="font-semibold text-slate-800 dark:text-slate-200">High School, College, Internships</span>
                     </div>
                   </div>
-
-                  <div className="p-4 pt-0">
-                    <Link
-                      href={`/builder?template=${tpl.id}`}
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white/[0.08] text-white font-bold text-xs hover:bg-emerald-700 dark:hover:bg-emerald-600 transition"
-                    >
-                      <span>Use {tpl.name}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="p-6 pt-0">
+                  <Link
+                    href={`/builder?template=${tpl.id}`}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-900 dark:text-white font-bold text-xs hover:bg-emerald-700 hover:text-white dark:hover:bg-emerald-600 transition border border-black/[0.08] dark:border-white/[0.1]"
+                  >
+                    <span>Use {tpl.name}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="bg-white dark:bg-[#141310] border-t border-slate-200/80 dark:border-white/[0.08] py-16 sm:py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-                Frequently Asked Questions for Students
-              </h2>
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+              Common Questions
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Student Resume FAQs<span className="text-emerald-700 dark:text-emerald-400">.</span>
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
+                How long should a student resume be?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Exactly one page! As a high school student, college undergraduate, or recent graduate, your resume should never exceed a single page. Our GhostDOM boundary protection guarantees your text never spills over onto page 2.
+              </p>
             </div>
 
-            <div className="space-y-4">
-              <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] p-5 bg-slate-50/50 dark:bg-[#191815]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
-                  How long should a student resume be?
-                </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Exactly one page! As a high school student, college undergraduate, or recent graduate, your resume should never exceed a single page. Our GhostDOM boundary protection guarantees your text never spills over onto page 2.
-                </p>
-              </div>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
+                What skills should high school or college students list?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Include both hard skills (Google Docs, Excel, Python, Canva, Social Media Management, Typing Speed) and soft skills (Communication, Teamwork, Time Management, Problem Solving). Wherever possible, back up soft skills with concrete examples from your school projects or clubs.
+              </p>
+            </div>
 
-              <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] p-5 bg-slate-50/50 dark:bg-[#191815]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
-                  What skills should high school or college students list?
-                </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Include both hard skills (Google Docs, Excel, Python, Canva, Social Media Management, Typing Speed) and soft skills (Communication, Teamwork, Time Management, Problem Solving). Wherever possible, back up soft skills with concrete examples from your school projects or clubs.
-                </p>
-              </div>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
+                Should I include my GPA or high school marks?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                If your GPA is 3.5 or higher (or 75%+ in 10th/12th board exams), it is generally beneficial to include it. If your GPA is lower, you can omit it and focus on coursework, awards, and practical projects instead.
+              </p>
+            </div>
 
-              <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] p-5 bg-slate-50/50 dark:bg-[#191815]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
-                  Should I include my GPA or high school marks?
-                </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  If your GPA is 3.5 or higher (or 75%+ in 10th/12th board exams), it is generally beneficial to include it. If your GPA is lower, you can omit it and focus on coursework, awards, and practical projects instead.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 dark:border-white/[0.08] p-5 bg-slate-50/50 dark:bg-[#191815]">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-2">
-                  Are there any hidden fees or subscriptions?
-                </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  None. You will never be asked for a credit card. You can download and edit your student resume as many times as you want completely free.
-                </p>
-              </div>
+            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+              <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
+                Are there any hidden fees or subscriptions?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                None. You will never be asked for a credit card. You can download and edit your student resume as many times as you want completely free.
+              </p>
             </div>
           </div>
-        </section>
 
-        {/* Bottom CTA Banner */}
-        <section className="bg-gradient-to-r from-emerald-800 via-teal-800 to-slate-900 dark:from-emerald-950 dark:via-teal-950 dark:to-slate-950 text-white py-16 border-t border-emerald-700/30 dark:border-white/[0.08]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-white">
-              Get Ready for Your First Interview
+          {/* Bottom CTA Banner */}
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+            <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
+              Get Ready for Your First Interview<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
-            <p className="text-slate-300 dark:text-slate-400 text-sm max-w-xl mx-auto mb-8">
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
               Join thousands of students who landed their dream internships and entry-level jobs with ResumeBuilder.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/builder?template=fresher"
-                className="px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition shadow-xl inline-flex items-center gap-2"
+                className="px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 inline-flex items-center gap-2 cursor-pointer"
               >
                 <span>Create Student Resume Free</span>
                 <ArrowRight className="w-4 h-4" />
