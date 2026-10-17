@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -107,7 +107,7 @@ export default function ResumeMakerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -149,7 +149,7 @@ export default function ResumeMakerPage() {
               </Link>
               <Link
                 href="/templates/ats-friendly"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <Layers className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                 <span>Explore 30+ Templates</span>
@@ -175,7 +175,7 @@ export default function ResumeMakerPage() {
         </section>
 
         {/* 3 Step Workflow */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Simple Workflow
@@ -189,7 +189,7 @@ export default function ResumeMakerPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-serif font-bold text-xl mb-5 border border-emerald-200 dark:border-emerald-800">
                 1
               </div>
@@ -199,7 +199,7 @@ export default function ResumeMakerPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-serif font-bold text-xl mb-5 border border-emerald-200 dark:border-emerald-800">
                 2
               </div>
@@ -209,7 +209,7 @@ export default function ResumeMakerPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-serif font-bold text-xl mb-5 border border-emerald-200 dark:border-emerald-800">
                 3
               </div>
@@ -222,7 +222,7 @@ export default function ResumeMakerPage() {
         </section>
 
         {/* Templates Showcase */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -249,10 +249,10 @@ export default function ResumeMakerPage() {
               <Link
                 key={tpl.id}
                 href={`/builder?template=${tpl.id}`}
-                className="group bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-xs hover:border-emerald-500/40 transition-all flex flex-col"
+                className="group bg-card/90 backdrop-blur-xs rounded-2xl border border-border overflow-hidden shadow-xs hover:border-emerald-500/40 transition-all flex flex-col"
               >
-                <div className="h-44 bg-[#F8F7F3] dark:bg-[#100F0C] flex items-center justify-center relative overflow-hidden">
-                  <div className="w-28 h-36 bg-white dark:bg-[#161512] shadow-xs rounded-lg border border-black/[0.06] dark:border-white/[0.08] p-2 flex flex-col gap-1 group-hover:scale-105 transition-transform">
+                <div className="h-44 bg-background flex items-center justify-center relative overflow-hidden">
+                  <div className="w-28 h-36 bg-white dark:bg-[#161512] shadow-xs rounded-lg border border-border p-2 flex flex-col gap-1 group-hover:scale-105 transition-transform">
                     <div className="h-2 w-12 bg-emerald-700/80 rounded-2xs" />
                     <div className="h-1.5 w-20 bg-slate-200 dark:bg-white/[0.1] rounded-2xs" />
                     <div className="h-px w-full bg-black/[0.06] dark:bg-white/[0.08] my-1" />
@@ -263,7 +263,7 @@ export default function ResumeMakerPage() {
                     </div>
                   </div>
                 </div>
-                <div className="p-4 bg-white/90 dark:bg-[#141310]/90 flex items-center justify-between border-t border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-4 bg-card/90 flex items-center justify-between border-t border-border">
                   <span className="font-bold text-xs text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
                     {tpl.name}
                   </span>
@@ -277,7 +277,7 @@ export default function ResumeMakerPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Common Questions
@@ -288,7 +288,7 @@ export default function ResumeMakerPage() {
           </div>
 
           <div className="space-y-4">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                 Why is this resume maker free while others charge?
               </h3>
@@ -297,7 +297,7 @@ export default function ResumeMakerPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                 What format does the resume maker export?
               </h3>
@@ -306,7 +306,7 @@ export default function ResumeMakerPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                 Can I make a resume on my mobile phone?
               </h3>
@@ -317,7 +317,7 @@ export default function ResumeMakerPage() {
           </div>
 
           {/* Bottom Call to Action */}
-          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h3 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
               Ready to Create Your New Resume?<span className="text-emerald-700 dark:text-emerald-400">.</span>

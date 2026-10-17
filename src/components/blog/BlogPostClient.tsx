@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -46,8 +46,8 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
   return (
     <div className="space-y-6">
       {/* Table of Contents Box */}
-      <div className="bg-white dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-5 shadow-xs">
-        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-800 dark:text-slate-200 mb-3 pb-2 border-b border-black/[0.06] dark:border-white/[0.08]">
+      <div className="bg-white dark:bg-[#161614] rounded-2xl border border-border p-5 shadow-xs">
+        <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-800 dark:text-slate-200 mb-3 pb-2 border-b border-border">
           <BookOpen className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
           <span>In This Guide</span>
         </div>
@@ -65,7 +65,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
       </div>
 
       {/* Share / Social Buttons */}
-      <div className="bg-white dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-5 shadow-xs space-y-3">
+      <div className="bg-white dark:bg-[#161614] rounded-2xl border border-border p-5 shadow-xs space-y-3">
         <div className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
           <Share2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
           <span>Share This Guide</span>
@@ -73,7 +73,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
         <div className="flex items-center gap-2">
           <button
             onClick={handleCopyLink}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-slate-50 dark:bg-[#1f1e1a] hover:bg-slate-100 dark:hover:bg-[#282723] text-slate-700 dark:text-slate-200 text-xs font-semibold border border-black/[0.06] dark:border-white/[0.08] transition cursor-pointer"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-slate-50 dark:bg-[#1f1e1a] hover:bg-slate-100 dark:hover:bg-[#282723] text-slate-700 dark:text-slate-200 text-xs font-semibold border border-border transition cursor-pointer"
           >
             {copied ? (
               <>
@@ -97,7 +97,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
           <button
             onClick={shareOnTwitter}
             aria-label="Share on X (Twitter)"
-            className="p-2 rounded-xl bg-slate-100 dark:bg-white/[0.08] text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/[0.14] border border-black/[0.06] dark:border-white/[0.08] transition cursor-pointer"
+            className="p-2 rounded-xl bg-slate-100 dark:bg-white/[0.08] text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/[0.14] border border-border transition cursor-pointer"
           >
             <TwitterIcon className="w-4 h-4" />
           </button>

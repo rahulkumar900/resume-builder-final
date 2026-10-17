@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -142,7 +142,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans relative selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans relative selection:bg-emerald-500 selection:text-white">
       <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
       <script
         type="application/ld+json"
@@ -177,15 +177,15 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
             </Link>
             <Link
               href="/templates"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black/[0.04] dark:bg-white/[0.06] hover:bg-black/[0.08] dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-sm rounded-xl border border-black/[0.06] dark:border-white/[0.08] transition-all cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-secondary hover:bg-black/[0.08] dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-sm rounded-xl border border-border transition-all cursor-pointer"
             >
               <span>View 12 ATS Templates</span>
             </Link>
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-10 border-t border-black/[0.06] dark:border-white/[0.08] max-w-4xl mx-auto text-left">
-            <div className="p-4 bg-white/90 dark:bg-[#141310]/90 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-10 border-t border-border max-w-4xl mx-auto text-left">
+            <div className="p-4 bg-card/90 rounded-2xl border border-border shadow-xs">
               <span className="text-[10px] uppercase font-mono font-bold text-slate-400 dark:text-slate-500 block">{competitor.name} Pricing</span>
               <span className="text-sm font-bold text-rose-600 dark:text-rose-400 block mt-0.5">{competitor.competitorPrice}</span>
             </div>
@@ -193,7 +193,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
               <span className="text-[10px] uppercase font-mono font-bold text-emerald-700 dark:text-emerald-400 block">ResumeBuilder Pricing</span>
               <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400 block mt-0.5">100% Free Forever</span>
             </div>
-            <div className="p-4 bg-white/90 dark:bg-[#141310]/90 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+            <div className="p-4 bg-card/90 rounded-2xl border border-border shadow-xs">
               <span className="text-[10px] uppercase font-mono font-bold text-slate-400 dark:text-slate-500 block">{competitor.name} ATS Rate</span>
               <span className="text-sm font-bold text-slate-700 dark:text-slate-300 block mt-0.5">{competitor.atsPassRateCompetitor}</span>
             </div>
@@ -222,7 +222,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
               return (
                 <div
                   key={idx}
-                  className="p-6 sm:p-7 bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3"
+                  className="p-6 sm:p-7 bg-card/90 backdrop-blur-xs rounded-2xl border border-border shadow-xs space-y-3"
                 >
                   <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 flex items-center justify-center">
                     <IconComp className="w-5 h-5" />
@@ -244,11 +244,11 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
             </h2>
           </div>
 
-          <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-xs">
+          <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border overflow-hidden shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="bg-black/[0.02] dark:bg-white/[0.03] border-b border-black/[0.06] dark:border-white/[0.08] text-slate-700 dark:text-slate-300">
+                  <tr className="bg-black/[0.02] dark:bg-white/[0.03] border-b border-border text-slate-700 dark:text-slate-300">
                     <th className="p-4 font-bold uppercase tracking-wider font-mono">Feature Capability</th>
                     <th className="p-4 font-bold uppercase tracking-wider font-mono text-slate-500 dark:text-slate-400">{competitor.name}</th>
                     <th className="p-4 font-bold uppercase tracking-wider font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBuilder</th>
@@ -298,7 +298,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
         </section>
 
         {/* Section 3: Deep Teardown Analysis */}
-        <section className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-12 space-y-6 shadow-xs">
+        <section className="bg-card/90 backdrop-blur-xs rounded-3xl border border-border p-8 sm:p-12 space-y-6 shadow-xs">
           <div className="space-y-2">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">Technical Teardown</span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
@@ -342,7 +342,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
 
           <div className="max-w-3xl mx-auto space-y-3">
             {competitor.faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white/90 dark:bg-[#141310]/90 p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-2">
+              <div key={idx} className="bg-card/90 p-6 rounded-2xl border border-border shadow-xs space-y-2">
                 <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center gap-2">
                   <HelpCircle className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0" />
                   <span>{faq.question}</span>
@@ -354,7 +354,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
         </section>
 
         {/* Final Conversion Action Banner */}
-        <section className="relative rounded-3xl overflow-hidden bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-10 sm:p-16 text-center shadow-xs">
+        <section className="relative rounded-3xl overflow-hidden bg-card/90 border border-border p-10 sm:p-16 text-center shadow-xs">
           <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.1),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(20,19,16,0))]" />
           <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-3">
             100% Free · Instant Vector PDF Export
@@ -378,7 +378,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
             </Link>
             <Link
               href="/examples"
-              className="px-8 py-4 bg-black/[0.04] dark:bg-white/[0.06] hover:bg-black/[0.08] dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-sm rounded-xl border border-black/[0.06] dark:border-white/[0.08] transition-all cursor-pointer"
+              className="px-8 py-4 bg-secondary hover:bg-black/[0.08] dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-sm rounded-xl border border-border transition-all cursor-pointer"
             >
               <span>Browse 16 Role Guides</span>
             </Link>

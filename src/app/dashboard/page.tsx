@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
@@ -149,7 +149,7 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
+      <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
         <Navbar />
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center justify-center text-center">
           <Loader2 className="w-8 h-8 animate-spin text-emerald-700 dark:text-emerald-400 mb-3" />
@@ -162,7 +162,7 @@ export default function DashboardPage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
+      <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
         <Navbar />
         <main className="flex-1 max-w-xl w-full mx-auto px-4 py-16 sm:py-24 flex flex-col items-center justify-center text-center">
           <div className="w-16 h-16 rounded-2xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mb-5 shadow-xs border border-emerald-300/80 dark:border-emerald-800">
@@ -190,7 +190,7 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-black/[0.06] dark:border-white/[0.08] w-full text-xs text-slate-500 dark:text-slate-400 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-8 pt-6 border-t border-border w-full text-xs text-slate-500 dark:text-slate-400 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => router.push('/create')}
               className="hover:text-emerald-700 dark:hover:text-emerald-400 font-semibold transition-colors cursor-pointer"
@@ -221,7 +221,7 @@ export default function DashboardPage() {
   const userName = profile?.full_name || user?.user_metadata?.full_name || user?.email?.split('@')[0];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
       {/* Clean Authenticated Navbar */}
       <Navbar onOpenScore={() => handleOpenScore()} />
 

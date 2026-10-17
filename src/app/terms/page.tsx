@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -18,7 +18,7 @@ export default function TermsPage() {
   const lastUpdated = 'October 1, 2026';
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
       <Navbar />
 
       <main className="flex-1">
@@ -39,15 +39,15 @@ export default function TermsPage() {
               Last updated: <span className="font-semibold text-slate-700 dark:text-slate-300">{lastUpdated}</span> &bull; Effective immediately upon account creation or service use.
             </p>
 
-            <div className="mt-8 p-5 rounded-2xl bg-white/90 dark:bg-[#141310]/90 border border-emerald-500/30 dark:border-emerald-800/60 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium shadow-xs text-left">
+            <div className="mt-8 p-5 rounded-2xl bg-card/90 border border-emerald-500/30 dark:border-emerald-800/60 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium shadow-xs text-left">
               <strong className="text-slate-900 dark:text-white">Quick Summary:</strong> You own 100% of your resume content, uploaded materials, and exported PDF documents. We provide an intelligent builder, ATS diagnostics, and AI suggestions. We will never hold your resume hostage behind watermark ransom paywalls.
             </div>
           </div>
         </section>
 
         {/* Content Document */}
-        <section className="py-16 sm:py-24 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
-          <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-12 shadow-xs space-y-10 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+        <section className="py-16 sm:py-24 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
+          <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-8 sm:p-12 shadow-xs space-y-10 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
             {/* Section 1 */}
             <section className="space-y-3">
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -177,7 +177,7 @@ export default function TermsPage() {
               <p>
                 If you have questions regarding these Terms of Service, please reach out to our legal and support team:
               </p>
-              <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08] text-xs font-mono space-y-1">
+              <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border text-xs font-mono space-y-1">
                 <div><strong className="text-slate-900 dark:text-white">Email:</strong> legal@resumebuilder.app</div>
                 <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebuilder.app</div>
                 <div><strong className="text-slate-900 dark:text-white">Address:</strong> ResumeBuilder Technologies, Bengaluru, Karnataka, India</div>
@@ -186,7 +186,7 @@ export default function TermsPage() {
           </div>
 
           {/* Quick Action Card */}
-          <div className="mt-16 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-16 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2">Ready to build your ATS-friendly resume<span className="text-emerald-700 dark:text-emerald-400">?</span></h3>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-6">

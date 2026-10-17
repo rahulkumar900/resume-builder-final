@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -137,7 +137,7 @@ export default function AtsResumeBuilderPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -180,7 +180,7 @@ export default function AtsResumeBuilderPage() {
               </Link>
               <Link
                 href="/ats-checker"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <Search className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                 <span>Check Your ATS Score Free</span>
@@ -210,7 +210,7 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* ATS System Benchmark Pass Rates */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -228,14 +228,14 @@ export default function AtsResumeBuilderPage() {
               {atsEngines.map((engine, i) => (
                 <div
                   key={i}
-                  className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-5 border border-black/[0.06] dark:border-white/[0.08] text-center flex flex-col justify-between shadow-xs hover:border-emerald-500/40 transition"
+                  className="bg-card/90 backdrop-blur-xs rounded-2xl p-5 border border-border text-center flex flex-col justify-between shadow-xs hover:border-emerald-500/40 transition"
                 >
                   <div>
                     <span className="font-serif text-xs font-bold text-slate-900 dark:text-white block mb-1">{engine.name}</span>
                     <span className="text-2xl font-black text-emerald-700 dark:text-emerald-400 font-mono">{engine.passRate}</span>
                     <span className="text-[10px] text-emerald-800 dark:text-emerald-300 block mt-1 font-mono font-medium">{engine.status}</span>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-3 pt-2 border-t border-black/[0.06] dark:border-white/[0.08] leading-snug font-sans">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-3 pt-2 border-t border-border leading-snug font-sans">
                     {engine.notes}
                   </p>
                 </div>
@@ -245,7 +245,7 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* Why Graphic Builders Fail ATS vs How Our Engine Wins */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Architecture Comparison
@@ -260,7 +260,7 @@ export default function AtsResumeBuilderPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* The Failure Path */}
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/60 flex items-center justify-center text-rose-600 dark:text-rose-400">
                   <XCircle className="w-6 h-6" />
@@ -304,7 +304,7 @@ export default function AtsResumeBuilderPage() {
             </div>
 
             {/* The Solution Path */}
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800/80 p-6 sm:p-8 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800/80 p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400">
                   <ShieldCheck className="w-6 h-6" />
@@ -350,7 +350,7 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* 4-Step ATS Optimization Process */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -362,7 +362,7 @@ export default function AtsResumeBuilderPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
                   01
                 </span>
@@ -372,7 +372,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
                   02
                 </span>
@@ -382,7 +382,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
                   03
                 </span>
@@ -392,7 +392,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
                   04
                 </span>
@@ -416,7 +416,7 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* ATS Template Showcase */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -442,7 +442,7 @@ export default function AtsResumeBuilderPage() {
             {atsTemplates.map((tpl) => (
               <div
                 key={tpl.id}
-                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
+                className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -453,7 +453,7 @@ export default function AtsResumeBuilderPage() {
                   </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400 mb-6 line-clamp-2 leading-relaxed">{tpl.description}</p>
 
-                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-black/[0.02] dark:bg-white/[0.04] rounded-xl p-3.5 border border-black/[0.06] dark:border-white/[0.08] mb-6">
+                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-black/[0.02] dark:bg-white/[0.04] rounded-xl p-3.5 border border-border mb-6">
                     <div className="flex justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Layout Format:</span>
                       <span className="font-semibold text-slate-800 dark:text-white">
@@ -482,7 +482,7 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -497,7 +497,7 @@ export default function AtsResumeBuilderPage() {
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   What makes a resume ATS-compliant?
@@ -507,7 +507,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Are two-column resume templates safe for ATS?
@@ -517,7 +517,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Why is PDF better than Word for modern job applications?
@@ -527,7 +527,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Does this tool charge any fee at download?
@@ -537,7 +537,7 @@ export default function AtsResumeBuilderPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
                   Can I tailor my resume for each job application?
@@ -551,7 +551,7 @@ export default function AtsResumeBuilderPage() {
         </section>
 
         {/* Bottom CTA Banner */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-border relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">

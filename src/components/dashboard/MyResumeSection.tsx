@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useMemo } from 'react';
 import { ResumeData } from '@/types/resume';
@@ -99,7 +99,7 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
             My Resumes
           </h2>
 
-          <div className="flex items-center gap-1.5 p-1 bg-black/[0.04] dark:bg-white/[0.06] rounded-xl border border-black/[0.05] dark:border-white/[0.05]">
+          <div className="flex items-center gap-1.5 p-1 bg-secondary rounded-xl border border-black/[0.05] dark:border-white/[0.05]">
             <button
               onClick={() => setActiveTab('all')}
               className={`px-3 py-1 rounded-lg text-xs font-semibold font-mono transition-all cursor-pointer ${
@@ -151,7 +151,7 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
       {/* Grid of Resumes */}
       {filteredResumes.length === 0 ? (
         resumes.length === 0 ? (
-          <div className="text-center py-16 px-6 bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-2xs flex flex-col items-center justify-center max-w-2xl mx-auto">
+          <div className="text-center py-16 px-6 bg-white/90 dark:bg-[#161614] rounded-2xl border border-border shadow-2xs flex flex-col items-center justify-center max-w-2xl mx-auto">
             <div className="w-14 h-14 rounded-2xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 mb-4 shadow-xs">
               <FileText className="w-7 h-7 stroke-[1.75]" />
             </div>

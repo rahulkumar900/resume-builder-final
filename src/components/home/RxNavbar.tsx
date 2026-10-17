@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -63,7 +63,7 @@ export function RxNavbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#F8F7F3]/95 dark:bg-[#100F0C]/95 backdrop-blur-md border-b border-black/[0.06] dark:border-white/[0.08] shadow-xs'
+            ? 'bg-[#F8F7F3]/95 dark:bg-[#100F0C]/95 backdrop-blur-md border-b border-border shadow-xs'
             : 'bg-[#F8F7F3]/80 dark:bg-[#100F0C]/80 backdrop-blur-xs'
         }`}
       >
@@ -171,7 +171,7 @@ export function RxNavbar() {
 
         {/* Mobile Dropdown Menu with page links */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#F8F7F3] dark:bg-[#100F0C] border-b border-black/[0.08] dark:border-white/[0.08] px-4 pt-2 pb-6 space-y-2">
+          <div className="md:hidden bg-background border-b border-black/[0.08] dark:border-white/[0.08] px-4 pt-2 pb-6 space-y-2">
             {PAGE_NAV_LINKS.map((link) => (
               <Link
                 key={link.href}

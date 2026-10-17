@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { Award, Target, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
@@ -15,7 +15,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
       {/* Card 1: ATS Compatibility Audit */}
-      <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
+      <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border p-6 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
         <div>
           <div className="flex items-center justify-between mb-4">
             <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center border border-emerald-200/80 dark:border-emerald-800/60">
@@ -46,7 +46,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       </div>
 
       {/* Card 2: Job Description Keyword Matcher */}
-      <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
+      <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border p-6 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
         <div>
           <div className="flex items-center justify-between mb-4">
             <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center border border-emerald-200/80 dark:border-emerald-800/60">

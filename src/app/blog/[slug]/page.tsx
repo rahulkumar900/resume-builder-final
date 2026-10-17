@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -130,7 +130,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-w-[320px] bg-[#F8F7F3] dark:bg-[#100F0C] min-h-screen flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300 selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-w-[320px] bg-background min-h-screen flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300 selection:bg-emerald-100 selection:text-emerald-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -149,7 +149,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
       <main className="flex-1">
         {/* Article Header */}
-        <header className="bg-white dark:bg-[#161614] border-b border-black/[0.06] dark:border-white/[0.08] pt-10 pb-12 sm:pt-14 sm:pb-16">
+        <header className="bg-white dark:bg-[#161614] border-b border-border pt-10 pb-12 sm:pt-14 sm:pb-16">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Top Back & Breadcrumbs Bar */}
             <div className="flex items-center gap-3 mb-6 flex-wrap">
@@ -193,7 +193,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
             </p>
 
             {/* Author Profile */}
-            <div className="mt-8 pt-6 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center gap-3">
+            <div className="mt-8 pt-6 border-t border-border flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold flex items-center justify-center text-sm border border-emerald-200 dark:border-emerald-800">
                 {post.author.name.charAt(0)}
               </div>
@@ -216,7 +216,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                     <h2
                       key={idx}
                       id={block.id}
-                      className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight pt-6 pb-2 scroll-mt-24 border-b border-black/[0.06] dark:border-white/[0.08]"
+                      className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight pt-6 pb-2 scroll-mt-24 border-b border-border"
                     >
                       {block.text}
                     </h2>
@@ -296,10 +296,10 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
                 if (block.type === 'comparisonTable' && block.tableHeaders && block.tableRows) {
                   return (
-                    <div key={idx} className="overflow-x-auto my-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+                    <div key={idx} className="overflow-x-auto my-6 rounded-2xl border border-border shadow-xs">
                       <table className="w-full text-left text-xs border-collapse">
                         <thead>
-                          <tr className="bg-slate-100 dark:bg-[#1a1916] border-b border-black/[0.06] dark:border-white/[0.08] text-slate-800 dark:text-slate-200">
+                          <tr className="bg-slate-100 dark:bg-[#1a1916] border-b border-border text-slate-800 dark:text-slate-200">
                             {block.tableHeaders.map((header, hIdx) => (
                               <th key={hIdx} className="p-3.5 font-bold">
                                 {header}
@@ -336,7 +336,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
               })}
 
               {/* In-Article Resume Tool Card */}
-              <div className="mt-12 bg-white dark:bg-[#161614] rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-8 shadow-sm space-y-4">
+              <div className="mt-12 bg-white dark:bg-[#161614] rounded-3xl border border-border p-6 sm:p-8 shadow-sm space-y-4">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   <ShieldCheck className="w-4 h-4" />
                   <span>Interactive Resume Audit</span>
@@ -357,7 +357,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                   </Link>
                   <Link
                     href="/templates"
-                    className="px-6 py-3 rounded-xl bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-xs sm:text-sm border border-black/[0.06] dark:border-white/[0.08] transition"
+                    className="px-6 py-3 rounded-xl bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.1] text-slate-700 dark:text-slate-200 font-bold text-xs sm:text-sm border border-border transition"
                   >
                     Browse ATS Templates
                   </Link>
@@ -366,7 +366,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
               {/* FAQs Section */}
               {post.faqs.length > 0 && (
-                <div className="pt-10 border-t border-black/[0.06] dark:border-white/[0.08] space-y-4">
+                <div className="pt-10 border-t border-border space-y-4">
                   <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                     <HelpCircle className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                     <span>Frequently Asked Questions</span>
@@ -375,7 +375,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                     {post.faqs.map((faq, fIdx) => (
                       <div
                         key={fIdx}
-                        className="p-5 rounded-2xl bg-white dark:bg-[#161614] border border-black/[0.06] dark:border-white/[0.08] shadow-2xs space-y-1.5"
+                        className="p-5 rounded-2xl bg-white dark:bg-[#161614] border border-border shadow-2xs space-y-1.5"
                       >
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white">{faq.question}</h4>
                         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -399,7 +399,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
         {/* Related Articles Section */}
         {relatedPosts.length > 0 && (
-          <section className="bg-white dark:bg-[#161614] border-t border-black/[0.06] dark:border-white/[0.08] py-16">
+          <section className="bg-white dark:bg-[#161614] border-t border-border py-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-8">
                 Recommended Related Guides
@@ -408,10 +408,10 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                 {relatedPosts.map((rel) => (
                   <div
                     key={rel.slug}
-                    className="bg-[#F8F7F3] dark:bg-[#100F0C] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-5 hover:border-emerald-500 dark:hover:border-emerald-500/80 hover:shadow-md transition flex flex-col justify-between group"
+                    className="bg-background rounded-2xl border border-border p-5 hover:border-emerald-500 dark:hover:border-emerald-500/80 hover:shadow-md transition flex flex-col justify-between group"
                   >
                     <div className="space-y-2">
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white dark:bg-[#161614] border border-black/[0.06] dark:border-white/[0.08] text-slate-700 dark:text-slate-300">
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-white dark:bg-[#161614] border border-border text-slate-700 dark:text-slate-300">
                         {rel.category}
                       </span>
                       <Link href={`/blog/${rel.slug}`} className="block">
@@ -424,7 +424,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                       </p>
                     </div>
 
-                    <div className="pt-4 mt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs font-bold text-emerald-700 dark:text-emerald-400">
+                    <div className="pt-4 mt-4 border-t border-border flex items-center justify-between text-xs font-bold text-emerald-700 dark:text-emerald-400">
                       <span>Read Guide</span>
                       <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -109,7 +109,7 @@ export function HomeRoleExamplesGallery() {
       </div>
 
       {/* Role Showcase Card */}
-      <div className="bg-white/90 dark:bg-[#161614] rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-10 shadow-xl backdrop-blur-xs">
+      <div className="bg-white/90 dark:bg-[#161614] rounded-3xl border border-border p-6 sm:p-10 shadow-xl backdrop-blur-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           {/* Left Details */}
@@ -129,7 +129,7 @@ export function HomeRoleExamplesGallery() {
             </div>
 
             {/* Bullets List */}
-            <div className="space-y-3 bg-[#F8F7F3] dark:bg-[#100F0C] p-5 sm:p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
+            <div className="space-y-3 bg-background p-5 sm:p-6 rounded-2xl border border-border">
               <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold block">
                 Pre-Written Verified STAR Accomplishments:
               </span>
@@ -162,9 +162,9 @@ export function HomeRoleExamplesGallery() {
           </div>
 
           {/* Right Metrics & CTA */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full bg-[#F8F7F3] dark:bg-[#100F0C] p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] space-y-6">
+          <div className="lg:col-span-4 flex flex-col justify-between h-full bg-background p-6 rounded-2xl border border-border space-y-6">
             <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
+              <div className="flex items-center justify-between pb-3 border-b border-border">
                 <span className="text-xs font-mono uppercase text-slate-500 font-semibold">
                   Parser Benchmark
                 </span>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
@@ -654,7 +654,7 @@ export function RxStoryScenes() {
   };
 
   return (
-    <div className="bg-[#F8F7F3] dark:bg-[#100F0C] text-[#1a1a1a] dark:text-[#f3f4f6] font-sans transition-colors duration-300">
+    <div className="bg-background text-[#1a1a1a] dark:text-[#f3f4f6] font-sans transition-colors duration-300">
       
       {/* =========================================================================
           HERO SCENE: SPLIT-SCREEN INTERACTIVE HERO
@@ -669,7 +669,7 @@ export function RxStoryScenes() {
       <section
         id="top"
         ref={heroRef}
-        className="relative h-[200vh] bg-[#F8F7F3] dark:bg-[#100F0C]"
+        className="relative h-[200vh] bg-background"
       >
         <div className="sticky top-0 h-screen w-full flex flex-col justify-between pt-20 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
           {/* Soft ambient aura without distracting background lines or pens */}
@@ -933,7 +933,7 @@ export function RxStoryScenes() {
       <section
         id="write"
         ref={writeRef}
-        className="relative h-[260vh] bg-[#F8F7F3] dark:bg-[#100F0C] border-t border-black/[0.06] dark:border-white/[0.08]"
+        className="relative h-[260vh] bg-background border-t border-border"
       >
         <div className="sticky top-0 h-screen w-full flex items-center justify-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
           
@@ -952,7 +952,7 @@ export function RxStoryScenes() {
                 Never write generic job duties again. Our AI rewrites passive descriptions into punchy, metric-backed STAR statements that prove your business impact.
               </p>
               <div className="pt-2 flex items-center gap-4 text-xs font-mono text-slate-500">
-                <span className="px-2.5 py-1 rounded bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.05]">
+                <span className="px-2.5 py-1 rounded bg-secondary border border-black/[0.05]">
                   &bull; Situation &bull; Task &bull; Action &bull; Result
                 </span>
               </div>
@@ -1012,7 +1012,7 @@ export function RxStoryScenes() {
                     </div>
 
                     {/* Action buttons inside card */}
-                    <div className="mt-4 pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs">
+                    <div className="mt-4 pt-3 border-t border-border flex items-center justify-between text-xs">
                       <span className="text-[11px] text-slate-500 font-mono">
                         Powered by Claude &amp; Gemini 2.5 Pro
                       </span>
@@ -1042,7 +1042,7 @@ export function RxStoryScenes() {
       <section
         id="design"
         ref={designRef}
-        className="relative h-[380vh] bg-[#F8F7F3] dark:bg-[#100F0C] border-t border-black/[0.06] dark:border-white/[0.08]"
+        className="relative h-[380vh] bg-background border-t border-border"
       >
         <div ref={stickyRef} className="sticky top-0 h-screen w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
           
@@ -1262,7 +1262,7 @@ export function RxStoryScenes() {
       <section
         id="ats"
         ref={atsRef}
-        className="relative h-[250vh] bg-[#F8F7F3] dark:bg-[#100F0C] border-t border-black/[0.06] dark:border-white/[0.08]"
+        className="relative h-[250vh] bg-background border-t border-border"
       >
         <div className="sticky top-0 h-screen w-full flex items-center justify-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
@@ -1451,7 +1451,7 @@ export function RxStoryScenes() {
       {/* =========================================================================
           INTERACTIVE ATS QUICK-SCANNER DIAGNOSTIC WIDGET
           ========================================================================= */}
-      <section className="py-20 sm:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+      <section className="py-20 sm:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
         <HomeAtsQuickScanner />
       </section>
 
@@ -1461,7 +1461,7 @@ export function RxStoryScenes() {
       <section
         id="canvas"
         ref={canvasRef}
-        className="relative h-[250vh] bg-[#F8F7F3] dark:bg-[#100F0C] border-t border-black/[0.06] dark:border-white/[0.08]"
+        className="relative h-[250vh] bg-background border-t border-border"
       >
         <div className="sticky top-0 h-screen w-full flex items-center justify-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
@@ -1641,7 +1641,7 @@ export function RxStoryScenes() {
       <section
         id="tailor"
         ref={tailorRef}
-        className="relative h-[250vh] bg-[#F8F7F3] dark:bg-[#100F0C] border-t border-black/[0.06] dark:border-white/[0.08]"
+        className="relative h-[250vh] bg-background border-t border-border"
       >
         <div className="sticky top-0 h-screen w-full flex items-center justify-center px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
@@ -1727,7 +1727,7 @@ export function RxStoryScenes() {
           ========================================================================= */}
       <section
         id="pathways"
-        className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]"
+        className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border"
       >
         <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
           <div className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
@@ -1741,7 +1741,7 @@ export function RxStoryScenes() {
           </p>
 
           {/* Interactive Tab Switcher */}
-          <div className="inline-flex p-1 bg-black/[0.04] dark:bg-white/[0.06] rounded-full border border-black/[0.05] mt-4">
+          <div className="inline-flex p-1 bg-secondary rounded-full border border-black/[0.05] mt-4">
             {[
               { id: 'fresher', label: 'College & Fresher', icon: GraduationCap },
               { id: 'experienced', label: 'Mid-Senior Specialist', icon: Briefcase },
@@ -1907,14 +1907,14 @@ export function RxStoryScenes() {
       {/* =========================================================================
           PROVEN ROLE RESUME EXAMPLES & BLUEPRINTS GALLERY
           ========================================================================= */}
-      <section id="role-examples" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+      <section id="role-examples" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
         <HomeRoleExamplesGallery />
       </section>
 
       {/* =========================================================================
           PRICING & SOCIAL PROOF: Transparent Pricing Plans
           ========================================================================= */}
-      <section id="pricing" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+      <section id="pricing" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
         <div className="text-center space-y-4 max-w-2xl mx-auto mb-16">
           <div className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
             07 / TRANSPARENT PRICING
@@ -2010,14 +2010,14 @@ export function RxStoryScenes() {
       {/* =========================================================================
           WHY RESUMEBUILDER HONEST COMPARISON MATRIX
           ========================================================================= */}
-      <section id="comparison" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+      <section id="comparison" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
         <HomeComparisonMatrix />
       </section>
 
       {/* =========================================================================
           FAQ: Asked and answered.
           ========================================================================= */}
-      <section id="faq" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+      <section id="faq" className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           <div className="lg:col-span-5 space-y-4">
@@ -2086,7 +2086,7 @@ export function RxStoryScenes() {
       {/* =========================================================================
           FINAL CTA & EDITORIAL FOOTER
           ========================================================================= */}
-      <section className="py-24 sm:py-32 px-4 sm:px-8 text-center border-t border-black/[0.06] dark:border-white/[0.08] max-w-5xl mx-auto space-y-6">
+      <section className="py-24 sm:py-32 px-4 sm:px-8 text-center border-t border-border max-w-5xl mx-auto space-y-6">
         <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
           LAND YOUR NEXT OFFER
         </span>

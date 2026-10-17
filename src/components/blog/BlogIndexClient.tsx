@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -68,7 +68,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                   isActive
                     ? 'bg-emerald-700 text-white shadow-xs'
-                    : 'bg-white dark:bg-[#161614] text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1f1e1a] border border-black/[0.06] dark:border-white/[0.08]'
+                    : 'bg-white dark:bg-[#161614] text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-[#1f1e1a] border border-border'
                 }`}
               >
                 {cat}
@@ -85,7 +85,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
             placeholder="Search articles & keywords..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-[#161614] border border-black/[0.06] dark:border-white/[0.08] rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-white dark:bg-[#161614] border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500"
           />
         </div>
       </div>
@@ -93,7 +93,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
       {/* Featured Post (Only show on 'All' when not searching) */}
       {selectedCategory === 'All' && !searchQuery && featuredPost && (
         <div className="mb-14">
-          <div className="bg-white dark:bg-[#161614] rounded-3xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-sm hover:shadow-md transition-all group">
+          <div className="bg-white dark:bg-[#161614] rounded-3xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-all group">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 lg:p-10 items-center">
               <div className="lg:col-span-8 space-y-4">
                 <div className="flex flex-wrap items-center gap-2.5">
@@ -120,7 +120,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
                   {featuredPost.excerpt}
                 </p>
 
-                <div className="flex items-center justify-between pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
+                <div className="flex items-center justify-between pt-4 border-t border-border">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold flex items-center justify-center text-xs border border-emerald-200 dark:border-emerald-800">
                       {featuredPost.author.name.charAt(0)}
@@ -175,7 +175,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
         </div>
 
         {filteredPosts.length === 0 ? (
-          <div className="bg-white dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-12 text-center max-w-md mx-auto space-y-3">
+          <div className="bg-white dark:bg-[#161614] rounded-2xl border border-border p-12 text-center max-w-md mx-auto space-y-3">
             <BookOpen className="w-8 h-8 text-slate-300 dark:text-slate-600 mx-auto" />
             <h4 className="text-base font-bold text-slate-800 dark:text-white">No articles found</h4>
             <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -196,7 +196,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
             {(selectedCategory === 'All' && !searchQuery ? regularPosts : filteredPosts).map((post) => (
               <article
                 key={post.slug}
-                className="bg-white dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500/80 transition-all flex flex-col justify-between group"
+                className="bg-white dark:bg-[#161614] rounded-2xl border border-border p-6 shadow-xs hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500/80 transition-all flex flex-col justify-between group"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between gap-2">
@@ -220,7 +220,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
                   </p>
                 </div>
 
-                <div className="pt-5 mt-5 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
+                <div className="pt-5 mt-5 border-t border-border flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-300 font-bold flex items-center justify-center text-[10px]">
                       {post.author.name.charAt(0)}

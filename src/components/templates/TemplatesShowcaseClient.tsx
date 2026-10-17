@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -39,11 +39,11 @@ export function TemplatesShowcaseClient() {
   });
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
       <Navbar />
 
       {/* Hero Header */}
-      <section className="bg-transparent border-b border-black/[0.06] dark:border-white/[0.08] py-14 px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-transparent border-b border-border py-14 px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto space-y-3">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -61,7 +61,7 @@ export function TemplatesShowcaseClient() {
       {/* Showcase Workspace */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
         {/* Controls Bar: Filters & Live Color Picker */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/80 dark:bg-[#161614] backdrop-blur-xs p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/80 dark:bg-[#161614] backdrop-blur-xs p-4 rounded-2xl border border-border shadow-xs">
           {/* Category Tabs */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
             {[

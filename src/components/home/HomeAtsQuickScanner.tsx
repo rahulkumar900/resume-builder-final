@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -62,7 +62,7 @@ export function HomeAtsQuickScanner() {
   }, [inputText]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white/90 dark:bg-[#161614] rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-8 shadow-xl backdrop-blur-xs transition-colors duration-300">
+    <div className="w-full max-w-4xl mx-auto bg-white/90 dark:bg-[#161614] rounded-3xl border border-border p-6 sm:p-8 shadow-xl backdrop-blur-xs transition-colors duration-300">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 mb-2">
@@ -78,7 +78,7 @@ export function HomeAtsQuickScanner() {
         </div>
 
         {/* Live Score Dial */}
-        <div className="flex items-center gap-3 bg-[#F8F7F3] dark:bg-[#100F0C] px-5 py-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shrink-0 self-start sm:self-center">
+        <div className="flex items-center gap-3 bg-background px-5 py-3 rounded-2xl border border-border shrink-0 self-start sm:self-center">
           <div className="text-right">
             <span className="block text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
               Live Score
@@ -132,7 +132,7 @@ export function HomeAtsQuickScanner() {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Paste or type one of your resume bullet points here..."
-          className="w-full p-4 bg-[#F8F7F3] dark:bg-[#100F0C] rounded-2xl border border-black/[0.08] dark:border-white/[0.1] text-slate-900 dark:text-slate-100 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all resize-none"
+          className="w-full p-4 bg-background rounded-2xl border border-black/[0.08] dark:border-white/[0.1] text-slate-900 dark:text-slate-100 text-sm font-sans focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all resize-none"
         />
       </div>
 

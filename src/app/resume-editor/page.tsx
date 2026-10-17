@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -61,7 +61,7 @@ export default function ResumeEditorPage() {
   };
 
   return (
-    <div className="min-w-[320px] bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -101,7 +101,7 @@ export default function ResumeEditorPage() {
               </Link>
               <Link
                 href="/templates"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Choose Template First</span>
               </Link>
@@ -110,7 +110,7 @@ export default function ResumeEditorPage() {
         </section>
 
         {/* Editor Controls Breakdown */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Capabilities
@@ -124,7 +124,7 @@ export default function ResumeEditorPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+            <div className="bg-card/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
               <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
                 <Layers className="w-5 h-5" />
               </div>
@@ -134,7 +134,7 @@ export default function ResumeEditorPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+            <div className="bg-card/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
               <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
                 <Type className="w-5 h-5" />
               </div>
@@ -144,7 +144,7 @@ export default function ResumeEditorPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+            <div className="bg-card/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
               <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
                 <Eye className="w-5 h-5" />
               </div>
@@ -157,7 +157,7 @@ export default function ResumeEditorPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-border relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -91,7 +91,7 @@ export default function AtsFriendlyTemplatesPage() {
   );
 
   return (
-    <div className="min-w-[320px] bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -134,7 +134,7 @@ export default function AtsFriendlyTemplatesPage() {
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Check Your ATS Score</span>
               </Link>
@@ -143,7 +143,7 @@ export default function AtsFriendlyTemplatesPage() {
         </section>
 
         {/* What Breaks ATS vs What Passes */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Compliance Rules
@@ -157,7 +157,7 @@ export default function AtsFriendlyTemplatesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8 space-y-4 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-8 space-y-4 shadow-xs">
               <div className="flex items-center gap-3 text-rose-700 dark:text-rose-400 font-serif font-bold text-lg">
                 <XCircle className="w-6 h-6 text-rose-600 dark:text-rose-400" />
                 <span>What Fails ATS Parsers (Avoid These)</span>
@@ -182,7 +182,7 @@ export default function AtsFriendlyTemplatesPage() {
               </ul>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800/80 p-6 sm:p-8 space-y-4 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800/80 p-6 sm:p-8 space-y-4 shadow-xs">
               <div className="flex items-center gap-3 text-emerald-700 dark:text-emerald-400 font-serif font-bold text-lg">
                 <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 <span>What Our ATS Templates Guarantee</span>
@@ -210,7 +210,7 @@ export default function AtsFriendlyTemplatesPage() {
         </section>
 
         {/* Tested ATS Templates Grid */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
               <div>
@@ -237,7 +237,7 @@ export default function AtsFriendlyTemplatesPage() {
               {atsTemplates.map((tpl) => (
                 <div
                   key={tpl.id}
-                  className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
+                  className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 hover:border-emerald-500/40 hover:shadow-md transition flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
@@ -250,7 +250,7 @@ export default function AtsFriendlyTemplatesPage() {
                       {tpl.description}
                     </p>
                     <div className="text-xs font-mono text-slate-600 dark:text-slate-400 mb-6">
-                      <span className="px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08]">
+                      <span className="px-2.5 py-1 rounded-lg bg-black/[0.03] dark:bg-white/[0.05] border border-border">
                         Layout: {tpl.layout === 'single' ? 'Single-Column (Max Compatibility)' : 'Two-Column (Modern Hybrid)'}
                       </span>
                     </div>
@@ -269,7 +269,7 @@ export default function AtsFriendlyTemplatesPage() {
         </section>
 
         {/* FAQs */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -287,7 +287,7 @@ export default function AtsFriendlyTemplatesPage() {
               {faqJsonLd.mainEntity.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="p-6 sm:p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2"
+                  className="p-6 sm:p-7 rounded-2xl border border-border bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2"
                 >
                   <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                     <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
@@ -303,7 +303,7 @@ export default function AtsFriendlyTemplatesPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-black/[0.06] dark:border-white/[0.08] relative overflow-hidden">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-border relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">

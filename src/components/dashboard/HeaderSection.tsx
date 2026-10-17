@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { Plus, FileText, CheckCircle2, Clock, Award, Sparkles } from 'lucide-react';
@@ -69,7 +69,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
       {/* Real Live Metrics Bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         {/* Metric 1: Total Resumes */}
-        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
+        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200/80 dark:border-emerald-800/60">
             <FileText className="w-5 h-5 stroke-[1.8]" />
           </div>
@@ -80,7 +80,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
         </div>
 
         {/* Metric 2: Completed */}
-        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
+        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200/80 dark:border-emerald-800/60">
             <CheckCircle2 className="w-5 h-5 stroke-[1.8]" />
           </div>
@@ -91,7 +91,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
         </div>
 
         {/* Metric 3: Drafts */}
-        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
+        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-amber-100/80 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 flex items-center justify-center shrink-0 border border-amber-200/80 dark:border-amber-800/60">
             <Clock className="w-5 h-5 stroke-[1.8]" />
           </div>
@@ -102,7 +102,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
         </div>
 
         {/* Metric 4: Average ATS Score */}
-        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
+        <div className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border p-3.5 sm:p-4 shadow-2xs flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200/80 dark:border-emerald-800/60">
             <Award className="w-5 h-5 stroke-[1.8]" />
           </div>

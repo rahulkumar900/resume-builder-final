@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -119,7 +119,7 @@ export default function ResumeFormatDownloadPage() {
   const formatTemplates = TEMPLATES.slice(0, 6);
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -160,7 +160,7 @@ export default function ResumeFormatDownloadPage() {
               </Link>
               <Link
                 href="/builder?template=classic"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Customize in Studio</span>
               </Link>
@@ -189,7 +189,7 @@ export default function ResumeFormatDownloadPage() {
         </section>
 
         {/* Why Ditch MS Word .Doc Templates */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               The Technical Breakdown
@@ -204,7 +204,7 @@ export default function ResumeFormatDownloadPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Word Frustrations */}
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-rose-500/30 dark:border-rose-900/40 p-6 sm:p-8 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-rose-500/30 dark:border-rose-900/40 p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-500">
                   <XCircle className="w-6 h-6" />
@@ -241,7 +241,7 @@ export default function ResumeFormatDownloadPage() {
             </div>
 
             {/* Vector PDF Engine */}
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-emerald-500/30 dark:border-emerald-900/40 p-6 sm:p-8 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-emerald-500/30 dark:border-emerald-900/40 p-6 sm:p-8 shadow-xs">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                   <CheckCircle2 className="w-6 h-6" />
@@ -280,7 +280,7 @@ export default function ResumeFormatDownloadPage() {
         </section>
 
         {/* Formats By Industry / Role Grid */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Targeted Formats
@@ -294,7 +294,7 @@ export default function ResumeFormatDownloadPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 mb-3 inline-block border border-blue-200 dark:border-blue-800">
                   Engineering &amp; Tech
@@ -313,7 +313,7 @@ export default function ResumeFormatDownloadPage() {
               </Link>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 mb-3 inline-block border border-emerald-200 dark:border-emerald-800">
                   Entry-Level &amp; College
@@ -332,7 +332,7 @@ export default function ResumeFormatDownloadPage() {
               </Link>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-6 sm:p-7 border border-border shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 mb-3 inline-block border border-purple-200 dark:border-purple-800">
                   Business &amp; Operations
@@ -354,7 +354,7 @@ export default function ResumeFormatDownloadPage() {
         </section>
 
         {/* Live Template Showcase */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -380,7 +380,7 @@ export default function ResumeFormatDownloadPage() {
             {formatTemplates.map((tpl) => (
               <div
                 key={tpl.id}
-                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden hover:border-emerald-500/40 transition-all group flex flex-col justify-between shadow-xs"
+                className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border overflow-hidden hover:border-emerald-500/40 transition-all group flex flex-col justify-between shadow-xs"
               >
                 <div className="p-6">
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -391,7 +391,7 @@ export default function ResumeFormatDownloadPage() {
                   </div>
                   <p className="text-sm text-slate-600 dark:text-slate-400 mb-5 line-clamp-2 leading-relaxed">{tpl.description}</p>
 
-                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-[#F8F7F3] dark:bg-[#161512] rounded-xl p-3.5 border border-black/[0.06] dark:border-white/[0.08]">
+                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-[#F8F7F3] dark:bg-[#161512] rounded-xl p-3.5 border border-border">
                     <div className="flex justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Format:</span>
                       <span className="font-semibold text-slate-800 dark:text-slate-200">
@@ -408,7 +408,7 @@ export default function ResumeFormatDownloadPage() {
                 <div className="p-6 pt-0">
                   <Link
                     href={`/builder?template=${tpl.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-900 dark:text-white font-bold text-xs hover:bg-emerald-700 hover:text-white dark:hover:bg-emerald-600 transition border border-black/[0.08] dark:border-white/[0.1]"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-secondary text-slate-900 dark:text-white font-bold text-xs hover:bg-emerald-700 hover:text-white dark:hover:bg-emerald-600 transition border border-black/[0.08] dark:border-white/[0.1]"
                   >
                     <span>Download {tpl.name} Format</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -420,7 +420,7 @@ export default function ResumeFormatDownloadPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Common Questions
@@ -431,7 +431,7 @@ export default function ResumeFormatDownloadPage() {
           </div>
 
           <div className="space-y-4">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 What is the difference between a resume format and a CV format?
               </h3>
@@ -440,7 +440,7 @@ export default function ResumeFormatDownloadPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 Can I edit my resume format after downloading it?
               </h3>
@@ -449,7 +449,7 @@ export default function ResumeFormatDownloadPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 Is there any limit to the number of resumes I can download?
               </h3>
@@ -460,7 +460,7 @@ export default function ResumeFormatDownloadPage() {
           </div>
 
           {/* Bottom CTA Banner */}
-          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
               Download Your Recruiter-Approved Resume Format Today<span className="text-emerald-700 dark:text-emerald-400">.</span>

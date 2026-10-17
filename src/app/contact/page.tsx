@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -33,7 +33,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
       <Navbar />
 
       <main className="flex-1">
@@ -57,15 +57,15 @@ export default function ContactPage() {
         </section>
 
         {/* Content Section */}
-        <section className="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: Contact Channels & Quick FAQ */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-8 shadow-xs space-y-6">
+              <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs space-y-6">
                 <h2 className="font-serif text-2xl font-bold text-slate-900 dark:text-white">Direct Channels<span className="text-emerald-700 dark:text-emerald-400">.</span></h2>
 
                 <div className="space-y-4 text-xs">
-                  <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                  <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                     <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
                       <Mail className="w-4 h-4" />
                     </div>
@@ -78,7 +78,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                  <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                     <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
                       <ShieldCheck className="w-4 h-4" />
                     </div>
@@ -91,7 +91,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                  <div className="flex items-start gap-3.5 p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                     <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-200 dark:border-emerald-800">
                       <Clock className="w-4 h-4" />
                     </div>
@@ -103,7 +103,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] space-y-2">
+                <div className="pt-4 border-t border-border space-y-2">
                   <div className="text-xs font-mono uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">Helpful Resources:</div>
                   <ul className="text-xs text-emerald-700 dark:text-emerald-400 space-y-1.5 font-medium">
                     <li>
@@ -128,7 +128,7 @@ export default function ContactPage() {
 
             {/* Right: Interactive Contact Form */}
             <div className="lg:col-span-7">
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-10 shadow-xs">
+              <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-10 shadow-xs">
                 {submitted ? (
                   <div className="py-12 text-center space-y-4 animate-in fade-in duration-300">
                     <div className="w-14 h-14 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto border border-emerald-200 dark:border-emerald-800">

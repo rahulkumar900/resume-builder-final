@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -65,7 +65,7 @@ export default function CurriculumVitaeMakerPage() {
   );
 
   return (
-    <div className="min-w-[320px] bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -74,7 +74,7 @@ export default function CurriculumVitaeMakerPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32 border-b border-black/[0.06] dark:border-white/[0.08]">
+        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32 border-b border-border">
           <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -101,7 +101,7 @@ export default function CurriculumVitaeMakerPage() {
               </Link>
               <Link
                 href="/cv-maker"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>View Global CV Guide</span>
               </Link>
@@ -110,7 +110,7 @@ export default function CurriculumVitaeMakerPage() {
         </section>
 
         {/* Academic Structure Overview */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
             <div className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
               SCHOLARSHIP HIERARCHY
@@ -124,7 +124,7 @@ export default function CurriculumVitaeMakerPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition-all">
+            <div className="bg-card/90 backdrop-blur-xs p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition-all">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">
                 01
               </div>
@@ -134,7 +134,7 @@ export default function CurriculumVitaeMakerPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition-all">
+            <div className="bg-card/90 backdrop-blur-xs p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition-all">
               <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-mono font-bold text-sm">
                 02
               </div>
@@ -144,7 +144,7 @@ export default function CurriculumVitaeMakerPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition-all">
+            <div className="bg-card/90 backdrop-blur-xs p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition-all">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">
                 03
               </div>
@@ -157,7 +157,7 @@ export default function CurriculumVitaeMakerPage() {
         </section>
 
         {/* Templates */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div className="space-y-2">
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">
@@ -183,7 +183,7 @@ export default function CurriculumVitaeMakerPage() {
             {academicTemplates.map((tpl) => (
               <div
                 key={tpl.id}
-                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 hover:border-emerald-500/40 shadow-xs hover:shadow-md transition flex flex-col justify-between"
+                className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 hover:border-emerald-500/40 shadow-xs hover:shadow-md transition flex flex-col justify-between"
               >
                 <div>
                   <span className="font-serif text-lg font-bold text-slate-900 dark:text-white block mb-1">{tpl.name}</span>
@@ -204,7 +204,7 @@ export default function CurriculumVitaeMakerPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 text-center border-t border-black/[0.06] dark:border-white/[0.08] max-w-5xl mx-auto space-y-6">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 text-center border-t border-border max-w-5xl mx-auto space-y-6">
           <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold">
             ACADEMIC EXCELLENCE
           </span>
@@ -224,7 +224,7 @@ export default function CurriculumVitaeMakerPage() {
             </Link>
             <Link
               href="/templates"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1] rounded-xl"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1] rounded-xl"
             >
               <span>Browse Academic Formats</span>
             </Link>

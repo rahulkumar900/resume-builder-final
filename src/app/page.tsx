@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-[#1a1a1a] dark:text-[#f3f4f6] selection:bg-emerald-100 selection:text-emerald-900 antialiased relative">
+    <div className="min-h-screen bg-background text-foreground selection:bg-emerald-100 selection:text-emerald-900 antialiased relative">
       {/* Global Scroll-Driven Progress Bar */}
       <ScrollProgressBar />
 

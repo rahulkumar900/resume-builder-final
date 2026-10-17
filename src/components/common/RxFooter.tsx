@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Link from 'next/link';
 
 export function RxFooter() {
   return (
-    <footer className="w-full bg-[#F8F7F3] dark:bg-[#100F0C] border-t border-black/[0.06] dark:border-white/[0.08] pt-16 pb-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+    <footer className="w-full bg-background border-t border-border pt-16 pb-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto overflow-hidden">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-16 text-xs text-slate-600 dark:text-slate-400 font-sans">
           <div>

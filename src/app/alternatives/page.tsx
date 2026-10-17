@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -65,7 +65,7 @@ export default function AlternativesIndexPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans relative selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans relative selection:bg-emerald-500 selection:text-white">
       <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
       <script
         type="application/ld+json"
@@ -102,7 +102,7 @@ export default function AlternativesIndexPage() {
             </Link>
             <Link
               href="/templates"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.06] dark:border-white/[0.08]"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-border"
             >
               <span>Browse 12 Verified Templates</span>
             </Link>
@@ -110,7 +110,7 @@ export default function AlternativesIndexPage() {
         </section>
 
         {/* Competitor Cards Grid */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="mb-12 text-center sm:text-left">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Side-by-Side Analysis
@@ -127,12 +127,12 @@ export default function AlternativesIndexPage() {
             {COMPETITORS.map((c) => (
               <div
                 key={c.slug}
-                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all flex flex-col justify-between group"
+                className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 dark:hover:border-emerald-500/40 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <span className="text-xl font-bold font-serif text-slate-900 dark:text-white">{c.name}</span>
-                    <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] text-slate-700 dark:text-slate-300">
+                    <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-secondary border border-border text-slate-700 dark:text-slate-300">
                       {c.slug === 'canva' ? 'Graphic Tool' : c.slug === 'naukri' ? 'Agency Writing' : 'Paid Builder'}
                     </span>
                   </div>
@@ -159,7 +159,7 @@ export default function AlternativesIndexPage() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08]">
+                <div className="pt-4 border-t border-border">
                   <Link
                     href={`/alternatives/${c.slug}`}
                     className="inline-flex items-center justify-between w-full text-xs font-bold text-emerald-700 group-hover:text-emerald-800 dark:text-emerald-400 dark:group-hover:text-emerald-300 transition"
@@ -174,7 +174,7 @@ export default function AlternativesIndexPage() {
         </section>
 
         {/* Master Comparison Table Overview */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Feature Matrix
@@ -187,10 +187,10 @@ export default function AlternativesIndexPage() {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white/90 dark:bg-[#141310]/90 shadow-xs">
+          <div className="overflow-x-auto rounded-2xl border border-border bg-card/90 shadow-xs">
             <table className="w-full text-left text-xs border-collapse">
               <thead>
-                <tr className="bg-black/[0.02] dark:bg-white/[0.03] border-b border-black/[0.06] dark:border-white/[0.08] text-slate-700 dark:text-slate-300">
+                <tr className="bg-black/[0.02] dark:bg-white/[0.03] border-b border-border text-slate-700 dark:text-slate-300">
                   <th className="p-4 font-bold text-sm">Feature / Metric</th>
                   <th className="p-4 font-bold text-sm text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBuilder</th>
                   <th className="p-4 font-semibold text-slate-600 dark:text-slate-400">Zety</th>
@@ -254,8 +254,8 @@ export default function AlternativesIndexPage() {
         </section>
 
         {/* Global Bottom CTA */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
-          <div className="relative rounded-3xl overflow-hidden bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-10 sm:p-16 text-center shadow-xs">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
+          <div className="relative rounded-3xl overflow-hidden bg-card/90 border border-border p-10 sm:p-16 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.1),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(20,19,16,0))]" />
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-3">
               Zero Paywalls · Always Free
@@ -276,7 +276,7 @@ export default function AlternativesIndexPage() {
               </Link>
               <Link
                 href="/templates"
-                className="px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.06] dark:border-white/[0.08]"
+                className="px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-border"
               >
                 Browse 12 Verified Templates
               </Link>

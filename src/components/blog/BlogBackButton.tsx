@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -19,7 +19,7 @@ export const BlogBackButton: React.FC = () => {
     <button
       type="button"
       onClick={handleBack}
-      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/[0.08] hover:bg-slate-200 dark:hover:bg-white/[0.14] border border-black/[0.06] dark:border-white/[0.08] transition-colors cursor-pointer shrink-0"
+      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/[0.08] hover:bg-slate-200 dark:hover:bg-white/[0.14] border border-border transition-colors cursor-pointer shrink-0"
       title="Back to previous page"
       aria-label="Back"
     >

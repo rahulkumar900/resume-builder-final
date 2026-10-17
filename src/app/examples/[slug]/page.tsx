@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -92,7 +92,7 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
       {/* Google Rich Snippet Structured Data */}
       <script
         type="application/ld+json"

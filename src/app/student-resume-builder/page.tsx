@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -121,7 +121,7 @@ export default function StudentResumeBuilderPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -162,7 +162,7 @@ export default function StudentResumeBuilderPage() {
               </Link>
               <Link
                 href="/templates/ats-friendly"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <span>Browse Student Templates</span>
               </Link>
@@ -191,7 +191,7 @@ export default function StudentResumeBuilderPage() {
         </section>
 
         {/* The Student Experience Matrix: What to Include */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Zero Experience Strategy
@@ -205,7 +205,7 @@ export default function StudentResumeBuilderPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 flex items-center justify-center text-blue-700 dark:text-blue-400 mb-4">
                   <BookOpen className="w-5 h-5" />
@@ -217,7 +217,7 @@ export default function StudentResumeBuilderPage() {
               </div>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-400 mb-4">
                   <Users className="w-5 h-5" />
@@ -229,7 +229,7 @@ export default function StudentResumeBuilderPage() {
               </div>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800 flex items-center justify-center text-purple-700 dark:text-purple-400 mb-4">
                   <Heart className="w-5 h-5" />
@@ -241,7 +241,7 @@ export default function StudentResumeBuilderPage() {
               </div>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 flex items-center justify-center text-amber-700 dark:text-amber-400 mb-4">
                   <Award className="w-5 h-5" />
@@ -256,7 +256,7 @@ export default function StudentResumeBuilderPage() {
         </section>
 
         {/* 3 Step Quick Creation */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Simple 3-Step Process
@@ -267,7 +267,7 @@ export default function StudentResumeBuilderPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-7 border border-border shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-5 border border-emerald-200 dark:border-emerald-800">
                 1
               </div>
@@ -277,7 +277,7 @@ export default function StudentResumeBuilderPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-7 border border-border shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-5 border border-emerald-200 dark:border-emerald-800">
                 2
               </div>
@@ -287,7 +287,7 @@ export default function StudentResumeBuilderPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl p-7 border border-black/[0.06] dark:border-white/[0.08] shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl p-7 border border-border shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 font-bold flex items-center justify-center text-sm mb-5 border border-emerald-200 dark:border-emerald-800">
                 3
               </div>
@@ -300,7 +300,7 @@ export default function StudentResumeBuilderPage() {
         </section>
 
         {/* Templates Showcase */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
@@ -326,7 +326,7 @@ export default function StudentResumeBuilderPage() {
             {studentTemplates.map((tpl) => (
               <div
                 key={tpl.id}
-                className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] overflow-hidden hover:border-emerald-500/40 transition-all group flex flex-col justify-between shadow-xs"
+                className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border overflow-hidden hover:border-emerald-500/40 transition-all group flex flex-col justify-between shadow-xs"
               >
                 <div className="p-6">
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -337,7 +337,7 @@ export default function StudentResumeBuilderPage() {
                   </div>
                   <p className="text-sm text-slate-600 dark:text-slate-400 mb-5 line-clamp-2 leading-relaxed">{tpl.description}</p>
 
-                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-[#F8F7F3] dark:bg-[#161512] rounded-xl p-3.5 border border-black/[0.06] dark:border-white/[0.08]">
+                  <div className="space-y-2 text-xs font-mono text-slate-600 dark:text-slate-300 bg-[#F8F7F3] dark:bg-[#161512] rounded-xl p-3.5 border border-border">
                     <div className="flex justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Layout:</span>
                       <span className="font-semibold text-slate-800 dark:text-slate-200">
@@ -354,7 +354,7 @@ export default function StudentResumeBuilderPage() {
                 <div className="p-6 pt-0">
                   <Link
                     href={`/builder?template=${tpl.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-900 dark:text-white font-bold text-xs hover:bg-emerald-700 hover:text-white dark:hover:bg-emerald-600 transition border border-black/[0.08] dark:border-white/[0.1]"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-secondary text-slate-900 dark:text-white font-bold text-xs hover:bg-emerald-700 hover:text-white dark:hover:bg-emerald-600 transition border border-black/[0.08] dark:border-white/[0.1]"
                   >
                     <span>Use {tpl.name}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -366,7 +366,7 @@ export default function StudentResumeBuilderPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Common Questions
@@ -377,7 +377,7 @@ export default function StudentResumeBuilderPage() {
           </div>
 
           <div className="space-y-4">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 How long should a student resume be?
               </h3>
@@ -386,7 +386,7 @@ export default function StudentResumeBuilderPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 What skills should high school or college students list?
               </h3>
@@ -395,7 +395,7 @@ export default function StudentResumeBuilderPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 Should I include my GPA or high school marks?
               </h3>
@@ -404,7 +404,7 @@ export default function StudentResumeBuilderPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="font-bold text-slate-900 dark:text-white text-base mb-2">
                 Are there any hidden fees or subscriptions?
               </h3>
@@ -415,7 +415,7 @@ export default function StudentResumeBuilderPage() {
           </div>
 
           {/* Bottom CTA Banner */}
-          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
               Get Ready for Your First Interview<span className="text-emerald-700 dark:text-emerald-400">.</span>

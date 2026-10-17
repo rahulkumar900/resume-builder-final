@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -122,7 +122,7 @@ export default function AtsCheckerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-800 dark:text-slate-100 pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-800 dark:text-slate-100 pt-16 transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -159,7 +159,7 @@ export default function AtsCheckerPage() {
         </section>
 
         {/* Educational Content / Guide Section */}
-        <section className="space-y-20 pt-16 border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="space-y-20 pt-16 border-t border-border">
           {/* The 5 Pillars of ATS Scoring */}
           <div className="space-y-12">
             <div className="text-center space-y-3 max-w-2xl mx-auto">
@@ -175,7 +175,7 @@ export default function AtsCheckerPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 sm:p-7 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="p-6 sm:p-7 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
                   01
                 </div>
@@ -185,7 +185,7 @@ export default function AtsCheckerPage() {
                 </p>
               </div>
 
-              <div className="p-6 sm:p-7 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="p-6 sm:p-7 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
                   02
                 </div>
@@ -195,7 +195,7 @@ export default function AtsCheckerPage() {
                 </p>
               </div>
 
-              <div className="p-6 sm:p-7 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+              <div className="p-6 sm:p-7 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
                   03
                 </div>
@@ -208,7 +208,7 @@ export default function AtsCheckerPage() {
           </div>
 
           {/* ATS Pitfalls to Avoid */}
-          <div className="p-7 sm:p-10 bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-3xl space-y-8 shadow-xs border border-black/[0.06] dark:border-white/[0.08]">
+          <div className="p-7 sm:p-10 bg-card/90 backdrop-blur-xs rounded-3xl space-y-8 shadow-xs border border-border">
             <div className="max-w-2xl space-y-3">
               <span className="font-mono text-xs uppercase tracking-widest text-rose-600 dark:text-rose-400 font-semibold block">
                 Critical Pitfalls
@@ -222,7 +222,7 @@ export default function AtsCheckerPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs">
-              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-border space-y-2">
                 <div className="font-serif font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0" />
                   <span>Tables &amp; Text Boxes</span>
@@ -232,7 +232,7 @@ export default function AtsCheckerPage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-border space-y-2">
                 <div className="font-serif font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0" />
                   <span>Images &amp; Graphical Charts</span>
@@ -242,7 +242,7 @@ export default function AtsCheckerPage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-border space-y-2">
                 <div className="font-serif font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0" />
                   <span>Contact Information in Headers/Footers</span>
@@ -252,7 +252,7 @@ export default function AtsCheckerPage() {
                 </p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-border space-y-2">
                 <div className="font-serif font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0" />
                   <span>Non-Standard Section Headings</span>
@@ -279,7 +279,7 @@ export default function AtsCheckerPage() {
             </div>
 
             <div className="space-y-4">
-              <details className="group bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+              <details className="group bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs">
                 <summary className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg cursor-pointer list-none flex items-center justify-between">
                   <span>How accurate is this ATS resume checker?</span>
                   <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
@@ -289,7 +289,7 @@ export default function AtsCheckerPage() {
                 </p>
               </details>
 
-              <details className="group bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+              <details className="group bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs">
                 <summary className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg cursor-pointer list-none flex items-center justify-between">
                   <span>Should I use PDF or Word (.docx) format?</span>
                   <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
@@ -299,7 +299,7 @@ export default function AtsCheckerPage() {
                 </p>
               </details>
 
-              <details className="group bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+              <details className="group bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs">
                 <summary className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg cursor-pointer list-none flex items-center justify-between">
                   <span>Will this store or share my private resume data?</span>
                   <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
@@ -309,7 +309,7 @@ export default function AtsCheckerPage() {
                 </p>
               </details>
 
-              <details className="group bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs">
+              <details className="group bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs">
                 <summary className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg cursor-pointer list-none flex items-center justify-between">
                   <span>How can I improve my ATS score to 90%+?</span>
                   <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
@@ -322,7 +322,7 @@ export default function AtsCheckerPage() {
           </div>
 
           {/* Bottom CTA Card */}
-          <div className="py-16 sm:py-20 px-6 sm:px-12 rounded-3xl relative overflow-hidden border border-black/[0.06] dark:border-white/[0.08] text-center space-y-6">
+          <div className="py-16 sm:py-20 px-6 sm:px-12 rounded-3xl relative overflow-hidden border border-border text-center space-y-6">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h3 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
               Ready to Build an <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">ATS-Proof Resume?</span>

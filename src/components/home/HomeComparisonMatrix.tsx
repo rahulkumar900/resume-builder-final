@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { Check, X, ShieldCheck } from 'lucide-react';
@@ -58,11 +58,11 @@ export function HomeComparisonMatrix() {
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white/90 dark:bg-[#161614] shadow-xl backdrop-blur-xs">
+      <div className="overflow-hidden rounded-3xl border border-border bg-white/90 dark:bg-[#161614] shadow-xl backdrop-blur-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-black/[0.06] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.02]">
+              <tr className="border-b border-border bg-black/[0.02] dark:bg-white/[0.02]">
                 <th className="py-4 px-6 font-mono text-xs uppercase tracking-wider text-slate-500 font-semibold">
                   Feature / Capability
                 </th>

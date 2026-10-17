@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
@@ -55,7 +55,7 @@ export default function BlogIndexPage() {
   };
 
   return (
-    <div className="min-w-[320px] bg-[#F8F7F3] dark:bg-[#100F0C] min-h-screen flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300 selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-w-[320px] bg-background min-h-screen flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300 selection:bg-emerald-100 selection:text-emerald-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
@@ -64,7 +64,7 @@ export default function BlogIndexPage() {
 
       <main className="flex-1">
         {/* Blog Header Hero */}
-        <section className="relative overflow-hidden bg-transparent border-b border-black/[0.06] dark:border-white/[0.08] pt-14 pb-16 sm:pt-20 sm:pb-20">
+        <section className="relative overflow-hidden bg-transparent border-b border-border pt-14 pb-16 sm:pt-20 sm:pb-20">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold mb-6 shadow-2xs">
               <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />

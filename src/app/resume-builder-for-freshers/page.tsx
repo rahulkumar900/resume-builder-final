@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -104,7 +104,7 @@ export default function ResumeBuilderForFreshersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -147,7 +147,7 @@ export default function ResumeBuilderForFreshersPage() {
               </Link>
               <Link
                 href="/examples/btech-fresher-resume"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <BookOpen className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                 <span>View BTech Fresher Sample</span>
@@ -170,7 +170,7 @@ export default function ResumeBuilderForFreshersPage() {
         </section>
 
         {/* Why Fresher Resumes Require a Different Strategy */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Entry Strategy
@@ -184,7 +184,7 @@ export default function ResumeBuilderForFreshersPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold mb-5 border border-emerald-200 dark:border-emerald-800">
                 <BookOpen className="w-5 h-5" />
               </div>
@@ -194,7 +194,7 @@ export default function ResumeBuilderForFreshersPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold mb-5 border border-emerald-200 dark:border-emerald-800">
                 <Briefcase className="w-5 h-5" />
               </div>
@@ -204,7 +204,7 @@ export default function ResumeBuilderForFreshersPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs hover:border-emerald-500/40 transition-all flex flex-col items-start">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold mb-5 border border-emerald-200 dark:border-emerald-800">
                 <Award className="w-5 h-5" />
               </div>
@@ -217,8 +217,8 @@ export default function ResumeBuilderForFreshersPage() {
         </section>
 
         {/* Fresher Template Spotlight */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
-          <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-12 shadow-sm flex flex-col lg:flex-row items-center gap-10">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
+          <div className="bg-card/90 backdrop-blur-xs rounded-3xl border border-border p-8 sm:p-12 shadow-sm flex flex-col lg:flex-row items-center gap-10">
             <div className="flex-1 space-y-4">
               <div className="inline-block px-3 py-1 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-medium rounded-full border border-emerald-200 dark:border-emerald-800">
                 Recommended Template
@@ -239,24 +239,24 @@ export default function ResumeBuilderForFreshersPage() {
                 </Link>
                 <Link
                   href="/templates/ats-friendly"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
                 >
                   <span>Browse All 30+ Formats</span>
                 </Link>
               </div>
             </div>
 
-            <div className="w-full lg:w-72 h-96 bg-[#F8F7F3] dark:bg-[#100F0C] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-5 shadow-inner flex flex-col justify-between">
+            <div className="w-full lg:w-72 h-96 bg-background rounded-2xl border border-border p-5 shadow-inner flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="h-4 w-32 bg-emerald-700/80 rounded" />
                 <div className="h-2 w-20 bg-slate-300 dark:bg-white/[0.2] rounded" />
                 <div className="h-px bg-black/[0.06] dark:border-white/[0.08] w-full" />
-                <div className="h-14 bg-white/90 dark:bg-[#161512] rounded border border-black/[0.06] dark:border-white/[0.08] p-2 space-y-1">
+                <div className="h-14 bg-white/90 dark:bg-[#161512] rounded border border-border p-2 space-y-1">
                   <div className="h-2 w-full bg-slate-200 dark:bg-white/[0.1] rounded" />
                   <div className="h-2 w-3/4 bg-slate-100 dark:bg-white/[0.05] rounded" />
                   <div className="h-2 w-1/2 bg-slate-100 dark:bg-white/[0.05] rounded" />
                 </div>
-                <div className="h-16 bg-white/90 dark:bg-[#161512] rounded border border-black/[0.06] dark:border-white/[0.08] p-2 space-y-1">
+                <div className="h-16 bg-white/90 dark:bg-[#161512] rounded border border-border p-2 space-y-1">
                   <div className="h-2 w-28 bg-emerald-600/70 rounded" />
                   <div className="h-2 w-full bg-slate-100 dark:bg-white/[0.05] rounded" />
                   <div className="h-2 w-4/5 bg-slate-100 dark:bg-white/[0.05] rounded" />
@@ -270,7 +270,7 @@ export default function ResumeBuilderForFreshersPage() {
         </section>
 
         {/* Fresher FAQs */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Common Questions
@@ -281,7 +281,7 @@ export default function ResumeBuilderForFreshersPage() {
           </div>
 
           <div className="space-y-4">
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                 Should a fresher resume be 1 page or 2 pages?
               </h3>
@@ -290,7 +290,7 @@ export default function ResumeBuilderForFreshersPage() {
               </p>
             </div>
 
-            <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-7 shadow-xs">
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
               <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                 Can I use this for campus placements (TCS, Wipro, Infosys, Cognizant)?
               </h3>
@@ -301,7 +301,7 @@ export default function ResumeBuilderForFreshersPage() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h3 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight mb-4">
               Create Your Fresher Resume Today<span className="text-emerald-700 dark:text-emerald-400">.</span>

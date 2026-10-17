@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
   const lastUpdated = 'October 1, 2026';
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white pt-16 transition-colors duration-300">
       <Navbar />
 
       <main className="flex-1">
@@ -39,15 +39,15 @@ export default function PrivacyPage() {
               Last updated: <span className="font-semibold text-slate-700 dark:text-slate-300">{lastUpdated}</span> &bull; Compliant with global privacy standards &amp; Indian DPDP Act.
             </p>
 
-            <div className="mt-8 p-5 rounded-2xl bg-white/90 dark:bg-[#141310]/90 border border-emerald-500/30 dark:border-emerald-800/60 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium shadow-xs text-left">
+            <div className="mt-8 p-5 rounded-2xl bg-card/90 border border-emerald-500/30 dark:border-emerald-800/60 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium shadow-xs text-left">
               <strong className="text-slate-900 dark:text-white">Core Privacy Commitment:</strong> We never sell your personal data or resume history. Your resume content is strictly confidential and is <u>never used to train public generative AI foundation models</u> without explicit consent.
             </div>
           </div>
         </section>
 
         {/* Privacy Document */}
-        <section className="py-16 sm:py-24 px-4 sm:px-8 max-w-5xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
-          <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-2xl border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-12 shadow-xs space-y-10 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+        <section className="py-16 sm:py-24 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
+          <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-8 sm:p-12 shadow-xs space-y-10 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
             {/* Section 1 */}
             <section className="space-y-3">
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -57,19 +57,19 @@ export default function PrivacyPage() {
                 We collect only the minimum necessary information required to generate, format, and audit your resume:
               </p>
               <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-400 pl-1">
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white block mb-0.5">A. Account Credentials:</strong>
                   When you sign up or log in, we collect your email address and optional profile name via our secure authentication provider.
                 </div>
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white block mb-0.5">B. Resume Content:</strong>
                   Personal contact information (phone, email, links), employment history, education milestones, skills, project summaries, and certifications you explicitly type or import.
                 </div>
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white block mb-0.5">C. Target Job Descriptions:</strong>
                   Job text you paste into our Job Tailor or ATS Matcher to calculate skill gap scores.
                 </div>
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white block mb-0.5">D. Anonymous Telemetry:</strong>
                   Standard technical logs (browser type, device screen dimensions, error crash logs) to optimize page rendering and performance.
                 </div>
@@ -147,16 +147,16 @@ export default function PrivacyPage() {
                 We do not sell, rent, or trade your personal information. We work only with vetted infrastructure partners who adhere to rigorous security standards:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white">Authentication:</strong> Firebase / Supabase Auth
                 </div>
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white">Hosting &amp; Edge:</strong> Vercel Global Edge Network
                 </div>
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white">AI APIs:</strong> OpenAI &amp; Google Gemini Enterprise
                 </div>
-                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08]">
+                <div className="p-3.5 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border">
                   <strong className="text-slate-900 dark:text-white">PDF Generation:</strong> Internal Sandboxed Puppeteer Engine
                 </div>
               </div>
@@ -170,7 +170,7 @@ export default function PrivacyPage() {
               <p>
                 For privacy requests, data export assistance, or questions regarding our security protocols, contact our Data Protection team:
               </p>
-              <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08] text-xs font-mono space-y-1">
+              <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border text-xs font-mono space-y-1">
                 <div><strong className="text-slate-900 dark:text-white">Email:</strong> privacy@resumebuilder.app</div>
                 <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebuilder.app</div>
                 <div><strong className="text-slate-900 dark:text-white">Response Time:</strong> Typically within 24–48 business hours</div>
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
           </div>
 
           {/* Quick Action Card */}
-          <div className="mt-16 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-16 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2">Build with confidence and complete privacy<span className="text-emerald-700 dark:text-emerald-400">.</span></h3>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-6">

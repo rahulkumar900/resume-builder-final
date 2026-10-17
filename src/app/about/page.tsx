@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <Navbar />
 
       <main className="flex-1">
@@ -51,22 +51,22 @@ export default function AboutPage() {
 
             {/* Key Metric Stats Strip */}
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-1">
+              <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
                 <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">50,000+</div>
                 <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">Resumes Crafted</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">By candidates worldwide</div>
               </div>
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-1">
+              <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
                 <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400">98.4%</div>
                 <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">ATS Pass Rate</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">Tested across major scanners</div>
               </div>
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-1">
+              <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
                 <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">30+</div>
                 <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">Recruiter Layouts</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">From FAANG to campus TPO</div>
               </div>
-              <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs p-6 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-1">
+              <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
                 <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">₹0</div>
                 <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">Ransom Paywalls</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">Vector PDF exports are free</div>
@@ -76,8 +76,8 @@ export default function AboutPage() {
         </section>
 
         {/* The Problem We Solved */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
-          <div className="bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 shadow-xs space-y-8">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
+          <div className="bg-card/90 backdrop-blur-xs rounded-3xl border border-border p-8 sm:p-14 shadow-xs space-y-8">
             <div className="max-w-2xl">
               <span className="font-mono text-xs uppercase tracking-widest text-rose-600 dark:text-rose-400 font-semibold block mb-2">
                 The Problem
@@ -91,19 +91,19 @@ export default function AboutPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-border space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white text-base">Broken Graphic Columns</div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Design tools like Canva generate image-based or complex floating divs that ATS parsers read scrambled or out of chronological order.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-border space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white text-base">Watermark Ransom Paywalls</div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Legacy resume sites let you spend 45 minutes typing, then block your download with a sneaky &quot;$2.99 trial that renews at $39.99/mo&quot; paywall.
                 </p>
               </div>
-              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
+              <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-border space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white text-base">Blind Keyword Guessing</div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Candidates submit generic one-size-fits-all resumes that miss critical skills highlighted in the job description.
@@ -114,7 +114,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Engineering Solution (Core Pillars) */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-black/[0.06] dark:border-white/[0.08]">
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
               Our Solution
@@ -125,7 +125,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="p-8 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3">
+            <div className="p-8 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
                 <ShieldCheck className="w-5 h-5" />
               </div>
@@ -135,7 +135,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3">
+            <div className="p-8 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
                 <Target className="w-5 h-5" />
               </div>
@@ -145,7 +145,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3">
+            <div className="p-8 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
                 <FileText className="w-5 h-5" />
               </div>
@@ -155,7 +155,7 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="p-8 rounded-2xl bg-white/90 dark:bg-[#141310]/90 backdrop-blur-xs border border-black/[0.06] dark:border-white/[0.08] shadow-xs space-y-3">
+            <div className="p-8 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
                 <Users className="w-5 h-5" />
               </div>
@@ -167,7 +167,7 @@ export default function AboutPage() {
           </div>
 
           {/* Final Call to Action */}
-          <div className="mt-20 relative overflow-hidden rounded-3xl bg-white/90 dark:bg-[#141310]/90 border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-14 text-center shadow-xs">
+          <div className="mt-20 relative overflow-hidden rounded-3xl bg-card/90 border border-border p-8 sm:p-14 text-center shadow-xs">
             <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
             <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
               Ready to create a resume that gets you hired<span className="text-emerald-700 dark:text-emerald-400">?</span>

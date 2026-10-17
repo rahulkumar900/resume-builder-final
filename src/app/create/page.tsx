@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -447,9 +447,9 @@ function CreateResumeFlow() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300">
       {/* Top Header */}
-      <header className="w-full bg-[#F8F7F3]/95 dark:bg-[#100F0C]/95 backdrop-blur-md border-b border-black/[0.06] dark:border-white/[0.08] sticky top-0 z-30 shadow-2xs">
+      <header className="w-full bg-[#F8F7F3]/95 dark:bg-[#100F0C]/95 backdrop-blur-md border-b border-border sticky top-0 z-30 shadow-2xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
@@ -485,7 +485,7 @@ function CreateResumeFlow() {
                           ? 'bg-emerald-700 dark:bg-emerald-600 text-white shadow-xs'
                           : isPast
                           ? 'bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-200/80'
-                          : 'bg-black/[0.04] dark:bg-white/[0.06] text-slate-500 dark:text-slate-400 hover:bg-black/[0.08]'
+                          : 'bg-secondary text-slate-500 dark:text-slate-400 hover:bg-black/[0.08]'
                       }`}
                     >
                       <span className={`w-4 h-4 rounded-full text-center flex items-center justify-center text-[10px] ${isActive ? 'bg-white/20' : isPast ? 'bg-emerald-200 dark:bg-emerald-800' : 'bg-black/[0.08] dark:bg-white/[0.1] text-slate-500'}`}>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -34,11 +34,11 @@ export function ResumeExamplesHubClient() {
   }, [searchQuery, activeCategory]);
 
   return (
-    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
+    <div className="min-h-screen bg-background flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
       <Navbar />
 
       {/* Hero Header */}
-      <section className="bg-transparent border-b border-black/[0.06] dark:border-white/[0.08] py-16 px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-transparent border-b border-border py-16 px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto space-y-4">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -98,7 +98,7 @@ export function ResumeExamplesHubClient() {
                 className={`px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-xl whitespace-nowrap transition-all cursor-pointer ${
                   activeCategory === cat.id
                     ? 'bg-emerald-700 dark:bg-emerald-600 text-white font-semibold shadow-xs'
-                    : 'bg-white/80 dark:bg-[#161614] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-black/[0.06] dark:border-white/[0.08]'
+                    : 'bg-white/80 dark:bg-[#161614] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-border'
                 }`}
               >
                 {cat.label}
@@ -119,7 +119,7 @@ export function ResumeExamplesHubClient() {
           {filtered.map((item) => (
             <div
               key={item.slug}
-              className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-black/[0.06] dark:border-white/[0.08] shadow-2xs hover:shadow-md hover:border-emerald-500/50 transition-all flex flex-col justify-between overflow-hidden group"
+              className="bg-white/90 dark:bg-[#161614] rounded-2xl border border-border shadow-2xs hover:shadow-md hover:border-emerald-500/50 transition-all flex flex-col justify-between overflow-hidden group"
             >
               <div className="p-6 space-y-4">
                 <div className="flex items-start justify-between gap-2">
@@ -185,7 +185,7 @@ export function ResumeExamplesHubClient() {
         </div>
 
         {/* SEO Educational Guide Block */}
-        <section className="mt-16 bg-white/90 dark:bg-[#161614] rounded-3xl border border-black/[0.06] dark:border-white/[0.08] p-8 sm:p-10 space-y-6 shadow-2xs">
+        <section className="mt-16 bg-white/90 dark:bg-[#161614] rounded-3xl border border-border p-8 sm:p-10 space-y-6 shadow-2xs">
           <div className="space-y-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
               Candidate Knowledge Base
