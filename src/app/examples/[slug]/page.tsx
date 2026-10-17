@@ -92,7 +92,7 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] flex flex-col font-sans text-slate-900">
+    <div className="min-h-screen bg-[#F8F7F3] dark:bg-[#100F0C] flex flex-col font-sans text-slate-900 dark:text-slate-100 pt-16 transition-colors duration-300">
       {/* Google Rich Snippet Structured Data */}
       <script
         type="application/ld+json"

@@ -170,32 +170,32 @@ export default function AtsCheckerPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+              <div className="p-6 rounded-3xl bg-white dark:bg-[#191815] border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 flex items-center justify-center font-bold">
                   01
                 </div>
-                <h3 className="font-bold text-base text-slate-900">Keyword &amp; Skill Density</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h3 className="font-bold text-base text-slate-900 dark:text-white">Keyword &amp; Skill Density</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   ATS parsers map your skills and job titles against targeted taxonomy dictionaries. We verify essential hard skills, frameworks, cloud platforms, and domain expertise.
                 </p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+              <div className="p-6 rounded-3xl bg-white dark:bg-[#191815] border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold">
                   02
                 </div>
-                <h3 className="font-bold text-base text-slate-900">Google X-Y-Z Metric Density</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h3 className="font-bold text-base text-slate-900 dark:text-white">Google X-Y-Z Metric Density</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   Top tier resumes begin with power action verbs and contain measurable impact: <em>&quot;Accomplished [X] as measured by [Y], by doing [Z]&quot;</em>. We detect numbers, percentages, and scale indicators.
                 </p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
-                <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+              <div className="p-6 rounded-3xl bg-white dark:bg-[#191815] border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold">
                   03
                 </div>
-                <h3 className="font-bold text-base text-slate-900">Duplicate &amp; Quality Audit</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <h3 className="font-bold text-base text-slate-900 dark:text-white">Duplicate &amp; Quality Audit</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   Avoid sounding repetitive. Our algorithm highlights overused action verbs, repeated sentences, buzzwords, and fuzzy phrase duplicates that lower recruiter impressions.
                 </p>
               </div>
@@ -203,7 +203,7 @@ export default function AtsCheckerPage() {
           </div>
 
           {/* ATS Pitfalls to Avoid */}
-          <div className="p-6 sm:p-8 bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl space-y-6 shadow-md">
+          <div className="p-6 sm:p-8 bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-3xl space-y-6 shadow-md border border-slate-800 dark:border-white/[0.08]">
             <div className="max-w-2xl space-y-2">
               <span className="text-[10px] font-bold text-rose-400 uppercase tracking-wider bg-rose-950/60 px-2.5 py-1 rounded-full border border-rose-800/40">
                 Critical Pitfalls
@@ -262,51 +262,51 @@ export default function AtsCheckerPage() {
           {/* Interactive FAQ Accordion */}
           <div className="space-y-6 max-w-3xl mx-auto">
             <div className="text-center space-y-1">
-              <h2 className="text-2xl font-black text-slate-900">
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white">
                 Frequently Asked Questions
               </h2>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Everything you need to know about beating modern Applicant Tracking Systems
               </p>
             </div>
 
             <div className="space-y-3 text-xs">
-              <details className="group bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
-                <summary className="font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+              <details className="group bg-white dark:bg-[#191815] p-4 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-2xs">
+                <summary className="font-bold text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
                   <span>How accurate is this ATS resume checker?</span>
                   <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
-                <p className="text-slate-600 mt-2 leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                   Our scoring engine is calibrated directly against the parsing heuristics used by tier-1 ATS systems including Workday, Taleo, Greenhouse, and Lever. It evaluates syntax, keyword density, section headers, metrics, and plain-text output with high fidelity.
                 </p>
               </details>
 
-              <details className="group bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
-                <summary className="font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+              <details className="group bg-white dark:bg-[#191815] p-4 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-2xs">
+                <summary className="font-bold text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
                   <span>Should I use PDF or Word (.docx) format?</span>
                   <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
-                <p className="text-slate-600 mt-2 leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                   Both formats are widely supported in 2026. However, standard text-based PDF generated with clean vector layers (like those created in our builder) preserves your precise visual layout while allowing 100% accurate text extraction.
                 </p>
               </details>
 
-              <details className="group bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
-                <summary className="font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+              <details className="group bg-white dark:bg-[#191815] p-4 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-2xs">
+                <summary className="font-bold text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
                   <span>Will this store or share my private resume data?</span>
                   <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
-                <p className="text-slate-600 mt-2 leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                   No. All parsing and diagnostics run securely. Your resume data is stored only in your private authenticated account or local browser session and is never sold, shared, or exposed to third parties.
                 </p>
               </details>
 
-              <details className="group bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
-                <summary className="font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+              <details className="group bg-white dark:bg-[#191815] p-4 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-2xs">
+                <summary className="font-bold text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
                   <span>How can I improve my ATS score to 90%+?</span>
                   <ChevronDown className="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" />
                 </summary>
-                <p className="text-slate-600 mt-2 leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
                   Follow the suggestions highlighted in your audit report: ensure all 4 contact methods are present, inject at least 3-5 quantified metrics in your experience bullets, eliminate repeated phrases, and use our AI Job-Specific Tailor to mirror the employer&apos;s required skills.
                 </p>
               </details>
@@ -314,17 +314,17 @@ export default function AtsCheckerPage() {
           </div>
 
           {/* Bottom CTA Card */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-emerald-700 text-white text-center space-y-4 shadow-xl shadow-blue-500/10">
+          <div className="p-8 sm:p-10 rounded-3xl bg-emerald-700 dark:bg-emerald-800 text-white text-center space-y-4 shadow-xl shadow-blue-500/10 border border-emerald-600/30 dark:border-white/[0.08]">
             <h3 className="text-2xl sm:text-3xl font-black">
               Ready to Build an ATS-Proof Resume?
             </h3>
-            <p className="text-xs sm:text-sm text-blue-100 max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto">
               Use our 100% free resume builder with pre-built ATS compliant templates, real-time diagnostic checks, and instant PDF download.
             </p>
             <div className="pt-2">
               <Link
                 href="/create"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-emerald-700 hover:bg-emerald-50 font-bold text-sm rounded-xl shadow-md transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-emerald-700 hover:bg-emerald-50 font-bold text-sm rounded-xl shadow-md transition-all cursor-pointer"
               >
                 <span>Create Free ATS Resume</span>
                 <ArrowRight className="w-4 h-4" />

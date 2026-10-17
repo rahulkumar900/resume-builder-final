@@ -65,7 +65,7 @@ export default function CurriculumVitaeMakerPage() {
   );
 
   return (
-    <div className="min-w-[320px] bg-slate-50 min-h-screen flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-[#F8F7F3] dark:bg-[#100F0C] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -74,37 +74,37 @@ export default function CurriculumVitaeMakerPage() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-white border-b border-slate-200/80 pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60" />
+        <section className="relative overflow-hidden bg-white dark:bg-[#141310] border-b border-slate-200/80 dark:border-white/[0.08] pt-16 pb-20 sm:pt-24 sm:pb-28">
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60 dark:opacity-20" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold mb-6">
-              <Microscope className="w-4 h-4 text-indigo-600" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-300 text-xs font-bold mb-6">
+              <Microscope className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               <span>Academic, Medical &amp; Scientific Standards</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] max-w-4xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
               Curriculum Vitae{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
                 Maker &amp; Formatter
               </span>
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
               Designed for professors, PhD researchers, physicians, and scientific fellows. Showcase peer-reviewed papers, lab appointments, research grants, and teaching awards in immaculate multi-page A4 PDF.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/create"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 text-white font-bold text-base hover:bg-emerald-800 transition shadow-xl shadow-blue-600/20"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-base transition shadow-xl shadow-blue-600/20"
               >
                 <span>Format Curriculum Vitae Free</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/cv-maker"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-100 text-slate-700 font-bold text-base hover:bg-slate-200 transition border border-slate-200"
+                className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 font-bold text-base hover:bg-slate-200 dark:hover:bg-white/[0.1] transition border border-slate-200 dark:border-white/[0.1]"
               >
                 <span>View Global CV Guide</span>
               </Link>
@@ -115,41 +115,41 @@ export default function CurriculumVitaeMakerPage() {
         {/* Academic Structure Overview */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
               Standard Academic &amp; Clinical CV Architecture
             </h2>
-            <p className="text-sm text-slate-500 mt-2">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
               Unlike 1-page corporate resumes, a Curriculum Vitae must provide exhaustive chronological documentation of your scholarship.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold">
                 1
               </div>
-              <h3 className="font-bold text-base text-slate-900">Education &amp; Post-Doc Training</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <h3 className="font-bold text-base text-slate-900 dark:text-white">Education &amp; Post-Doc Training</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Clear hierarchy for PhD dissertation title, doctoral advisors, committee members, fellowships, and post-doctoral appointments.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold">
+            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
                 2
               </div>
-              <h3 className="font-bold text-base text-slate-900">Peer-Reviewed Publications</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <h3 className="font-bold text-base text-slate-900 dark:text-white">Peer-Reviewed Publications</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 APA / MLA / Chicago-compliant bibliographies, journal impact factors, co-authorship markings, and direct DOI hyperlinks.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+            <div className="bg-white dark:bg-[#191815] p-6 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
                 3
               </div>
-              <h3 className="font-bold text-base text-slate-900">Grants &amp; Institutional Funding</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <h3 className="font-bold text-base text-slate-900 dark:text-white">Grants &amp; Institutional Funding</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Document grant numbers, funding agencies (NIH, NSF, ERC, DST), total awarded capital, and your role (Principal Investigator vs Co-PI).
               </p>
             </div>
@@ -157,23 +157,23 @@ export default function CurriculumVitaeMakerPage() {
         </section>
 
         {/* Templates */}
-        <section className="bg-white border-y border-slate-200/80 py-16">
+        <section className="bg-white dark:bg-[#141310] border-y border-slate-200/80 dark:border-white/[0.08] py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                   Academic &amp; Research Templates
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
                   Curriculum Vitae Formats
                 </h2>
-                <p className="text-sm text-slate-500 mt-1">
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                   Single-column academic structures that conform to committee review protocols and institutional guidelines.
                 </p>
               </div>
               <Link
                 href="/templates"
-                className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 hover:text-emerald-800 transition"
+                className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition"
               >
                 <span>Browse all templates</span>
                 <ChevronRight className="w-4 h-4" />
@@ -184,18 +184,18 @@ export default function CurriculumVitaeMakerPage() {
               {academicTemplates.map((tpl) => (
                 <div
                   key={tpl.id}
-                  className="bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-emerald-500 hover:shadow-md transition flex flex-col justify-between"
+                  className="bg-slate-50 dark:bg-[#191815] rounded-2xl border border-slate-200 dark:border-white/[0.08] p-5 hover:border-emerald-500 dark:hover:border-emerald-500/60 hover:shadow-md transition flex flex-col justify-between"
                 >
                   <div>
-                    <span className="text-base font-bold text-slate-900 block mb-1">{tpl.name}</span>
-                    <p className="text-xs text-slate-500 mb-4 line-clamp-3">
+                    <span className="text-base font-bold text-slate-900 dark:text-white block mb-1">{tpl.name}</span>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 line-clamp-3">
                       {tpl.description}
                     </p>
                   </div>
 
                   <Link
                     href={`/create?template=${tpl.id}`}
-                    className="w-full py-2 px-3 rounded-xl bg-emerald-700 text-white font-bold text-xs text-center hover:bg-emerald-800 transition shadow-sm"
+                    className="w-full py-2 px-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs text-center transition shadow-sm"
                   >
                     Select Format
                   </Link>
@@ -206,9 +206,9 @@ export default function CurriculumVitaeMakerPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-slate-900 text-white py-16 sm:py-20">
+        <section className="bg-slate-900 dark:bg-[#141310] text-white py-16 sm:py-20 border-t border-slate-800 dark:border-white/[0.08]">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4 text-white">
               Format Your Academic Curriculum Vitae with Precision
             </h2>
             <p className="text-slate-400 text-base max-w-xl mx-auto mb-8">
@@ -217,7 +217,7 @@ export default function CurriculumVitaeMakerPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/create"
-                className="px-8 py-4 rounded-xl bg-emerald-700 text-white font-bold text-sm hover:bg-emerald-500 transition shadow-xl shadow-blue-500/25 inline-flex items-center gap-2"
+                className="px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-xl shadow-blue-500/25 inline-flex items-center gap-2"
               >
                 <span>Launch Curriculum Vitae Maker</span>
                 <ArrowRight className="w-4 h-4" />
