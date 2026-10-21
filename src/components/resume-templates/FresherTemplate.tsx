@@ -191,11 +191,53 @@ export const FresherTemplate: React.FC<TemplateProps> = ({ data }) => {
           </div>
         );
 
+      case 'internships': {
+        const internships = data.internships;
+        if (!internships || internships.length === 0) return null;
+        return (
+          <div key="internships" data-ghost-section="internships" className={sectionMarginClass}>
+            {renderSectionHeader('Internships & Practical Training')}
+            <div className={itemSpaceClass}>
+              {internships.map((intItem) => (
+                <div key={intItem.id} data-ghost-item={intItem.id} className="break-inside-avoid">
+                  <div
+                    data-ghost-item-header="true"
+                    className="flex flex-row items-baseline justify-between gap-1 mb-1"
+                  >
+                    <div>
+                      <span className="text-[12.5px] font-bold text-slate-900">{intItem.role || intItem.title}</span>
+                      <span className="text-[12px] font-semibold text-slate-700"> • {intItem.company}</span>
+                      {intItem.location && (
+                        <span className="text-slate-500 text-[11px] font-normal"> ({intItem.location})</span>
+                      )}
+                    </div>
+                    {(intItem.startDate || intItem.endDate) && (
+                      <span
+                        className="text-[11px] font-bold shrink-0"
+                        style={{ color: themeColor }}
+                      >
+                        {intItem.startDate} {intItem.startDate && (intItem.endDate || intItem.current) ? '–' : ''} {intItem.current ? 'Present' : intItem.endDate}
+                      </span>
+                    )}
+                  </div>
+
+                  {((intItem.highlights && intItem.highlights.length > 0) || intItem.description) && (
+                    <div className="text-[11.5px] text-slate-700 pl-1">
+                      <ResumeHighlights highlights={(intItem.highlights && intItem.highlights.length > 0) ? intItem.highlights : [intItem.description!]} />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
       case 'experience':
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience" className={sectionMarginClass}>
-            {renderSectionHeader('Internships & Industrial Experience')}
+            {renderSectionHeader('Work Experience')}
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid">

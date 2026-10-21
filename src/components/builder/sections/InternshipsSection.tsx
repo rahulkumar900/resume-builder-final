@@ -78,16 +78,20 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
     onChange(data.filter((_, i) => i !== index));
   };
 
-  // Convert highlights array to HTML for rich text editor
+  // Convert highlights / description to HTML for rich text editor
   const getHtmlForInt = (item: InternshipItem): string => {
-    if (!item.highlights || item.highlights.length === 0) return '';
-    if (item.highlights.length === 1 && /<(ul|ol|p|div)/i.test(item.highlights[0])) {
-      return item.highlights[0];
+    const raw = (item.highlights && item.highlights.length > 0)
+      ? item.highlights
+      : (item.description ? [item.description] : []);
+
+    if (!raw || raw.length === 0) return '';
+    if (raw.length === 1 && /<(ul|ol|p|div)/i.test(raw[0])) {
+      return raw[0];
     }
-    if (item.highlights.some((h) => /<(ul|ol|p|div)/i.test(h))) {
-      return item.highlights.join('');
+    if (raw.some((h) => /<(ul|ol|p|div)/i.test(h))) {
+      return raw.join('');
     }
-    return `<ul>${item.highlights.map((h) => `<li>${h}</li>`).join('')}</ul>`;
+    return `<ul>${raw.map((h) => `<li>${h}</li>`).join('')}</ul>`;
   };
 
   // Convert HTML back to highlights array
@@ -116,10 +120,10 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
 
   const handleRichTextChange = (index: number, html: string) => {
     if (!html || html.trim() === '' || html === '<br>' || html === '<p><br></p>') {
-      updateInternship(index, { highlights: [] });
+      updateInternship(index, { highlights: [], description: '' });
       return;
     }
-    updateInternship(index, { highlights: [html] });
+    updateInternship(index, { highlights: [html], description: html });
   };
 
   const openAiModal = (index: number, rect?: DOMRect) => {
@@ -269,9 +273,9 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
                       </Label>
                       <Input
                         type="text"
-                        value={item.role}
+                        value={item.role || item.title || ''}
                         placeholder="e.g. Software Engineering Intern"
-                        onChange={(e) => updateInternship(idx, { role: e.target.value })}
+                        onChange={(e) => updateInternship(idx, { role: e.target.value, title: e.target.value })}
                         className="h-10 text-sm font-semibold"
                       />
                     </div>
@@ -345,17 +349,20 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
                     </div>
                   </div>
 
-            {/* Rich Text Editor for Key Responsibilities & Highlights */}
-            <div className="space-y-2.5 pt-2 border-t border-slate-100">
+            {/* Rich Text Editor for Responsibilities & Accomplishments */}
+            <div className="space-y-2.5 pt-2 border-t border-slate-100 dark:border-border/60">
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-sm font-semibold text-slate-800">
-                    Key Projects &amp; Accomplishments
+                  <Label className="text-sm font-semibold text-slate-800 dark:text-foreground">
+                    Internship Description &amp; Key Accomplishments
                   </Label>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    Describe features built, tools used, and deliverables accomplished during your internship
+                  <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5">
+                    Describe core responsibilities, deliverables built, and tools mastered during your internship
                   </p>
                 </div>
+                <span className="text-[11px] text-slate-400 dark:text-muted-foreground hidden sm:inline">
+                  Rich text &amp; bullet lists supported
+                </span>
               </div>
 
               <RichTextEditor
@@ -365,7 +372,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
                 onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
                 aiButtonLabel="AI Suggestions"
                 sectionName="Internships"
-                roleContext={item.role}
+                roleContext={item.role || item.title}
                 defaultBulletList={true}
                 onChange={(html) => handleRichTextChange(idx, html)}
               />

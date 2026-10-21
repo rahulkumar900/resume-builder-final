@@ -117,13 +117,18 @@ export const UniversalSectionRenderer: React.FC<UniversalSectionRendererProps> =
       return renderExperienceLikeList(
         (data.internships || []).map((i) => ({
           id: i.id,
-          role: i.role,
-          companyOrOrg: i.company,
+          role: i.role || (i as any).title || '',
+          companyOrOrg: i.company || (i as any).organization || '',
           location: i.location,
           startDate: i.startDate,
           endDate: i.endDate,
           current: i.current,
-          highlights: i.highlights,
+          highlights:
+            i.highlights && i.highlights.length > 0
+              ? i.highlights
+              : (i as any).description
+              ? [(i as any).description]
+              : [],
         })),
         'internships'
       );

@@ -34,6 +34,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
   const [collapsedGroupIds, setCollapsedGroupIds] = useState<Set<string>>(new Set());
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [aiAnchorRect, setAiAnchorRect] = useState<DOMRect | null>(null);
+  const [rawInputMap, setRawInputMap] = useState<Record<string, string>>({});
 
   const toggleCollapse = (id: string) => {
     setCollapsedGroupIds((prev) => {
@@ -56,15 +57,12 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
     onChange([...data, newCat]);
   };
 
-  const updateSkillCategory = (index: number, category: string, itemsString: string) => {
+  const updateSkillCategory = (index: number, category: string, items: string[]) => {
     const next = [...data];
     next[index] = {
       ...next[index],
       category,
-      items: itemsString
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean),
+      items,
     };
     onChange(next);
   };
@@ -216,7 +214,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                       type="text"
                       value={cat.category}
                       placeholder="e.g. Technical Skills or Tools"
-                      onChange={(e) => updateSkillCategory(idx, e.target.value, cat.items.join(', '))}
+                      onChange={(e) => updateSkillCategory(idx, e.target.value, cat.items)}
                       className="font-bold text-sm"
                     />
                   </div>
@@ -225,9 +223,20 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                     <Label className="text-xs font-semibold text-slate-600 dark:text-muted-foreground">Skills (comma-separated):</Label>
                     <Input
                       type="text"
-                      value={cat.items.join(', ')}
+                      value={rawInputMap[cat.id] !== undefined ? rawInputMap[cat.id] : cat.items.join(', ')}
                       placeholder="React, TypeScript, Next.js, PostgreSQL, Docker..."
-                      onChange={(e) => updateSkillCategory(idx, cat.category, e.target.value)}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setRawInputMap((prev) => ({ ...prev, [cat.id]: val }));
+                        const parsedItems = val
+                          .split(',')
+                          .map((s) => s.trim())
+                          .filter(Boolean);
+                        updateSkillCategory(idx, cat.category, parsedItems);
+                      }}
+                      onBlur={() => {
+                        setRawInputMap((prev) => ({ ...prev, [cat.id]: cat.items.join(', ') }));
+                      }}
                     />
                   </div>
 

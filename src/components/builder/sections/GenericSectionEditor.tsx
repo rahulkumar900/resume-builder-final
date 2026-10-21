@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Plus, Trash2, PlusCircle, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { RichTextEditor } from '@/components/ui/RichTextEditor';
 
 interface GenericSectionEditorProps {
   sectionKey: SectionKey;
@@ -15,6 +16,19 @@ interface GenericSectionEditorProps {
   onChange: (updated: Partial<ResumeData>) => void;
   hideHeader?: boolean;
 }
+
+const getHtmlForHighlights = (highlights?: string[]): string => {
+  if (!highlights || highlights.length === 0) return '';
+  if (highlights.length === 1 && highlights[0]) {
+    const first = highlights[0];
+    if (first.includes('<') && first.includes('>')) {
+      return first;
+    }
+  }
+  const items = highlights.filter((h) => h && h.trim().length > 0);
+  if (items.length === 0) return '';
+  return `<ul>${items.map((h) => `<li>${h}</li>`).join('')}</ul>`;
+};
 
 export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
   sectionKey,
@@ -83,7 +97,7 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
         startDate: '',
         endDate: '',
         current: false,
-        highlights: [''],
+        highlights: [],
       };
       onChange({ [sectionKey]: [...items, newItem] });
     };
@@ -278,49 +292,26 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
                         </div>
                       </div>
 
-                      {/* Highlights Bullets */}
+                      {/* Key Highlights & Rich Text */}
                       <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-border/60">
-                        <label className="text-xs font-semibold text-slate-700 dark:text-foreground block">
-                          Key Highlights &amp; Achievements
-                        </label>
-                        {(item.highlights || []).map((bullet: string, bIdx: number) => (
-                          <div key={bIdx} className="flex items-center gap-2">
-                            <Input
-                              value={bullet}
-                              onChange={(e) => {
-                                const newBullets = [...(item.highlights || [])];
-                                newBullets[bIdx] = e.target.value;
-                                updateItem(idx, { highlights: newBullets });
-                              }}
-                              placeholder="Describe an accomplishment or duty..."
-                              className="text-xs"
-                            />
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => {
-                                const newBullets = item.highlights.filter((_: any, i: number) => i !== bIdx);
-                                updateItem(idx, { highlights: newBullets });
-                              }}
-                              className="h-8 w-8 text-slate-400 hover:text-red-500 shrink-0"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </Button>
-                          </div>
-                        ))}
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            updateItem(idx, { highlights: [...(item.highlights || []), ''] });
-                          }}
-                          className="text-xs gap-1 h-7 text-slate-600 dark:text-slate-300 mt-1"
-                        >
-                          <Plus className="w-3 h-3" />
-                          <span>Add bullet</span>
-                        </Button>
+                        <div className="flex items-center justify-between">
+                          <label className="text-xs font-semibold text-slate-700 dark:text-foreground block">
+                            Key Highlights &amp; Accomplishments
+                          </label>
+                          <span className="text-[11px] text-slate-400">Rich text &amp; bullet lists supported</span>
+                        </div>
+                        <RichTextEditor
+                          value={getHtmlForHighlights(item.highlights)}
+                          onChange={(html) =>
+                            updateItem(idx, {
+                              highlights: [html],
+                              description: html,
+                            })
+                          }
+                          placeholder="• Led impactful initiatives and contributed to team goals...&#10;• Streamlined processes and delivered key outcomes..."
+                          minHeight="100px"
+                          defaultBulletList={true}
+                        />
                       </div>
                     </div>
                   )}

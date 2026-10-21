@@ -116,6 +116,8 @@ export interface VolunteerItem extends Identifiable, DateRange, WithHighlights, 
 export interface InternshipItem extends Identifiable, DateRange, WithHighlights, WithLocation {
   role: string;
   company: string;
+  title?: string;
+  description?: string;
 }
 
 export interface FreelanceItem extends Identifiable, DateRange, WithHighlights, WithLocation {

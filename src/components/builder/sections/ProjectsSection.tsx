@@ -22,6 +22,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   hideHeader = false,
 }) => {
   const [collapsedItemIds, setCollapsedItemIds] = useState<Set<string>>(new Set());
+  const [rawTechMap, setRawTechMap] = useState<Record<string, string>>({});
   const [aiModalState, setAiModalState] = useState<{
     isOpen: boolean;
     projIndex: number;
@@ -232,17 +233,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Tech Stack (comma-separated)</Label>
                       <Input
                         type="text"
-                        value={proj.technologies.join(', ')}
+                        value={rawTechMap[proj.id] ?? (proj.technologies || []).join(', ')}
                         placeholder="TypeScript, Next.js, Tailwind, PyTorch..."
                         className="h-10 text-sm"
-                        onChange={(e) =>
-                          updateProject(idx, {
-                            technologies: e.target.value
-                              .split(',')
-                              .map((t) => t.trim())
-                              .filter(Boolean),
-                          })
-                        }
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setRawTechMap((prev) => ({ ...prev, [proj.id]: val }));
+                          const items = val
+                            .split(',')
+                            .map((t) => t.trim())
+                            .filter(Boolean);
+                          updateProject(idx, { technologies: items });
+                        }}
+                        onBlur={() => {
+                          setRawTechMap((prev) => ({
+                            ...prev,
+                            [proj.id]: (proj.technologies || []).join(', '),
+                          }));
+                        }}
                       />
                     </div>
                   </div>
