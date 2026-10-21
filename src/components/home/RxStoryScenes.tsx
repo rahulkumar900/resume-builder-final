@@ -387,7 +387,6 @@ export function RxStoryScenes() {
 
   // SCENE 2 (DESIGN) DERIVATIONS: Cinematic Hero Card Docking into 18-Card Grid
   const [manualDesignStyle, setManualDesignStyle] = useState<number | null>(null);
-  const [wiperMouseX, setWiperMouseX] = useState<number | null>(null);
   const wiperCardRef = useRef<HTMLDivElement>(null);
   const heroCardContainerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -415,7 +414,7 @@ export function RxStoryScenes() {
     const slotOffsetX = slotCenterX - heroCenterX;
     const slotOffsetY = slotCenterY - heroCenterY;
 
-    const heroUnscaledWidth = wiperCardRef.current.clientWidth || 320;
+    const heroUnscaledWidth = wiperCardRef.current.clientWidth || 380;
     const slotScale = heroUnscaledWidth > 0 ? anchorRect.width / heroUnscaledWidth : 0.45;
 
     setDockMetrics({ slotOffsetX, slotOffsetY, slotScale });
@@ -464,20 +463,13 @@ export function RxStoryScenes() {
   let wiperPos: number;
 
   if (manualDesignStyle !== null) {
-    if (wiperMouseX !== null) {
-      const prevIdx = (manualDesignStyle - 1 + DESIGN_STYLES.length) % DESIGN_STYLES.length;
-      layer1Style = DESIGN_STYLES[prevIdx];
-      layer2Style = DESIGN_STYLES[manualDesignStyle];
-      wiperPos = wiperMouseX;
-    } else {
-      layer1Style = DESIGN_STYLES[manualDesignStyle];
-      layer2Style = DESIGN_STYLES[manualDesignStyle];
-      wiperPos = 100;
-    }
+    layer1Style = DESIGN_STYLES[manualDesignStyle];
+    layer2Style = DESIGN_STYLES[manualDesignStyle];
+    wiperPos = 100;
   } else {
     layer1Style = DESIGN_STYLES[segmentIdx];
     layer2Style = DESIGN_STYLES[Math.min(DESIGN_STYLES.length - 1, segmentIdx + 1)];
-    wiperPos = wiperMouseX !== null ? wiperMouseX : segmentFraction * 100;
+    wiperPos = segmentFraction * 100;
   }
 
   // Smooth cubic ease-out for docking motion
@@ -489,7 +481,7 @@ export function RxStoryScenes() {
   const cardTy = dockMetrics.slotOffsetY * easeDock;
   const cardScale = 1.0 - (1.0 - dockMetrics.slotScale) * easeDock;
 
-  const isWiperActive = wiperPos > 1.5 && wiperPos < 98.5 && gridProgress <= 0.05 && (designP > 0.01 || wiperMouseX !== null);
+  const isWiperActive = wiperPos > 1.5 && wiperPos < 98.5 && gridProgress <= 0.05 && designP > 0.01;
 
   // SCENE 3 (ATS AUDITOR) DERIVATIONS
   const currentAtsScore = Math.floor(54 + atsP * 44); // 54 -> 98
@@ -1069,15 +1061,15 @@ export function RxStoryScenes() {
             </div>
           </div>
 
-          {/* PHASE 1: Centered Column (Header -> Card -> (Description + Tabs)) */}
+          {/* PHASE 1: Centered Column (Header -> Card -> (Description + Tabs Row)) */}
           <div
-            className="absolute inset-0 flex flex-col items-center justify-center py-4 px-4 sm:px-6 z-20 pointer-events-none"
+            className="absolute inset-0 flex flex-col items-center justify-center py-3 sm:py-4 px-4 sm:px-6 z-20 pointer-events-none"
             style={{
               opacity: Math.max(0, 1 - gridProgress * 2.5),
               visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
             }}
           >
-            <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 max-w-2xl w-full pointer-events-auto">
+            <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 max-w-5xl w-full pointer-events-auto">
               {/* 1. Header: Design. */}
               <div>
                 <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
@@ -1085,18 +1077,11 @@ export function RxStoryScenes() {
                 </h2>
               </div>
 
-              {/* 2. Card: Centered Hero Wiper Card */}
+              {/* 2. Card: Centered Hero Wiper Card (Larger Size, Scroll-driven, No Hover/Mouse Interaction) */}
               <div ref={heroCardContainerRef} className="relative flex items-center justify-center">
                 <div
                   ref={wiperCardRef}
                   suppressHydrationWarning
-                  onMouseMove={(e) => {
-                    if (!wiperCardRef.current || gridProgress > 0.05) return;
-                    const rect = wiperCardRef.current.getBoundingClientRect();
-                    const x = Math.max(2, Math.min(98, ((e.clientX - rect.left) / rect.width) * 100));
-                    setWiperMouseX(x);
-                  }}
-                  onMouseLeave={() => setWiperMouseX(null)}
                   style={{
                     transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
                     transformOrigin: 'center center',
@@ -1104,7 +1089,7 @@ export function RxStoryScenes() {
                       ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
                       : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
                   }}
-                  className="relative w-[240px] sm:w-[280px] md:w-[320px] aspect-[794/1123] max-h-[46vh] rounded-[2px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
+                  className="relative w-[280px] sm:w-[350px] md:w-[400px] lg:w-[440px] aspect-[794/1123] max-h-[52vh] sm:max-h-[56vh] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
                 >
                   {/* Underlying Base Template (Layer 1) */}
                   <div className="absolute inset-0">
@@ -1123,18 +1108,14 @@ export function RxStoryScenes() {
                     {renderDesignTemplateLayer(layer2Style)}
                   </div>
 
-                  {/* Vertical Wiper Divider Line with Center Drag Handle */}
+                  {/* Vertical Wiper Divider Line (Subtle hairline during scroll transition, no drag icon) */}
                   <div
-                    className="absolute top-0 bottom-0 w-[2px] bg-slate-900 dark:bg-white shadow-[0_0_12px_rgba(0,0,0,0.45)] z-20 pointer-events-none transition-opacity duration-200"
+                    className="absolute top-0 bottom-0 w-[1.5px] bg-slate-900/60 dark:bg-white/60 shadow-xs z-20 pointer-events-none transition-opacity duration-200"
                     style={{
                       left: `${Math.max(1, Math.min(99, wiperPos))}%`,
                       opacity: isWiperActive ? 1 : 0,
                     }}
-                  >
-                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl flex items-center justify-center text-[10px] font-bold border-2 border-white dark:border-slate-900 select-none">
-                      &#8596;
-                    </div>
-                  </div>
+                  />
 
                   {/* Interactive Link */}
                   <Link
@@ -1145,32 +1126,11 @@ export function RxStoryScenes() {
                 </div>
               </div>
 
-              {/* 3. (Description + Tabs) Centered in the Column */}
-              <div className="flex flex-col items-center justify-center gap-2 sm:gap-2.5 max-w-lg mx-auto">
-                {/* Tabs Switcher Pill */}
-                <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
-                  {DESIGN_STYLES.map((style, idx) => {
-                    const isActive = activeStyleIdx === idx;
-                    return (
-                      <button
-                        key={style.id}
-                        type="button"
-                        onClick={() => setManualDesignStyle(idx)}
-                        className={`px-3 sm:px-4 py-1.5 rounded-full text-xs transition-all cursor-pointer ${
-                          isActive
-                            ? 'bg-emerald-700 text-white shadow-xs font-semibold'
-                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                        }`}
-                      >
-                        {style.label}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Description Text */}
-                <div className="flex flex-col items-center text-center px-4 space-y-0.5">
-                  <div className="flex items-center justify-center gap-2">
+              {/* 3. Row: Description (Left-aligned) and Tabs (Centered) */}
+              <div className="relative w-full max-w-4xl sm:max-w-5xl flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 px-2 sm:px-4 pt-1">
+                {/* Description Text - Left Aligned */}
+                <div className="flex flex-col items-start text-left space-y-0.5 max-w-xs sm:max-w-sm md:max-w-[340px] shrink-0">
+                  <div className="flex items-center gap-2">
                     <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
                       02 / DESIGN
                     </span>
@@ -1178,9 +1138,32 @@ export function RxStoryScenes() {
                       17 ATS Layouts
                     </span>
                   </div>
-                  <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans max-w-md">
+                  <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                     Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put across every style.
                   </p>
+                </div>
+
+                {/* Tabs Switcher Pill - Centered */}
+                <div className="w-full md:w-auto flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
+                  <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
+                    {DESIGN_STYLES.map((style, idx) => {
+                      const isActive = activeStyleIdx === idx;
+                      return (
+                        <button
+                          key={style.id}
+                          type="button"
+                          onClick={() => setManualDesignStyle(idx)}
+                          className={`px-3 sm:px-4 py-1.5 rounded-full text-xs transition-all cursor-pointer ${
+                            isActive
+                              ? 'bg-emerald-700 text-white shadow-xs font-semibold'
+                              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                          }`}
+                        >
+                          {style.label}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

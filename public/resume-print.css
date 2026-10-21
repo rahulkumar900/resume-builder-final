@@ -1035,8 +1035,8 @@
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
   }
-  .max-h-\[46vh\] {
-    max-height: 46vh;
+  .max-h-\[52vh\] {
+    max-height: 52vh;
   }
   .max-h-\[75vh\] {
     max-height: 75vh;
@@ -1203,11 +1203,11 @@
   .w-88 {
     width: calc(var(--spacing) * 88);
   }
+  .w-\[1\.5px\] {
+    width: 1.5px;
+  }
   .w-\[1px\] {
     width: 1px;
-  }
-  .w-\[2px\] {
-    width: 2px;
   }
   .w-\[25\%\] {
     width: 25%;
@@ -1229,9 +1229,6 @@
   }
   .w-\[210mm\] {
     width: 210mm;
-  }
-  .w-\[240px\] {
-    width: 240px;
   }
   .w-\[280px\] {
     width: 280px;
@@ -4514,10 +4511,6 @@
     --tw-shadow: 0 0 8px var(--tw-shadow-color, rgba(16,185,129,0.5));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .shadow-\[0_0_12px_rgba\(0\,0\,0\,0\.45\)\] {
-    --tw-shadow: 0 0 12px var(--tw-shadow-color, rgba(0,0,0,0.45));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
   .shadow-\[0_0_16px_rgba\(16\,185\,129\,0\.9\)\] {
     --tw-shadow: 0 0 16px var(--tw-shadow-color, rgba(16,185,129,0.9));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -5839,6 +5832,9 @@
     .sm\:h-full {
       height: 100%;
     }
+    .sm\:max-h-\[56vh\] {
+      max-height: 56vh;
+    }
     .sm\:max-h-none {
       max-height: none;
     }
@@ -5857,14 +5853,17 @@
     .sm\:w-80 {
       width: calc(var(--spacing) * 80);
     }
-    .sm\:w-\[280px\] {
-      width: 280px;
+    .sm\:w-\[350px\] {
+      width: 350px;
     }
     .sm\:w-\[460px\] {
       width: 460px;
     }
     .sm\:w-auto {
       width: auto;
+    }
+    .sm\:max-w-5xl {
+      max-width: var(--container-5xl);
     }
     .sm\:max-w-\[240px\] {
       max-width: 240px;
@@ -5877,6 +5876,9 @@
     }
     .sm\:max-w-none {
       max-width: none;
+    }
+    .sm\:max-w-sm {
+      max-width: var(--container-sm);
     }
     .sm\:flex-initial {
       flex: 0 auto;
@@ -5907,9 +5909,6 @@
     }
     .sm\:gap-2 {
       gap: calc(var(--spacing) * 2);
-    }
-    .sm\:gap-2\.5 {
-      gap: calc(var(--spacing) * 2.5);
     }
     .sm\:gap-3 {
       gap: calc(var(--spacing) * 3);
@@ -6026,6 +6025,9 @@
     }
     .sm\:py-2 {
       padding-block: calc(var(--spacing) * 2);
+    }
+    .sm\:py-4 {
+      padding-block: calc(var(--spacing) * 4);
     }
     .sm\:py-6 {
       padding-block: calc(var(--spacing) * 6);
@@ -6155,6 +6157,12 @@
     }
   }
   @media (width >= 48rem) {
+    .md\:absolute {
+      position: absolute;
+    }
+    .md\:left-1\/2 {
+      left: calc(1 / 2 * 100%);
+    }
     .md\:col-span-5 {
       grid-column: span 5 / span 5;
     }
@@ -6179,14 +6187,21 @@
     .md\:w-72 {
       width: calc(var(--spacing) * 72);
     }
-    .md\:w-\[320px\] {
-      width: 320px;
+    .md\:w-\[400px\] {
+      width: 400px;
     }
     .md\:w-auto {
       width: auto;
     }
     .md\:max-w-\[320px\] {
       max-width: 320px;
+    }
+    .md\:max-w-\[340px\] {
+      max-width: 340px;
+    }
+    .md\:-translate-x-1\/2 {
+      --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
     }
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6253,6 +6268,9 @@
     }
     .lg\:w-72 {
       width: calc(var(--spacing) * 72);
+    }
+    .lg\:w-\[440px\] {
+      width: 440px;
     }
     .lg\:w-\[480px\] {
       width: 480px;
@@ -6543,9 +6561,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-slate-800) 80%, transparent);
     }
-  }
-  .dark\:border-slate-900:where(.dark, .dark *) {
-    border-color: var(--color-slate-900);
   }
   .dark\:border-white\/20:where(.dark, .dark *) {
     border-color: color-mix(in srgb, #fff 20%, transparent);
@@ -7022,6 +7037,12 @@
     background-color: color-mix(in srgb, #fff 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
+    }
+  }
+  .dark\:bg-white\/60:where(.dark, .dark *) {
+    background-color: color-mix(in srgb, #fff 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 60%, transparent);
     }
   }
   .dark\:bg-white\/\[0\.1\]:where(.dark, .dark *) {
