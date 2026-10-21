@@ -16,6 +16,9 @@ import {
   ChevronDown,
   Sun,
   Moon,
+  LogIn,
+  LogOut,
+  User,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { UserMenu } from '@/components/auth/UserMenu';
@@ -30,7 +33,7 @@ export const PAGE_NAV_LINKS = [
 ];
 
 export function RxNavbar() {
-  const { user } = useAuth();
+  const { user, profile, openAuthModal, signOut } = useAuth();
   const pathname = usePathname();
   const { mode, setMode, resolvedMode } = useTheme();
   const [mounted, setMounted] = useState<boolean>(false);
@@ -126,20 +129,31 @@ export function RxNavbar() {
               <span>ATS Score Test</span>
             </Link>
 
-            {/* Primary Action Button - hidden on mobile viewports (< 640px) to prevent collision with brand logo */}
+            {/* Desktop Auth & CTAs */}
             {!user ? (
-              <Link
-                href="/create"
-                className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer shrink-0"
-              >
-                <span>Build Resume Free</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => openAuthModal('signin')}
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] border border-slate-200/80 dark:border-slate-700/80 transition-all cursor-pointer"
+                  title="Sign in to your account and sync with cloud"
+                >
+                  <LogIn className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span>Sign In</span>
+                </button>
+                <Link
+                  href="/create"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer shrink-0"
+                >
+                  <span>Build Resume Free</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
             ) : (
               <div className="flex items-center gap-2 shrink-0">
                 <Link
                   href="/dashboard"
-                  className="hidden sm:inline-flex text-xs font-semibold px-4 py-2 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 shrink-0"
+                  className="hidden sm:inline-flex text-xs font-semibold px-3.5 py-1.5 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 shrink-0 shadow-2xs transition-colors"
                 >
                   Dashboard
                 </Link>
@@ -175,7 +189,7 @@ export function RxNavbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu with page links */}
+        {/* Mobile Dropdown Menu with page links & full Auth actions */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-[#F8F7F3]/98 dark:bg-[#100F0C]/98 backdrop-blur-md border-b border-border shadow-xl px-4 py-4 space-y-3">
             <nav className="flex flex-col space-y-1">
@@ -203,10 +217,21 @@ export function RxNavbar() {
               })}
             </nav>
 
-            {/* Mobile CTAs */}
+            {/* Mobile Auth & CTAs */}
             <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col gap-2">
               {!user ? (
                 <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      openAuthModal('signin');
+                    }}
+                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 border border-emerald-200/80 dark:border-emerald-800/80 transition-all cursor-pointer"
+                  >
+                    <LogIn className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <span>Sign In to Cloud Sync</span>
+                  </button>
                   <Link
                     href="/create"
                     onClick={() => setMobileMenuOpen(false)}
@@ -225,14 +250,48 @@ export function RxNavbar() {
                   </Link>
                 </>
               ) : (
-                <Link
-                  href="/dashboard"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 shadow-sm transition-all"
-                >
-                  <span>Go to Dashboard</span>
-                  <ArrowRight className="w-4 h-4 ml-0.5" />
-                </Link>
+                <div className="flex flex-col gap-2">
+                  {/* Authenticated User Profile Summary Card */}
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-100/70 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-bold text-xs flex items-center justify-center shadow-2xs shrink-0">
+                        {(profile?.full_name || user.email || 'U').charAt(0).toUpperCase()}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                          {profile?.full_name || user.user_metadata?.full_name || 'My Profile'}
+                        </div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                          {user.email}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 shrink-0">
+                      Sync Active
+                    </span>
+                  </div>
+
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 shadow-sm transition-all"
+                  >
+                    <span>Go to Dashboard</span>
+                    <ArrowRight className="w-4 h-4 ml-0.5" />
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setMobileMenuOpen(false);
+                      await signOut();
+                    }}
+                    className="flex items-center justify-center gap-2 w-full py-2 rounded-xl text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50/70 dark:bg-red-950/30 hover:bg-red-100 dark:hover:bg-red-900/40 border border-red-200/60 dark:border-red-900/40 transition-all cursor-pointer"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
               )}
             </div>
           </div>
