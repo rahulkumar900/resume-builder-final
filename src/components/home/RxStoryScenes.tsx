@@ -1063,38 +1063,35 @@ export function RxStoryScenes() {
 
           {/* PHASE 1: Centered Spine (Header -> Card -> Tabs) with Description on the Left */}
           <div
-            className="absolute inset-0 flex items-center justify-center p-4 z-20 pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center p-2 sm:p-4 z-20 pointer-events-none"
             style={{
               opacity: Math.max(0, 1 - gridProgress * 2.5),
               visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
             }}
           >
-            <div className="relative flex flex-col items-center pointer-events-auto">
+            <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center pointer-events-auto">
+              {/* Description Box (Desktop/Tablet): Positioned to the LEFT of the card at its bottom-left, matching diagram */}
+              <div className="hidden md:flex absolute left-2 sm:left-4 lg:left-8 bottom-10 lg:bottom-12 max-w-[190px] lg:max-w-[240px] text-left flex-col items-start space-y-1 z-30 pointer-events-auto">
+                <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
+                  02 / DESIGN
+                </span>
+                <h4 className="font-serif text-sm lg:text-base font-bold text-slate-900 dark:text-white leading-tight">
+                  17 ATS Layouts
+                </h4>
+                <p className="text-[11px] lg:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                  Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing.
+                </p>
+              </div>
+
               {/* 1. Header: Directly above the card, centered */}
-              <div className="text-center mb-2.5 sm:mb-3.5">
+              <div className="text-center mb-2 sm:mb-3">
                 <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
                   Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
                 </h2>
               </div>
 
-              {/* 2. Card: Centered Hero Wiper Card with Description on its Left */}
+              {/* 2. Card: Centered Hero Wiper Card (Preserves exact 794/1123 aspect ratio so full card is visible with zero clipping) */}
               <div ref={heroCardContainerRef} className="relative flex items-center justify-center">
-                {/* Description Box: Positioned to the LEFT of the card at its bottom-left, matching diagram */}
-                <div className="hidden md:flex absolute right-[calc(100%+1.5rem)] lg:right-[calc(100%+2.5rem)] bottom-1 lg:bottom-2 max-w-[190px] lg:max-w-[240px] text-left flex-col items-start space-y-1 pointer-events-auto">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
-                      02 / DESIGN
-                    </span>
-                  </div>
-                  <h4 className="font-serif text-sm lg:text-base font-bold text-slate-900 dark:text-white leading-tight">
-                    17 ATS Layouts
-                  </h4>
-                  <p className="text-[11px] lg:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                    Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing.
-                  </p>
-                </div>
-
-                {/* Hero A4 Wiper Card */}
                 <div
                   ref={wiperCardRef}
                   suppressHydrationWarning
@@ -1105,7 +1102,7 @@ export function RxStoryScenes() {
                       ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
                       : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
                   }}
-                  className="relative w-[260px] sm:w-[320px] md:w-[360px] lg:w-[400px] aspect-[794/1123] max-h-[48vh] sm:max-h-[52vh] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
+                  className="relative h-[44vh] sm:h-[48vh] md:h-[50vh] lg:h-[52vh] aspect-[794/1123] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
                 >
                   {/* Underlying Base Template (Layer 1) */}
                   <div className="absolute inset-0">
@@ -1143,7 +1140,7 @@ export function RxStoryScenes() {
               </div>
 
               {/* 3. Tabs: Directly underneath the card, centered */}
-              <div className="mt-2.5 sm:mt-3.5 flex justify-center">
+              <div className="mt-2.5 sm:mt-3 flex justify-center">
                 <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
                   {DESIGN_STYLES.map((style, idx) => {
                     const isActive = activeStyleIdx === idx;
@@ -1166,9 +1163,19 @@ export function RxStoryScenes() {
               </div>
 
               {/* Mobile Description: Below tabs on small screens */}
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center mt-1.5 md:hidden">
-                17 ATS Layouts · Recruiter-tested templates
-              </p>
+              <div className="flex md:hidden flex-col items-center text-center mt-2 px-4 max-w-xs space-y-0.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-mono text-[9px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-1.5 py-0.5 rounded bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
+                    02 / DESIGN
+                  </span>
+                  <span className="font-serif text-xs font-bold text-slate-900 dark:text-white">
+                    17 ATS Layouts
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-tight font-sans">
+                  Pick from 17 recruiter-tested templates with customizable typography & spacing.
+                </p>
+              </div>
             </div>
           </div>
 
