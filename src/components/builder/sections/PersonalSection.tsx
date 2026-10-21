@@ -184,8 +184,8 @@ export const PersonalSection: React.FC<SectionComponentProps<PersonalInfo>> = ({
         {/* Row 4: LinkedIn & GitHub */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           <div className="space-y-2">
-            <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-              <LinkedinIcon className="w-3.5 h-3.5 text-[#0A66C2]" />
+            <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300 inline-flex items-center gap-1.5">
+              <LinkedinIcon className="w-3.5 h-3.5 text-[#0A66C2] shrink-0" />
               <span>LinkedIn Profile</span>
             </Label>
             <Input
@@ -198,8 +198,8 @@ export const PersonalSection: React.FC<SectionComponentProps<PersonalInfo>> = ({
           </div>
 
           <div className="space-y-2">
-            <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-              <GithubIcon className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300" />
+            <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300 inline-flex items-center gap-1.5">
+              <GithubIcon className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300 shrink-0" />
               <span>GitHub Profile</span>
             </Label>
             <Input
