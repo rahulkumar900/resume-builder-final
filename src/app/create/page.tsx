@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -277,15 +277,15 @@ function CreateResumeFlow() {
                 <Icon className="w-3.5 h-3.5" />
               </div>
               <div className="min-w-0">
-                <div className="font-bold text-xs text-slate-900 flex items-center gap-2 truncate">
+                <div className="font-bold text-xs text-slate-900 dark:text-white flex items-center gap-2 truncate">
                   <span>{title}</span>
                   {itemCount > 0 && (
-                    <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.2 rounded-full border border-slate-200">
+                    <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/[0.08] px-1.5 py-0.2 rounded-full border border-slate-200 dark:border-white/10">
                       {itemCount} {itemCount === 1 ? 'item' : 'items'}
                     </span>
                   )}
                   {isSelected && (
-                    <span className="text-[10px] font-bold text-emerald-700">• Included</span>
+                    <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-400">• Included</span>
                   )}
                 </div>
               </div>
@@ -681,17 +681,17 @@ function CreateResumeFlow() {
               <div className="space-y-3">
                 {/* 1. Personal & Summary */}
                 {renderReviewSectionCard('personal', 'Personal Details & Summary', Users, (
-                  <div className="space-y-2 text-xs text-slate-700">
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                  <div className="space-y-2 text-xs text-slate-700 dark:text-slate-200">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-slate-50 dark:bg-white/[0.04] p-2.5 rounded-lg border border-slate-100 dark:border-white/[0.08]">
                       <div><span className="font-semibold text-slate-400">Name:</span> {extractedReview.resumeData?.personalInfo?.fullName || 'N/A'}</div>
                       <div><span className="font-semibold text-slate-400">Email:</span> {extractedReview.resumeData?.personalInfo?.email || 'N/A'}</div>
                       <div><span className="font-semibold text-slate-400">Phone:</span> {extractedReview.resumeData?.personalInfo?.phone || 'N/A'}</div>
                       <div><span className="font-semibold text-slate-400">Location:</span> {extractedReview.resumeData?.personalInfo?.location || 'N/A'}</div>
                     </div>
                     {extractedReview.resumeData?.personalInfo?.summary && (
-                      <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                        <span className="font-bold text-[11px] text-slate-500 uppercase block mb-1">Extracted Summary</span>
-                        <p className="text-slate-700 leading-relaxed italic">{extractedReview.resumeData.personalInfo.summary}</p>
+                      <div className="bg-slate-50 dark:bg-white/[0.04] p-2.5 rounded-lg border border-slate-100 dark:border-white/[0.08]">
+                        <span className="font-bold text-[11px] text-slate-500 dark:text-slate-400 uppercase block mb-1">Extracted Summary</span>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed italic">{extractedReview.resumeData.personalInfo.summary}</p>
                       </div>
                     )}
                   </div>
@@ -701,14 +701,14 @@ function CreateResumeFlow() {
                 {renderReviewSectionCard('experience', 'Work Experience', Briefcase, (
                   <div className="space-y-2">
                     {(extractedReview.resumeData?.experience || []).map((exp: any, idx: number) => (
-                      <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs">
+                      <div key={idx} className="bg-slate-50 dark:bg-white/[0.04] p-3 rounded-lg border border-slate-100 dark:border-white/[0.08] text-xs">
                         <div className="flex flex-wrap items-center justify-between gap-1 mb-1">
-                          <span className="font-bold text-slate-900">{exp.role} <span className="font-normal text-slate-500">at</span> {exp.company}</span>
-                          <span className="text-[11px] text-slate-500 font-medium">{exp.startDate} - {exp.endDate || 'Present'}</span>
+                          <span className="font-bold text-slate-900 dark:text-white">{exp.role} <span className="font-normal text-slate-500 dark:text-slate-400">at</span> {exp.company}</span>
+                          <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">{exp.startDate} - {exp.endDate || 'Present'}</span>
                         </div>
                         {exp.location && <div className="text-[11px] text-slate-400 mb-1.5">{exp.location}</div>}
                         {Array.isArray(exp.highlights) && exp.highlights.length > 0 && (
-                          <ul className="list-disc list-inside space-y-0.5 text-slate-600 pl-1 text-[11px]">
+                          <ul className="list-disc list-inside space-y-0.5 text-slate-600 dark:text-slate-300 pl-1 text-[11px]">
                             {exp.highlights.map((h: string, hIdx: number) => (
                               <li key={hIdx}>{h}</li>
                             ))}
@@ -723,13 +723,13 @@ function CreateResumeFlow() {
                 {renderReviewSectionCard('education', 'Education', GraduationCap, (
                   <div className="space-y-2">
                     {(extractedReview.resumeData?.education || []).map((edu: any, idx: number) => (
-                      <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs flex justify-between items-start">
+                      <div key={idx} className="bg-slate-50 dark:bg-white/[0.04] p-3 rounded-lg border border-slate-100 dark:border-white/[0.08] text-xs flex justify-between items-start">
                         <div>
-                          <div className="font-bold text-slate-900">{edu.degree}</div>
-                          <div className="text-slate-600">{edu.school || edu.institution}</div>
-                          {(edu.gpa || edu.score) && <div className="text-[11px] text-emerald-700 font-medium mt-0.5">Grade / Score: {edu.gpa || edu.score}</div>}
+                          <div className="font-bold text-slate-900 dark:text-white">{edu.degree}</div>
+                          <div className="text-slate-600 dark:text-slate-300">{edu.school || edu.institution}</div>
+                          {(edu.gpa || edu.score) && <div className="text-[11px] text-emerald-700 dark:text-emerald-400 font-medium mt-0.5">Grade / Score: {edu.gpa || edu.score}</div>}
                         </div>
-                        <div className="text-[11px] text-slate-500 font-medium shrink-0">
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium shrink-0">
                           {edu.graduationDate || edu.endDate || edu.startDate || ''}
                         </div>
                       </div>
@@ -741,11 +741,11 @@ function CreateResumeFlow() {
                 {renderReviewSectionCard('skills', 'Skills & Technical Expertise', Wrench, (
                   <div className="space-y-2">
                     {(extractedReview.resumeData?.skills || []).map((cat: any, idx: number) => (
-                      <div key={idx} className="bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-xs">
-                        <span className="font-bold text-slate-700 block mb-1.5">{cat.category || 'Skills'}</span>
+                      <div key={idx} className="bg-slate-50 dark:bg-white/[0.04] p-2.5 rounded-lg border border-slate-100 dark:border-white/[0.08] text-xs">
+                        <span className="font-bold text-slate-700 dark:text-slate-200 block mb-1.5">{cat.category || 'Skills'}</span>
                         <div className="flex flex-wrap gap-1.5">
                           {(cat.items || []).map((skill: string, sIdx: number) => (
-                            <span key={sIdx} className="px-2 py-0.5 bg-white border border-slate-200 rounded-md text-[11px] font-medium text-slate-700">
+                            <span key={sIdx} className="px-2 py-0.5 bg-white dark:bg-white/[0.08] border border-slate-200 dark:border-white/10 rounded-md text-[11px] font-medium text-slate-700 dark:text-slate-200">
                               {skill}
                             </span>
                           ))}
@@ -811,11 +811,11 @@ function CreateResumeFlow() {
             </div>
 
             {/* Bottom Bar for Review */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm flex items-center justify-between">
+            <div className="bg-white dark:bg-[#161614] p-5 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm flex items-center justify-between">
               <button
                 type="button"
                 onClick={() => setExtractedReview(null)}
-                className="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.08] rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back / Re-Upload</span>
@@ -836,14 +836,14 @@ function CreateResumeFlow() {
             {step === 2 && (
               <div className="max-w-2xl mx-auto w-full space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
                 <div className="text-center space-y-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
                     <Briefcase className="w-3.5 h-3.5" />
                     Career Target
                   </span>
-                  <h1 className="text-3xl font-black text-slate-900 tracking-tight">
+                  <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                     What job role are you applying for?
                   </h1>
-              <p className="text-sm text-slate-500 max-w-md mx-auto">
+              <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
                 We'll use this to tailor your suggested skills, summary, and recommend the best templates.
               </p>
             </div>
@@ -1027,13 +1027,13 @@ function CreateResumeFlow() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-sm font-bold text-slate-900">Upload Existing Resume</span>
+                      <span className="text-sm font-bold text-slate-900 dark:text-white">Upload Existing Resume</span>
                     </div>
-                    <p className="text-xs text-slate-500 leading-relaxed">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                       Paste your old resume text below (PDF upload coming soon) and we will instantly build a new resume.
                     </p>
                   </div>
-                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${creationMethod === 'upload' ? 'border-emerald-700 bg-emerald-700' : 'border-slate-300'}`}>
+                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${creationMethod === 'upload' ? 'border-emerald-700 bg-emerald-700' : 'border-slate-300 dark:border-white/20'}`}>
                     {creationMethod === 'upload' && <Check className="w-3.5 h-3.5 text-white" />}
                   </div>
                 </div>
@@ -1179,7 +1179,7 @@ function CreateResumeFlow() {
               ))}
             </div>
             {filteredTemplates.length === 0 && (
-              <div className="text-center py-12 text-slate-500">
+              <div className="text-center py-12 text-slate-500 dark:text-slate-400">
                 No templates found for this filter.
               </div>
             )}
@@ -1191,13 +1191,13 @@ function CreateResumeFlow() {
     {/* Floating Navigation Footer */}
     {!extractedReview && (
       <>
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-md border-t border-slate-200 flex justify-center z-40">
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 dark:bg-[#100F0C]/90 backdrop-blur-md border-t border-slate-200 dark:border-white/10 flex justify-center z-40">
           <div className="max-w-4xl w-full flex items-center justify-between">
             <button
               onClick={handleBack}
               disabled={step === 1}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
-                step === 1 ? 'opacity-0 pointer-events-none' : 'text-slate-500 hover:bg-slate-100'
+                step === 1 ? 'opacity-0 pointer-events-none' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10'
               }`}
             >
               <ArrowLeft className="w-4 h-4" /> Back

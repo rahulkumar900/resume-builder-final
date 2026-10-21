@@ -59,7 +59,6 @@
     --color-teal-500: oklch(70.4% 0.14 182.503);
     --color-teal-600: oklch(60% 0.118 184.704);
     --color-teal-700: oklch(51.1% 0.096 186.391);
-    --color-cyan-300: oklch(86.5% 0.127 207.078);
     --color-cyan-400: oklch(78.9% 0.154 211.53);
     --color-cyan-500: oklch(71.5% 0.143 215.221);
     --color-sky-50: oklch(97.7% 0.013 236.62);
@@ -7163,6 +7162,9 @@
   .dark\:bg-\[\#100F0C\]\/80:where(.dark, .dark *) {
     background-color: color-mix(in oklab, #100F0C 80%, transparent);
   }
+  .dark\:bg-\[\#100F0C\]\/90:where(.dark, .dark *) {
+    background-color: color-mix(in oklab, #100F0C 90%, transparent);
+  }
   .dark\:bg-\[\#100F0C\]\/95:where(.dark, .dark *) {
     background-color: color-mix(in oklab, #100F0C 95%, transparent);
   }
@@ -8319,6 +8321,14 @@
     @supports (color: color-mix(in lab, red, red)) {
       .dark\:hover\:bg-white\/5:where(.dark, .dark *):hover {
         background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+      }
+    }
+    .dark\:hover\:bg-white\/10:where(.dark, .dark *):hover {
+      background-color: color-mix(in srgb, #fff 10%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .dark\:hover\:bg-white\/10:where(.dark, .dark *):hover {
+        background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
       }
     }
     .dark\:hover\:bg-white\/\[0\.1\]:where(.dark, .dark *):hover {
