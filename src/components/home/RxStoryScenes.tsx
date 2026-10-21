@@ -1061,103 +1061,89 @@ export function RxStoryScenes() {
             </div>
           </div>
 
-          {/* PHASE 1: Top Header (Pushed UP) */}
+          {/* PHASE 1: Centered Spine (Header -> Card -> Tabs) with Description on the Left */}
           <div
-            className="absolute top-4 sm:top-6 lg:top-8 left-1/2 -translate-x-1/2 text-center pointer-events-auto z-20"
-            style={{
-              opacity: Math.max(0, 1 - gridProgress * 2.5),
-              transform: `translate(-50%, -${gridProgress * 30}px)`,
-              visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
-            }}
-          >
-            <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
-              Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
-            </h2>
-          </div>
-
-          {/* PHASE 1: Center Hero Card (Pushed into vertical center with clear headroom) */}
-          <div
-            ref={heroCardContainerRef}
-            className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
+            className="absolute inset-0 flex items-center justify-center p-4 z-20 pointer-events-none"
             style={{
               opacity: Math.max(0, 1 - gridProgress * 2.5),
               visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
             }}
           >
-            <div
-              ref={wiperCardRef}
-              suppressHydrationWarning
-              style={{
-                transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
-                transformOrigin: 'center center',
-                boxShadow: gridProgress >= 0.9
-                  ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-                  : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
-              }}
-              className="relative w-[260px] sm:w-[320px] md:w-[360px] lg:w-[400px] aspect-[794/1123] max-h-[48vh] sm:max-h-[52vh] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
-            >
-              {/* Underlying Base Template (Layer 1) */}
-              <div className="absolute inset-0">
-                {renderDesignTemplateLayer(layer1Style)}
+            <div className="relative flex flex-col items-center pointer-events-auto">
+              {/* 1. Header: Directly above the card, centered */}
+              <div className="text-center mb-2.5 sm:mb-3.5">
+                <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
+                  Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
+                </h2>
               </div>
 
-              {/* Active Incoming Template (Layer 2) */}
-              <div
-                className="absolute inset-0 overflow-hidden"
-                style={{
-                  clipPath: gridProgress > 0.05 || wiperPos >= 99.5
-                    ? 'none'
-                    : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
-                }}
-              >
-                {renderDesignTemplateLayer(layer2Style)}
-              </div>
-
-              {/* Vertical Wiper Divider Line (Subtle hairline during scroll transition, no drag icon) */}
-              <div
-                className="absolute top-0 bottom-0 w-[1.5px] bg-slate-900/60 dark:bg-white/60 shadow-xs z-20 pointer-events-none transition-opacity duration-200"
-                style={{
-                  left: `${Math.max(1, Math.min(99, wiperPos))}%`,
-                  opacity: isWiperActive ? 1 : 0,
-                }}
-              />
-
-              {/* Interactive Link */}
-              <Link
-                href={`/create?template=${layer2Style.templateId}`}
-                className="absolute inset-0 z-30"
-                aria-label={`Use ${layer2Style.label} template`}
-              />
-            </div>
-          </div>
-
-          {/* PHASE 1: Bottom Bar (Pushed DOWN: Description Left-Most, Tabs Centered) */}
-          <div
-            className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 px-4 sm:px-8 lg:px-12 z-20 pointer-events-none"
-            style={{
-              opacity: Math.max(0, 1 - gridProgress * 2.5),
-              transform: `translateY(${gridProgress * 30}px)`,
-              visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
-            }}
-          >
-            <div className="relative w-full flex flex-col md:flex-row items-center md:items-end justify-between gap-3 pointer-events-auto">
-              {/* Left-most Description */}
-              <div className="flex flex-col items-start text-left space-y-0.5 max-w-xs sm:max-w-sm md:max-w-[320px] lg:max-w-[360px] shrink-0">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
-                    02 / DESIGN
-                  </span>
-                  <span className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+              {/* 2. Card: Centered Hero Wiper Card with Description on its Left */}
+              <div ref={heroCardContainerRef} className="relative flex items-center justify-center">
+                {/* Description Box: Positioned to the LEFT of the card at its bottom-left, matching diagram */}
+                <div className="hidden md:flex absolute right-[calc(100%+1.5rem)] lg:right-[calc(100%+2.5rem)] bottom-1 lg:bottom-2 max-w-[190px] lg:max-w-[240px] text-left flex-col items-start space-y-1 pointer-events-auto">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
+                      02 / DESIGN
+                    </span>
+                  </div>
+                  <h4 className="font-serif text-sm lg:text-base font-bold text-slate-900 dark:text-white leading-tight">
                     17 ATS Layouts
-                  </span>
+                  </h4>
+                  <p className="text-[11px] lg:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                    Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing.
+                  </p>
                 </div>
-                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                  Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put across every style.
-                </p>
+
+                {/* Hero A4 Wiper Card */}
+                <div
+                  ref={wiperCardRef}
+                  suppressHydrationWarning
+                  style={{
+                    transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
+                    transformOrigin: 'center center',
+                    boxShadow: gridProgress >= 0.9
+                      ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                      : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
+                  }}
+                  className="relative w-[260px] sm:w-[320px] md:w-[360px] lg:w-[400px] aspect-[794/1123] max-h-[48vh] sm:max-h-[52vh] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
+                >
+                  {/* Underlying Base Template (Layer 1) */}
+                  <div className="absolute inset-0">
+                    {renderDesignTemplateLayer(layer1Style)}
+                  </div>
+
+                  {/* Active Incoming Template (Layer 2) */}
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={{
+                      clipPath: gridProgress > 0.05 || wiperPos >= 99.5
+                        ? 'none'
+                        : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
+                    }}
+                  >
+                    {renderDesignTemplateLayer(layer2Style)}
+                  </div>
+
+                  {/* Vertical Wiper Divider Line (Subtle hairline during scroll transition, no drag icon) */}
+                  <div
+                    className="absolute top-0 bottom-0 w-[1.5px] bg-slate-900/60 dark:bg-white/60 shadow-xs z-20 pointer-events-none transition-opacity duration-200"
+                    style={{
+                      left: `${Math.max(1, Math.min(99, wiperPos))}%`,
+                      opacity: isWiperActive ? 1 : 0,
+                    }}
+                  />
+
+                  {/* Interactive Link */}
+                  <Link
+                    href={`/create?template=${layer2Style.templateId}`}
+                    className="absolute inset-0 z-30"
+                    aria-label={`Use ${layer2Style.label} template`}
+                  />
+                </div>
               </div>
 
-              {/* Centered Tabs Switcher Pill */}
-              <div className="w-full md:w-auto flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2 md:bottom-0">
+              {/* 3. Tabs: Directly underneath the card, centered */}
+              <div className="mt-2.5 sm:mt-3.5 flex justify-center">
                 <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
                   {DESIGN_STYLES.map((style, idx) => {
                     const isActive = activeStyleIdx === idx;
@@ -1178,6 +1164,11 @@ export function RxStoryScenes() {
                   })}
                 </div>
               </div>
+
+              {/* Mobile Description: Below tabs on small screens */}
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center mt-1.5 md:hidden">
+                17 ATS Layouts · Recruiter-tested templates
+              </p>
             </div>
           </div>
 
