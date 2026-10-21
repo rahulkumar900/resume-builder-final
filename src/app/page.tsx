@@ -1,8 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { RxNavbar } from '@/components/home/RxNavbar';
-import { RxStoryScenes } from '@/components/home/RxStoryScenes';
-import { ScrollProgressBar } from '@/components/home/ScrollProgressBar';
+import { TechStudioLanding } from '@/components/home/TechStudioLanding';
 
 export const metadata: Metadata = {
   title: {
@@ -27,15 +26,12 @@ export const metadata: Metadata = {
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-emerald-100 selection:text-emerald-900 antialiased relative">
-      {/* Global Scroll-Driven Progress Bar */}
-      <ScrollProgressBar />
-
-      {/* Top Editorial Sticky Navigation with Story Tabs & Lightbulb Switcher */}
+      {/* Top Tech Studio Sticky Navigation */}
       <RxNavbar />
 
-      {/* Complete Scroll-Driven Story Experience */}
+      {/* Modern High-End Tech Studio Landing Page */}
       <main id="main">
-        <RxStoryScenes />
+        <TechStudioLanding />
       </main>
     </div>
   );
