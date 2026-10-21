@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ResumeData } from '@/types/resume';
 import { ResumeRenderer } from '@/components/resume-templates/ResumeRenderer';
+import { getPageFormatConfig, PageFormat } from '@/lib/page-format';
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,6 +15,7 @@ interface A4PreviewCanvasProps {
   scale: number;
   setScale?: (scale: number) => void;
   onFitToScreen?: () => void;
+  onFormatChange?: (format: PageFormat) => void;
   isMobileCustomizing?: boolean;
 }
 
@@ -22,11 +24,15 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
   scale,
   setScale,
   onFitToScreen,
+  onFormatChange,
   isMobileCustomizing = false,
 }) => {
   const docRef = useRef<HTMLDivElement>(null);
   const [pageCount, setPageCount] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const formatConfig = getPageFormatConfig(resume.layout?.format);
+  const currentFormat = formatConfig.id;
 
   useEffect(() => {
     const el = docRef.current;
@@ -90,14 +96,14 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
       <div
         className="transition-all duration-150 flex justify-center shrink-0 my-2 sm:my-auto mb-16"
         style={{
-          width: `${210 * scale}mm`,
-          height: `${297 * scale}mm`,
+          width: `${formatConfig.widthMm * scale}mm`,
+          height: `${formatConfig.heightMm * scale}mm`,
           position: 'relative',
         }}
       >
         <div
           style={{
-            width: '210mm',
+            width: `${formatConfig.widthMm}mm`,
             transform: `scale(${scale})`,
             transformOrigin: 'top center',
           }}
@@ -185,6 +191,40 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
           <span className="text-[11px] font-medium text-slate-500 dark:text-muted-foreground px-1">
             1 page
           </span>
+        )}
+        {/* Quick Format Switcher */}
+        {onFormatChange && (
+          <>
+            <span className="h-3 w-[1px] bg-slate-200 dark:bg-border mx-0.5" />
+            <div className="flex items-center bg-slate-100 dark:bg-zinc-800 rounded-full p-0.5 text-[10px] font-semibold">
+              <button
+                type="button"
+                onClick={() => onFormatChange('A4')}
+                className={cn(
+                  'px-2 py-0.5 rounded-full transition-all cursor-pointer',
+                  currentFormat === 'A4'
+                    ? 'bg-white dark:bg-zinc-700 text-emerald-700 dark:text-emerald-400 font-bold shadow-2xs'
+                    : 'text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-200'
+                )}
+                title="A4 Format (210 × 297 mm)"
+              >
+                A4
+              </button>
+              <button
+                type="button"
+                onClick={() => onFormatChange('Letter')}
+                className={cn(
+                  'px-2 py-0.5 rounded-full transition-all cursor-pointer',
+                  currentFormat === 'Letter'
+                    ? 'bg-white dark:bg-zinc-700 text-emerald-700 dark:text-emerald-400 font-bold shadow-2xs'
+                    : 'text-slate-500 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-200'
+                )}
+                title="US Letter Format (8.5 × 11 in)"
+              >
+                Letter
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>

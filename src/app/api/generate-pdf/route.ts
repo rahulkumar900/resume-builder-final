@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 import { ResumeData } from '@/types/resume';
+import { getPageFormatConfig, PageFormat } from '@/lib/page-format';
 import { setRenderResume, deleteRenderResume } from '@/lib/render-store';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -41,6 +42,9 @@ export async function POST(req: NextRequest) {
     const safeTitle = (resumeData.personalInfo?.fullName || resumeData.title || 'Resume')
       .replace(/[^a-z0-9]/gi, '_');
 
+    const format: PageFormat = resumeData.layout?.format === 'Letter' ? 'Letter' : 'A4';
+    const formatConfig = getPageFormatConfig(format);
+
     // 2. Offload to Dedicated PDF Worker (Railway / Render / Fly.io container) if configured
     let workerUrl = process.env.PDF_WORKER_URL?.trim().replace(/\/+$/, '');
     if (workerUrl && !/^https?:\/\//i.test(workerUrl)) {
@@ -62,6 +66,7 @@ export async function POST(req: NextRequest) {
             targetUrl: `${origin}/print/render`,
             safeTitle,
             userId: user.id,
+            format,
           }),
         });
 
@@ -115,10 +120,10 @@ export async function POST(req: NextRequest) {
 
     const page = await browser.newPage();
 
-    // High-resolution A4 viewport (794x1123 @ 2x deviceScaleFactor)
+    // High-resolution viewport matching the exact target page format
     await page.setViewport({
-      width: 794,
-      height: 1123,
+      width: Math.round(formatConfig.widthPx),
+      height: Math.round(formatConfig.heightPx),
       deviceScaleFactor: 2,
     });
 
@@ -155,9 +160,9 @@ export async function POST(req: NextRequest) {
     // Emulate print media so print stylesheets and page breaks evaluate cleanly
     await page.emulateMediaType('print');
 
-    // Generate exact A4 PDF
+    // Generate exact PDF matching selected page format (A4 or US Letter)
     const pdfUint8Array = await page.pdf({
-      format: 'A4',
+      format,
       printBackground: true,
       preferCSSPageSize: true,
       margin: {

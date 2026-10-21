@@ -133,6 +133,7 @@
     --color-zinc-400: oklch(70.5% 0.015 286.067);
     --color-zinc-500: oklch(55.2% 0.016 285.938);
     --color-zinc-600: oklch(44.2% 0.017 285.786);
+    --color-zinc-700: oklch(37% 0.013 285.805);
     --color-zinc-800: oklch(27.4% 0.006 286.033);
     --color-neutral-50: oklch(98.5% 0 none);
     --color-neutral-100: oklch(97% 0 none);
@@ -1275,9 +1276,6 @@
   .w-\[180px\] {
     width: 180px;
   }
-  .w-\[210mm\] {
-    width: 210mm;
-  }
   .w-\[260px\] {
     width: 260px;
   }
@@ -1346,9 +1344,6 @@
   }
   .max-w-\[200px\] {
     max-width: 200px;
-  }
-  .max-w-\[210mm\] {
-    max-width: 210mm;
   }
   .max-w-\[220px\] {
     max-width: 220px;
@@ -7680,6 +7675,12 @@
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-white) 8%, transparent);
     }
+  }
+  .dark\:bg-zinc-700:where(.dark, .dark *) {
+    background-color: var(--color-zinc-700);
+  }
+  .dark\:bg-zinc-800:where(.dark, .dark *) {
+    background-color: var(--color-zinc-800);
   }
   .dark\:bg-gradient-to-r:where(.dark, .dark *) {
     --tw-gradient-position: to right in oklab;

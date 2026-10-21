@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { ResumeData } from '@/types/resume';
 import { ResumeRenderer } from '@/components/resume-templates/ResumeRenderer';
+import { getPageFormatConfig } from '@/lib/page-format';
 
 interface PrintRenderClientProps {
   initialResume: ResumeData | null;
@@ -43,6 +44,8 @@ export function PrintRenderClient({ initialResume }: PrintRenderClientProps) {
     );
   }
 
+  const formatConfig = getPageFormatConfig(resume.layout?.format);
+
   return (
     <div className="print-render-container bg-white m-0 p-0 w-full flex flex-col items-center print:block print:w-auto">
       <ResumeRenderer data={resume} isPrint={true} />
@@ -51,7 +54,7 @@ export function PrintRenderClient({ initialResume }: PrintRenderClientProps) {
         dangerouslySetInnerHTML={{
           __html: `
             @page {
-              size: A4 portrait;
+              size: ${formatConfig.cssPageSize};
               margin: 0;
             }
             html, body {
@@ -64,7 +67,7 @@ export function PrintRenderClient({ initialResume }: PrintRenderClientProps) {
             @media print {
               html, body, .print-render-container, #a4-resume-document {
                 display: block !important;
-                width: 210mm !important;
+                width: ${formatConfig.widthMm}mm !important;
                 margin: 0 auto !important;
                 padding: 0 !important;
               }

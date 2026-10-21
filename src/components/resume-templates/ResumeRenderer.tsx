@@ -6,6 +6,7 @@ import { paginateResume } from '@/lib/pagination';
 import { GhostDOMMeasurer } from '@/components/common/GhostDOMMeasurer';
 import { paginateWithMeasuredDOM, DOMResumeMetrics } from '@/lib/ghost-dom-measurer';
 import { CustomThemeStyles } from '@/components/common/CustomThemeStyles';
+import { getPageFormatConfig } from '@/lib/page-format';
 import { getTemplateComponent } from '@/lib/templates/registry';
 import { getTemplateSignatureFont } from '@/lib/templates';
 import { cn } from '@/lib/utils';
@@ -51,6 +52,8 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
       !isPrint && activePage && activePage >= 1 && activePage <= pages.length
         ? pages.filter((_, idx) => idx + 1 === activePage)
         : pages;
+
+    const formatConfig = getPageFormatConfig(data.layout?.format);
 
     const renderPageContent = (pageData: ResumeData) => {
       const TemplateComponent = getTemplateComponent(pageData.templateId);
@@ -108,12 +111,12 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
       >
         <CustomThemeStyles resume={data} containerId="a4-resume-document" />
         
-        {/* Global Page Break Avoidance & Strict A4 Print Rules */}
+        {/* Global Page Break Avoidance & Strict Page Print Rules */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
               @page {
-                size: A4 portrait;
+                size: ${formatConfig.cssPageSize};
                 margin: 0;
               }
               .break-inside-avoid {
@@ -134,7 +137,7 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
                 }
                 #a4-resume-document {
                   display: block !important;
-                  width: 210mm !important;
+                  width: ${formatConfig.widthMm}mm !important;
                   margin: 0 auto !important;
                   padding: 0 !important;
                 }
@@ -144,9 +147,9 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
                 }
                 .a4-page-sheet {
                   display: block !important;
-                  width: 210mm !important;
-                  height: 297mm !important;
-                  max-height: 297mm !important;
+                  width: ${formatConfig.widthMm}mm !important;
+                  height: ${formatConfig.heightMm}mm !important;
+                  max-height: ${formatConfig.heightMm}mm !important;
                   overflow: hidden !important;
                   box-sizing: border-box !important;
                   break-after: page !important;
@@ -181,9 +184,9 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
                   'shadow-[0_12px_36px_-6px_rgba(15,23,42,0.12),0_4px_14px_-2px_rgba(15,23,42,0.05)] rounded-[2px] ring-1 ring-slate-200/80 print:shadow-none print:ring-0'
               )}
               style={{
-                width: '210mm',
-                height: '297mm',
-                maxHeight: '297mm',
+                width: `${formatConfig.widthMm}mm`,
+                height: `${formatConfig.heightMm}mm`,
+                maxHeight: `${formatConfig.heightMm}mm`,
                 boxSizing: 'border-box',
               }}
             >

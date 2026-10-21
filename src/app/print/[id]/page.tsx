@@ -4,6 +4,7 @@ import React, { useEffect, useState, use } from 'react';
 import { getResumeById, getStoredResumes } from '@/lib/storage';
 import { ResumeData } from '@/types/resume';
 import { ResumeRenderer } from '@/components/resume-templates/ResumeRenderer';
+import { getPageFormatConfig } from '@/lib/page-format';
 import { useAuth } from '@/context/AuthContext';
 import { Printer, ArrowLeft, CloudUpload, Sparkles } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -46,6 +47,8 @@ export default function PrintResumePage({ params }: PrintPageProps) {
     }
   }, [resume]);
 
+  const formatConfig = getPageFormatConfig(resume?.layout?.format);
+
   if (!resume) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center text-xs font-semibold text-slate-500">
@@ -57,7 +60,7 @@ export default function PrintResumePage({ params }: PrintPageProps) {
   return (
     <div className="min-h-screen bg-slate-100 print:bg-white flex flex-col items-center py-6 print:py-0 print:m-0">
       {/* Print Toolbar - Hidden in Print Mode */}
-      <div className="print:hidden mb-6 flex flex-wrap items-center justify-between gap-3 w-full max-w-[210mm] px-4">
+      <div className="print:hidden mb-6 flex flex-wrap items-center justify-between gap-3 w-full px-4" style={{ maxWidth: `${formatConfig.widthMm}mm` }}>
         <button
           type="button"
           onClick={handleBackToEditor}
@@ -99,14 +102,14 @@ export default function PrintResumePage({ params }: PrintPageProps) {
       </div>
 
       {/* A4 Document Container */}
-      <div className="w-[210mm] bg-transparent print:w-auto print:m-0 print:p-0">
+      <div className="bg-transparent print:w-auto print:m-0 print:p-0" style={{ width: `${formatConfig.widthMm}mm` }}>
         <ResumeRenderer data={resume} isPrint={true} />
       </div>
 
       {/* Embedded Print CSS */}
       <style jsx global>{`
         @page {
-          size: A4 portrait;
+          size: ${formatConfig.cssPageSize};
           margin: 0;
         }
         @media print {

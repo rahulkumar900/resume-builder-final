@@ -311,6 +311,14 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
                 scale={scale}
                 setScale={setScale}
                 onFitToScreen={() => setScale(calculateFitScale())}
+                onFormatChange={(fmt) => {
+                  handleChange({
+                    layout: {
+                      ...(resume.layout || {}),
+                      format: fmt,
+                    },
+                  });
+                }}
                 isMobileCustomizing={isMobileDesignSheetOpen}
               />
             )}

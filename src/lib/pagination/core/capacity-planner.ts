@@ -1,4 +1,5 @@
 import { ResumeData, TemplateId } from '@/types/resume';
+import { getPageFormatConfig } from '@/lib/page-format';
 import {
   A4_PAGE_HEIGHT_PX,
   DEFAULT_SAFETY_MARGIN_PX,
@@ -141,10 +142,12 @@ export class PageCapacityPlanner implements ICapacityPlanner {
   }
 
   public computeBudget(data: ResumeData, measuredMetrics?: NormalizedResumeMetrics): PageHeightBudget {
+    const pageHeightPx = getPageFormatConfig(data.layout?.format).heightPx;
+
     if (measuredMetrics) {
       const pageNextCapacity = Math.max(
         500,
-        A4_PAGE_HEIGHT_PX -
+        pageHeightPx -
           measuredMetrics.paddingVertical -
           measuredMetrics.runningHeaderHeight -
           this.defaultSafetyMargin
@@ -155,7 +158,7 @@ export class PageCapacityPlanner implements ICapacityPlanner {
 
       const mainPage1Capacity = Math.max(
         400,
-        A4_PAGE_HEIGHT_PX -
+        pageHeightPx -
           measuredMetrics.paddingVertical -
           mainHeaderH -
           this.defaultSafetyMargin
@@ -163,7 +166,7 @@ export class PageCapacityPlanner implements ICapacityPlanner {
 
       const sidebarPage1Capacity = Math.max(
         400,
-        A4_PAGE_HEIGHT_PX -
+        pageHeightPx -
           measuredMetrics.paddingVertical -
           sidebarHeaderH -
           this.defaultSafetyMargin
@@ -215,7 +218,7 @@ export class PageCapacityPlanner implements ICapacityPlanner {
     const metrics = this.getTemplateCapacityMetrics(templateId, spacing, hasAvatar);
 
     const pageNextCapacity =
-      A4_PAGE_HEIGHT_PX - metrics.pagePaddingVertical - metrics.runningHeaderHeight - metrics.safetyMargin;
+      pageHeightPx - metrics.pagePaddingVertical - metrics.runningHeaderHeight - metrics.safetyMargin;
 
     // For templates with asymmetric column headers (Stockholm, Dublin, Sydney)
     let mainHeaderH = metrics.headerHeightPage1;
@@ -230,11 +233,11 @@ export class PageCapacityPlanner implements ICapacityPlanner {
 
     const mainPage1Capacity = Math.max(
       400,
-      A4_PAGE_HEIGHT_PX - metrics.pagePaddingVertical - mainHeaderH - metrics.safetyMargin
+      pageHeightPx - metrics.pagePaddingVertical - mainHeaderH - metrics.safetyMargin
     );
     const sidebarPage1Capacity = Math.max(
       400,
-      A4_PAGE_HEIGHT_PX - metrics.pagePaddingVertical - sidebarHeaderH - metrics.safetyMargin
+      pageHeightPx - metrics.pagePaddingVertical - sidebarHeaderH - metrics.safetyMargin
     );
 
     const defaultPage1Capacity = Math.min(mainPage1Capacity, sidebarPage1Capacity);

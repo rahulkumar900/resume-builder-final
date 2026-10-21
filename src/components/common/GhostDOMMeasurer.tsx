@@ -7,6 +7,7 @@ import { measureGhostDOM, DOMResumeMetrics } from '@/lib/ghost-dom-measurer';
 import { TEMPLATE_COLUMN_CONTRACTS, getDefaultSectionOrder, getEffectiveSectionOrder, getTemplateSignatureFont } from '@/lib/templates';
 import { getTemplateComponent } from '@/lib/templates/registry';
 import { CustomThemeStyles } from '@/components/common/CustomThemeStyles';
+import { getPageFormatConfig } from '@/lib/page-format';
 import { cn } from '@/lib/utils';
 
 // SSR-safe layout effect
@@ -118,6 +119,8 @@ export const GhostDOMMeasurer: React.FC<GhostDOMMeasurerProps> = ({ data, onMeas
 
   if (!mounted || typeof document === 'undefined') return null;
 
+  const formatConfig = getPageFormatConfig(data.layout?.format);
+
   return createPortal(
     <div
       ref={containerRef}
@@ -127,7 +130,7 @@ export const GhostDOMMeasurer: React.FC<GhostDOMMeasurerProps> = ({ data, onMeas
         position: 'fixed',
         left: 0,
         top: 0,
-        width: '210mm',
+        width: `${formatConfig.widthMm}mm`,
         opacity: 0,
         pointerEvents: 'none',
         zIndex: -9999,

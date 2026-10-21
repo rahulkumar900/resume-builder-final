@@ -1,4 +1,6 @@
 import { ResumeData, ResumeSectionId, TemplateId } from '@/types/resume';
+export { getPageFormatConfig, PAGE_FORMATS } from '@/lib/page-format';
+export type { PageFormat, PageFormatConfig } from '@/lib/page-format';
 
 /**
  * A4 dimensions at 96 DPI:
