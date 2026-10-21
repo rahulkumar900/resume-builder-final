@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
@@ -209,110 +209,7 @@ export const DESIGN_17_TEMPLATES: { id: TemplateId; name: string; color: string 
   { id: 'oxford', name: 'Oxford Corporate', color: '#1e293b' },
 ];
 
-export function AlexMorganClassicResume({ className = '' }: { className?: string }) {
-  return (
-    <div className={`w-full h-full bg-white text-slate-800 p-5 sm:p-6 flex flex-col justify-between font-sans text-left select-none overflow-hidden ${className}`}>
-      {/* Top Header */}
-      <div>
-        <h1 className="font-serif text-[22px] sm:text-[25px] font-normal tracking-tight text-slate-900 leading-none">
-          Alex Morgan
-        </h1>
-        <div className="text-[10px] sm:text-[11px] font-medium text-[#15803d] mt-1">
-          Senior Product Designer
-        </div>
-        <div className="text-[8.5px] sm:text-[9.5px] text-slate-400 mt-1 flex items-center gap-1.5 font-mono">
-          <span>alexmorgan.design</span>
-          <span>&bull;</span>
-          <span>Lisbon, Portugal</span>
-          <span>&bull;</span>
-          <span>/in/alex-design</span>
-        </div>
-        <div className="h-[1px] bg-[#15803d]/40 mt-2 mb-2.5" />
-      </div>
-
-      {/* Profile */}
-      <div>
-        <div className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[#15803d] mb-0.5">
-          Profile
-        </div>
-        <p className="text-[9px] sm:text-[9.5px] text-slate-600 leading-relaxed font-sans">
-          Product designer with nine years of experience building design systems and reconstructed products for B2B teams.
-        </p>
-      </div>
-
-      {/* Experience */}
-      <div className="space-y-1.5">
-        <div className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[#15803d]">
-          Experience
-        </div>
-        <div>
-          <div className="flex items-baseline justify-between text-[9px] sm:text-[10px]">
-            <span className="font-bold text-slate-900">Lead Product Designer</span>
-            <span className="text-[8px] text-slate-400 font-mono">2021 &mdash; Present</span>
-          </div>
-          <div className="text-[8px] sm:text-[8.5px] text-slate-500 font-medium">FinEntire Labs &bull; Lisbon</div>
-          <ul className="text-[8px] sm:text-[8.5px] text-slate-600 mt-0.5 space-y-0.5 list-disc list-inside leading-snug">
-            <li>Built a shared design system used by six product teams, cutting UI review time by 40%.</li>
-            <li>Led user research for the onboarding redesign; activation rose from 31% to 44%.</li>
-          </ul>
-        </div>
-        <div>
-          <div className="flex items-baseline justify-between text-[9px] sm:text-[10px]">
-            <span className="font-bold text-slate-900">Product Designer</span>
-            <span className="text-[8px] text-slate-400 font-mono">2017 &mdash; 2021</span>
-          </div>
-          <div className="text-[8px] sm:text-[8.5px] text-slate-500 font-medium">Format &amp; Co. &bull; Porto</div>
-          <ul className="text-[8px] sm:text-[8.5px] text-slate-600 mt-0.5 space-y-0.5 list-disc list-inside leading-snug">
-            <li>Shipped accessible checkout flows for web and iOS, meeting WCAG 2.1 AA.</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Education */}
-      <div>
-        <div className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[#15803d] mb-0.5">
-          Education
-        </div>
-        <div className="flex items-baseline justify-between text-[9px] sm:text-[10px]">
-          <span className="font-bold text-slate-900">BA, Communication Design</span>
-          <span className="text-[8px] text-slate-400 font-mono">2013 &mdash; 2017</span>
-        </div>
-        <div className="text-[8px] sm:text-[8.5px] text-slate-500 font-medium">University of Porto</div>
-      </div>
-
-      {/* Two columns: Skills | Languages */}
-      <div className="grid grid-cols-2 gap-3 pt-1.5 border-t border-slate-100">
-        <div>
-          <div className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[#15803d] mb-0.5">
-            Skills
-          </div>
-          <div className="text-[8px] sm:text-[8.5px] text-slate-600 space-y-0.5 leading-snug">
-            <div>Design systems</div>
-            <div>User research</div>
-            <div>Accessibility</div>
-            <div>Prototyping</div>
-            <div>Figma, HTML and CSS</div>
-          </div>
-        </div>
-        <div>
-          <div className="text-[8.5px] sm:text-[9px] font-bold uppercase tracking-wider text-[#15803d] mb-0.5">
-            Languages
-          </div>
-          <div className="text-[8px] sm:text-[8.5px] text-slate-600 space-y-0.5 leading-snug">
-            <div>English (native)</div>
-            <div>Portuguese (native)</div>
-            <div>Spanish (B2)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function renderDesignTemplateLayer(style: DesignStyleSpec, className = '') {
-  if (style.id === 'classic') {
-    return <AlexMorganClassicResume className={className} />;
-  }
   return (
     <TemplateCardRealPreview
       templateId={style.templateId}
@@ -498,24 +395,30 @@ export function RxStoryScenes() {
   const [dockMetrics, setDockMetrics] = useState<{
     slotOffsetX: number;
     slotOffsetY: number;
-    slotWidth: number;
-  }>({ slotOffsetX: 0, slotOffsetY: 0, slotWidth: 150 });
+    slotScale: number;
+  }>({ slotOffsetX: 0, slotOffsetY: 0, slotScale: 0.45 });
 
   const updateDockMetrics = useCallback(() => {
-    if (!cardSlotAnchorRef.current || !stickyRef.current) return;
+    if (!cardSlotAnchorRef.current || !stickyRef.current || !wiperCardRef.current) return;
     const anchorRect = cardSlotAnchorRef.current.getBoundingClientRect();
     const stickyRect = stickyRef.current.getBoundingClientRect();
     if (anchorRect.width === 0 || stickyRect.width === 0) return;
 
-    // Use anchorRect's layout position relative to stickyRect
-    const slotCenterX = anchorRect.left + anchorRect.width / 2;
-    const slotCenterY = anchorRect.top + anchorRect.height / 2;
+    // Viewport Center (where the hero card is natively placed at easeDock = 0)
     const viewportCenterX = stickyRect.left + stickyRect.width / 2;
     const viewportCenterY = stickyRect.top + stickyRect.height / 2;
 
+    // Slot 8 Center (where the hero card docks at easeDock = 1)
+    const slotCenterX = anchorRect.left + anchorRect.width / 2;
+    const slotCenterY = anchorRect.top + anchorRect.height / 2;
+
     const slotOffsetX = slotCenterX - viewportCenterX;
     const slotOffsetY = slotCenterY - viewportCenterY;
-    setDockMetrics({ slotOffsetX, slotOffsetY, slotWidth: anchorRect.width });
+
+    const heroUnscaledWidth = wiperCardRef.current.clientWidth || 330;
+    const slotScale = heroUnscaledWidth > 0 ? anchorRect.width / heroUnscaledWidth : 0.45;
+
+    setDockMetrics({ slotOffsetX, slotOffsetY, slotScale });
   }, []);
 
   useEffect(() => {
@@ -553,36 +456,40 @@ export function RxStoryScenes() {
   // Active style badge & pill (switches cleanly at 50% through each wipe)
   const scrollActiveStyleIdx = segmentFraction >= 0.5 ? segmentIdx + 1 : segmentIdx;
   const activeStyleIdx = manualDesignStyle !== null ? manualDesignStyle : scrollActiveStyleIdx;
-  const currentStyle = DESIGN_STYLES[activeStyleIdx] || DESIGN_STYLES[2];
+  const currentStyle = DESIGN_STYLES[activeStyleIdx] || DESIGN_STYLES[0];
 
   // Base layer (layer 1) & revealing layer (layer 2) for the current wipe
-  const layer1Style = manualDesignStyle !== null
-    ? (activeStyleIdx === 1 ? DESIGN_STYLES[0] : DESIGN_STYLES[1])
-    : DESIGN_STYLES[segmentIdx];
-  const layer2Style = manualDesignStyle !== null
-    ? DESIGN_STYLES[activeStyleIdx]
-    : DESIGN_STYLES[segmentIdx + 1];
+  let layer1Style: DesignStyleSpec;
+  let layer2Style: DesignStyleSpec;
+  let wiperPos: number;
 
-  // 100% Scroll-Driven Wiper: sweeps 0% -> 100% across the card for each template one by one
-  const scrollWiperPos = segmentFraction * 100;
-  const wiperPos = wiperMouseX !== null
-    ? wiperMouseX
-    : (manualDesignStyle !== null ? 50 : scrollWiperPos);
+  if (manualDesignStyle !== null) {
+    if (wiperMouseX !== null) {
+      const prevIdx = (manualDesignStyle - 1 + DESIGN_STYLES.length) % DESIGN_STYLES.length;
+      layer1Style = DESIGN_STYLES[prevIdx];
+      layer2Style = DESIGN_STYLES[manualDesignStyle];
+      wiperPos = wiperMouseX;
+    } else {
+      layer1Style = DESIGN_STYLES[manualDesignStyle];
+      layer2Style = DESIGN_STYLES[manualDesignStyle];
+      wiperPos = 100;
+    }
+  } else {
+    layer1Style = DESIGN_STYLES[segmentIdx];
+    layer2Style = DESIGN_STYLES[Math.min(DESIGN_STYLES.length - 1, segmentIdx + 1)];
+    wiperPos = wiperMouseX !== null ? wiperMouseX : segmentFraction * 100;
+  }
 
   // Smooth cubic ease-out for docking motion
   const easeDock = 1 - Math.pow(1 - gridProgress, 3);
-  const targetHeroHeight = isMounted && typeof window !== 'undefined'
-    ? Math.min(460, window.innerHeight * 0.54)
-    : 440;
-  const targetHeroWidth = targetHeroHeight * (794 / 1123);
-  const targetZoom = dockMetrics.slotWidth > 0 ? targetHeroWidth / dockMetrics.slotWidth : 2.3;
 
-  // At easeDock = 1 (docked), cardTx = 0, cardTy = 0, cardScale = 1.0 (Guaranteed 100% native grid placement!)
-  const cardTx = -dockMetrics.slotOffsetX * (1 - easeDock);
-  const cardTy = -dockMetrics.slotOffsetY * (1 - easeDock);
-  const cardScale = 1.0 + (targetZoom - 1.0) * (1 - easeDock);
+  // At easeDock = 0: cardTx = 0, cardTy = 0, cardScale = 1.0 (dead center!)
+  // At easeDock = 1: cardTx = slotOffsetX, cardTy = slotOffsetY, cardScale = slotScale (docked into Slot 8!)
+  const cardTx = dockMetrics.slotOffsetX * easeDock;
+  const cardTy = dockMetrics.slotOffsetY * easeDock;
+  const cardScale = 1.0 - (1.0 - dockMetrics.slotScale) * easeDock;
 
-  const isWiperActive = wiperPos > 1.5 && wiperPos < 98.5 && gridProgress <= 0.05 && designP > 0.01;
+  const isWiperActive = wiperPos > 1.5 && wiperPos < 98.5 && gridProgress <= 0.05 && (designP > 0.01 || wiperMouseX !== null);
 
   // SCENE 3 (ATS AUDITOR) DERIVATIONS
   const currentAtsScore = Math.floor(54 + atsP * 44); // 54 -> 98
@@ -1057,7 +964,13 @@ export function RxStoryScenes() {
           </div>
 
           {/* Unified Animated 18-Template Grid (Slots 0..17, Slot 8 is "Yours") */}
-          <div className="w-full max-w-5xl mx-auto flex flex-col items-center z-10">
+          <div
+            className="w-full max-w-5xl mx-auto flex flex-col items-center z-10 transition-all duration-300"
+            style={{
+              opacity: easeDock,
+              pointerEvents: gridProgress >= 0.85 ? 'auto' : 'none',
+            }}
+          >
             <div className="w-full grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-3 lg:gap-3.5">
               {DESIGN_17_TEMPLATES.map((tmpl, idx) => {
                 if (idx === 8) {
@@ -1067,69 +980,29 @@ export function RxStoryScenes() {
                       key={tmpl.id}
                       className="group relative flex flex-col items-center"
                     >
-                      {/* Invisible untransformed slot anchor for measuring grid docking coordinates */}
+                      {/* Anchor element for measuring Slot 8 docking coordinates */}
                       <div
                         ref={cardSlotAnchorRef}
-                        className="w-full aspect-[794/1123] pointer-events-none opacity-0 select-none"
-                        aria-hidden="true"
-                      />
-
-                      <div
-                        ref={wiperCardRef}
-                        suppressHydrationWarning
-                        onMouseMove={(e) => {
-                          if (!wiperCardRef.current || gridProgress > 0.05) return;
-                          const rect = wiperCardRef.current.getBoundingClientRect();
-                          const x = Math.max(2, Math.min(98, ((e.clientX - rect.left) / rect.width) * 100));
-                          setWiperMouseX(x);
-                        }}
-                        onMouseLeave={() => setWiperMouseX(null)}
-                        style={{
-                          transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
-                          transformOrigin: 'center center',
-                          zIndex: gridProgress < 0.95 ? 30 : 10,
-                          boxShadow: gridProgress >= 0.95
-                            ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-                            : '0 20px 50px -12px rgba(0, 0, 0, 0.16), 0 0 1px 1px rgba(0, 0, 0, 0.05)',
-                        }}
-                        className="absolute inset-x-0 top-0 w-full aspect-[794/1123] rounded-[2px] shadow-xs group-hover:shadow-xl transition-all overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
+                        className="w-full aspect-[794/1123] rounded-[2px] overflow-hidden relative"
                       >
-                        {/* Underlying Base Template (Layer 1) */}
-                        <div className="absolute inset-0">
-                          {renderDesignTemplateLayer(layer1Style)}
-                        </div>
-
-                        {/* Active Incoming Template (Layer 2) */}
+                        {/* Real preview inside slot 8 once docked in Phase 2 */}
                         <div
-                          className="absolute inset-0 overflow-hidden"
-                          style={{
-                            clipPath: gridProgress > 0.05
-                              ? 'none'
-                              : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
-                          }}
+                          className="w-full h-full rounded-[2px] shadow-xs group-hover:shadow-xl group-hover:ring-2 group-hover:ring-emerald-600 transition-all overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 relative"
+                          style={{ opacity: gridProgress >= 0.9 ? 1 : 0 }}
                         >
-                          {renderDesignTemplateLayer(layer2Style)}
+                          <TemplateCardRealPreview
+                            templateId={layer2Style.templateId}
+                            themeColor={layer2Style.themeColor}
+                            customRole="Senior Product Designer"
+                            customName="Alex Morgan"
+                            className="w-full aspect-[794/1123]"
+                          />
+                          <Link
+                            href={`/create?template=${layer2Style.templateId}`}
+                            className="absolute inset-0 z-10"
+                            aria-label={`Use ${layer2Style.label} template`}
+                          />
                         </div>
-
-                        {/* Vertical Wiper Divider Line with Center Drag Handle */}
-                        <div
-                          className="absolute top-0 bottom-0 w-[2px] bg-slate-900 dark:bg-white shadow-[0_0_12px_rgba(0,0,0,0.45)] z-20 pointer-events-none transition-opacity duration-200"
-                          style={{
-                            left: `${Math.max(1, Math.min(99, wiperPos))}%`,
-                            opacity: isWiperActive ? 1 : 0,
-                          }}
-                        >
-                          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl flex items-center justify-center text-[10px] font-bold border-2 border-white dark:border-slate-900 select-none">
-                            &#8596;
-                          </div>
-                        </div>
-
-                        {/* Interactive Link when docked in grid */}
-                        <Link
-                          href={`/create?template=${layer2Style.templateId}`}
-                          className="absolute inset-0 z-30"
-                          aria-label={`Use ${layer2Style.label} template`}
-                        />
                       </div>
 
                       <Link
@@ -1149,7 +1022,6 @@ export function RxStoryScenes() {
                     key={tmpl.id}
                     className="group relative flex flex-col items-center transition-all duration-200 hover:-translate-y-1 hover:z-20 cursor-pointer"
                     style={{
-                      opacity: easeDock,
                       transform: `scale(${0.92 + 0.08 * easeDock})`,
                       pointerEvents: gridProgress >= 0.85 ? 'auto' : 'none',
                     }}
@@ -1197,7 +1069,7 @@ export function RxStoryScenes() {
             </div>
           </div>
 
-          {/* Top Heading: "Design." with green period - Perfectly centered horizontally and balanced above the card */}
+          {/* Top Heading: "Design." with green period - Perfectly centered horizontally */}
           <div
             className="absolute top-4 sm:top-6 lg:top-8 left-1/2 -translate-x-1/2 text-center pointer-events-auto transition-all duration-300 z-20"
             style={{
@@ -1206,9 +1078,95 @@ export function RxStoryScenes() {
               pointerEvents: gridProgress > 0.2 ? 'none' : 'auto',
             }}
           >
-            <h2 className="font-serif not-italic text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
+            <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
               Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
             </h2>
+            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 text-center mt-1 sm:hidden">
+              17 ATS templates · Tap tabs below
+            </p>
+          </div>
+
+          {/* Left Description Card */}
+          <div
+            className="absolute left-6 sm:left-10 lg:left-16 top-1/2 -translate-y-1/2 max-w-[200px] sm:max-w-[240px] lg:max-w-[280px] z-10 text-left transition-all duration-300 pointer-events-auto hidden md:block"
+            style={{
+              opacity: Math.max(0, 1 - gridProgress * 2.5),
+              transform: `translateY(calc(-50% - ${gridProgress * 20}px))`,
+              pointerEvents: gridProgress > 0.2 ? 'none' : 'auto',
+            }}
+          >
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-300/60 dark:border-emerald-800/60">
+              02 / DESIGN
+            </div>
+            <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-1.5 leading-snug">
+              17 ATS Layouts
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+              Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put, so try as many looks as you like.
+            </p>
+          </div>
+
+          {/* Centered Hero Wiper Card - Perfectly horizontally centered initially (easeDock = 0) */}
+          <div
+            ref={wiperCardRef}
+            suppressHydrationWarning
+            onMouseMove={(e) => {
+              if (!wiperCardRef.current || gridProgress > 0.05) return;
+              const rect = wiperCardRef.current.getBoundingClientRect();
+              const x = Math.max(2, Math.min(98, ((e.clientX - rect.left) / rect.width) * 100));
+              setWiperMouseX(x);
+            }}
+            onMouseLeave={() => setWiperMouseX(null)}
+            style={{
+              left: '50%',
+              top: '50%',
+              transform: `translate(calc(-50% + ${cardTx}px), calc(-50% + ${cardTy}px)) scale(${cardScale})`,
+              transformOrigin: 'center center',
+              zIndex: gridProgress < 0.95 ? 30 : 5,
+              opacity: gridProgress >= 0.98 ? 0 : 1,
+              pointerEvents: gridProgress >= 0.95 ? 'none' : 'auto',
+              boxShadow: gridProgress >= 0.9
+                ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
+            }}
+            className="absolute w-[260px] sm:w-[300px] md:w-[330px] aspect-[794/1123] max-h-[50vh] rounded-[2px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer"
+          >
+            {/* Underlying Base Template (Layer 1) */}
+            <div className="absolute inset-0">
+              {renderDesignTemplateLayer(layer1Style)}
+            </div>
+
+            {/* Active Incoming Template (Layer 2) */}
+            <div
+              className="absolute inset-0 overflow-hidden"
+              style={{
+                clipPath: gridProgress > 0.05 || wiperPos >= 99.5
+                  ? 'none'
+                  : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
+              }}
+            >
+              {renderDesignTemplateLayer(layer2Style)}
+            </div>
+
+            {/* Vertical Wiper Divider Line with Center Drag Handle */}
+            <div
+              className="absolute top-0 bottom-0 w-[2px] bg-slate-900 dark:bg-white shadow-[0_0_12px_rgba(0,0,0,0.45)] z-20 pointer-events-none transition-opacity duration-200"
+              style={{
+                left: `${Math.max(1, Math.min(99, wiperPos))}%`,
+                opacity: isWiperActive ? 1 : 0,
+              }}
+            >
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl flex items-center justify-center text-[10px] font-bold border-2 border-white dark:border-slate-900 select-none">
+                &#8596;
+              </div>
+            </div>
+
+            {/* Interactive Link */}
+            <Link
+              href={`/create?template=${layer2Style.templateId}`}
+              className="absolute inset-0 z-30"
+              aria-label={`Use ${layer2Style.label} template`}
+            />
           </div>
 
           {/* Bottom Pill Switcher - Perfectly centered horizontally directly below the card */}
@@ -1237,19 +1195,6 @@ export function RxStoryScenes() {
                 </button>
               );
             })}
-          </div>
-
-          {/* Bottom-left Note */}
-          <div
-            className="absolute bottom-6 sm:bottom-8 left-6 sm:left-12 max-w-xs z-10 hidden sm:block text-left transition-opacity duration-300"
-            style={{ opacity: Math.max(0, 1 - gridProgress * 2.5) }}
-          >
-            <div className="font-mono text-xs font-semibold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest mb-1.5">
-              02 / DESIGN
-            </div>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-              Pick from 17 templates, then set the type, color and spacing. The words stay put, so try as many looks as you like.
-            </p>
           </div>
 
           {/* Floating French Curve Ruler Doodle on Right */}
