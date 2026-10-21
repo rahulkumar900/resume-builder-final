@@ -1061,109 +1061,121 @@ export function RxStoryScenes() {
             </div>
           </div>
 
-          {/* PHASE 1: Centered Column (Header -> Card -> (Description + Tabs Row)) */}
+          {/* PHASE 1: Top Header (Pushed UP) */}
           <div
-            className="absolute inset-0 flex flex-col items-center justify-center py-3 sm:py-4 px-4 sm:px-6 z-20 pointer-events-none"
+            className="absolute top-4 sm:top-6 lg:top-8 left-1/2 -translate-x-1/2 text-center pointer-events-auto z-20"
+            style={{
+              opacity: Math.max(0, 1 - gridProgress * 2.5),
+              transform: `translate(-50%, -${gridProgress * 30}px)`,
+              visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
+            }}
+          >
+            <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
+              Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
+            </h2>
+          </div>
+
+          {/* PHASE 1: Center Hero Card (Pushed into vertical center with clear headroom) */}
+          <div
+            ref={heroCardContainerRef}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
             style={{
               opacity: Math.max(0, 1 - gridProgress * 2.5),
               visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
             }}
           >
-            <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 max-w-5xl w-full pointer-events-auto">
-              {/* 1. Header: Design. */}
-              <div>
-                <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
-                  Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
-                </h2>
+            <div
+              ref={wiperCardRef}
+              suppressHydrationWarning
+              style={{
+                transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
+                transformOrigin: 'center center',
+                boxShadow: gridProgress >= 0.9
+                  ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                  : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
+              }}
+              className="relative w-[260px] sm:w-[320px] md:w-[360px] lg:w-[400px] aspect-[794/1123] max-h-[48vh] sm:max-h-[52vh] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
+            >
+              {/* Underlying Base Template (Layer 1) */}
+              <div className="absolute inset-0">
+                {renderDesignTemplateLayer(layer1Style)}
               </div>
 
-              {/* 2. Card: Centered Hero Wiper Card (Larger Size, Scroll-driven, No Hover/Mouse Interaction) */}
-              <div ref={heroCardContainerRef} className="relative flex items-center justify-center">
-                <div
-                  ref={wiperCardRef}
-                  suppressHydrationWarning
-                  style={{
-                    transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
-                    transformOrigin: 'center center',
-                    boxShadow: gridProgress >= 0.9
-                      ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-                      : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
-                  }}
-                  className="relative w-[280px] sm:w-[350px] md:w-[400px] lg:w-[440px] aspect-[794/1123] max-h-[52vh] sm:max-h-[56vh] rounded-[3px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
-                >
-                  {/* Underlying Base Template (Layer 1) */}
-                  <div className="absolute inset-0">
-                    {renderDesignTemplateLayer(layer1Style)}
-                  </div>
-
-                  {/* Active Incoming Template (Layer 2) */}
-                  <div
-                    className="absolute inset-0 overflow-hidden"
-                    style={{
-                      clipPath: gridProgress > 0.05 || wiperPos >= 99.5
-                        ? 'none'
-                        : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
-                    }}
-                  >
-                    {renderDesignTemplateLayer(layer2Style)}
-                  </div>
-
-                  {/* Vertical Wiper Divider Line (Subtle hairline during scroll transition, no drag icon) */}
-                  <div
-                    className="absolute top-0 bottom-0 w-[1.5px] bg-slate-900/60 dark:bg-white/60 shadow-xs z-20 pointer-events-none transition-opacity duration-200"
-                    style={{
-                      left: `${Math.max(1, Math.min(99, wiperPos))}%`,
-                      opacity: isWiperActive ? 1 : 0,
-                    }}
-                  />
-
-                  {/* Interactive Link */}
-                  <Link
-                    href={`/create?template=${layer2Style.templateId}`}
-                    className="absolute inset-0 z-30"
-                    aria-label={`Use ${layer2Style.label} template`}
-                  />
-                </div>
+              {/* Active Incoming Template (Layer 2) */}
+              <div
+                className="absolute inset-0 overflow-hidden"
+                style={{
+                  clipPath: gridProgress > 0.05 || wiperPos >= 99.5
+                    ? 'none'
+                    : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
+                }}
+              >
+                {renderDesignTemplateLayer(layer2Style)}
               </div>
 
-              {/* 3. Row: Description (Left-aligned) and Tabs (Centered) */}
-              <div className="relative w-full max-w-4xl sm:max-w-5xl flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 px-2 sm:px-4 pt-1">
-                {/* Description Text - Left Aligned */}
-                <div className="flex flex-col items-start text-left space-y-0.5 max-w-xs sm:max-w-sm md:max-w-[340px] shrink-0">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
-                      02 / DESIGN
-                    </span>
-                    <span className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
-                      17 ATS Layouts
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                    Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put across every style.
-                  </p>
-                </div>
+              {/* Vertical Wiper Divider Line (Subtle hairline during scroll transition, no drag icon) */}
+              <div
+                className="absolute top-0 bottom-0 w-[1.5px] bg-slate-900/60 dark:bg-white/60 shadow-xs z-20 pointer-events-none transition-opacity duration-200"
+                style={{
+                  left: `${Math.max(1, Math.min(99, wiperPos))}%`,
+                  opacity: isWiperActive ? 1 : 0,
+                }}
+              />
 
-                {/* Tabs Switcher Pill - Centered */}
-                <div className="w-full md:w-auto flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2">
-                  <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
-                    {DESIGN_STYLES.map((style, idx) => {
-                      const isActive = activeStyleIdx === idx;
-                      return (
-                        <button
-                          key={style.id}
-                          type="button"
-                          onClick={() => setManualDesignStyle(idx)}
-                          className={`px-3 sm:px-4 py-1.5 rounded-full text-xs transition-all cursor-pointer ${
-                            isActive
-                              ? 'bg-emerald-700 text-white shadow-xs font-semibold'
-                              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                          }`}
-                        >
-                          {style.label}
-                        </button>
-                      );
-                    })}
-                  </div>
+              {/* Interactive Link */}
+              <Link
+                href={`/create?template=${layer2Style.templateId}`}
+                className="absolute inset-0 z-30"
+                aria-label={`Use ${layer2Style.label} template`}
+              />
+            </div>
+          </div>
+
+          {/* PHASE 1: Bottom Bar (Pushed DOWN: Description Left-Most, Tabs Centered) */}
+          <div
+            className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-0 right-0 px-4 sm:px-8 lg:px-12 z-20 pointer-events-none"
+            style={{
+              opacity: Math.max(0, 1 - gridProgress * 2.5),
+              transform: `translateY(${gridProgress * 30}px)`,
+              visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
+            }}
+          >
+            <div className="relative w-full flex flex-col md:flex-row items-center md:items-end justify-between gap-3 pointer-events-auto">
+              {/* Left-most Description */}
+              <div className="flex flex-col items-start text-left space-y-0.5 max-w-xs sm:max-w-sm md:max-w-[320px] lg:max-w-[360px] shrink-0">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
+                    02 / DESIGN
+                  </span>
+                  <span className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                    17 ATS Layouts
+                  </span>
+                </div>
+                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                  Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put across every style.
+                </p>
+              </div>
+
+              {/* Centered Tabs Switcher Pill */}
+              <div className="w-full md:w-auto flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2 md:bottom-0">
+                <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
+                  {DESIGN_STYLES.map((style, idx) => {
+                    const isActive = activeStyleIdx === idx;
+                    return (
+                      <button
+                        key={style.id}
+                        type="button"
+                        onClick={() => setManualDesignStyle(idx)}
+                        className={`px-3 sm:px-4 py-1.5 rounded-full text-xs transition-all cursor-pointer ${
+                          isActive
+                            ? 'bg-emerald-700 text-white shadow-xs font-semibold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                        }`}
+                      >
+                        {style.label}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
