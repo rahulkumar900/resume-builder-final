@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
@@ -16,6 +16,7 @@ import {
   deleteResume,
   duplicateResume,
   syncLocalResumesToDatabase,
+  getAllResumesFromDatabase,
 } from '@/lib/storage';
 import { ResumeData, TemplateId } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
@@ -38,6 +39,14 @@ export default function DashboardPage() {
     setResumes(getStoredResumes());
 
     if (user?.id) {
+      // Direct cloud fetch to guarantee latest database resumes appear immediately
+      getAllResumesFromDatabase(user.id).then((cloud) => {
+        if (cloud && cloud.length > 0) {
+          saveStoredResumes(cloud);
+          setResumes(cloud);
+        }
+      });
+
       // Harmonize cloud and local without wiping local drafts
       syncLocalResumesToDatabase(user.id).then(() => {
         setResumes(getStoredResumes());

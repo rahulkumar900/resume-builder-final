@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -32,7 +32,9 @@ import { HomeRoleExamplesGallery } from '@/components/home/HomeRoleExamplesGalle
 import { RxFooter } from '@/components/common/RxFooter';
 import { TEMPLATES } from '@/lib/templates';
 import { fireConfetti } from '@/lib/confetti';
-import type { TemplateId } from '@/types/resume';
+import { useAuth } from '@/context/AuthContext';
+import { getStoredResumes, getAllResumesFromDatabase } from '@/lib/storage';
+import type { TemplateId, ResumeData } from '@/types/resume';
 
 // Curated Design Studio Colors
 const STUDIO_PALETTES = [
@@ -143,6 +145,26 @@ const BULLET_REWRITE_STYLES = [
 ];
 
 export function TechStudioLanding() {
+  const { user } = useAuth();
+  const [userResume, setUserResume] = useState<ResumeData | null>(null);
+
+  useEffect(() => {
+    // 1. Immediately check local stored resumes
+    const local = getStoredResumes();
+    if (local && local.length > 0) {
+      setUserResume(local[0]);
+    }
+
+    // 2. If authenticated, fetch latest from database
+    if (user?.id) {
+      getAllResumesFromDatabase(user.id).then((cloud) => {
+        if (cloud && cloud.length > 0) {
+          setUserResume(cloud[0]);
+        }
+      });
+    }
+  }, [user?.id]);
+
   // Main Playground Tab Switcher
   const [activePlaygroundTab, setActivePlaygroundTab] = useState<'design' | 'tailor' | 'ats' | 'bullet' | 'canvas'>('design');
 
@@ -261,6 +283,38 @@ export function TechStudioLanding() {
             HERO SECTION
             ======================================================================= */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Personalized User Resume Banner (If user has a resume in database/local storage) */}
+          {userResume && (
+            <div className="mb-6 p-3 sm:p-4 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 dark:bg-emerald-950/30 backdrop-blur-md max-w-xl mx-auto flex items-center justify-between gap-4 text-left shadow-lg">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                  {userResume.personalInfo?.fullName ? userResume.personalInfo.fullName[0].toUpperCase() : 'R'}
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="font-serif font-bold text-sm text-slate-900 dark:text-white truncate">
+                      {userResume.title || 'My Resume'}
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-200/80 dark:bg-emerald-900/60 px-2 py-0.5 rounded-full shrink-0">
+                      SAVED IN YOUR DATABASE
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-600 dark:text-slate-300 font-sans block truncate">
+                    {userResume.personalInfo?.fullName || 'Your Name'} · {userResume.personalInfo?.jobTitle || 'Your Role'}
+                  </span>
+                </div>
+              </div>
+
+              <Link
+                href={`/builder/${userResume.id}`}
+                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-transform hover:scale-105 shrink-0 flex items-center gap-1 shadow-md"
+              >
+                <span>Edit Resume</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          )}
+
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-medium shadow-xs mb-6 hover:border-emerald-500/40 transition-all">
             <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <span>100% Free Forever · No Paywalls · Zero Watermarks · Vector PDF</span>
@@ -477,13 +531,15 @@ export function TechStudioLanding() {
                     <TemplateCardRealPreview
                       templateId={studioTemplate}
                       themeColor={studioColor}
-                      customRole="Senior Software Engineer"
-                      customName="Alex Morgan"
+                      customRole={userResume?.personalInfo?.jobTitle || "Senior Software Engineer"}
+                      customName={userResume?.personalInfo?.fullName || user?.user_metadata?.full_name || "Alex Morgan"}
                       className="w-full h-full"
                     />
                   </div>
                   <span className="font-mono text-[11px] text-slate-400 dark:text-slate-500 mt-3 text-center">
-                    Live 1:1 Vector Rendering · {STUDIO_TEMPLATES.find((t) => t.id === studioTemplate)?.name} ({studioColor})
+                    {userResume?.personalInfo?.fullName
+                      ? `Your Resume Data: ${userResume.personalInfo.fullName} (${STUDIO_TEMPLATES.find((t) => t.id === studioTemplate)?.name})`
+                      : `Live 1:1 Vector Rendering · ${STUDIO_TEMPLATES.find((t) => t.id === studioTemplate)?.name} (${studioColor})`}
                   </span>
                 </div>
               </div>

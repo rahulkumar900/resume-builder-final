@@ -59,6 +59,7 @@ export async function saveResumeToDatabase(
     );
 
     if (error) {
+      console.error('[Supabase] Error saving resume to database:', error);
       return false;
     }
 
@@ -73,7 +74,8 @@ export async function saveResumeToDatabase(
     }
 
     return true;
-  } catch {
+  } catch (err) {
+    console.error('[Supabase] Exception in saveResumeToDatabase:', err);
     return false;
   }
 }
@@ -92,9 +94,14 @@ export async function getResumeFromDatabase(id: string): Promise<ResumeData | nu
       .eq('id', id)
       .single();
 
-    if (error || !data) return null;
+    if (error) {
+      console.warn('[Supabase] getResumeFromDatabase error:', error);
+      return null;
+    }
+    if (!data) return null;
     return data.data as ResumeData;
-  } catch {
+  } catch (err) {
+    console.error('[Supabase] Exception in getResumeFromDatabase:', err);
     return null;
   }
 }
@@ -120,9 +127,14 @@ export async function getAllResumesFromDatabase(userId?: string): Promise<Resume
       .eq('user_id', uid)
       .order('updated_at', { ascending: false });
 
-    if (error || !data) return [];
+    if (error) {
+      console.error('[Supabase] Error fetching user resumes:', error);
+      return [];
+    }
+    if (!data) return [];
     return data.map((row: any) => row.data as ResumeData);
-  } catch {
+  } catch (err) {
+    console.error('[Supabase] Exception in getAllResumesFromDatabase:', err);
     return [];
   }
 }

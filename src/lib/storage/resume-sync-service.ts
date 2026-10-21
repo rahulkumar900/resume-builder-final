@@ -31,58 +31,52 @@ export async function syncLocalResumesToDatabase(userId: string): Promise<void> 
   if (!userId) return;
   try {
     const cloudResumes = await getAllResumesFromDatabase(userId);
-    const cloudIds = new Set(cloudResumes.map((r) => r.id));
+    const cloudMap = new Map<string, ResumeData>(cloudResumes.map((r) => [r.id, r]));
     const deletedIds = getDeletedResumeIds();
 
     const localResumes = getStoredResumes();
+    const mergedMap = new Map<string, ResumeData>();
 
-    // 1. Prune local resumes that were deleted from the database
+    // 1. Add all cloud resumes that have not been explicitly deleted by the user
+    for (const cloud of cloudResumes) {
+      if (!deletedIds.has(cloud.id)) {
+        mergedMap.set(cloud.id, cloud);
+      }
+    }
+
+    // 2. Add and preserve all local resumes (NEVER purge unless explicitly in deletedIds)
     for (const local of localResumes) {
       if (deletedIds.has(local.id)) {
         purgeLocalResumeDirectly(local.id);
         continue;
       }
-      // If it belonged to this user or was synced, and is not in cloud -> DELETED!
-      if ((local.userId === userId || local.syncedToCloud) && !cloudIds.has(local.id)) {
-        addDeletedResumeId(local.id);
-        purgeLocalResumeDirectly(local.id);
-      }
-    }
 
-    // 2. Only upload truly un-synced guest draft resumes created before sign-in
-    const updatedLocal = getStoredResumes();
-    for (const local of updatedLocal) {
-      if (
-        !isDummyResume(local) &&
-        !cloudIds.has(local.id) &&
-        !local.syncedToCloud &&
-        !local.userId &&
-        !deletedIds.has(local.id)
-      ) {
-        const syncedResume: ResumeData = {
-          ...local,
-          syncedToCloud: true,
-          userId,
-        };
-        const ok = await saveResumeToDatabase(syncedResume, userId);
-        if (ok) {
-          cloudIds.add(local.id);
+      const existingInCloud = cloudMap.get(local.id);
+      if (!existingInCloud) {
+        // Local resume not yet in cloud: safely upload to cloud
+        if (!isDummyResume(local)) {
+          const syncedResume: ResumeData = {
+            ...local,
+            syncedToCloud: true,
+            userId,
+          };
+          mergedMap.set(local.id, syncedResume);
+          saveResumeToDatabase(syncedResume, userId).catch((err) =>
+            console.error('[Sync] Failed to upload local resume to cloud:', err)
+          );
         }
+      } else {
+        // Merge preferring the latest content
+        mergedMap.set(local.id, existingInCloud);
       }
     }
 
-    // 3. Keep local cache synchronized with authoritative cloud data
-    const finalCloud = await getAllResumesFromDatabase(userId);
-    if (finalCloud.length > 0) {
-      saveStoredResumes(finalCloud);
-    } else {
-      // Cloud has 0 resumes: prune all resumes associated with this user
-      const guestDrafts = getStoredResumes().filter(
-        (r) => !r.userId && !r.syncedToCloud && !deletedIds.has(r.id)
-      );
-      saveStoredResumes(guestDrafts);
+    // 3. Keep local cache synchronized with the complete merged set
+    const finalList = Array.from(mergedMap.values());
+    if (finalList.length > 0) {
+      saveStoredResumes(finalList);
     }
   } catch (err) {
-    console.warn('[Sync] Local and cloud sync skipped:', err);
+    console.warn('[Sync] Local and cloud sync error:', err);
   }
 }
