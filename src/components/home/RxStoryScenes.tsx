@@ -389,6 +389,7 @@ export function RxStoryScenes() {
   const [manualDesignStyle, setManualDesignStyle] = useState<number | null>(null);
   const [wiperMouseX, setWiperMouseX] = useState<number | null>(null);
   const wiperCardRef = useRef<HTMLDivElement>(null);
+  const heroCardContainerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const cardSlotAnchorRef = useRef<HTMLDivElement>(null);
 
@@ -399,23 +400,22 @@ export function RxStoryScenes() {
   }>({ slotOffsetX: 0, slotOffsetY: 0, slotScale: 0.45 });
 
   const updateDockMetrics = useCallback(() => {
-    if (!cardSlotAnchorRef.current || !stickyRef.current || !wiperCardRef.current) return;
+    if (!cardSlotAnchorRef.current || !stickyRef.current || !heroCardContainerRef.current || !wiperCardRef.current) return;
     const anchorRect = cardSlotAnchorRef.current.getBoundingClientRect();
-    const stickyRect = stickyRef.current.getBoundingClientRect();
-    if (anchorRect.width === 0 || stickyRect.width === 0) return;
+    const heroRect = heroCardContainerRef.current.getBoundingClientRect();
+    if (anchorRect.width === 0 || heroRect.width === 0) return;
 
-    // Viewport Center (where the hero card is natively placed at easeDock = 0)
-    const viewportCenterX = stickyRect.left + stickyRect.width / 2;
-    const viewportCenterY = stickyRect.top + stickyRect.height / 2;
+    // Displacement needed from hero card's natural position in the column to Slot 8 in the grid
+    const heroCenterX = heroRect.left + heroRect.width / 2;
+    const heroCenterY = heroRect.top + heroRect.height / 2;
 
-    // Slot 8 Center (where the hero card docks at easeDock = 1)
     const slotCenterX = anchorRect.left + anchorRect.width / 2;
     const slotCenterY = anchorRect.top + anchorRect.height / 2;
 
-    const slotOffsetX = slotCenterX - viewportCenterX;
-    const slotOffsetY = slotCenterY - viewportCenterY;
+    const slotOffsetX = slotCenterX - heroCenterX;
+    const slotOffsetY = slotCenterY - heroCenterY;
 
-    const heroUnscaledWidth = wiperCardRef.current.clientWidth || 330;
+    const heroUnscaledWidth = wiperCardRef.current.clientWidth || 320;
     const slotScale = heroUnscaledWidth > 0 ? anchorRect.width / heroUnscaledWidth : 0.45;
 
     setDockMetrics({ slotOffsetX, slotOffsetY, slotScale });
@@ -1069,132 +1069,121 @@ export function RxStoryScenes() {
             </div>
           </div>
 
-          {/* Top Heading: "Design." with green period - Perfectly centered horizontally */}
+          {/* PHASE 1: Centered Column (Header -> Card -> (Description + Tabs)) */}
           <div
-            className="absolute top-4 sm:top-6 lg:top-8 left-1/2 -translate-x-1/2 text-center pointer-events-auto transition-all duration-300 z-20"
+            className="absolute inset-0 flex flex-col items-center justify-center py-4 px-4 sm:px-6 z-20 pointer-events-none"
             style={{
               opacity: Math.max(0, 1 - gridProgress * 2.5),
-              transform: `translate(-50%, -${gridProgress * 30}px)`,
-              pointerEvents: gridProgress > 0.2 ? 'none' : 'auto',
+              visibility: gridProgress >= 0.95 ? 'hidden' : 'visible',
             }}
           >
-            <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
-              Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
-            </h2>
-            <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 text-center mt-1 sm:hidden">
-              17 ATS templates · Tap tabs below
-            </p>
-          </div>
+            <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 max-w-2xl w-full pointer-events-auto">
+              {/* 1. Header: Design. */}
+              <div>
+                <h2 className="font-serif not-italic text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-none text-center">
+                  Design<span className="text-[#15803d] dark:text-emerald-400 font-serif">.</span>
+                </h2>
+              </div>
 
-          {/* Left Description Card */}
-          <div
-            className="absolute left-6 sm:left-10 lg:left-16 top-1/2 -translate-y-1/2 max-w-[200px] sm:max-w-[240px] lg:max-w-[280px] z-10 text-left transition-all duration-300 pointer-events-auto hidden md:block"
-            style={{
-              opacity: Math.max(0, 1 - gridProgress * 2.5),
-              transform: `translateY(calc(-50% - ${gridProgress * 20}px))`,
-              pointerEvents: gridProgress > 0.2 ? 'none' : 'auto',
-            }}
-          >
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 border border-emerald-300/60 dark:border-emerald-800/60">
-              02 / DESIGN
-            </div>
-            <h3 className="font-serif text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-1.5 leading-snug">
-              17 ATS Layouts
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-              Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put, so try as many looks as you like.
-            </p>
-          </div>
+              {/* 2. Card: Centered Hero Wiper Card */}
+              <div ref={heroCardContainerRef} className="relative flex items-center justify-center">
+                <div
+                  ref={wiperCardRef}
+                  suppressHydrationWarning
+                  onMouseMove={(e) => {
+                    if (!wiperCardRef.current || gridProgress > 0.05) return;
+                    const rect = wiperCardRef.current.getBoundingClientRect();
+                    const x = Math.max(2, Math.min(98, ((e.clientX - rect.left) / rect.width) * 100));
+                    setWiperMouseX(x);
+                  }}
+                  onMouseLeave={() => setWiperMouseX(null)}
+                  style={{
+                    transform: `translate3d(${cardTx}px, ${cardTy}px, 0) scale(${cardScale})`,
+                    transformOrigin: 'center center',
+                    boxShadow: gridProgress >= 0.9
+                      ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+                      : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
+                  }}
+                  className="relative w-[240px] sm:w-[280px] md:w-[320px] aspect-[794/1123] max-h-[46vh] rounded-[2px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer pointer-events-auto"
+                >
+                  {/* Underlying Base Template (Layer 1) */}
+                  <div className="absolute inset-0">
+                    {renderDesignTemplateLayer(layer1Style)}
+                  </div>
 
-          {/* Centered Hero Wiper Card - Perfectly horizontally centered initially (easeDock = 0) */}
-          <div
-            ref={wiperCardRef}
-            suppressHydrationWarning
-            onMouseMove={(e) => {
-              if (!wiperCardRef.current || gridProgress > 0.05) return;
-              const rect = wiperCardRef.current.getBoundingClientRect();
-              const x = Math.max(2, Math.min(98, ((e.clientX - rect.left) / rect.width) * 100));
-              setWiperMouseX(x);
-            }}
-            onMouseLeave={() => setWiperMouseX(null)}
-            style={{
-              left: '50%',
-              top: '50%',
-              transform: `translate(calc(-50% + ${cardTx}px), calc(-50% + ${cardTy}px)) scale(${cardScale})`,
-              transformOrigin: 'center center',
-              zIndex: gridProgress < 0.95 ? 30 : 5,
-              opacity: gridProgress >= 0.98 ? 0 : 1,
-              pointerEvents: gridProgress >= 0.95 ? 'none' : 'auto',
-              boxShadow: gridProgress >= 0.9
-                ? '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
-                : '0 25px 60px -15px rgba(0, 0, 0, 0.22), 0 0 1px 1px rgba(0, 0, 0, 0.06)',
-            }}
-            className="absolute w-[260px] sm:w-[300px] md:w-[330px] aspect-[794/1123] max-h-[50vh] rounded-[2px] transition-shadow overflow-hidden bg-white border border-slate-200/90 dark:border-slate-800 cursor-pointer"
-          >
-            {/* Underlying Base Template (Layer 1) */}
-            <div className="absolute inset-0">
-              {renderDesignTemplateLayer(layer1Style)}
-            </div>
+                  {/* Active Incoming Template (Layer 2) */}
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={{
+                      clipPath: gridProgress > 0.05 || wiperPos >= 99.5
+                        ? 'none'
+                        : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
+                    }}
+                  >
+                    {renderDesignTemplateLayer(layer2Style)}
+                  </div>
 
-            {/* Active Incoming Template (Layer 2) */}
-            <div
-              className="absolute inset-0 overflow-hidden"
-              style={{
-                clipPath: gridProgress > 0.05 || wiperPos >= 99.5
-                  ? 'none'
-                  : `polygon(0% 0%, ${wiperPos}% 0%, ${wiperPos}% 100%, 0% 100%)`,
-              }}
-            >
-              {renderDesignTemplateLayer(layer2Style)}
-            </div>
+                  {/* Vertical Wiper Divider Line with Center Drag Handle */}
+                  <div
+                    className="absolute top-0 bottom-0 w-[2px] bg-slate-900 dark:bg-white shadow-[0_0_12px_rgba(0,0,0,0.45)] z-20 pointer-events-none transition-opacity duration-200"
+                    style={{
+                      left: `${Math.max(1, Math.min(99, wiperPos))}%`,
+                      opacity: isWiperActive ? 1 : 0,
+                    }}
+                  >
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl flex items-center justify-center text-[10px] font-bold border-2 border-white dark:border-slate-900 select-none">
+                      &#8596;
+                    </div>
+                  </div>
 
-            {/* Vertical Wiper Divider Line with Center Drag Handle */}
-            <div
-              className="absolute top-0 bottom-0 w-[2px] bg-slate-900 dark:bg-white shadow-[0_0_12px_rgba(0,0,0,0.45)] z-20 pointer-events-none transition-opacity duration-200"
-              style={{
-                left: `${Math.max(1, Math.min(99, wiperPos))}%`,
-                opacity: isWiperActive ? 1 : 0,
-              }}
-            >
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl flex items-center justify-center text-[10px] font-bold border-2 border-white dark:border-slate-900 select-none">
-                &#8596;
+                  {/* Interactive Link */}
+                  <Link
+                    href={`/create?template=${layer2Style.templateId}`}
+                    className="absolute inset-0 z-30"
+                    aria-label={`Use ${layer2Style.label} template`}
+                  />
+                </div>
+              </div>
+
+              {/* 3. (Description + Tabs) Centered in the Column */}
+              <div className="flex flex-col items-center justify-center gap-2 sm:gap-2.5 max-w-lg mx-auto">
+                {/* Tabs Switcher Pill */}
+                <div className="inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs">
+                  {DESIGN_STYLES.map((style, idx) => {
+                    const isActive = activeStyleIdx === idx;
+                    return (
+                      <button
+                        key={style.id}
+                        type="button"
+                        onClick={() => setManualDesignStyle(idx)}
+                        className={`px-3 sm:px-4 py-1.5 rounded-full text-xs transition-all cursor-pointer ${
+                          isActive
+                            ? 'bg-emerald-700 text-white shadow-xs font-semibold'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
+                        }`}
+                      >
+                        {style.label}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Description Text */}
+                <div className="flex flex-col items-center text-center px-4 space-y-0.5">
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
+                      02 / DESIGN
+                    </span>
+                    <span className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white">
+                      17 ATS Layouts
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans max-w-md">
+                    Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing. The words stay put across every style.
+                  </p>
+                </div>
               </div>
             </div>
-
-            {/* Interactive Link */}
-            <Link
-              href={`/create?template=${layer2Style.templateId}`}
-              className="absolute inset-0 z-30"
-              aria-label={`Use ${layer2Style.label} template`}
-            />
-          </div>
-
-          {/* Bottom Pill Switcher - Perfectly centered horizontally directly below the card */}
-          <div
-            className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 inline-flex items-center justify-center p-1 bg-white/95 dark:bg-[#1c1b18]/95 backdrop-blur-md rounded-full border border-black/[0.08] dark:border-white/[0.1] shadow-xs pointer-events-auto transition-all duration-300 z-20"
-            style={{
-              opacity: Math.max(0, 1 - gridProgress * 2.5),
-              transform: `translate(-50%, ${gridProgress * 30}px)`,
-              pointerEvents: gridProgress > 0.2 ? 'none' : 'auto',
-            }}
-          >
-            {DESIGN_STYLES.map((style, idx) => {
-              const isActive = activeStyleIdx === idx;
-              return (
-                <button
-                  key={style.id}
-                  type="button"
-                  onClick={() => setManualDesignStyle(idx)}
-                  className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-emerald-700 text-white shadow-xs font-semibold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium'
-                  }`}
-                >
-                  {style.label}
-                </button>
-              );
-            })}
           </div>
 
           {/* Floating French Curve Ruler Doodle on Right */}
