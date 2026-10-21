@@ -6,7 +6,11 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { User, LogOut, LogIn, ChevronDown, Cloud, ShieldCheck, LayoutDashboard, Sparkles } from 'lucide-react';
 
-export const UserMenu: React.FC = () => {
+interface UserMenuProps {
+  showName?: boolean;
+}
+
+export const UserMenu: React.FC<UserMenuProps> = ({ showName = false }) => {
   const router = useRouter();
   const { user, profile, signOut, openAuthModal, isLoading } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -53,16 +57,25 @@ export const UserMenu: React.FC = () => {
     <div className="relative" ref={menuRef}>
       <button
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center gap-2 p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-200/80 dark:border-border cursor-pointer"
-        title="Account & Cloud Sync"
+        className={`flex items-center transition-all cursor-pointer group ${
+          showName
+            ? 'gap-2 p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-border'
+            : 'p-0.5 rounded-full hover:ring-2 hover:ring-emerald-500/40 dark:hover:ring-emerald-400/40'
+        }`}
+        title={`${userDisplayName} (${user.email || ''}) - Account & Profile`}
+        aria-label="Account & Profile menu"
       >
-        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-2xs">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-600 via-teal-600 to-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-xs border border-white/40 dark:border-white/10 group-hover:scale-105 transition-transform">
           {userInitial}
         </div>
-        <span className="hidden sm:inline text-xs font-semibold text-slate-700 dark:text-slate-200 max-w-[120px] truncate">
-          {userDisplayName}
-        </span>
-        <ChevronDown className="w-3.5 h-3.5 text-slate-400 dark:text-slate-400 mr-1" />
+        {showName && (
+          <>
+            <span className="hidden sm:inline text-xs font-semibold text-slate-700 dark:text-slate-200 max-w-[120px] truncate">
+              {userDisplayName}
+            </span>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 dark:text-slate-400 mr-1" />
+          </>
+        )}
       </button>
 
       {dropdownOpen && (

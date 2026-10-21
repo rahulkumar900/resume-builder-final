@@ -151,12 +151,6 @@ export function RxNavbar() {
               </div>
             ) : (
               <div className="flex items-center gap-2 shrink-0">
-                <Link
-                  href="/dashboard"
-                  className="hidden sm:inline-flex text-xs font-semibold px-3.5 py-1.5 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 shrink-0 shadow-2xs transition-colors"
-                >
-                  Dashboard
-                </Link>
                 <UserMenu />
               </div>
             )}
