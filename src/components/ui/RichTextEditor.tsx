@@ -30,6 +30,8 @@ import {
   AlertTriangle,
   ArrowRight,
   Check,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -85,10 +87,34 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   const [isSelfAiModalOpen, setIsSelfAiModalOpen] = useState(false);
   const [aiAnchorRect, setAiAnchorRect] = useState<DOMRect | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Handle ESC key to exit full screen
+  useEffect(() => {
+    if (!isFullScreen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsFullScreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullScreen]);
+
+  // Lock body scroll when full screen focus sheet is active
+  useEffect(() => {
+    if (isFullScreen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isFullScreen]);
 
   // Compute live grammar check results from current value
   const grammarResult = useMemo(() => {
@@ -401,6 +427,8 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
     <div
       className={cn(
         'group relative rounded-xl border border-slate-200/90 dark:border-border bg-white dark:bg-card shadow-2xs transition-all hover:border-slate-300 dark:hover:border-border focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 flex flex-col',
+        isFullScreen &&
+          'fixed inset-0 z-50 rounded-none border-none shadow-2xl h-[100dvh] w-screen overflow-hidden bg-white dark:bg-card',
         className
       )}
     >
@@ -431,6 +459,32 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
           background-color: rgba(245, 158, 11, 0.2);
         }
       `}</style>
+
+      {/* Full-Screen Focus Top Bar */}
+      {isFullScreen && (
+        <div className="h-12 px-3.5 sm:px-5 border-b border-slate-200 dark:border-border flex items-center justify-between bg-white dark:bg-card shrink-0">
+          <div className="flex items-center gap-2">
+            <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-foreground">
+              {sectionName}
+            </span>
+            <span className="text-[11px] text-slate-400 dark:text-muted-foreground font-mono">
+              &bull; Focus Mode
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => setIsFullScreen(false)}
+              className="h-7.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs gap-1 shadow-xs cursor-pointer rounded-lg"
+            >
+              <span>Done</span>
+              <Check className="w-3.5 h-3.5" />
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Editor Main Toolbar */}
       <div className="flex items-center justify-between gap-1.5 border-b border-slate-100 dark:border-border bg-slate-50/70 dark:bg-muted/50 px-2 sm:px-2.5 py-1.5 text-slate-700 dark:text-slate-300 overflow-x-auto no-scrollbar">
@@ -609,16 +663,53 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
               <Sparkles className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
             </Button>
           )}
+
+          {/* Full-Screen Focus Mode Button */}
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsFullScreen(!isFullScreen)}
+            className={cn(
+              "h-7 px-1.5 sm:px-2 text-xs font-semibold rounded-md transition-all cursor-pointer flex items-center gap-1 shrink-0",
+              isFullScreen
+                ? "bg-emerald-100 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 font-bold"
+                : "text-slate-500 dark:text-slate-400 hover:bg-slate-200/70 dark:hover:bg-accent hover:text-slate-900"
+            )}
+            title={isFullScreen ? "Exit Focus Mode (Esc)" : "Full-Screen Focus Mode"}
+          >
+            {isFullScreen ? (
+              <>
+                <Minimize2 className="h-3.5 w-3.5" />
+                <span className="text-[11px]">Exit</span>
+              </>
+            ) : (
+              <>
+                <Maximize2 className="h-3.5 w-3.5" />
+                <span className="text-[11px] font-medium hidden sm:inline">Focus</span>
+              </>
+            )}
+          </Button>
         </div>
       </div>
 
       {/* Editor Editable Canvas */}
-      <div className="relative flex-1 cursor-text bg-white dark:bg-card rounded-b-xl text-slate-900 dark:text-foreground">
-        <EditorContent editor={editor} />
+      <div
+        className={cn(
+          "relative flex-1 cursor-text bg-white dark:bg-card rounded-b-xl text-slate-900 dark:text-foreground overflow-y-auto",
+          isFullScreen && "p-4 sm:p-8 text-base max-w-4xl mx-auto w-full leading-relaxed"
+        )}
+      >
+        <EditorContent editor={editor} className={cn(isFullScreen && "min-h-[50vh]")} />
       </div>
 
       {/* Clean Bottom Bar: Character / Word Counts & Action Feedback */}
-      <div className="flex items-center justify-between border-t border-slate-100/90 dark:border-border bg-slate-50/40 dark:bg-muted/30 px-3 py-1 text-[11px] text-slate-400 dark:text-muted-foreground">
+      <div
+        className={cn(
+          "flex items-center justify-between border-t border-slate-100/90 dark:border-border bg-slate-50/40 dark:bg-muted/30 px-3 py-1 text-[11px] text-slate-400 dark:text-muted-foreground",
+          isFullScreen && "pb-[env(safe-area-inset-bottom,8px)] sm:px-6"
+        )}
+      >
         <div className="flex items-center gap-2">
           {actionNotice ? (
             <span className="text-primary font-semibold flex items-center gap-1 animate-in fade-in duration-150">

@@ -254,6 +254,17 @@ body {
   page-break-before: always !important;
 }
 
+/* Mobile input ergonomics: prevent iOS Safari automatic zoom-in and provide comfortable keyboard clearance */
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+  textarea,
+  select {
+    font-size: 16px !important;
+    scroll-margin-top: 5rem;
+    scroll-margin-bottom: 7rem;
+  }
+}
+
 /* Rich text editor and rendered resume list styles with guaranteed indentation */
 .rich-text-content ul,
 [contenteditable] ul,
