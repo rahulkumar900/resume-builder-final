@@ -427,7 +427,7 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-slate-50/50 dark:bg-background">
+    <div className="flex flex-col h-full overflow-hidden min-h-0 bg-slate-50/50 dark:bg-background">
       {/* 1. Top Section Navigation with Centered Progress Indicator & Reorder Modal */}
       <SectionNav
         activeTab={activeTab}
@@ -442,7 +442,7 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
       />
 
       {/* 2. Scrollable Middle Form Area */}
-      <div className="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-7 py-5 sm:py-6 space-y-6 sm:space-y-8">
+      <div className="flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 lg:px-7 py-5 sm:py-6 space-y-6 sm:space-y-8">
         {activeTab === 'all' ? (
           <>
             {stepKeys.map((key) => renderSection(key))}

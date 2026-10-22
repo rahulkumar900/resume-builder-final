@@ -298,9 +298,9 @@ export const SectionNav: React.FC<SectionNavProps> = ({
   const itemCount = currentItem?.getCount ? currentItem.getCount(resume) : null;
 
   return (
-    <div className="h-12 border-b border-slate-200 dark:border-border px-4 sm:px-6 bg-white dark:bg-card flex items-center justify-between gap-3 shrink-0">
+    <div className="h-11 sm:h-12 border-b border-slate-200 dark:border-border px-3 sm:px-6 bg-white dark:bg-card flex items-center justify-between gap-2 sm:gap-3 shrink-0">
       {/* Left: Step Breadcrumb Indicator */}
-      <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-muted-foreground shrink-0">
+      <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-semibold text-slate-500 dark:text-muted-foreground shrink-0">
         <span className={`w-2 h-2 rounded-full shrink-0 ${isReview ? 'bg-purple-600 animate-pulse' : 'bg-primary'}`} />
         <span className="hidden sm:inline">
           {activeTab === 'all'
@@ -309,40 +309,40 @@ export const SectionNav: React.FC<SectionNavProps> = ({
             ? 'Review'
             : `Step ${currentIndex + 1} of ${stepKeys.length}`}
         </span>
-        <span className="sm:hidden text-[11px] text-slate-600 dark:text-slate-400 font-bold">
+        <span className="sm:hidden text-[11px] text-slate-600 dark:text-slate-400 font-mono font-bold">
           {activeTab === 'all' ? 'All' : isReview ? 'Review' : `${currentIndex + 1}/${stepKeys.length}`}
         </span>
       </div>
 
       {/* Center: Interactive Section Progress Pill with Quick-Jump Dropdown */}
-      <div className="relative" ref={dropdownRef}>
+      <div className="relative min-w-0" ref={dropdownRef}>
         <button
           type="button"
           onClick={() => setIsDropdownOpen((prev) => !prev)}
           className={cn(
-            'group relative flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all shadow-2xs hover:shadow-xs active:scale-98 cursor-pointer',
+            'group relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border transition-all shadow-2xs hover:shadow-xs active:scale-98 cursor-pointer max-w-full',
             isDropdownOpen
               ? 'bg-primary/10 dark:bg-primary/20 border-primary/40 text-primary'
               : 'bg-slate-50 dark:bg-muted hover:bg-slate-100 dark:hover:bg-accent border-slate-200/90 dark:border-border text-slate-800 dark:text-foreground'
           )}
           title="Click to jump directly between sections"
         >
-          <div className="w-5 h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
+          <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0">
             <CurrentIcon className="w-3 h-3" />
           </div>
 
-          <div className="flex items-center gap-1.5 text-xs font-bold">
-            <span className="truncate max-w-[80px] sm:max-w-none">{currentLabel}</span>
+          <div className="flex items-center gap-1 text-xs font-bold min-w-0">
+            <span className="truncate max-w-[75px] min-[400px]:max-w-[110px] sm:max-w-none">{currentLabel}</span>
             {itemCount !== null && itemCount > 0 && (
-              <span className="text-[10px] font-semibold text-slate-500 dark:text-muted-foreground bg-white dark:bg-card px-1.5 py-0.2 rounded-full border border-slate-200 dark:border-border shadow-2xs">
+              <span className="text-[10px] font-semibold text-slate-500 dark:text-muted-foreground bg-white dark:bg-card px-1.5 py-0.2 rounded-full border border-slate-200 dark:border-border shadow-2xs shrink-0">
                 {itemCount}
               </span>
             )}
           </div>
 
           {/* Completeness percentage */}
-          <div className="flex items-center gap-1.5 pl-2 border-l border-slate-200 dark:border-border text-[11px] font-bold text-primary">
-            <div className="w-8 sm:w-10 h-1.5 bg-slate-200 dark:bg-muted-foreground/20 rounded-full overflow-hidden shrink-0">
+          <div className="flex items-center gap-1.5 pl-1.5 sm:pl-2 border-l border-slate-200 dark:border-border text-[11px] font-bold text-primary shrink-0">
+            <div className="hidden sm:block w-8 sm:w-10 h-1.5 bg-slate-200 dark:bg-muted-foreground/20 rounded-full overflow-hidden shrink-0">
               <div
                 className="h-full bg-primary rounded-full transition-all duration-300"
                 style={{ width: `${completeness}%` }}
@@ -504,19 +504,19 @@ export const SectionNav: React.FC<SectionNavProps> = ({
         )}
       </div>
 
-      {/* Right: Action Buttons */}
-      <div className="shrink-0 flex items-center gap-1 sm:gap-2">
+      {/* Right: Action Buttons (Icon-only on mobile so it never gets clipped) */}
+      <div className="shrink-0 flex items-center">
         <Button
           type="button"
           variant="ghost"
           size="sm"
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground h-7 px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-accent transition-colors cursor-pointer"
+          className="flex items-center justify-center text-xs font-medium text-slate-500 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground h-8 w-8 sm:w-auto sm:px-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-accent transition-colors cursor-pointer"
           title="Manage and reorder sections"
+          aria-label="Manage and reorder sections"
         >
-          <Layers className="w-3.5 h-3.5 text-slate-400 dark:text-muted-foreground" />
-          <span className="hidden sm:inline">Manage Sections</span>
-          <span className="sm:hidden">Manage</span>
+          <Layers className="w-4 h-4 text-slate-500 dark:text-muted-foreground" />
+          <span className="hidden sm:inline ml-1.5">Manage</span>
         </Button>
       </div>
 

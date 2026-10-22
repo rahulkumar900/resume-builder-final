@@ -250,8 +250,8 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
       />
 
       {/* Mobile & Tablet Segmented Tab Switcher (Write / Design / Check / Preview) */}
-      <div className="lg:hidden flex items-center justify-between px-3 py-2 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0 z-30">
-        <div className="flex bg-slate-100 dark:bg-muted p-1 rounded-xl text-xs font-semibold w-full gap-1">
+      <div className="lg:hidden flex items-center justify-between px-2.5 py-1.5 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0 z-30">
+        <div className="flex bg-slate-100 dark:bg-muted p-0.5 rounded-xl text-xs font-semibold w-full gap-0.5">
           <button
             type="button"
             onClick={() => {
@@ -259,26 +259,28 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('content');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
               activeTab === 'edit' && editorMode === 'content' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
+            title="Edit Content"
           >
-            <Edit3 className="w-3.5 h-3.5" />
-            <span>Write</span>
+            <Edit3 className="w-3.5 h-3.5 shrink-0" />
+            <span className="text-[11px] sm:text-xs">Write</span>
           </button>
           <button
             type="button"
             onClick={handleMobileDesignClick}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
               isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
+            title="Design & Style"
           >
-            <Palette className="w-3.5 h-3.5" />
-            <span>Design</span>
+            <Palette className="w-3.5 h-3.5 shrink-0" />
+            <span className="text-[11px] sm:text-xs">Design</span>
           </button>
           <button
             type="button"
@@ -287,14 +289,15 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('check');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
               activeTab === 'edit' && editorMode === 'check' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
+            title="ATS & Grammar Check"
           >
-            <CheckSquare className="w-3.5 h-3.5" />
-            <span>Check</span>
+            <CheckSquare className="w-3.5 h-3.5 shrink-0" />
+            <span className="text-[11px] sm:text-xs">Check</span>
           </button>
           <button
             type="button"
@@ -302,24 +305,25 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setIsMobileDesignSheetOpen(false);
               handleTabSwitch('preview');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
               activeTab === 'preview' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
+            title="A4 Preview"
           >
-            <Eye className="w-3.5 h-3.5" />
-            <span>Preview</span>
+            <Eye className="w-3.5 h-3.5 shrink-0" />
+            <span className="text-[11px] sm:text-xs">Preview</span>
           </button>
         </div>
       </div>
 
       {/* Main Split Layout */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
         {/* Left Column: Editor Form OR Docked Design Studio OR Docked Check Audit */}
         <div
-          className={`w-full lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:shrink-0 overflow-y-auto lg:border-r border-slate-200 dark:border-border bg-background ${
-            activeTab === 'preview' ? 'hidden lg:block' : 'block'
+          className={`w-full lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:shrink-0 h-full flex-1 lg:flex-initial flex flex-col lg:border-r border-slate-200 dark:border-border bg-background overflow-hidden min-h-0 ${
+            activeTab === 'preview' ? 'hidden lg:flex' : 'flex'
           }`}
         >
           {editorMode === 'content' ? (
