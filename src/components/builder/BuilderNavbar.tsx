@@ -289,8 +289,24 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
           </Button>
         )}
 
-        {/* Unified Download & Print Split Button with Dropdown (matches screenshot) */}
-        <div className="relative inline-flex items-center" ref={exportMenuRef}>
+        {/* Mobile: Clean Icon-Only Download Button */}
+        <button
+          type="button"
+          onClick={onDownloadPdf}
+          disabled={isDownloading}
+          className="sm:hidden w-8 h-8 rounded-full bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer disabled:opacity-50 shrink-0"
+          title="Download PDF"
+          aria-label="Download PDF"
+        >
+          {isDownloading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Download className="w-4 h-4" />
+          )}
+        </button>
+
+        {/* Desktop / Tablet: Unified Download & Print Split Button with Dropdown */}
+        <div className="hidden sm:inline-flex relative items-center" ref={exportMenuRef}>
           <div className="inline-flex items-center rounded-lg shadow-xs bg-emerald-700 hover:bg-emerald-800 transition-colors overflow-hidden">
             {/* Primary Action: Download PDF */}
             <button
@@ -306,13 +322,12 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
               {isDownloading ? (
                 <>
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  <span className="hidden sm:inline">Generating...</span>
+                  <span>Generating...</span>
                 </>
               ) : (
                 <>
                   <Download className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Download PDF</span>
-                  <span className="sm:hidden">PDF</span>
+                  <span>Download PDF</span>
                 </>
               )}
             </button>

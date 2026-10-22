@@ -124,7 +124,7 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
       {/* Floating Bottom Center Minimal Control Dock (Zoom, Page switcher & Format) */}
       <div
         className={cn(
-          'sticky bottom-[max(1rem,calc(0.75rem+env(safe-area-inset-bottom)))] sm:bottom-6 z-30 flex items-center bg-white/95 dark:bg-[#161614]/95 hover:bg-slate-50 dark:hover:bg-[#1f1f1d] text-slate-700 dark:text-zinc-200 rounded-full px-2.5 sm:px-3 py-1 shadow-lg border border-slate-200/90 dark:border-white/[0.1] gap-1.5 sm:gap-2 text-xs select-none transition-all backdrop-blur-md max-w-[calc(100vw-24px)] overflow-x-auto',
+          'sticky bottom-4 sm:bottom-6 z-30 flex items-center bg-white/95 dark:bg-[#161614]/95 hover:bg-slate-50 dark:hover:bg-[#1f1f1d] text-slate-700 dark:text-zinc-200 rounded-full px-3 py-1 shadow-lg border border-slate-200/90 dark:border-white/[0.1] gap-2 text-xs select-none transition-all backdrop-blur-md',
           isMobileCustomizing && 'hidden sm:flex'
         )}
       >
