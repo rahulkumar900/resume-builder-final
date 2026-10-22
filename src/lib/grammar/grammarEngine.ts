@@ -40,6 +40,7 @@ export const COMMON_TYPOS: Record<string, string> = {
   'appropiate': 'appropriate',
   'archetecture': 'architecture',
   'archetect': 'architect',
+  'arent': "aren't",
   'availabe': 'available',
   'avaiable': 'available',
   'avaliable': 'available',
@@ -55,6 +56,7 @@ export const COMMON_TYPOS: Record<string, string> = {
 
   // C
   'calender': 'calendar',
+  'cant': "can't",
   'capabilty': 'capability',
   'capabilties': 'capabilities',
   'catagory': 'category',
@@ -86,6 +88,7 @@ export const COMMON_TYPOS: Record<string, string> = {
   'cordinated': 'coordinated',
   'cordinating': 'coordinating',
   'cordinator': 'coordinator',
+  'couldnt': "couldn't",
 
   // D
   'databse': 'database',
@@ -110,9 +113,13 @@ export const COMMON_TYPOS: Record<string, string> = {
   'devlopment': 'development',
   'devloper': 'developer',
   'devlopers': 'developers',
+  'didnt': "didn't",
   'diffrent': 'different',
   'dissapear': 'disappear',
   'documetation': 'documentation',
+  'doesnt': "doesn't",
+  'doint': 'doing',
+  'dont': "don't",
 
   // E
   'efficent': 'efficient',
@@ -155,11 +162,15 @@ export const COMMON_TYPOS: Record<string, string> = {
   'guidlines': 'guidelines',
 
   // H
+  'hadnt': "hadn't",
   'happend': 'happened',
+  'hasnt': "hasn't",
+  'havent': "haven't",
   'hierachy': 'hierarchy',
   'hierachical': 'hierarchical',
 
   // I
+  'im': "I'm",
   'impliment': 'implement',
   'implimented': 'implemented',
   'implimenting': 'implementing',
@@ -187,6 +198,8 @@ export const COMMON_TYPOS: Record<string, string> = {
   'intresting': 'interesting',
   'intermidiate': 'intermediate',
   'interupt': 'interrupt',
+  'isnt': "isn't",
+  'ive': "I've",
 
   // K
   'knowlege': 'knowledge',
@@ -301,6 +314,7 @@ export const COMMON_TYPOS: Record<string, string> = {
   'securty': 'security',
   'seperate': 'separate',
   'seperated': 'separated',
+  'shouldnt': "shouldn't",
   'similiar': 'similar',
   'simplfy': 'simplify',
   'softare': 'software',
@@ -322,6 +336,7 @@ export const COMMON_TYPOS: Record<string, string> = {
   'templete': 'template',
   'templetes': 'templates',
   'tendancy': 'tendency',
+  'theyre': "they're",
   'threshhold': 'threshold',
   'tommorrow': 'tomorrow',
   'transfter': 'transfer',
@@ -340,8 +355,15 @@ export const COMMON_TYPOS: Record<string, string> = {
   'visability': 'visibility',
 
   // W
+  'wasnt': "wasn't",
+  'werent': "weren't",
   'wheather': 'whether',
   'wierd': 'weird',
+  'wont': "won't",
+  'wouldnt': "wouldn't",
+
+  // Y
+  'youre': "you're",
   'writen': 'written',
   'yeild': 'yield',
 };
@@ -775,19 +797,21 @@ export function checkGrammar(textOrHtml: string): GrammarCheckResult {
     });
   }
 
-  // 6. Check First-Person Pronouns in Bullets ("I developed", "My responsibilities")
-  const firstPersonRegex = /\b(I|I've|my|we|our)\s+([a-zA-Z]+)\b/g;
+  // 6. Check First-Person Pronouns in Bullets ("I developed", "I implemented")
+  // Only suggest replacement when followed by an active past-tense action verb
+  const firstPersonVerbRegex = /\b(?:I|We)\s+([a-zA-Z]{3,}ed|[a-zA-Z]{3,}d|built|led|ran|drove|wrote|spoke|sold|made|found|kept|set)\b/gi;
   let fpMatch: RegExpExecArray | null;
-  while ((fpMatch = firstPersonRegex.exec(plainText)) !== null) {
-    // Only flag if it looks like a resume bullet beginning or active sentence
-    const word = fpMatch[1];
+  while ((fpMatch = firstPersonVerbRegex.exec(plainText)) !== null) {
+    const verb = fpMatch[1];
+    const isStart = fpMatch.index === 0 || /\n\s*$/.test(plainText.slice(0, fpMatch.index));
+    const properVerb = isStart ? verb.charAt(0).toUpperCase() + verb.slice(1) : verb;
     issues.push({
       id: `style-${issueCounter++}`,
       originalText: fpMatch[0],
-      suggestedText: fpMatch[2],
+      suggestedText: properVerb,
       category: 'style',
       severity: 'suggestion',
-      explanation: `Resume best practice: avoid first-person pronouns ("${word}"). Begin bullet points directly with an action verb.`,
+      explanation: `Resume best practice: omit personal pronouns like "I". Begin bullet points directly with the action verb "${properVerb}".`,
       contextSnippet: extractContext(plainText, fpMatch[0]),
     });
   }
@@ -841,22 +865,24 @@ export function applySingleFix(
 
   const isHtml = /<[a-z][\s\S]*>/i.test(textOrHtml);
 
+  // Boundary check: only use \b if originalText starts/ends with a word char
+  const escaped = escapeRegex(issue.originalText);
+  const hasLeadingWord = /^\w/.test(issue.originalText);
+  const hasTrailingWord = /\w$/.test(issue.originalText);
+  const pattern = `${hasLeadingWord ? '\\b' : ''}${escaped}${hasTrailingWord ? '\\b' : ''}`;
+
   if (!isHtml) {
-    // Plain text replacement with word boundary where applicable
-    const escaped = escapeRegex(issue.originalText);
-    const regex = new RegExp(`\\b${escaped}\\b`, 'gi');
+    const regex = new RegExp(pattern, 'i');
     return textOrHtml.replace(regex, issue.suggestedText);
   }
 
   // Safe HTML Tokenized Replacement:
   // Only replace inside text tokens, NEVER touch HTML tag tokens!
   const tokens = tokenizeHtml(textOrHtml);
-  const escaped = escapeRegex(issue.originalText);
-  const regex = new RegExp(`\\b${escaped}\\b`, 'gi');
-
   let replaced = false;
   const updatedTokens = tokens.map((token) => {
     if (token.isTag || replaced) return token.content;
+    const regex = new RegExp(pattern, 'i');
     if (regex.test(token.content)) {
       replaced = true;
       return token.content.replace(regex, issue.suggestedText);
@@ -894,12 +920,12 @@ export function autoCorrectText(
 
   sortedIssues.forEach((issue) => {
     // Only auto-correct unambiguous spelling, capitalization, repeated words, and punctuation
+    // Weak verbs and style suggestions must be manually chosen by the user
     if (
       issue.category === 'spelling' ||
       issue.category === 'capitalization' ||
       issue.category === 'grammar' ||
-      issue.category === 'punctuation' ||
-      (issue.category === 'verb' && issue.originalText.toLowerCase().includes('responsible for'))
+      issue.category === 'punctuation'
     ) {
       const before = current;
       current = applySingleFix(current, issue);

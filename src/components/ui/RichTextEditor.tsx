@@ -351,9 +351,14 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
 
   // Apply single inline grammar fix
   const handleApplyFix = (issue: GrammarIssue) => {
-    const updatedHtml = applySingleFix(value, issue);
+    const currentHtml = editor ? editor.getHTML() : value;
+    const updatedHtml = applySingleFix(currentHtml, issue);
     if (editor) {
+      isInternalUpdateRef.current = true;
+      const { from } = editor.state.selection;
       editor.commands.setContent(updatedHtml, { emitUpdate: false });
+      const maxPos = editor.state.doc.content.size;
+      editor.commands.setTextSelection(Math.min(from, maxPos));
     }
     onChange(updatedHtml);
     setDismissedIssueIds((prev) => new Set([...prev, issue.id]));
@@ -365,9 +370,14 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
   // Auto-correct all detected spelling and grammar errors in one pass
   const handleAutoCorrectAll = () => {
     if (activeIssues.length === 0) return;
-    const { updatedHtml, fixedCount } = autoCorrectText(value, activeIssues);
+    const currentHtml = editor ? editor.getHTML() : value;
+    const { updatedHtml, fixedCount } = autoCorrectText(currentHtml, activeIssues);
     if (editor) {
+      isInternalUpdateRef.current = true;
+      const { from } = editor.state.selection;
       editor.commands.setContent(updatedHtml, { emitUpdate: false });
+      const maxPos = editor.state.doc.content.size;
+      editor.commands.setTextSelection(Math.min(from, maxPos));
     }
     onChange(updatedHtml);
     setActiveTooltip(null);
