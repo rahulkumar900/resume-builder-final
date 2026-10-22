@@ -256,7 +256,7 @@ export const FinalReviewSection: React.FC<FinalReviewSectionProps> = ({
             const itemCount = navItem?.getCount ? navItem.getCount(resume) : null;
 
             return (
-              <div key={key} className="w-full">
+              <div key={key} id={`review-section-${key}`} className="w-full">
                 {/* Clean Header Bar */}
                 <div
                   onClick={() => toggleSection(key)}
@@ -335,6 +335,12 @@ export const FinalReviewSection: React.FC<FinalReviewSectionProps> = ({
                       onAddSection(secKey);
                     }
                     setExpandedSections((prev) => new Set([...prev, secKey]));
+                    setTimeout(() => {
+                      const el = document.getElementById(`review-section-${secKey}`);
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }
+                    }, 100);
                   }}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-border bg-white dark:bg-card hover:border-primary hover:text-primary text-xs font-medium text-slate-700 dark:text-slate-300 transition-colors shadow-2xs cursor-pointer group"
                 >

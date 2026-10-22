@@ -179,7 +179,7 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
     router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
   };
 
-  const handleAddNewSection = (key: SectionKey) => {
+  const handleAddNewSection = (key: SectionKey, navigateToSection?: boolean) => {
     if (key === 'review' || key === 'personal') return;
     if (!stepKeys.includes(key)) {
       const nextStepKeys = [...stepKeys, key];
@@ -225,7 +225,11 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
         }
       }
     }
-    setActiveTab(key);
+
+    const shouldNavigate = navigateToSection !== undefined ? navigateToSection : activeTab !== 'review';
+    if (shouldNavigate) {
+      setActiveTab(key);
+    }
   };
 
   // Calculate completeness score accurately based on filled section data
@@ -411,7 +415,7 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
             completeness={completeness}
             stepKeys={stepKeys}
             onReorderSections={setStepKeys}
-            onAddSection={handleAddNewSection}
+            onAddSection={(secKey) => handleAddNewSection(secKey, false)}
           />
         );
       default:
