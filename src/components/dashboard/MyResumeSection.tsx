@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useMemo } from 'react';
 import { ResumeData } from '@/types/resume';
@@ -17,11 +17,13 @@ import {
   ExternalLink,
   Loader2,
   Eye,
+  RefreshCw,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { DynamicResumeCardPreview } from './DynamicResumeCardPreview';
 import { analyzeResumeAts } from '@/lib/ats/ats-analyzer';
 import { TEMPLATES } from '@/lib/templates';
+import { cn } from '@/lib/utils';
 
 interface MyResumeSectionProps {
   resumes: ResumeData[];
@@ -31,6 +33,8 @@ interface MyResumeSectionProps {
   onScoreResume?: (resume: ResumeData) => void;
   onTailorResume?: (resume: ResumeData) => void;
   loadingPdfId?: string | null;
+  isSyncingCloud?: boolean;
+  onRefreshCloud?: () => void;
 }
 
 export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
@@ -41,6 +45,8 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
   onScoreResume,
   onTailorResume,
   loadingPdfId,
+  isSyncingCloud = false,
+  onRefreshCloud,
 }) => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'all' | 'draft' | 'completed'>('all');
@@ -95,9 +101,23 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-200/80 pb-4">
         {/* Left: Section Title & Tabs */}
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-          <h2 className="text-lg font-black text-slate-900 tracking-tight">
-            My Resumes
-          </h2>
+          <div className="flex items-center gap-2.5">
+            <h2 className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
+              My Resumes
+            </h2>
+            {onRefreshCloud && (
+              <button
+                type="button"
+                onClick={onRefreshCloud}
+                disabled={isSyncingCloud}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium text-slate-500 hover:text-emerald-700 dark:text-slate-400 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 border border-slate-200/60 dark:border-white/[0.08] transition-all cursor-pointer disabled:opacity-60"
+                title="Sync and refresh resumes from database"
+              >
+                <RefreshCw className={cn("w-3.5 h-3.5", isSyncingCloud && "animate-spin text-emerald-600")} />
+                <span className="hidden sm:inline">{isSyncingCloud ? 'Syncing...' : 'Sync Cloud'}</span>
+              </button>
+            )}
+          </div>
 
           <div className="flex items-center gap-1.5 p-1 bg-secondary rounded-xl border border-black/[0.05] dark:border-white/[0.05]">
             <button
@@ -150,7 +170,25 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
 
       {/* Grid of Resumes */}
       {filteredResumes.length === 0 ? (
-        resumes.length === 0 ? (
+        isSyncingCloud && resumes.length === 0 ? (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <div
+                key={n}
+                className="bg-white dark:bg-[#161614] rounded-2xl border border-slate-200/80 dark:border-white/[0.08] shadow-2xs h-[340px] flex flex-col overflow-hidden animate-pulse"
+              >
+                <div className="h-[250px] w-full bg-slate-100 dark:bg-white/[0.04]" />
+                <div className="p-3 pt-2.5 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <div className="h-3.5 bg-slate-200 dark:bg-white/[0.08] rounded w-3/4" />
+                    <div className="h-2.5 bg-slate-100 dark:bg-white/[0.04] rounded w-1/2" />
+                  </div>
+                  <div className="h-3 bg-slate-100 dark:bg-white/[0.04] rounded w-1/3" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : resumes.length === 0 ? (
           <div className="text-center py-16 px-6 bg-white/90 dark:bg-[#161614] rounded-2xl border border-border shadow-2xs flex flex-col items-center justify-center max-w-2xl mx-auto">
             <div className="w-14 h-14 rounded-2xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-200/80 dark:border-emerald-800/60 flex items-center justify-center text-emerald-700 dark:text-emerald-400 mb-4 shadow-xs">
               <FileText className="w-7 h-7 stroke-[1.75]" />

@@ -14,7 +14,8 @@ import { ResumeData } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
 import { useAutoSaveResume } from '@/hooks/useAutoSaveResume';
 import { useResumePdfExport } from '@/hooks/useResumePdfExport';
-import { Edit3, Eye, Palette, CheckSquare } from 'lucide-react';
+import { Edit3, Eye, Palette, CheckSquare, FileText } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { DesignStudioPanel } from '@/components/builder/DesignStudioPanel';
 import { CheckAuditPanel } from '@/components/builder/CheckAuditPanel';
 import { GrammarAssistantModal } from '@/components/builder/GrammarAssistantModal';
@@ -28,7 +29,10 @@ interface BuilderEditorClientProps {
 export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user, openAuthModal } = useAuth();
+  const { user, openAuthModal, isLoading: authLoading } = useAuth();
+
+  const [isResolvingResume, setIsResolvingResume] = useState<boolean>(true);
+  const [notFoundError, setNotFoundError] = useState<boolean>(false);
 
   const {
     resume,
@@ -82,26 +86,40 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     const data = getResumeById(decodedId) || getResumeById(id);
     if (data) {
       setResume(data);
+      setIsResolvingResume(false);
+      setNotFoundError(false);
     } else {
-      // Check asynchronously from IndexedDB or Supabase Cloud
-      getResumeByIdAsync(decodedId).then((asyncData) => {
-        if (asyncData) {
-          setResume(asyncData);
-        } else {
-          // Fallback: check all stored resumes in case of minor ID format differences
-          const all = getStoredResumes();
-          const fallback = all.find((r) => r.id === decodedId || r.id === id);
-          if (fallback) {
-            setResume(fallback);
+      // If auth session is still being loaded by Supabase, wait before attempting cloud query
+      if (authLoading) return;
+
+      setIsResolvingResume(true);
+      getResumeByIdAsync(decodedId)
+        .then((asyncData) => {
+          if (asyncData) {
+            setResume(asyncData);
+            setIsResolvingResume(false);
+            setNotFoundError(false);
           } else {
-            // If still not found, return to dashboard
-            router.push('/dashboard');
+            // Fallback: check all stored resumes in case of minor ID format differences
+            const all = getStoredResumes();
+            const fallback = all.find((r) => r.id === decodedId || r.id === id);
+            if (fallback) {
+              setResume(fallback);
+              setIsResolvingResume(false);
+              setNotFoundError(false);
+            } else {
+              setIsResolvingResume(false);
+              setNotFoundError(true);
+            }
           }
-        }
-      });
+        })
+        .catch(() => {
+          setIsResolvingResume(false);
+          setNotFoundError(true);
+        });
     }
     setAllResumes(getStoredResumes());
-  }, [id, router, setResume]);
+  }, [id, authLoading, router, setResume]);
 
   // If user navigated with a pending JD from landing page demo, auto-open JobTailorModal
   useEffect(() => {
@@ -166,6 +184,37 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
       handleChange(tailoredResume);
     }
   };
+
+  if (notFoundError && !resume) {
+    return (
+      <div className="min-h-screen bg-slate-50 dark:bg-background flex flex-col items-center justify-center p-6 text-center">
+        <div className="max-w-md w-full bg-white dark:bg-card p-8 rounded-3xl border border-slate-200 dark:border-border shadow-md space-y-4">
+          <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto">
+            <FileText className="w-6 h-6" />
+          </div>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-foreground">Resume Not Found</h2>
+          <p className="text-xs text-slate-500 dark:text-muted-foreground leading-relaxed">
+            The resume you are trying to open could not be loaded from your local storage or cloud database.
+            Please ensure you are signed in to the account that owns this resume.
+          </p>
+          <div className="flex gap-3 justify-center pt-2">
+            <Button variant="outline" size="sm" onClick={() => router.push('/dashboard')}>
+              Go to Dashboard
+            </Button>
+            {!user && (
+              <Button size="sm" onClick={() => openAuthModal('signin')}>
+                Sign In
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isResolvingResume && !resume) {
+    return <BuilderSkeleton />;
+  }
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-slate-100 dark:bg-slate-950 flex flex-col font-sans">

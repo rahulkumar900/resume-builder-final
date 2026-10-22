@@ -116,10 +116,11 @@ export function clearLocalResumesCache(): void {
   if (typeof window === 'undefined') return;
   try {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(DELETED_RESUMES_KEY);
     const toRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && (k === STORAGE_KEY || k.startsWith('resume-') || k.startsWith('kindley_'))) {
+      if (k && (k === STORAGE_KEY || k === DELETED_RESUMES_KEY || k.startsWith('resume-') || k.startsWith('kindley_'))) {
         toRemove.push(k);
       }
     }

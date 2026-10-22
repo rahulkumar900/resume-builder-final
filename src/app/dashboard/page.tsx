@@ -15,8 +15,7 @@ import {
   saveResume,
   deleteResume,
   duplicateResume,
-  syncLocalResumesToDatabase,
-  getAllResumesFromDatabase,
+  syncAndFetchUserResumes,
 } from '@/lib/storage';
 import { ResumeData, TemplateId } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
@@ -28,6 +27,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const { user, profile, openAuthModal, isLoading } = useAuth();
   const [resumes, setResumes] = useState<ResumeData[]>([]);
+  const [isSyncingCloud, setIsSyncingCloud] = useState<boolean>(false);
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false);
   const [selectedResumeForScore, setSelectedResumeForScore] = useState<ResumeData | null>(null);
   const [isJobTailorModalOpen, setIsJobTailorModalOpen] = useState(false);
@@ -35,24 +35,38 @@ export default function DashboardPage() {
   const [loadingPdfId, setLoadingPdfId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Always load local resumes immediately so user sees their work without delay
+    // 1. Always load local resumes immediately so user sees their work without delay
     setResumes(getStoredResumes());
 
     if (user?.id) {
-      // Direct cloud fetch to guarantee latest database resumes appear immediately
-      getAllResumesFromDatabase(user.id).then((cloud) => {
-        if (cloud && cloud.length > 0) {
-          saveStoredResumes(cloud);
-          setResumes(cloud);
-        }
-      });
-
-      // Harmonize cloud and local without wiping local drafts
-      syncLocalResumesToDatabase(user.id).then(() => {
-        setResumes(getStoredResumes());
-      });
+      setIsSyncingCloud(true);
+      syncAndFetchUserResumes(user.id)
+        .then((consolidated) => {
+          setResumes(consolidated);
+        })
+        .catch((err) => {
+          console.error('[Dashboard] Error synchronizing cloud resumes:', err);
+        })
+        .finally(() => {
+          setIsSyncingCloud(false);
+        });
+    } else {
+      setIsSyncingCloud(false);
     }
-  }, [user]);
+  }, [user?.id, isLoading]);
+
+  const handleRefreshCloud = async () => {
+    if (!user?.id) return;
+    setIsSyncingCloud(true);
+    try {
+      const refreshed = await syncAndFetchUserResumes(user.id);
+      setResumes(refreshed);
+    } catch (err) {
+      console.error('[Dashboard] Manual refresh failed:', err);
+    } finally {
+      setIsSyncingCloud(false);
+    }
+  };
 
   // Live Summary Stats Computed Directly from Real Resumes
   const draftCount = useMemo(() => resumes.filter((r) => r.status === 'draft').length, [resumes]);
@@ -256,6 +270,8 @@ export default function DashboardPage() {
           onScoreResume={handleOpenScore}
           onTailorResume={handleOpenTailor}
           loadingPdfId={loadingPdfId}
+          isSyncingCloud={isSyncingCloud}
+          onRefreshCloud={user ? handleRefreshCloud : undefined}
         />
 
         {/* Real ATS & Job Matching Hub */}
