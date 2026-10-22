@@ -138,7 +138,7 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
         <button
           type="button"
           onClick={handleBack}
-          className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-accent rounded-lg transition-colors shrink-0 cursor-pointer"
+          className="p-1.5 min-w-[36px] min-h-[36px] flex items-center justify-center text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-accent rounded-lg transition-colors shrink-0 cursor-pointer active:scale-95"
           title={editorMode && editorMode !== 'content' ? 'Back to Editor' : 'Back'}
           aria-label={editorMode && editorMode !== 'content' ? 'Back to Editor' : 'Back'}
         >
@@ -151,7 +151,7 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
               type="text"
               value={resume.title || 'Untitled resume'}
               onChange={(e) => onChange({ title: e.target.value })}
-              className="text-xs sm:text-sm font-bold text-slate-900 dark:text-foreground bg-transparent hover:bg-slate-100/70 dark:hover:bg-accent focus:bg-white dark:focus:bg-card px-1 py-0.5 rounded border border-transparent hover:border-slate-200 dark:hover:border-border focus:border-primary focus:outline-none transition-all max-w-[140px] sm:max-w-[240px] md:max-w-[320px] truncate"
+              className="text-xs sm:text-sm font-bold text-slate-900 dark:text-foreground bg-transparent hover:bg-slate-100/70 dark:hover:bg-accent focus:bg-white dark:focus:bg-card px-1 py-0.5 rounded border border-transparent hover:border-slate-200 dark:border-border focus:border-primary focus:outline-none transition-all max-w-[110px] min-[400px]:max-w-[150px] sm:max-w-[240px] md:max-w-[320px] truncate"
               title="Click to rename resume"
             />
             <ChevronDown className="w-3 h-3 text-slate-400 shrink-0" />

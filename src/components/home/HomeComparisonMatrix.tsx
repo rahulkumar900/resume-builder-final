@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { Check, X, ShieldCheck } from 'lucide-react';
@@ -58,7 +58,50 @@ export function HomeComparisonMatrix() {
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-3xl border border-border bg-white/90 dark:bg-[#161614] shadow-xl backdrop-blur-xs">
+      {/* Mobile-Friendly Comparison Cards (Visible on screens < 640px) */}
+      <div className="sm:hidden space-y-3 px-1">
+        {MATRIX_ROWS.map((row, idx) => (
+          <div
+            key={idx}
+            className="p-4 rounded-2xl border border-border bg-white/95 dark:bg-[#161614] shadow-sm space-y-2.5"
+          >
+            <div className="text-xs font-mono uppercase tracking-wider font-bold text-slate-900 dark:text-white">
+              {row.feature}
+            </div>
+
+            <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-emerald-500/[0.08] dark:bg-emerald-950/40 border border-emerald-500/20">
+              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                <Check className="w-3 h-3 stroke-[3]" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase tracking-wider font-bold text-emerald-800 dark:text-emerald-400">
+                  ResumeBuilder
+                </div>
+                <div className="text-xs font-semibold text-emerald-950 dark:text-emerald-200">
+                  {row.us}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2.5 p-2.5 rounded-xl bg-black/[0.02] dark:bg-white/[0.02] border border-black/[0.05] dark:border-white/[0.05]">
+              <div className="w-4 h-4 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 flex items-center justify-center shrink-0 mt-0.5">
+                <X className="w-3 h-3 stroke-[2.5]" />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase tracking-wider font-medium text-slate-400">
+                  Legacy Resume Apps
+                </div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">
+                  {row.competitors}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop / Tablet Full Table (Visible on sm and up) */}
+      <div className="hidden sm:block overflow-hidden rounded-3xl border border-border bg-white/90 dark:bg-[#161614] shadow-xl backdrop-blur-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>

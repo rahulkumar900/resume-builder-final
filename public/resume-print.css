@@ -544,6 +544,9 @@
   .bottom-16 {
     bottom: calc(var(--spacing) * 16);
   }
+  .bottom-\[max\(1rem\,calc\(0\.75rem\+env\(safe-area-inset-bottom\)\)\)\] {
+    bottom: max(1rem, calc(0.75rem + env(safe-area-inset-bottom)));
+  }
   .-left-2 {
     left: calc(var(--spacing) * -2);
   }
@@ -841,6 +844,9 @@
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
   }
+  .ml-auto {
+    margin-left: auto;
+  }
   .box-border {
     box-sizing: border-box;
   }
@@ -1105,6 +1111,9 @@
   .min-h-0 {
     min-height: 0px;
   }
+  .min-h-\[36px\] {
+    min-height: 36px;
+  }
   .min-h-\[38px\] {
     min-height: 38px;
   }
@@ -1291,6 +1300,9 @@
   .w-\[1000px\] {
     width: 1000px;
   }
+  .w-\[calc\(100vw-24px\)\] {
+    width: calc(100vw - 24px);
+  }
   .w-full {
     width: 100%;
   }
@@ -1318,11 +1330,17 @@
   .max-w-7xl {
     max-width: var(--container-7xl);
   }
+  .max-w-\[75px\] {
+    max-width: 75px;
+  }
   .max-w-\[80px\] {
     max-width: 80px;
   }
-  .max-w-\[100px\] {
-    max-width: 100px;
+  .max-w-\[90px\] {
+    max-width: 90px;
+  }
+  .max-w-\[110px\] {
+    max-width: 110px;
   }
   .max-w-\[120px\] {
     max-width: 120px;
@@ -1357,6 +1375,9 @@
   .max-w-\[340px\] {
     max-width: 340px;
   }
+  .max-w-\[calc\(100vw-24px\)\] {
+    max-width: calc(100vw - 24px);
+  }
   .max-w-full {
     max-width: 100%;
   }
@@ -1380,6 +1401,9 @@
   }
   .min-w-0 {
     min-width: 0px;
+  }
+  .min-w-\[36px\] {
+    min-width: 36px;
   }
   .min-w-\[60px\] {
     min-width: 60px;
@@ -2925,6 +2949,12 @@
       background-color: color-mix(in oklab, var(--color-emerald-500) 4%, transparent);
     }
   }
+  .bg-emerald-500\/\[0\.08\] {
+    background-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 8%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-emerald-500) 8%, transparent);
+    }
+  }
   .bg-emerald-600 {
     background-color: var(--color-emerald-600);
   }
@@ -4075,6 +4105,9 @@
   }
   .pb-\[200px\] {
     padding-bottom: 200px;
+  }
+  .pb-\[max\(0\.75rem\,env\(safe-area-inset-bottom\)\)\] {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
   .pl-1 {
     padding-left: var(--spacing);
@@ -6167,6 +6200,16 @@
       color: var(--color-slate-400);
     }
   }
+  @media (width >= 400px) {
+    .min-\[400px\]\:max-w-\[150px\] {
+      max-width: 150px;
+    }
+  }
+  @media (width >= 420px) {
+    .min-\[420px\]\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   @media (width >= 40rem) {
     .sm\:inset-y-0 {
       inset-block: 0px;
@@ -6339,8 +6382,14 @@
     .sm\:items-end {
       align-items: flex-end;
     }
+    .sm\:justify-center {
+      justify-content: center;
+    }
     .sm\:gap-2 {
       gap: calc(var(--spacing) * 2);
+    }
+    .sm\:gap-2\.5 {
+      gap: calc(var(--spacing) * 2.5);
     }
     .sm\:gap-3 {
       gap: calc(var(--spacing) * 3);
@@ -6435,6 +6484,12 @@
     .sm\:px-0 {
       padding-inline: 0px;
     }
+    .sm\:px-2\.5 {
+      padding-inline: calc(var(--spacing) * 2.5);
+    }
+    .sm\:px-3 {
+      padding-inline: calc(var(--spacing) * 3);
+    }
     .sm\:px-3\.5 {
       padding-inline: calc(var(--spacing) * 3.5);
     }
@@ -6464,6 +6519,9 @@
     }
     .sm\:py-2 {
       padding-block: calc(var(--spacing) * 2);
+    }
+    .sm\:py-2\.5 {
+      padding-block: calc(var(--spacing) * 2.5);
     }
     .sm\:py-6 {
       padding-block: calc(var(--spacing) * 6);
@@ -6500,6 +6558,9 @@
     }
     .sm\:pt-32 {
       padding-top: calc(var(--spacing) * 32);
+    }
+    .sm\:pb-0 {
+      padding-bottom: 0px;
     }
     .sm\:pb-3\.5 {
       padding-bottom: calc(var(--spacing) * 3.5);
@@ -6713,9 +6774,6 @@
     }
     .lg\:hidden {
       display: none;
-    }
-    .lg\:inline-flex {
-      display: inline-flex;
     }
     .lg\:h-\[52vh\] {
       height: 52vh;
@@ -8810,6 +8868,12 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+}
+@media (pointer: coarse) {
+  button, a, input, select, textarea, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 @keyframes float-slow {
   0%, 100% {

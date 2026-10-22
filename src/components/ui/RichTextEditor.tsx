@@ -433,9 +433,9 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
       `}</style>
 
       {/* Editor Main Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-slate-100 dark:border-border bg-slate-50/70 dark:bg-muted/50 px-2.5 py-1.5 text-slate-700 dark:text-slate-300">
+      <div className="flex items-center justify-between gap-1.5 border-b border-slate-100 dark:border-border bg-slate-50/70 dark:bg-muted/50 px-2 sm:px-2.5 py-1.5 text-slate-700 dark:text-slate-300 overflow-x-auto no-scrollbar">
         {/* Left Side: Standard Formatting Controls */}
-        <div className="flex flex-wrap items-center gap-0.5">
+        <div className="flex items-center gap-0.5 shrink-0">
           <Button
             type="button"
             variant="ghost"
@@ -560,7 +560,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = ({
         </div>
 
         {/* Right Side: Inline Grammar Status & AI Suggestions Trigger */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0 ml-auto pl-2">
           {/* Grammar Status Indicator with 1-Click Auto-Fix */}
           <div className="flex items-center gap-1.5">
             {activeIssues.length === 0 ? (

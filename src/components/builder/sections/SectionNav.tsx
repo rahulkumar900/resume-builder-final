@@ -361,7 +361,7 @@ export const SectionNav: React.FC<SectionNavProps> = ({
 
         {/* Quick-Jump Dropdown Menu */}
         {isDropdownOpen && (
-          <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 sm:w-80 bg-white dark:bg-[#161614] rounded-2xl shadow-2xl border border-slate-200/90 dark:border-white/[0.08] overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
+          <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[calc(100vw-24px)] sm:w-80 max-w-sm bg-white dark:bg-[#161614] rounded-2xl shadow-2xl border border-slate-200/90 dark:border-white/[0.08] overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
             {/* Header: Progress Summary */}
             <div className="p-3 bg-slate-50/70 dark:bg-[#1a1a18] border-b border-slate-100 dark:border-white/[0.06]">
               <div className="flex items-center justify-between text-xs mb-1.5">

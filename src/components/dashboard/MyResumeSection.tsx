@@ -171,7 +171,7 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
       {/* Grid of Resumes */}
       {filteredResumes.length === 0 ? (
         isSyncingCloud && resumes.length === 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {[1, 2, 3, 4, 5].map((n) => (
               <div
                 key={n}
@@ -224,7 +224,7 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
           </div>
         )
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {filteredResumes.map((resume) => {
             const atsScore = atsScores.get(resume.id) ?? 0;
             const badge = getAtsBadge(atsScore);

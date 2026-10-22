@@ -435,8 +435,8 @@ export function TechStudioLanding() {
                   </span>
                 </div>
 
-                {/* Center URL / State Bar */}
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white dark:bg-black/60 border border-slate-200 dark:border-teal-500/40 text-[11px] text-slate-700 dark:text-teal-100 shadow-2xs">
+                {/* Center URL / State Bar (Visible on tablets and desktop) */}
+                <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white dark:bg-black/60 border border-slate-200 dark:border-teal-500/40 text-[11px] text-slate-700 dark:text-teal-100 shadow-2xs">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-teal-400 shadow-[0_0_8px_#10b981]" />
@@ -586,8 +586,8 @@ export function TechStudioLanding() {
             </p>
           </div>
 
-          {/* Playground Mode Tabs */}
-          <div className="flex items-center justify-center flex-wrap gap-2 mb-8">
+          {/* Playground Mode Tabs - Horizontal scroll on mobile for native app feel */}
+          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2 mb-8 pb-2 sm:pb-0 px-2 sm:px-0 select-none">
             {[
               { id: 'design', label: '1. Design Studio Morpher', icon: Palette },
               { id: 'tailor', label: '2. AI Job Keyword Matcher', icon: Target },
@@ -602,7 +602,7 @@ export function TechStudioLanding() {
                   key={tab.id}
                   type="button"
                   onClick={() => setActivePlaygroundTab(tab.id as typeof activePlaygroundTab)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all shrink-0 cursor-pointer ${
                     isActive
                       ? 'bg-emerald-600 text-white shadow-md font-semibold'
                       : 'bg-card hover:bg-accent text-slate-700 dark:text-slate-300 border border-border/80'

@@ -298,6 +298,14 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Mobile Touch & Tap UX Improvements */
+@media (pointer: coarse) {
+  button, a, input, select, textarea, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 /* RxResume Inspired Fluid Animations & Interactions */
 @keyframes float-slow {
   0%, 100% {

@@ -48,17 +48,17 @@ export const FixedBottomNav: React.FC<FixedBottomNavProps> = ({
   const isLastContentStep = !isReview && currentStepIndex === stepKeys.length - 1;
 
   return (
-    <div className="border-t border-slate-200 dark:border-border bg-white/95 dark:bg-card/95 backdrop-blur-xs px-3 sm:px-8 lg:px-12 py-3 flex items-center justify-between gap-2 sm:gap-4 shrink-0 shadow-xs z-20">
+    <div className="border-t border-slate-200 dark:border-border bg-white/95 dark:bg-card/95 backdrop-blur-xs px-3 sm:px-8 lg:px-12 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center justify-between gap-2 sm:gap-4 shrink-0 shadow-xs z-20">
       {prevStep ? (
         <Button
           type="button"
           variant="outline"
           size="default"
           onClick={onPrev}
-          className="text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white gap-1 sm:gap-2 font-medium shadow-2xs px-2.5 sm:px-4 shrink-0"
+          className="text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white gap-1 sm:gap-2 font-medium shadow-2xs px-2.5 sm:px-4 shrink-0 min-h-[42px] active:scale-[0.98] cursor-pointer"
         >
           <ChevronLeft className="w-4 h-4" />
-          <span className="truncate max-w-[80px] sm:max-w-none">{prevStep.label}</span>
+          <span className="truncate max-w-[75px] sm:max-w-none text-xs sm:text-sm">{prevStep.label}</span>
         </Button>
       ) : (
         <div />
@@ -72,7 +72,7 @@ export const FixedBottomNav: React.FC<FixedBottomNavProps> = ({
               variant="outline"
               size="default"
               onClick={onShare}
-              className="gap-1.5 font-semibold text-slate-700 dark:text-slate-200 border-slate-300 dark:border-border shadow-xs px-3 sm:px-4"
+              className="gap-1.5 font-semibold text-slate-700 dark:text-slate-200 border-slate-300 dark:border-border shadow-xs px-3 sm:px-4 min-h-[42px] active:scale-[0.98] cursor-pointer"
             >
               <Share2 className="w-4 h-4 text-purple-600 dark:text-purple-400" />
               <span>Share</span>
@@ -86,7 +86,7 @@ export const FixedBottomNav: React.FC<FixedBottomNavProps> = ({
               size="default"
               onClick={onDownloadPdf}
               disabled={isDownloading}
-              className="bg-emerald-700 hover:bg-emerald-800 text-white gap-1.5 font-bold shadow-xs px-3 sm:px-4 cursor-pointer"
+              className="bg-emerald-700 hover:bg-emerald-800 text-white gap-1.5 font-bold shadow-xs px-3 sm:px-4 min-h-[42px] active:scale-[0.98] cursor-pointer"
             >
               {isDownloading ? (
                 <>
@@ -108,10 +108,10 @@ export const FixedBottomNav: React.FC<FixedBottomNavProps> = ({
           variant="default"
           size="default"
           onClick={onNext}
-          className="bg-emerald-700 hover:bg-emerald-800 text-white gap-1 sm:gap-2 font-semibold shadow-xs px-3 sm:px-4 shrink-0 cursor-pointer"
+          className="bg-emerald-700 hover:bg-emerald-800 text-white gap-1 sm:gap-2 font-semibold shadow-xs px-3.5 sm:px-5 shrink-0 min-h-[42px] active:scale-[0.98] cursor-pointer"
         >
           <span className="hidden sm:inline">Continue to </span>
-          <span className="truncate max-w-[100px] sm:max-w-none">{nextStep.label}</span>
+          <span className="truncate max-w-[90px] sm:max-w-none text-xs sm:text-sm">{nextStep.label}</span>
           <ChevronRight className="w-4 h-4" />
         </Button>
       ) : (
@@ -120,7 +120,7 @@ export const FixedBottomNav: React.FC<FixedBottomNavProps> = ({
           variant="default"
           size="default"
           onClick={onGoToReview}
-          className="bg-emerald-700 hover:bg-emerald-800 text-white gap-1.5 sm:gap-2 font-bold shadow-md shadow-emerald-700/20 px-3 sm:px-4 shrink-0 cursor-pointer"
+          className="bg-emerald-700 hover:bg-emerald-800 text-white gap-1.5 sm:gap-2 font-bold shadow-md shadow-emerald-700/20 px-4 sm:px-5 shrink-0 min-h-[42px] active:scale-[0.98] cursor-pointer"
         >
           <Sparkles className="w-4 h-4 text-emerald-200" />
           <span>Review</span>

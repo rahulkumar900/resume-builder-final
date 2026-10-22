@@ -249,8 +249,8 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         canRedo={canRedo}
       />
 
-      {/* Mobile Segmented Tab Switcher (Write / Design / Check / Preview) */}
-      <div className="md:hidden flex items-center justify-between px-3 py-2 bg-white dark:bg-card border-b border-slate-200 dark:border-border">
+      {/* Mobile & Tablet Segmented Tab Switcher (Write / Design / Check / Preview) */}
+      <div className="lg:hidden flex items-center justify-between px-3 py-2 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0 z-30">
         <div className="flex bg-slate-100 dark:bg-muted p-1 rounded-xl text-xs font-semibold w-full gap-1">
           <button
             type="button"
@@ -259,7 +259,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('content');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
               activeTab === 'edit' && editorMode === 'content' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -271,7 +271,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           <button
             type="button"
             onClick={handleMobileDesignClick}
-            className={`flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
               isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -287,7 +287,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('check');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
               activeTab === 'edit' && editorMode === 'check' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -302,7 +302,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setIsMobileDesignSheetOpen(false);
               handleTabSwitch('preview');
             }}
-            className={`flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg transition-all cursor-pointer ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg transition-all cursor-pointer min-h-[38px] active:scale-[0.98] ${
               activeTab === 'preview' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
