@@ -1369,8 +1369,8 @@
   .max-w-\[220px\] {
     max-width: 220px;
   }
-  .max-w-\[240px\] {
-    max-width: 240px;
+  .max-w-\[260px\] {
+    max-width: 260px;
   }
   .max-w-\[320px\] {
     max-width: 320px;
@@ -4801,9 +4801,6 @@
   .opacity-80 {
     opacity: 80%;
   }
-  .opacity-85 {
-    opacity: 85%;
-  }
   .opacity-90 {
     opacity: 90%;
   }
@@ -6534,6 +6531,9 @@
     }
     .sm\:py-2\.5 {
       padding-block: calc(var(--spacing) * 2.5);
+    }
+    .sm\:py-3 {
+      padding-block: calc(var(--spacing) * 3);
     }
     .sm\:py-6 {
       padding-block: calc(var(--spacing) * 6);

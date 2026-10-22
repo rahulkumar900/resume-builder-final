@@ -366,7 +366,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           {/* Scrollable Canvas Viewport */}
           <div
             className={`flex-1 w-full h-full overflow-hidden flex items-stretch transition-all duration-200 ${
-              isMobileDesignSheetOpen ? 'pb-[200px]' : ''
+              isMobileDesignSheetOpen ? 'pb-[220px]' : ''
             }`}
           >
             {resume && (
@@ -392,7 +392,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
 
       {/* Mobile Customization Bottom Sheet (Keeps live A4 preview visible on top while tweaking) */}
       {isMobileDesignSheetOpen && resume && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 h-[195px] max-h-[210px] flex flex-col bg-white dark:bg-[#161614] rounded-t-3xl shadow-[0_-12px_35px_rgba(0,0,0,0.28)] border-t border-slate-200/90 dark:border-white/[0.1] overflow-hidden animate-in slide-in-from-bottom duration-200">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 h-[215px] max-h-[38vh] flex flex-col bg-white dark:bg-[#161614] rounded-t-2xl sm:rounded-t-3xl shadow-[0_-12px_35px_rgba(0,0,0,0.28)] border-t border-slate-200/90 dark:border-white/[0.1] overflow-hidden animate-in slide-in-from-bottom duration-200 pb-[env(safe-area-inset-bottom,0px)]">
           {/* Top Sheet Drag/Indicator Handle */}
           <div
             className="w-full flex items-center justify-center pt-2 pb-1 bg-white dark:bg-[#161614] shrink-0 cursor-pointer"
