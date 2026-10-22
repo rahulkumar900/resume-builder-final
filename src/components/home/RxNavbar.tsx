@@ -119,38 +119,26 @@ export function RxNavbar() {
           </nav>
 
           {/* Right: Quick Action CTAs & Auth */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Direct Link to ATS Scanner - visible on large screens */}
-            <Link
-              href="/ats-checker"
-              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium text-slate-700 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs hover:border-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-400 transition-all shrink-0"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span>ATS Score Test</span>
-            </Link>
-
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             {/* Desktop Auth & CTAs */}
             {!user ? (
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => openAuthModal('signin')}
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] border border-slate-200/80 dark:border-slate-700/80 transition-all cursor-pointer"
-                  title="Sign in to your account and sync with cloud"
-                >
-                  <LogIn className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Sign In</span>
-                </button>
-                <Link
-                  href="/create"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full text-xs font-semibold text-white bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer shrink-0"
-                >
-                  <span>Build Resume Free</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
+              <button
+                type="button"
+                onClick={() => openAuthModal('signin')}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.08em] font-semibold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs transition-all cursor-pointer"
+                title="Sign in to your account"
+              >
+                <LogIn className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>Sign In</span>
+              </button>
             ) : (
               <div className="flex items-center gap-2 shrink-0">
+                <Link
+                  href="/dashboard"
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.08em] font-medium text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs transition-all"
+                >
+                  <span>Dashboard</span>
+                </Link>
                 <UserMenu />
               </div>
             )}
