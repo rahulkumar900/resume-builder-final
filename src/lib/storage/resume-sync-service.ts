@@ -104,6 +104,33 @@ export async function syncAndFetchUserResumes(userId: string): Promise<ResumeDat
 }
 
 /**
+ * One-time migration of any guest drafts created in local storage into the user's
+ * Supabase account when they sign in.
+ */
+export async function migrateGuestResumesToAccount(userId: string): Promise<void> {
+  if (!userId) return;
+  try {
+    const localResumes = getStoredResumes();
+    if (!localResumes || localResumes.length === 0) return;
+
+    for (const draft of localResumes) {
+      if (!draft || !draft.id || isDummyResume(draft)) continue;
+      // If this was an unsynced guest resume
+      if (!draft.userId || draft.userId !== userId) {
+        const cloudResume: ResumeData = {
+          ...draft,
+          userId,
+          syncedToCloud: true,
+        };
+        await saveResumeToDatabase(cloudResume, userId);
+      }
+    }
+  } catch (err) {
+    console.warn('[Migration] Error migrating guest resumes to database:', err);
+  }
+}
+
+/**
  * Backwards-compatible wrapper for existing callers.
  */
 export async function syncLocalResumesToDatabase(userId: string): Promise<void> {

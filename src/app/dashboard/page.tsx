@@ -11,11 +11,13 @@ import { ScoreResumeModal } from '@/components/dashboard/ScoreResumeModal';
 import { JobTailorModal } from '@/components/builder/JobTailorModal';
 import {
   getStoredResumes,
-  saveStoredResumes,
   saveResume,
   deleteResume,
   duplicateResume,
-  syncAndFetchUserResumes,
+  getAllResumesFromDatabase,
+  saveResumeToDatabase,
+  deleteResumeFromDatabase,
+  duplicateResumeInDatabase,
 } from '@/lib/storage';
 import { ResumeData, TemplateId } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
@@ -35,22 +37,24 @@ export default function DashboardPage() {
   const [loadingPdfId, setLoadingPdfId] = useState<string | null>(null);
 
   useEffect(() => {
-    // 1. Always load local resumes immediately so user sees their work without delay
-    setResumes(getStoredResumes());
+    if (isLoading) return;
 
     if (user?.id) {
+      // Authenticated: Fetch directly from Supabase PostgreSQL database
       setIsSyncingCloud(true);
-      syncAndFetchUserResumes(user.id)
-        .then((consolidated) => {
-          setResumes(consolidated);
+      getAllResumesFromDatabase(user.id)
+        .then((dbResumes) => {
+          setResumes(dbResumes);
         })
         .catch((err) => {
-          console.error('[Dashboard] Error synchronizing cloud resumes:', err);
+          console.error('[Dashboard] Error fetching resumes from database:', err);
         })
         .finally(() => {
           setIsSyncingCloud(false);
         });
     } else {
+      // Guest: Fetch local drafts from browser storage
+      setResumes(getStoredResumes());
       setIsSyncingCloud(false);
     }
   }, [user?.id, isLoading]);
@@ -59,8 +63,8 @@ export default function DashboardPage() {
     if (!user?.id) return;
     setIsSyncingCloud(true);
     try {
-      const refreshed = await syncAndFetchUserResumes(user.id);
-      setResumes(refreshed);
+      const dbResumes = await getAllResumesFromDatabase(user.id);
+      setResumes(dbResumes);
     } catch (err) {
       console.error('[Dashboard] Manual refresh failed:', err);
     } finally {
@@ -82,17 +86,32 @@ export default function DashboardPage() {
     router.push(`/create?template=${templateId}`);
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this resume?')) {
-      const updated = deleteResume(id);
-      setResumes([...updated]);
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this resume?')) return;
+    
+    // Instant optimistic UI removal
+    setResumes((prev) => prev.filter((r) => r.id !== id));
+
+    if (user?.id) {
+      await deleteResumeFromDatabase(id);
+    } else {
+      deleteResume(id);
     }
   };
 
-  const handleDuplicate = (id: string) => {
-    const duplicated = duplicateResume(id);
-    if (duplicated) {
-      setResumes(getStoredResumes());
+  const handleDuplicate = async (id: string) => {
+    if (user?.id) {
+      setIsSyncingCloud(true);
+      const duplicated = await duplicateResumeInDatabase(id, user.id);
+      if (duplicated) {
+        setResumes((prev) => [duplicated, ...prev]);
+      }
+      setIsSyncingCloud(false);
+    } else {
+      const duplicated = duplicateResume(id);
+      if (duplicated) {
+        setResumes(getStoredResumes());
+      }
     }
   };
 
@@ -114,10 +133,14 @@ export default function DashboardPage() {
     setIsJobTailorModalOpen(true);
   };
 
-  const handleApplyTailoredResumeFromDashboard = (tailoredResume: ResumeData, isNewClone: boolean) => {
-    saveResume(tailoredResume);
-    const updated = getStoredResumes();
-    setResumes([...updated]);
+  const handleApplyTailoredResumeFromDashboard = async (tailoredResume: ResumeData, isNewClone: boolean) => {
+    if (user?.id) {
+      await saveResumeToDatabase(tailoredResume, user.id);
+      setResumes((prev) => [tailoredResume, ...prev.filter((r) => r.id !== tailoredResume.id)]);
+    } else {
+      saveResume(tailoredResume);
+      setResumes(getStoredResumes());
+    }
     router.push(`/builder/${tailoredResume.id}`);
   };
 

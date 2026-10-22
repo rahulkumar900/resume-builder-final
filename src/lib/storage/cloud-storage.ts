@@ -207,3 +207,41 @@ export async function deleteResumeFromDatabase(id: string): Promise<boolean> {
     return false;
   }
 }
+
+/**
+ * Duplicates a resume directly in the Supabase PostgreSQL database.
+ * Creates an exact copy with a new ID, title suffixed with '(Copy)', and sets current timestamp.
+ *
+ * @param id - The original resume ID to duplicate.
+ * @param userId - The user ID owning the duplicated resume.
+ * @returns Promise resolving to the newly created ResumeData or null.
+ */
+export async function duplicateResumeInDatabase(
+  id: string,
+  userId: string
+): Promise<ResumeData | null> {
+  if (!id || !userId) return null;
+  try {
+    const existing = await getResumeFromDatabase(id);
+    if (!existing) return null;
+
+    const newId = `resume-${Date.now()}`;
+    const duplicated: ResumeData = {
+      ...JSON.parse(JSON.stringify(existing)),
+      id: newId,
+      title: `${existing.title || 'Resume'} (Copy)`,
+      userId,
+      status: 'draft',
+      updatedAt: 'Just now',
+      syncedToCloud: true,
+    };
+
+    const saved = await saveResumeToDatabase(duplicated, userId);
+    if (!saved) return null;
+
+    return duplicated;
+  } catch (err) {
+    console.error('[Supabase] Exception in duplicateResumeInDatabase:', err);
+    return null;
+  }
+}

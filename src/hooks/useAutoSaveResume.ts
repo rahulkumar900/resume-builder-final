@@ -6,7 +6,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { ResumeData } from '@/types/resume';
-import { saveResume } from '@/lib/storage';
+import { saveResume, saveResumeToDatabase } from '@/lib/storage';
 import { getTemplateDefaults, migrateSectionOrder } from '@/lib/templates';
 
 export type CloudSaveStatus = 'saved' | 'saving' | 'offline';
@@ -33,7 +33,8 @@ const MAX_HISTORY = 30;
  */
 export function useAutoSaveResume(
   initialData: ResumeData | null = null,
-  debounceMs: number = 400
+  debounceMs: number = 400,
+  userId?: string
 ): UseAutoSaveResumeReturn {
   const [resume, setResume] = useState<ResumeData | null>(initialData);
   const [cloudStatus, setCloudStatus] = useState<CloudSaveStatus>('saved');
@@ -51,16 +52,21 @@ export function useAutoSaveResume(
   }, [resume]);
 
   // Flush any pending debounced save immediately
-  const flushSave = useCallback(() => {
+  const flushSave = useCallback(async () => {
     if (saveTimeoutRef.current) {
       clearTimeout(saveTimeoutRef.current);
       saveTimeoutRef.current = null;
       if (latestResumeRef.current) {
-        saveResume(latestResumeRef.current);
-        setCloudStatus('saved');
+        if (userId) {
+          const success = await saveResumeToDatabase(latestResumeRef.current, userId);
+          setCloudStatus(success ? 'saved' : 'offline');
+        } else {
+          saveResume(latestResumeRef.current);
+          setCloudStatus('saved');
+        }
       }
     }
-  }, []);
+  }, [userId]);
 
   // Flush save on component unmount and window beforeunload
   useEffect(() => {
@@ -127,13 +133,18 @@ export function useAutoSaveResume(
     if (saveTimeoutRef.current) {
       clearTimeout(saveTimeoutRef.current);
     }
-    saveTimeoutRef.current = setTimeout(() => {
+    saveTimeoutRef.current = setTimeout(async () => {
       if (latestResumeRef.current) {
-        saveResume(latestResumeRef.current);
-        setCloudStatus('saved');
+        if (userId) {
+          const success = await saveResumeToDatabase(latestResumeRef.current, userId);
+          setCloudStatus(success ? 'saved' : 'offline');
+        } else {
+          saveResume(latestResumeRef.current);
+          setCloudStatus('saved');
+        }
       }
     }, debounceMs);
-  }, [debounceMs]);
+  }, [debounceMs, userId]);
 
   // Undo implementation
   const undo = useCallback(() => {
@@ -143,10 +154,14 @@ export function useAutoSaveResume(
 
     setResume(previous);
     latestResumeRef.current = previous;
-    saveResume(previous);
+    if (userId) {
+      saveResumeToDatabase(previous, userId).catch(() => {});
+    } else {
+      saveResume(previous);
+    }
     setCloudStatus('saved');
     setHistoryVersion((v) => v + 1);
-  }, []);
+  }, [userId]);
 
   // Redo implementation
   const redo = useCallback(() => {
@@ -156,10 +171,14 @@ export function useAutoSaveResume(
 
     setResume(next);
     latestResumeRef.current = next;
-    saveResume(next);
+    if (userId) {
+      saveResumeToDatabase(next, userId).catch(() => {});
+    } else {
+      saveResume(next);
+    }
     setCloudStatus('saved');
     setHistoryVersion((v) => v + 1);
-  }, []);
+  }, [userId]);
 
   // Keyboard shortcut listener for Ctrl+Z / Cmd+Z and Ctrl+Y / Cmd+Shift+Z
   useEffect(() => {

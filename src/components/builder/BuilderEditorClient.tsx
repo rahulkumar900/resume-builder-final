@@ -8,7 +8,13 @@ import { A4PreviewCanvas } from '@/components/builder/A4PreviewCanvas';
 import { ScoreResumeModal } from '@/components/dashboard/ScoreResumeModal';
 import { JobTailorModal } from '@/components/builder/JobTailorModal';
 import { BuilderSkeleton } from '@/components/builder/BuilderSkeleton';
-import { getResumeById, getResumeByIdAsync, saveResume, getStoredResumes } from '@/lib/storage';
+import {
+  getResumeById,
+  getResumeByIdAsync,
+  getResumeFromDatabase,
+  saveResume,
+  getStoredResumes,
+} from '@/lib/storage';
 import { TEMPLATES } from '@/lib/templates';
 import { ResumeData } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
@@ -44,7 +50,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     redo,
     canUndo,
     canRedo,
-  } = useAutoSaveResume(null);
+  } = useAutoSaveResume(null, 400, user?.id);
   const { isDownloading, handleDownloadPdf, handlePrint } = useResumePdfExport({
     resume,
     user,
@@ -82,29 +88,24 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
   };
 
   useEffect(() => {
-    const decodedId = decodeURIComponent(id);
-    const data = getResumeById(decodedId) || getResumeById(id);
-    if (data) {
-      setResume(data);
-      setIsResolvingResume(false);
-      setNotFoundError(false);
-    } else {
-      // If auth session is still being loaded by Supabase, wait before attempting cloud query
-      if (authLoading) return;
+    if (authLoading) return;
 
+    const decodedId = decodeURIComponent(id);
+
+    if (user?.id) {
+      // Authenticated: Fetch directly from Supabase PostgreSQL database
       setIsResolvingResume(true);
-      getResumeByIdAsync(decodedId)
-        .then((asyncData) => {
-          if (asyncData) {
-            setResume(asyncData);
+      getResumeFromDatabase(decodedId)
+        .then((dbResume) => {
+          if (dbResume) {
+            setResume(dbResume);
             setIsResolvingResume(false);
             setNotFoundError(false);
           } else {
-            // Fallback: check all stored resumes in case of minor ID format differences
-            const all = getStoredResumes();
-            const fallback = all.find((r) => r.id === decodedId || r.id === id);
-            if (fallback) {
-              setResume(fallback);
+            // Check fallback for newly cloned local drafts or alternate id format
+            const local = getResumeById(decodedId) || getResumeById(id);
+            if (local) {
+              setResume(local);
               setIsResolvingResume(false);
               setNotFoundError(false);
             } else {
@@ -117,9 +118,19 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           setIsResolvingResume(false);
           setNotFoundError(true);
         });
+    } else {
+      // Guest: Fetch from browser local storage
+      const local = getResumeById(decodedId) || getResumeById(id);
+      if (local) {
+        setResume(local);
+        setIsResolvingResume(false);
+        setNotFoundError(false);
+      } else {
+        setIsResolvingResume(false);
+        setNotFoundError(true);
+      }
     }
-    setAllResumes(getStoredResumes());
-  }, [id, authLoading, router, setResume]);
+  }, [id, user?.id, authLoading, router, setResume]);
 
   // If user navigated with a pending JD from landing page demo, auto-open JobTailorModal
   useEffect(() => {

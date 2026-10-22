@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabaseClient';
-import { syncLocalResumesToDatabase, clearLocalResumesCache } from '@/lib/storage';
+import { migrateGuestResumesToAccount, clearLocalResumesCache } from '@/lib/storage';
 
 export interface UserProfile {
   id?: string;
@@ -132,7 +132,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         ).catch(() => {});
 
         if (event === 'SIGNED_IN') {
-          syncLocalResumesToDatabase(currentSession.user.id).catch(console.error);
+          migrateGuestResumesToAccount(currentSession.user.id).catch(console.error);
         }
       } else {
         setProfile(null);
