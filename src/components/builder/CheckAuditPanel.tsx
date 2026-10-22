@@ -108,88 +108,70 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
 
   return (
     <div className="flex flex-col h-full bg-slate-50/70 dark:bg-background border-r border-slate-200 dark:border-border select-none overflow-hidden">
-      {/* 1. Panel Header with ATS Score Card */}
-      <div className="p-4 sm:p-5 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">
-              <Award className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-base font-bold text-slate-900 dark:text-foreground leading-tight">
-                  Resume Check &amp; ATS Score
-                </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300">
-                  {totalFixes} {totalFixes === 1 ? 'Issue' : 'Issues'}
-                </span>
-              </div>
-              <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5">
-                Real-time applicant tracking system scan &amp; error analysis
-              </p>
-            </div>
-          </div>
+      {/* 1. Sleek Minimal Panel Header with Integrated ATS Score */}
+      <div className="p-3 sm:px-4 sm:py-3 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0 space-y-2.5">
+        <div className="flex items-center justify-between gap-2">
+          {/* Left: Title + Minimal Score Pill */}
+          <div className="flex items-center gap-2 min-w-0">
+            <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-foreground tracking-tight shrink-0">
+              Resume Check
+            </h2>
 
-          {onClose && (
-            <button
-              type="button"
-              onClick={onClose}
-              className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-accent rounded-lg transition-colors cursor-pointer"
-              title="Close Panel"
+            {/* Compact ATS Score Pill */}
+            <div
+              className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold border transition-colors ${
+                auditResult.overallScore >= 80
+                  ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60'
+                  : auditResult.overallScore >= 65
+                  ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/60'
+                  : 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800/60'
+              }`}
             >
-              <X className="w-4 h-4" />
-            </button>
-          )}
-        </div>
+              <span className="font-extrabold text-xs">{auditResult.overallScore}</span>
+              <span className="text-[10px] opacity-60 font-medium">/100</span>
+              <span className="text-[10px] font-semibold opacity-90">
+                &bull; Grade {auditResult.tier.grade}
+              </span>
+            </div>
+          </div>
 
-        {/* ATS Score Overview Banner */}
-        <div className="p-4 rounded-xl border border-slate-200/80 dark:border-border bg-slate-50/60 dark:bg-muted/30 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5">
-            <div className="relative flex items-center justify-center">
-              <div
-                className={`w-14 h-14 rounded-2xl flex flex-col items-center justify-center font-black shadow-xs ${
-                  auditResult.overallScore >= 80
-                    ? 'bg-emerald-600 text-white'
-                    : auditResult.overallScore >= 65
-                    ? 'bg-amber-500 text-white'
-                    : 'bg-rose-500 text-white'
-                }`}
+          {/* Right: Issues count status & Close button */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            {criticalIssues.length > 0 ? (
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-rose-100 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/40">
+                {criticalIssues.length} Critical
+              </span>
+            ) : totalFixes > 0 ? (
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/40">
+                {totalFixes} {totalFixes === 1 ? 'Issue' : 'Issues'}
+              </span>
+            ) : (
+              <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40">
+                All Passed
+              </span>
+            )}
+
+            {onClose && (
+              <button
+                type="button"
+                onClick={onClose}
+                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-accent rounded-md transition-colors cursor-pointer"
+                title="Close Panel"
               >
-                <span className="text-lg leading-none">{auditResult.overallScore}</span>
-                <span className="text-[9px] uppercase tracking-wider opacity-85 font-bold">Score</span>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-bold text-slate-900 dark:text-foreground">
-                  Grade {auditResult.tier.grade} &bull; {auditResult.tier.label.split('—')[0].trim()}
-                </span>
-              </div>
-              <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5 max-w-[240px] line-clamp-1">
-                {auditResult.tier.description}
-              </p>
-            </div>
-          </div>
-
-          <div className="text-right shrink-0">
-            <div className="text-xs font-bold text-slate-700 dark:text-slate-300">
-              {criticalIssues.length} Critical
-            </div>
-            <div className="text-[11px] text-slate-500 dark:text-muted-foreground">
-              {recommendedIssues.length} Recommended
-            </div>
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Tab Switcher: Issues / Keyword Scan / Health Radar */}
-        <div className="flex p-1 mt-4 bg-slate-100 dark:bg-muted rounded-xl gap-1 text-xs font-semibold">
+        {/* Tab Switcher: Issues / Job Match / Categories */}
+        <div className="flex p-0.5 bg-slate-100 dark:bg-muted rounded-lg gap-0.5 text-xs font-semibold">
           <button
             type="button"
             onClick={() => setActiveTab('issues')}
-            className={`flex-1 py-1.5 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+            className={`flex-1 py-1 rounded-md transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'issues'
-                ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
+                ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -199,9 +181,9 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('keywords')}
-            className={`flex-1 py-1.5 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+            className={`flex-1 py-1 rounded-md transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'keywords'
-                ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
+                ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -211,9 +193,9 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('overview')}
-            className={`flex-1 py-1.5 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+            className={`flex-1 py-1 rounded-md transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
               activeTab === 'overview'
-                ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
+                ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -224,16 +206,16 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
       </div>
 
       {/* 2. Scrollable Content Body */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3">
         {/* TAB 1: Issues List */}
         {activeTab === 'issues' && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Filter Pills */}
             <div className="flex items-center gap-1.5 flex-wrap">
               <button
                 type="button"
                 onClick={() => setFilter('all')}
-                className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
+                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border transition-all cursor-pointer ${
                   filter === 'all'
                     ? 'bg-slate-900 text-white border-slate-900 dark:bg-foreground dark:text-background'
                     : 'bg-white dark:bg-card border-slate-200 dark:border-border text-slate-600 dark:text-muted-foreground hover:bg-slate-100 dark:hover:bg-accent'
@@ -244,7 +226,7 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
               <button
                 type="button"
                 onClick={() => setFilter('critical')}
-                className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1 ${
+                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border transition-all cursor-pointer flex items-center gap-1 ${
                   filter === 'critical'
                     ? 'bg-rose-600 text-white border-rose-600'
                     : 'bg-white dark:bg-card border-slate-200 dark:border-border text-slate-600 dark:text-muted-foreground hover:bg-slate-100 dark:hover:bg-accent'
@@ -256,7 +238,7 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
               <button
                 type="button"
                 onClick={() => setFilter('recommended')}
-                className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1 ${
+                className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border transition-all cursor-pointer flex items-center gap-1 ${
                   filter === 'recommended'
                     ? 'bg-amber-600 text-white border-amber-600'
                     : 'bg-white dark:bg-card border-slate-200 dark:border-border text-slate-600 dark:text-muted-foreground hover:bg-slate-100 dark:hover:bg-accent'
@@ -269,7 +251,7 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
                 <button
                   type="button"
                   onClick={() => setFilter('duplicates')}
-                  className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
+                  className={`px-2 py-0.5 rounded-md text-[11px] font-semibold border transition-all cursor-pointer ${
                     filter === 'duplicates'
                       ? 'bg-purple-600 text-white border-purple-600'
                       : 'bg-white dark:bg-card border-slate-200 dark:border-border text-slate-600 dark:text-muted-foreground hover:bg-slate-100 dark:hover:bg-accent'
@@ -441,6 +423,28 @@ export const CheckAuditPanel: React.FC<CheckAuditPanelProps> = ({
         {/* TAB 3: Category Breakdown */}
         {activeTab === 'overview' && (
           <div className="space-y-3">
+            {/* ATS Score & Tier Summary Card */}
+            <div className="p-3.5 rounded-xl border border-slate-200/80 dark:border-border bg-white dark:bg-card shadow-2xs flex items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-slate-900 dark:text-foreground">
+                    Grade {auditResult.tier.grade} &bull; {auditResult.tier.label.split('—')[0].trim()}
+                  </span>
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-muted-foreground mt-0.5 max-w-[260px] leading-relaxed">
+                  {auditResult.tier.description}
+                </p>
+              </div>
+              <div className="text-right shrink-0">
+                <div className="text-sm font-black text-slate-900 dark:text-foreground">
+                  {auditResult.overallScore}/100
+                </div>
+                <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-muted-foreground">
+                  Overall Score
+                </div>
+              </div>
+            </div>
+
             {Object.entries(auditResult.categories).map(([key, cat]) => (
               <div
                 key={key}
