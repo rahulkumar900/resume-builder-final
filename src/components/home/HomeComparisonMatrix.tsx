@@ -75,7 +75,7 @@ export function HomeComparisonMatrix() {
               </div>
               <div className="min-w-0">
                 <div className="text-[10px] font-mono uppercase tracking-wider font-bold text-emerald-800 dark:text-emerald-400">
-                  ResumeBuilder
+                  ResumeBabu
                 </div>
                 <div className="text-xs font-semibold text-emerald-950 dark:text-emerald-200">
                   {row.us}
@@ -110,7 +110,7 @@ export function HomeComparisonMatrix() {
                   Feature / Capability
                 </th>
                 <th className="py-4 px-6 font-serif text-base sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.04]">
-                  ResumeBuilder
+                  ResumeBabu
                 </th>
                 <th className="py-4 px-6 font-mono text-xs uppercase tracking-wider text-slate-400 font-semibold">
                   Legacy Resume Apps

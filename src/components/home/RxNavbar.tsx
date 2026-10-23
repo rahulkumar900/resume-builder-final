@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   ArrowRight,
@@ -80,12 +81,17 @@ export function RxNavbar() {
           {/* Left: Brand Monogram & Name */}
           <div className="flex items-center gap-3 shrink-0 min-w-0">
             <Link href="/" className="flex items-center gap-2 group shrink-0">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-700 text-white font-serif font-bold text-lg shadow-xs group-hover:bg-emerald-800 transition-colors shrink-0">
-                R
-              </span>
+              <Image
+                src="/logo.png"
+                alt="ResumeBabu"
+                width={34}
+                height={34}
+                className="w-8.5 h-8.5 rounded-lg object-contain shadow-xs shrink-0 transition-transform group-hover:scale-105"
+                priority
+              />
               <div className="flex flex-col min-w-0">
                 <span className="font-serif font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white leading-none truncate">
-                  Resume<span className="text-emerald-700 dark:text-emerald-400">Builder</span>
+                  Resume<span className="text-emerald-700 dark:text-emerald-400">Babu</span>
                 </span>
                 <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.14em] sm:tracking-[0.16em] font-mono text-slate-400 dark:text-slate-500 font-semibold mt-0.5">
                   AI Career Studio

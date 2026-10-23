@@ -1,11 +1,11 @@
 {
-  "name": "ResumeBuilder - Free AI Resume Builder & ATS Checker",
-  "short_name": "ResumeBuilder",
+  "name": "ResumeBabu - Free AI Resume Builder & ATS Checker",
+  "short_name": "ResumeBabu",
   "description": "Build ATS-compliant resumes tailored to any job description. 100% free with vector PDF export.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#100F0C",
-  "theme_color": "#047857",
+  "theme_color": "#0d6c49",
   "icons": [
     {
       "src": "/favicon-16x16.png",

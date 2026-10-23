@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -31,7 +31,7 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
   const shareOnTwitter = () => {
     if (typeof window !== 'undefined') {
       const url = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent(`Read "${post.title}" on ResumeBuilder:`);
+      const text = encodeURIComponent(`Read "${post.title}" on ResumeBabu:`);
       window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
     }
   };

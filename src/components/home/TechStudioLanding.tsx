@@ -246,8 +246,8 @@ export function TechStudioLanding() {
 
   const faqs = [
     {
-      q: 'Is ResumeBuilder really 100% free with no watermarks?',
-      a: 'Yes, completely. Unlike other resume builders that let you build a resume and then demand a $19–$34/mo subscription at the download button, ResumeBuilder generates clean, full-resolution vector PDFs with zero watermarks, zero paywalls, and zero hidden credit card prompts.',
+      q: 'Is ResumeBabu really 100% free with no watermarks?',
+      a: 'Yes, completely. Unlike other resume builders that let you build a resume and then demand a $19–$34/mo subscription at the download button, ResumeBabu generates clean, full-resolution vector PDFs with zero watermarks, zero paywalls, and zero hidden credit card prompts.',
     },
     {
       q: 'How does the 30-Point ATS Auditor ensure my resume passes parser algorithms?',
@@ -258,7 +258,7 @@ export function TechStudioLanding() {
       a: 'Google recruiters recommend framing accomplishments as: "Accomplished [X], as measured by [Y], by doing [Z]". Our AI bullet rewriter automatically transforms weak job duties into quantified business achievements with measurable business impact.',
     },
     {
-      q: 'Does ResumeBuilder store or sell my personal career data?',
+      q: 'Does ResumeBabu store or sell my personal career data?',
       a: 'Never. Your resume drafts are saved securely in your browser local storage. If you choose to log in, data is encrypted via Cloud Firestore under strict per-user security rules. We do not sell user data to recruiters or third-party advertisers.',
     },
     {
@@ -431,7 +431,7 @@ export function TechStudioLanding() {
                   <span className="w-3 h-3 rounded-full bg-[#febc2e] inline-block shadow-2xs" />
                   <span className="w-3 h-3 rounded-full bg-[#28c840] inline-block shadow-2xs" />
                   <span className="ml-2 hidden sm:inline text-slate-600 dark:text-teal-200/80 text-[11px] font-sans font-medium">
-                    ResumeBuilder Pro Studio — Live Split-Screen Workspace
+                    ResumeBabu Pro Studio — Live Split-Screen Workspace
                   </span>
                 </div>
 
@@ -462,7 +462,7 @@ export function TechStudioLanding() {
               <div className="relative w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
                 <Image
                   src="/images/editor-screenshot.png"
-                  alt="ResumeBuilder Live Editor Split Screen: Real-Time Form Controls and Vector A4 Preview"
+                  alt="ResumeBabu Live Editor Split Screen: Real-Time Form Controls and Vector A4 Preview"
                   width={1024}
                   height={500}
                   className="w-full h-auto object-cover sm:object-contain transition-transform duration-500 group-hover:scale-[1.008]"

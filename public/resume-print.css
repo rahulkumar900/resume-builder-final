@@ -943,6 +943,9 @@
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
+  .h-8\.5 {
+    height: calc(var(--spacing) * 8.5);
+  }
   .h-9 {
     height: calc(var(--spacing) * 9);
   }
@@ -1215,6 +1218,9 @@
   }
   .w-8 {
     width: calc(var(--spacing) * 8);
+  }
+  .w-8\.5 {
+    width: calc(var(--spacing) * 8.5);
   }
   .w-9 {
     width: calc(var(--spacing) * 9);
@@ -3821,6 +3827,9 @@
   .stroke-\[3\] {
     stroke-width: 3;
   }
+  .object-contain {
+    object-fit: contain;
+  }
   .object-cover {
     object-fit: cover;
   }
@@ -5295,9 +5304,6 @@
       .group-hover\:bg-emerald-50\/30:is(:where(.group):hover *) {
         background-color: color-mix(in oklab, var(--color-emerald-50) 30%, transparent);
       }
-    }
-    .group-hover\:bg-emerald-800:is(:where(.group):hover *) {
-      background-color: var(--color-emerald-800);
     }
     .group-hover\:bg-slate-100\/50:is(:where(.group):hover *) {
       background-color: color-mix(in srgb, oklch(96.8% 0.007 247.896) 50%, transparent);

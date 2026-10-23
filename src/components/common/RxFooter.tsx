@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -149,13 +149,13 @@ export function RxFooter() {
           </div>
         </div>
 
-        {/* Massive Bold "ResumeBuilder" Watermark */}
+        {/* Massive Bold "ResumeBabu" Watermark */}
         <div className="pt-8 border-t border-black/[0.05] dark:border-white/[0.05] flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 dark:text-slate-500">
           <span className="font-serif text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-slate-900/10 dark:text-white/10 select-none">
-            ResumeBuilder
+            ResumeBabu
           </span>
           <span className="font-mono mt-4 sm:mt-0 text-[11px]">
-            &copy; {new Date().getFullYear()} ResumeBuilder Inc. &bull; Engineered for career acceleration
+            &copy; {new Date().getFullYear()} ResumeBabu Inc. &bull; Engineered for career acceleration
           </span>
         </div>
       </div>

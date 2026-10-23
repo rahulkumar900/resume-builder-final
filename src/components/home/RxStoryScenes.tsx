@@ -1966,7 +1966,7 @@ export function RxStoryScenes() {
             {[
               {
                 q: 'Will my resume pass Applicant Tracking Systems (ATS)?',
-                a: 'Yes, 100%. All ResumeBuilder templates output clean, standards-compliant vector PDFs. Recruiter software like Greenhouse, Workday, Taleo, and Lever parse the headings and text without glitching or dropping sections.',
+                a: 'Yes, 100%. All ResumeBabu templates output clean, standards-compliant vector PDFs. Recruiter software like Greenhouse, Workday, Taleo, and Lever parse the headings and text without glitching or dropping sections.',
               },
               {
                 q: 'How does the AI STAR bullet re-writer work?',
