@@ -302,9 +302,9 @@ export const CanvaAestheticTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div className="text-[11px] font-serif uppercase tracking-[0.25em] text-orange-800 font-bold">
                   CURRICULUM VITAE
                 </div>
-                <h1 className="text-4xl font-serif tracking-tight text-slate-900 leading-tight">
+                <div className="text-4xl font-serif tracking-tight text-slate-900 leading-tight">
                   {personalInfo?.fullName || 'Clara Sterling'}
-                </h1>
+                </div>
                 {personalInfo?.jobTitle && (
                   <div
                     className="text-sm font-sans uppercase tracking-[0.15em] font-semibold"

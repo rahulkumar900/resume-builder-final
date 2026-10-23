@@ -1,23 +1,23 @@
-﻿import React from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import { RxNavbar } from '@/components/home/RxNavbar';
 import { TechStudioLanding } from '@/components/home/TechStudioLanding';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Resume Checker',
+    absolute: 'ResumeBabu - Free AI Resume Builder & ATS Checker',
   },
   description:
-    'Build an ATS-friendly resume tailored to any job description. 30 professional templates, instant real-time A4 formatting, and vector PDF exports without paywalls or hidden watermarks.',
+    'Build an ATS-friendly resume tailored to any job description. 30 free templates, instant A4 pagination, and vector PDF exports without watermarks.',
   alternates: {
     canonical: 'https://resumebabu.com',
   },
   openGraph: {
-    title: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Resume Checker',
+    title: 'ResumeBabu - Free AI Resume Builder & ATS Resume Checker',
     description:
       'Create an ATS-friendly resume tailored to your target job. 30 templates, real-time A4 page-split, vector PDF export without watermark or subscription.',
     url: 'https://resumebabu.com',
-    siteName: 'ResumeBuilder',
+    siteName: 'ResumeBabu',
     locale: 'en_US',
     type: 'website',
   },

@@ -200,9 +200,9 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Classic Centered Header */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className={`text-center ${headerPadding} border-b-2 border-slate-900 break-inside-avoid`}>
-          <h1 className="text-4xl font-normal tracking-wide text-slate-900 mb-1.5 uppercase">
+          <div className="text-4xl font-normal tracking-wide text-slate-900 mb-1.5 uppercase">
             {personalInfo.fullName || 'Target Candidate'}
-          </h1>
+          </div>
           <div
             className="text-sm font-sans font-bold tracking-widest uppercase mb-3"
             style={{ color: themeColor || '#334155' }}

@@ -277,9 +277,9 @@ export const EuropassTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">
               Curriculum Vitae Europass
             </div>
-            <h1 className="text-[26px] font-black tracking-tight" style={{ color: themeColor }}>
+            <div className="text-[26px] font-black tracking-tight" style={{ color: themeColor }}>
               {personalInfo?.fullName || 'Candidate Name'}
-            </h1>
+            </div>
             {personalInfo?.jobTitle && (
               <p className="text-[13px] font-bold text-slate-700 mt-0.5">
                 {personalInfo.jobTitle}

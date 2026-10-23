@@ -270,9 +270,9 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
               />
             )}
             <div>
-              <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 uppercase">
+              <div className="text-3xl font-extrabold tracking-tight text-slate-900 uppercase">
                 {personalInfo.fullName || 'Muhammad Prawira'}
-              </h1>
+              </div>
               <div className="text-lg font-bold mt-1" style={{ color: themeColor }}>
                 {personalInfo.jobTitle || 'Private Equity & M&A Associate'}
               </div>

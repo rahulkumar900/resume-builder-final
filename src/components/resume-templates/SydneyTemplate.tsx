@@ -253,9 +253,9 @@ export const SydneyTemplate: React.FC<TemplateProps> = ({ data }) => {
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="flex items-center justify-between gap-6 pb-6 border-b border-slate-200">
           <div className="space-y-1.5 flex-1">
-            <h1 className="text-4xl font-black text-slate-900 tracking-tight">
+            <div className="text-4xl font-black text-slate-900 tracking-tight">
               {personalInfo.fullName || 'Olivia Winata'}
-            </h1>
+            </div>
             <div className="text-base font-bold tracking-wide" style={{ color: themeColor }}>
               {personalInfo.jobTitle || 'Senior Product Designer'}
             </div>

@@ -216,9 +216,9 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
       <div data-ghost-header="true" className="border-b-2 border-slate-100 pb-4 break-inside-avoid">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-3xl font-black tracking-tight text-slate-900 uppercase">
+            <div className="text-3xl font-black tracking-tight text-slate-900 uppercase">
               {personalInfo.fullName || 'Full Name'}
-            </h1>
+            </div>
             <div className="text-sm font-bold mt-1" style={{ color: themeColor }}>
               {personalInfo.jobTitle}
             </div>

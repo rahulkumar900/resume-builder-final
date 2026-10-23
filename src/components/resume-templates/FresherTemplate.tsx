@@ -349,9 +349,9 @@ export const FresherTemplate: React.FC<TemplateProps> = ({ data }) => {
           className={`${headerPadding} border-b-2 break-inside-avoid text-center space-y-1.5`}
           style={{ borderColor: themeColor }}
         >
-          <h1 className="text-3xl font-black uppercase tracking-wider text-slate-900">
+          <div className="text-3xl font-black uppercase tracking-wider text-slate-900">
             {personalInfo.fullName || 'Candidate Name'}
-          </h1>
+          </div>
 
           {personalInfo.jobTitle && (
             <div

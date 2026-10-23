@@ -238,9 +238,9 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Elegant Classical Header (Page 1) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className={`text-center ${headerPadding} border-b border-stone-300 break-inside-avoid`}>
-          <h1 className="text-4xl font-normal tracking-wide text-stone-900 uppercase mb-2">
+          <div className="text-4xl font-normal tracking-wide text-stone-900 uppercase mb-2">
             {personalInfo.fullName || 'Amelia Stanford'}
-          </h1>
+          </div>
           <p className="text-sm font-sans font-medium tracking-[0.25em] text-stone-600 uppercase mb-4">
             {personalInfo.jobTitle || 'Senior Managing Director & Corporate Counsel'}
           </p>

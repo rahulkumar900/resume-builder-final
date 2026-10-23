@@ -221,9 +221,9 @@ export const TorontoTemplate: React.FC<TemplateProps> = ({ data }) => {
           className="p-5 rounded-xl mb-4 break-inside-avoid"
           style={{ backgroundColor: `${themeColor}10` }}
         >
-          <h1 className="text-[26px] font-black tracking-tight" style={{ color: themeColor }}>
+          <div className="text-[26px] font-black tracking-tight" style={{ color: themeColor }}>
             {personalInfo?.fullName || 'Candidate Name'}
-          </h1>
+          </div>
           {personalInfo?.jobTitle && (
             <p className="text-[13px] font-bold text-slate-700 mt-0.5">
               {personalInfo.jobTitle}

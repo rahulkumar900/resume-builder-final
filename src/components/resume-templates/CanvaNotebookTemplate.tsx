@@ -337,15 +337,14 @@ export const CanvaNotebookTemplate: React.FC<TemplateProps> = ({ data }) => {
 
                 <div className="space-y-2 text-left flex-1 min-w-0">
                   {/* Bubble Outline Name with Drop Shadow */}
-                  <h1
-                    className="text-4xl font-black uppercase tracking-tight text-white drop-shadow-[2px_2px_0px_#f43f5e]"
+                  <div                    className="text-4xl font-black uppercase tracking-tight text-white drop-shadow-[2px_2px_0px_#f43f5e]"
                     style={{
                       WebkitTextStroke: '2px #f43f5e',
                       color: '#ffffff',
                     }}
                   >
                     {personalInfo?.fullName || 'Olivia Wilson'}
-                  </h1>
+                  </div>
 
                   {/* Floating White Contact Capsule */}
                   <div className="inline-flex flex-wrap items-center gap-3 bg-white/95 px-3.5 py-1.5 rounded-full border border-sky-200 shadow-xs text-[11px] font-semibold text-slate-700">

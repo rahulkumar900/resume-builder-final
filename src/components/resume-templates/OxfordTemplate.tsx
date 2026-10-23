@@ -215,9 +215,9 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Main Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="pb-3 mb-4 border-b-4 break-inside-avoid" style={{ borderColor: themeColor }}>
-          <h1 className="text-[28px] font-black tracking-tight uppercase" style={{ color: themeColor }}>
+          <div className="text-[28px] font-black tracking-tight uppercase" style={{ color: themeColor }}>
             {personalInfo?.fullName || 'Candidate Name'}
-          </h1>
+          </div>
           {personalInfo?.jobTitle && (
             <p className="text-[13.5px] font-bold uppercase tracking-widest text-slate-700 mt-0.5">
               {personalInfo.jobTitle}

@@ -276,9 +276,9 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div className="flex items-start justify-between gap-4">
             {/* Name, Designation & Formal Contact Details */}
             <div className="flex-1 space-y-1">
-              <h1 className="text-3xl font-black uppercase tracking-wider text-slate-900">
+              <div className="text-3xl font-black uppercase tracking-wider text-slate-900">
                 {personalInfo.fullName || 'Candidate Name'}
-              </h1>
+              </div>
               {personalInfo.jobTitle && (
                 <div
                   className="text-sm font-bold uppercase tracking-widest"

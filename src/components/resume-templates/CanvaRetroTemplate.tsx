@@ -373,9 +373,9 @@ export const CanvaRetroTemplate: React.FC<TemplateProps> = ({ data }) => {
                 {/* Retro Display Name & Professional Summary */}
                 <div className="space-y-2 text-left flex-1 min-w-0">
                   <div className="relative inline-block">
-                    <h1 className="text-4xl font-black font-serif text-[#2e1065] tracking-tight leading-none">
+                    <div className="text-4xl font-black font-serif text-[#2e1065] tracking-tight leading-none">
                       {personalInfo?.fullName || 'Rachelle Beaudry'}
-                    </h1>
+                    </div>
                     <div className="absolute -top-3 -right-6 text-amber-500">
                       <Sparkles className="w-5 h-5 fill-amber-400" />
                     </div>

@@ -288,18 +288,16 @@ export const CanvaEditorialTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="flex items-start justify-between gap-6">
               {/* Massive Editorial Name */}
               <div className="space-y-0">
-                <h1
-                  className="text-5xl font-black uppercase tracking-tight leading-[0.9]"
+                <div                  className="text-5xl font-black uppercase tracking-tight leading-[0.9]"
                   style={{ color: themeColor }}
                 >
                   {firstWord}
-                </h1>
-                <h1
-                  className="text-5xl font-black uppercase tracking-tight leading-[0.9]"
+                </div>
+                <div                  className="text-5xl font-black uppercase tracking-tight leading-[0.9]"
                   style={{ color: themeColor }}
                 >
                   {restWords}
-                </h1>
+                </div>
               </div>
 
               {/* Top Right: Orange Asterisk Flower Icon + Bold Job Title */}

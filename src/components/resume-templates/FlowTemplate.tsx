@@ -233,9 +233,9 @@ export const FlowTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Main Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="pb-3 mb-4 break-inside-avoid">
-          <h1 className="text-[28px] font-black tracking-tight" style={{ color: themeColor }}>
+          <div className="text-[28px] font-black tracking-tight" style={{ color: themeColor }}>
             {personalInfo?.fullName || 'Candidate Name'}
-          </h1>
+          </div>
           {personalInfo?.jobTitle && (
             <p className="text-[13px] font-bold text-slate-600 mt-0.5">
               {personalInfo.jobTitle}

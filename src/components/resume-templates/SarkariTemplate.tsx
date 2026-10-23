@@ -286,9 +286,9 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
               <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
                 Curriculum Vitae / Bio-Data
               </div>
-              <h1 className="text-3xl font-black uppercase tracking-wider text-slate-900">
+              <div className="text-3xl font-black uppercase tracking-wider text-slate-900">
                 {personalInfo.fullName || 'Candidate Name'}
-              </h1>
+              </div>
               {personalInfo.jobTitle && (
                 <div
                   className="text-sm font-bold uppercase tracking-wider"

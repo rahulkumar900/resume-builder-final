@@ -236,9 +236,9 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
             </div>
           )}
 
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 uppercase mb-1">
+          <div className="text-3xl font-bold tracking-tight text-slate-900 uppercase mb-1">
             {personalInfo.fullName || 'Jane Chastain'}
-          </h1>
+          </div>
           <p className="text-sm font-bold tracking-widest text-slate-600 uppercase mb-3.5">
             {personalInfo.jobTitle || 'Head of People & Operations'}
           </p>

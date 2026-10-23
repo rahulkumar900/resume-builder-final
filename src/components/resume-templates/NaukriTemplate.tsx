@@ -342,9 +342,9 @@ export const NaukriTemplate: React.FC<TemplateProps> = ({ data }) => {
         <div data-ghost-header="true" className={`${headerPadding} border-b-2 break-inside-avoid`} style={{ borderColor: themeColor }}>
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 space-y-1">
-              <h1 className="text-3xl font-black uppercase tracking-tight text-slate-900">
+              <div className="text-3xl font-black uppercase tracking-tight text-slate-900">
                 {personalInfo.fullName || 'Candidate Name'}
-              </h1>
+              </div>
               {personalInfo.jobTitle && (
                 <div
                   className="text-sm font-bold uppercase tracking-wider"

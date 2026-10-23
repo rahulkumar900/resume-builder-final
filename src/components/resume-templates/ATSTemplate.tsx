@@ -198,9 +198,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className={`text-center ${headerPadding} border-b border-black break-inside-avoid`}>
-          <h1 className="text-3xl font-bold uppercase tracking-tight mb-1 text-black">
+          <div className="text-3xl font-bold uppercase tracking-tight mb-1 text-black">
             {personalInfo.fullName || 'Target Candidate'}
-          </h1>
+          </div>
           <div className="text-base font-bold mb-2" style={{ color: themeColor || '#0284c7' }}>
             {personalInfo.jobTitle}
           </div>

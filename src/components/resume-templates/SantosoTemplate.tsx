@@ -229,9 +229,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         {/* Header (Page 1) */}
         {(!data.pageNumber || data.pageNumber === 1) && (
           <div data-ghost-header="true" className={`border-b-2 border-slate-900 ${headerPadding} break-inside-avoid`}>
-            <h1 className="text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
+            <div className="text-4xl font-black text-slate-900 uppercase tracking-tight leading-tight">
               {personalInfo.fullName || 'Rudian Santoso'}
-            </h1>
+            </div>
             <div className="text-base font-bold text-amber-700 uppercase tracking-wider mt-1">
               {personalInfo.jobTitle || 'Product Designer & Art Director'}
             </div>

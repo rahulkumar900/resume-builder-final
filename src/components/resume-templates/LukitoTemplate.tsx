@@ -263,9 +263,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="inline-block px-2.5 py-0.5 bg-neutral-900 text-white font-mono text-[11px] font-bold tracking-widest uppercase mb-2">
               RESUME // PORTFOLIO
             </div>
-            <h1 className="text-4xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
+            <div className="text-4xl font-black uppercase tracking-tight text-neutral-900 leading-tight">
               {personalInfo.fullName || 'Lukito Rahadian'}
-            </h1>
+            </div>
             <div className="text-base font-bold text-neutral-600 mt-1 font-mono">
               &gt; {personalInfo.jobTitle || 'Tech Lead & Senior Architect'}
             </div>

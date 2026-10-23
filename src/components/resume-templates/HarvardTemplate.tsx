@@ -250,12 +250,11 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Main Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="text-center pb-2.5 mb-3.5 border-b border-slate-900 break-inside-avoid">
-          <h1
-            className="text-[26px] font-bold tracking-tight uppercase mb-1"
+          <div            className="text-[26px] font-bold tracking-tight uppercase mb-1"
             style={{ color: themeColor }}
           >
             {personalInfo?.fullName || 'Candidate Name'}
-          </h1>
+          </div>
           {personalInfo?.jobTitle && (
             <p className="text-[13px] font-medium text-slate-800 uppercase tracking-widest mb-1.5 font-sans">
               {personalInfo.jobTitle}

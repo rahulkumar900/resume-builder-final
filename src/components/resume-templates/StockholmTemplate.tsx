@@ -496,9 +496,9 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
           {/* Header (Page 1 only) */}
           {(!data.pageNumber || data.pageNumber === 1) && (
             <div data-ghost-header="true" className="border-b border-slate-200 pb-4">
-              <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <div className="text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
                 {personalInfo.fullName || 'Olivia Winata'}
-              </h1>
+              </div>
               <div
                 className="text-base font-bold mt-1 tracking-wide"
                 style={{ color: themeColor }}

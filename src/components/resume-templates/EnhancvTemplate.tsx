@@ -300,9 +300,9 @@ export const EnhancvTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Main Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="pb-3.5 mb-4 border-b border-slate-200 break-inside-avoid">
-          <h1 className="text-[28px] font-black tracking-tight" style={{ color: themeColor }}>
+          <div className="text-[28px] font-black tracking-tight" style={{ color: themeColor }}>
             {personalInfo?.fullName || 'Candidate Name'}
-          </h1>
+          </div>
           {personalInfo?.jobTitle && (
             <p className="text-[13px] font-bold text-slate-700 uppercase tracking-wide mt-0.5">
               {personalInfo.jobTitle}
