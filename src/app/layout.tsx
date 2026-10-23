@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+﻿import type { Metadata, Viewport } from 'next';
 import {
   Inter,
   Roboto,
@@ -114,7 +114,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://resumebuilder.app'),
+  metadataBase: new URL('https://resumebabu.com'),
   title: {
     default: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Checker',
     template: '%s | ResumeBuilder',
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
   description:
     'Build an ATS-compliant resume tailored to any job description. 100% free resume builder with 30 ATS templates, real-time A4 pagination, and vector PDF export without paywalls.',
   applicationName: 'ResumeBuilder',
-  authors: [{ name: 'ResumeBuilder Editorial Team', url: 'https://resumebuilder.app/about' }],
+  authors: [{ name: 'ResumeBuilder Editorial Team', url: 'https://resumebabu.com/about' }],
   keywords: [
     'resume builder',
     'free resume builder',
@@ -158,20 +158,20 @@ export const metadata: Metadata = {
     title: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Resume Checker',
     description:
       'Create an ATS-friendly resume tailored to any job description. 30 ATS templates, real-time A4 page-split, vector PDF export without watermark or payment.',
-    url: 'https://resumebuilder.app',
+    url: 'https://resumebabu.com',
     siteName: 'ResumeBuilder',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ResumeBuilder - 100% Free AI Resume Builder & ATS Checker',
         type: 'image/png',
       },
       {
-        url: 'https://resumebuilder.app/opengraph-image',
+        url: 'https://resumebabu.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'ResumeBuilder - Free AI Resume Builder & ATS Checker',
@@ -185,7 +185,7 @@ export const metadata: Metadata = {
     description:
       'Create an ATS-friendly resume tailored to any job description. 100% free forever with real-time vector PDF export.',
     creator: '@resumebuilder',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   robots: {
     index: true,
@@ -205,18 +205,18 @@ const rootStructuredData = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://resumebuilder.app/#website',
-      url: 'https://resumebuilder.app',
+      '@id': 'https://resumebabu.com/#website',
+      url: 'https://resumebabu.com',
       name: 'ResumeBuilder',
       description: '100% Free AI Resume Builder, ATS Checker, and Career Platform',
       publisher: {
-        '@id': 'https://resumebuilder.app/#organization',
+        '@id': 'https://resumebabu.com/#organization',
       },
       potentialAction: {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://resumebuilder.app/examples?q={search_term_string}',
+          urlTemplate: 'https://resumebabu.com/examples?q={search_term_string}',
         },
         'query-input': 'required name=search_term_string',
       },
@@ -224,12 +224,12 @@ const rootStructuredData = {
     },
     {
       '@type': 'Organization',
-      '@id': 'https://resumebuilder.app/#organization',
+      '@id': 'https://resumebabu.com/#organization',
       name: 'ResumeBuilder',
-      url: 'https://resumebuilder.app',
+      url: 'https://resumebabu.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://resumebuilder.app/favicon.ico',
+        url: 'https://resumebabu.com/favicon.ico',
         width: 64,
         height: 64,
       },
@@ -240,12 +240,12 @@ const rootStructuredData = {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        url: 'https://resumebuilder.app/contact',
+        url: 'https://resumebabu.com/contact',
       },
     },
     {
       '@type': 'SoftwareApplication',
-      '@id': 'https://resumebuilder.app/#software',
+      '@id': 'https://resumebabu.com/#software',
       name: 'ResumeBuilder AI Resume Studio',
       operatingSystem: 'All',
       applicationCategory: 'BusinessApplication',

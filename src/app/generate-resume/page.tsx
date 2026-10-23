@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     description:
       'Generate a professional, ATS-ready resume with pre-written industry bullet points and instant vector PDF export.',
     type: 'website',
-    url: 'https://resumebuilder.app/generate-resume',
+    url: 'https://resumebabu.com/generate-resume',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Generate Resume Online in 5 Minutes - ResumeBuilder',
@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     title: 'Generate Resume Online in 5 Minutes | Free Resume Creator',
     description:
       'Generate a professional, ATS-ready resume with pre-written industry bullet points and instant vector PDF export.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/generate-resume',
+    canonical: 'https://resumebabu.com/generate-resume',
   },
 };
 
@@ -91,13 +91,13 @@ export default function GenerateResumePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Generate Resume',
-        item: 'https://resumebuilder.app/generate-resume',
+        item: 'https://resumebabu.com/generate-resume',
       },
     ],
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import type { Metadata } from 'next';
 import { ResumeExamplesHubClient } from '@/components/examples/ResumeExamplesHubClient';
 
@@ -16,19 +16,19 @@ export const metadata: Metadata = {
     'BTech resume sample',
   ],
   alternates: {
-    canonical: 'https://resumebuilder.app/examples',
+    canonical: 'https://resumebabu.com/examples',
   },
   openGraph: {
     title: 'Resume Examples & Samples for Every Job Title (2026) | ResumeBuilder',
     description:
       'Proven, high-scoring resume samples tailored for top Indian and global hiring bars. 1-click editable and ATS-optimized.',
-    url: 'https://resumebuilder.app/examples',
+    url: 'https://resumebabu.com/examples',
     siteName: 'ResumeBuilder',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Resume Examples & Samples - ResumeBuilder',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Resume Examples & Samples for Every Job Title (2026)',
     description:
       'Proven, high-scoring resume samples tailored for top Indian and global hiring bars. 1-click editable and ATS-optimized.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
 };
 
@@ -54,13 +54,13 @@ export default function ResumeExamplesHubPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Resume Examples',
-        item: 'https://resumebuilder.app/examples',
+        item: 'https://resumebabu.com/examples',
       },
     ],
   };
@@ -71,7 +71,7 @@ export default function ResumeExamplesHubPage() {
     name: 'Resume Examples & Samples for Every Job Title',
     description:
       'Browse 20+ recruiter-approved resume examples with proven STAR bullet points and ATS-friendly formatting.',
-    url: 'https://resumebuilder.app/examples',
+    url: 'https://resumebabu.com/examples',
   };
 
   return (

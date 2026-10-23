@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     description:
       'Looking for a clean resume format for your next job application? Edit, customize, and download verified ATS formats instantly with no paywall.',
     type: 'website',
-    url: 'https://resumebuilder.app/resume-format-download',
+    url: 'https://resumebabu.com/resume-format-download',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free Resume Format Download - ResumeBuilder',
@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     title: 'Free Resume Format Download (Word, Doc & PDF Formats)',
     description:
       'Looking for a clean resume format for your next job application? Edit, customize, and download verified ATS formats instantly with no paywall.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/resume-format-download',
+    canonical: 'https://resumebabu.com/resume-format-download',
   },
 };
 
@@ -76,7 +76,7 @@ export default function ResumeFormatDownloadPage() {
     name: 'ResumeBuilder Free Resume Format Download Engine',
     description:
       'Curated collection of professional, ATS-certified resume formats available for instant online customization and high-DPI vector PDF download.',
-    url: 'https://resumebuilder.app/resume-format-download',
+    url: 'https://resumebabu.com/resume-format-download',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     offers: {
@@ -108,13 +108,13 @@ export default function ResumeFormatDownloadPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Resume Format Download',
-        item: 'https://resumebuilder.app/resume-format-download',
+        item: 'https://resumebabu.com/resume-format-download',
       },
     ],
   };

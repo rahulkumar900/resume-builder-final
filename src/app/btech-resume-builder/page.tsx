@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     description:
       'Land your first software engineering or campus placement job. Pre-structured sections for CGPA, coding profiles (GitHub, LeetCode), and capstone projects.',
     type: 'website',
-    url: 'https://resumebuilder.app/btech-resume-builder',
+    url: 'https://resumebabu.com/btech-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'B.Tech Resume Builder - ResumeBuilder',
@@ -63,10 +63,10 @@ export const metadata: Metadata = {
     title: 'B.Tech Resume Builder - Campus Placement Ready Engineering Formats',
     description:
       'Land your first software engineering or campus placement job. Pre-structured sections for CGPA, coding profiles (GitHub, LeetCode), and capstone projects.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/btech-resume-builder',
+    canonical: 'https://resumebabu.com/btech-resume-builder',
   },
 };
 
@@ -77,7 +77,7 @@ export default function BTechResumeBuilderPage() {
     name: 'ResumeBuilder B.Tech & Engineering Resume Maker',
     description:
       'Specialized resume maker calibrated for B.Tech, B.E., and MCA engineering students and freshers applying for campus placements and off-campus tech roles.',
-    url: 'https://resumebuilder.app/btech-resume-builder',
+    url: 'https://resumebabu.com/btech-resume-builder',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     aggregateRating: {
@@ -110,13 +110,13 @@ export default function BTechResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'B.Tech Resume Builder',
-        item: 'https://resumebuilder.app/btech-resume-builder',
+        item: 'https://resumebabu.com/btech-resume-builder',
       },
     ],
   };

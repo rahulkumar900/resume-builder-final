@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import type { Metadata } from 'next';
 import { TemplatesShowcaseClient } from '@/components/templates/TemplatesShowcaseClient';
 
@@ -17,19 +17,19 @@ export const metadata: Metadata = {
     'fresher resume format',
   ],
   alternates: {
-    canonical: 'https://resumebuilder.app/templates',
+    canonical: 'https://resumebabu.com/templates',
   },
   openGraph: {
     title: '30+ Free ATS-Friendly Resume Templates | ResumeBuilder',
     description:
       'Browse and customize 30+ ATS-optimized resume templates. 100% free with real-time vector PDF export.',
-    url: 'https://resumebuilder.app/templates',
+    url: 'https://resumebabu.com/templates',
     siteName: 'ResumeBuilder',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: '30+ Free ATS-Friendly Resume Templates - ResumeBuilder',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: '30+ Free ATS-Friendly Resume Templates',
     description:
       'Browse and customize 30+ ATS-optimized resume templates. 100% free with real-time vector PDF export.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
 };
 
@@ -55,13 +55,13 @@ export default function TemplatesShowcasePage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Templates',
-        item: 'https://resumebuilder.app/templates',
+        item: 'https://resumebabu.com/templates',
       },
     ],
   };
@@ -72,7 +72,7 @@ export default function TemplatesShowcasePage() {
     name: '30+ Free ATS-Friendly Resume Templates',
     description:
       'Explore 30+ professionally engineered, ATS-compliant resume templates tested across Workday, Taleo, and Greenhouse with instant A4 pagination.',
-    url: 'https://resumebuilder.app/templates',
+    url: 'https://resumebabu.com/templates',
   };
 
   return (

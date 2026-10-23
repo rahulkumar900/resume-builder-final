@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     description:
       'Pass corporate ATS screens with clean semantic typography, zero unparseable graphics, and free vector PDF downloads.',
     type: 'website',
-    url: 'https://resumebuilder.app/templates/ats-friendly',
+    url: 'https://resumebabu.com/templates/ats-friendly',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ATS-Friendly Resume Templates - ResumeBuilder',
@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     title: 'ATS-Friendly Resume Templates (Free Download)',
     description:
       'Pass corporate ATS screens with clean semantic typography, zero unparseable graphics, and free vector PDF downloads.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/templates/ats-friendly',
+    canonical: 'https://resumebabu.com/templates/ats-friendly',
   },
 };
 
@@ -67,7 +67,7 @@ export default function AtsFriendlyTemplatesPage() {
     name: 'ATS-Friendly Resume Templates Collection',
     description:
       'Verified ATS-friendly resume and CV templates engineered to pass Fortune 500 applicant tracking systems.',
-    url: 'https://resumebuilder.app/templates/ats-friendly',
+    url: 'https://resumebabu.com/templates/ats-friendly',
   };
 
   const breadcrumbJsonLd = {
@@ -78,19 +78,19 @@ export default function AtsFriendlyTemplatesPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Templates',
-        item: 'https://resumebuilder.app/templates',
+        item: 'https://resumebabu.com/templates',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'ATS Friendly',
-        item: 'https://resumebuilder.app/templates/ats-friendly',
+        item: 'https://resumebabu.com/templates/ats-friendly',
       },
     ],
   };

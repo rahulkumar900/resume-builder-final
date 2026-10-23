@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     description:
       'Democratizing job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
     type: 'website',
-    url: 'https://resumebuilder.app/about',
+    url: 'https://resumebabu.com/about',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'About ResumeBuilder',
@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     title: 'About Us & Mission | ResumeBuilder',
     description:
       'Democratizing job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/about',
+    canonical: 'https://resumebabu.com/about',
   },
 };
 
@@ -58,13 +58,13 @@ export default function AboutPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'About',
-        item: 'https://resumebuilder.app/about',
+        item: 'https://resumebabu.com/about',
       },
     ],
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     description:
       'No formal job experience? No problem. Convert academic achievements, school clubs, volunteer work, and coursework into a recruiter-approved resume.',
     type: 'website',
-    url: 'https://resumebuilder.app/student-resume-builder',
+    url: 'https://resumebabu.com/student-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free Student Resume Builder - ResumeBuilder',
@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     title: 'Free Student Resume Builder - Land Your First Job or Internship',
     description:
       'No formal job experience? No problem. Convert academic achievements, school clubs, volunteer work, and coursework into a recruiter-approved resume.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/student-resume-builder',
+    canonical: 'https://resumebabu.com/student-resume-builder',
   },
 };
 
@@ -76,7 +76,7 @@ export default function StudentResumeBuilderPage() {
     name: 'ResumeBuilder Student & Internship Resume Maker',
     description:
       'Free resume maker for high school students, college undergraduates, and first-time applicants with no formal employment history.',
-    url: 'https://resumebuilder.app/student-resume-builder',
+    url: 'https://resumebabu.com/student-resume-builder',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     offers: {
@@ -108,13 +108,13 @@ export default function StudentResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Student Resume Builder',
-        item: 'https://resumebuilder.app/student-resume-builder',
+        item: 'https://resumebabu.com/student-resume-builder',
       },
     ],
   };

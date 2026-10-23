@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${example.title} | Free ATS Template`,
       description: example.metaDescription,
       type: 'article',
-      url: `https://resumebuilder.app/examples/${example.slug}`,
+      url: `https://resumebabu.com/examples/${example.slug}`,
     },
     twitter: {
       card: 'summary_large_image',
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: example.metaDescription,
     },
     alternates: {
-      canonical: `https://resumebuilder.app/examples/${example.slug}`,
+      canonical: `https://resumebabu.com/examples/${example.slug}`,
     },
   };
 }
@@ -77,12 +77,12 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
       name: 'ResumeBuilder',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://resumebuilder.app/logo.png',
+        url: 'https://resumebabu.com/logo.png',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://resumebuilder.app/examples/${example.slug}`,
+      '@id': `https://resumebabu.com/examples/${example.slug}`,
     },
     about: {
       '@type': 'JobPosting',

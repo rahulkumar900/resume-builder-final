@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     description:
       'Engineered with strict semantic HTML, standard section hierarchies, and instant keyword auditing. Download your free ATS resume PDF now.',
     type: 'website',
-    url: 'https://resumebuilder.app/ats-resume-builder',
+    url: 'https://resumebabu.com/ats-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free ATS Resume Builder - ResumeBuilder',
@@ -63,10 +63,10 @@ export const metadata: Metadata = {
     title: 'Free ATS Resume Builder - 98% Pass Rate on Workday & Taleo',
     description:
       'Engineered with strict semantic HTML, standard section hierarchies, and instant keyword auditing. Download your free ATS resume PDF now.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/ats-resume-builder',
+    canonical: 'https://resumebabu.com/ats-resume-builder',
   },
 };
 
@@ -77,7 +77,7 @@ export default function AtsResumeBuilderPage() {
     name: 'ResumeBuilder ATS Resume Builder',
     description:
       'Specialized ATS-compliant resume builder that formats documents for 98%+ pass rates across corporate applicant tracking systems.',
-    url: 'https://resumebuilder.app/ats-resume-builder',
+    url: 'https://resumebabu.com/ats-resume-builder',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     offers: {
@@ -109,13 +109,13 @@ export default function AtsResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'ATS Resume Builder',
-        item: 'https://resumebuilder.app/ats-resume-builder',
+        item: 'https://resumebabu.com/ats-resume-builder',
       },
     ],
   };

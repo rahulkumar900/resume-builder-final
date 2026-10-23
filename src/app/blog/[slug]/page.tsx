@@ -49,13 +49,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: `https://resumebuilder.app/blog/${post.slug}`,
+      url: `https://resumebabu.com/blog/${post.slug}`,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author.name],
     },
     alternates: {
-      canonical: `https://resumebuilder.app/blog/${post.slug}`,
+      canonical: `https://resumebabu.com/blog/${post.slug}`,
     },
   };
 }
@@ -77,7 +77,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     description: post.excerpt,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
-    url: `https://resumebuilder.app/blog/${post.slug}`,
+    url: `https://resumebabu.com/blog/${post.slug}`,
     author: {
       '@type': 'Person',
       name: post.author.name,
@@ -86,7 +86,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     publisher: {
       '@type': 'Organization',
       name: 'ResumeBuilder',
-      url: 'https://resumebuilder.app',
+      url: 'https://resumebabu.com',
     },
     keywords: post.keywords.join(', '),
   };
@@ -99,19 +99,19 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://resumebuilder.app/blog',
+        item: 'https://resumebabu.com/blog',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://resumebuilder.app/blog/${post.slug}`,
+        item: `https://resumebabu.com/blog/${post.slug}`,
       },
     ],
   };

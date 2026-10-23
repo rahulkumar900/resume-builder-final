@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     description:
       'Make an ATS-approved professional resume online for free. Instant PDF download, real-time page formatting, zero watermarks.',
     type: 'website',
-    url: 'https://resumebuilder.app/resume-maker',
+    url: 'https://resumebabu.com/resume-maker',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free Resume Maker Online - ResumeBuilder',
@@ -60,10 +60,10 @@ export const metadata: Metadata = {
     title: 'Free Resume Maker Online - Create Your Resume in Minutes',
     description:
       'Make an ATS-approved professional resume online for free. Instant PDF download, real-time page formatting, zero watermarks.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/resume-maker',
+    canonical: 'https://resumebabu.com/resume-maker',
   },
 };
 
@@ -74,7 +74,7 @@ export default function ResumeMakerPage() {
     name: 'ResumeBuilder Online Resume Maker',
     description:
       'Fast, free online resume maker featuring real-time A4 pagination, ATS optimization, and instant vector PDF export.',
-    url: 'https://resumebuilder.app/resume-maker',
+    url: 'https://resumebabu.com/resume-maker',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     offers: {
@@ -106,13 +106,13 @@ export default function ResumeMakerPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Resume Maker',
-        item: 'https://resumebuilder.app/resume-maker',
+        item: 'https://resumebabu.com/resume-maker',
       },
     ],
   };

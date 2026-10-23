@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     description:
       'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
     type: 'website',
-    url: 'https://resumebuilder.app/ai-resume-builder',
+    url: 'https://resumebabu.com/ai-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free AI Resume Builder - ResumeBuilder',
@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     title: 'Free AI Resume Builder & Smart AI Resume Maker',
     description:
       'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/ai-resume-builder',
+    canonical: 'https://resumebabu.com/ai-resume-builder',
   },
 };
 
@@ -100,13 +100,13 @@ export default function AiResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'AI Resume Builder',
-        item: 'https://resumebuilder.app/ai-resume-builder',
+        item: 'https://resumebabu.com/ai-resume-builder',
       },
     ],
   };

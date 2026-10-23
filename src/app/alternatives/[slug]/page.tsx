@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -56,10 +56,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: cleanTitle,
       description: competitor.metaDescription,
       type: 'article',
-      url: `https://resumebuilder.app/alternatives/${competitor.slug}`,
+      url: `https://resumebabu.com/alternatives/${competitor.slug}`,
       images: [
         {
-          url: 'https://resumebuilder.app/og-image.png',
+          url: 'https://resumebabu.com/og-image.png',
           width: 1200,
           height: 630,
           alt: `${cleanTitle} - ResumeBuilder`,
@@ -71,10 +71,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title: cleanTitle,
       description: competitor.metaDescription,
-      images: ['https://resumebuilder.app/og-image.png'],
+      images: ['https://resumebabu.com/og-image.png'],
     },
     alternates: {
-      canonical: `https://resumebuilder.app/alternatives/${competitor.slug}`,
+      canonical: `https://resumebabu.com/alternatives/${competitor.slug}`,
     },
   };
 }
@@ -139,19 +139,19 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://resumebuilder.app',
+            item: 'https://resumebabu.com',
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Alternatives',
-            item: 'https://resumebuilder.app/alternatives',
+            item: 'https://resumebabu.com/alternatives',
           },
           {
             '@type': 'ListItem',
             position: 3,
             name: `${competitor.name} Alternative`,
-            item: `https://resumebuilder.app/alternatives/${competitor.slug}`,
+            item: `https://resumebabu.com/alternatives/${competitor.slug}`,
           },
         ],
       },

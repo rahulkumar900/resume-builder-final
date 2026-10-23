@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     description:
       'Land your first campus placement or entry-level job. Pre-built sections for college projects, certifications, degrees, and extracurriculars.',
     type: 'website',
-    url: 'https://resumebuilder.app/resume-builder-for-freshers',
+    url: 'https://resumebabu.com/resume-builder-for-freshers',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free Resume Builder for Freshers - ResumeBuilder',
@@ -58,10 +58,10 @@ export const metadata: Metadata = {
     title: 'Free Resume Builder for Freshers & Students (No Experience Needed)',
     description:
       'Land your first campus placement or entry-level job. Pre-built sections for college projects, certifications, degrees, and extracurriculars.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/resume-builder-for-freshers',
+    canonical: 'https://resumebabu.com/resume-builder-for-freshers',
   },
 };
 
@@ -72,7 +72,7 @@ export default function ResumeBuilderForFreshersPage() {
     name: 'ResumeBuilder for Freshers & Students',
     description:
       'Free resume maker specifically designed for graduates, college students, and entry-level candidates with no formal work experience.',
-    url: 'https://resumebuilder.app/resume-builder-for-freshers',
+    url: 'https://resumebabu.com/resume-builder-for-freshers',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     aggregateRating: {
@@ -104,13 +104,13 @@ export default function ResumeBuilderForFreshersPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Resume Builder for Freshers',
-        item: 'https://resumebuilder.app/resume-builder-for-freshers',
+        item: 'https://resumebabu.com/resume-builder-for-freshers',
       },
     ],
   };

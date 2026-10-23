@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     description:
       'Skip the complicated graphic design tools. Build a clean, recruiter-approved one-page resume with guaranteed ATS compliance and free PDF export.',
     type: 'website',
-    url: 'https://resumebuilder.app/simple-resume-builder',
+    url: 'https://resumebabu.com/simple-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Simple Resume Builder - ResumeBuilder',
@@ -60,10 +60,10 @@ export const metadata: Metadata = {
     title: 'Simple Resume Builder - Clean 1-Page Resumes in 3 Minutes',
     description:
       'Skip the complicated graphic design tools. Build a clean, recruiter-approved one-page resume with guaranteed ATS compliance and free PDF export.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/simple-resume-builder',
+    canonical: 'https://resumebabu.com/simple-resume-builder',
   },
 };
 
@@ -74,7 +74,7 @@ export default function SimpleResumeBuilderPage() {
     name: 'ResumeBuilder Simple & One-Page Resume Maker',
     description:
       'Fast, distraction-free simple resume builder engineered for clean single-page formatting and immediate vector PDF downloads.',
-    url: 'https://resumebuilder.app/simple-resume-builder',
+    url: 'https://resumebabu.com/simple-resume-builder',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     offers: {
@@ -106,13 +106,13 @@ export default function SimpleResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Simple Resume Builder',
-        item: 'https://resumebuilder.app/simple-resume-builder',
+        item: 'https://resumebabu.com/simple-resume-builder',
       },
     ],
   };

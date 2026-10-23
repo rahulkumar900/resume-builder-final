@@ -71,8 +71,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="font-bold text-slate-900 dark:text-white text-sm">Customer Support</div>
-                      <a href="mailto:support@resumebuilder.app" className="text-emerald-700 dark:text-emerald-400 hover:underline font-mono text-xs">
-                        support@resumebuilder.app
+                      <a href="mailto:support@resumebabu.com" className="text-emerald-700 dark:text-emerald-400 hover:underline font-mono text-xs">
+                        support@resumebabu.com
                       </a>
                       <div className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">For account, download, and template help</div>
                     </div>
@@ -84,8 +84,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="font-bold text-slate-900 dark:text-white text-sm">Privacy &amp; Legal</div>
-                      <a href="mailto:privacy@resumebuilder.app" className="text-emerald-700 dark:text-emerald-400 hover:underline font-mono text-xs">
-                        privacy@resumebuilder.app
+                      <a href="mailto:privacy@resumebabu.com" className="text-emerald-700 dark:text-emerald-400 hover:underline font-mono text-xs">
+                        privacy@resumebabu.com
                       </a>
                       <div className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">For data export or erasure requests</div>
                     </div>

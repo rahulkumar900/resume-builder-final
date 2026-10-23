@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     description:
       'Format comprehensive multi-page CVs with peer-reviewed publications, research grants, and teaching appointments. Free vector PDF export.',
     type: 'website',
-    url: 'https://resumebuilder.app/curriculum-vitae-maker',
+    url: 'https://resumebabu.com/curriculum-vitae-maker',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Curriculum Vitae Maker - ResumeBuilder',
@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     title: 'Curriculum Vitae Maker | Academic, Medical & Research CVs',
     description:
       'Format comprehensive multi-page CVs with peer-reviewed publications, research grants, and teaching appointments. Free vector PDF export.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/curriculum-vitae-maker',
+    canonical: 'https://resumebabu.com/curriculum-vitae-maker',
   },
 };
 
@@ -92,13 +92,13 @@ export default function CurriculumVitaeMakerPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Curriculum Vitae Maker',
-        item: 'https://resumebuilder.app/curriculum-vitae-maker',
+        item: 'https://resumebabu.com/curriculum-vitae-maker',
       },
     ],
   };

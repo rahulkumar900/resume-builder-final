@@ -442,7 +442,7 @@ export function TechStudioLanding() {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-teal-400 shadow-[0_0_8px_#10b981]" />
                   </span>
                   <span className="font-mono text-[10px] text-emerald-700 dark:text-teal-400 font-bold">HTTPS</span>
-                  <span className="font-sans font-medium truncate max-w-[140px] sm:max-w-none text-slate-800 dark:text-slate-200">app.resumebuilder.com/builder</span>
+                  <span className="font-sans font-medium truncate max-w-[140px] sm:max-w-none text-slate-800 dark:text-slate-200">resumebabu.com/create</span>
                   <span className="text-slate-400 dark:text-teal-400/80 font-mono hidden md:inline text-[10px]">· 0ms Vector Sync</span>
                 </div>
 

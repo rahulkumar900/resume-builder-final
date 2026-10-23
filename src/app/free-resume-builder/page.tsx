@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -52,10 +52,10 @@ export const metadata: Metadata = {
     description:
       'Tired of spending 45 minutes formatting only to hit a $24.95 download paywall? Use our 100% free resume builder with instant vector PDF download.',
     type: 'website',
-    url: 'https://resumebuilder.app/free-resume-builder',
+    url: 'https://resumebabu.com/free-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: '100% Free Resume Builder - ResumeBuilder',
@@ -68,10 +68,10 @@ export const metadata: Metadata = {
     title: '100% Free Resume Builder & PDF Download | No Paywalls',
     description:
       'Tired of spending 45 minutes formatting only to hit a $24.95 download paywall? Use our 100% free resume builder with instant vector PDF download.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/free-resume-builder',
+    canonical: 'https://resumebabu.com/free-resume-builder',
   },
 };
 
@@ -107,13 +107,13 @@ export default function FreeResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Free Resume Builder',
-        item: 'https://resumebuilder.app/free-resume-builder',
+        item: 'https://resumebabu.com/free-resume-builder',
       },
     ],
   };

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     description:
       'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
     type: 'website',
-    url: 'https://resumebuilder.app/blog',
+    url: 'https://resumebabu.com/blog',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Career & Resume Strategy Blog - ResumeBuilder',
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     title: 'Career & Resume Strategy Blog',
     description:
       'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/blog',
+    canonical: 'https://resumebabu.com/blog',
   },
 };
 
@@ -57,13 +57,13 @@ export default function BlogIndexPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://resumebuilder.app/blog',
+        item: 'https://resumebabu.com/blog',
       },
     ],
   };
@@ -74,12 +74,12 @@ export default function BlogIndexPage() {
     name: 'ResumeBuilder Career & Resume Strategy Blog',
     description:
       'In-depth guides on ATS algorithms, resume optimization, Google XYZ bullet formulas, and career progression.',
-    url: 'https://resumebuilder.app/blog',
+    url: 'https://resumebabu.com/blog',
     blogPost: BLOG_POSTS.map((post) => ({
       '@type': 'BlogPosting',
       headline: post.title,
       description: post.excerpt,
-      url: `https://resumebuilder.app/blog/${post.slug}`,
+      url: `https://resumebabu.com/blog/${post.slug}`,
       datePublished: post.publishedAt,
       dateModified: post.updatedAt,
       author: {

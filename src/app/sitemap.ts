@@ -1,9 +1,9 @@
-import { MetadataRoute } from 'next';
+﻿import { MetadataRoute } from 'next';
 import { RESUME_EXAMPLES } from '@/lib/examples-data';
 import { COMPETITORS } from '@/lib/competitors-data';
 import { BLOG_POSTS } from '@/lib/blog-data';
 
-const BASE_URL = 'https://resumebuilder.app';
+const BASE_URL = 'https://resumebabu.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

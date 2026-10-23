@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     description:
       'Engineered for educators, lecturers, and school teachers. Showcase your B.Ed, CTET, curriculum planning, classroom technology, and student success metrics.',
     type: 'website',
-    url: 'https://resumebuilder.app/teacher-resume-builder',
+    url: 'https://resumebabu.com/teacher-resume-builder',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free Teacher Resume Builder - ResumeBuilder',
@@ -63,10 +63,10 @@ export const metadata: Metadata = {
     title: 'Free Teacher Resume Builder - Land Teaching & Faculty Roles',
     description:
       'Engineered for educators, lecturers, and school teachers. Showcase your B.Ed, CTET, curriculum planning, classroom technology, and student success metrics.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/teacher-resume-builder',
+    canonical: 'https://resumebabu.com/teacher-resume-builder',
   },
 };
 
@@ -77,7 +77,7 @@ export default function TeacherResumeBuilderPage() {
     name: 'ResumeBuilder Teacher & Educator Resume Maker',
     description:
       'Specialized resume maker calibrated for primary teachers (PRT), trained graduate teachers (TGT), post graduate teachers (PGT), and academic lecturers.',
-    url: 'https://resumebuilder.app/teacher-resume-builder',
+    url: 'https://resumebabu.com/teacher-resume-builder',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'All',
     offers: {
@@ -109,13 +109,13 @@ export default function TeacherResumeBuilderPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Teacher Resume Builder',
-        item: 'https://resumebuilder.app/teacher-resume-builder',
+        item: 'https://resumebabu.com/teacher-resume-builder',
       },
     ],
   };

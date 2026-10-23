@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     description:
       'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
     type: 'website',
-    url: 'https://resumebuilder.app/cv-maker',
+    url: 'https://resumebabu.com/cv-maker',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free CV Maker Online - ResumeBuilder',
@@ -60,10 +60,10 @@ export const metadata: Metadata = {
     title: 'Free CV Maker Online (Curriculum Vitae Builder)',
     description:
       'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/cv-maker',
+    canonical: 'https://resumebabu.com/cv-maker',
   },
 };
 
@@ -99,13 +99,13 @@ export default function CvMakerPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'CV Maker',
-        item: 'https://resumebuilder.app/cv-maker',
+        item: 'https://resumebabu.com/cv-maker',
       },
     ],
   };

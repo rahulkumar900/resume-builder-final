@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     description:
       'Read the terms of service and user agreement for ResumeBuilder.',
     type: 'website',
-    url: 'https://resumebuilder.app/terms',
+    url: 'https://resumebabu.com/terms',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ResumeBuilder Terms of Service',
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     title: 'Terms of Service | ResumeBuilder',
     description:
       'Read the terms of service and user agreement for ResumeBuilder.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/terms',
+    canonical: 'https://resumebabu.com/terms',
   },
 };
 
@@ -48,13 +48,13 @@ export default function TermsPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Terms of Service',
-        item: 'https://resumebuilder.app/terms',
+        item: 'https://resumebabu.com/terms',
       },
     ],
   };
@@ -224,8 +224,8 @@ export default function TermsPage() {
                 If you have questions regarding these Terms of Service, please reach out to our legal and support team:
               </p>
               <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border text-xs font-mono space-y-1">
-                <div><strong className="text-slate-900 dark:text-white">Email:</strong> legal@resumebuilder.app</div>
-                <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebuilder.app</div>
+                <div><strong className="text-slate-900 dark:text-white">Email:</strong> legal@resumebabu.com</div>
+                <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebabu.com</div>
                 <div><strong className="text-slate-900 dark:text-white">Address:</strong> ResumeBuilder Technologies, Bengaluru, Karnataka, India</div>
               </div>
             </section>

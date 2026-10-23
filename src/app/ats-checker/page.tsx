@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -54,10 +54,10 @@ export const metadata: Metadata = {
     description:
       'Instantly scan your resume for ATS compatibility. Identifies missing keywords, formatting errors, duplicate phrases, and Google X-Y-Z metric density.',
     type: 'website',
-    url: 'https://resumebuilder.app/ats-checker',
+    url: 'https://resumebabu.com/ats-checker',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free ATS Resume Checker - ResumeBuilder',
@@ -70,10 +70,10 @@ export const metadata: Metadata = {
     title: 'Free ATS Resume Checker & Score Calculator (2026)',
     description:
       'Instantly scan your resume for ATS compatibility. Identifies missing keywords, formatting errors, duplicate phrases, and Google X-Y-Z metric density.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/ats-checker',
+    canonical: 'https://resumebabu.com/ats-checker',
   },
 };
 
@@ -107,13 +107,13 @@ export default function AtsCheckerPage() {
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: 'https://resumebuilder.app',
+            item: 'https://resumebabu.com',
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'ATS Resume Checker',
-            item: 'https://resumebuilder.app/ats-checker',
+            item: 'https://resumebabu.com/ats-checker',
           },
         ],
       },

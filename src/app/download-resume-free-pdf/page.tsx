@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     description:
       'Generate and download your resume in pixel-perfect vector PDF format. Fast, free, and 100% ATS readable.',
     type: 'website',
-    url: 'https://resumebuilder.app/download-resume-free-pdf',
+    url: 'https://resumebabu.com/download-resume-free-pdf',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Download Resume in Free Vector PDF - ResumeBuilder',
@@ -55,10 +55,10 @@ export const metadata: Metadata = {
     title: 'Download Resume in Free Vector PDF | No Watermarks & No Paywalls',
     description:
       'Generate and download your resume in pixel-perfect vector PDF format. Fast, free, and 100% ATS readable.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/download-resume-free-pdf',
+    canonical: 'https://resumebabu.com/download-resume-free-pdf',
   },
 };
 
@@ -94,13 +94,13 @@ export default function DownloadResumeFreePdfPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Download Resume Free PDF',
-        item: 'https://resumebuilder.app/download-resume-free-pdf',
+        item: 'https://resumebabu.com/download-resume-free-pdf',
       },
     ],
   };

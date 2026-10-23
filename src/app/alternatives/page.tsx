@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     description:
       'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
     type: 'website',
-    url: 'https://resumebuilder.app/alternatives',
+    url: 'https://resumebabu.com/alternatives',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Resume Builder Alternatives & Comparisons - ResumeBuilder',
@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     title: 'Top Resume Builder Comparisons & Free Alternatives (2026)',
     description:
       'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/alternatives',
+    canonical: 'https://resumebabu.com/alternatives',
   },
 };
 
@@ -71,11 +71,11 @@ export default function AlternativesIndexPage() {
     name: 'Best Resume Builder Alternatives & Comparisons',
     description:
       'Honest technical comparisons of the top 5 resume builders: Zety, Canva, Teal, Indeed, and LiveCareer.',
-    url: 'https://resumebuilder.app/alternatives',
+    url: 'https://resumebabu.com/alternatives',
     hasPart: COMPETITORS.map((c) => ({
       '@type': 'WebPage',
       name: `${c.name} Alternative`,
-      url: `https://resumebuilder.app/alternatives/${c.slug}`,
+      url: `https://resumebabu.com/alternatives/${c.slug}`,
       description: c.metaDescription,
     })),
   };
@@ -88,13 +88,13 @@ export default function AlternativesIndexPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Alternatives',
-        item: 'https://resumebuilder.app/alternatives',
+        item: 'https://resumebabu.com/alternatives',
       },
     ],
   };

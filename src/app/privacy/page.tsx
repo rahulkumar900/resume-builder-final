@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     description:
       'Learn how ResumeBuilder protects your resume data and privacy. We do not sell your personal information.',
     type: 'website',
-    url: 'https://resumebuilder.app/privacy',
+    url: 'https://resumebabu.com/privacy',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ResumeBuilder Privacy Policy',
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     title: 'Privacy Policy & Data Security | ResumeBuilder',
     description:
       'Learn how ResumeBuilder protects your resume data and privacy. We do not sell your personal information.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/privacy',
+    canonical: 'https://resumebabu.com/privacy',
   },
 };
 
@@ -48,13 +48,13 @@ export default function PrivacyPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Privacy Policy',
-        item: 'https://resumebuilder.app/privacy',
+        item: 'https://resumebabu.com/privacy',
       },
     ],
   };
@@ -217,8 +217,8 @@ export default function PrivacyPage() {
                 For privacy requests, data export assistance, or questions regarding our security protocols, contact our Data Protection team:
               </p>
               <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border text-xs font-mono space-y-1">
-                <div><strong className="text-slate-900 dark:text-white">Email:</strong> privacy@resumebuilder.app</div>
-                <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebuilder.app</div>
+                <div><strong className="text-slate-900 dark:text-white">Email:</strong> privacy@resumebabu.com</div>
+                <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebabu.com</div>
                 <div><strong className="text-slate-900 dark:text-white">Response Time:</strong> Typically within 24–48 business hours</div>
               </div>
             </section>

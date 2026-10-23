@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     description:
       'Customize sections, typography, colors, and margins with real-time A4 preview and instant ATS error scanning.',
     type: 'website',
-    url: 'https://resumebuilder.app/resume-editor',
+    url: 'https://resumebabu.com/resume-editor',
     images: [
       {
-        url: 'https://resumebuilder.app/og-image.png',
+        url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Free Online Resume Editor - ResumeBuilder',
@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     title: 'Free Online Resume Editor | Real-Time A4 Visual Editing',
     description:
       'Customize sections, typography, colors, and margins with real-time A4 preview and instant ATS error scanning.',
-    images: ['https://resumebuilder.app/og-image.png'],
+    images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
-    canonical: 'https://resumebuilder.app/resume-editor',
+    canonical: 'https://resumebabu.com/resume-editor',
   },
 };
 
@@ -91,13 +91,13 @@ export default function ResumeEditorPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://resumebuilder.app',
+        item: 'https://resumebabu.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Resume Editor',
-        item: 'https://resumebuilder.app/resume-editor',
+        item: 'https://resumebabu.com/resume-editor',
       },
     ],
   };
