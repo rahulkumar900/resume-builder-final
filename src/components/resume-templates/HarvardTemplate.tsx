@@ -35,12 +35,11 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="border-b border-slate-900 pb-0.5 mb-2 break-after-avoid">
-      <h2
-        className="text-[12.5px] font-bold uppercase tracking-[0.14em]"
+      <div        className="text-[12.5px] font-bold uppercase tracking-[0.14em]"
         style={{ color: themeColor }}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 

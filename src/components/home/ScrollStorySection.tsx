@@ -368,7 +368,7 @@ export function ScrollStorySection() {
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h4
+                    <div
                       className="text-base sm:text-lg font-bold transition-colors"
                       style={{
                         color:
@@ -378,7 +378,7 @@ export function ScrollStorySection() {
                       }}
                     >
                       Alex Morgan
-                    </h4>
+                    </div>
                     <p
                       className={`text-xs font-medium ${
                         activeScene === 'design' && activeDesignLayout === 'banner'

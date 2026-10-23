@@ -52,9 +52,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary" className={`bg-white/95 backdrop-blur-xs ${cardPadding} shadow-xs border border-slate-100`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2 break-after-avoid">
               Profile
-            </h2>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText content={personalInfo.summary} className="text-[13px] text-slate-700 leading-relaxed" />
             </div>
@@ -64,9 +64,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className={`bg-white/95 backdrop-blur-xs ${cardPadding} shadow-xs border border-slate-100 break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2.5 break-after-avoid">
               Education
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="text-[13px] break-inside-avoid">
@@ -85,9 +85,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className={`bg-white/95 backdrop-blur-xs ${cardPadding} shadow-xs border border-slate-100 break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2.5 break-after-avoid">
               Skills &amp; Tools
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
@@ -111,9 +111,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className={`bg-white/95 backdrop-blur-xs ${cardPadding} shadow-xs border border-slate-100 break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2.5 break-after-avoid">
               Certifications
-            </h2>
+            </div>
             <div className="space-y-1.5 text-[12px]">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
@@ -128,9 +128,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className={`bg-white/95 backdrop-blur-xs ${cardPadding} shadow-xs border border-slate-100 break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-black uppercase tracking-wider text-slate-900 mb-2 break-after-avoid">
               Languages
-            </h2>
+            </div>
             <div className="space-y-1 text-[12px]">
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between break-inside-avoid">
@@ -145,9 +145,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience">
-            <h2 data-ghost-section-title="true" className={`text-sm font-black uppercase tracking-wider text-slate-900 ${headingBottomMargin} border-b-2 border-slate-900 break-after-avoid`}>
+            <div data-ghost-section-title="true" className={`text-sm font-black uppercase tracking-wider text-slate-900 ${headingBottomMargin} border-b-2 border-slate-900 break-after-avoid`}>
               Experience
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid">
@@ -172,9 +172,9 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects">
-            <h2 data-ghost-section-title="true" className={`text-sm font-black uppercase tracking-wider text-slate-900 ${headingBottomMargin} border-b-2 border-slate-900 break-after-avoid`}>
+            <div data-ghost-section-title="true" className={`text-sm font-black uppercase tracking-wider text-slate-900 ${headingBottomMargin} border-b-2 border-slate-900 break-after-avoid`}>
               Creative Projects
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {projects.map((p) => (
                 <div key={p.id} data-ghost-item={p.id} className={`${cardPadding} bg-slate-50 border border-slate-200 break-inside-avoid`}>
@@ -192,12 +192,11 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className={`text-sm font-black uppercase tracking-wider text-slate-900 ${headingBottomMargin} border-b-2 border-slate-900 break-after-avoid`}
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass={itemSpaceClass}
           />

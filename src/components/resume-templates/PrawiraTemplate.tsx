@@ -39,14 +39,13 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-2.5 border-b-2 flex items-center gap-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }} />
               <span>Professional Summary</span>
-            </h2>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
@@ -59,21 +58,20 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 flex items-center gap-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               <span className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }} />
               <span>Work Experience</span>
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {experience.map((exp, idx) => (
                 <div key={exp.id || `exp-${idx}`} data-ghost-item={exp.id || `exp-${idx}`} className="relative pl-4 border-l-2 border-slate-200 break-inside-avoid">
                   <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-slate-400" />
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline mb-1">
-                      <h3 className="font-bold text-slate-900 text-base">{exp.role}</h3>
+                      <div className="font-bold text-slate-900 text-base">{exp.role}</div>
                       <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
@@ -92,13 +90,12 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Featured Projects
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {projects.map((proj, idx) => (
                 <div key={proj.id || `proj-${idx}`} data-ghost-item={proj.id || `proj-${idx}`} className="bg-slate-50/80 p-3 rounded-md border border-slate-200/70 break-inside-avoid">
@@ -131,13 +128,12 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Education
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {education.map((edu, idx) => (
                 <div key={edu.id || `edu-${idx}`} data-ghost-item={edu.id || `edu-${idx}`} className="text-[13px] break-inside-avoid">
@@ -160,13 +156,12 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className="break-inside-avoid">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Core Competencies
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {skills.map((cat, idx) => (
                 <div key={cat.id || `sk-${idx}`} data-ghost-item={cat.id || `sk-${idx}`} className="break-inside-avoid">
@@ -187,13 +182,12 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className="break-inside-avoid">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Certifications
-            </h2>
+            </div>
             <div className="space-y-2">
               {certifications.map((c, idx) => (
                 <div key={c.id || `cert-${idx}`} data-ghost-item={c.id || `cert-${idx}`} className="text-xs break-inside-avoid">
@@ -208,13 +202,12 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className="break-inside-avoid">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Languages
-            </h2>
+            </div>
             <div className="space-y-1.5 text-xs">
               {languages.map((l, idx) => (
                 <div key={l.id || `lang-${idx}`} data-ghost-item={l.id || `lang-${idx}`} className="flex justify-between text-slate-700">
@@ -232,13 +225,12 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
                 style={{ borderColor: themeColor, color: themeColor }}
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass={itemSpaceClass}
           />

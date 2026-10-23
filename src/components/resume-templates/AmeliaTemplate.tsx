@@ -41,13 +41,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid"
               style={{ color: themeColor }}
             >
               About Me
-            </h2>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText content={personalInfo.summary} className="text-[13px] text-stone-700 font-sans leading-relaxed" />
             </div>
@@ -57,13 +56,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid"
               style={{ color: themeColor }}
             >
               Education
-            </h2>
+            </div>
             <div className={`${itemSpaceClass} font-sans`}>
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="text-[13px] break-inside-avoid">
@@ -83,13 +81,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid"
               style={{ color: themeColor }}
             >
               Expertise
-            </h2>
+            </div>
             <div className={`${itemSpaceClass} font-sans`}>
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
@@ -112,13 +109,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid"
               style={{ color: themeColor }}
             >
               Certifications
-            </h2>
+            </div>
             <div className="space-y-2 font-sans text-[13px]">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
@@ -133,13 +129,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid"
               style={{ color: themeColor }}
             >
               Languages
-            </h2>
+            </div>
             <div className="space-y-1.5 font-sans text-[13px]">
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between text-stone-800 break-inside-avoid">
@@ -154,13 +149,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-4 break-after-avoid"
               style={{ color: themeColor }}
             >
               Professional Experience
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid">
@@ -185,13 +179,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-3.5 break-after-avoid"
               style={{ color: themeColor }}
             >
               Key Transactions &amp; Projects
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {projects.map((proj) => (
                 <div key={proj.id} data-ghost-item={proj.id} className="text-[13px] break-inside-avoid">
@@ -209,13 +202,12 @@ export const AmeliaTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-[13px] font-sans font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-3.5 break-after-avoid"
                 style={{ color: themeColor }}
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass={itemSpaceClass}
           />

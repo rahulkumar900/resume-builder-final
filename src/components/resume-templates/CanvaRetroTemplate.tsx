@@ -62,12 +62,11 @@ export const CanvaRetroTemplate: React.FC<TemplateProps> = ({ data }) => {
       <div className="w-3.5 h-3.5 rounded-full bg-amber-400 flex items-center justify-center text-amber-900 shadow-2xs">
         <Star className="w-2.5 h-2.5 fill-amber-900 text-amber-900" />
       </div>
-      <h2
-        className="text-[13px] font-black uppercase tracking-wider font-serif"
+      <div        className="text-[13px] font-black uppercase tracking-wider font-serif"
         style={{ color }}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 

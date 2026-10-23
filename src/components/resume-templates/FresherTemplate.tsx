@@ -43,12 +43,11 @@ export const FresherTemplate: React.FC<TemplateProps> = ({ data }) => {
       className="flex items-center gap-2 pb-1 mb-2 border-b-2 break-after-avoid"
       style={{ borderColor: themeColor }}
     >
-      <h2
-        className="text-[13px] font-black uppercase tracking-wider text-slate-900"
+      <div        className="text-[13px] font-black uppercase tracking-wider text-slate-900"
         style={{ color: themeColor }}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 

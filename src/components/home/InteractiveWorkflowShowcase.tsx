@@ -463,9 +463,9 @@ export function InteractiveWorkflowShowcase() {
               <div className="pb-4 border-b border-slate-100">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h4 className="text-base font-bold text-slate-900 transition-colors" style={{ color: previewColor }}>
+                    <div className="text-base font-bold text-slate-900 transition-colors" style={{ color: previewColor }}>
                       Alex Morgan
-                    </h4>
+                    </div>
                     <p className="text-xs font-medium text-slate-500">
                       Senior Cloud Infrastructure Engineer &bull; Bengaluru, India
                     </p>

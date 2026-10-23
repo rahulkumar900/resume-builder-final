@@ -37,9 +37,9 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="border-b-2 border-slate-900 pb-0.5 mb-1.5 flex justify-between items-baseline">
-      <h2 className="text-[12px] font-black uppercase tracking-wider text-slate-900">
+      <div className="text-[12px] font-black uppercase tracking-wider text-slate-900">
         {title}
-      </h2>
+      </div>
     </div>
   );
 

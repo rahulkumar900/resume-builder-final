@@ -67,9 +67,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="experience" data-ghost-section="experience">
             <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
               <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-              <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+              <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                 Work Experience
-              </h2>
+              </div>
             </div>
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
@@ -97,9 +97,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="projects" data-ghost-section="projects">
             <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
               <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-              <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+              <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                 Featured Projects
-              </h2>
+              </div>
             </div>
             <div className={itemSpaceClass}>
               {projects.map((p) => (
@@ -135,9 +135,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="education" data-ghost-section="education">
             <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
               <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-              <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+              <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                 Education
-              </h2>
+              </div>
             </div>
             <div className={itemSpaceClass}>
               {education.map((edu) => (
@@ -161,9 +161,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="skills" data-ghost-section="skills" className="break-inside-avoid">
             <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
               <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-              <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+              <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                 Technical Stack
-              </h2>
+              </div>
             </div>
             <div className={itemSpaceClass}>
               {skills.map((cat) => (
@@ -192,9 +192,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="certifications" data-ghost-section="certifications" className="break-inside-avoid">
             <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
               <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-              <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+              <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                 Certifications
-              </h2>
+              </div>
             </div>
             <div className="space-y-2.5">
               {certifications.map((c) => (
@@ -212,9 +212,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="languages" data-ghost-section="languages" className="break-inside-avoid">
             <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
               <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-              <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+              <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                 Languages
-              </h2>
+              </div>
             </div>
             <div className="space-y-1.5 text-[12.5px] font-mono">
               {languages.map((l) => (
@@ -235,9 +235,9 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
             renderHeader={(title) => (
               <div data-ghost-section-title="true" className="flex items-center gap-2 mb-3.5 break-after-avoid">
                 <span className="w-3 h-3 rounded-xs" style={{ backgroundColor: themeColor || '#eab308' }} />
-                <h2 className="text-sm font-black uppercase tracking-wider text-neutral-900">
+                <div className="text-sm font-black uppercase tracking-wider text-neutral-900">
                   {title}
-                </h2>
+                </div>
               </div>
             )}
             itemSpacingClass={itemSpaceClass}

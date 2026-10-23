@@ -39,9 +39,9 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary">
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 break-after-avoid">
               Profile
-            </h2>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText content={personalInfo.summary} className="text-[13px] text-slate-700 leading-relaxed" />
             </div>
@@ -51,10 +51,10 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education">
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
               <BookOpen className="w-4 h-4 text-slate-500" />
               <span>Education</span>
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="text-[13px] break-inside-avoid">
@@ -73,10 +73,10 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills">
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
               <Wrench className="w-4 h-4 text-slate-500" />
               <span>Key Skills</span>
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
@@ -97,10 +97,10 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications">
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
               <Award className="w-4 h-4 text-slate-500" />
               <span>Certificates</span>
-            </h2>
+            </div>
             <div className="space-y-2.5">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="text-[12.5px] break-inside-avoid">
@@ -115,10 +115,10 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages">
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
               <LanguagesIcon className="w-4 h-4 text-slate-500" />
               <span>Languages</span>
-            </h2>
+            </div>
             <div className="space-y-1.5 text-[12.5px]">
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between text-slate-700 break-inside-avoid">
@@ -133,13 +133,12 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Work Experience
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid">
@@ -164,13 +163,12 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Key Projects &amp; Initiatives
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {projects.map((p) => (
                 <div key={p.id} data-ghost-item={p.id} className="p-3.5 bg-slate-50 rounded-lg border border-slate-200/70 break-inside-avoid">
@@ -188,13 +186,12 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-sm font-bold uppercase tracking-wider pb-1.5 mb-3.5 border-b-2 break-after-avoid"
                 style={{ borderColor: themeColor, color: themeColor }}
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass={itemSpaceClass}
           />

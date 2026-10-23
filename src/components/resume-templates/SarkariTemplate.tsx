@@ -43,12 +43,11 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
       className="pb-1 mb-2 border-b-2 border-slate-800 break-after-avoid flex items-center justify-between"
       style={{ borderColor: themeColor }}
     >
-      <h2
-        className="text-[13px] font-black uppercase tracking-wider text-slate-900"
+      <div        className="text-[13px] font-black uppercase tracking-wider text-slate-900"
         style={{ color: themeColor }}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 

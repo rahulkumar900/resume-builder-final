@@ -63,12 +63,11 @@ export const CanvaEditorialTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderEditorialSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="flex items-center gap-2 mb-2 pb-1">
-      <h2
-        className="text-[13px] font-black uppercase tracking-wider"
+      <div        className="text-[13px] font-black uppercase tracking-wider"
         style={{ color: themeColor }}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 

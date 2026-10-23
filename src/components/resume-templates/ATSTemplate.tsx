@@ -31,9 +31,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary" className={sectionMarginClass}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid">
               Professional Summary
-            </h2>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
@@ -46,9 +46,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience" className={sectionMarginClass}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
               Work Experience
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid">
@@ -72,9 +72,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className={sectionMarginClass}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
               Education
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="break-inside-avoid">
@@ -99,9 +99,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className={`${sectionMarginClass} break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
               Skills &amp; Competencies
-            </h2>
+            </div>
             <div className="space-y-1.5 text-[13px]">
               {skills.map((s) => (
                 <div key={s.id} data-ghost-item={s.id} className="break-inside-avoid">
@@ -116,9 +116,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects" className={sectionMarginClass}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2.5 break-after-avoid">
               Key Projects
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {projects.map((p) => (
                 <div key={p.id} data-ghost-item={p.id} className="break-inside-avoid">
@@ -133,9 +133,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className={`${sectionMarginClass} break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid">
               Certifications
-            </h2>
+            </div>
             <div className="text-[13px] space-y-1">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
@@ -149,9 +149,9 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className={`${sectionMarginClass} break-inside-avoid`}>
-            <h2 data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid">
+            <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid">
               Languages
-            </h2>
+            </div>
             <div className="flex flex-wrap gap-x-6 gap-y-1 text-[13px]">
               {languages.map((l) => (
                 <span key={l.id} data-ghost-item={l.id}>
@@ -168,12 +168,11 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-sm font-bold uppercase tracking-wider border-b border-black pb-1 mb-2 break-after-avoid"
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass={itemSpaceClass}
           />

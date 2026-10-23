@@ -1075,9 +1075,9 @@ export function RxStoryScenes() {
                 <span className="font-mono text-[10px] sm:text-[11px] font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-widest px-2 py-0.5 rounded-md bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300/60 dark:border-emerald-800/60">
                   02 / DESIGN
                 </span>
-                <h4 className="font-serif text-sm lg:text-base font-bold text-slate-900 dark:text-white leading-tight">
+                <div className="font-serif text-sm lg:text-base font-bold text-slate-900 dark:text-white leading-tight">
                   17 ATS Layouts
-                </h4>
+                </div>
                 <p className="text-[11px] lg:text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   Pick from 17 recruiter-tested templates, then customize typography, accents, and spacing.
                 </p>
@@ -1534,7 +1534,7 @@ export function RxStoryScenes() {
                 ) : (
                   <>
                     <div className="border-b border-emerald-600/30 dark:border-emerald-500/30 pb-2 mb-3">
-                      <h4 className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Page 2 &bull; Key Projects &amp; Education</h4>
+                      <div className="text-sm font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Page 2 &bull; Key Projects &amp; Education</div>
                     </div>
 
                     <div className="text-xs space-y-3">
@@ -1595,9 +1595,9 @@ export function RxStoryScenes() {
                     <span className="text-[10px] font-mono uppercase bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-600 dark:text-slate-400 font-bold">
                       TARGET JOB POSTING
                     </span>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white mt-1">
+                    <div className="text-sm font-bold text-slate-900 dark:text-white mt-1">
                       Lead Cloud Infrastructure Engineer
-                    </h4>
+                    </div>
                     <p className="text-[11px] text-slate-500">Stripe &bull; Remote / Hybrid</p>
                   </div>
                   <div className="text-right">
@@ -1720,9 +1720,9 @@ export function RxStoryScenes() {
                         <span className="text-[10px] font-mono uppercase text-emerald-700 dark:text-emerald-400 font-bold block mb-1">
                           {item.tag}
                         </span>
-                        <h4 className="font-bold text-xs text-slate-900 dark:text-white mb-1.5 leading-snug">
+                        <div className="font-bold text-xs text-slate-900 dark:text-white mb-1.5 leading-snug">
                           {item.title}
-                        </h4>
+                        </div>
                         <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
                           {item.desc}
                         </p>

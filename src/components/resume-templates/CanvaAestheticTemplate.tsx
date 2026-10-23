@@ -61,12 +61,11 @@ export const CanvaAestheticTemplate: React.FC<TemplateProps> = ({ data }) => {
       data-ghost-section-title="true"
       className="flex items-center gap-2 mb-2 pb-1 border-b border-orange-200"
     >
-      <h2
-        className="text-[12px] font-serif uppercase tracking-[0.2em] font-bold"
+      <div        className="text-[12px] font-serif uppercase tracking-[0.2em] font-bold"
         style={{ color: themeColor }}
       >
         {title}
-      </h2>
+      </div>
     </div>
   );
 

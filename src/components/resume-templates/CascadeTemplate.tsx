@@ -43,17 +43,17 @@ export const CascadeTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderMainSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="flex items-center gap-2 mb-2 pb-1 border-b-2 break-after-avoid" style={{ borderColor: themeColor }}>
-      <h2 className="text-[13px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
+      <div className="text-[13px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
         {title}
-      </h2>
+      </div>
     </div>
   );
 
   const renderSidebarSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="mb-2 pb-1 border-b border-slate-300 break-after-avoid">
-      <h3 className="text-[11.5px] font-bold uppercase tracking-wider text-slate-800">
+      <div className="text-[11.5px] font-bold uppercase tracking-wider text-slate-800">
         {title}
-      </h3>
+      </div>
     </div>
   );
 

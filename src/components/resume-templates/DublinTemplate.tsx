@@ -59,13 +59,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience" className="space-y-3.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Employment History
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {experience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="space-y-1 break-inside-avoid">
@@ -90,13 +89,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects" className="space-y-3.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Key Projects
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {projects.map((p) => (
                 <div key={p.id} data-ghost-item={p.id} className="space-y-1 break-inside-avoid">
@@ -118,13 +116,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className="space-y-3.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Education
-            </h2>
+            </div>
             <div className={itemSpaceClass}>
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="space-y-0.5 break-inside-avoid">
@@ -147,13 +144,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className="space-y-3">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Skills
-            </h2>
+            </div>
             <div className="space-y-2.5">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1">
@@ -178,13 +174,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className="space-y-3">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Certifications
-            </h2>
+            </div>
             <div className="space-y-2 text-[11.5px]">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
@@ -199,13 +194,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className="space-y-3">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
               style={{ borderColor: themeColor, color: themeColor }}
             >
               Languages
-            </h2>
+            </div>
             <div className="space-y-1 text-[11.5px]">
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between">
@@ -223,13 +217,12 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-xs font-black uppercase tracking-wider pb-1.5 border-b-2"
                 style={{ borderColor: themeColor, color: themeColor }}
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass="space-y-2.5"
           />

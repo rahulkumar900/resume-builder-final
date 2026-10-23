@@ -37,9 +37,9 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="border-b-2 pb-1 mb-2.5 flex items-center justify-between" style={{ borderColor: themeColor }}>
-      <h2 className="text-[13px] font-black uppercase tracking-widest" style={{ color: themeColor }}>
+      <div className="text-[13px] font-black uppercase tracking-widest" style={{ color: themeColor }}>
         {title}
-      </h2>
+      </div>
     </div>
   );
 

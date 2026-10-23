@@ -38,9 +38,9 @@ export const FlowTemplate: React.FC<TemplateProps> = ({ data }) => {
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="flex items-center gap-2 mb-2">
       <div className="w-2.5 h-1 rounded-full" style={{ backgroundColor: themeColor }} />
-      <h2 className="text-[12.5px] font-bold tracking-wider uppercase text-slate-800">
+      <div className="text-[12.5px] font-bold tracking-wider uppercase text-slate-800">
         {title}
-      </h2>
+      </div>
       <div className="flex-1 h-px bg-slate-200/80 ml-1" />
     </div>
   );

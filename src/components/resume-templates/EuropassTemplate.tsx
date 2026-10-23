@@ -43,9 +43,9 @@ export const EuropassTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="flex items-center gap-2 mb-2 pb-1 border-b-2" style={{ borderColor: themeColor }}>
-      <h2 className="text-[12.5px] font-bold uppercase tracking-wider" style={{ color: themeColor }}>
+      <div className="text-[12.5px] font-bold uppercase tracking-wider" style={{ color: themeColor }}>
         {title}
-      </h2>
+      </div>
     </div>
   );
 

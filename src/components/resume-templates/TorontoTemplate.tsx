@@ -38,9 +38,9 @@ export const TorontoTemplate: React.FC<TemplateProps> = ({ data }) => {
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="flex items-center gap-2 mb-2 pb-1 border-b border-slate-200">
       <span className="w-1.5 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
-      <h2 className="text-[13px] font-bold tracking-tight uppercase text-slate-800">
+      <div className="text-[13px] font-bold tracking-tight uppercase text-slate-800">
         {title}
-      </h2>
+      </div>
     </div>
   );
 

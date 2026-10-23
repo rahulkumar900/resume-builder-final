@@ -56,13 +56,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className="space-y-3 break-inside-avoid">
-            <h3
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Skills
-            </h3>
+            </div>
             <div className="space-y-3">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1.5">
@@ -86,13 +85,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className="space-y-2 break-inside-avoid">
-            <h3
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Languages
-            </h3>
+            </div>
             <div className="space-y-1.5 text-[12px]">
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between">
@@ -107,13 +105,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className="space-y-2 break-inside-avoid">
-            <h3
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Certifications
-            </h3>
+            </div>
             <div className="space-y-2 text-[11.5px]">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id}>
@@ -130,13 +127,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className="space-y-2.5 break-inside-avoid">
-            <h3
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Education
-            </h3>
+            </div>
             <div className="space-y-2 text-[11.5px]">
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="space-y-0.5">
@@ -152,13 +148,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary" className="space-y-2">
-            <h3
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Profile
-            </h3>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText content={personalInfo.summary} className="text-[11.5px] text-slate-600 leading-relaxed" />
             </div>
@@ -171,13 +166,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h3
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
                 style={{ color: themeColor }}
               >
                 {title}
-              </h3>
+              </div>
             )}
             itemSpacingClass="space-y-2"
             isSidebar={true}
@@ -192,13 +186,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary" className="space-y-1.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Profile
-            </h2>
+            </div>
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
@@ -211,13 +204,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience" className="space-y-3.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               <span>Employment History</span>
-            </h2>
+            </div>
 
             <div className={itemSpacingClass}>
               {experience.map((exp) => (
@@ -247,13 +239,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className="space-y-3.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               <span>Education</span>
-            </h2>
+            </div>
 
             <div className={itemSpacingClass}>
               {education.map((edu) => (
@@ -280,13 +271,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects" className="space-y-3.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider flex items-center gap-2 pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               <span>Key Projects</span>
-            </h2>
+            </div>
 
             <div className={itemSpacingClass}>
               {projects.map((proj) => (
@@ -316,13 +306,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className="space-y-3">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Skills
-            </h2>
+            </div>
             <div className="space-y-2">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1">
@@ -346,13 +335,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className="space-y-2.5">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Certifications
-            </h2>
+            </div>
             <div className="space-y-1 text-[12px] text-slate-700">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
@@ -366,13 +354,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className="space-y-2">
-            <h2
-              data-ghost-section-title="true"
+            <div              data-ghost-section-title="true"
               className="text-sm font-bold uppercase tracking-wider pb-1 border-b border-slate-200"
               style={{ color: themeColor }}
             >
               Languages
-            </h2>
+            </div>
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] text-slate-700">
               {languages.map((l) => (
                 <span key={l.id} data-ghost-item={l.id} className="break-inside-avoid">
@@ -389,13 +376,12 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <h2
-                data-ghost-section-title="true"
+              <div                data-ghost-section-title="true"
                 className="text-sm font-bold uppercase tracking-wider pb-1 border-b border-slate-200"
                 style={{ color: themeColor }}
               >
                 {title}
-              </h2>
+              </div>
             )}
             itemSpacingClass={itemSpacingClass}
             isSidebar={false}
@@ -435,12 +421,11 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
                 )}
 
                 <div className="space-y-3">
-                  <h3
-                    className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
+                  <div                    className="text-xs font-bold uppercase tracking-wider pb-1.5 border-b border-slate-200"
                     style={{ color: themeColor }}
                   >
                     Details
-                  </h3>
+                  </div>
                   <div className="space-y-2 text-[11.5px] text-slate-600">
                     {personalInfo.location && (
                       <div className="flex items-center gap-2">

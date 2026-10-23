@@ -949,9 +949,9 @@ export function TechStudioLanding() {
                             {rule.status}
                           </span>
                         </div>
-                        <h4 className="font-serif text-sm font-bold text-slate-900 dark:text-white mt-1">
+                        <div className="font-serif text-sm font-bold text-slate-900 dark:text-white mt-1">
                           {rule.title}
-                        </h4>
+                        </div>
                         <p className="text-xs text-slate-600 dark:text-slate-300 font-sans mt-0.5">
                           {rule.desc}
                         </p>
@@ -1240,9 +1240,9 @@ export function TechStudioLanding() {
 
                 <div className="pt-3 flex items-center justify-between">
                   <div>
-                    <h4 className="font-serif text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                    <h3 className="font-serif text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                       {tmpl.name}
-                    </h4>
+                    </h3>
                     <span className="text-[11px] text-slate-500 dark:text-slate-400 font-sans block">
                       Single / Dual Column ATS
                     </span>

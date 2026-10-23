@@ -51,9 +51,9 @@ export const NovoresumeTemplate: React.FC<TemplateProps> = ({ data }) => {
           {icon}
         </span>
       )}
-      <h2 className="text-[12.5px] font-bold uppercase tracking-wider text-slate-900">
+      <div className="text-[12.5px] font-bold uppercase tracking-wider text-slate-900">
         {title}
-      </h2>
+      </div>
     </div>
   );
 

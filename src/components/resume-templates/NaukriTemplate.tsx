@@ -45,12 +45,11 @@ export const NaukriTemplate: React.FC<TemplateProps> = ({ data }) => {
     >
       <div className="flex items-center gap-2">
         <div className="w-2 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
-        <h2
-          className="text-[13px] font-black uppercase tracking-wider text-slate-900"
+        <div          className="text-[13px] font-black uppercase tracking-wider text-slate-900"
           style={{ color: themeColor }}
         >
           {title}
-        </h2>
+        </div>
       </div>
       {badgeText && (
         <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
@@ -127,9 +126,9 @@ export const NaukriTemplate: React.FC<TemplateProps> = ({ data }) => {
                     className="flex flex-row items-baseline justify-between gap-1 mb-1.5"
                   >
                     <div>
-                      <h3 className="text-[13.5px] font-bold text-slate-900 leading-tight">
+                      <div className="text-[13.5px] font-bold text-slate-900 leading-tight">
                         {exp.role}
-                      </h3>
+                      </div>
                       <div className="text-[12px] font-semibold text-slate-700">
                         {exp.company}
                         {exp.location && (
@@ -173,9 +172,9 @@ export const NaukriTemplate: React.FC<TemplateProps> = ({ data }) => {
                     className="flex flex-row items-center justify-between gap-1 mb-1"
                   >
                     <div className="flex items-center gap-2">
-                      <h3 className="text-[13px] font-bold text-slate-900">
+                      <div className="text-[13px] font-bold text-slate-900">
                         {proj.title}
-                      </h3>
+                      </div>
                       {proj.link && (
                         <a
                           href={proj.link.startsWith('http') ? proj.link : `https://${proj.link}`}
