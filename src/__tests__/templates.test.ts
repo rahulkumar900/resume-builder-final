@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   getTemplateLayout,
+  getTemplateSidebarPosition,
   getDefaultSectionOrder,
   migrateSectionOrder,
   getDefaultColumnForSection,
@@ -27,6 +28,25 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
 
     it('should fallback safely to single column for invalid template ids', () => {
       expect(getTemplateLayout('non-existent-template' as any)).toBe('single');
+    });
+  });
+
+  describe('getTemplateSidebarPosition', () => {
+    it('should identify templates with right sidebar', () => {
+      expect(getTemplateSidebarPosition('sydney')).toBe('right');
+      expect(getTemplateSidebarPosition('dublin')).toBe('right');
+      expect(getTemplateSidebarPosition('prawira')).toBe('right');
+    });
+
+    it('should identify templates with left sidebar', () => {
+      expect(getTemplateSidebarPosition('amelia')).toBe('left');
+      expect(getTemplateSidebarPosition('stockholm')).toBe('left');
+      expect(getTemplateSidebarPosition('chastain')).toBe('left');
+      expect(getTemplateSidebarPosition('santoso')).toBe('left');
+    });
+
+    it('should default to left sidebar for templates without explicit position', () => {
+      expect(getTemplateSidebarPosition('ats')).toBe('left');
     });
   });
 

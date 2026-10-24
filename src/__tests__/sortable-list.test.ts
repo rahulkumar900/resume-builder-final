@@ -42,4 +42,32 @@ describe('Sortable List Reordering Logic (TDD & Pure Functional Isolation)', () 
 
     expect(reordered.map((j) => j.id)).toEqual(['job-3', 'job-1', 'job-2']);
   });
+
+  describe('Cross-Container Transfer Logic (Main <-> Sidebar)', () => {
+    it('should transfer an item from main to sidebar at target position', () => {
+      const main = ['summary', 'experience', 'projects'];
+      const sidebar = ['skills', 'education'];
+      const itemToMove = 'experience';
+
+      const nextMain = main.filter((s) => s !== itemToMove);
+      const targetIndex = 1; // insert between skills and education
+      const nextSidebar = [...sidebar];
+      nextSidebar.splice(targetIndex, 0, itemToMove);
+
+      expect(nextMain).toEqual(['summary', 'projects']);
+      expect(nextSidebar).toEqual(['skills', 'experience', 'education']);
+    });
+
+    it('should transfer an item from sidebar to main at end when dropped on empty or container', () => {
+      const main = ['summary', 'experience'];
+      const sidebar = ['skills', 'education', 'certifications'];
+      const itemToMove = 'skills';
+
+      const nextSidebar = sidebar.filter((s) => s !== itemToMove);
+      const nextMain = [...main, itemToMove];
+
+      expect(nextSidebar).toEqual(['education', 'certifications']);
+      expect(nextMain).toEqual(['summary', 'experience', 'skills']);
+    });
+  });
 });

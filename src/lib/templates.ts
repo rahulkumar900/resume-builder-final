@@ -110,6 +110,7 @@ export interface TemplateColumnContract {
   summaryPlacement: 'main' | 'sidebar' | 'headerBanner';
   mainFraction: number;
   sidebarFraction: number;
+  sidebarPosition?: 'left' | 'right';
 }
 
 export const ALL_AVAILABLE_SECTIONS: ResumeSectionId[] = [
@@ -607,6 +608,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.58,
     sidebarFraction: 0.42,
+    sidebarPosition: 'right',
   },
   santoso: {
     // Santoso: summary is in sidebar with profile arc
@@ -649,6 +651,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'sidebar',
     mainFraction: 0.67,
     sidebarFraction: 0.33,
+    sidebarPosition: 'left',
   },
   rahadian: {
     mainSections: [...STANDARD_TWO_COL_MAIN_SECTIONS],
@@ -671,6 +674,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.67,
     sidebarFraction: 0.33,
+    sidebarPosition: 'right',
   },
   amelia: {
     mainSections: [
@@ -712,6 +716,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'sidebar',
     mainFraction: 0.67,
     sidebarFraction: 0.33,
+    sidebarPosition: 'left',
   },
   chastain: {
     // Chastain: education in main, summary in sidebar
@@ -754,6 +759,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'sidebar',
     mainFraction: 0.67,
     sidebarFraction: 0.33,
+    sidebarPosition: 'left',
   },
   stockholm: {
     // Stockholm: summary and education in main
@@ -796,6 +802,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.68,
     sidebarFraction: 0.32,
+    sidebarPosition: 'left',
   },
   dublin: {
     // Dublin: education in main, projects in sidebar
@@ -838,6 +845,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'headerBanner',
     mainFraction: 0.60,
     sidebarFraction: 0.40,
+    sidebarPosition: 'right',
   },
   sydney: {
     // Sydney: projects in main, education in sidebar
@@ -880,6 +888,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'headerBanner',
     mainFraction: 0.65,
     sidebarFraction: 0.35,
+    sidebarPosition: 'right',
   },
   traditional: {
     mainSections: [...TRADITIONAL_SINGLE_SECTIONS],
@@ -922,6 +931,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.67,
     sidebarFraction: 0.33,
+    sidebarPosition: 'left',
   },
   novoresume: {
     mainSections: [...TWO_COL_MAIN_WITH_EDUCATION],
@@ -929,6 +939,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.65,
     sidebarFraction: 0.35,
+    sidebarPosition: 'right',
   },
   toronto: {
     mainSections: [...STANDARD_SINGLE_ALL_SECTIONS],
@@ -943,6 +954,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.65,
     sidebarFraction: 0.35,
+    sidebarPosition: 'right',
   },
   flow: {
     mainSections: [...STANDARD_SINGLE_ALL_SECTIONS],
@@ -971,6 +983,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.67,
     sidebarFraction: 0.33,
+    sidebarPosition: 'right',
   },
   europass: {
     mainSections: [...TWO_COL_MAIN_WITH_EDUCATION],
@@ -978,6 +991,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.65,
     sidebarFraction: 0.35,
+    sidebarPosition: 'right',
   },
   canvapastel: {
     mainSections: [...TWO_COL_MAIN_WITH_EDUCATION],
@@ -985,6 +999,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.50,
     sidebarFraction: 0.50,
+    sidebarPosition: 'left',
   },
   canvanotebook: {
     mainSections: [...TWO_COL_MAIN_WITH_EDUCATION],
@@ -992,6 +1007,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'main',
     mainFraction: 0.58,
     sidebarFraction: 0.42,
+    sidebarPosition: 'left',
   },
   canvaeditorial: {
     mainSections: [...TWO_COL_MAIN_EXPERIENCE_SKILLS],
@@ -999,6 +1015,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'sidebar',
     mainFraction: 0.55,
     sidebarFraction: 0.45,
+    sidebarPosition: 'left',
   },
   canvaretro: {
     mainSections: ['summary', ...TWO_COL_MAIN_EXPERIENCE_SKILLS],
@@ -1006,6 +1023,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'headerBanner',
     mainFraction: 0.60,
     sidebarFraction: 0.40,
+    sidebarPosition: 'left',
   },
   canvaaesthetic: {
     mainSections: [...TWO_COL_MAIN_EXPERIENCE_FIRST],
@@ -1013,6 +1031,7 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     summaryPlacement: 'sidebar',
     mainFraction: 0.65,
     sidebarFraction: 0.35,
+    sidebarPosition: 'left',
   },
 };
 
@@ -1412,6 +1431,11 @@ export const TEMPLATES: TemplateDefinition[] = [
 export const getTemplateLayout = (templateId: TemplateId): 'single' | 'double' => {
   const t = TEMPLATES.find((item) => item.id === templateId);
   return t ? t.layout : 'single';
+};
+
+export const getTemplateSidebarPosition = (templateId: TemplateId): 'left' | 'right' => {
+  const contract = TEMPLATE_COLUMN_CONTRACTS[templateId];
+  return contract?.sidebarPosition ?? 'left';
 };
 
 export const getTemplateColumnForSection = (
