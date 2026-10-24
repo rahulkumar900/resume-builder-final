@@ -28,6 +28,7 @@ interface AuthContextType {
   closeAuthModal: () => void;
   signInWithPassword: (email: string, password: string) => Promise<{ error: AuthError | null }>;
   signUpWithPassword: (email: string, password: string, fullName?: string) => Promise<{ error: AuthError | null }>;
+  signInWithOAuth: (provider: 'google' | 'github') => Promise<{ error: AuthError | null }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
 }
@@ -128,7 +129,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         ensureUserProfile(
           currentSession.user.id,
           currentSession.user.email,
-          currentSession.user.user_metadata?.full_name
+          currentSession.user.user_metadata?.full_name ||
+            currentSession.user.user_metadata?.name ||
+            currentSession.user.user_metadata?.user_name
         ).catch(() => {});
 
         if (event === 'SIGNED_IN') {
@@ -193,6 +196,36 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return { error };
   };
 
+  const signInWithOAuth = async (provider: 'google' | 'github') => {
+    try {
+      const currentPath =
+        typeof window !== 'undefined'
+          ? window.location.pathname + window.location.search
+          : '/dashboard';
+      const redirectUrl = `${window.location.origin}/auth/callback?next=${encodeURIComponent(
+        currentPath
+      )}`;
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: redirectUrl,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+
+      if (error) {
+        return { error };
+      }
+      return { error: null };
+    } catch (err: any) {
+      return { error: err as AuthError };
+    }
+  };
+
   const signOut = async () => {
     try {
       await supabase.auth.signOut();
@@ -219,6 +252,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         closeAuthModal,
         signInWithPassword,
         signUpWithPassword,
+        signInWithOAuth,
         signOut,
         refreshProfile,
       }}
