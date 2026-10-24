@@ -1556,6 +1556,9 @@
   .cursor-default {
     cursor: default;
   }
+  .cursor-grab {
+    cursor: grab;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -5021,6 +5024,12 @@
       --tw-ring-color: color-mix(in oklab, var(--color-blue-500) 30%, transparent);
     }
   }
+  .ring-blue-500\/50 {
+    --tw-ring-color: color-mix(in srgb, oklch(62.3% 0.214 259.815) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--color-blue-500) 50%, transparent);
+    }
+  }
   .ring-emerald-400\/30 {
     --tw-ring-color: color-mix(in srgb, oklch(76.5% 0.177 163.223) 30%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -5042,6 +5051,12 @@
       --tw-ring-color: color-mix(in oklab, var(--color-emerald-500) 40%, transparent);
     }
   }
+  .ring-emerald-500\/50 {
+    --tw-ring-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--color-emerald-500) 50%, transparent);
+    }
+  }
   .ring-emerald-600 {
     --tw-ring-color: var(--color-emerald-600);
   }
@@ -5055,6 +5070,12 @@
     --tw-ring-color: color-mix(in srgb, oklch(62.7% 0.265 303.9) 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-ring-color: color-mix(in oklab, var(--color-purple-500) 20%, transparent);
+    }
+  }
+  .ring-purple-500\/50 {
+    --tw-ring-color: color-mix(in srgb, oklch(62.7% 0.265 303.9) 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-ring-color: color-mix(in oklab, var(--color-purple-500) 50%, transparent);
     }
   }
   .ring-slate-200\/80 {
@@ -6245,6 +6266,9 @@
   }
   .active\:scale-\[0\.98\]:active {
     scale: 0.98;
+  }
+  .active\:cursor-grabbing:active {
+    cursor: grabbing;
   }
   .active\:bg-blue-800:active {
     background-color: var(--color-blue-800);

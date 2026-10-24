@@ -10,7 +10,7 @@
 
 import React, { useState } from 'react';
 import { SkillCategory } from '@/types/resume';
-import { Plus, Trash2, Sparkles, ChevronDown, ChevronUp, Pencil } from 'lucide-react';
+import { Plus, Trash2, Sparkles, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/badge';
 import { AiSuggestionModal } from '@/components/builder/AiSuggestionModal';
 import { SkillGroupSuggestion } from '@/lib/ai/types';
 import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
+import { SortableList } from '@/components/ui/sortable-list';
 
 interface SkillsSectionProps {
   data: SkillCategory[];
@@ -215,80 +216,101 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
       )}
 
       <div className="space-y-4">
-        {data.map((cat, idx) => {
-          const isExpandedDesktop = expandedDesktopIds.has(cat.id);
+        {data.length > 0 && (
+          <SortableList
+            items={data}
+            onReorder={onChange}
+            renderItem={(cat, idx, { dragHandleProps, isDragging, setNodeRef, style }) => {
+              const isExpandedDesktop = expandedDesktopIds.has(cat.id);
 
-          return (
-            <div
-              key={cat.id}
-              className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
-            >
-              <div
-                onClick={() => handleItemClick(cat.id)}
-                className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
-              >
-                <div className="flex items-center gap-3 min-w-0 pr-2">
-                  <div className="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold text-xs shrink-0 border border-purple-200/60 dark:border-purple-800">
-                    #{idx + 1}
-                  </div>
-                  <div className="truncate">
-                    <span className="font-bold text-sm text-slate-900 dark:text-foreground block truncate">
-                      {cat.category || 'Skill Category'}
-                    </span>
-                    <span className="text-[11px] text-slate-400 dark:text-muted-foreground block truncate">
-                      {cat.items?.length || 0} {cat.items?.length === 1 ? 'skill' : 'skills'}: {cat.items?.slice(0, 4).join(', ') || 'No skills added'}
-                      {(cat.items?.length || 0) > 4 ? '...' : ''}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
-                  {/* Mobile-only prominent Edit Button */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setMobileEditingId(cat.id);
-                    }}
-                    className="lg:hidden min-h-[36px] px-3 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-purple-100 transition-colors mr-1"
-                  >
-                    <Pencil className="w-3.5 h-3.5" />
-                    <span>Edit</span>
-                  </button>
-
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeSkillCategory(idx)}
-                    className="h-8 w-8 hover:text-rose-600"
-                    title="Delete group"
-                    aria-label="Delete group"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                  {/* Desktop-only accordion expand chevron */}
-                  <button
-                    type="button"
+              return (
+                <div
+                  key={cat.id}
+                  ref={setNodeRef}
+                  style={style}
+                  className={`rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors ${
+                    isDragging ? 'shadow-lg ring-2 ring-purple-500/50 opacity-90' : ''
+                  }`}
+                >
+                  <div
                     onClick={() => handleItemClick(cat.id)}
-                    className="hidden lg:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-muted dark:hover:text-slate-200 ml-1 cursor-pointer transition-colors"
-                    title={isExpandedDesktop ? 'Collapse group' : 'Expand group'}
-                    aria-label={isExpandedDesktop ? 'Collapse group' : 'Expand group'}
+                    className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
                   >
-                    {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 pr-2">
+                      {/* Drag Grip Handle */}
+                      <div
+                        {...dragHandleProps}
+                        onClick={(e) => e.stopPropagation()}
+                        className="cursor-grab active:cursor-grabbing p-1.5 -ml-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-muted rounded-md shrink-0 transition-colors"
+                        title="Drag to reorder"
+                        aria-label="Drag to reorder skill group"
+                      >
+                        <GripVertical className="w-4 h-4" />
+                      </div>
 
-              {/* Desktop-only inline expanded form */}
-              {isExpandedDesktop && (
-                <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
-                  {renderSkillCategoryForm(cat, idx)}
+                      <div className="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold text-xs shrink-0 border border-purple-200/60 dark:border-purple-800">
+                        #{idx + 1}
+                      </div>
+                      <div className="truncate">
+                        <span className="font-bold text-sm text-slate-900 dark:text-foreground block truncate">
+                          {cat.category || 'Skill Category'}
+                        </span>
+                        <span className="text-[11px] text-slate-400 dark:text-muted-foreground block truncate">
+                          {cat.items?.length || 0} {cat.items?.length === 1 ? 'skill' : 'skills'}: {cat.items?.slice(0, 4).join(', ') || 'No skills added'}
+                          {(cat.items?.length || 0) > 4 ? '...' : ''}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                      {/* Mobile-only prominent Edit Button */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMobileEditingId(cat.id);
+                        }}
+                        className="lg:hidden min-h-[36px] px-3 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-purple-100 transition-colors mr-1"
+                      >
+                        <Pencil className="w-3.5 h-3.5" />
+                        <span>Edit</span>
+                      </button>
+
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => removeSkillCategory(idx)}
+                        className="h-8 w-8 hover:text-rose-600"
+                        title="Delete group"
+                        aria-label="Delete group"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                      {/* Desktop-only accordion expand chevron */}
+                      <button
+                        type="button"
+                        onClick={() => handleItemClick(cat.id)}
+                        className="hidden lg:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-muted dark:hover:text-slate-200 ml-1 cursor-pointer transition-colors"
+                        title={isExpandedDesktop ? 'Collapse group' : 'Expand group'}
+                        aria-label={isExpandedDesktop ? 'Collapse group' : 'Expand group'}
+                      >
+                        {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Desktop-only inline expanded form */}
+                  {isExpandedDesktop && (
+                    <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                      {renderSkillCategoryForm(cat, idx)}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          );
-        })}
+              );
+            }}
+          />
+        )}
 
         {data.length === 0 && (
           <div className="text-center py-10 px-4 border-2 border-dashed border-slate-200 dark:border-border rounded-2xl space-y-3 bg-slate-50/70 dark:bg-card/40">

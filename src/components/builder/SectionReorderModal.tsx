@@ -50,9 +50,11 @@ import {
   FileCheck,
   Layers,
   Layout,
+  GripVertical,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SortableList, SortableItemRenderProps } from '@/components/ui/sortable-list';
 import {
   TEMPLATES,
   getTemplateLayout,
@@ -550,7 +552,8 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
     listLength: number,
     onMove?: (idx: number, dir: 'up' | 'down') => void,
     transferBtn?: React.ReactNode,
-    isInactive?: boolean
+    isInactive?: boolean,
+    sortableProps?: SortableItemRenderProps
   ) => {
     const meta = SECTION_METAS[id];
     if (!meta) return null;
@@ -561,15 +564,32 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
     return (
       <div
         key={id}
+        ref={sortableProps?.setNodeRef}
+        style={sortableProps?.style}
         className={`p-3 sm:p-3.5 rounded-xl border transition-all flex items-center justify-between gap-3 ${
-          isActive
+          sortableProps?.isDragging
+            ? 'shadow-lg ring-2 ring-emerald-500/50 opacity-90 z-50'
+            : isActive
             ? 'border-emerald-600 bg-emerald-50/80 dark:bg-emerald-950/40 ring-1 ring-emerald-500/20 shadow-xs'
             : isInactive 
               ? 'border-slate-200/60 dark:border-white/[0.06] bg-slate-50/70 dark:bg-white/[0.02] opacity-75 hover:opacity-100 hover:bg-white dark:hover:bg-white/[0.05] hover:border-slate-300 dark:hover:border-white/[0.12]' 
               : 'border-slate-200/90 dark:border-white/[0.08] bg-white dark:bg-[#1a1a18] hover:border-slate-300 dark:hover:border-white/[0.15] shadow-2xs'
         }`}
       >
-        <div className="flex items-center gap-3 min-w-0 flex-1">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+          {/* Drag Handle for active items */}
+          {!isInactive && sortableProps?.dragHandleProps && (
+            <div
+              {...sortableProps.dragHandleProps}
+              onClick={(e) => e.stopPropagation()}
+              className="cursor-grab active:cursor-grabbing p-1 -ml-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.08] rounded-md shrink-0 transition-colors"
+              title="Drag to reorder section"
+              aria-label="Drag to reorder section"
+            >
+              <GripVertical className="w-4 h-4" />
+            </div>
+          )}
+
           {/* Checkbox for Toggle */}
           <div className="shrink-0 flex items-center">
             <input 
@@ -589,6 +609,7 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                 onClick={() => onMove(index, 'up')}
                 className="p-1 rounded text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 disabled:opacity-20 disabled:hover:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors cursor-pointer"
                 title="Move Up"
+                aria-label="Move section up"
               >
                 <ArrowUp className="w-3.5 h-3.5" />
               </button>
@@ -598,6 +619,7 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                 onClick={() => onMove(index, 'down')}
                 className="p-1 rounded text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 disabled:opacity-20 disabled:hover:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors cursor-pointer"
                 title="Move Down"
+                aria-label="Move section down"
               >
                 <ArrowDown className="w-3.5 h-3.5" />
               </button>
@@ -725,12 +747,23 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
           {layout === 'single' ? (
             /* Single Column View */
             <div className="space-y-3">
-              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
-                Resume Body Flow (Top to Bottom)
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  Resume Body Flow (Top to Bottom)
+                </span>
+                <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
+                  Drag handles or use arrows to reorder
+                </span>
               </div>
-              {singleList.map((secId, idx) =>
-                renderSectionCard(secId, idx, singleList.length, moveSingle)
-              )}
+              <SortableList
+                id="single-column-sections"
+                items={singleList}
+                className="space-y-2.5"
+                onReorder={(newSingle) => updateOrder({ ...currentOrder, singleColumn: newSingle })}
+                renderItem={(secId, idx, sortableProps) =>
+                  renderSectionCard(secId, idx, singleList.length, moveSingle, undefined, false, sortableProps)
+                }
+              />
             </div>
           ) : (
             /* Two Column View */
@@ -758,25 +791,33 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                     No sections in Main Column
                   </div>
                 ) : (
-                  mainList.map((secId, idx) =>
-                    renderSectionCard(
-                      secId,
-                      idx,
-                      mainList.length,
-                      moveMain,
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="xs"
-                        onClick={() => transferToSidebar(secId)}
-                        className="h-7 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg gap-1 px-2.5 shrink-0"
-                        title="Move to Sidebar Column"
-                      >
-                        <span className="hidden sm:inline">To Sidebar</span>
-                        <ArrowRight className="w-3 h-3" />
-                      </Button>
-                    )
-                  )
+                  <SortableList
+                    id="main-column-sections"
+                    items={mainList}
+                    className="space-y-2.5"
+                    onReorder={(newMain) => updateOrder({ ...currentOrder, mainColumn: newMain })}
+                    renderItem={(secId, idx, sortableProps) =>
+                      renderSectionCard(
+                        secId,
+                        idx,
+                        mainList.length,
+                        moveMain,
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="xs"
+                          onClick={() => transferToSidebar(secId)}
+                          className="h-7 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 hover:bg-emerald-500/15 border border-emerald-500/20 rounded-lg gap-1 px-2.5 shrink-0"
+                          title="Move to Sidebar Column"
+                        >
+                          <span className="hidden sm:inline">To Sidebar</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Button>,
+                        false,
+                        sortableProps
+                      )
+                    }
+                  />
                 )}
               </div>
 
@@ -803,25 +844,33 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                     No sections in Sidebar Column
                   </div>
                 ) : (
-                  sidebarList.map((secId, idx) =>
-                    renderSectionCard(
-                      secId,
-                      idx,
-                      sidebarList.length,
-                      moveSidebar,
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="xs"
-                        onClick={() => transferToMain(secId)}
-                        className="h-7 text-[11px] font-semibold text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 hover:bg-amber-500/15 border border-amber-500/20 rounded-lg gap-1 px-2.5 shrink-0"
-                        title="Move to Main Column"
-                      >
-                        <ArrowLeft className="w-3 h-3" />
-                        <span className="hidden sm:inline">To Main</span>
-                      </Button>
-                    )
-                  )
+                  <SortableList
+                    id="sidebar-column-sections"
+                    items={sidebarList}
+                    className="space-y-2.5"
+                    onReorder={(newSidebar) => updateOrder({ ...currentOrder, sidebarColumn: newSidebar })}
+                    renderItem={(secId, idx, sortableProps) =>
+                      renderSectionCard(
+                        secId,
+                        idx,
+                        sidebarList.length,
+                        moveSidebar,
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="xs"
+                          onClick={() => transferToMain(secId)}
+                          className="h-7 text-[11px] font-semibold text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 hover:bg-amber-500/15 border border-amber-500/20 rounded-lg gap-1 px-2.5 shrink-0"
+                          title="Move to Main Column"
+                        >
+                          <ArrowLeft className="w-3 h-3" />
+                          <span className="hidden sm:inline">To Main</span>
+                        </Button>,
+                        false,
+                        sortableProps
+                      )
+                    }
+                  />
                 )}
               </div>
             </div>

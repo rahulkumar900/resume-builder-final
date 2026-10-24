@@ -7,9 +7,10 @@ import { SECTION_TITLES } from '@/lib/templates';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Trash2, PlusCircle, Check, ChevronDown, ChevronUp, Pencil } from 'lucide-react';
+import { Plus, Trash2, PlusCircle, Check, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
 import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
+import { SortableList } from '@/components/ui/sortable-list';
 
 interface GenericSectionEditorProps {
   sectionKey: SectionKey;
@@ -277,8 +278,10 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
-            {items.map((item, idx) => {
+          <SortableList
+            items={items.map((it, idx) => ({ ...it, id: it.id || `${sectionKey}-${idx}` }))}
+            onReorder={(newItems) => onChange({ [sectionKey]: newItems })}
+            renderItem={(item, idx, { dragHandleProps, isDragging, setNodeRef, style }) => {
               const orgValue =
                 item.organization || item.company || item.institution || item.client || item.branch || '';
               const roleValue = item.role || item.title || '';
@@ -288,13 +291,28 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
               return (
                 <div
                   key={itemId}
-                  className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
+                  ref={setNodeRef}
+                  style={style}
+                  className={`rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors ${
+                    isDragging ? 'shadow-lg ring-2 ring-emerald-500/50 opacity-90' : ''
+                  }`}
                 >
                   <div
                     onClick={() => handleItemClick(itemId)}
                     className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
                   >
-                    <div className="flex items-center gap-3 min-w-0 pr-2">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 pr-2">
+                      {/* Drag Grip Handle */}
+                      <div
+                        {...dragHandleProps}
+                        onClick={(e) => e.stopPropagation()}
+                        className="cursor-grab active:cursor-grabbing p-1.5 -ml-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-muted rounded-md shrink-0 transition-colors"
+                        title="Drag to reorder"
+                        aria-label="Drag to reorder entry"
+                      >
+                        <GripVertical className="w-4 h-4" />
+                      </div>
+
                       <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold text-xs shrink-0 border border-emerald-200/60 dark:border-emerald-800">
                         #{idx + 1}
                       </div>
@@ -353,8 +371,8 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
                   )}
                 </div>
               );
-            })}
-          </div>
+            }}
+          />
         )}
 
         {items.length > 0 && (
