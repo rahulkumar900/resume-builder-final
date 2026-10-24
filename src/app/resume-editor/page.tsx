@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Online Resume Editor - ResumeBuilder',
+        alt: 'Free Online Resume Editor - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -64,7 +64,7 @@ export default function ResumeEditorPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBuilder Visual Resume Editor',
+    name: 'ResumeBabu Visual Resume Editor',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
     offers: {

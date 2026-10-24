@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Simple Resume Builder - ResumeBuilder',
+        alt: 'Simple Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -67,11 +67,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SimpleResumeBuilderPage() {
+export default function SimpleResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder Simple & One-Page Resume Maker',
+    name: 'ResumeBabu Simple & One-Page Resume Maker',
     description:
       'Fast, distraction-free simple resume builder engineered for clean single-page formatting and immediate vector PDF downloads.',
     url: 'https://resumebabu.com/simple-resume-builder',
@@ -524,7 +524,7 @@ export default function SimpleResumeBuilderPage() {
                 Do I have to pay to download my simple resume?
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                Never. ResumeBuilder provides 100% free vector PDF downloads without paywalls, watermark stamps, or recurring credit card traps.
+                Never. ResumeBabu provides 100% free vector PDF downloads without paywalls, watermark stamps, or recurring credit card traps.
               </p>
             </div>
           </div>

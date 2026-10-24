@@ -40,7 +40,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'zety',
     name: 'Zety',
     tagline: 'The #1 Free Alternative to Zety Resume Builder',
-    title: 'Free Zety Alternative: Build & Download Resume Without Paywall | ResumeBuilder',
+    title: 'Free Zety Alternative: Build & Download Resume Without Paywall | ResumeBabu',
     metaDescription: 'Frustrated by Zety charging $24.95 after 45 minutes of building? Switch to our 100% free resume builder. No credit card, no paywall, instant vector PDF download.',
     targetKeywords: [
       'zety',
@@ -89,7 +89,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'Zety is one of the most visible resume builders on Google, featuring clean UI controls and pre-written suggestions. However, its business model depends heavily on the "sunk cost fallacy": allowing candidates to spend hours building before revealing that downloading a PDF requires a credit card subscription.',
       atsAudit: 'While Zety templates look aesthetically pleasing, our automated ATS audit revealed that several two-column templates fail Workday column partition parsing. Text in sidebars often merges horizontally into the main experience column, creating jumbled work history.',
       pricingGotcha: 'Zety advertises a $2.70 trial. If not cancelled within 14 days, the account is automatically billed $24.95 every 4 weeks until manually cancelled through customer support.',
-      verdict: 'If you want recruiter-grade ATS formatting and instant PDF download without paying $24.95/month, ResumeBuilder is the definitive modern alternative.'
+      verdict: 'If you want recruiter-grade ATS formatting and instant PDF download without paying $24.95/month, ResumeBabu is the definitive modern alternative.'
     },
     faqs: [
       {
@@ -97,8 +97,8 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'No. While Zety allows you to build a resume without paying upfront, downloading a PDF or Word document requires signing up for a paid subscription starting at $2.70 for a 14-day trial, which auto-renews at $24.95/month.'
       },
       {
-        question: 'How is ResumeBuilder different from Zety?',
-        answer: 'ResumeBuilder offers genuinely free high-resolution PDF exports with zero watermarks and no credit card required. We also include real-time A4 GhostDOM page fit measurement and live Job Description ATS tailoring.'
+        question: 'How is ResumeBabu different from Zety?',
+        answer: 'ResumeBabu offers genuinely free high-resolution PDF exports with zero watermarks and no credit card required. We also include real-time A4 GhostDOM page fit measurement and live Job Description ATS tailoring.'
       },
       {
         question: 'Can I import my existing resume from Zety?',
@@ -110,7 +110,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'canva',
     name: 'Canva',
     tagline: 'Why Canva Resumes Fail ATS — The Recruiter-Approved Alternative',
-    title: 'Canva Resume Builder vs ATS Resume Builder: Why Canva Resumes Fail ATS | ResumeBuilder',
+    title: 'Canva Resume Builder vs ATS Resume Builder: Why Canva Resumes Fail ATS | ResumeBabu',
     metaDescription: 'Discover why 75% of Canva resumes fail Applicant Tracking Systems (ATS). Build beautiful, recruiter-approved resumes with guaranteed ATS parsing and free PDF downloads.',
     targetKeywords: [
       'canva resume builder',
@@ -166,10 +166,10 @@ export const COMPETITORS: CompetitorComparison[] = [
       },
       {
         question: 'Can I make my resume look modern without using Canva?',
-        answer: 'Yes! ResumeBuilder offers 12 modern, beautifully designed templates (like Prawira, Amelia, and Stockholm) that pair contemporary typography with 100% ATS compliance.'
+        answer: 'Yes! ResumeBabu offers 12 modern, beautifully designed templates (like Prawira, Amelia, and Stockholm) that pair contemporary typography with 100% ATS compliance.'
       },
       {
-        question: 'Does ResumeBuilder support vector PDF export?',
+        question: 'Does ResumeBabu support vector PDF export?',
         answer: 'Yes. All resumes download as crisp, selectable vector PDFs that look sharp on any display and can be scanned effortlessly by recruiters and automated software.'
       }
     ]
@@ -178,7 +178,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'teal',
     name: 'Teal',
     tagline: 'The Free Alternative to Teal Resume Builder & Job Tracker',
-    title: 'Free Teal Alternative: Unlimited AI Resume Tailoring Without Teal+ | ResumeBuilder',
+    title: 'Free Teal Alternative: Unlimited AI Resume Tailoring Without Teal+ | ResumeBabu',
     metaDescription: 'Looking for a free alternative to Teal? Access unlimited AI resume tailoring, Google X-Y-Z bullet rewrites, and instant PDF exports without a $29/month Teal+ subscription.',
     targetKeywords: [
       'teal resume builder',
@@ -223,7 +223,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'Teal is an impressive career growth platform, but its high monthly price tag ($29/month or $348/year) makes it expensive for active job seekers who may take 2 to 4 months to find their ideal role.',
       atsAudit: 'Teal resumes pass ATS parsers well because they prioritize clean text formatting. However, their template visual aesthetics are minimalist to a fault, offering very little visual polish.',
       pricingGotcha: 'Teal aggressively pushes users into Teal+ subscription modals whenever they attempt to tailor multiple resumes or use AI rewriting.',
-      verdict: 'If you want full-scale AI tailoring and instant ATS matching without paying $29 each month, ResumeBuilder provides an identical high-tier experience completely free.'
+      verdict: 'If you want full-scale AI tailoring and instant ATS matching without paying $29 each month, ResumeBabu provides an identical high-tier experience completely free.'
     },
     faqs: [
       {
@@ -231,8 +231,8 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'Teal has a free tier, but it limits your access to AI assistance, keyword matching frequency, and advanced tailoring. Full access requires Teal+ at $29/month.'
       },
       {
-        question: 'How does ResumeBuilder compare to Teal for job tailoring?',
-        answer: 'Both platforms compare your resume directly to target job descriptions. ResumeBuilder provides this with live skill matching checklists (✓/✗), match scoring, and Google X-Y-Z bullet rewrites completely free.'
+        question: 'How does ResumeBabu compare to Teal for job tailoring?',
+        answer: 'Both platforms compare your resume directly to target job descriptions. ResumeBabu provides this with live skill matching checklists (✓/✗), match scoring, and Google X-Y-Z bullet rewrites completely free.'
       }
     ]
   },
@@ -240,7 +240,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'indeed',
     name: 'Indeed',
     tagline: 'Why Settle for Plain Indeed Resumes? Upgrade to Executive ATS Formats',
-    title: 'Indeed Resume Builder Alternative: Upgrade to Recruiter-Grade ATS Templates | ResumeBuilder',
+    title: 'Indeed Resume Builder Alternative: Upgrade to Recruiter-Grade ATS Templates | ResumeBabu',
     metaDescription: 'Tired of generic, plain-text Indeed resumes? Create recruiter-grade, ATS-optimized resumes with modern typography, AI bullet generation, and instant vector PDF downloads.',
     targetKeywords: [
       'indeed resume builder',
@@ -285,7 +285,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'Indeed\'s resume builder serves one primary goal: populating Indeed\'s internal recruiter database with searchable candidate data. The PDF it outputs is an afterthought—minimalist and indistinguishable from hundreds of other applicants.',
       atsAudit: 'While Indeed resumes parse cleanly due to their plain text layout, they suffer from low recruiter engagement scores. Human hiring managers scan resumes in 6 seconds; without bold metric highlights or structured typography, key accomplishments are easily missed.',
       pricingGotcha: 'Indeed is free, but your profile and career history are indexed into Indeed\'s candidate search engine, allowing current or prospective employers to view your profile.',
-      verdict: 'ResumeBuilder delivers the perfect balance: 100% ATS compliance combined with executive design aesthetics that impress human hiring managers.'
+      verdict: 'ResumeBabu delivers the perfect balance: 100% ATS compliance combined with executive design aesthetics that impress human hiring managers.'
     },
     faqs: [
       {
@@ -293,8 +293,8 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'Yes, but Indeed resumes look visibly generic. Using a dedicated builder with modern typography and visual hierarchy dramatically increases recruiter response rates.'
       },
       {
-        question: 'Can I import my Indeed resume into ResumeBuilder?',
-        answer: 'Yes! Simply upload your downloaded Indeed PDF into ResumeBuilder, and our extraction engine will automatically migrate your data into any of our 12 modern templates.'
+        question: 'Can I import my Indeed resume into ResumeBabu?',
+        answer: 'Yes! Simply upload your downloaded Indeed PDF into ResumeBabu, and our extraction engine will automatically migrate your data into any of our 12 modern templates.'
       }
     ]
   },
@@ -302,8 +302,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'livecareer',
     name: 'LiveCareer',
     tagline: 'The Free Alternative to LiveCareer CV & Resume Builder',
-    title: 'Free LiveCareer Alternative: Build Resumes Without Subscription Traps | ResumeBuilder',
-    metaDescription: 'Avoid LiveCareer unexpected charges and recurring fees. Switch to ResumeBuilder for 100% free resume and CV creation, AI bullet optimization, and instant PDF downloads.',
+    title: 'Free LiveCareer Alternative: Build Resumes Without Subscription Traps | ResumeBabu',
+    metaDescription: 'Avoid LiveCareer unexpected charges and recurring fees. Switch to ResumeBabu for 100% free resume and CV creation, AI bullet optimization, and instant PDF downloads.',
     targetKeywords: [
       'livecareer cv',
       'livecareer resume',
@@ -347,7 +347,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'LiveCareer is owned by the same parent company as Zety (Bold LLC) and operates on the same freemium paywall playbook. Candidates are encouraged to build their entire resume before being informed that exporting requires payment.',
       atsAudit: 'LiveCareer\'s legacy templates often fail modern mobile viewing tests and include graphics that cause font extraction errors in cloud ATS scanners.',
       pricingGotcha: 'The $2.95 14-day trial auto-renews at $23.95 every 4 weeks unless cancelled beforehand.',
-      verdict: 'Switching to ResumeBuilder provides a clean, modern, zero-risk resume building experience.'
+      verdict: 'Switching to ResumeBabu provides a clean, modern, zero-risk resume building experience.'
     },
     faqs: [
       {
@@ -356,7 +356,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       },
       {
         question: 'How do I get my resume without paying LiveCareer?',
-        answer: 'You can copy your text into ResumeBuilder or upload your draft PDF to immediately receive an ATS-optimized, high-resolution vector PDF completely free.'
+        answer: 'You can copy your text into ResumeBabu or upload your draft PDF to immediately receive an ATS-optimized, high-resolution vector PDF completely free.'
       }
     ]
   },
@@ -364,8 +364,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'novoresume',
     name: 'Novorésumé',
     tagline: 'The Free Alternative to Novorésumé: Multi-Page & Premium ATS Resumes Without $19.99/mo',
-    title: 'Free Novorésumé Alternative: Multi-Page & Premium ATS Resumes | ResumeBuilder',
-    metaDescription: 'Hit Novoresume’s strict 1-page free limit? Switch to ResumeBuilder for 100% free multi-page resumes, custom typography, unlimited AI tailoring, and instant vector PDF downloads.',
+    title: 'Free Novorésumé Alternative: Multi-Page & Premium ATS Resumes | ResumeBabu',
+    metaDescription: 'Hit Novoresume’s strict 1-page free limit? Switch to ResumeBabu for 100% free multi-page resumes, custom typography, unlimited AI tailoring, and instant vector PDF downloads.',
     targetKeywords: [
       'novoresume',
       'novoresume builder',
@@ -411,7 +411,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'Novorésumé has a clean, minimalist interface and produces visually structured resumes. However, its strict 1-page ceiling on the free plan frustrates mid-level and senior professionals who inevitably need a second page for career highlights, publications, or technical proficiencies.',
       atsAudit: 'Novorésumé resumes parse well in general ATS screeners. However, their rigid column widgets sometimes cause text overlaps or awkward white-space gaps when candidates have varying amounts of text per job.',
       pricingGotcha: 'Novorésumé Premium costs $19.99 per month, or $39.99 for 3 months, which quickly adds up during an extended job search.',
-      verdict: 'ResumeBuilder delivers the same polished executive aesthetics as Novorésumé Premium, but includes multi-page support, AI tailoring, and vector PDF exports 100% free.'
+      verdict: 'ResumeBabu delivers the same polished executive aesthetics as Novorésumé Premium, but includes multi-page support, AI tailoring, and vector PDF exports 100% free.'
     },
     faqs: [
       {
@@ -419,8 +419,8 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'Novoresume offers a limited free tier restricted to a single 1-page resume with standard fonts. If your career history requires 2 pages, or you want custom styling, you must pay $19.99/month for Novoresume Premium.'
       },
       {
-        question: 'Can I create a 2-page resume for free on ResumeBuilder?',
-        answer: 'Yes! ResumeBuilder supports both single-page and multi-page resumes with real-time GhostDOM boundary tracking so your content flows naturally onto subsequent pages without accidental blank pages.'
+        question: 'Can I create a 2-page resume for free on ResumeBabu?',
+        answer: 'Yes! ResumeBabu supports both single-page and multi-page resumes with real-time GhostDOM boundary tracking so your content flows naturally onto subsequent pages without accidental blank pages.'
       }
     ]
   },
@@ -428,7 +428,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'kickresume',
     name: 'Kickresume',
     tagline: 'The Free Alternative to Kickresume: Unlimited AI & ATS Templates Without $19/mo',
-    title: 'Free Kickresume Alternative: Unlimited AI Tailoring & Vector PDF Downloads | ResumeBuilder',
+    title: 'Free Kickresume Alternative: Unlimited AI Tailoring & Vector PDF Downloads | ResumeBabu',
     metaDescription: 'Looking for a free alternative to Kickresume? Get unlimited AI bullet rewrites, ATS-friendly templates, and instant vector PDF exports without paying $19/month.',
     targetKeywords: [
       'kickresume',
@@ -474,7 +474,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'Kickresume focuses heavily on flashy visual designs and AI features. However, many of its most popular templates feature heavy graphics, icons, and decorative headers that modern enterprise ATS parsers struggle to digest.',
       atsAudit: 'Our testing showed that Kickresume\'s creative and infographic templates have an 82% ATS pass rate—some Workday parsers failed to read candidate contact details placed in colored header banners.',
       pricingGotcha: 'Kickresume\'s free plan only includes 4 basic templates; selecting any PRO template triggers a payment prompt upon clicking download.',
-      verdict: 'ResumeBuilder provides clean, recruiter-approved ATS templates and unlimited AI bullet refinement with zero paywalls.'
+      verdict: 'ResumeBabu provides clean, recruiter-approved ATS templates and unlimited AI bullet refinement with zero paywalls.'
     },
     faqs: [
       {
@@ -482,8 +482,8 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'No. Kickresume allows you to preview features, but the majority of its templates and AI tools are restricted to Kickresume Premium, which costs $19 per month.'
       },
       {
-        question: 'How does ResumeBuilder compare to Kickresume AI?',
-        answer: 'ResumeBuilder integrates Google\'s proven X-Y-Z formula directly into your bullet points and provides live job description matching without requiring paid credits or subscriptions.'
+        question: 'How does ResumeBabu compare to Kickresume AI?',
+        answer: 'ResumeBabu integrates Google\'s proven X-Y-Z formula directly into your bullet points and provides live job description matching without requiring paid credits or subscriptions.'
       }
     ]
   },
@@ -491,8 +491,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'flowcv',
     name: 'FlowCV',
     tagline: 'The Free Alternative to FlowCV: Create Unlimited Resumes Without $4.99/mo',
-    title: 'Free FlowCV Alternative: Unlimited Resumes & PDF Exports | ResumeBuilder',
-    metaDescription: 'Maxed out your 1 free resume on FlowCV? ResumeBuilder lets you create unlimited resumes, customize layouts, and export vector PDFs with no monthly subscription.',
+    title: 'Free FlowCV Alternative: Unlimited Resumes & PDF Exports | ResumeBabu',
+    metaDescription: 'Maxed out your 1 free resume on FlowCV? ResumeBabu lets you create unlimited resumes, customize layouts, and export vector PDFs with no monthly subscription.',
     targetKeywords: [
       'flowcv',
       'flow cv',
@@ -508,7 +508,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     atsPassRateCompetitor: '89%',
     atsPassRateOurPlatform: '98%',
     heroHeadline: 'Need to Tailor More Than 1 Resume on FlowCV?',
-    heroSubheadline: 'Effective job seeking requires customized resumes for different roles. ResumeBuilder lets you build and download unlimited resume variations without paying a dime.',
+    heroSubheadline: 'Effective job seeking requires customized resumes for different roles. ResumeBabu lets you build and download unlimited resume variations without paying a dime.',
     whyCandidatesLeave: [
       {
         title: '1-Resume Limit Breaks Job Tailoring',
@@ -537,7 +537,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'FlowCV is respected in the design community for its minimalist UX and typography controls. However, its business model restricts free users to a single resume slot, which contradicts the #1 rule of modern hiring: tailor your resume for each specific job.',
       atsAudit: 'FlowCV documents parse well in standard ATS systems, but the platform lacks built-in keyword audit tools to alert candidates when they omit crucial technical competencies required by the job listing.',
       pricingGotcha: 'FlowCV charges $4.99 to $9.99 per month to unlock multiple resume slots and custom color palettes.',
-      verdict: 'ResumeBuilder delivers the clean aesthetics of FlowCV while offering unlimited resumes and real-time job description matching 100% free.'
+      verdict: 'ResumeBabu delivers the clean aesthetics of FlowCV while offering unlimited resumes and real-time job description matching 100% free.'
     },
     faqs: [
       {
@@ -545,8 +545,8 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'No. FlowCV restricts free accounts to a single resume. Creating a second version for a different job application requires upgrading to a paid plan.'
       },
       {
-        question: 'Does ResumeBuilder allow multiple resumes?',
-        answer: 'Yes! You can create, duplicate, and store unlimited tailored resume versions on ResumeBuilder for free.'
+        question: 'Does ResumeBabu allow multiple resumes?',
+        answer: 'Yes! You can create, duplicate, and store unlimited tailored resume versions on ResumeBabu for free.'
       }
     ]
   },
@@ -554,7 +554,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'naukri',
     name: 'Naukri FastForward',
     tagline: 'Why Pay ₹1,500 – ₹5,000 for Naukri Resumes? Build an ATS-Ready Format Free',
-    title: 'Naukri Resume Maker Alternative: 100% Free Naukri & Indian ATS Resumes | ResumeBuilder',
+    title: 'Naukri Resume Maker Alternative: 100% Free Naukri & Indian ATS Resumes | ResumeBabu',
     metaDescription: 'Don’t pay thousands for Naukri FastForward resume writing. Create Naukri-optimized, IT and fresher ATS resumes with Indian formatting (CGPA, B.Tech, Tier-1 formats) for free.',
     targetKeywords: [
       'naukri resume builder',
@@ -600,16 +600,16 @@ export const COMPETITORS: CompetitorComparison[] = [
       overview: 'Naukri.com is India\'s largest job board, and it actively markets "Naukri FastForward" resume writing services to job seekers. While professional writing can help executives, charging ₹1,500 to ₹5,000 to college freshers and early-career IT professionals for templated Word resumes is unnecessary.',
       atsAudit: 'Many agency resumes delivered via Naukri FastForward use standard Microsoft Word layouts that lack crisp vector typography and modern visual hierarchy, making them look generic in modern corporate screening.',
       pricingGotcha: 'FastForward services are one-off purchases that do not include free updates when you switch technologies or complete new certifications.',
-      verdict: 'ResumeBuilder provides the exact formatting required for high visibility on Naukri, TCS, Infosys, Wipro, and global tech firms completely free.'
+      verdict: 'ResumeBabu provides the exact formatting required for high visibility on Naukri, TCS, Infosys, Wipro, and global tech firms completely free.'
     },
     faqs: [
       {
         question: 'Is Naukri FastForward resume writing worth the money?',
-        answer: 'For 95% of job seekers and freshers, no. You can achieve higher ATS match scores and modern typography using ResumeBuilder\'s free ATS engine without spending ₹1,500 to ₹5,000.'
+        answer: 'For 95% of job seekers and freshers, no. You can achieve higher ATS match scores and modern typography using ResumeBabu\'s free ATS engine without spending ₹1,500 to ₹5,000.'
       },
       {
-        question: 'Will a ResumeBuilder PDF work with Naukri.com?',
-        answer: 'Yes! Resumes downloaded from ResumeBuilder parse flawlessly in Naukri\'s resume ingestion engine, accurately extracting your skills, experience, and contact details.'
+        question: 'Will a ResumeBabu PDF work with Naukri.com?',
+        answer: 'Yes! Resumes downloaded from ResumeBabu parse flawlessly in Naukri\'s resume ingestion engine, accurately extracting your skills, experience, and contact details.'
       }
     ]
   }

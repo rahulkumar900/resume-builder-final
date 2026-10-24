@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     'latest resume format 2026'
   ],
   openGraph: {
-    title: 'Free Resume Format Download (Word, Doc & PDF Formats) | ResumeBuilder',
+    title: 'Free Resume Format Download (Word, Doc & PDF Formats) | ResumeBabu',
     description:
       'Looking for a clean resume format for your next job application? Edit, customize, and download verified ATS formats instantly with no paywall.',
     type: 'website',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Resume Format Download - ResumeBuilder',
+        alt: 'Free Resume Format Download - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -73,7 +73,7 @@ export default function ResumeFormatDownloadPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder Free Resume Format Download Engine',
+    name: 'ResumeBabu Free Resume Format Download Engine',
     description:
       'Curated collection of professional, ATS-certified resume formats available for instant online customization and high-DPI vector PDF download.',
     url: 'https://resumebabu.com/resume-format-download',
@@ -144,7 +144,7 @@ export default function ResumeFormatDownloadPage() {
         name: 'Can I download the resume format for free without a subscription?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Unlike platforms that ask for credit card details after you finish typing, ResumeBuilder allows you to customize and export publication-ready vector PDFs 100% free with zero watermarks.',
+          text: 'Yes! Unlike platforms that ask for credit card details after you finish typing, ResumeBabu allows you to customize and export publication-ready vector PDFs 100% free with zero watermarks.',
         },
       },
       {
@@ -293,7 +293,7 @@ export default function ResumeFormatDownloadPage() {
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white">ResumeBuilder Online Studio</h3>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white">ResumeBabu Online Studio</h3>
                   <span className="text-xs text-emerald-700 dark:text-emerald-400 font-mono font-medium">Flawless, Automated &amp; Recruiter-Certified</span>
                 </div>
               </div>

@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: '100% Free Resume Builder - ResumeBuilder',
+        alt: '100% Free Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -75,11 +75,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FreeResumeBuilderPage() {
+export default function FreeResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBuilder Free Resume Maker',
+    name: 'ResumeBabu Free Resume Maker',
     operatingSystem: 'Web Browser',
     applicationCategory: 'BusinessApplication',
     offers: {
@@ -127,7 +127,7 @@ export default function FreeResumeBuilderPage() {
         name: 'Is this resume builder really 100% free to download?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Unlike Zety, LiveCareer, or Novoresume that let you build for free but demand a credit card at the final download screen, ResumeBuilder exports clean, high-resolution vector A4 PDFs completely free of charge with zero watermarks.',
+          text: 'Yes! Unlike Zety, LiveCareer, or Novoresume that let you build for free but demand a credit card at the final download screen, ResumeBabu exports clean, high-resolution vector A4 PDFs completely free of charge with zero watermarks.',
         },
       },
       {
@@ -274,7 +274,7 @@ export default function FreeResumeBuilderPage() {
             <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800 p-6 sm:p-8 space-y-4 shadow-xs">
               <div className="flex items-center gap-3 text-emerald-800 dark:text-emerald-300 font-serif text-lg font-bold">
                 <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-                <span>ResumeBuilder (Our Guarantee)</span>
+                <span>ResumeBabu (Our Guarantee)</span>
               </div>
               <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300 font-sans leading-relaxed">
                 <li className="flex items-start gap-3">

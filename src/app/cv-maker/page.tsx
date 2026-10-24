@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free CV Maker Online - ResumeBuilder',
+        alt: 'Free CV Maker Online - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -71,7 +71,7 @@ export default function CvMakerPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBuilder CV Maker & Curriculum Vitae Creator',
+    name: 'ResumeBabu CV Maker & Curriculum Vitae Creator',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
     aggregateRating: {

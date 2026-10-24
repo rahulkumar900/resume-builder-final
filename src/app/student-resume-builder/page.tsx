@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Student Resume Builder - ResumeBuilder',
+        alt: 'Free Student Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -69,11 +69,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function StudentResumeBuilderPage() {
+export default function StudentResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder Student & Internship Resume Maker',
+    name: 'ResumeBabu Student & Internship Resume Maker',
     description:
       'Free resume maker for high school students, college undergraduates, and first-time applicants with no formal employment history.',
     url: 'https://resumebabu.com/student-resume-builder',
@@ -467,7 +467,7 @@ export default function StudentResumeBuilderPage() {
               Get Ready for Your First Interview<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-              Join thousands of students who landed their dream internships and entry-level jobs with ResumeBuilder.
+              Join thousands of students who landed their dream internships and entry-level jobs with ResumeBabu.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link

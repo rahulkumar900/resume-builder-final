@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Top Resume Builder Comparisons & Free Alternatives (2026)',
     description:
-      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
+      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBabu, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
     type: 'website',
     url: 'https://resumebabu.com/alternatives',
     images: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Resume Builder Alternatives & Comparisons - ResumeBuilder',
+        alt: 'Resume Builder Alternatives & Comparisons - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Top Resume Builder Comparisons & Free Alternatives (2026)',
     description:
-      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBuilder, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
+      'Compare ATS pass rates, paywall policies, and vector PDF exports between ResumeBabu, Zety, Canva, Teal, Indeed, Novorésumé, Kickresume, FlowCV, and Naukri.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
@@ -188,7 +188,7 @@ export default function AlternativesIndexPage() {
                       <span className="font-bold text-amber-600 dark:text-amber-400">{c.atsPassRateCompetitor}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-500 dark:text-slate-400 font-medium">ResumeBuilder:</span>
+                      <span className="text-slate-500 dark:text-slate-400 font-medium">ResumeBabu:</span>
                       <span className="font-bold text-emerald-700 dark:text-emerald-400">100% Free · 98% ATS</span>
                     </div>
                   </div>
@@ -222,7 +222,7 @@ export default function AlternativesIndexPage() {
               At-a-Glance Platform Matrix<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-2">
-              Why thousands of active job seekers migrate their resumes to ResumeBuilder every week.
+              Why thousands of active job seekers migrate their resumes to ResumeBabu every week.
             </p>
           </div>
 
@@ -231,7 +231,7 @@ export default function AlternativesIndexPage() {
               <thead>
                 <tr className="bg-black/[0.02] dark:bg-white/[0.03] border-b border-border text-slate-700 dark:text-slate-300">
                   <th className="p-4 font-bold text-sm">Feature / Metric</th>
-                  <th className="p-4 font-bold text-sm text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBuilder</th>
+                  <th className="p-4 font-bold text-sm text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBabu</th>
                   <th className="p-4 font-semibold text-slate-600 dark:text-slate-400">Zety</th>
                   <th className="p-4 font-semibold text-slate-600 dark:text-slate-400">Canva</th>
                   <th className="p-4 font-semibold text-slate-600 dark:text-slate-400">Teal</th>

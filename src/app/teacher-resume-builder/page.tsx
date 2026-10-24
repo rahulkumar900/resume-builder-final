@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Teacher Resume Builder - ResumeBuilder',
+        alt: 'Free Teacher Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -70,11 +70,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TeacherResumeBuilderPage() {
+export default function TeacherResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder Teacher & Educator Resume Maker',
+    name: 'ResumeBabu Teacher & Educator Resume Maker',
     description:
       'Specialized resume maker calibrated for primary teachers (PRT), trained graduate teachers (TGT), post graduate teachers (PGT), and academic lecturers.',
     url: 'https://resumebabu.com/teacher-resume-builder',

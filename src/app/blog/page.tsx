@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'job search advice'
   ],
   openGraph: {
-    title: 'Career & Resume Strategy Blog | ResumeBuilder',
+    title: 'Career & Resume Strategy Blog | ResumeBabu',
     description:
       'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
     type: 'website',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Career & Resume Strategy Blog - ResumeBuilder',
+        alt: 'Career & Resume Strategy Blog - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -71,7 +71,7 @@ export default function BlogIndexPage() {
   const blogJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'ResumeBuilder Career & Resume Strategy Blog',
+    name: 'ResumeBabu Career & Resume Strategy Blog',
     description:
       'In-depth guides on ATS algorithms, resume optimization, Google XYZ bullet formulas, and career progression.',
     url: 'https://resumebabu.com/blog',

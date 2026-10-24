@@ -8,11 +8,11 @@ import { ShieldCheck, Lock, CheckCircle2, ArrowRight, Eye, Server, RefreshCw } f
 export const metadata: Metadata = {
   title: 'Privacy Policy & Data Security',
   description:
-    'Learn how ResumeBuilder protects your resume data and privacy. We do not sell your personal information or train public AI models on your private resumes.',
+    'Learn how ResumeBabu protects your resume data and privacy. We do not sell your personal information or train public AI models on your private resumes.',
   openGraph: {
-    title: 'Privacy Policy & Data Security | ResumeBuilder',
+    title: 'Privacy Policy & Data Security | ResumeBabu',
     description:
-      'Learn how ResumeBuilder protects your resume data and privacy. We do not sell your personal information.',
+      'Learn how ResumeBabu protects your resume data and privacy. We do not sell your personal information.',
     type: 'website',
     url: 'https://resumebabu.com/privacy',
     images: [
@@ -20,16 +20,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ResumeBuilder Privacy Policy',
+        alt: 'ResumeBabu Privacy Policy',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Privacy Policy & Data Security | ResumeBuilder',
+    title: 'Privacy Policy & Data Security | ResumeBabu',
     description:
-      'Learn how ResumeBuilder protects your resume data and privacy. We do not sell your personal information.',
+      'Learn how ResumeBabu protects your resume data and privacy. We do not sell your personal information.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {

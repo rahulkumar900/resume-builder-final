@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free ATS Resume Builder - ResumeBuilder',
+        alt: 'Free ATS Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -70,11 +70,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AtsResumeBuilderPage() {
+export default function AtsResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder ATS Resume Builder',
+    name: 'ResumeBabu ATS Resume Builder',
     description:
       'Specialized ATS-compliant resume builder that formats documents for 98%+ pass rates across corporate applicant tracking systems.',
     url: 'https://resumebabu.com/ats-resume-builder',
@@ -137,7 +137,7 @@ export default function AtsResumeBuilderPage() {
         name: 'Is this ATS resume builder really 100% free?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Unlike sites that charge $24.95 at the final download screen, ResumeBuilder allows you to create, format, and download high-resolution vector PDF resumes with no credit card, no paywall, and no watermarks.',
+          text: 'Yes! Unlike sites that charge $24.95 at the final download screen, ResumeBabu allows you to create, format, and download high-resolution vector PDF resumes with no credit card, no paywall, and no watermarks.',
         },
       },
       {
@@ -145,7 +145,7 @@ export default function AtsResumeBuilderPage() {
         name: 'Can ATS read two-column resume layouts?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'It depends on how the code is structured. Graphic design tools like Canva use absolute floating coordinates that cause sidebars to merge into body text. ResumeBuilder uses strict CSS Grid and Flexbox DOM order, guaranteeing that your sidebar information parses cleanly in modern ATS systems.',
+          text: 'It depends on how the code is structured. Graphic design tools like Canva use absolute floating coordinates that cause sidebars to merge into body text. ResumeBabu uses strict CSS Grid and Flexbox DOM order, guaranteeing that your sidebar information parses cleanly in modern ATS systems.',
         },
       },
       {
@@ -153,7 +153,7 @@ export default function AtsResumeBuilderPage() {
         name: 'Should I download my ATS resume as PDF or Word (DOCX)?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Modern enterprise ATS engines (Workday, Greenhouse, Taleo) prefer vector PDF files because they preserve typography and visual layout while allowing instant text extraction. ResumeBuilder outputs vector A4 PDFs that parse with 98%+ accuracy.',
+          text: 'Modern enterprise ATS engines (Workday, Greenhouse, Taleo) prefer vector PDF files because they preserve typography and visual layout while allowing instant text extraction. ResumeBabu outputs vector A4 PDFs that parse with 98%+ accuracy.',
         },
       },
       {
@@ -356,7 +356,7 @@ export default function AtsResumeBuilderPage() {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">ResumeBuilder ATS Engine</h3>
+                  <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">ResumeBabu ATS Engine</h3>
                   <span className="text-xs font-mono text-emerald-700 dark:text-emerald-400 font-semibold">Average ATS Pass Rate: 98%+</span>
                 </div>
               </div>
@@ -559,7 +559,7 @@ export default function AtsResumeBuilderPage() {
                   Are two-column resume templates safe for ATS?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
-                  When built in graphic tools like Canva, two columns frequently cause text from the right column to bleed horizontally into the left column during parsing. On ResumeBuilder, our hybrid templates are coded with strict DOM ordering so parsers read Column A first, then Column B, ensuring 100% data integrity.
+                  When built in graphic tools like Canva, two columns frequently cause text from the right column to bleed horizontally into the left column during parsing. On ResumeBabu, our hybrid templates are coded with strict DOM ordering so parsers read Column A first, then Column B, ensuring 100% data integrity.
                 </p>
               </div>
 

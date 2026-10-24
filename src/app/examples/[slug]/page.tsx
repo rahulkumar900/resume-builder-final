@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!example) {
     return {
-      title: 'Resume Example Not Found | ResumeBuilder',
+      title: 'Resume Example Not Found | ResumeBabu',
     };
   }
 
@@ -70,11 +70,11 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
     description: example.metaDescription,
     author: {
       '@type': 'Organization',
-      name: 'ResumeBuilder AI Studio',
+      name: 'ResumeBabu AI Studio',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'ResumeBuilder',
+      name: 'ResumeBabu',
       logo: {
         '@type': 'ImageObject',
         url: 'https://resumebabu.com/logo.png',

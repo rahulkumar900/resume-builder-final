@@ -37,12 +37,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) {
     return {
-      title: 'Article Not Found | ResumeBuilder Blog',
+      title: 'Article Not Found | ResumeBabu Blog',
     };
   }
 
   return {
-    title: `${post.title} | ResumeBuilder`,
+    title: `${post.title} | ResumeBabu`,
     description: post.excerpt,
     keywords: post.keywords,
     openGraph: {
@@ -85,7 +85,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'ResumeBuilder',
+      name: 'ResumeBabu',
       url: 'https://resumebabu.com',
     },
     keywords: post.keywords.join(', '),

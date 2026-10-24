@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Generate Resume Online in 5 Minutes - ResumeBuilder',
+        alt: 'Generate Resume Online in 5 Minutes - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -64,7 +64,7 @@ export default function GenerateResumePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBuilder Instant Resume Generator',
+    name: 'ResumeBabu Instant Resume Generator',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
     offers: {

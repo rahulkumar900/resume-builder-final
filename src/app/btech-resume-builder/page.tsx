@@ -53,7 +53,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'B.Tech Resume Builder - ResumeBuilder',
+        alt: 'B.Tech Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -70,11 +70,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BTechResumeBuilderPage() {
+export default function BTechResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder B.Tech & Engineering Resume Maker',
+    name: 'ResumeBabu B.Tech & Engineering Resume Maker',
     description:
       'Specialized resume maker calibrated for B.Tech, B.E., and MCA engineering students and freshers applying for campus placements and off-campus tech roles.',
     url: 'https://resumebabu.com/btech-resume-builder',

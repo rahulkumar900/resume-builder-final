@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const cleanTitle = competitor.title.replace(/\s*\|\s*ResumeBuilder$/i, '');
+  const cleanTitle = competitor.title.replace(/\s*\|\s*ResumeBabu$/i, '');
 
   return {
     title: cleanTitle,
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: 'https://resumebabu.com/og-image.png',
           width: 1200,
           height: 630,
-          alt: `${cleanTitle} - ResumeBuilder`,
+          alt: `${cleanTitle} - ResumeBabu`,
           type: 'image/png',
         },
       ],
@@ -107,7 +107,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
     '@graph': [
       {
         '@type': 'Product',
-        name: 'ResumeBuilder Free ATS Resume Platform',
+        name: 'ResumeBabu Free ATS Resume Platform',
         description: competitor.metaDescription,
         offers: {
           '@type': 'Offer',
@@ -207,7 +207,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
               <span className="text-sm font-bold text-rose-600 dark:text-rose-400 block mt-0.5">{competitor.competitorPrice}</span>
             </div>
             <div className="p-4 bg-emerald-50/60 dark:bg-emerald-950/20 rounded-2xl border border-emerald-200 dark:border-emerald-800/40 shadow-xs">
-              <span className="text-[10px] uppercase font-mono font-bold text-emerald-700 dark:text-emerald-400 block">ResumeBuilder Pricing</span>
+              <span className="text-[10px] uppercase font-mono font-bold text-emerald-700 dark:text-emerald-400 block">ResumeBabu Pricing</span>
               <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400 block mt-0.5">100% Free Forever</span>
             </div>
             <div className="p-4 bg-card/90 rounded-2xl border border-border shadow-xs">
@@ -215,7 +215,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
               <span className="text-sm font-bold text-slate-700 dark:text-slate-300 block mt-0.5">{competitor.atsPassRateCompetitor}</span>
             </div>
             <div className="p-4 bg-emerald-50/60 dark:bg-emerald-950/20 rounded-2xl border border-emerald-200 dark:border-emerald-800/40 shadow-xs">
-              <span className="text-[10px] uppercase font-mono font-bold text-emerald-800 dark:text-emerald-300 block">ResumeBuilder ATS Rate</span>
+              <span className="text-[10px] uppercase font-mono font-bold text-emerald-800 dark:text-emerald-300 block">ResumeBabu ATS Rate</span>
               <span className="text-sm font-bold text-emerald-800 dark:text-emerald-300 block mt-0.5">{competitor.atsPassRateOurPlatform}</span>
             </div>
           </div>
@@ -257,7 +257,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
           <div className="text-center space-y-2">
             <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">Direct Comparison</span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Feature Matrix: {competitor.name} vs. ResumeBuilder<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              Feature Matrix: {competitor.name} vs. ResumeBabu<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
           </div>
 
@@ -268,7 +268,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
                   <tr className="bg-black/[0.02] dark:bg-white/[0.03] border-b border-border text-slate-700 dark:text-slate-300">
                     <th className="p-4 font-bold uppercase tracking-wider font-mono">Feature Capability</th>
                     <th className="p-4 font-bold uppercase tracking-wider font-mono text-slate-500 dark:text-slate-400">{competitor.name}</th>
-                    <th className="p-4 font-bold uppercase tracking-wider font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBuilder</th>
+                    <th className="p-4 font-bold uppercase tracking-wider font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBabu</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-black/[0.06] dark:divide-white/[0.06]">
@@ -382,7 +382,7 @@ export default async function CompetitorComparisonPage({ params }: PageProps) {
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed">
-            Join thousands of candidates who left paywalled builders for ResumeBuilder. Tested against major ATS platforms with zero credit card traps.
+            Join thousands of candidates who left paywalled builders for ResumeBabu. Tested against major ATS platforms with zero credit card traps.
           </p>
 
           <div className="flex flex-wrap justify-center gap-3">

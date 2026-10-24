@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Curriculum Vitae Maker - ResumeBuilder',
+        alt: 'Curriculum Vitae Maker - ResumeBabu',
         type: 'image/png',
       },
     ],

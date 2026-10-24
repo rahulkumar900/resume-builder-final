@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     canonical: 'https://resumebabu.com/templates',
   },
   openGraph: {
-    title: '30+ Free ATS-Friendly Resume Templates | ResumeBuilder',
+    title: '30+ Free ATS-Friendly Resume Templates | ResumeBabu',
     description:
       'Browse and customize 30+ ATS-optimized resume templates. 100% free with real-time vector PDF export.',
     url: 'https://resumebabu.com/templates',
-    siteName: 'ResumeBuilder',
+    siteName: 'ResumeBabu',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: '30+ Free ATS-Friendly Resume Templates - ResumeBuilder',
+        alt: '30+ Free ATS-Friendly Resume Templates - ResumeBabu',
         type: 'image/png',
       },
     ],

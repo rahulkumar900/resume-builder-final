@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Resume Builder for Freshers - ResumeBuilder',
+        alt: 'Free Resume Builder for Freshers - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -65,11 +65,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ResumeBuilderForFreshersPage() {
+export default function ResumeBabuForFreshersPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder for Freshers & Students',
+    name: 'ResumeBabu for Freshers & Students',
     description:
       'Free resume maker specifically designed for graduates, college students, and entry-level candidates with no formal work experience.',
     url: 'https://resumebabu.com/resume-builder-for-freshers',

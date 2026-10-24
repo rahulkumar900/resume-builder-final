@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free ATS Resume Checker - ResumeBuilder',
+        alt: 'Free ATS Resume Checker - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -83,7 +83,7 @@ export default function AtsCheckerPage() {
     '@graph': [
       {
         '@type': 'SoftwareApplication',
-        name: 'ResumeBuilder ATS Resume Checker',
+        name: 'ResumeBabu ATS Resume Checker',
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'All',
         offers: {

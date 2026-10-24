@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     canonical: 'https://resumebabu.com/examples',
   },
   openGraph: {
-    title: 'Resume Examples & Samples for Every Job Title (2026) | ResumeBuilder',
+    title: 'Resume Examples & Samples for Every Job Title (2026) | ResumeBabu',
     description:
       'Proven, high-scoring resume samples tailored for top Indian and global hiring bars. 1-click editable and ATS-optimized.',
     url: 'https://resumebabu.com/examples',
-    siteName: 'ResumeBuilder',
+    siteName: 'ResumeBabu',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Resume Examples & Samples - ResumeBuilder',
+        alt: 'Resume Examples & Samples - ResumeBabu',
         type: 'image/png',
       },
     ],

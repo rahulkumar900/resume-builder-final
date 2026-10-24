@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     'resume editor free'
   ],
   openGraph: {
-    title: 'Free Resume Maker Online - Create Your Resume in Minutes | ResumeBuilder',
+    title: 'Free Resume Maker Online - Create Your Resume in Minutes | ResumeBabu',
     description:
       'Make an ATS-approved professional resume online for free. Instant PDF download, real-time page formatting, zero watermarks.',
     type: 'website',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Resume Maker Online - ResumeBuilder',
+        alt: 'Free Resume Maker Online - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -71,7 +71,7 @@ export default function ResumeMakerPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'ResumeBuilder Online Resume Maker',
+    name: 'ResumeBabu Online Resume Maker',
     description:
       'Fast, free online resume maker featuring real-time A4 pagination, ATS optimization, and instant vector PDF export.',
     url: 'https://resumebabu.com/resume-maker',

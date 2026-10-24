@@ -20,9 +20,9 @@ import {
 export const metadata: Metadata = {
   title: 'About Us & Mission',
   description:
-    'Learn about ResumeBuilder. We are on a mission to democratize job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
+    'Learn about ResumeBabu. We are on a mission to democratize job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
   openGraph: {
-    title: 'About Us & Mission | ResumeBuilder',
+    title: 'About Us & Mission | ResumeBabu',
     description:
       'Democratizing job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
     type: 'website',
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'About ResumeBuilder',
+        alt: 'About ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us & Mission | ResumeBuilder',
+    title: 'About Us & Mission | ResumeBabu',
     description:
       'Democratizing job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
     images: ['https://resumebabu.com/og-image.png'],
@@ -92,7 +92,7 @@ export default function AboutPage() {
               <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">ATS precision</span>.
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
-              We started ResumeBuilder with a simple belief: qualified job seekers should never get rejected simply because of broken formatting, opaque ATS bots, or paywalls holding PDFs hostage.
+              We started ResumeBabu with a simple belief: qualified job seekers should never get rejected simply because of broken formatting, opaque ATS bots, or paywalls holding PDFs hostage.
             </p>
 
             {/* Key Metric Stats Strip */}
@@ -166,7 +166,7 @@ export default function AboutPage() {
               Our Solution
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
-              How ResumeBuilder changes the game<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              How ResumeBabu changes the game<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
           </div>
 

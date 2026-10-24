@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     'workday friendly resume template'
   ],
   openGraph: {
-    title: 'ATS-Friendly Resume Templates (Free Download) | ResumeBuilder',
+    title: 'ATS-Friendly Resume Templates (Free Download) | ResumeBabu',
     description:
       'Pass corporate ATS screens with clean semantic typography, zero unparseable graphics, and free vector PDF downloads.',
     type: 'website',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ATS-Friendly Resume Templates - ResumeBuilder',
+        alt: 'ATS-Friendly Resume Templates - ResumeBabu',
         type: 'image/png',
       },
     ],

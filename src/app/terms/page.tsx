@@ -8,11 +8,11 @@ import { ShieldCheck, FileText, ArrowRight, CheckCircle2, AlertCircle, HelpCircl
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'Read the terms of service and user agreement for ResumeBuilder. Learn about your intellectual property rights, data ownership, acceptable use, and subscription terms.',
+    'Read the terms of service and user agreement for ResumeBabu. Learn about your intellectual property rights, data ownership, acceptable use, and subscription terms.',
   openGraph: {
-    title: 'Terms of Service | ResumeBuilder',
+    title: 'Terms of Service | ResumeBabu',
     description:
-      'Read the terms of service and user agreement for ResumeBuilder.',
+      'Read the terms of service and user agreement for ResumeBabu.',
     type: 'website',
     url: 'https://resumebabu.com/terms',
     images: [
@@ -20,16 +20,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ResumeBuilder Terms of Service',
+        alt: 'ResumeBabu Terms of Service',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Terms of Service | ResumeBuilder',
+    title: 'Terms of Service | ResumeBabu',
     description:
-      'Read the terms of service and user agreement for ResumeBuilder.',
+      'Read the terms of service and user agreement for ResumeBabu.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
@@ -100,7 +100,7 @@ export default function TermsPage() {
                 <span className="text-emerald-700 dark:text-emerald-400">1.</span> Acceptance of Terms
               </h2>
               <p>
-                By accessing, browsing, or using the ResumeBuilder platform (&quot;Service&quot;, &quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;) and our Privacy Policy. If you do not agree to these Terms, please do not use our Service.
+                By accessing, browsing, or using the ResumeBabu platform (&quot;Service&quot;, &quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;) and our Privacy Policy. If you do not agree to these Terms, please do not use our Service.
               </p>
               <p>
                 These Terms apply to all visitors, registered users, job seekers, and any other parties who access or use the Service.
@@ -113,7 +113,7 @@ export default function TermsPage() {
                 <span className="text-emerald-700 dark:text-emerald-400">2.</span> Service Description
               </h2>
               <p>
-                ResumeBuilder provides software tools enabling users to design, format, audit, optimize, and export professional resumes, curriculum vitae (CVs), and job applications. Core features include:
+                ResumeBabu provides software tools enabling users to design, format, audit, optimize, and export professional resumes, curriculum vitae (CVs), and job applications. Core features include:
               </p>
               <ul className="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
                 <li>Dynamic A4 multi-page pagination engine with vector PDF export.</li>
@@ -135,14 +135,14 @@ export default function TermsPage() {
                   Your Resumes Belong to You
                 </div>
                 <p>
-                  You retain complete, exclusive ownership of all text, work experience, career milestones, personal contact details, images, and documents you input or generate through ResumeBuilder.
+                  You retain complete, exclusive ownership of all text, work experience, career milestones, personal contact details, images, and documents you input or generate through ResumeBabu.
                 </p>
               </div>
               <p>
-                ResumeBuilder claims zero ownership rights over your personal resume data. By using the platform, you grant us only the limited, temporary license necessary to process, format, paginate, and generate your requested PDF files.
+                ResumeBabu claims zero ownership rights over your personal resume data. By using the platform, you grant us only the limited, temporary license necessary to process, format, paginate, and generate your requested PDF files.
               </p>
               <p>
-                The platform software, interface design, code, typography configurations, templates, graphics, algorithms, and logos are the proprietary property of ResumeBuilder and protected by intellectual property laws.
+                The platform software, interface design, code, typography configurations, templates, graphics, algorithms, and logos are the proprietary property of ResumeBabu and protected by intellectual property laws.
               </p>
             </section>
 
@@ -152,7 +152,7 @@ export default function TermsPage() {
                 <span className="text-emerald-700 dark:text-emerald-400">4.</span> Acceptable Use Policy
               </h2>
               <p>
-                You agree to use ResumeBuilder solely for lawful personal or professional recruitment purposes. You agree NOT to:
+                You agree to use ResumeBabu solely for lawful personal or professional recruitment purposes. You agree NOT to:
               </p>
               <ul className="list-disc pl-5 space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
                 <li>Create fraudulent, defamatory, impersonating, or intentionally misleading resumes.</li>
@@ -187,7 +187,7 @@ export default function TermsPage() {
                   Important Disclaimer
                 </div>
                 <p>
-                  ResumeBuilder provides automated formatting, keyword detection, and AI recommendations to improve your application quality. However, we do NOT guarantee job interviews, employment offers, or hiring outcomes.
+                  ResumeBabu provides automated formatting, keyword detection, and AI recommendations to improve your application quality. However, we do NOT guarantee job interviews, employment offers, or hiring outcomes.
                 </p>
               </div>
               <p>
@@ -201,7 +201,7 @@ export default function TermsPage() {
                 <span className="text-emerald-700 dark:text-emerald-400">7.</span> Limitation of Liability
               </h2>
               <p>
-                To the maximum extent permitted by applicable law, ResumeBuilder, its founders, and affiliates shall not be liable for any indirect, incidental, punitive, or consequential damages resulting from your use or inability to use the service, including application rejection, lost job opportunities, or system downtime.
+                To the maximum extent permitted by applicable law, ResumeBabu, its founders, and affiliates shall not be liable for any indirect, incidental, punitive, or consequential damages resulting from your use or inability to use the service, including application rejection, lost job opportunities, or system downtime.
               </p>
             </section>
 
@@ -211,7 +211,7 @@ export default function TermsPage() {
                 <span className="text-emerald-700 dark:text-emerald-400">8.</span> Account Termination &amp; Data Deletion
               </h2>
               <p>
-                You may discontinue your use of ResumeBuilder at any time. You have the full right to delete your resumes, clear locally cached drafts, or request total account erasure by contacting support or via your user settings.
+                You may discontinue your use of ResumeBabu at any time. You have the full right to delete your resumes, clear locally cached drafts, or request total account erasure by contacting support or via your user settings.
               </p>
             </section>
 
@@ -226,7 +226,7 @@ export default function TermsPage() {
               <div className="p-4 rounded-xl bg-[#F8F7F3] dark:bg-[#161512] border border-border text-xs font-mono space-y-1">
                 <div><strong className="text-slate-900 dark:text-white">Email:</strong> legal@resumebabu.com</div>
                 <div><strong className="text-slate-900 dark:text-white">Support:</strong> support@resumebabu.com</div>
-                <div><strong className="text-slate-900 dark:text-white">Address:</strong> ResumeBuilder Technologies, Bengaluru, Karnataka, India</div>
+                <div><strong className="text-slate-900 dark:text-white">Address:</strong> ResumeBabu Technologies, Bengaluru, Karnataka, India</div>
               </div>
             </section>
           </div>

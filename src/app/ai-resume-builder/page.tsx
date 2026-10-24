@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     'jd to resume ai'
   ],
   openGraph: {
-    title: 'Free AI Resume Builder & Smart AI Resume Maker | ResumeBuilder',
+    title: 'Free AI Resume Builder & Smart AI Resume Maker | ResumeBabu',
     description:
       'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
     type: 'website',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free AI Resume Builder - ResumeBuilder',
+        alt: 'Free AI Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -69,11 +69,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AiResumeBuilderPage() {
+export default function AiResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBuilder AI Resume Generator',
+    name: 'ResumeBabu AI Resume Generator',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
     offers: {

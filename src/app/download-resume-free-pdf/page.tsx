@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Download Resume in Free Vector PDF - ResumeBuilder',
+        alt: 'Download Resume in Free Vector PDF - ResumeBabu',
         type: 'image/png',
       },
     ],
@@ -66,7 +66,7 @@ export default function DownloadResumeFreePdfPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBuilder Free PDF Download Engine',
+    name: 'ResumeBabu Free PDF Download Engine',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
     aggregateRating: {
@@ -119,10 +119,10 @@ export default function DownloadResumeFreePdfPage() {
       },
       {
         '@type': 'Question',
-        name: 'Does ResumeBuilder add a watermark to the free PDF download?',
+        name: 'Does ResumeBabu add a watermark to the free PDF download?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. Every PDF exported through ResumeBuilder is 100% watermark-free, pristine, and ready to submit to recruiters, LinkedIn, or corporate job portals.',
+          text: 'No. Every PDF exported through ResumeBabu is 100% watermark-free, pristine, and ready to submit to recruiters, LinkedIn, or corporate job portals.',
         },
       },
       {
