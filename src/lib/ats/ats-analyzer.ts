@@ -871,3 +871,9 @@ export const analyzeResumeAts = (data?: ResumeData | null): AtsAuditResult => {
     atsPlainText: generateAtsPlainText(safeData),
   };
 };
+
+/**
+ * Backward and semantic alias for analyzeResumeAts (Open/Closed Principle)
+ */
+export const analyzeResumeForAts = analyzeResumeAts;
+
