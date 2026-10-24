@@ -10,13 +10,14 @@
 
 import React, { useState } from 'react';
 import { SkillCategory } from '@/types/resume';
-import { Plus, Trash2, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Trash2, Sparkles, ChevronDown, ChevronUp, Pencil } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { AiSuggestionModal } from '@/components/builder/AiSuggestionModal';
 import { SkillGroupSuggestion } from '@/lib/ai/types';
+import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
 
 interface SkillsSectionProps {
   data: SkillCategory[];
@@ -31,21 +32,26 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
   targetRole = '',
   hideHeader = false,
 }) => {
-  const [collapsedGroupIds, setCollapsedGroupIds] = useState<Set<string>>(new Set());
+  const [expandedDesktopIds, setExpandedDesktopIds] = useState<Set<string>>(new Set());
+  const [mobileEditingId, setMobileEditingId] = useState<string | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [aiAnchorRect, setAiAnchorRect] = useState<DOMRect | null>(null);
   const [rawInputMap, setRawInputMap] = useState<Record<string, string>>({});
 
-  const toggleCollapse = (id: string) => {
-    setCollapsedGroupIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+  const handleItemClick = (id: string) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setMobileEditingId(id);
+    } else {
+      setExpandedDesktopIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
+        return next;
+      });
+    }
   };
 
   const addSkillCategory = () => {
@@ -55,6 +61,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
       items: [],
     };
     onChange([...data, newCat]);
+    setMobileEditingId(newCat.id);
   };
 
   const updateSkillCategory = (index: number, category: string, items: string[]) => {
@@ -110,6 +117,59 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
     }
   };
 
+  const mobileEditingIndex = data.findIndex((item) => item.id === mobileEditingId);
+  const mobileEditingItem = mobileEditingIndex !== -1 ? data[mobileEditingIndex] : null;
+
+  const renderSkillCategoryForm = (cat: SkillCategory, idx: number) => (
+    <div className="space-y-4 pt-1">
+      <div className="space-y-1.5">
+        <Label className="text-xs text-slate-700 dark:text-slate-300 uppercase tracking-wider font-bold">
+          Category Title
+        </Label>
+        <Input
+          type="text"
+          value={cat.category}
+          placeholder="e.g. Technical Skills or Tools"
+          onChange={(e) => updateSkillCategory(idx, e.target.value, cat.items)}
+          className="font-bold text-sm"
+        />
+      </div>
+
+      <div className="space-y-1.5">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Skills (comma-separated):</Label>
+        <Input
+          type="text"
+          value={rawInputMap[cat.id] !== undefined ? rawInputMap[cat.id] : cat.items.join(', ')}
+          placeholder="React, TypeScript, Next.js, PostgreSQL, Docker..."
+          onChange={(e) => {
+            const val = e.target.value;
+            setRawInputMap((prev) => ({ ...prev, [cat.id]: val }));
+            const parsedItems = val
+              .split(',')
+              .map((s) => s.trim())
+              .filter(Boolean);
+            updateSkillCategory(idx, cat.category, parsedItems);
+          }}
+          onBlur={() => {
+            setRawInputMap((prev) => ({ ...prev, [cat.id]: cat.items.join(', ') }));
+          }}
+        />
+      </div>
+
+      <div className="flex flex-wrap gap-1.5 pt-1">
+        {cat.items.map((item, i) => (
+          <Badge
+            key={i}
+            variant="secondary"
+            className="text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-muted px-2.5 py-1"
+          >
+            {item}
+          </Badge>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="space-y-5">
       {hideHeader ? (
@@ -156,7 +216,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
 
       <div className="space-y-4">
         {data.map((cat, idx) => {
-          const isCollapsed = collapsedGroupIds.has(cat.id);
+          const isExpandedDesktop = expandedDesktopIds.has(cat.id);
 
           return (
             <div
@@ -164,7 +224,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
               className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
             >
               <div
-                onClick={() => toggleCollapse(cat.id)}
+                onClick={() => handleItemClick(cat.id)}
                 className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
               >
                 <div className="flex items-center gap-3 min-w-0 pr-2">
@@ -183,6 +243,19 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  {/* Mobile-only prominent Edit Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMobileEditingId(cat.id);
+                    }}
+                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-purple-100 transition-colors mr-1"
+                  >
+                    <Pencil className="w-3 h-3" />
+                    <span>Edit</span>
+                  </button>
+
                   <Button
                     type="button"
                     variant="ghost"
@@ -193,64 +266,22 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
+                  {/* Desktop-only accordion expand chevron */}
                   <button
                     type="button"
-                    onClick={() => toggleCollapse(cat.id)}
-                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
-                    title={isCollapsed ? 'Expand group' : 'Collapse group'}
+                    onClick={() => handleItemClick(cat.id)}
+                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    title={isExpandedDesktop ? 'Collapse group' : 'Expand group'}
                   >
-                    {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+                    {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {!isCollapsed && (
-                <div className="p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
-                  <div className="space-y-1.5 pt-3">
-                    <Label className="text-xs text-slate-500 dark:text-muted-foreground uppercase tracking-wider font-bold">
-                      Category Title
-                    </Label>
-                    <Input
-                      type="text"
-                      value={cat.category}
-                      placeholder="e.g. Technical Skills or Tools"
-                      onChange={(e) => updateSkillCategory(idx, e.target.value, cat.items)}
-                      className="font-bold text-sm"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label className="text-xs font-semibold text-slate-600 dark:text-muted-foreground">Skills (comma-separated):</Label>
-                    <Input
-                      type="text"
-                      value={rawInputMap[cat.id] !== undefined ? rawInputMap[cat.id] : cat.items.join(', ')}
-                      placeholder="React, TypeScript, Next.js, PostgreSQL, Docker..."
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setRawInputMap((prev) => ({ ...prev, [cat.id]: val }));
-                        const parsedItems = val
-                          .split(',')
-                          .map((s) => s.trim())
-                          .filter(Boolean);
-                        updateSkillCategory(idx, cat.category, parsedItems);
-                      }}
-                      onBlur={() => {
-                        setRawInputMap((prev) => ({ ...prev, [cat.id]: cat.items.join(', ') }));
-                      }}
-                    />
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {cat.items.map((item, i) => (
-                      <Badge
-                        key={i}
-                        variant="secondary"
-                        className="text-xs font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-muted px-2.5 py-1"
-                      >
-                        {item}
-                      </Badge>
-                    ))}
-                  </div>
+              {/* Desktop-only inline expanded form */}
+              {isExpandedDesktop && (
+                <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                  {renderSkillCategoryForm(cat, idx)}
                 </div>
               )}
             </div>
@@ -306,6 +337,25 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
           <Plus className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
           <span>Add Another Skill Group</span>
         </button>
+      )}
+
+      {/* Mobile-only Full-screen Form Modal */}
+      {mobileEditingItem && (
+        <MobileFullscreenItemModal
+          isOpen={Boolean(mobileEditingItem)}
+          onClose={() => setMobileEditingId(null)}
+          title={mobileEditingItem.category || 'Skill Group Details'}
+          subtitle={`${mobileEditingItem.items?.length || 0} skills included`}
+          onDelete={() => {
+            if (confirm('Are you sure you want to delete this skill group?')) {
+              removeSkillCategory(mobileEditingIndex);
+              setMobileEditingId(null);
+            }
+          }}
+          deleteLabel="Delete Group"
+        >
+          {renderSkillCategoryForm(mobileEditingItem, mobileEditingIndex)}
+        </MobileFullscreenItemModal>
       )}
 
       {/* AI Suggestion Modal tailored for Skills */}

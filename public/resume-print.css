@@ -766,6 +766,9 @@
   .mr-1 {
     margin-right: var(--spacing);
   }
+  .mr-1\.5 {
+    margin-right: calc(var(--spacing) * 1.5);
+  }
   .mb-0\.5 {
     margin-bottom: calc(var(--spacing) * 0.5);
   }
@@ -819,6 +822,9 @@
   }
   .mb-16 {
     margin-bottom: calc(var(--spacing) * 16);
+  }
+  .-ml-1 {
+    margin-left: calc(var(--spacing) * -1);
   }
   .ml-0\.5 {
     margin-left: calc(var(--spacing) * 0.5);
@@ -2122,6 +2128,12 @@
     border-color: color-mix(in srgb, oklch(88.2% 0.059 254.128) 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       border-color: color-mix(in oklab, var(--color-blue-200) 60%, transparent);
+    }
+  }
+  .border-blue-200\/80 {
+    border-color: color-mix(in srgb, oklch(88.2% 0.059 254.128) 80%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-blue-200) 80%, transparent);
     }
   }
   .border-blue-300 {
@@ -4145,8 +4157,14 @@
   .pb-24 {
     padding-bottom: calc(var(--spacing) * 24);
   }
+  .pb-28 {
+    padding-bottom: calc(var(--spacing) * 28);
+  }
   .pb-\[220px\] {
     padding-bottom: 220px;
+  }
+  .pb-\[calc\(env\(safe-area-inset-bottom\,0px\)\+12px\)\] {
+    padding-bottom: calc(env(safe-area-inset-bottom,0px) + 12px);
   }
   .pb-\[env\(safe-area-inset-bottom\,0px\)\] {
     padding-bottom: env(safe-area-inset-bottom,0px);
@@ -4865,6 +4883,10 @@
   }
   .shadow-2xs {
     --tw-shadow: 0 1px var(--tw-shadow-color, rgb(0 0 0 / 0.05));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-\[0_-4px_16px_rgba\(0\,0\,0\,0\.06\)\] {
+    --tw-shadow: 0 -4px 16px var(--tw-shadow-color, rgba(0,0,0,0.06));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-\[0_-12px_35px_rgba\(0\,0\,0\,0\.28\)\] {
@@ -6016,6 +6038,9 @@
     }
     .hover\:text-rose-600:hover {
       color: var(--color-rose-600);
+    }
+    .hover\:text-rose-700:hover {
+      color: var(--color-rose-700);
     }
     .hover\:text-sky-700:hover {
       color: var(--color-sky-700);

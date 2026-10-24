@@ -3,13 +3,14 @@
 import React, { useState } from 'react';
 import { ExperienceItem } from '@/types/resume';
 import { SectionComponentProps } from '@/types/builder';
-import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, Briefcase, Info, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, Briefcase, Info, ArrowRight, ChevronDown, ChevronUp, Pencil } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { AiSuggestionModal } from '@/components/builder/AiSuggestionModal';
 import { JobTitleAutocomplete } from '@/components/builder/JobTitleAutocomplete';
+import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
 
 interface ExperienceSectionProps extends SectionComponentProps<ExperienceItem[]> {
   targetRole?: string;
@@ -21,7 +22,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   targetRole,
   hideHeader = false,
 }) => {
-  const [collapsedItemIds, setCollapsedItemIds] = useState<Set<string>>(new Set());
+  const [expandedDesktopIds, setExpandedDesktopIds] = useState<Set<string>>(new Set());
+  const [mobileEditingId, setMobileEditingId] = useState<string | null>(null);
   const [aiModalState, setAiModalState] = useState<{
     isOpen: boolean;
     expIndex: number;
@@ -32,16 +34,20 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
     anchorRect: null,
   });
 
-  const toggleCollapse = (id: string) => {
-    setCollapsedItemIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+  const handleItemClick = (id: string) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setMobileEditingId(id);
+    } else {
+      setExpandedDesktopIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
+        return next;
+      });
+    }
   };
 
   const addExperience = () => {
@@ -56,6 +62,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
       highlights: [''],
     };
     onChange([newItem, ...data]);
+    setMobileEditingId(newItem.id);
   };
 
   const updateExperience = (index: number, updated: Partial<ExperienceItem>) => {
@@ -134,6 +141,120 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 
   const currentExpForAi = data[aiModalState.expIndex];
 
+  const mobileEditingIndex = data.findIndex((item) => item.id === mobileEditingId);
+  const mobileEditingItem = mobileEditingIndex !== -1 ? data[mobileEditingIndex] : null;
+
+  const renderExperienceForm = (exp: ExperienceItem, idx: number) => (
+    <div className="space-y-4 sm:space-y-4.5 pt-1">
+      {/* Job Title / Role - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Job Title / Role
+        </Label>
+        <JobTitleAutocomplete
+          value={exp.role}
+          placeholder="Lead Software Engineer"
+          onChange={(val) => updateExperience(idx, { role: val })}
+          className="h-10 text-sm font-semibold"
+        />
+      </div>
+
+      {/* Company / Organization - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Company / Organization
+        </Label>
+        <Input
+          type="text"
+          value={exp.company}
+          placeholder="Stripe, Inc."
+          onChange={(e) => updateExperience(idx, { company: e.target.value })}
+          className="h-10 text-sm font-semibold"
+        />
+      </div>
+
+      {/* Location - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Location
+        </Label>
+        <Input
+          type="text"
+          value={exp.location}
+          placeholder="San Francisco, CA or Remote"
+          onChange={(e) => updateExperience(idx, { location: e.target.value })}
+          className="h-10 text-sm"
+        />
+      </div>
+
+      {/* Start Date & End Date - 1/2 Width (2 columns) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+        <div className="space-y-2">
+          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+            Start Date
+          </Label>
+          <Input
+            type="text"
+            value={exp.startDate}
+            placeholder="e.g. Jan 2022"
+            onChange={(e) => updateExperience(idx, { startDate: e.target.value })}
+            className="h-10 text-sm"
+          />
+        </div>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              End Date
+            </Label>
+            <label className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={exp.current}
+                onChange={(e) => updateExperience(idx, { current: e.target.checked })}
+                className="rounded border-slate-300 dark:border-border text-primary focus:ring-0"
+              />
+              <span>Present</span>
+            </label>
+          </div>
+          <Input
+            type="text"
+            value={exp.current ? 'Present' : exp.endDate}
+            disabled={exp.current}
+            placeholder="e.g. Dec 2024"
+            onChange={(e) => updateExperience(idx, { endDate: e.target.value })}
+            className="h-10 text-sm disabled:opacity-60"
+          />
+        </div>
+      </div>
+
+      {/* Rich Text Editor for Responsibilities & Accomplishments */}
+      <div className="space-y-2.5 pt-2 border-t border-slate-100 dark:border-border/60">
+        <div className="flex items-center justify-between">
+          <div>
+            <Label className="text-sm font-semibold text-slate-800 dark:text-foreground">
+              Roles &amp; Accomplishments
+            </Label>
+            <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5">
+              Use bullet points, bolding, and metric highlights to showcase quantifiable outcomes
+            </p>
+          </div>
+        </div>
+
+        <RichTextEditor
+          value={getHtmlForExp(exp)}
+          placeholder="• Architected distributed system cutting p99 latency by 45%...&#10;• Led sprint delivery for team of 6 engineers..."
+          minHeight="140px"
+          onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
+          aiButtonLabel="AI Suggestions"
+          sectionName="Experience"
+          roleContext={exp.role}
+          defaultBulletList={true}
+          onChange={(html) => handleRichTextChange(idx, html)}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div className="space-y-5">
       {!hideHeader && (
@@ -164,7 +285,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
               variant="default"
               size="sm"
               onClick={addExperience}
-              className="gap-1.5 font-semibold"
+              className="gap-1.5 font-semibold cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Add Position</span>
@@ -173,16 +294,16 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         </div>
       )}
 
-      <div className="space-y-5">
+      <div className="space-y-4">
         {data.map((exp, idx) => {
-          const isCollapsed = collapsedItemIds.has(exp.id);
+          const isExpandedDesktop = expandedDesktopIds.has(exp.id);
           return (
             <div
               key={exp.id}
               className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
             >
               <div
-                onClick={() => toggleCollapse(exp.id)}
+                onClick={() => handleItemClick(exp.id)}
                 className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
               >
                 <div className="flex items-center gap-3 min-w-0 pr-2">
@@ -200,6 +321,19 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  {/* Mobile-only prominent Edit Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMobileEditingId(exp.id);
+                    }}
+                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
+                  >
+                    <Pencil className="w-3 h-3" />
+                    <span>Edit</span>
+                  </button>
+
                   <Button
                     type="button"
                     variant="ghost"
@@ -232,127 +366,22 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </Button>
+                  {/* Desktop-only accordion expand chevron */}
                   <button
                     type="button"
-                    onClick={() => toggleCollapse(exp.id)}
-                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
-                    title={isCollapsed ? 'Expand position' : 'Collapse position'}
+                    onClick={() => handleItemClick(exp.id)}
+                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    title={isExpandedDesktop ? 'Collapse position' : 'Expand position'}
                   >
-                    {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+                    {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {!isCollapsed && (
-                <div className="p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
-                  <div className="space-y-4 sm:space-y-4.5 pt-3">
-                    {/* Job Title / Role - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Job Title / Role
-                      </Label>
-                      <JobTitleAutocomplete
-                        value={exp.role}
-                        placeholder="Lead Software Engineer"
-                        onChange={(val) => updateExperience(idx, { role: val })}
-                        className="h-10 text-sm font-semibold"
-                      />
-                    </div>
-
-                    {/* Company / Organization - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Company / Organization
-                      </Label>
-                      <Input
-                        type="text"
-                        value={exp.company}
-                        placeholder="Stripe, Inc."
-                        onChange={(e) => updateExperience(idx, { company: e.target.value })}
-                        className="h-10 text-sm font-semibold"
-                      />
-                    </div>
-
-                    {/* Location - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Location
-                      </Label>
-                      <Input
-                        type="text"
-                        value={exp.location}
-                        placeholder="San Francisco, CA or Remote"
-                        onChange={(e) => updateExperience(idx, { location: e.target.value })}
-                        className="h-10 text-sm"
-                      />
-                    </div>
-
-                    {/* Start Date & End Date - 1/2 Width (2 columns) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                      <div className="space-y-2">
-                        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                          Start Date
-                        </Label>
-                        <Input
-                          type="text"
-                          value={exp.startDate}
-                          placeholder="e.g. Jan 2022"
-                          onChange={(e) => updateExperience(idx, { startDate: e.target.value })}
-                          className="h-10 text-sm"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                            End Date
-                          </Label>
-                          <label className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground cursor-pointer select-none">
-                            <input
-                              type="checkbox"
-                              checked={exp.current}
-                              onChange={(e) => updateExperience(idx, { current: e.target.checked })}
-                              className="rounded border-slate-300 dark:border-border text-primary focus:ring-0"
-                            />
-                            <span>Present</span>
-                          </label>
-                        </div>
-                        <Input
-                          type="text"
-                          value={exp.current ? 'Present' : exp.endDate}
-                          disabled={exp.current}
-                          placeholder="e.g. Dec 2024"
-                          onChange={(e) => updateExperience(idx, { endDate: e.target.value })}
-                          className="h-10 text-sm disabled:opacity-60"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Rich Text Editor for Responsibilities & Accomplishments */}
-                  <div className="space-y-2.5 pt-2 border-t border-slate-100 dark:border-border/60">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <Label className="text-sm font-semibold text-slate-800 dark:text-foreground">
-                          Roles &amp; Accomplishments
-                        </Label>
-                        <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5">
-                          Use bullet points, bolding, and metric highlights to showcase quantifiable outcomes
-                        </p>
-                      </div>
-                    </div>
-
-                    <RichTextEditor
-                      value={getHtmlForExp(exp)}
-                      placeholder="• Architected distributed system cutting p99 latency by 45%...&#10;• Led sprint delivery for team of 6 engineers..."
-                      minHeight="120px"
-                      onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
-                      aiButtonLabel="AI Suggestions"
-                      sectionName="Experience"
-                      roleContext={exp.role}
-                      defaultBulletList={true}
-                      onChange={(html) => handleRichTextChange(idx, html)}
-                    />
-                  </div>
+              {/* Desktop-only inline expanded form */}
+              {isExpandedDesktop && (
+                <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                  {renderExperienceForm(exp, idx)}
                 </div>
               )}
             </div>
@@ -369,6 +398,25 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
           <Plus className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
           <span>Add Another Position</span>
         </button>
+      )}
+
+      {/* Mobile-only Full-screen Form Modal */}
+      {mobileEditingItem && (
+        <MobileFullscreenItemModal
+          isOpen={Boolean(mobileEditingItem)}
+          onClose={() => setMobileEditingId(null)}
+          title={mobileEditingItem.role || 'New Position'}
+          subtitle={mobileEditingItem.company ? `@ ${mobileEditingItem.company}` : 'Work Experience'}
+          onDelete={() => {
+            if (confirm('Are you sure you want to delete this position?')) {
+              removeExperience(mobileEditingIndex);
+              setMobileEditingId(null);
+            }
+          }}
+          deleteLabel="Delete Position"
+        >
+          {renderExperienceForm(mobileEditingItem, mobileEditingIndex)}
+        </MobileFullscreenItemModal>
       )}
 
       {/* AI Suggestions Modal for Experience */}

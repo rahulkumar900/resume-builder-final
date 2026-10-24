@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { ProjectItem } from '@/types/resume';
 import { SectionComponentProps } from '@/types/builder';
-import { Plus, Trash2, FolderGit2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Trash2, FolderGit2, ChevronDown, ChevronUp, Pencil } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { AiSuggestionModal } from '@/components/builder/AiSuggestionModal';
+import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
 
 interface ProjectsSectionProps extends SectionComponentProps<ProjectItem[]> {
   jobRole?: string;
@@ -21,7 +22,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   jobRole,
   hideHeader = false,
 }) => {
-  const [collapsedItemIds, setCollapsedItemIds] = useState<Set<string>>(new Set());
+  const [expandedDesktopIds, setExpandedDesktopIds] = useState<Set<string>>(new Set());
+  const [mobileEditingId, setMobileEditingId] = useState<string | null>(null);
   const [rawTechMap, setRawTechMap] = useState<Record<string, string>>({});
   const [aiModalState, setAiModalState] = useState<{
     isOpen: boolean;
@@ -33,16 +35,20 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     anchorRect: null,
   });
 
-  const toggleCollapse = (id: string) => {
-    setCollapsedItemIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+  const handleItemClick = (id: string) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setMobileEditingId(id);
+    } else {
+      setExpandedDesktopIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
+        return next;
+      });
+    }
   };
 
   const addProject = () => {
@@ -54,6 +60,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       highlights: [],
     };
     onChange([...data, newProj]);
+    setMobileEditingId(newProj.id);
   };
 
   const updateProject = (index: number, updated: Partial<ProjectItem>) => {
@@ -112,6 +119,80 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   };
 
   const currentProjForAi = data[aiModalState.projIndex];
+  const mobileEditingIndex = data.findIndex((item) => item.id === mobileEditingId);
+  const mobileEditingItem = mobileEditingIndex !== -1 ? data[mobileEditingIndex] : null;
+
+  const renderProjectForm = (proj: ProjectItem, idx: number) => (
+    <div className="space-y-4 sm:space-y-4.5 pt-1">
+      {/* Project Title - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Project Title</Label>
+        <Input
+          type="text"
+          value={proj.title}
+          placeholder="AI Workflow Engine"
+          onChange={(e) => updateProject(idx, { title: e.target.value })}
+          className="h-10 text-sm font-semibold"
+        />
+      </div>
+
+      {/* Live URL / Repository - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Live URL / Repository</Label>
+        <Input
+          type="text"
+          value={proj.link || ''}
+          placeholder="https://github.com/..."
+          onChange={(e) => updateProject(idx, { link: e.target.value })}
+          className="h-10 text-sm"
+        />
+      </div>
+
+      {/* Tech Stack - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Tech Stack (comma-separated)</Label>
+        <Input
+          type="text"
+          value={rawTechMap[proj.id] ?? (proj.technologies || []).join(', ')}
+          placeholder="TypeScript, Next.js, Tailwind, PyTorch..."
+          className="h-10 text-sm"
+          onChange={(e) => {
+            const val = e.target.value;
+            setRawTechMap((prev) => ({ ...prev, [proj.id]: val }));
+            const items = val
+              .split(',')
+              .map((t) => t.trim())
+              .filter(Boolean);
+            updateProject(idx, { technologies: items });
+          }}
+          onBlur={() => {
+            setRawTechMap((prev) => ({
+              ...prev,
+              [proj.id]: (proj.technologies || []).join(', '),
+            }));
+          }}
+        />
+      </div>
+
+      <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-border/60">
+        <div className="flex items-center justify-between">
+          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Key Highlights</Label>
+          <span className="text-[11px] text-slate-400">Rich text &amp; bullet lists supported</span>
+        </div>
+        <RichTextEditor
+          value={getHtmlForProject(proj)}
+          placeholder="• Architected full-stack cloud platform serving 10k+ daily users...&#10;• Implemented secure authentication and payment billing..."
+          minHeight="110px"
+          onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
+          aiButtonLabel="AI Suggestions"
+          sectionName="Projects"
+          roleContext={proj.title}
+          defaultBulletList={true}
+          onChange={(html) => handleRichTextChange(idx, html)}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <div className="space-y-5">
@@ -143,7 +224,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               variant="default"
               size="sm"
               onClick={addProject}
-              className="gap-1.5 font-semibold"
+              className="gap-1.5 font-semibold cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Add Project</span>
@@ -154,14 +235,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
       <div className="space-y-4">
         {data.map((proj, idx) => {
-          const isCollapsed = collapsedItemIds.has(proj.id);
+          const isExpandedDesktop = expandedDesktopIds.has(proj.id);
           return (
             <div
               key={proj.id}
               className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
             >
               <div
-                onClick={() => toggleCollapse(proj.id)}
+                onClick={() => handleItemClick(proj.id)}
                 className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
               >
                 <div className="flex items-center gap-3 min-w-0 pr-2">
@@ -181,97 +262,45 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  {/* Mobile-only prominent Edit Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMobileEditingId(proj.id);
+                    }}
+                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200/80 dark:border-purple-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-purple-100 transition-colors mr-1"
+                  >
+                    <Pencil className="w-3 h-3" />
+                    <span>Edit</span>
+                  </button>
+
                   <Button
                     type="button"
                     variant="ghost"
                     size="icon"
                     onClick={() => removeProject(idx)}
                     className="h-8 w-8 hover:text-rose-600"
+                    title="Delete project"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
+                  {/* Desktop-only accordion expand chevron */}
                   <button
                     type="button"
-                    onClick={() => toggleCollapse(proj.id)}
-                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
-                    title={isCollapsed ? 'Expand project' : 'Collapse project'}
+                    onClick={() => handleItemClick(proj.id)}
+                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    title={isExpandedDesktop ? 'Collapse project' : 'Expand project'}
                   >
-                    {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+                    {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {!isCollapsed && (
-                <div className="p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
-                  <div className="space-y-4 sm:space-y-4.5 pt-3">
-                    {/* Project Title - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Project Title</Label>
-                      <Input
-                        type="text"
-                        value={proj.title}
-                        placeholder="AI Workflow Engine"
-                        onChange={(e) => updateProject(idx, { title: e.target.value })}
-                        className="h-10 text-sm font-semibold"
-                      />
-                    </div>
-
-                    {/* Live URL / Repository - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Live URL / Repository</Label>
-                      <Input
-                        type="text"
-                        value={proj.link || ''}
-                        placeholder="https://github.com/..."
-                        onChange={(e) => updateProject(idx, { link: e.target.value })}
-                        className="h-10 text-sm"
-                      />
-                    </div>
-
-                    {/* Tech Stack - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Tech Stack (comma-separated)</Label>
-                      <Input
-                        type="text"
-                        value={rawTechMap[proj.id] ?? (proj.technologies || []).join(', ')}
-                        placeholder="TypeScript, Next.js, Tailwind, PyTorch..."
-                        className="h-10 text-sm"
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          setRawTechMap((prev) => ({ ...prev, [proj.id]: val }));
-                          const items = val
-                            .split(',')
-                            .map((t) => t.trim())
-                            .filter(Boolean);
-                          updateProject(idx, { technologies: items });
-                        }}
-                        onBlur={() => {
-                          setRawTechMap((prev) => ({
-                            ...prev,
-                            [proj.id]: (proj.technologies || []).join(', '),
-                          }));
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-border/60">
-                    <div className="flex items-center justify-between">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Key Highlights</Label>
-                      <span className="text-[11px] text-slate-400">Rich text & bullet lists supported</span>
-                    </div>
-                    <RichTextEditor
-                      value={getHtmlForProject(proj)}
-                      placeholder="• Architected full-stack cloud platform serving 10k+ daily users...&#10;• Implemented secure authentication and payment billing..."
-                      minHeight="100px"
-                      onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
-                      aiButtonLabel="AI Suggestions"
-                      sectionName="Projects"
-                      roleContext={proj.title}
-                      defaultBulletList={true}
-                      onChange={(html) => handleRichTextChange(idx, html)}
-                    />
-                  </div>
+              {/* Desktop-only inline expanded form */}
+              {isExpandedDesktop && (
+                <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                  {renderProjectForm(proj, idx)}
                 </div>
               )}
             </div>
@@ -288,6 +317,25 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           <Plus className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
           <span>Add Another Project</span>
         </button>
+      )}
+
+      {/* Mobile-only Full-screen Form Modal */}
+      {mobileEditingItem && (
+        <MobileFullscreenItemModal
+          isOpen={Boolean(mobileEditingItem)}
+          onClose={() => setMobileEditingId(null)}
+          title={mobileEditingItem.title || 'Project Details'}
+          subtitle={mobileEditingItem.technologies?.slice(0, 3).join(', ') || 'Projects'}
+          onDelete={() => {
+            if (confirm('Are you sure you want to delete this project?')) {
+              removeProject(mobileEditingIndex);
+              setMobileEditingId(null);
+            }
+          }}
+          deleteLabel="Delete Project"
+        >
+          {renderProjectForm(mobileEditingItem, mobileEditingIndex)}
+        </MobileFullscreenItemModal>
       )}
 
       {/* AI Suggestions Modal for Projects */}

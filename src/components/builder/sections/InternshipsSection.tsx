@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { InternshipItem } from '@/types/resume';
 import { SectionComponentProps } from '@/types/builder';
-import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, GraduationCap, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, GraduationCap, Info, ChevronDown, ChevronUp, Pencil } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { AiSuggestionModal } from '@/components/builder/AiSuggestionModal';
+import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
 
 interface InternshipsSectionProps extends SectionComponentProps<InternshipItem[]> {
   targetRole?: string;
@@ -21,7 +22,8 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
   targetRole,
   hideHeader = false,
 }) => {
-  const [collapsedItemIds, setCollapsedItemIds] = useState<Set<string>>(new Set());
+  const [expandedDesktopIds, setExpandedDesktopIds] = useState<Set<string>>(new Set());
+  const [mobileEditingId, setMobileEditingId] = useState<string | null>(null);
   const [aiModalState, setAiModalState] = useState<{
     isOpen: boolean;
     intIndex: number;
@@ -32,16 +34,20 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
     anchorRect: null,
   });
 
-  const toggleCollapse = (id: string) => {
-    setCollapsedItemIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+  const handleItemClick = (id: string) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setMobileEditingId(id);
+    } else {
+      setExpandedDesktopIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
+        return next;
+      });
+    }
   };
 
   const addInternship = () => {
@@ -56,6 +62,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
       highlights: [''],
     };
     onChange([newItem, ...data]);
+    setMobileEditingId(newItem.id);
   };
 
   const updateInternship = (index: number, updated: Partial<InternshipItem>) => {
@@ -135,6 +142,120 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
   };
 
   const currentIntForAi = data[aiModalState.intIndex];
+  const mobileEditingIndex = data.findIndex((item) => item.id === mobileEditingId);
+  const mobileEditingItem = mobileEditingIndex !== -1 ? data[mobileEditingIndex] : null;
+
+  const renderInternshipForm = (item: InternshipItem, idx: number) => (
+    <div className="space-y-4 sm:space-y-4.5 pt-1">
+      {/* Internship Role / Title - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Internship Role / Title
+        </Label>
+        <Input
+          type="text"
+          value={item.role || item.title || ''}
+          placeholder="e.g. Software Engineering Intern"
+          onChange={(e) => updateInternship(idx, { role: e.target.value, title: e.target.value })}
+          className="h-10 text-sm font-semibold"
+        />
+      </div>
+
+      {/* Company / Organization - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Company / Organization
+        </Label>
+        <Input
+          type="text"
+          value={item.company}
+          placeholder="e.g. Acme Technologies"
+          onChange={(e) => updateInternship(idx, { company: e.target.value })}
+          className="h-10 text-sm font-semibold"
+        />
+      </div>
+
+      {/* Location - Full Width */}
+      <div className="space-y-2">
+        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+          Location
+        </Label>
+        <Input
+          type="text"
+          value={item.location || ''}
+          placeholder="e.g. Remote / San Francisco, CA"
+          onChange={(e) => updateInternship(idx, { location: e.target.value })}
+          className="h-10 text-sm"
+        />
+      </div>
+
+      {/* Start Date & End Date - 1/2 Width (2 columns) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+        <div className="space-y-2">
+          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+            Start Date
+          </Label>
+          <Input
+            type="text"
+            value={item.startDate}
+            placeholder="e.g. May 2024"
+            onChange={(e) => updateInternship(idx, { startDate: e.target.value })}
+            className="h-10 text-sm"
+          />
+        </div>
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              End Date
+            </Label>
+            <label className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={item.current || false}
+                onChange={(e) => updateInternship(idx, { current: e.target.checked })}
+                className="rounded border-slate-300 text-primary focus:ring-0"
+              />
+              <span>Ongoing</span>
+            </label>
+          </div>
+          <Input
+            type="text"
+            value={item.current ? 'Present' : item.endDate || ''}
+            disabled={item.current}
+            placeholder="e.g. Aug 2024"
+            onChange={(e) => updateInternship(idx, { endDate: e.target.value })}
+            className="h-10 text-sm disabled:opacity-60"
+          />
+        </div>
+      </div>
+
+      {/* Rich Text Editor for Responsibilities & Accomplishments */}
+      <div className="space-y-2.5 pt-2 border-t border-slate-100 dark:border-border/60">
+        <div className="flex items-center justify-between">
+          <div>
+            <Label className="text-sm font-semibold text-slate-800 dark:text-foreground">
+              Internship Description &amp; Key Accomplishments
+            </Label>
+            <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5">
+              Describe core responsibilities, deliverables built, and tools mastered during your internship
+            </p>
+          </div>
+        </div>
+
+        <RichTextEditor
+          value={getHtmlForInt(item)}
+          placeholder="• Assisted in building customer-facing dashboard using React and TypeScript...&#10;• Reduced unit test run times by 20% by refactoring test fixtures..."
+          minHeight="110px"
+          onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
+          aiButtonLabel="AI Suggestions"
+          sectionName="Internships"
+          roleContext={item.role || item.title}
+          defaultBulletList={true}
+          onChange={(html) => handleRichTextChange(idx, html)}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <div className="space-y-5">
@@ -183,7 +304,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
               variant="default"
               size="sm"
               onClick={addInternship}
-              className="gap-1.5 font-semibold"
+              className="gap-1.5 font-semibold cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Add Internship</span>
@@ -194,7 +315,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
 
       <div className="space-y-4">
         {data.map((item, idx) => {
-          const isCollapsed = collapsedItemIds.has(item.id);
+          const isExpandedDesktop = expandedDesktopIds.has(item.id);
 
           return (
             <div
@@ -202,7 +323,7 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
               className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
             >
               <div
-                onClick={() => toggleCollapse(item.id)}
+                onClick={() => handleItemClick(item.id)}
                 className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
               >
                 <div className="flex items-center gap-3 min-w-0 pr-2">
@@ -220,6 +341,19 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  {/* Mobile-only prominent Edit Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMobileEditingId(item.id);
+                    }}
+                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
+                  >
+                    <Pencil className="w-3 h-3" />
+                    <span>Edit</span>
+                  </button>
+
                   <Button
                     type="button"
                     variant="ghost"
@@ -252,137 +386,28 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </Button>
+                  {/* Desktop-only accordion expand chevron */}
                   <button
                     type="button"
-                    onClick={() => toggleCollapse(item.id)}
-                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
-                    title={isCollapsed ? 'Expand internship' : 'Collapse internship'}
+                    onClick={() => handleItemClick(item.id)}
+                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    title={isExpandedDesktop ? 'Collapse internship' : 'Expand internship'}
                   >
-                    {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+                    {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {!isCollapsed && (
-                <div className="p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
-                  <div className="space-y-4 sm:space-y-4.5 pt-3">
-                    {/* Internship Role / Title - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Internship Role / Title
-                      </Label>
-                      <Input
-                        type="text"
-                        value={item.role || item.title || ''}
-                        placeholder="e.g. Software Engineering Intern"
-                        onChange={(e) => updateInternship(idx, { role: e.target.value, title: e.target.value })}
-                        className="h-10 text-sm font-semibold"
-                      />
-                    </div>
-
-                    {/* Company / Organization - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Company / Organization
-                      </Label>
-                      <Input
-                        type="text"
-                        value={item.company}
-                        placeholder="e.g. Acme Technologies"
-                        onChange={(e) => updateInternship(idx, { company: e.target.value })}
-                        className="h-10 text-sm font-semibold"
-                      />
-                    </div>
-
-                    {/* Location - Full Width */}
-                    <div className="space-y-2">
-                      <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                        Location
-                      </Label>
-                      <Input
-                        type="text"
-                        value={item.location || ''}
-                        placeholder="e.g. Remote / San Francisco, CA"
-                        onChange={(e) => updateInternship(idx, { location: e.target.value })}
-                        className="h-10 text-sm"
-                      />
-                    </div>
-
-                    {/* Start Date & End Date - 1/2 Width (2 columns) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                      <div className="space-y-2">
-                        <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                          Start Date
-                        </Label>
-                        <Input
-                          type="text"
-                          value={item.startDate}
-                          placeholder="e.g. May 2024"
-                          onChange={(e) => updateInternship(idx, { startDate: e.target.value })}
-                          className="h-10 text-sm"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                            End Date
-                          </Label>
-                          <label className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-muted-foreground cursor-pointer select-none">
-                            <input
-                              type="checkbox"
-                              checked={item.current || false}
-                              onChange={(e) => updateInternship(idx, { current: e.target.checked })}
-                              className="rounded border-slate-300 text-primary focus:ring-0"
-                            />
-                            <span>Ongoing</span>
-                          </label>
-                        </div>
-                        <Input
-                          type="text"
-                          value={item.current ? 'Present' : item.endDate || ''}
-                          disabled={item.current}
-                          placeholder="e.g. Aug 2024"
-                          onChange={(e) => updateInternship(idx, { endDate: e.target.value })}
-                          className="h-10 text-sm disabled:opacity-60"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-            {/* Rich Text Editor for Responsibilities & Accomplishments */}
-            <div className="space-y-2.5 pt-2 border-t border-slate-100 dark:border-border/60">
-              <div className="flex items-center justify-between">
-                <div>
-                  <Label className="text-sm font-semibold text-slate-800 dark:text-foreground">
-                    Internship Description &amp; Key Accomplishments
-                  </Label>
-                  <p className="text-xs text-slate-500 dark:text-muted-foreground mt-0.5">
-                    Describe core responsibilities, deliverables built, and tools mastered during your internship
-                  </p>
+              {/* Desktop-only inline expanded form */}
+              {isExpandedDesktop && (
+                <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                  {renderInternshipForm(item, idx)}
                 </div>
-                <span className="text-[11px] text-slate-400 dark:text-muted-foreground hidden sm:inline">
-                  Rich text &amp; bullet lists supported
-                </span>
-              </div>
-
-              <RichTextEditor
-                value={getHtmlForInt(item)}
-                placeholder="• Assisted in building customer-facing dashboard using React and TypeScript...&#10;• Reduced unit test run times by 20% by refactoring test fixtures..."
-                minHeight="110px"
-                onOpenAiSuggestions={(rect) => openAiModal(idx, rect)}
-                aiButtonLabel="AI Suggestions"
-                sectionName="Internships"
-                roleContext={item.role || item.title}
-                defaultBulletList={true}
-                onChange={(html) => handleRichTextChange(idx, html)}
-              />
+              )}
             </div>
-          </div>
-        )}
+          );
+        })}
       </div>
-    );
-  })}
-</div>
 
       {data.length > 0 && (
         <button
@@ -393,6 +418,25 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
           <Plus className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
           <span>Add Another Internship</span>
         </button>
+      )}
+
+      {/* Mobile-only Full-screen Form Modal */}
+      {mobileEditingItem && (
+        <MobileFullscreenItemModal
+          isOpen={Boolean(mobileEditingItem)}
+          onClose={() => setMobileEditingId(null)}
+          title={mobileEditingItem.role || 'Internship Details'}
+          subtitle={mobileEditingItem.company ? `@ ${mobileEditingItem.company}` : 'Internships'}
+          onDelete={() => {
+            if (confirm('Are you sure you want to delete this internship?')) {
+              removeInternship(mobileEditingIndex);
+              setMobileEditingId(null);
+            }
+          }}
+          deleteLabel="Delete Internship"
+        >
+          {renderInternshipForm(mobileEditingItem, mobileEditingIndex)}
+        </MobileFullscreenItemModal>
       )}
 
       {/* AI Suggestions Modal */}

@@ -3,27 +3,33 @@
 import React, { useState } from 'react';
 import { LanguageItem } from '@/types/resume';
 import { SectionComponentProps } from '@/types/builder';
-import { Plus, Trash2, ChevronDown, ChevronUp, Languages } from 'lucide-react';
+import { Plus, Trash2, ChevronDown, ChevronUp, Languages, Pencil } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
 
 export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> = ({
   data = [],
   onChange,
   hideHeader = false,
 }) => {
-  const [collapsedIds, setCollapsedIds] = useState<Set<string>>(new Set());
+  const [expandedDesktopIds, setExpandedDesktopIds] = useState<Set<string>>(new Set());
+  const [mobileEditingId, setMobileEditingId] = useState<string | null>(null);
 
-  const toggleCollapse = (id: string) => {
-    setCollapsedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
+  const handleItemClick = (id: string) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setMobileEditingId(id);
+    } else {
+      setExpandedDesktopIds((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          next.add(id);
+        }
+        return next;
+      });
+    }
   };
 
   const addLanguage = () => {
@@ -33,6 +39,7 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
       proficiency: 'Native',
     };
     onChange([...data, newLang]);
+    setMobileEditingId(newLang.id);
   };
 
   const updateLanguage = (index: number, updated: Partial<LanguageItem>) => {
@@ -44,6 +51,38 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
   const removeLanguage = (index: number) => {
     onChange(data.filter((_, i) => i !== index));
   };
+
+  const mobileEditingIndex = data.findIndex((item) => item.id === mobileEditingId);
+  const mobileEditingItem = mobileEditingIndex !== -1 ? data[mobileEditingIndex] : null;
+
+  const renderLanguageForm = (l: LanguageItem, idx: number) => (
+    <div className="space-y-4 sm:space-y-4.5 pt-1">
+      <div className="space-y-2">
+        <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">Language</label>
+        <Input
+          type="text"
+          value={l.language}
+          placeholder="e.g. English, Spanish, German"
+          onChange={(e) => updateLanguage(idx, { language: e.target.value })}
+          className="h-10 text-sm font-semibold"
+        />
+      </div>
+      <div className="space-y-2">
+        <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">Proficiency Level</label>
+        <select
+          value={l.proficiency}
+          onChange={(e) => updateLanguage(idx, { proficiency: e.target.value })}
+          className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground font-medium shadow-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+        >
+          <option value="Native">Native / Bilingual</option>
+          <option value="Fluent">Fluent</option>
+          <option value="Professional Working">Professional Working</option>
+          <option value="Limited Working">Limited Working</option>
+          <option value="Elementary">Elementary</option>
+        </select>
+      </div>
+    </div>
+  );
 
   return (
     <div className="space-y-5">
@@ -73,7 +112,7 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
               variant="default"
               size="sm"
               onClick={addLanguage}
-              className="gap-1.5 font-semibold"
+              className="gap-1.5 font-semibold cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Add Language</span>
@@ -84,16 +123,16 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
 
       <div className="space-y-4">
         {data.map((l, idx) => {
-          const isCollapsed = collapsedIds.has(l.id);
+          const isExpandedDesktop = expandedDesktopIds.has(l.id);
 
           return (
             <div
               key={l.id}
               className="rounded-2xl border border-slate-200 dark:border-border bg-white dark:bg-card overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-border transition-colors"
             >
-              {/* Collapsible Accordion Header */}
+              {/* Header */}
               <div
-                onClick={() => toggleCollapse(l.id)}
+                onClick={() => handleItemClick(l.id)}
                 className="flex items-center justify-between p-4 sm:p-5 cursor-pointer hover:bg-slate-50/70 dark:hover:bg-muted/40 transition-colors select-none"
               >
                 <div className="flex items-center gap-3 min-w-0 pr-2">
@@ -111,6 +150,19 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+                  {/* Mobile-only prominent Edit Button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMobileEditingId(l.id);
+                    }}
+                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
+                  >
+                    <Pencil className="w-3 h-3" />
+                    <span>Edit</span>
+                  </button>
+
                   <Button
                     type="button"
                     variant="ghost"
@@ -121,46 +173,22 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
+                  {/* Desktop-only accordion expand chevron */}
                   <button
                     type="button"
-                    onClick={() => toggleCollapse(l.id)}
-                    className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
-                    title={isCollapsed ? 'Expand item' : 'Collapse item'}
+                    onClick={() => handleItemClick(l.id)}
+                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    title={isExpandedDesktop ? 'Collapse item' : 'Expand item'}
                   >
-                    {isCollapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+                    {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {/* Collapsible Form Body */}
-              {!isCollapsed && (
-                <div className="p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
-                  <div className="space-y-4 sm:space-y-4.5 pt-3">
-                    <div className="space-y-2">
-                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">Language</label>
-                      <Input
-                        type="text"
-                        value={l.language}
-                        placeholder="e.g. English, Spanish, German"
-                        onChange={(e) => updateLanguage(idx, { language: e.target.value })}
-                        className="h-10 text-sm font-semibold"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">Proficiency Level</label>
-                      <select
-                        value={l.proficiency}
-                        onChange={(e) => updateLanguage(idx, { proficiency: e.target.value })}
-                        className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground font-medium shadow-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                      >
-                        <option value="Native">Native / Bilingual</option>
-                        <option value="Fluent">Fluent</option>
-                        <option value="Professional Working">Professional Working</option>
-                        <option value="Limited Working">Limited Working</option>
-                        <option value="Elementary">Elementary</option>
-                      </select>
-                    </div>
-                  </div>
+              {/* Desktop-only inline expanded form */}
+              {isExpandedDesktop && (
+                <div className="hidden lg:block p-4 sm:p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-border/60 mt-1">
+                  {renderLanguageForm(l, idx)}
                 </div>
               )}
             </div>
@@ -177,6 +205,25 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
           <Plus className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors" />
           <span>Add Another Language</span>
         </button>
+      )}
+
+      {/* Mobile-only Full-screen Form Modal */}
+      {mobileEditingItem && (
+        <MobileFullscreenItemModal
+          isOpen={Boolean(mobileEditingItem)}
+          onClose={() => setMobileEditingId(null)}
+          title={mobileEditingItem.language || 'Language Details'}
+          subtitle={mobileEditingItem.proficiency || 'Languages'}
+          onDelete={() => {
+            if (confirm('Are you sure you want to delete this language?')) {
+              removeLanguage(mobileEditingIndex);
+              setMobileEditingId(null);
+            }
+          }}
+          deleteLabel="Delete Language"
+        >
+          {renderLanguageForm(mobileEditingItem, mobileEditingIndex)}
+        </MobileFullscreenItemModal>
       )}
     </div>
   );
