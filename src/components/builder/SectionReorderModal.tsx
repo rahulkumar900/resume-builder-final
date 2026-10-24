@@ -10,6 +10,7 @@ import {
 } from '@/types/resume';
 import {
   X,
+  ChevronDown,
   Eye,
   EyeOff,
   RotateCcw,
@@ -103,7 +104,7 @@ interface SectionReorderModalProps {
   resume: ResumeData;
 }
 
-interface SectionMeta {
+export interface SectionMeta {
   id: ResumeSectionId;
   label: string;
   builderKey: SectionKey;
@@ -111,7 +112,7 @@ interface SectionMeta {
   getCount: (r: ResumeData) => number | null;
 }
 
-const SECTION_METAS: Record<ResumeSectionId, SectionMeta> = {
+export const SECTION_METAS: Record<ResumeSectionId, SectionMeta> = {
   summary: {
     id: 'summary',
     label: 'Professional Summary',
@@ -338,7 +339,7 @@ const SECTION_METAS: Record<ResumeSectionId, SectionMeta> = {
   },
 };
 
-const SECTION_PLACEMENT_RECOMMENDATIONS: Partial<Record<ResumeSectionId, {
+export const SECTION_PLACEMENT_RECOMMENDATIONS: Partial<Record<ResumeSectionId, {
   recommendedColumn: 'main' | 'sidebar' | 'flexible';
   badgeLabel: string;
   badgeClass: string;
@@ -412,6 +413,35 @@ const SECTION_PLACEMENT_RECOMMENDATIONS: Partial<Record<ResumeSectionId, {
   },
 };
 
+/**
+ * Pure helper function to transfer a section between main and sidebar columns
+ * Following SOLID principles: pure, immutable, and easily unit-testable.
+ */
+export function moveSectionBetweenColumns(
+  order: SectionOrderConfig,
+  sectionId: ResumeSectionId,
+  targetColumn: 'main' | 'sidebar'
+): SectionOrderConfig {
+  const main = order.mainColumn || [];
+  const sidebar = order.sidebarColumn || [];
+
+  if (targetColumn === 'sidebar') {
+    if (sidebar.includes(sectionId)) return order;
+    return {
+      ...order,
+      mainColumn: main.filter((s) => s !== sectionId),
+      sidebarColumn: [...sidebar, sectionId],
+    };
+  } else {
+    if (main.includes(sectionId)) return order;
+    return {
+      ...order,
+      sidebarColumn: sidebar.filter((s) => s !== sectionId),
+      mainColumn: [...main, sectionId],
+    };
+  }
+}
+
 interface SortableSectionCardProps {
   id: ResumeSectionId;
   column: 'main' | 'sidebar' | 'single';
@@ -466,8 +496,8 @@ function SortableSectionCard({
     <div
       ref={setNodeRef}
       style={style}
-      className={`rounded-xl border transition-all flex items-center justify-between gap-1.5 sm:gap-3 ${
-        isCompact ? 'p-2 sm:p-3' : 'p-2.5 sm:p-3.5'
+      className={`rounded-xl border transition-all flex items-center justify-between gap-1.5 sm:gap-2.5 ${
+        isCompact ? 'p-1.5 sm:p-2.5' : 'p-2.5 sm:p-3.5'
       } ${
         isDragging
           ? 'shadow-lg ring-2 ring-emerald-500/50 bg-emerald-50/50 dark:bg-emerald-950/30'
@@ -488,8 +518,8 @@ function SortableSectionCard({
           <GripVertical className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </div>
 
-        {/* Checkbox for active/inactive toggle */}
-        <div className="shrink-0 flex items-center">
+        {/* Checkbox for active/inactive toggle (hidden on mobile to minimize clutter) */}
+        <div className="hidden sm:flex shrink-0 items-center">
           <input
             type="checkbox"
             checked={true}
@@ -499,14 +529,32 @@ function SortableSectionCard({
           />
         </div>
 
+        {/* Section Icon: Tapping icon on mobile transfers between columns in 2-col layout */}
+        <button
+          type="button"
+          onClick={(e) => {
+            if (layout === 'double') {
+              e.stopPropagation();
+              if (column === 'main') {
+                onTransferToSidebar?.(id);
+              } else {
+                onTransferToMain?.(id);
+              }
+            } else {
+              onJumpToSection(meta);
+            }
+          }}
+          className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/[0.14] transition-colors cursor-pointer"
+          title={layout === 'double' ? (column === 'main' ? 'Tap to move to Sidebar' : 'Tap to move to Main') : 'Jump to section'}
+        >
+          <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+        </button>
+
         <div
           onClick={() => onJumpToSection(meta)}
           className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1 select-none cursor-pointer"
           title="Click to jump to editing this section"
         >
-          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center shrink-0 bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-200">
-            <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-          </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1 min-w-0">
               <span className="font-bold text-[11px] sm:text-[13px] text-slate-900 dark:text-white leading-tight truncate">
@@ -551,9 +599,9 @@ function SortableSectionCard({
         </div>
       </div>
 
-      {/* Cross-column transfer button (Two-column layout only) */}
+      {/* Cross-column transfer button (Two-column layout only, hidden on mobile to maximize card title width) */}
       {layout === 'double' && (
-        <div className="shrink-0 flex items-center">
+        <div className="hidden sm:flex shrink-0 items-center">
           {column === 'main' ? (
             sidebarPos === 'left' ? (
               <Button
@@ -660,7 +708,7 @@ function DroppableColumn({
       } ${className || ''}`}
     >
       {/* Column Header */}
-      <div className="p-2.5 sm:p-3.5 border-b border-slate-200/80 dark:border-white/[0.08] flex items-center justify-between gap-1">
+      <div className="p-2 sm:p-3.5 border-b border-slate-200/80 dark:border-white/[0.08] flex items-center justify-between gap-1">
         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <span
             className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full shrink-0 ${
@@ -677,14 +725,15 @@ function DroppableColumn({
           {widthLabel && (
             <Badge
               variant="outline"
-              className="text-[9px] sm:text-[9.5px] px-1 sm:px-1.5 py-0 font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/[0.08] shrink-0"
+              className="hidden sm:inline-flex text-[9px] sm:text-[9.5px] px-1 sm:px-1.5 py-0 font-medium bg-slate-100 dark:bg-white/[0.06] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/[0.08] shrink-0"
             >
               {widthLabel}
             </Badge>
           )}
         </div>
         <span className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium shrink-0">
-          {items.length} {items.length === 1 ? 'sec' : 'secs'}
+          <span className="hidden sm:inline">{items.length} {items.length === 1 ? 'sec' : 'secs'}</span>
+          <span className="sm:hidden font-bold">({items.length})</span>
         </span>
       </div>
 
@@ -696,7 +745,7 @@ function DroppableColumn({
       </div>
 
       {/* Column Body / Droppable Items List */}
-      <div className="p-2 sm:p-3.5 space-y-2 sm:space-y-2.5 flex-1 min-h-[120px]">
+      <div className="p-1.5 sm:p-3.5 space-y-1.5 sm:space-y-2.5 flex-1 min-h-[120px]">
         {children}
         {items.length === 0 && (
           <div className="h-24 sm:h-28 flex flex-col items-center justify-center text-center p-3 border border-dashed border-slate-300 dark:border-white/[0.1] rounded-xl text-slate-400 dark:text-slate-500 text-xs gap-1 bg-slate-50/40 dark:bg-white/[0.01]">
@@ -723,7 +772,6 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
   resume,
 }) => {
   const [activeDragId, setActiveDragId] = React.useState<ResumeSectionId | null>(null);
-  const [mobileViewMode, setMobileViewMode] = React.useState<'split' | 'main' | 'sidebar'>('split');
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -825,18 +873,18 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
 
   // Move section from Main to Sidebar
   const transferToSidebar = (sectionId: ResumeSectionId) => {
-    if (sidebarList.includes(sectionId)) return;
-    const nextMain = mainList.filter((s) => s !== sectionId);
-    const nextSidebar = [...sidebarList, sectionId];
-    updateOrder({ ...currentOrder, mainColumn: nextMain, sidebarColumn: nextSidebar });
+    const updated = moveSectionBetweenColumns(currentOrder, sectionId, 'sidebar');
+    if (updated !== currentOrder) {
+      updateOrder(updated);
+    }
   };
 
   // Move section from Sidebar to Main
   const transferToMain = (sectionId: ResumeSectionId) => {
-    if (mainList.includes(sectionId)) return;
-    const nextSidebar = sidebarList.filter((s) => s !== sectionId);
-    const nextMain = [...mainList, sectionId];
-    updateOrder({ ...currentOrder, mainColumn: nextMain, sidebarColumn: nextSidebar });
+    const updated = moveSectionBetweenColumns(currentOrder, sectionId, 'main');
+    if (updated !== currentOrder) {
+      updateOrder(updated);
+    }
   };
 
   const handleReset = () => {
@@ -1021,125 +1069,82 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 dark:bg-black/80 backdrop-blur-xs p-2 sm:p-6 animate-in fade-in duration-150">
       <div className="w-full max-w-5xl bg-white dark:bg-[#141412] rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 dark:border-white/[0.08] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 max-h-[94vh]">
-        {/* Modal Header */}
-        <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 dark:border-white/[0.08] flex items-center justify-between bg-slate-50/80 dark:bg-white/[0.02] shrink-0 gap-2">
-          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center border border-emerald-200/60 dark:border-emerald-800 shadow-2xs shrink-0">
-              {layout === 'double' ? (
-                <Columns2 className="w-4 h-4 sm:w-5 sm:h-5" />
-              ) : (
-                <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
-              )}
+        {/* 1. Modal Header (Title + Close) */}
+        <div className="px-4 py-3.5 sm:px-6 sm:py-4 border-b border-slate-100 dark:border-white/[0.08] flex items-center justify-between bg-white dark:bg-[#141412] shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center shrink-0">
+              <Layout className="w-4 h-4" />
             </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                <h3 className="font-bold text-sm sm:text-lg text-slate-900 dark:text-white tracking-tight truncate">
-                  Sections &amp; Layout Order
-                </h3>
-                <Badge
-                  variant="outline"
-                  className="text-[9.5px] sm:text-[10.5px] font-semibold uppercase tracking-wider bg-white dark:bg-white/[0.05] text-slate-700 dark:text-slate-300 border-slate-200 dark:border-white/[0.1] px-1.5 py-0 shrink-0"
-                >
-                  {layout === 'double'
-                    ? sidebarPos === 'left'
-                      ? '2-Col (Left Sidebar)'
-                      : '2-Col (Right Sidebar)'
-                    : 'Single Column'}
-                </Badge>
-              </div>
-
-              <div className="flex items-center gap-2 mt-1 flex-wrap">
-                {/* Active Template Switcher */}
-                <div className="flex items-center gap-1.5 bg-white dark:bg-white/[0.05] px-2 py-0.5 rounded-lg border border-slate-200 dark:border-white/[0.1] text-xs shadow-2xs max-w-full">
-                  <Layout className="w-3 h-3 text-slate-400 shrink-0" />
-                  <span className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">Template:</span>
-                  <select
-                    value={resume.templateId}
-                    onChange={(e) => handleTemplateChange(e.target.value as TemplateId)}
-                    className="bg-transparent font-semibold text-slate-700 dark:text-slate-200 focus:outline-none cursor-pointer text-[11px] truncate"
-                    title="Change template to dynamically preview layout"
-                  >
-                    {TEMPLATES.map((t) => (
-                      <option key={t.id} value={t.id} className="dark:bg-[#1a1a18] dark:text-white">
-                        {t.name} ({t.layout === 'double' ? 'Double' : 'Single'})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
+            <div>
+              <h3 className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight">
+                Sections &amp; Layout Order
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 hidden xs:block">
+                Select your template layout and arrange your resume sections
+              </p>
             </div>
           </div>
+
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1.5 sm:p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors cursor-pointer shrink-0"
+            className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors cursor-pointer shrink-0"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-3 sm:p-6 overflow-y-auto flex-1 space-y-4 sm:space-y-6">
-          {/* Realistic Resume Sheet Header Preview */}
-          <div className="bg-white dark:bg-[#181816] rounded-xl sm:rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-xs overflow-hidden">
-            {/* Top Accent Bar mirroring selected theme color */}
-            <div
-              className="h-1.5 w-full transition-colors"
-              style={{ backgroundColor: resume.themeColor || '#047857' }}
-            />
-            <div className="p-3 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-sm sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight truncate">
-                    {resume.personalInfo.fullName || 'Candidate Full Name'}
-                  </h4>
-                  <span
-                    className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded text-white"
-                    style={{ backgroundColor: resume.themeColor || '#047857' }}
-                  >
-                    {resume.personalInfo.jobTitle || 'Professional Role'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2.5 mt-1 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 flex-wrap">
-                  {resume.personalInfo.email && (
-                    <span className="flex items-center gap-1">
-                      <Mail className="w-3 h-3 text-slate-400 shrink-0" />
-                      <span className="truncate">{resume.personalInfo.email}</span>
-                    </span>
-                  )}
-                  {resume.personalInfo.phone && (
-                    <span className="flex items-center gap-1">
-                      <Phone className="w-3 h-3 text-slate-400 shrink-0" />
-                      <span>{resume.personalInfo.phone}</span>
-                    </span>
-                  )}
-                  {resume.personalInfo.location && (
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-                      <span>{resume.personalInfo.location}</span>
-                    </span>
-                  )}
-                </div>
+        <div className="p-3 sm:p-6 overflow-y-auto flex-1 space-y-4 sm:space-y-5">
+          {/* 2. Resume Template Selection */}
+          <div className="bg-slate-50/80 dark:bg-white/[0.03] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-white/[0.08]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-bold text-slate-900 dark:text-white">
+                  Resume Template:
+                </span>
+                <Badge
+                  variant="outline"
+                  className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-white dark:bg-white/[0.05] text-emerald-700 dark:text-emerald-400 border-emerald-500/25 shrink-0"
+                >
+                  {layout === 'double'
+                    ? sidebarPos === 'left'
+                      ? '2-Column (Sidebar Left)'
+                      : '2-Column (Sidebar Right)'
+                    : 'Single Column (1-Col)'}
+                </Badge>
               </div>
 
-              {/* Layout Archetype Badge */}
-              <div className="shrink-0 flex items-center gap-2">
-                <div className="text-right hidden sm:block">
-                  <div className="text-[11px] font-bold text-slate-700 dark:text-slate-300">
-                    {layout === 'double'
-                      ? `Two Columns (${sidebarPos === 'left' ? 'Sidebar Left' : 'Sidebar Right'})`
-                      : 'Single Column (Linear Flow)'}
-                  </div>
-                  <div className="text-[10px] text-slate-400 dark:text-slate-500">
-                    {layout === 'double'
-                      ? `${mainList.length} Main • ${sidebarList.length} Sidebar`
-                      : `${singleList.length} Sections Total`}
-                  </div>
+              <div className="relative flex items-center w-full sm:w-auto">
+                <select
+                  value={resume.templateId}
+                  onChange={(e) => handleTemplateChange(e.target.value as TemplateId)}
+                  className="w-full sm:w-auto text-xs font-semibold bg-white dark:bg-[#1a1a18] hover:bg-slate-50 dark:hover:bg-white/[0.08] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/10 rounded-xl pl-3 pr-8 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer shadow-xs transition-colors appearance-none"
+                  title="Select a resume template to change layout"
+                >
+                  <optgroup label="Two-Column Templates (Sidebar + Main)">
+                    {TEMPLATES.filter((t) => t.layout === 'double').map((t) => (
+                      <option key={t.id} value={t.id} className="dark:bg-[#1a1a18] dark:text-white">
+                        {t.name} (2-Column)
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Single-Column Templates (Full Width Flow)">
+                    {TEMPLATES.filter((t) => t.layout === 'single').map((t) => (
+                      <option key={t.id} value={t.id} className="dark:bg-[#1a1a18] dark:text-white">
+                        {t.name} (Single Column)
+                      </option>
+                    ))}
+                  </optgroup>
+                </select>
+                <div className="pointer-events-none absolute right-2.5 text-slate-400">
+                  <ChevronDown className="w-4 h-4" />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* DndContext Wrapping Columns with Cross-Column Drag and Drop */}
+          {/* 3. Orderable Sections: 1 column if single col template, 2 columns if two col template */}
           <DndContext
             sensors={sensors}
             collisionDetection={closestCorners}
@@ -1147,178 +1152,30 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
             onDragEnd={handleDragEnd}
           >
             {layout === 'double' ? (
-              /* Two-Column Mode with dedicated Mobile View Switcher */
-              <div className="space-y-3">
-                {/* Mobile View Switcher Controls (shown only on mobile screens < sm) */}
-                <div className="sm:hidden flex flex-col gap-2">
-                  {/* Mini Resume Page Preview Sheet Map */}
-                  <div className="bg-slate-50 dark:bg-white/[0.03] p-2.5 rounded-xl border border-slate-200/80 dark:border-white/[0.08]">
-                    <div className="flex items-center justify-between text-[10.5px] font-semibold text-slate-500 mb-1.5 px-0.5">
-                      <span className="flex items-center gap-1">
-                        <Columns2 className="w-3.5 h-3.5 text-emerald-600" />
-                        2-Column Layout: {sidebarPos === 'left' ? 'Sidebar Left (~35%)' : 'Sidebar Right (~35%)'}
-                      </span>
-                      <span className="text-[10px] text-slate-400">
-                        {mainList.length} Main • {sidebarList.length} Sidebar
-                      </span>
+              /* Two-Column Mode: Two distinct columns side-by-side */
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start">
+                {sidebarPos === 'left' ? (
+                  <>
+                    <div className="min-w-0 flex flex-col">
+                      {renderSidebarColumn(true)}
                     </div>
-                    <div className="flex gap-1.5 h-8 w-full rounded-lg bg-white dark:bg-[#141412] p-1 border border-slate-200/60 dark:border-white/[0.06]">
-                      {sidebarPos === 'left' ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() => setMobileViewMode('sidebar')}
-                            className={`w-[35%] rounded flex items-center justify-center cursor-pointer transition-all ${
-                              mobileViewMode === 'sidebar' || mobileViewMode === 'split'
-                                ? 'bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold border border-amber-500/30'
-                                : 'bg-slate-100 dark:bg-white/[0.04] text-slate-400'
-                            } text-[9.5px]`}
-                          >
-                            Sidebar (35%)
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setMobileViewMode('main')}
-                            className={`w-[65%] rounded flex items-center justify-center cursor-pointer transition-all ${
-                              mobileViewMode === 'main' || mobileViewMode === 'split'
-                                ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-bold border border-emerald-500/30'
-                                : 'bg-slate-100 dark:bg-white/[0.04] text-slate-400'
-                            } text-[9.5px]`}
-                          >
-                            Main Column (65%)
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() => setMobileViewMode('main')}
-                            className={`w-[65%] rounded flex items-center justify-center cursor-pointer transition-all ${
-                              mobileViewMode === 'main' || mobileViewMode === 'split'
-                                ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-bold border border-emerald-500/30'
-                                : 'bg-slate-100 dark:bg-white/[0.04] text-slate-400'
-                            } text-[9.5px]`}
-                          >
-                            Main Column (65%)
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setMobileViewMode('sidebar')}
-                            className={`w-[35%] rounded flex items-center justify-center cursor-pointer transition-all ${
-                              mobileViewMode === 'sidebar' || mobileViewMode === 'split'
-                                ? 'bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold border border-amber-500/30'
-                                : 'bg-slate-100 dark:bg-white/[0.04] text-slate-400'
-                            } text-[9.5px]`}
-                          >
-                            Sidebar (35%)
-                          </button>
-                        </>
-                      )}
+                    <div className="min-w-0 flex flex-col">
+                      {renderMainColumn(true)}
                     </div>
-                  </div>
-
-                  {/* Mode Pill Switcher */}
-                  <div className="flex items-center bg-slate-100 dark:bg-white/[0.05] p-1 rounded-xl text-xs gap-1">
-                    <button
-                      type="button"
-                      onClick={() => setMobileViewMode('split')}
-                      className={`flex-1 py-1 px-2 rounded-lg font-bold text-center transition-all flex items-center justify-center gap-1 ${
-                        mobileViewMode === 'split'
-                          ? 'bg-white dark:bg-[#1a1a18] text-slate-900 dark:text-white shadow-xs'
-                          : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-                      }`}
-                    >
-                      <Columns2 className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>2-Col Split</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setMobileViewMode('main')}
-                      className={`flex-1 py-1 px-2 rounded-lg font-bold text-center transition-all ${
-                        mobileViewMode === 'main'
-                          ? 'bg-emerald-600 text-white shadow-xs'
-                          : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-                      }`}
-                    >
-                      Main ({mainList.length})
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setMobileViewMode('sidebar')}
-                      className={`flex-1 py-1 px-2 rounded-lg font-bold text-center transition-all ${
-                        mobileViewMode === 'sidebar'
-                          ? 'bg-amber-600 text-white shadow-xs'
-                          : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
-                      }`}
-                    >
-                      Sidebar ({sidebarList.length})
-                    </button>
-                  </div>
-                </div>
-
-                {/* Columns Container: Responsive Grid for mobile split view, Flex for desktop/tablet */}
-                <div
-                  className={
-                    mobileViewMode === 'split'
-                      ? 'grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-5 sm:items-stretch'
-                      : 'flex flex-col sm:flex-row sm:gap-5 sm:items-stretch'
-                  }
-                >
-                  {sidebarPos === 'left' ? (
-                    <>
-                      {(mobileViewMode === 'split' || mobileViewMode === 'sidebar') && (
-                        <div
-                          className={`flex flex-col ${
-                            mobileViewMode === 'split'
-                              ? 'min-w-0 sm:w-[38%] sm:lg:w-[35%] sm:shrink-0'
-                              : 'w-full sm:w-[38%] sm:lg:w-[35%] sm:shrink-0'
-                          }`}
-                        >
-                          {renderSidebarColumn(mobileViewMode === 'split')}
-                        </div>
-                      )}
-                      {(mobileViewMode === 'split' || mobileViewMode === 'main') && (
-                        <div
-                          className={`flex flex-col ${
-                            mobileViewMode === 'split'
-                              ? 'min-w-0 sm:w-[62%] sm:lg:w-[65%] sm:flex-1'
-                              : 'w-full sm:w-[62%] sm:lg:w-[65%] sm:flex-1'
-                          }`}
-                        >
-                          {renderMainColumn(mobileViewMode === 'split')}
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      {(mobileViewMode === 'split' || mobileViewMode === 'main') && (
-                        <div
-                          className={`flex flex-col ${
-                            mobileViewMode === 'split'
-                              ? 'min-w-0 sm:w-[62%] sm:lg:w-[65%] sm:flex-1'
-                              : 'w-full sm:w-[62%] sm:lg:w-[65%] sm:flex-1'
-                          }`}
-                        >
-                          {renderMainColumn(mobileViewMode === 'split')}
-                        </div>
-                      )}
-                      {(mobileViewMode === 'split' || mobileViewMode === 'sidebar') && (
-                        <div
-                          className={`flex flex-col ${
-                            mobileViewMode === 'split'
-                              ? 'min-w-0 sm:w-[38%] sm:lg:w-[35%] sm:shrink-0'
-                              : 'w-full sm:w-[38%] sm:lg:w-[35%] sm:shrink-0'
-                          }`}
-                        >
-                          {renderSidebarColumn(mobileViewMode === 'split')}
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="min-w-0 flex flex-col">
+                      {renderMainColumn(true)}
+                    </div>
+                    <div className="min-w-0 flex flex-col">
+                      {renderSidebarColumn(true)}
+                    </div>
+                  </>
+                )}
               </div>
             ) : (
-              /* Single-Column Real Layout */
+              /* Single-Column Mode: One single column */
               <div className="w-full max-w-2xl mx-auto">
                 {renderSingleColumn()}
               </div>
@@ -1375,7 +1232,8 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                       className="p-2.5 sm:p-3.5 rounded-xl border border-slate-200/70 dark:border-white/[0.06] bg-slate-50/70 dark:bg-white/[0.02] hover:bg-white dark:hover:bg-white/[0.05] hover:border-slate-300 dark:hover:border-white/[0.12] transition-all flex items-center justify-between gap-2 opacity-80 hover:opacity-100"
                     >
                       <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                        <div className="shrink-0 flex items-center">
+                        {/* Checkbox (hidden on mobile to minimize clutter) */}
+                        <div className="hidden sm:flex shrink-0 items-center">
                           <input
                             type="checkbox"
                             checked={false}
