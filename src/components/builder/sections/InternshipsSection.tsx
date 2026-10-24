@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { InternshipItem } from '@/types/resume';
 import { SectionComponentProps } from '@/types/builder';
-import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, GraduationCap, Info, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
+import { Plus, Trash2, Sparkles, GraduationCap, Info, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
@@ -372,30 +372,6 @@ export const InternshipsSection: React.FC<InternshipsSectionProps> = ({
                     <span>Edit</span>
                   </button>
 
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => moveInternship(idx, 'up')}
-                    disabled={idx === 0}
-                    title="Move up"
-                    aria-label="Move internship up"
-                    className="h-8 w-8 text-slate-400 hover:text-slate-700"
-                  >
-                    <ArrowUp className="w-3.5 h-3.5" />
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => moveInternship(idx, 'down')}
-                    disabled={idx === data.length - 1}
-                    title="Move down"
-                    aria-label="Move internship down"
-                    className="h-8 w-8 text-slate-400 hover:text-slate-700"
-                  >
-                    <ArrowDown className="w-3.5 h-3.5" />
-                  </Button>
                   <Button
                     type="button"
                     variant="ghost"

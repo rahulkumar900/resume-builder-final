@@ -12,8 +12,6 @@ import {
   X,
   Eye,
   EyeOff,
-  ArrowUp,
-  ArrowDown,
   RotateCcw,
   ArrowRight,
   ArrowLeft,
@@ -600,32 +598,6 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
             />
           </div>
 
-          {/* Up / Down arrows */}
-          {onMove && !isInactive && (
-            <div className="flex flex-col gap-0.5 shrink-0">
-              <button
-                type="button"
-                disabled={index === 0}
-                onClick={() => onMove(index, 'up')}
-                className="p-1 rounded text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 disabled:opacity-20 disabled:hover:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors cursor-pointer"
-                title="Move Up"
-                aria-label="Move section up"
-              >
-                <ArrowUp className="w-3.5 h-3.5" />
-              </button>
-              <button
-                type="button"
-                disabled={index === listLength - 1}
-                onClick={() => onMove(index, 'down')}
-                className="p-1 rounded text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 disabled:opacity-20 disabled:hover:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors cursor-pointer"
-                title="Move Down"
-                aria-label="Move section down"
-              >
-                <ArrowDown className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          )}
-
           <div
             onClick={() => { if (!isInactive) handleJumpToSection(meta); }}
             className={`flex items-center gap-3 min-w-0 flex-1 select-none ${isInactive ? 'cursor-default' : 'cursor-pointer'}`}
@@ -752,7 +724,7 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                   Resume Body Flow (Top to Bottom)
                 </span>
                 <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-                  Drag handles or use arrows to reorder
+                  Drag handles to reorder sections
                 </span>
               </div>
               <SortableList

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ExperienceItem } from '@/types/resume';
 import { SectionComponentProps } from '@/types/builder';
-import { Plus, Trash2, ArrowUp, ArrowDown, Sparkles, Briefcase, Info, ArrowRight, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
+import { Plus, Trash2, Sparkles, Briefcase, Info, ArrowRight, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
@@ -352,30 +352,6 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     <span>Edit</span>
                   </button>
 
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => moveExperience(idx, 'up')}
-                    disabled={idx === 0}
-                    title="Move up"
-                    aria-label="Move position up"
-                    className="h-8 w-8 text-slate-400 hover:text-slate-700"
-                  >
-                    <ArrowUp className="w-3.5 h-3.5" />
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => moveExperience(idx, 'down')}
-                    disabled={idx === data.length - 1}
-                    title="Move down"
-                    aria-label="Move position down"
-                    className="h-8 w-8 text-slate-400 hover:text-slate-700"
-                  >
-                    <ArrowDown className="w-3.5 h-3.5" />
-                  </Button>
                   <Button
                     type="button"
                     variant="ghost"
