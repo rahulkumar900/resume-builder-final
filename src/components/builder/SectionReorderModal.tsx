@@ -62,7 +62,8 @@ import {
   DragOverlay,
   closestCorners,
   KeyboardSensor,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   DragStartEvent,
@@ -496,7 +497,9 @@ function SortableSectionCard({
     <div
       ref={setNodeRef}
       style={style}
-      className={`rounded-xl border transition-all flex items-center justify-between gap-1.5 sm:gap-2.5 ${
+      {...attributes}
+      {...listeners}
+      className={`rounded-xl border transition-all flex items-center justify-between gap-1.5 sm:gap-2.5 touch-none select-none cursor-grab active:cursor-grabbing ${
         isCompact ? 'p-1.5 sm:p-2.5' : 'p-2.5 sm:p-3.5'
       } ${
         isDragging
@@ -507,12 +510,10 @@ function SortableSectionCard({
       }`}
     >
       <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1">
-        {/* Drag Handle */}
+        {/* Visual Grip Handle Indicator */}
         <div
-          {...attributes}
-          {...listeners}
-          className="cursor-grab active:cursor-grabbing p-1 -ml-0.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.08] rounded-md shrink-0 transition-colors touch-none"
-          title="Drag to reorder or move between columns"
+          className="p-1 -ml-0.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-md shrink-0 pointer-events-none"
+          title="Drag anywhere on card to reorder"
           aria-label="Drag to reorder"
         >
           <GripVertical className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -523,6 +524,7 @@ function SortableSectionCard({
           <input
             type="checkbox"
             checked={true}
+            onPointerDown={(e) => e.stopPropagation()}
             onChange={() => onToggleSection(id)}
             className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-700 dark:text-emerald-500 rounded border-slate-300 dark:border-white/20 accent-emerald-600 cursor-pointer"
             title="Uncheck to remove section from layout"
@@ -532,9 +534,10 @@ function SortableSectionCard({
         {/* Section Icon: Tapping icon on mobile transfers between columns in 2-col layout */}
         <button
           type="button"
+          onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => {
+            e.stopPropagation();
             if (layout === 'double') {
-              e.stopPropagation();
               if (column === 'main') {
                 onTransferToSidebar?.(id);
               } else {
@@ -608,6 +611,7 @@ function SortableSectionCard({
                 type="button"
                 variant="ghost"
                 size="xs"
+                onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   onTransferToSidebar?.(id);
@@ -623,6 +627,7 @@ function SortableSectionCard({
                 type="button"
                 variant="ghost"
                 size="xs"
+                onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   onTransferToSidebar?.(id);
@@ -640,6 +645,7 @@ function SortableSectionCard({
                 type="button"
                 variant="ghost"
                 size="xs"
+                onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   onTransferToMain?.(id);
@@ -655,6 +661,7 @@ function SortableSectionCard({
                 type="button"
                 variant="ghost"
                 size="xs"
+                onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   onTransferToMain?.(id);
@@ -774,9 +781,15 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
   const [activeDragId, setActiveDragId] = React.useState<ResumeSectionId | null>(null);
 
   const sensors = useSensors(
-    useSensor(PointerSensor, {
+    useSensor(MouseSensor, {
       activationConstraint: {
-        distance: 4,
+        distance: 5,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 100,
+        tolerance: 6,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -1184,10 +1197,10 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
             {/* Drag Overlay for smooth card preview while dragging across columns */}
             <DragOverlay>
               {activeDragId ? (
-                <div className="p-3 rounded-xl border-2 border-emerald-500 bg-white dark:bg-[#1a1a18] shadow-2xl ring-4 ring-emerald-500/20 flex items-center justify-between gap-2.5 w-64">
-                  <div className="flex items-center gap-2">
-                    <GripVertical className="w-4 h-4 text-emerald-600" />
-                    <div className="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center">
+                <div className="p-2 sm:p-3 rounded-xl border-2 border-emerald-500 bg-white dark:bg-[#1a1a18] shadow-2xl ring-4 ring-emerald-500/20 flex items-center justify-between gap-2 w-44 sm:w-64 max-w-[85vw] opacity-95">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <GripVertical className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center shrink-0">
                       {SECTION_METAS[activeDragId]?.icon &&
                         React.createElement(SECTION_METAS[activeDragId].icon, { className: 'w-3.5 h-3.5' })}
                     </div>
