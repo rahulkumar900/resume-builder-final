@@ -26,6 +26,8 @@ import { DesignStudioPanel } from '@/components/builder/DesignStudioPanel';
 import { CheckAuditPanel } from '@/components/builder/CheckAuditPanel';
 import { GrammarAssistantModal } from '@/components/builder/GrammarAssistantModal';
 import { ShareResumeModal } from '@/components/builder/ShareResumeModal';
+import { CriticalIssuesWarningModal } from '@/components/builder/CriticalIssuesWarningModal';
+import { AtsSuggestion } from '@/lib/ats/ats-analyzer';
 import { cn } from '@/lib/utils';
 
 interface BuilderEditorClientProps {
@@ -40,6 +42,15 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
   const [isResolvingResume, setIsResolvingResume] = useState<boolean>(true);
   const [notFoundError, setNotFoundError] = useState<boolean>(false);
 
+  const [criticalWarningModalState, setCriticalWarningModalState] = useState<{
+    isOpen: boolean;
+    criticalIssues: AtsSuggestion[];
+    proceedDownload?: () => Promise<void>;
+  }>({
+    isOpen: false,
+    criticalIssues: [],
+  });
+
   const {
     resume,
     setResume,
@@ -51,11 +62,24 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     canUndo,
     canRedo,
   } = useAutoSaveResume(null, 400, user?.id);
+
+  const handleCriticalIssuesDetected = (
+    criticalIssues: AtsSuggestion[],
+    proceedDownload: () => Promise<void>
+  ) => {
+    setCriticalWarningModalState({
+      isOpen: true,
+      criticalIssues,
+      proceedDownload,
+    });
+  };
+
   const { isDownloading, handleDownloadPdf, handlePrint } = useResumePdfExport({
     resume,
     user,
     openAuthModal,
     flushSave,
+    onCriticalIssuesDetected: handleCriticalIssuesDetected,
   });
 
   const [allResumes, setAllResumes] = useState<ResumeData[]>([]);
@@ -473,6 +497,28 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           resume={resume}
           onDownloadPdf={handleDownloadPdf}
           onPrint={handlePrint}
+        />
+      )}
+
+      {/* Critical Issues Warning Modal */}
+      {resume && (
+        <CriticalIssuesWarningModal
+          isOpen={criticalWarningModalState.isOpen}
+          onClose={() => setCriticalWarningModalState((prev) => ({ ...prev, isOpen: false }))}
+          criticalIssues={criticalWarningModalState.criticalIssues}
+          onReviewAndFix={() => {
+            setCriticalWarningModalState((prev) => ({ ...prev, isOpen: false }));
+            handleSwitchMode('check');
+          }}
+          onDownloadAnyway={async () => {
+            const proceed = criticalWarningModalState.proceedDownload;
+            setCriticalWarningModalState((prev) => ({ ...prev, isOpen: false }));
+            if (proceed) {
+              await proceed();
+            }
+          }}
+          isDownloading={isDownloading}
+          resumeTitle={resume.personalInfo?.fullName || resume.title}
         />
       )}
     </div>

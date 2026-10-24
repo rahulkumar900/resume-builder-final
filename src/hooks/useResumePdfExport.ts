@@ -7,40 +7,59 @@
 import { useState, useCallback } from 'react';
 import { ResumeData } from '@/types/resume';
 import { supabase } from '@/lib/supabaseClient';
+import { analyzeResumeAts, AtsSuggestion } from '@/lib/ats/ats-analyzer';
 
 export interface UseResumePdfExportOptions {
   resume: ResumeData | null;
   user: any;
   openAuthModal: (mode: 'signin' | 'signup', message?: string) => void;
   flushSave: () => void;
+  onCriticalIssuesDetected?: (
+    criticalIssues: AtsSuggestion[],
+    proceedDownload: () => Promise<void>
+  ) => void;
 }
 
 export interface UseResumePdfExportReturn {
   isDownloading: boolean;
-  handleDownloadPdf: () => Promise<void>;
+  handleDownloadPdf: (skipCriticalCheck?: boolean) => Promise<void>;
   handlePrint: () => void;
 }
 
 /**
- * Handles exporting a resume to PDF via backend Puppeteer generation or browser print fallback.
- * Allows frictionless guest export via browser vector print while offering 1-click cloud PDF for signed-in users.
+ * Handles exporting a resume to PDF via backend Puppeteer generation.
+ * Enforces authentication so unauthenticated users are prompted to log in/sign up.
+ * Authenticated users with critical ATS check issues are prompted with a confirmation warning.
  */
 export function useResumePdfExport({
   resume,
   user,
   openAuthModal,
   flushSave,
+  onCriticalIssuesDetected,
 }: UseResumePdfExportOptions): UseResumePdfExportReturn {
   const [isDownloading, setIsDownloading] = useState(false);
 
-  const handleDownloadPdf = useCallback(async () => {
+  const handleDownloadPdf = useCallback(async (skipCriticalCheck = false) => {
     flushSave();
     if (!resume) return;
 
-    // Frictionless Guest Export: If not logged in, immediately open print view with auto-print
+    // Enforce Authentication: If not logged in, prompt sign in / create account
     if (!user) {
-      window.open(`/print/${resume.id}?autoPrint=true`, '_blank');
+      openAuthModal('signin', 'Please sign in or create a free account to download your PDF resume.');
       return;
+    }
+
+    // Critical ATS Issues Check: Prompt confirmation modal if critical errors exist
+    if (!skipCriticalCheck && onCriticalIssuesDetected) {
+      const audit = analyzeResumeAts(resume);
+      const critical = (audit?.suggestions || []).filter((s) => s.severity === 'critical');
+      if (critical.length > 0) {
+        onCriticalIssuesDetected(critical, async () => {
+          await handleDownloadPdf(true);
+        });
+        return;
+      }
     }
 
     setIsDownloading(true);
@@ -84,7 +103,7 @@ export function useResumePdfExport({
     } finally {
       setIsDownloading(false);
     }
-  }, [resume, user, openAuthModal, flushSave]);
+  }, [resume, user, openAuthModal, flushSave, onCriticalIssuesDetected]);
 
   const handlePrint = useCallback(() => {
     flushSave();

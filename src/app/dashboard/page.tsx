@@ -23,7 +23,8 @@ import { ResumeData, TemplateId } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/lib/supabaseClient';
 import { ShieldCheck, Loader2 } from 'lucide-react';
-import { analyzeResumeAts } from '@/lib/ats/ats-analyzer';
+import { analyzeResumeAts, AtsSuggestion } from '@/lib/ats/ats-analyzer';
+import { CriticalIssuesWarningModal } from '@/components/builder/CriticalIssuesWarningModal';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -35,6 +36,15 @@ export default function DashboardPage() {
   const [isJobTailorModalOpen, setIsJobTailorModalOpen] = useState(false);
   const [selectedResumeForTailor, setSelectedResumeForTailor] = useState<ResumeData | null>(null);
   const [loadingPdfId, setLoadingPdfId] = useState<string | null>(null);
+  const [criticalWarningModalState, setCriticalWarningModalState] = useState<{
+    isOpen: boolean;
+    resume: ResumeData | null;
+    criticalIssues: AtsSuggestion[];
+  }>({
+    isOpen: false,
+    resume: null,
+    criticalIssues: [],
+  });
 
   useEffect(() => {
     if (isLoading) return;
@@ -144,10 +154,23 @@ export default function DashboardPage() {
     router.push(`/builder/${tailoredResume.id}`);
   };
 
-  const handleDownloadPdf = async (resume: ResumeData) => {
+  const handleDownloadPdf = async (resume: ResumeData, skipCriticalCheck = false) => {
     if (!user) {
       openAuthModal('signin', 'Please sign in or create an account to download your resume as a PDF.');
       return;
+    }
+
+    if (!skipCriticalCheck) {
+      const audit = analyzeResumeAts(resume);
+      const critical = (audit?.suggestions || []).filter((s) => s.severity === 'critical');
+      if (critical.length > 0) {
+        setCriticalWarningModalState({
+          isOpen: true,
+          resume,
+          criticalIssues: critical,
+        });
+        return;
+      }
     }
 
     setLoadingPdfId(resume.id);
@@ -342,6 +365,29 @@ export default function DashboardPage() {
           onApplyTailoredResume={handleApplyTailoredResumeFromDashboard}
         />
       )}
+
+      {/* Critical Issues Warning Modal */}
+      <CriticalIssuesWarningModal
+        isOpen={criticalWarningModalState.isOpen}
+        onClose={() => setCriticalWarningModalState((prev) => ({ ...prev, isOpen: false }))}
+        criticalIssues={criticalWarningModalState.criticalIssues}
+        onReviewAndFix={() => {
+          const targetId = criticalWarningModalState.resume?.id;
+          setCriticalWarningModalState((prev) => ({ ...prev, isOpen: false }));
+          if (targetId) {
+            router.push(`/builder/${targetId}?tab=edit`);
+          }
+        }}
+        onDownloadAnyway={() => {
+          const targetResume = criticalWarningModalState.resume;
+          setCriticalWarningModalState((prev) => ({ ...prev, isOpen: false }));
+          if (targetResume) {
+            handleDownloadPdf(targetResume, true);
+          }
+        }}
+        isDownloading={loadingPdfId !== null}
+        resumeTitle={criticalWarningModalState.resume?.title}
+      />
     </div>
   );
 }
