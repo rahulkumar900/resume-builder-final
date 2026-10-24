@@ -328,9 +328,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                       e.stopPropagation();
                       setMobileEditingId(exp.id);
                     }}
-                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
+                    className="lg:hidden min-h-[36px] px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
                   >
-                    <Pencil className="w-3 h-3" />
+                    <Pencil className="w-3.5 h-3.5" />
                     <span>Edit</span>
                   </button>
 
@@ -341,7 +341,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     onClick={() => moveExperience(idx, 'up')}
                     disabled={idx === 0}
                     title="Move up"
-                    className="h-7 w-7 text-slate-400 hover:text-slate-700"
+                    aria-label="Move position up"
+                    className="h-8 w-8 text-slate-400 hover:text-slate-700"
                   >
                     <ArrowUp className="w-3.5 h-3.5" />
                   </Button>
@@ -352,7 +353,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     onClick={() => moveExperience(idx, 'down')}
                     disabled={idx === data.length - 1}
                     title="Move down"
-                    className="h-7 w-7 text-slate-400 hover:text-slate-700"
+                    aria-label="Move position down"
+                    className="h-8 w-8 text-slate-400 hover:text-slate-700"
                   >
                     <ArrowDown className="w-3.5 h-3.5" />
                   </Button>
@@ -361,8 +363,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                     variant="ghost"
                     size="icon"
                     onClick={() => removeExperience(idx)}
-                    className="h-7 w-7 text-slate-400 hover:text-rose-600 hover:bg-rose-50"
+                    className="h-8 w-8 text-slate-400 hover:text-rose-600 hover:bg-rose-50"
                     title="Delete position"
+                    aria-label="Delete position"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </Button>
@@ -370,8 +373,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
                   <button
                     type="button"
                     onClick={() => handleItemClick(exp.id)}
-                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    className="hidden lg:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-muted dark:hover:text-slate-200 ml-1 cursor-pointer transition-colors"
                     title={isExpandedDesktop ? 'Collapse position' : 'Expand position'}
+                    aria-label={isExpandedDesktop ? 'Collapse position' : 'Expand position'}
                   >
                     {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>

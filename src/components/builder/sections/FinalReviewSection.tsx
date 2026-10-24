@@ -302,7 +302,7 @@ export const FinalReviewSection: React.FC<FinalReviewSectionProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Plus className="w-4 h-4 text-primary" />
-              <h4 className="text-xs font-bold text-slate-800 dark:text-foreground uppercase tracking-wider">
+              <h4 className="text-xs font-semibold text-slate-800 dark:text-foreground">
                 Add More Sections to Resume
               </h4>
             </div>

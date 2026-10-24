@@ -316,9 +316,9 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
                           e.stopPropagation();
                           setMobileEditingId(itemId);
                         }}
-                        className="lg:hidden px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
+                        className="lg:hidden min-h-[36px] px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
                       >
-                        <Pencil className="w-3 h-3" />
+                        <Pencil className="w-3.5 h-3.5" />
                         <span>Edit</span>
                       </button>
 
@@ -329,14 +329,16 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
                         onClick={() => removeItem(idx)}
                         className="h-8 w-8 text-slate-400 hover:text-rose-600 hover:bg-rose-50"
                         title="Delete entry"
+                        aria-label="Delete entry"
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
                       <button
                         type="button"
                         onClick={() => handleItemClick(itemId)}
-                        className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                        className="hidden lg:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-muted dark:hover:text-slate-200 ml-1 cursor-pointer transition-colors"
                         title={isExpandedDesktop ? 'Collapse entry' : 'Expand entry'}
+                        aria-label={isExpandedDesktop ? 'Collapse entry' : 'Expand entry'}
                       >
                         {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </button>

@@ -273,9 +273,9 @@ export const EducationSection: React.FC<SectionComponentProps<EducationItem[]>> 
                       e.stopPropagation();
                       setMobileEditingId(edu.id);
                     }}
-                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-blue-100 transition-colors mr-1"
+                    className="lg:hidden min-h-[36px] px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-blue-100 transition-colors mr-1"
                   >
-                    <Pencil className="w-3 h-3" />
+                    <Pencil className="w-3.5 h-3.5" />
                     <span>Edit</span>
                   </button>
 
@@ -286,6 +286,7 @@ export const EducationSection: React.FC<SectionComponentProps<EducationItem[]>> 
                     onClick={() => removeEducation(idx)}
                     className="h-8 w-8 hover:text-rose-600"
                     title="Delete degree"
+                    aria-label="Delete degree"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -293,8 +294,9 @@ export const EducationSection: React.FC<SectionComponentProps<EducationItem[]>> 
                   <button
                     type="button"
                     onClick={() => handleItemClick(edu.id)}
-                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    className="hidden lg:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-muted dark:hover:text-slate-200 ml-1 cursor-pointer transition-colors"
                     title={isExpandedDesktop ? 'Collapse degree' : 'Expand degree'}
+                    aria-label={isExpandedDesktop ? 'Collapse degree' : 'Expand degree'}
                   >
                     {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>

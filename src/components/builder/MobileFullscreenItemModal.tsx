@@ -65,8 +65,9 @@ export const MobileFullscreenItemModal: React.FC<MobileFullscreenItemModalProps>
         <button
           type="button"
           onClick={onClose}
-          className="p-1.5 -ml-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-muted rounded-xl flex items-center gap-1 text-xs font-semibold cursor-pointer transition-colors"
+          className="min-h-[38px] px-2.5 py-1.5 -ml-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-muted rounded-xl flex items-center gap-1.5 text-xs font-semibold cursor-pointer transition-colors"
           title="Back to list"
+          aria-label="Back to list"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back</span>
@@ -85,9 +86,8 @@ export const MobileFullscreenItemModal: React.FC<MobileFullscreenItemModalProps>
 
         <Button
           type="button"
-          size="sm"
           onClick={onClose}
-          className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold h-8 px-3.5 rounded-xl cursor-pointer shadow-xs shrink-0"
+          className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold h-9 px-3.5 rounded-xl cursor-pointer shadow-xs shrink-0"
         >
           <Check className="w-3.5 h-3.5 mr-1" />
           <span>{saveLabel}</span>

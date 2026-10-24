@@ -130,10 +130,9 @@ export const CriticalIssuesWarningModal: React.FC<CriticalIssuesWarningModalProp
           <Button
             type="button"
             variant="ghost"
-            size="sm"
             onClick={onDownloadAnyway}
             disabled={isDownloading}
-            className="text-xs text-slate-600 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground cursor-pointer flex items-center justify-center gap-1.5 font-medium"
+            className="h-10 text-xs sm:text-sm text-slate-600 dark:text-muted-foreground hover:text-slate-900 dark:hover:text-foreground cursor-pointer flex items-center justify-center gap-1.5 font-medium"
           >
             {isDownloading ? (
               <>
@@ -152,10 +151,9 @@ export const CriticalIssuesWarningModal: React.FC<CriticalIssuesWarningModalProp
             {onReviewAndFix ? (
               <Button
                 type="button"
-                size="sm"
                 onClick={onReviewAndFix}
                 disabled={isDownloading}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white dark:bg-emerald-600 dark:hover:bg-emerald-700 text-xs font-semibold cursor-pointer shadow-xs flex items-center gap-1.5 w-full sm:w-auto justify-center"
+                className="h-10 bg-emerald-600 hover:bg-emerald-700 text-white dark:bg-emerald-600 dark:hover:bg-emerald-700 text-xs sm:text-sm font-semibold cursor-pointer shadow-xs flex items-center gap-1.5 w-full sm:w-auto justify-center"
               >
                 <FileCheck className="w-3.5 h-3.5" />
                 Review & Fix Issues
@@ -164,10 +162,9 @@ export const CriticalIssuesWarningModal: React.FC<CriticalIssuesWarningModalProp
             ) : (
               <Button
                 type="button"
-                size="sm"
                 onClick={onClose}
                 disabled={isDownloading}
-                className="text-xs font-semibold cursor-pointer"
+                className="h-10 text-xs sm:text-sm font-semibold cursor-pointer"
               >
                 Close & Review
               </Button>

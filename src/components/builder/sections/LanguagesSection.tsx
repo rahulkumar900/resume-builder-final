@@ -157,9 +157,9 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
                       e.stopPropagation();
                       setMobileEditingId(l.id);
                     }}
-                    className="lg:hidden px-2.5 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
+                    className="lg:hidden min-h-[36px] px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200/80 dark:border-emerald-800 text-xs font-semibold flex items-center gap-1.5 cursor-pointer hover:bg-emerald-100 transition-colors mr-1"
                   >
-                    <Pencil className="w-3 h-3" />
+                    <Pencil className="w-3.5 h-3.5" />
                     <span>Edit</span>
                   </button>
 
@@ -170,6 +170,7 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
                     onClick={() => removeLanguage(idx)}
                     className="h-8 w-8 hover:text-rose-600"
                     title="Delete language"
+                    aria-label="Delete language"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -177,8 +178,9 @@ export const LanguagesSection: React.FC<SectionComponentProps<LanguageItem[]>> =
                   <button
                     type="button"
                     onClick={() => handleItemClick(l.id)}
-                    className="hidden lg:flex p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 ml-1 cursor-pointer"
+                    className="hidden lg:flex p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-muted dark:hover:text-slate-200 ml-1 cursor-pointer transition-colors"
                     title={isExpandedDesktop ? 'Collapse item' : 'Expand item'}
+                    aria-label={isExpandedDesktop ? 'Collapse language' : 'Expand language'}
                   >
                     {isExpandedDesktop ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </button>
