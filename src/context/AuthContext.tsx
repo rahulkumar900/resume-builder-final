@@ -198,13 +198,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const signInWithOAuth = async (provider: 'google' | 'github') => {
     try {
-      const currentPath =
-        typeof window !== 'undefined'
-          ? window.location.pathname + window.location.search
-          : '/dashboard';
-      const redirectUrl = `${window.location.origin}/auth/callback?next=${encodeURIComponent(
-        currentPath
-      )}`;
+      const redirectUrl = `${window.location.origin}/auth/callback?next=/dashboard`;
 
       const { error } = await supabase.auth.signInWithOAuth({
         provider,

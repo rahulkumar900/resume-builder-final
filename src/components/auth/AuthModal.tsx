@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { X, Mail, Lock, User, Eye, EyeOff, Loader2, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export const AuthModal: React.FC = () => {
+  const router = useRouter();
   const {
     isAuthModalOpen,
     closeAuthModal,
@@ -65,10 +67,11 @@ export const AuthModal: React.FC = () => {
         if (error) {
           setErrorMessage(error.message);
         } else {
-          setSuccessMessage('Account created successfully! Your resumes are now backed up in the cloud.');
+          setSuccessMessage('Account created successfully! Redirecting to your dashboard...');
           setTimeout(() => {
             closeAuthModal();
-          }, 1500);
+            router.push('/dashboard');
+          }, 1000);
         }
       } else {
         const { error } = await signInWithPassword(email, password);
@@ -76,6 +79,7 @@ export const AuthModal: React.FC = () => {
           setErrorMessage(error.message);
         } else {
           closeAuthModal();
+          router.push('/dashboard');
         }
       }
     } catch (err: any) {

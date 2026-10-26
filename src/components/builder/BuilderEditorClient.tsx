@@ -14,13 +14,15 @@ import {
   getResumeFromDatabase,
   saveResume,
   getStoredResumes,
+  deleteResume,
+  deleteResumeFromDatabase,
 } from '@/lib/storage';
 import { TEMPLATES } from '@/lib/templates';
 import { ResumeData } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
 import { useAutoSaveResume } from '@/hooks/useAutoSaveResume';
 import { useResumePdfExport } from '@/hooks/useResumePdfExport';
-import { Edit3, Eye, Palette, CheckSquare, FileText } from 'lucide-react';
+import { Edit3, Eye, Palette, CheckSquare, FileText, Trash2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DesignStudioPanel } from '@/components/builder/DesignStudioPanel';
 import { CheckAuditPanel } from '@/components/builder/CheckAuditPanel';
@@ -94,6 +96,25 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
   const [isJobTailorModalOpen, setIsJobTailorModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isMobileDesignSheetOpen, setIsMobileDesignSheetOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeleteResume = async () => {
+    if (!resume) return;
+    setIsDeleting(true);
+    try {
+      if (user?.id) {
+        await deleteResumeFromDatabase(resume.id);
+      } else {
+        deleteResume(resume.id);
+      }
+      setIsDeleteModalOpen(false);
+      router.push('/dashboard');
+    } catch (err) {
+      console.error('Failed to delete resume:', err);
+      setIsDeleting(false);
+    }
+  };
 
   const handleSwitchMode = (mode: 'content' | 'design' | 'check') => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024 && mode === 'design') {
@@ -271,6 +292,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         onRedo={redo}
         canUndo={canUndo}
         canRedo={canRedo}
+        onDeleteResume={() => setIsDeleteModalOpen(true)}
       />
 
       {/* Mobile & Tablet Segmented Tab Switcher (Write / Design / Check / Preview) */}
@@ -520,6 +542,59 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           isDownloading={isDownloading}
           resumeTitle={resume.personalInfo?.fullName || resume.title}
         />
+      )}
+
+      {/* Delete Resume Confirmation Modal */}
+      {isDeleteModalOpen && resume && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-black/75 backdrop-blur-xs animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => !isDeleting && setIsDeleteModalOpen(false)}
+        >
+          <div
+            className="w-full max-w-md bg-white dark:bg-[#161614] rounded-2xl shadow-2xl border border-slate-200 dark:border-white/[0.08] p-6 animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0 shadow-xs">
+                <Trash2 className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  Delete Resume?
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                  Are you sure you want to permanently delete <strong className="text-slate-700 dark:text-slate-200 font-semibold">&ldquo;{resume.title || 'Untitled Resume'}&rdquo;</strong>? You will be redirected to your dashboard.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 mt-6 pt-4 border-t border-slate-100 dark:border-white/[0.08]">
+              <button
+                type="button"
+                disabled={isDeleting}
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors cursor-pointer disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={isDeleting}
+                onClick={handleDeleteResume}
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white shadow-xs transition-colors cursor-pointer inline-flex items-center gap-1.5 disabled:opacity-60"
+              >
+                {isDeleting ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Trash2 className="w-3.5 h-3.5" />
+                )}
+                <span>{isDeleting ? 'Deleting...' : 'Delete Resume'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

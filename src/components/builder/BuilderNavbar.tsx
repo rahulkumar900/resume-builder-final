@@ -23,6 +23,7 @@ import {
   Share2,
   Undo2,
   Redo2,
+  Trash2,
 } from 'lucide-react';
 import { ResumeData } from '@/types/resume';
 import { analyzeResumeAts } from '@/lib/ats/ats-analyzer';
@@ -53,6 +54,7 @@ interface BuilderNavbarProps {
   onRedo?: () => void;
   canUndo?: boolean;
   canRedo?: boolean;
+  onDeleteResume?: () => void;
 }
 
 export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
@@ -72,6 +74,7 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
   onRedo,
   canUndo = false,
   canRedo = false,
+  onDeleteResume,
 }) => {
   const router = useRouter();
   const { user, openAuthModal } = useAuth();
@@ -370,9 +373,38 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
                 <Printer className="w-3.5 h-3.5 text-slate-400 dark:text-muted-foreground" />
                 <span>Print Resume</span>
               </button>
+              {onDeleteResume && (
+                <>
+                  <div className="border-t border-slate-100 dark:border-border my-1" />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setExportMenuOpen(false);
+                      onDeleteResume();
+                    }}
+                    className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-left transition-colors cursor-pointer"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Delete Resume</span>
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>
+
+        {/* Mobile: Quick Delete Action */}
+        {onDeleteResume && (
+          <button
+            type="button"
+            onClick={onDeleteResume}
+            className="sm:hidden p-1.5 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg transition-colors cursor-pointer"
+            title="Delete Resume"
+            aria-label="Delete Resume"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+        )}
 
         {/* User Account Menu */}
         <div className="border-l border-slate-200 dark:border-border pl-1.5 sm:pl-2 ml-0.5">

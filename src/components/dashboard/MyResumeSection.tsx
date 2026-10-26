@@ -52,6 +52,7 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
   const [activeTab, setActiveTab] = useState<'all' | 'draft' | 'completed'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const [resumeToDelete, setResumeToDelete] = useState<ResumeData | null>(null);
 
   const draftCount = useMemo(() => resumes.filter((r) => r.status === 'draft').length, [resumes]);
   const completedCount = useMemo(() => resumes.filter((r) => r.status === 'completed').length, [resumes]);
@@ -244,14 +245,14 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
                   </div>
 
                   {/* Sleek Hover Action Overlay */}
-                  <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 z-10 p-3">
+                  <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 z-10 p-2">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/builder/${encodeURIComponent(resume.id)}`);
                       }}
-                      className="px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+                      className="px-2.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                       <span>Edit</span>
@@ -262,10 +263,22 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
                         e.stopPropagation();
                         router.push(`/builder/${encodeURIComponent(resume.id)}?tab=preview`);
                       }}
-                      className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs shadow-md flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+                      className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs shadow-md flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
                     >
                       <Eye className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Preview</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setResumeToDelete(resume);
+                      }}
+                      className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-rose-50 text-rose-600 font-bold text-xs shadow-md flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
+                      title="Delete Resume"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                      <span>Delete</span>
                     </button>
                   </div>
 
@@ -366,7 +379,7 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
                           type="button"
                           onClick={() => {
                             setActiveMenuId(null);
-                            onDelete(resume.id);
+                            setResumeToDelete(resume);
                           }}
                           className="w-full flex items-center gap-2.5 px-3.5 py-2 hover:bg-rose-50 dark:hover:bg-rose-950/30 text-rose-600 dark:text-rose-400 font-medium cursor-pointer"
                         >
@@ -412,27 +425,91 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
                         <span className="text-amber-600 dark:text-amber-400 font-semibold">Draft</span>
                       )}
                     </span>
-                    <button
-                      type="button"
-                      disabled={isDownloading}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDownloadPdf(resume);
-                      }}
-                      className="p-1 rounded text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors"
-                      title="Quick Download PDF"
-                    >
-                      {isDownloading ? (
-                        <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-700 dark:text-emerald-400" />
-                      ) : (
-                        <FileDown className="w-3.5 h-3.5" />
-                      )}
-                    </button>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        disabled={isDownloading}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDownloadPdf(resume);
+                        }}
+                        className="p-1 rounded text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors"
+                        title="Quick Download PDF"
+                      >
+                        {isDownloading ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-700 dark:text-emerald-400" />
+                        ) : (
+                          <FileDown className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setResumeToDelete(resume);
+                        }}
+                        className="p-1 rounded text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
+                        title="Delete Resume"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Modern Confirmation Modal for Delete Resume */}
+      {resumeToDelete && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-black/75 backdrop-blur-xs animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setResumeToDelete(null)}
+        >
+          <div
+            className="w-full max-w-md bg-white dark:bg-[#161614] rounded-2xl shadow-2xl border border-slate-200 dark:border-white/[0.08] p-6 animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0 shadow-xs">
+                <Trash2 className="w-5 h-5" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  Delete Resume?
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                  Are you sure you want to permanently delete <strong className="text-slate-700 dark:text-slate-200 font-semibold">&ldquo;{resumeToDelete.title || 'Untitled Resume'}&rdquo;</strong>? This action cannot be undone.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 mt-6 pt-4 border-t border-slate-100 dark:border-white/[0.08]">
+              <button
+                type="button"
+                onClick={() => setResumeToDelete(null)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const idToDelete = resumeToDelete.id;
+                  setResumeToDelete(null);
+                  onDelete(idToDelete);
+                }}
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white shadow-xs transition-colors cursor-pointer inline-flex items-center gap-1.5"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Delete Resume</span>
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </section>
