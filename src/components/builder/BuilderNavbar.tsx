@@ -292,24 +292,8 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
           </Button>
         )}
 
-        {/* Mobile: Clean Icon-Only Download Button */}
-        <button
-          type="button"
-          onClick={onDownloadPdf}
-          disabled={isDownloading}
-          className="sm:hidden w-8 h-8 rounded-full bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white flex items-center justify-center shadow-xs transition-all active:scale-95 cursor-pointer disabled:opacity-50 shrink-0"
-          title="Download PDF"
-          aria-label="Download PDF"
-        >
-          {isDownloading ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Download className="w-4 h-4" />
-          )}
-        </button>
-
-        {/* Desktop / Tablet: Unified Download & Print Split Button with Dropdown */}
-        <div className="hidden sm:inline-flex relative items-center" ref={exportMenuRef}>
+        {/* Unified Download & Print Split Button with Dropdown (Desktop & Mobile) */}
+        <div className="inline-flex relative items-center" ref={exportMenuRef}>
           <div className="inline-flex items-center rounded-lg shadow-xs bg-emerald-700 hover:bg-emerald-800 transition-colors overflow-hidden">
             {/* Primary Action: Download PDF */}
             <button
@@ -319,18 +303,18 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
                 onDownloadPdf();
               }}
               disabled={isDownloading}
-              className="inline-flex items-center gap-1.5 text-white font-medium text-xs h-8 px-3 transition-colors cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-1.5 text-white font-medium text-xs h-8 px-2.5 sm:px-3 transition-colors cursor-pointer disabled:opacity-50"
               title="Download PDF"
             >
               {isDownloading ? (
                 <>
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  <span>Generating...</span>
+                  <span className="hidden min-[380px]:inline">Generating...</span>
                 </>
               ) : (
                 <>
                   <Download className="w-3.5 h-3.5" />
-                  <span>Download PDF</span>
+                  <span className="hidden min-[380px]:inline">Download PDF</span>
                 </>
               )}
             </button>
@@ -392,19 +376,6 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
             </div>
           )}
         </div>
-
-        {/* Mobile: Quick Delete Action */}
-        {onDeleteResume && (
-          <button
-            type="button"
-            onClick={onDeleteResume}
-            className="sm:hidden p-1.5 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg transition-colors cursor-pointer"
-            title="Delete Resume"
-            aria-label="Delete Resume"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
-        )}
 
         {/* User Account Menu */}
         <div className="border-l border-slate-200 dark:border-border pl-1.5 sm:pl-2 ml-0.5">

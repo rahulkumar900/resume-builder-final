@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { ResumeData } from '@/types/resume';
 import {
   MoreVertical,
@@ -53,6 +53,14 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [resumeToDelete, setResumeToDelete] = useState<ResumeData | null>(null);
+
+  // Close options dropdown on outside click
+  useEffect(() => {
+    if (!activeMenuId) return;
+    const handleGlobalClick = () => setActiveMenuId(null);
+    window.addEventListener('click', handleGlobalClick);
+    return () => window.removeEventListener('click', handleGlobalClick);
+  }, [activeMenuId]);
 
   const draftCount = useMemo(() => resumes.filter((r) => r.status === 'draft').length, [resumes]);
   const completedCount = useMemo(() => resumes.filter((r) => r.status === 'completed').length, [resumes]);
@@ -231,28 +239,38 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
             const badge = getAtsBadge(atsScore);
             const isDownloading = loadingPdfId === resume.id;
 
+            const isMenuOpen = activeMenuId === resume.id;
+
             return (
               <div
                 key={resume.id}
-                className="group bg-white dark:bg-[#161614] rounded-2xl border border-slate-200/80 dark:border-white/[0.08] shadow-2xs hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500/50 transition-all flex flex-col overflow-hidden relative cursor-pointer h-[340px]"
+                className={cn(
+                  "group bg-white dark:bg-[#161614] rounded-2xl border border-slate-200/80 dark:border-white/[0.08] shadow-2xs hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-500/50 transition-all flex flex-col relative cursor-pointer h-[340px]",
+                  isMenuOpen ? "z-30 overflow-visible" : "overflow-hidden"
+                )}
                 onClick={() => router.push(`/builder/${encodeURIComponent(resume.id)}`)}
               >
                 {/* Top Real Dynamic Preview Box */}
-                <div className="h-[250px] w-full bg-[#f8fafc] dark:bg-[#100F0C] p-2.5 pb-0 border-b border-slate-100 dark:border-white/[0.06] flex items-start justify-center relative overflow-hidden group-hover:bg-slate-100/50 dark:group-hover:bg-[#1c1b18] transition-colors">
+                <div
+                  className={cn(
+                    "h-[250px] w-full bg-[#f8fafc] dark:bg-[#100F0C] p-2.5 pb-0 border-b border-slate-100 dark:border-white/[0.06] flex items-start justify-center relative group-hover:bg-slate-100/50 dark:group-hover:bg-[#1c1b18] transition-colors",
+                    isMenuOpen ? "overflow-visible" : "overflow-hidden"
+                  )}
+                >
                   {/* Miniature template layout with REAL user data */}
                   <div className="w-full h-full rounded-t shadow-xs border border-slate-200/70 dark:border-white/[0.08] overflow-hidden bg-white pointer-events-none">
                     <DynamicResumeCardPreview resume={resume} />
                   </div>
 
-                  {/* Sleek Hover Action Overlay */}
-                  <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 z-10 p-2">
+                  {/* Sleek Hover Action Overlay (Clean: Edit & Preview only) */}
+                  <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 z-10 p-3">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/builder/${encodeURIComponent(resume.id)}`);
                       }}
-                      className="px-2.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
+                      className="px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs shadow-md flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                       <span>Edit</span>
@@ -263,22 +281,10 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
                         e.stopPropagation();
                         router.push(`/builder/${encodeURIComponent(resume.id)}?tab=preview`);
                       }}
-                      className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs shadow-md flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
+                      className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs shadow-md flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
                     >
                       <Eye className="w-3.5 h-3.5 text-emerald-700" />
                       <span>Preview</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setResumeToDelete(resume);
-                      }}
-                      className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-rose-50 text-rose-600 font-bold text-xs shadow-md flex items-center gap-1 transition-all active:scale-95 cursor-pointer"
-                      title="Delete Resume"
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      <span>Delete</span>
                     </button>
                   </div>
 
@@ -425,35 +431,22 @@ export const MyResumeSection: React.FC<MyResumeSectionProps> = ({
                         <span className="text-amber-600 dark:text-amber-400 font-semibold">Draft</span>
                       )}
                     </span>
-                    <div className="flex items-center gap-1">
-                      <button
-                        type="button"
-                        disabled={isDownloading}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onDownloadPdf(resume);
-                        }}
-                        className="p-1 rounded text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors"
-                        title="Quick Download PDF"
-                      >
-                        {isDownloading ? (
-                          <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-700 dark:text-emerald-400" />
-                        ) : (
-                          <FileDown className="w-3.5 h-3.5" />
-                        )}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setResumeToDelete(resume);
-                        }}
-                        className="p-1 rounded text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
-                        title="Delete Resume"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      disabled={isDownloading}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onDownloadPdf(resume);
+                      }}
+                      className="p-1 rounded text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 transition-colors cursor-pointer"
+                      title="Quick Download PDF"
+                    >
+                      {isDownloading ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-700 dark:text-emerald-400" />
+                      ) : (
+                        <FileDown className="w-3.5 h-3.5" />
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
