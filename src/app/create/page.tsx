@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -27,6 +27,8 @@ import {
   Code,
   RotateCcw,
   Wrench,
+  Target,
+  Building,
 } from 'lucide-react';
 import { TEMPLATES, getDefaultSectionOrder } from '@/lib/templates';
 import { createCustomResume, saveResume } from '@/lib/storage';
@@ -36,6 +38,10 @@ import { getRecommendedTemplates, getDynamicSections } from '@/lib/onboarding-lo
 import { transformExtractedToResumeData } from '@/lib/resume-transformer';
 import { useAuth } from '@/context/AuthContext';
 import { JobTitleAutocomplete } from '@/components/builder/JobTitleAutocomplete';
+import { SAMPLE_PRESET_JDS } from '@/lib/ai/job-tailor';
+import { extractJdRequiredYears, extractJdDegreeRequirement } from '@/lib/ats/jd-analyzer';
+import { extractKeywordsFromJobDescription } from '@/lib/ats/keyword-matcher';
+import { cn } from '@/lib/utils';
 
 const POPULAR_ROLES = [
   'Frontend Developer',
@@ -127,6 +133,87 @@ function CreateResumeFlow() {
   const [experienceYears, setExperienceYears] = useState<'0-1' | '1-2' | '2-3' | '4+'>('1-2');
   const [creationMethod, setCreationMethod] = useState<'new' | 'upload'>('new');
   
+  // Smart Role & Target Job Description state (Option 1)
+  const [jobDescription, setJobDescription] = useState<string>('');
+  const [companyName, setCompanyName] = useState<string>('');
+  const [isJdExpanded, setIsJdExpanded] = useState<boolean>(false);
+
+  // Sync pending JD from session storage if present
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const pending = sessionStorage.getItem('kindley_pending_jd');
+      if (pending && pending.trim().length > 0) {
+        setJobDescription(pending);
+        setIsJdExpanded(true);
+      }
+    }
+  }, []);
+
+  // Handle JD input changes with auto-detection of role & experience
+  const handleJdChange = (text: string) => {
+    setJobDescription(text);
+    if (!text || text.trim().length < 15) return;
+
+    // 1. Auto-detect required years and adjust experience level
+    const expInfo = extractJdRequiredYears(text);
+    if (expInfo.years !== null) {
+      if (expInfo.years <= 1) {
+        setExperienceLevel('entry');
+        setExperienceYears('0-1');
+      } else if (expInfo.years === 2) {
+        setExperienceLevel('entry');
+        setExperienceYears('1-2');
+      } else if (expInfo.years === 3) {
+        setExperienceLevel('experienced');
+        setExperienceYears('2-3');
+      } else {
+        setExperienceLevel('experienced');
+        setExperienceYears('4+');
+      }
+    }
+
+    // 2. If target role title is empty, infer from the first non-trivial line
+    if (!targetRole.trim()) {
+      const firstLine = text.trim().split('\n')[0].replace(/[#*:-]/g, '').trim();
+      if (
+        firstLine.length > 3 &&
+        firstLine.length < 50 &&
+        !/^(we are|about|looking|job|responsibilities|role overview)/i.test(firstLine)
+      ) {
+        setTargetRole(firstLine);
+      }
+    }
+  };
+
+  // Preset selector
+  const handleSelectPresetJd = (preset: typeof SAMPLE_PRESET_JDS[0]) => {
+    setJobDescription(preset.text);
+    setTargetRole(preset.role);
+    setCompanyName(preset.company);
+    setIsJdExpanded(true);
+    if (preset.id === 'btech-fresher') {
+      setExperienceLevel('entry');
+      setExperienceYears('0-1');
+    } else {
+      setExperienceLevel('experienced');
+      setExperienceYears('4+');
+    }
+  };
+
+  // Real-time detection feedback summary for the pasted JD
+  const detectedJdSummary = useMemo(() => {
+    if (!jobDescription || jobDescription.trim().length < 20) return null;
+    const exp = extractJdRequiredYears(jobDescription);
+    const deg = extractJdDegreeRequirement(jobDescription);
+    const kws = extractKeywordsFromJobDescription(jobDescription);
+    return {
+      expLabel: exp.label,
+      degree: deg.degree,
+      keywordsCount: kws.length,
+      sampleKeywords: kws.slice(0, 5),
+    };
+  }, [jobDescription]);
+
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateId>(queryTemplate);
   const [selectedColor, setSelectedColor] = useState('#2563eb');
   const [categoryFilter, setCategoryFilter] = useState<'recommended' | 'all' | 'ats' | 'creative'>('recommended');
@@ -233,6 +320,13 @@ function CreateResumeFlow() {
       themeColor: selectedColor || '#2563eb',
       selectedSections,
       candidateName: fullName,
+      targetJob: jobDescription.trim()
+        ? {
+            title: reviewRole || targetRole,
+            company: companyName.trim(),
+            jobDescription: jobDescription.trim(),
+          }
+        : undefined,
     });
 
     // Save directly into kindley_resumes_v1 and localStorage key
@@ -360,6 +454,13 @@ function CreateResumeFlow() {
             themeColor: colorOverride || selectedColor,
             experienceLevel: expLevel,
             sectionOrder: data.sectionOrder || sectionOrder,
+            targetJob: jobDescription.trim()
+              ? {
+                  title: targetRole.trim(),
+                  company: companyName.trim(),
+                  jobDescription: jobDescription.trim(),
+                }
+              : undefined,
             typography: { primaryFont: 'Inter', secondaryFont: 'Inter', lineHeight: 1.5 },
             layout: { format: 'A4', dateFormat: 'Short Name (Jan YYYY)', margins: { topBottom: 0.5, leftRight: 0.5, headerFooter: 0.5 }, spacing: { betweenSections: 12, betweenTitlesContent: 6, betweenBlocks: 8, insideBlock: 4 } },
             ...data
@@ -396,6 +497,13 @@ function CreateResumeFlow() {
           experienceLevel: expLevel,
           starterType: 'blank',
           sectionOrder,
+          targetJob: jobDescription.trim()
+            ? {
+                title: finalRole,
+                company: companyName.trim(),
+                jobDescription: jobDescription.trim(),
+              }
+            : undefined,
         });
 
         router.push(`/builder/${newResume.id}`);
@@ -617,6 +725,54 @@ function CreateResumeFlow() {
                   ))}
                 </select>
               </div>
+            </div>
+
+            {/* Optional Target Job Description Card for Uploaded Resume */}
+            <div className="bg-white dark:bg-[#161614] p-5 rounded-2xl border border-slate-200/90 dark:border-white/[0.08] shadow-sm space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                    <Target className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <span>Target Job Description (Optional)</span>
+                      <span className="px-1.5 py-0.2 rounded-full text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
+                        Live Benchmark
+                      </span>
+                    </h3>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                      Benchmark this extracted resume against a specific job posting upon opening the editor.
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsJdExpanded((prev) => !prev)}
+                  className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline cursor-pointer flex items-center gap-1 self-start sm:self-auto shrink-0"
+                >
+                  <span>{isJdExpanded || jobDescription ? 'Edit Job Posting' : 'Add Target JD'}</span>
+                  {isJdExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+
+              {(isJdExpanded || jobDescription) && (
+                <div className="space-y-3 pt-2 border-t border-slate-100 dark:border-white/[0.06] animate-in fade-in duration-200">
+                  <textarea
+                    rows={4}
+                    placeholder="Paste the target job posting to automatically calculate keyword match & missing skills..."
+                    value={jobDescription}
+                    onChange={(e) => handleJdChange(e.target.value)}
+                    className="w-full p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50/50 dark:bg-[#100F0C] text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all resize-y font-mono leading-relaxed"
+                  />
+                  {detectedJdSummary && (
+                    <div className="text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
+                      ✓ {detectedJdSummary.keywordsCount} skills recognized in JD • Match rate gauge ready
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Sections Selector & Review Inspector */}
@@ -884,6 +1040,132 @@ function CreateResumeFlow() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Smart Job Description & ATS Target Section (Option 1) */}
+              <div className="pt-4 border-t border-slate-100 dark:border-white/[0.06] space-y-3.5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                      <Target className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span>Tailor For A Specific Job Posting?</span>
+                        <span className="px-1.5 py-0.2 rounded-full text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
+                          Optional
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                        Paste the JD to get live match scoring and recommended skills.
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsJdExpanded((prev) => !prev)}
+                    className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline cursor-pointer flex items-center gap-1 self-start sm:self-auto shrink-0"
+                  >
+                    <span>{isJdExpanded ? 'Hide Job Details' : 'Add Job Description'}</span>
+                    {isJdExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+
+                {/* Quick Sample Job Openings */}
+                <div className="space-y-1.5">
+                  <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
+                    Quick Sample Roles:
+                  </span>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                    {SAMPLE_PRESET_JDS.map((preset) => (
+                      <button
+                        key={preset.id}
+                        type="button"
+                        onClick={() => handleSelectPresetJd(preset)}
+                        className={cn(
+                          'p-2 rounded-xl border text-left transition-all cursor-pointer text-[11px]',
+                          jobDescription === preset.text
+                            ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold shadow-2xs'
+                            : 'border-slate-200 dark:border-white/[0.08] bg-slate-50/60 dark:bg-white/[0.03] hover:border-slate-300 text-slate-700 dark:text-slate-300'
+                        )}
+                      >
+                        <div className="font-semibold line-clamp-1">{preset.title}</div>
+                        <div className="text-[9.5px] text-slate-400 dark:text-muted-foreground line-clamp-1 mt-0.5">
+                          {preset.company}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Expandable Box */}
+                {isJdExpanded && (
+                  <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-white/[0.06] animate-in fade-in duration-200">
+                    {/* Company Name */}
+                    <div>
+                      <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1 flex items-center gap-1.5">
+                        <Building className="w-3.5 h-3.5 text-slate-400" />
+                        <span>Hiring Company Name (Optional)</span>
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Stripe, Google, Microsoft, or Target Employer"
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        className="w-full px-3 py-2 bg-slate-50/50 dark:bg-[#100F0C] border border-slate-200 dark:border-white/[0.08] rounded-xl text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+                      />
+                    </div>
+
+                    {/* Job Description Textarea */}
+                    <div>
+                      <div className="flex items-center justify-between text-[11px] mb-1">
+                        <label className="font-semibold text-slate-700 dark:text-slate-300">
+                          Job Description Text
+                        </label>
+                        <span className="text-slate-400 font-mono text-[10.5px]">
+                          {jobDescription.trim().split(/\s+/).filter(Boolean).length} words
+                        </span>
+                      </div>
+                      <textarea
+                        rows={6}
+                        placeholder="Paste the job posting requirements and responsibilities here..."
+                        value={jobDescription}
+                        onChange={(e) => handleJdChange(e.target.value)}
+                        className="w-full p-3 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-slate-50/50 dark:bg-[#100F0C] text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all resize-y font-mono leading-relaxed"
+                      />
+                    </div>
+
+                    {/* Real-time Detection Pill */}
+                    {detectedJdSummary && (
+                      <div className="p-3 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/50 text-[11px] text-emerald-800 dark:text-emerald-300 flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                        <div className="space-y-1">
+                          <div>
+                            <span className="font-bold">Auto-Analyzed Job Requirements:</span>{' '}
+                            <span>
+                              {detectedJdSummary.expLabel ? `${detectedJdSummary.expLabel} experience • ` : ''}
+                              {detectedJdSummary.degree ? `${detectedJdSummary.degree} • ` : ''}
+                              {detectedJdSummary.keywordsCount} industry keywords recognized
+                            </span>
+                          </div>
+                          {detectedJdSummary.sampleKeywords.length > 0 && (
+                            <div className="flex flex-wrap gap-1 pt-0.5">
+                              {detectedJdSummary.sampleKeywords.map((kw: string, idx: number) => (
+                                <span
+                                  key={idx}
+                                  className="px-1.5 py-0.2 rounded bg-white dark:bg-card border border-emerald-200/80 dark:border-emerald-800/60 text-[10px] font-mono font-medium text-emerald-700 dark:text-emerald-300"
+                                >
+                                  {kw}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

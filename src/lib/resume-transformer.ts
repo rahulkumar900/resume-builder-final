@@ -21,6 +21,11 @@ export interface TransformOptions {
   themeColor?: string;
   selectedSections?: string[];
   candidateName?: string;
+  targetJob?: {
+    title?: string;
+    company?: string;
+    jobDescription?: string;
+  };
 }
 
 /**
@@ -279,6 +284,7 @@ export function transformExtractedToResumeData(options: TransformOptions): Resum
     courses: Array.isArray(rawData.courses) ? rawData.courses : [],
     interests: Array.isArray(rawData.interests) ? rawData.interests : [],
     references: Array.isArray(rawData.references) ? rawData.references : [],
+    targetJob: options.targetJob,
   };
 
   return resumeData;

@@ -343,6 +343,11 @@ export interface CreateCustomResumeOptions {
   experienceLevel?: 'entry' | 'mid' | 'senior';
   starterType?: 'tailored' | 'sample' | 'blank';
   sectionOrder?: SectionOrderConfig;
+  targetJob?: {
+    title?: string;
+    company?: string;
+    jobDescription?: string;
+  };
 }
 
 /**
@@ -486,6 +491,7 @@ export function createCustomResume(options: CreateCustomResumeOptions = {}): Res
     courses: [],
     interests: [],
     references: [],
+    targetJob: options.targetJob,
   };
 
   const resumes = getStoredResumes();
