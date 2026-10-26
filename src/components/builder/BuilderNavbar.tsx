@@ -24,14 +24,17 @@ import {
   Undo2,
   Redo2,
   Trash2,
+  Target,
 } from 'lucide-react';
 import { ResumeData } from '@/types/resume';
 import { analyzeResumeAts } from '@/lib/ats/ats-analyzer';
+import { matchJobDescriptionKeywords } from '@/lib/ats/keyword-matcher';
 import { checkGrammar } from '@/lib/grammar/grammarEngine';
 import { Button } from '@/components/ui/button';
 import { UserMenu } from '@/components/auth/UserMenu';
 import { useAuth } from '@/context/AuthContext';
 import { useTheme } from '@/context/ThemeContext';
+import { cn } from '@/lib/utils';
 
 interface BuilderNavbarProps {
   resume: ResumeData;
@@ -47,8 +50,8 @@ interface BuilderNavbarProps {
   onFitToScreen?: () => void;
   cloudStatus?: 'saved' | 'saving' | 'offline';
   onOpenCustomization?: (tab?: 'template' | 'text' | 'layout') => void;
-  editorMode?: 'content' | 'design' | 'check';
-  onSwitchMode?: (mode: 'content' | 'design' | 'check') => void;
+  editorMode?: 'content' | 'design' | 'check' | 'match';
+  onSwitchMode?: (mode: 'content' | 'design' | 'check' | 'match') => void;
   onShare?: () => void;
   onUndo?: () => void;
   onRedo?: () => void;
@@ -96,6 +99,12 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
 
   const atsResult = useMemo(() => {
     return analyzeResumeAts(resume);
+  }, [resume]);
+
+  const jdMatchRate = useMemo(() => {
+    const jd = resume.targetJob?.jobDescription;
+    if (!jd || jd.trim().length < 20) return null;
+    return matchJobDescriptionKeywords(jd, resume).matchRate;
   }, [resume]);
 
   const grammarIssuesCount = useMemo(() => {
@@ -257,6 +266,32 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
                 {atsResult.suggestions.length}
               </span>
             )}
+          </button>
+          <button
+            type="button"
+            onClick={() => onSwitchMode('match')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              editorMode === 'match'
+                ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
+                : 'text-slate-600 dark:text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            <Target className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <span>JD Match</span>
+            {jdMatchRate !== null ? (
+              <span
+                className={cn(
+                  'px-1.5 py-0.2 rounded-full text-[10px] font-bold',
+                  jdMatchRate >= 75
+                    ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
+                    : jdMatchRate >= 50
+                    ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300'
+                    : 'bg-rose-100 text-rose-800 dark:bg-rose-950/60 dark:text-rose-300'
+                )}
+              >
+                {jdMatchRate}%
+              </span>
+            ) : null}
           </button>
         </div>
       )}

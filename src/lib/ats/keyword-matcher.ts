@@ -92,18 +92,26 @@ export const buildResumeCorpus = (resume: ResumeData): string => {
   (resume.experience || []).forEach((exp) => {
     if (exp.role) parts.push(exp.role);
     if (exp.company) parts.push(exp.company);
+    if ((exp as any).description) parts.push(stripHtml((exp as any).description));
     (exp.highlights || []).forEach((h) => parts.push(stripHtml(h)));
   });
 
   (resume.internships || []).forEach((intItem) => {
     if (intItem.role) parts.push(intItem.role);
     if (intItem.company) parts.push(intItem.company);
+    if ((intItem as any).description) parts.push(stripHtml((intItem as any).description));
     (intItem.highlights || []).forEach((h) => parts.push(stripHtml(h)));
   });
 
-  (resume.skills || []).forEach((cat) => {
-    if (cat.category) parts.push(cat.category);
-    (cat.items || []).forEach((item) => parts.push(item));
+  (resume.skills || []).forEach((cat: any) => {
+    if (typeof cat === 'string') {
+      parts.push(cat);
+    } else if (cat && typeof cat === 'object') {
+      if (cat.category) parts.push(cat.category);
+      if (Array.isArray(cat.items)) {
+        cat.items.forEach((item: string) => parts.push(item));
+      }
+    }
   });
 
   (resume.projects || []).forEach((p) => {
@@ -234,4 +242,25 @@ export const matchJobDescriptionKeywords = (
     totalJobKeywords,
     totalMatched,
   };
+};
+
+/**
+ * Extracts recognized industry and domain keywords found in a Job Description string.
+ */
+export const extractKeywordsFromJobDescription = (jobDescription: string): string[] => {
+  if (!jobDescription || jobDescription.trim().length < 10) return [];
+  const jdLower = jobDescription.toLowerCase();
+  const found = new Set<string>();
+
+  for (const keywords of Object.values(INDUSTRY_KEYWORDS)) {
+    for (const kw of keywords) {
+      const escaped = kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`\\b${escaped}\\b`, 'i');
+      if (regex.test(jdLower)) {
+        found.add(kw);
+      }
+    }
+  }
+
+  return Array.from(found);
 };

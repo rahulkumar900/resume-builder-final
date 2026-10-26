@@ -438,6 +438,11 @@ export interface ResumeData {
   sectionOrder?: SectionOrderConfig;
   hiddenSections?: ResumeSectionId[];
   experienceLevel?: 'entry' | 'mid' | 'senior' | 'experienced';
+  targetJob?: {
+    title?: string;
+    company?: string;
+    jobDescription?: string;
+  };
 
   typography?: TypographySettings;
   layout?: LayoutSettings;

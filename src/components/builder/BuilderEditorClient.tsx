@@ -22,10 +22,11 @@ import { ResumeData } from '@/types/resume';
 import { useAuth } from '@/context/AuthContext';
 import { useAutoSaveResume } from '@/hooks/useAutoSaveResume';
 import { useResumePdfExport } from '@/hooks/useResumePdfExport';
-import { Edit3, Eye, Palette, CheckSquare, FileText, Trash2, Loader2 } from 'lucide-react';
+import { Edit3, Eye, Palette, CheckSquare, FileText, Trash2, Loader2, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DesignStudioPanel } from '@/components/builder/DesignStudioPanel';
 import { CheckAuditPanel } from '@/components/builder/CheckAuditPanel';
+import { JdMatchPanel } from '@/components/builder/JdMatchPanel';
 import { GrammarAssistantModal } from '@/components/builder/GrammarAssistantModal';
 import { ShareResumeModal } from '@/components/builder/ShareResumeModal';
 import { CriticalIssuesWarningModal } from '@/components/builder/CriticalIssuesWarningModal';
@@ -90,7 +91,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
   const [activeTab, setActiveTab] = useState<'edit' | 'preview'>(
     tabParam === 'preview' ? 'preview' : 'edit'
   );
-  const [editorMode, setEditorMode] = useState<'content' | 'design' | 'check'>('content');
+  const [editorMode, setEditorMode] = useState<'content' | 'design' | 'check' | 'match'>('content');
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false);
   const [isGrammarModalOpen, setIsGrammarModalOpen] = useState(false);
   const [isJobTailorModalOpen, setIsJobTailorModalOpen] = useState(false);
@@ -116,7 +117,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     }
   };
 
-  const handleSwitchMode = (mode: 'content' | 'design' | 'check') => {
+  const handleSwitchMode = (mode: 'content' | 'design' | 'check' | 'match') => {
     if (typeof window !== 'undefined' && window.innerWidth < 1024 && mode === 'design') {
       setActiveTab('preview');
       setIsMobileDesignSheetOpen(true);
@@ -349,6 +350,23 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             type="button"
             onClick={() => {
               setIsMobileDesignSheetOpen(false);
+              setEditorMode('match');
+              setActiveTab('edit');
+            }}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
+              activeTab === 'edit' && editorMode === 'match' && !isMobileDesignSheetOpen
+                ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
+                : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
+            }`}
+            title="Target JD Match Rate"
+          >
+            <Target className="w-3.5 h-3.5 shrink-0" />
+            <span className="text-[11px] sm:text-xs">JD Match</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setIsMobileDesignSheetOpen(false);
               handleTabSwitch('preview');
             }}
             className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
@@ -366,7 +384,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
 
       {/* Main Split Layout */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
-        {/* Left Column: Editor Form OR Docked Design Studio OR Docked Check Audit */}
+        {/* Left Column: Editor Form OR Docked Design Studio OR Docked Check Audit OR Docked JD Match */}
         <div
           className={`w-full lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:shrink-0 h-full flex-1 lg:flex-initial flex flex-col lg:border-r border-slate-200 dark:border-border bg-background overflow-hidden min-h-0 ${
             activeTab === 'preview' ? 'hidden lg:flex' : 'flex'
@@ -390,7 +408,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               onChange={handleChange}
               onClose={() => setEditorMode('content')}
             />
-          ) : (
+          ) : editorMode === 'check' ? (
             <CheckAuditPanel
               resume={resume}
               onChange={handleChange}
@@ -399,6 +417,13 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
                 setEditorMode('content');
                 router.push(`/builder/${id}?step=${sec}`);
               }}
+            />
+          ) : (
+            <JdMatchPanel
+              resume={resume}
+              onChange={handleChange}
+              onOpenTailorStudio={() => setIsJobTailorModalOpen(true)}
+              onClose={() => setEditorMode('content')}
             />
           )}
         </div>
