@@ -35,6 +35,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // Enforce single-hop apex domain canonical redirect
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.resumebabu.com' }],
+        destination: 'https://resumebabu.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
