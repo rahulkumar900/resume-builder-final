@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -20,9 +20,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Builder for Freshers - Student & Graduate Formats',
+  title: 'Free Resume Builder for Freshers',
   description:
-    'Best free resume builder for freshers, college students, and 12th pass graduates with no work experience. Includes pre-filled academic project formats and instant vector PDF export.',
+    'Free resume builder for freshers and students with no experience. Includes pre-filled academic project formats and instant vector PDF downloads.',
   keywords: [
     'resume builder for freshers',
     'resume maker for freshers',

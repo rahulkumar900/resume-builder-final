@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -8,7 +8,7 @@ import { ShieldCheck, FileText, ArrowRight, CheckCircle2, AlertCircle, HelpCircl
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'Read the terms of service and user agreement for ResumeBabu. Learn about your intellectual property rights, data ownership, acceptable use, and subscription terms.',
+    'Read the terms of service and user agreement for ResumeBabu. Learn about your intellectual property rights, data ownership, and acceptable use terms.',
   openGraph: {
     title: 'Terms of Service | ResumeBabu',
     description:

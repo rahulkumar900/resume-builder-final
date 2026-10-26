@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -24,9 +24,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Resume Format Download: Free Word, Doc & PDF Formats for Jobs',
+  title: 'Resume Format Download: Free PDF Formats',
   description:
-    'Free resume format download for freshers and experienced job seekers. Skip broken MS Word (.doc) formatting. Edit online and download recruiter-approved, ATS-tested vector PDFs in 2 minutes.',
+    'Free resume format download for freshers and professionals. Skip broken Word formatting and download modern, ATS-tested vector PDFs with zero paywalls.',
   keywords: [
     'resume format download',
     'resume format in word',

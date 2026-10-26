@@ -1,4 +1,4 @@
-﻿import { MetadataRoute } from 'next';
+import { MetadataRoute } from 'next';
 import { RESUME_EXAMPLES } from '@/lib/examples-data';
 import { COMPETITORS } from '@/lib/competitors-data';
 import { BLOG_POSTS } from '@/lib/blog-data';
@@ -138,12 +138,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/create`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.85,
     },
     {
       url: `${BASE_URL}/about`,

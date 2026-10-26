@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -19,9 +19,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Curriculum Vitae Maker - Academic, Medical & Research CVs',
+  title: 'Curriculum Vitae Maker: Academic & Medical',
   description:
-    'Build a comprehensive, academic-standard Curriculum Vitae. Dedicated sections for peer-reviewed publications, teaching experience, research grants, patents, and medical residencies. 100% free vector PDF export.',
+    'Build academic-standard Curriculum Vitaes for free. Dedicated sections for peer-reviewed publications, clinical rotations, grants, and research credentials.',
   keywords: [
     'curriculum vitae maker',
     'academic cv maker',

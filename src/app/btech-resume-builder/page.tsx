@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -25,9 +25,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'B.Tech Resume Builder - Engineering Freshers & CSE Placements',
+  title: 'B.Tech Resume Builder for Engineering',
   description:
-    'Free B.Tech resume builder for engineering freshers and Computer Science students. Campus placement formats for TCS, Infosys, Wipro, and product companies. 100% free vector PDF download.',
+    'Free B.Tech resume builder for engineering freshers. Campus placement formats, CGPA tables, GitHub and LeetCode link fields, and free PDF download.',
   keywords: [
     'btech resume builder',
     'resume format for btech cse freshers',

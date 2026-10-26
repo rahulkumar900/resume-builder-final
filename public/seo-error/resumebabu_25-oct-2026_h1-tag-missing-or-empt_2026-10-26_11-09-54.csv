@@ -1,0 +1,33 @@
+"Issues
+:
+H1 tag missing or empty(not indexable)",,,,,,,,,,,
+PR,URL,Title,Content type,Is rendered page,HTTP status code,Organic traffic,Depth,H1,H1 length,No. of H1,Is indexable page
+13,https://resumebabu.com/create,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,0,,,0,FALSE
+13,https://resumebabu.com/builder,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+2,https://resumebabu.com/builder?template=ats,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=vienna,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=prawira,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=santoso,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=chastain,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=chastain,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=rahadian,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=harvard,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=ats,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=amelia,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=stockholm,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/create?template=traditional,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=fresher,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=amelia,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=santoso,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=prawira,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+1,https://resumebabu.com/builder?template=rahadian,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/create?template=sydney,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/builder?template=toronto,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/builder?template=dublin,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/builder?template=naukri,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/create?template=harvard&color=%2315803d,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/builder?template=classic,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/builder?template=minimalist,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/builder?template=stockholm,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/create?template=dublin,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE
+0,https://resumebabu.com/create?template=madrid,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,1,,,0,FALSE

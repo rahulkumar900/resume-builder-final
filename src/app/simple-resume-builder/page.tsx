@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -22,9 +22,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Simple Resume Builder: Free One-Page & Basic Resume Maker',
+  title: 'Simple Resume Builder: Free One-Page Maker',
   description:
-    'Free simple resume builder for clean, basic, and one-page resumes. No clutter, no complex graphics, instant vector PDF download in under 3 minutes with zero watermarks.',
+    'Free simple resume builder for clean, basic, one-page resumes. No clutter, no complex graphics, and guaranteed ATS pass rates. Download vector PDF free.',
   keywords: [
     'simple resume builder',
     'basic resume maker',

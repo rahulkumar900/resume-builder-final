@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -30,9 +30,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { AtsCheckerClient } from '@/components/ats/AtsCheckerClient';
 
 export const metadata: Metadata = {
-  title: 'Free ATS Resume Checker & Score Calculator (2026)',
+  title: 'Free ATS Resume Checker & Score Audit',
   description:
-    'Free online ATS resume checker. Scan your resume against top Applicant Tracking Systems (Workday, Taleo, Greenhouse). Get an instant 0-100 score, keyword gap analysis, metric density, and duplicate detection.',
+    'Free online ATS resume checker. Scan against Workday, Taleo, and Greenhouse with instant ATS score, keyword gap analysis, and bullet point suggestions.',
   keywords: [
     'ats checker',
     'ats resume checker',

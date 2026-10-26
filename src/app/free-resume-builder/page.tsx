@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -26,9 +26,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: '100% Free Resume Builder & PDF Download (No Paywalls)',
+  title: '100% Free Resume Builder: No Paywalls',
   description:
-    'Build and download your resume in high-resolution PDF for free. No credit card required, no 14-day trial traps, no watermarks. Trusted by over 120,000 job seekers.',
+    'Build and download your resume in high-resolution PDF for free. No credit card required, no 14-day trial traps, and zero paywalls at download.',
   keywords: [
     'free resume builder',
     'free resume builder and download',

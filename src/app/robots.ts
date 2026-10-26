@@ -1,12 +1,24 @@
 import { MetadataRoute } from 'next';
 
+const DISALLOWED_PATHS = [
+  '/api/',
+  '/print/',
+  '/dashboard/',
+  '/dashboard',
+  '/builder/',
+  '/builder',
+  '/create/',
+  '/create',
+  '/auth/',
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/print/', '/dashboard/', '/dashboard', '/builder/'],
+        disallow: DISALLOWED_PATHS,
       },
       {
         userAgent: [
@@ -20,7 +32,7 @@ export default function robots(): MetadataRoute.Robots {
           'Applebot',
         ],
         allow: '/',
-        disallow: ['/api/', '/print/', '/dashboard/', '/builder/'],
+        disallow: DISALLOWED_PATHS,
       },
     ],
     sitemap: 'https://resumebabu.com/sitemap.xml',

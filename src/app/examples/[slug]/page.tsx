@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -16,18 +16,39 @@ export async function generateStaticParams() {
   }));
 }
 
+const EXAMPLE_SEO_TITLES: Record<string, string> = {
+  'software-engineer-resume': 'Software Engineer Resume Example',
+  'btech-fresher-resume': 'B.Tech Fresher Resume Example',
+  'frontend-developer-resume': 'Frontend Developer Resume Example',
+  'data-analyst-resume': 'Data Analyst Resume Example',
+  'naukri-resume-format': 'Naukri IT Resume Format Guide',
+  'mba-resume': 'MBA & Product Manager Resume Example',
+  'bca-fresher-resume': 'BCA Fresher Resume Example',
+  'bcom-fresher-resume': 'B.Com Fresher Resume Example',
+  'mechanical-engineer-fresher-resume': 'Mechanical Engineer Resume Example',
+  'cgpa-resume-format': 'CGPA Placement Resume Format',
+  'backend-developer-resume': 'Backend Developer Resume Example',
+  'hr-resume': 'HR Executive Resume Example',
+  'digital-marketing-resume': 'Digital Marketing Resume Example',
+  'accountant-resume': 'Senior Accountant Resume Example',
+  'sales-resume': 'B2B Sales Executive Resume Example',
+  'fresher-resume-india': 'Fresher Resume Format India',
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const example = getResumeExampleBySlug(slug);
 
   if (!example) {
     return {
-      title: 'Resume Example Not Found | ResumeBabu',
+      title: 'Resume Example Not Found',
     };
   }
 
+  const seoTitle = EXAMPLE_SEO_TITLES[slug] || `${example.role.slice(0, 30)} Resume Example`;
+
   return {
-    title: `${example.title} | Free ATS Template & Keywords`,
+    title: seoTitle,
     description: example.metaDescription,
     keywords: [
       `${example.role} resume`,
@@ -38,15 +59,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ...example.targetKeywords,
     ],
     openGraph: {
-      title: `${example.title} | Free ATS Template`,
+      title: `${seoTitle} | ResumeBabu`,
       description: example.metaDescription,
       type: 'article',
       url: `https://resumebabu.com/examples/${example.slug}`,
+      images: [
+        {
+          url: 'https://resumebabu.com/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: `${seoTitle} - ResumeBabu`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${example.title} | Free ATS Template`,
+      title: `${seoTitle} | ResumeBabu`,
       description: example.metaDescription,
+      images: ['https://resumebabu.com/twitter-image'],
     },
     alternates: {
       canonical: `https://resumebabu.com/examples/${example.slug}`,
@@ -62,15 +92,19 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Schema.org Structured Data for Google Rich Snippets
+  // Schema.org Structured Data for Google Rich Snippets (Valid TechArticle, no invalid JobPosting)
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: example.title,
+    '@type': 'TechArticle',
+    headline: `${example.role} Resume Example & Guide`,
     description: example.metaDescription,
+    image: 'https://resumebabu.com/opengraph-image',
+    datePublished: '2026-01-15T00:00:00Z',
+    dateModified: '2026-10-25T00:00:00Z',
     author: {
       '@type': 'Organization',
-      name: 'ResumeBabu AI Studio',
+      name: 'ResumeBabu Editorial Team',
+      url: 'https://resumebabu.com/about',
     },
     publisher: {
       '@type': 'Organization',
@@ -85,9 +119,9 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
       '@id': `https://resumebabu.com/examples/${example.slug}`,
     },
     about: {
-      '@type': 'JobPosting',
-      title: example.role,
-      skills: example.targetKeywords.join(', '),
+      '@type': 'Thing',
+      name: example.role,
+      description: `${example.role} career profile and ATS resume format`,
     },
   };
 

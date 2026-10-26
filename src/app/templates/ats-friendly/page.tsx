@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -20,9 +20,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'ATS-Friendly Resume Templates: Recruiter-Approved (Free PDF Download)',
+  title: 'ATS-Friendly Resume Templates (Free PDF)',
   description:
-    'Free ATS-friendly resume templates guaranteed to pass Workday, Greenhouse, and Taleo ATS scanners. Clean single-column and hybrid layouts with 98%+ parsing rates.',
+    'Free ATS-friendly resume templates guaranteed to pass Workday, Greenhouse, and Taleo. Clean layouts with instant vector PDF download and zero paywalls.',
   keywords: [
     'ats friendly resume template',
     'ats friendly cv template',

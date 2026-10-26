@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
@@ -7,9 +7,9 @@ import { BLOG_POSTS } from '@/lib/blog-data';
 import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Career & Resume Strategy Blog: ATS Guides, Bullet Formulas & Tips',
+  title: 'Career & Resume Strategy Blog',
   description:
-    'Actionable career advice, ATS technical audits, fresher resume strategies, and the Google XYZ bullet formula written by executive recruiters and career mentors.',
+    'Actionable career advice, ATS technical audits, fresher resume strategies, and Google XYZ bullet formulas written by veteran recruiters and HR leads.',
   keywords: [
     'resume blog',
     'career advice',

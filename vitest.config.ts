@@ -7,6 +7,7 @@ export default defineConfig({
     environment: 'node',
   },
   resolve: {
+    preserveSymlinks: true,
     alias: {
       '@': path.resolve(__dirname, './src'),
     },

@@ -1,11 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import { TemplatesShowcaseClient } from '@/components/templates/TemplatesShowcaseClient';
 
 export const metadata: Metadata = {
   title: '30+ Free ATS-Friendly Resume Templates',
   description:
-    'Explore 30+ professionally engineered, ATS-compliant resume templates. Tested across Workday, Taleo, and Greenhouse with instant A4 pagination and custom color palettes.',
+    'Explore 30+ professionally engineered, ATS-compliant resume templates. Tested across Workday and Taleo with instant A4 pagination and free PDF downloads.',
   keywords: [
     'resume templates',
     'free resume templates',

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -24,9 +24,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Student Resume Builder: High School, College & Internship Formats',
+  title: 'Free Student Resume Builder & Internships',
   description:
-    'Free student resume builder for high schoolers, 12th pass graduates, college students, and first-time job seekers. Turn coursework, volunteer work, and clubs into a job-winning resume with instant vector PDF download.',
+    'Free student resume builder for high schoolers, college students, and interns. Showcase academic projects, GPA, clubs, and skills with free PDF download.',
   keywords: [
     'student resume builder',
     'resume format for freshers 12th pass',

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -19,9 +19,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { COMPETITORS } from '@/lib/competitors-data';
 
 export const metadata: Metadata = {
-  title: 'Best Resume Builder Alternatives & Comparisons (2026)',
+  title: 'Resume Builder Alternatives & Reviews',
   description:
-    'Unbiased, side-by-side technical comparisons of top resume builders: Zety, Canva, Teal, Indeed, LiveCareer, Novorésumé, Kickresume, FlowCV, and Naukri. Compare ATS scores, pricing traps, and download guarantees.',
+    'Side-by-side technical comparisons of top resume builders: Zety, Canva, Teal, Indeed, and Novoresume. Discover true costs, paywalls, and ATS pass rates.',
   keywords: [
     'resume builder alternatives',
     'zety alternative',

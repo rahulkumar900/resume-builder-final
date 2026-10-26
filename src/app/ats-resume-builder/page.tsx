@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -25,9 +25,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free ATS Resume Builder: Create ATS-Compliant Resumes',
+  title: 'Free ATS Resume Builder: 100% Pass Rate',
   description:
-    'Free ATS resume builder engineered to pass Workday, Greenhouse, Taleo, and Lever ATS systems. Build, score, and download 100% ATS-friendly resumes as vector PDF with zero paywalls.',
+    'Free ATS resume builder engineered to pass Workday, Greenhouse, Taleo, and Lever. Build and download ATS-friendly resumes in vector PDF with no paywalls.',
   keywords: [
     'ats resume builder',
     'free ats resume builder',

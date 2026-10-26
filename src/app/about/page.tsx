@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: 'About Us & Mission',
   description:
-    'Learn about ResumeBabu. We are on a mission to democratize job interview access with ATS-engineered resumes, responsible AI, and 100% free vector PDF downloads.',
+    'Learn about ResumeBabu. We are on a mission to democratize job interview access with ATS-engineered resumes and free vector PDF downloads.',
   openGraph: {
     title: 'About Us & Mission | ResumeBabu',
     description:

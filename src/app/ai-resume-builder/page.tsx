@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,9 +21,9 @@ import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 
 export const metadata: Metadata = {
-  title: 'Free AI Resume Builder & AI Resume Maker: Tailor Resumes in Minutes',
+  title: 'Free AI Resume Builder & Smart Maker',
   description:
-    'Free AI resume builder and smart AI resume maker. Automatically rewrite bullet points using the Google XYZ formula, optimize ATS keywords for any job description, and download vector PDFs with zero paywalls.',
+    'Free AI resume builder and maker. Rewrite bullet points with Google XYZ formula, tailor to job descriptions, and pass ATS screening without paywalls.',
   keywords: [
     'ai resume builder',
     'ai resume maker',

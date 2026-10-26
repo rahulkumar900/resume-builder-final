@@ -1,0 +1,8 @@
+"Issues
+:
+HTTP to HTTPS redirect",,,,,,,,,,,,
+PR,URL,Title,Content type,Is rendered page,HTTP status code,Organic traffic,Redirect chain URLs,Redirect chain URLs codes,Is redirect loop,No. of all inlinks,No. of redirect inlinks,First found at
+0,http://www.resumebabu.com/,,text/plain,FALSE,308,0,"https://www.resumebabu.com/
+https://resumebabu.com/","307
+200",FALSE,0,0,
+0,http://resumebabu.com/,,text/plain,FALSE,308,0,https://resumebabu.com/,200,FALSE,0,0,

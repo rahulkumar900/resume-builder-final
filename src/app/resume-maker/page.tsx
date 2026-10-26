@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -22,9 +22,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Maker Online: Create a Professional Resume in 3 Minutes',
+  title: 'Free Resume Maker Online in 3 Minutes',
   description:
-    'Free online resume maker with 30+ ATS templates. Create, edit, and download your professional resume as high-DPI vector PDF with no watermark, no hidden paywall, and no credit card.',
+    'Free online resume maker with 30+ ATS templates. Create, edit, and download your professional resume in minutes without watermarks or credit cards.',
   keywords: [
     'resume maker',
     'resume maker free',

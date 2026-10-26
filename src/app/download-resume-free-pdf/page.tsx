@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,9 +21,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free PDF Resume Maker - Download Vector A4 PDF Without Watermarks',
+  title: 'Free PDF Resume Maker: Vector Download',
   description:
-    'Download your resume in clean, recruiter-approved vector PDF format for free. No watermarks, no paywall screen, and ATS text-selectable guarantee. Tested on Workday and Taleo.',
+    'Download your resume in clean, recruiter-approved vector PDF format for free. No watermarks, no paywalls, perfect A4 printing, and 100% ATS readability.',
   keywords: [
     'download resume free pdf',
     'online resume maker free pdf',

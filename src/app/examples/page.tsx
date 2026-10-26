@@ -1,11 +1,11 @@
-﻿import React from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import { ResumeExamplesHubClient } from '@/components/examples/ResumeExamplesHubClient';
 
 export const metadata: Metadata = {
-  title: 'Resume Examples & Samples for Every Job Title (2026)',
+  title: '20+ Recruiter Resume Examples & Guides',
   description:
-    'Browse 20+ recruiter-approved resume examples with proven STAR bullet points, ATS-friendly formatting, and 1-click editable templates for software engineers, product managers, freshers, and data scientists.',
+    'Browse 20+ recruiter-approved resume examples with proven STAR bullet points, ATS formatting, and free templates for tech, freshers, and business roles.',
   keywords: [
     'resume examples',
     'software engineer resume sample',

@@ -140,9 +140,6 @@ export const metadata: Metadata = {
   ],
   creator: 'ResumeBabu',
   publisher: 'ResumeBabu',
-  alternates: {
-    canonical: '/',
-  },
   icons: {
     icon: [
       { url: '/favicon.ico' },

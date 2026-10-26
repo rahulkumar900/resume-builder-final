@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -31,28 +31,53 @@ export async function generateStaticParams() {
   }));
 }
 
+const BLOG_SEO_TITLES: Record<string, string> = {
+  'how-to-beat-applicant-tracking-systems-2026': 'How to Beat ATS Systems in 2026',
+  'how-to-write-resume-with-no-experience': 'How to Write a Resume With No Experience',
+  '120-high-impact-resume-action-verbs': '120+ Resume Action Verbs Recruiters Love',
+  'top-10-resume-mistakes-costing-interviews': 'Top 10 Resume Mistakes to Avoid',
+  'how-to-tailor-resume-to-job-description': 'How to Tailor Your Resume to a Job Post',
+  'resume-vs-cv-complete-guide': 'Resume vs CV: Differences & Format Guide',
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
 
   if (!post) {
     return {
-      title: 'Article Not Found | ResumeBabu Blog',
+      title: 'Article Not Found',
     };
   }
 
+  const seoTitle = BLOG_SEO_TITLES[slug] || post.title.slice(0, 42);
+
   return {
-    title: `${post.title} | ResumeBabu`,
+    title: seoTitle,
     description: post.excerpt,
     keywords: post.keywords,
     openGraph: {
-      title: post.title,
+      title: `${seoTitle} | ResumeBabu`,
       description: post.excerpt,
       type: 'article',
       url: `https://resumebabu.com/blog/${post.slug}`,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author.name],
+      images: [
+        {
+          url: 'https://resumebabu.com/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: `${seoTitle} - ResumeBabu`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${seoTitle} | ResumeBabu`,
+      description: post.excerpt,
+      images: ['https://resumebabu.com/twitter-image'],
     },
     alternates: {
       canonical: `https://resumebabu.com/blog/${post.slug}`,
@@ -75,6 +100,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
+    image: 'https://resumebabu.com/opengraph-image',
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
     url: `https://resumebabu.com/blog/${post.slug}`,
@@ -87,6 +113,10 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       '@type': 'Organization',
       name: 'ResumeBabu',
       url: 'https://resumebabu.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://resumebabu.com/logo.png',
+      },
     },
     keywords: post.keywords.join(', '),
   };

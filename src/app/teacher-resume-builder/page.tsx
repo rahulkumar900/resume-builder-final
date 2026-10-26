@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -25,9 +25,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Teacher Resume Builder: Free Resume Maker for Teachers & Educators',
+  title: 'Teacher Resume Builder for Educators',
   description:
-    'Free teacher resume builder for primary, high school, fresher, and experienced educators. Formats for B.Ed, CTET, CBSE, ICSE, and international schools. Instant vector PDF download with zero watermarks.',
+    'Free teacher resume builder for primary, high school, and fresher educators. Highlight lesson planning, classroom management, and state licensure for free.',
   keywords: [
     'teacher resume builder',
     'teacher resume format',

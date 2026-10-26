@@ -203,7 +203,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'B.Tech Fresher (CS / IT / ECE)',
     experienceLevel: 'Entry Level (0 Years)',
     category: 'fresher',
-    metaDescription: 'Strict 1-page B.Tech fresher resume format approved by college Training & Placement (TPO) cells. Standard CGPA tables, SIH hackathons, and LeetCode profile integration.',
+    metaDescription: 'Strict 1-page B.Tech fresher resume format approved by college TPO cells. Standard CGPA tables, SIH hackathons, and LeetCode profile integration.',
     targetKeywords: [
       'data structures', 'algorithms', 'java', 'python', 'c++', 'sql', 'dbms',
       'object oriented programming', 'git', 'github', 'smart india hackathon', 'leetcode',
@@ -676,7 +676,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'Full Stack Engineer / IT Professional',
     experienceLevel: '1–6 Years Experience',
     category: 'tech',
-    metaDescription: 'ATS resume format optimized for Naukri.com, Instahyre, and Indian recruiters. Includes notice period tags, primary/secondary skills, CTC formatting, and +91 conventions.',
+    metaDescription: 'ATS resume format optimized for Naukri.com, Instahyre, and Indian recruiters. Includes notice period tags, skills, and recruiter contact conventions.',
     targetKeywords: [
       'naukri', 'instahyre', 'notice period', 'immediate joiner', 'full stack developer',
       'java', 'spring boot', 'react', 'microservices', 'bengaluru', 'hyderabad', 'pune',
@@ -1143,7 +1143,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'B.Com Graduate (Accounts & Finance)',
     experienceLevel: 'Fresher (0–1 Year)',
     category: 'finance',
-    metaDescription: 'Recruiter-approved B.Com fresher resume format for Indian finance & accounting jobs. Highlights Tally Prime, GST filing, TDS deductions, advanced MS Excel, and auditing.',
+    metaDescription: 'Recruiter-approved B.Com fresher resume format for Indian finance & accounting jobs. Highlights Tally Prime, GST filing, TDS deductions, and auditing.',
     targetKeywords: [
       'bcom fresher resume', 'bcom resume format', 'tally prime', 'gst filing', 'tds returns',
       'ms excel', 'vlookup', 'financial accounting', 'bank reconciliation', 'balance sheet', 'auditing'
@@ -1299,7 +1299,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'Mechanical Engineer (Fresher)',
     experienceLevel: 'Fresher (0–1 Year)',
     category: 'fresher',
-    metaDescription: 'Recruiter-tested Mechanical Engineering fresher resume example. Covers AutoCAD 2D/3D, SolidWorks, CATIA, ANSYS FEA, GD&T, automotive projects, and manufacturing skills.',
+    metaDescription: 'Recruiter-tested Mechanical Engineering fresher resume example. Covers AutoCAD, SolidWorks, CATIA, ANSYS FEA, GD&T, and manufacturing skills.',
     targetKeywords: [
       'mechanical engineer fresher resume', 'mechanical engineering resume format', 'autocad',
       'solidworks', 'catia', 'ansys fea', 'gd&t', 'manufacturing engineering', 'production engineer', 'cnc programming'
@@ -1444,7 +1444,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'Graduate Trainee (High CGPA Format)',
     experienceLevel: 'Fresher / Campus Placements',
     category: 'fresher',
-    metaDescription: 'Optimized CGPA resume format engineered for Indian college placement cells (IIT, NIT, BITS, VIT, Tier-1/2/3 colleges). Features Dean list honors, SIH hackathons, and placement committee compliance.',
+    metaDescription: 'Optimized CGPA resume format for Indian campus placements (IIT, NIT, BITS, VIT). Features Dean list honors, SIH hackathons, and placement compliance.',
     targetKeywords: [
       'cgpa resume format', 'cgpa format resume', 'btech resume format', 'campus placement resume',
       'indian college resume format', 'tier 1 college resume', 'fresher placement format', 'smart india hackathon'
@@ -2022,7 +2022,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'Senior Accountant',
     experienceLevel: '3–6 Years Experience',
     category: 'finance',
-    metaDescription: 'Professional Senior Accountant resume format for Indian corporate and CA firms. Highlights Tally Prime, SAP FICO, GST filings (GSTR-1, 3B, 9), TDS, and balance sheet finalization.',
+    metaDescription: 'Professional Senior Accountant resume format for Indian corporate and CA firms. Highlights Tally Prime, SAP FICO, GST filings (GSTR-1, 3B), and TDS.',
     targetKeywords: [
       'accountant resume', 'senior accountant resume', 'tally prime', 'gst returns',
       'gstr 1', 'gstr 3b', 'tds compliance', 'income tax filing', 'balance sheet finalization', 'mis reports', 'sap fico'
@@ -2175,7 +2175,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
     role: 'Business Development Executive (B2B SaaS)',
     experienceLevel: '2–5 Years Experience',
     category: 'business',
-    metaDescription: 'Targeted Sales resume format for B2B SaaS and Enterprise Account Executives. Features quota achievement (134%), pipeline generation, Salesforce CRM, and deal negotiation.',
+    metaDescription: 'Targeted Sales resume format for B2B SaaS and Enterprise Account Executives. Features quota achievement, pipeline generation, and Salesforce CRM metrics.',
     targetKeywords: [
       'sales resume', 'business development resume', 'b2b sales resume', 'saas sales resume',
       'salesforce crm', 'lead generation', 'cold calling', 'pipeline management', 'revenue quota', 'deal closing'

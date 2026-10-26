@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -19,9 +19,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Generate Resume Online: Instant AI Resume Creator (Free Download)',
+  title: 'Generate Resume Online: Instant AI Maker',
   description:
-    'Generate an ATS-optimized resume in under 5 minutes. Select a template, auto-generate high-impact bullet points, and export your free vector PDF.',
+    'Generate an ATS-optimized resume in under 5 minutes. Select a template, auto-generate high-impact bullets, and export your free vector PDF instantly.',
   keywords: [
     'generate resume',
     'resume generator online',

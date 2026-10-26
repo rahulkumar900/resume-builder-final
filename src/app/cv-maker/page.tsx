@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,9 +21,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free CV Maker Online - Build & Download Professional CVs in PDF',
+  title: 'Free CV Maker Online: Professional PDF',
   description:
-    'Create an international, academic, or corporate Curriculum Vitae online for free. Featuring multi-page A4 layouts, research/publication sections, and 100% ATS-friendly PDF download.',
+    'Create an international, academic, or corporate CV online for free. Multi-page support, ATS-friendly templates, and instant vector PDF downloads.',
   keywords: [
     'cv maker',
     'curriculum vitae maker',

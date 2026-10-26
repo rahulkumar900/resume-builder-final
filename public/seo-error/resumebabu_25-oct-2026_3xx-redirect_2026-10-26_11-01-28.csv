@@ -1,0 +1,10 @@
+"Issues
+:
+3XX redirect
+",,,,,,,,,,,,,,,,
+PR,URL,Title,Content type,Is rendered page,HTTP status code,Organic traffic,Redirect URL,Redirect URL code,Redirect URL patch,Redirect URL patch status,Redirect chain URLs,Redirect chain URLs codes,Is redirect loop,No. of all inlinks,No. of redirect inlinks,First found at
+0,http://www.resumebabu.com/,,text/plain,FALSE,308,0,https://www.resumebabu.com/,307,,,"https://www.resumebabu.com/
+https://resumebabu.com/","307
+200",FALSE,0,0,
+0,http://resumebabu.com/,,text/plain,FALSE,308,0,https://resumebabu.com/,200,,,https://resumebabu.com/,200,FALSE,0,0,
+0,https://www.resumebabu.com/,,text/plain,FALSE,307,0,https://resumebabu.com/,200,,,https://resumebabu.com/,200,FALSE,1,1,

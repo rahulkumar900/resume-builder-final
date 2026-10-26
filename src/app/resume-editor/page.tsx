@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -20,9 +20,9 @@ import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 
 export const metadata: Metadata = {
-  title: 'Free Online Resume Editor: Real-Time A4 WYSIWYG Editor',
+  title: 'Free Online Resume Editor: A4 WYSIWYG',
   description:
-    'Edit your resume online with real-time A4 preview, dynamic section reordering, font customization, and instant ATS audit. Free vector PDF export.',
+    'Edit your resume online with real-time A4 preview, dynamic section reordering, font styling, and instant vector PDF downloads with zero paywalls.',
   keywords: [
     'resume editor',
     'resume editor online',

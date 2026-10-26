@@ -1,0 +1,6 @@
+"Issues
+: 
+Non-canonical page in sitemap",,,,,,,,,,,,,
+PR,URL,Title,Content type,Is rendered page,HTTP status code,Organic traffic,Is in sitemap,Canonical URL,Canonical URL code,Canonical URL patch,Canonical URL patch status,Referenced in sitemaps,No. of all inlinks
+13,https://resumebabu.com/contact,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,TRUE,https://resumebabu.com/,200,,,https://resumebabu.com/sitemap.xml,56
+13,https://resumebabu.com/create,ResumeBabu - 100% Free AI Resume Builder & ATS Checker,text/html; charset=utf-8,FALSE,200,0,TRUE,https://resumebabu.com/,200,,,https://resumebabu.com/sitemap.xml,57
