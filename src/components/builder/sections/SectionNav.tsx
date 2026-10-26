@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { SectionKey, NavItemConfig } from '@/types/builder';
 import {
   User,
@@ -41,6 +41,7 @@ import {
 import { ResumeData, SectionOrderConfig } from '@/types/resume';
 import { Button } from '@/components/ui/button';
 import { SectionReorderModal } from '@/components/builder/SectionReorderModal';
+import { calculateSectionProgress } from '@/lib/section-progress';
 import { cn } from '@/lib/utils';
 
 interface SectionNavProps {
@@ -297,6 +298,11 @@ export const SectionNav: React.FC<SectionNavProps> = ({
   const CurrentIcon = activeTab === 'all' ? Layers : currentItem?.icon || User;
   const itemCount = currentItem?.getCount ? currentItem.getCount(resume) : null;
 
+  // True section-specific progress based strictly on filled mandatory fields
+  const sectionProgress = useMemo(() => {
+    return calculateSectionProgress(activeTab, resume);
+  }, [activeTab, resume]);
+
   return (
     <div className="h-11 sm:h-12 border-b border-slate-200 dark:border-border px-3 sm:px-6 bg-white dark:bg-card flex items-center justify-between gap-2 sm:gap-3 shrink-0">
       {/* Left: Step Breadcrumb Indicator */}
@@ -340,15 +346,15 @@ export const SectionNav: React.FC<SectionNavProps> = ({
             )}
           </div>
 
-          {/* Completeness percentage */}
+          {/* Section Progress bar & percentage (strictly 0% if no content filled) */}
           <div className="flex items-center gap-1.5 pl-1.5 sm:pl-2 border-l border-slate-200 dark:border-border text-[11px] font-bold text-primary shrink-0">
             <div className="hidden sm:block w-8 sm:w-10 h-1.5 bg-slate-200 dark:bg-muted-foreground/20 rounded-full overflow-hidden shrink-0">
               <div
                 className="h-full bg-primary rounded-full transition-all duration-300"
-                style={{ width: `${completeness}%` }}
+                style={{ width: `${sectionProgress}%` }}
               />
             </div>
-            <span>{completeness}%</span>
+            <span className="font-mono">{sectionProgress}%</span>
           </div>
 
           <ChevronDown
@@ -362,10 +368,10 @@ export const SectionNav: React.FC<SectionNavProps> = ({
         {/* Quick-Jump Dropdown Menu */}
         {isDropdownOpen && (
           <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[calc(100vw-24px)] sm:w-80 max-w-sm bg-white dark:bg-[#161614] rounded-2xl shadow-2xl border border-slate-200/90 dark:border-white/[0.08] overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-150">
-            {/* Header: Progress Summary */}
+            {/* Header: Overall Progress Summary */}
             <div className="p-3 bg-slate-50/70 dark:bg-[#1a1a18] border-b border-slate-100 dark:border-white/[0.06]">
               <div className="flex items-center justify-between text-xs mb-1.5">
-                <span className="font-bold text-slate-900 dark:text-white">Resume Sections</span>
+                <span className="font-bold text-slate-900 dark:text-white">Resume Completeness</span>
                 <span className="font-bold text-primary text-[11px]">{completeness}% Complete</span>
               </div>
               <div className="w-full h-1.5 bg-slate-200/80 dark:bg-white/[0.08] rounded-full overflow-hidden">
@@ -376,7 +382,7 @@ export const SectionNav: React.FC<SectionNavProps> = ({
               </div>
             </div>
 
-            {/* Section Quick Jump List */}
+            {/* Section Quick Jump List with Mandatory-Field Progress */}
             <div className="max-h-64 overflow-y-auto p-1.5 space-y-0.5">
               {stepKeys.map((key) => {
                 const item = NAV_ITEMS.find((n) => n.key === key);
@@ -384,7 +390,8 @@ export const SectionNav: React.FC<SectionNavProps> = ({
                 const Icon = item.icon;
                 const count = item.getCount ? item.getCount(resume) : null;
                 const isSelected = activeTab === key;
-                const isFilled = count !== null ? count > 0 : Boolean(resume.personalInfo?.fullName);
+                const stepProg = calculateSectionProgress(key, resume);
+                const isComplete = stepProg >= 100;
 
                 return (
                   <button
@@ -421,9 +428,13 @@ export const SectionNav: React.FC<SectionNavProps> = ({
                           {count} {count === 1 ? 'item' : 'items'}
                         </span>
                       )}
-                      {isFilled && (
-                        <span className="w-4 h-4 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                      {isComplete ? (
+                        <span className="w-4 h-4 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center" title="100% complete">
                           <Check className="w-2.5 h-2.5 stroke-[3]" />
+                        </span>
+                      ) : (
+                        <span className="text-[10.5px] font-mono font-bold text-slate-400 dark:text-zinc-500">
+                          {stepProg}%
                         </span>
                       )}
                     </div>

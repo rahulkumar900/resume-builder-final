@@ -17,6 +17,7 @@ import { InternshipsSection } from './sections/InternshipsSection';
 import { FinalReviewSection } from './sections/FinalReviewSection';
 import { GenericSectionEditor } from './sections/GenericSectionEditor';
 import { ShareResumeModal } from '@/components/builder/ShareResumeModal';
+import { calculateOverallCompleteness } from '@/lib/section-progress';
 import {
   getTemplateLayout,
   getDefaultColumnForSection,
@@ -232,82 +233,7 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
     }
   };
 
-  // Calculate completeness score accurately based on filled section data
-  const calculateCompleteness = () => {
-    let score = 0;
-    const p = resume.personalInfo;
-    const isFresher = resume.experienceLevel === 'entry';
-
-    // 1. Personal Details (20-25% total)
-    if (p?.fullName?.trim()) score += 7;
-    if (p?.jobTitle?.trim()) score += 5;
-    if (p?.email?.trim()) score += 4;
-    if (p?.phone?.trim() || p?.location?.trim()) score += 4;
-    const cleanSummary = (p?.summary || '').replace(/<[^>]*>/g, '').trim();
-    if (cleanSummary.length > 20) score += 5;
-
-    if (isFresher) {
-      // Fresher: Prioritize Education (25%), Projects (25%), Skills (20%), Experience/Internship (5%)
-      const validEdu = (resume.education || []).filter(
-        (e) => e.school?.trim() || e.degree?.trim()
-      );
-      if (validEdu.length > 0) score += 25;
-
-      const validProj = (resume.projects || []).filter((pr) => pr.title?.trim());
-      if (validProj.length > 0) score += 25;
-
-      const totalSkills = (resume.skills || []).reduce(
-        (acc, cat) => acc + (cat.items?.length || 0),
-        0
-      );
-      if (totalSkills >= 5) score += 20;
-      else if (totalSkills >= 2) score += 12;
-      else if (totalSkills > 0) score += 6;
-
-      const validInt = (resume.internships || []).filter(
-        (i) => i.role?.trim() || i.company?.trim()
-      );
-      if (validInt.length > 0) score += 5;
-    } else {
-      // Experienced: Experience (25%), Education (15%), Skills (15%), Projects (10%)
-      const validExp = (resume.experience || []).filter(
-        (e) => e.role?.trim() || e.company?.trim()
-      );
-      if (validExp.length > 0) {
-        score += 15;
-        const hasHighlights = validExp.some(
-          (e) => e.highlights && e.highlights.length > 0 && e.highlights.some((h) => h.trim().length > 0)
-        );
-        if (hasHighlights) score += 10;
-      }
-
-      const validEdu = (resume.education || []).filter(
-        (e) => e.school?.trim() || e.degree?.trim()
-      );
-      if (validEdu.length > 0) score += 15;
-
-      const totalSkills = (resume.skills || []).reduce(
-        (acc, cat) => acc + (cat.items?.length || 0),
-        0
-      );
-      if (totalSkills >= 5) score += 15;
-      else if (totalSkills >= 2) score += 10;
-      else if (totalSkills > 0) score += 5;
-
-      const validProj = (resume.projects || []).filter((pr) => pr.title?.trim());
-      if (validProj.length > 0) score += 10;
-    }
-
-    // Certifications or Languages (10% total)
-    const hasCerts = (resume.certifications || []).length > 0;
-    const hasLangs = (resume.languages || []).length > 0;
-    if (hasCerts) score += 5;
-    if (hasLangs) score += 5;
-
-    return Math.min(100, score);
-  };
-
-  const completeness = calculateCompleteness();
+  const completeness = calculateOverallCompleteness(resume);
 
   const currentStepIndex = stepKeys.indexOf(activeTab as SectionKey);
 
