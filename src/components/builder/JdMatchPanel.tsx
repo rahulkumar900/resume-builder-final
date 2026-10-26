@@ -8,8 +8,7 @@ import {
   AlertTriangle,
   Plus,
   Check,
-  ChevronDown,
-  ChevronUp,
+  ChevronRight,
   FileText,
   Building,
   Briefcase,
@@ -18,13 +17,26 @@ import {
   Zap,
   ArrowRight,
   RotateCcw,
-  BookOpen,
-  Calendar,
+  GraduationCap,
+  UserCheck,
+  Link2,
+  Award,
+  BarChart3,
   X,
-  Copy,
+  ExternalLink,
+  ShieldAlert,
+  ListChecks,
+  AlertCircle,
+  Clock,
 } from 'lucide-react';
 import { ResumeData, SkillCategory } from '@/types/resume';
-import { matchJobDescriptionKeywords, KeywordMatchResult } from '@/lib/ats/keyword-matcher';
+import { SectionKey } from '@/types/builder';
+import {
+  analyzeJobDescriptionFit,
+  JdAnalysisReport,
+  MandatorySectionCheck,
+  JdRequirementItem,
+} from '@/lib/ats/jd-analyzer';
 import { SAMPLE_PRESET_JDS } from '@/lib/ai/job-tailor';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -34,16 +46,19 @@ interface JdMatchPanelProps {
   resume: ResumeData;
   onChange: (updated: Partial<ResumeData>) => void;
   onOpenTailorStudio?: (jd: string) => void;
+  onNavigateSection?: (sectionKey: SectionKey) => void;
   onClose?: () => void;
 }
+
+type JdMatchTab = 'overview' | 'mandatory' | 'requirements' | 'skills' | 'jd';
 
 export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
   resume,
   onChange,
   onOpenTailorStudio,
+  onNavigateSection,
   onClose,
 }) => {
-  // Initialize with resume.targetJob if already saved, or empty
   const [jobDescription, setJobDescription] = useState<string>(
     resume.targetJob?.jobDescription || ''
   );
@@ -54,10 +69,10 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
     resume.targetJob?.company || ''
   );
   const [selectedPresetId, setSelectedPresetId] = useState<string>('');
-  const [activeTab, setActiveTab] = useState<'match' | 'jd'>('match');
+  const [activeTab, setActiveTab] = useState<JdMatchTab>('overview');
   const [addedSkills, setAddedSkills] = useState<Set<string>>(new Set());
 
-  // Keep targetJob synced back into resume data on change (debounced)
+  // Debounced auto-save of targetJob into resume data
   useEffect(() => {
     const timer = setTimeout(() => {
       onChange({
@@ -71,57 +86,10 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
     return () => clearTimeout(timer);
   }, [jobDescription, targetTitle, companyName, onChange]);
 
-  // Run live keyword match against candidate resume
-  const keywordResult: KeywordMatchResult = useMemo(() => {
-    return matchJobDescriptionKeywords(jobDescription, resume);
+  // Master 360-degree JD Analysis Report
+  const report: JdAnalysisReport = useMemo(() => {
+    return analyzeJobDescriptionFit(jobDescription, resume);
   }, [jobDescription, resume]);
-
-  // Extract detected years of experience from JD text
-  const detectedJdExperience = useMemo(() => {
-    if (!jobDescription) return null;
-    const match = jobDescription.match(/(\d+)\+?\s*(?:-\s*(\d+))?\s*(?:to\s*(\d+))?\s*years?(?:\s+of)?\s+(?:hands-on\s+)?experience/i);
-    if (match) {
-      return match[1] ? `${match[1]}+ years` : null;
-    }
-    return null;
-  }, [jobDescription]);
-
-  // Calculate candidate's approximate total years of experience from resume
-  const candidateYearsExp = useMemo(() => {
-    const exps = resume.experience || [];
-    if (exps.length === 0) return 0;
-    // Count number of distinct roles / estimation
-    let totalMonths = 0;
-    exps.forEach((exp) => {
-      if (exp.startDate) {
-        const start = new Date(exp.startDate).getTime();
-        const end = exp.current || !exp.endDate ? Date.now() : new Date(exp.endDate).getTime();
-        if (!isNaN(start) && !isNaN(end) && end > start) {
-          totalMonths += (end - start) / (1000 * 60 * 60 * 24 * 30.4);
-        } else {
-          totalMonths += 12; // fallback estimate 1 year per role
-        }
-      } else {
-        totalMonths += 12;
-      }
-    });
-    return Math.max(1, Math.round(totalMonths / 12));
-  }, [resume.experience]);
-
-  // Check education degree mentioned in JD
-  const detectedDegree = useMemo(() => {
-    if (!jobDescription) return null;
-    const jdLower = jobDescription.toLowerCase();
-    if (jdLower.includes('master') || jdLower.includes('ms ') || jdLower.includes('m.s.')) return "Master's Degree";
-    if (jdLower.includes('bachelor') || jdLower.includes('bs ') || jdLower.includes('b.s.') || jdLower.includes('b.tech') || jdLower.includes('degree')) return "Bachelor's Degree";
-    return null;
-  }, [jobDescription]);
-
-  const candidateHighestDegree = useMemo(() => {
-    const edus = resume.education || [];
-    if (edus.length === 0) return null;
-    return edus[0].degree || edus[0].school || null;
-  }, [resume.education]);
 
   // Handle adding a missing skill directly to resume.skills
   const handleAddSkill = (skillName: string, category?: string) => {
@@ -130,7 +98,6 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
 
     let updated: SkillCategory[];
 
-    // Check if category exists
     const catIndex = currentCategories.findIndex(
       (c) => c.category?.toLowerCase() === targetCatName.toLowerCase()
     );
@@ -145,7 +112,6 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
         updated = currentCategories;
       }
     } else if (currentCategories.length > 0) {
-      // Append to the first category if target category not present
       const first = currentCategories[0];
       const items = first.items || [];
       if (!items.some((i) => i.toLowerCase() === skillName.toLowerCase())) {
@@ -157,7 +123,6 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
         updated = currentCategories;
       }
     } else {
-      // Create fresh category
       updated = [
         {
           id: `sk-${Date.now()}`,
@@ -171,7 +136,6 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
     onChange({ skills: updated });
   };
 
-  // Preset selector
   const handleSelectPreset = (presetId: string) => {
     setSelectedPresetId(presetId);
     const found = SAMPLE_PRESET_JDS.find((p) => p.id === presetId);
@@ -182,59 +146,52 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
     }
   };
 
-  const matchRate = keywordResult.matchRate;
+  const score = report.overallScore;
 
-  // Determine badge colors and verdict
+  // Visual styling for overall score
   const scoreBadge = useMemo(() => {
     if (!jobDescription || jobDescription.trim().length < 20) {
       return {
         label: 'No JD Entered',
-        verdict: 'Paste a job description to calculate your live keyword match rate.',
-        color: 'text-slate-500 dark:text-slate-400',
         stroke: '#94a3b8',
-        bg: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300',
+        bg: 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-border',
       };
     }
-    if (matchRate >= 80) {
+    if (score >= 85) {
       return {
-        label: 'Excellent Match',
-        verdict: 'High ATS keyword density. Your resume strongly matches recruiter scan criteria.',
-        color: 'text-emerald-600 dark:text-emerald-400',
+        label: 'Exceptional Fit',
         stroke: '#059669',
-        bg: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
+        bg: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
       };
     }
-    if (matchRate >= 60) {
+    if (score >= 70) {
       return {
-        label: 'Good Match',
-        verdict: 'Competitive candidate. Add 2–3 missing skills below to qualify for top-tier ranking.',
-        color: 'text-blue-600 dark:text-blue-400',
-        stroke: '#2563eb',
-        bg: 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+        label: 'Strong Fit',
+        stroke: '#10b981',
+        bg: 'bg-teal-50 dark:bg-teal-950/50 text-teal-800 dark:text-teal-300 border-teal-200 dark:border-teal-800',
       };
     }
-    if (matchRate >= 40) {
+    if (score >= 55) {
       return {
-        label: 'Fair Match',
-        verdict: 'Partial alignment. Essential hard skills from the job description are missing.',
-        color: 'text-amber-600 dark:text-amber-400',
+        label: 'Moderate Match',
         stroke: '#d97706',
-        bg: 'bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800',
+        bg: 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800',
       };
     }
     return {
-      label: 'Low Match',
-      verdict: 'High risk of ATS screen-out. Core job requirements are missing from your resume.',
-      color: 'text-rose-600 dark:text-rose-400',
+      label: 'High Risk / Gaps',
       stroke: '#e11d48',
-      bg: 'bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800',
+      bg: 'bg-rose-50 dark:bg-rose-950/50 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-800',
     };
-  }, [matchRate, jobDescription]);
+  }, [score, jobDescription]);
 
   // Circular gauge math (radius = 38, circumference = 2 * Math.PI * 38 = 238.76)
   const radius = 38;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (matchRate / 100) * circumference;
+  const strokeDashoffset = circumference - (score / 100) * circumference;
+
+  const missingMandatoryCount = report.mandatorySections.filter((s) => s.status === 'missing').length;
+  const missingReqCount = report.jdRequirements.filter((r) => r.status === 'missing').length;
 
   return (
     <div className="flex flex-col h-full bg-slate-50/70 dark:bg-background overflow-hidden min-h-0 font-sans">
@@ -246,13 +203,13 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
           </div>
           <div>
             <h2 className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span>Target Job Matcher</span>
+              <span>Job Fit & Requirements Audit</span>
               <span className="px-1.5 py-0.2 rounded-full text-[10px] font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60">
-                Live ATS Gauge
+                360° Recruiter Scan
               </span>
             </h2>
             <p className="text-[11px] text-slate-400 dark:text-muted-foreground">
-              Compare your resume against any job description side-by-side
+              Auditing mandatory sections, role requirements & technical keywords
             </p>
           </div>
         </div>
@@ -269,42 +226,103 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
         )}
       </div>
 
-      {/* Segmented Switcher (Match Overview vs Job Description Input) */}
-      <div className="px-4 py-2 bg-white dark:bg-card border-b border-slate-200/60 dark:border-border/60 shrink-0">
-        <div className="flex bg-slate-100 dark:bg-muted p-0.5 rounded-xl text-xs font-semibold gap-1">
+      {/* Segmented Sub-Tab Switcher */}
+      <div className="px-3 py-2 bg-white dark:bg-card border-b border-slate-200/60 dark:border-border/60 shrink-0">
+        <div className="flex bg-slate-100 dark:bg-muted p-0.5 rounded-xl text-xs font-semibold gap-0.5">
           <button
             type="button"
-            onClick={() => setActiveTab('match')}
+            onClick={() => setActiveTab('overview')}
             className={cn(
-              'flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg transition-all cursor-pointer text-xs font-semibold',
-              activeTab === 'match'
+              'flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-all cursor-pointer text-[11px] font-semibold min-h-[32px]',
+              activeTab === 'overview'
                 ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             )}
+            title="Fit Overview & Score"
           >
-            <Target className="w-3.5 h-3.5" />
-            <span>Match Rate & Keywords</span>
-            {keywordResult.totalJobKeywords > 0 && (
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-primary/10 text-primary">
-                {matchRate}%
+            <Target className="w-3.5 h-3.5 shrink-0" />
+            <span>Overview</span>
+            {score > 0 && (
+              <span className="px-1.5 py-0.1 rounded-full text-[10px] font-bold bg-primary/10 text-primary">
+                {score}%
               </span>
             )}
           </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('mandatory')}
+            className={cn(
+              'flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-all cursor-pointer text-[11px] font-semibold min-h-[32px]',
+              activeTab === 'mandatory'
+                ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
+                : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
+            )}
+            title="Mandatory Sections Health"
+          >
+            <ListChecks className="w-3.5 h-3.5 shrink-0" />
+            <span>Sections</span>
+            {missingMandatoryCount > 0 && (
+              <span className="px-1.5 py-0.1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-950/60 dark:text-rose-300">
+                {missingMandatoryCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('requirements')}
+            className={cn(
+              'flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-all cursor-pointer text-[11px] font-semibold min-h-[32px]',
+              activeTab === 'requirements'
+                ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
+                : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
+            )}
+            title="JD Requirements Audit (Experience, Degree, Certifications, Links)"
+          >
+            <Award className="w-3.5 h-3.5 shrink-0" />
+            <span>Criteria</span>
+            {missingReqCount > 0 && (
+              <span className="px-1.5 py-0.1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300">
+                {missingReqCount}
+              </span>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('skills')}
+            className={cn(
+              'flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-all cursor-pointer text-[11px] font-semibold min-h-[32px]',
+              activeTab === 'skills'
+                ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
+                : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
+            )}
+            title="Keywords & Hard Skills"
+          >
+            <Zap className="w-3.5 h-3.5 shrink-0" />
+            <span>Keywords</span>
+            {report.keywordMatch.missingKeywords.length > 0 && (
+              <span className="px-1.5 py-0.1 rounded-full text-[10px] font-bold bg-slate-200 dark:bg-muted text-slate-700 dark:text-slate-300">
+                {report.keywordMatch.missingKeywords.length}
+              </span>
+            )}
+          </button>
+
           <button
             type="button"
             onClick={() => setActiveTab('jd')}
             className={cn(
-              'flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg transition-all cursor-pointer text-xs font-semibold',
+              'flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg transition-all cursor-pointer text-[11px] font-semibold min-h-[32px]',
               activeTab === 'jd'
                 ? 'bg-white dark:bg-card text-foreground shadow-2xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
             )}
+            title="Target Job Description Input"
           >
-            <FileText className="w-3.5 h-3.5" />
-            <span>Job Description</span>
-            {jobDescription && (
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            )}
+            <FileText className="w-3.5 h-3.5 shrink-0" />
+            <span>Target JD</span>
+            {jobDescription && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />}
           </button>
         </div>
       </div>
@@ -312,7 +330,7 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
       {/* Scrollable Content Body */}
       <div className="flex-1 overflow-y-auto min-h-0 p-4 space-y-4">
         {activeTab === 'jd' ? (
-          /* TAB 1: Job Description Input & Preset Selector */
+          /* TAB: Target Job Description Input & Presets */
           <div className="space-y-4 animate-in fade-in duration-150">
             {/* Quick Presets */}
             <div className="space-y-2">
@@ -414,241 +432,535 @@ export const JdMatchPanel: React.FC<JdMatchPanelProps> = ({
               )}
               <Button
                 type="button"
-                onClick={() => setActiveTab('match')}
+                onClick={() => setActiveTab('overview')}
                 disabled={!jobDescription || jobDescription.trim().length < 10}
                 className="ml-auto bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs h-8 px-4 rounded-xl cursor-pointer"
               >
-                <span>Analyze Match Rate</span>
+                <span>Run 360° Fit Audit</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
               </Button>
             </div>
           </div>
-        ) : (
-          /* TAB 2: Live Match Rate & Keyword Analysis */
+        ) : !jobDescription || jobDescription.trim().length < 20 ? (
+          /* Empty State if no JD pasted */
+          <div className="p-6 rounded-2xl border border-dashed border-slate-300 dark:border-border bg-white dark:bg-card text-center space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 mx-auto flex items-center justify-center">
+              <Target className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white">
+                No Job Description Entered Yet
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 max-w-xs mx-auto leading-relaxed">
+                Paste the target job description to audit mandatory resume sections, experience requirements, degree match, and technical keywords.
+              </p>
+            </div>
+            <Button
+              type="button"
+              onClick={() => setActiveTab('jd')}
+              className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold h-8.5 px-4 rounded-xl cursor-pointer"
+            >
+              <Plus className="w-3.5 h-3.5 mr-1" />
+              <span>Paste Target Job Description</span>
+            </Button>
+          </div>
+        ) : activeTab === 'overview' ? (
+          /* TAB: Overview & Holistic Score */
           <div className="space-y-4 animate-in fade-in duration-150">
-            {/* Empty State if no JD pasted */}
-            {!jobDescription || jobDescription.trim().length < 20 ? (
-              <div className="p-6 rounded-2xl border border-dashed border-slate-300 dark:border-border bg-white dark:bg-card text-center space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 mx-auto flex items-center justify-center">
-                  <Target className="w-6 h-6" />
+            {/* 1. Main Radial Gauge Card */}
+            <div className="p-4 rounded-2xl border border-slate-200/90 dark:border-border bg-white dark:bg-card shadow-xs">
+              <div className="flex items-center gap-4">
+                {/* SVG Radial Progress Ring */}
+                <div className="relative w-24 h-24 shrink-0 flex items-center justify-center">
+                  <svg className="w-24 h-24 -rotate-90 transform" viewBox="0 0 96 96">
+                    <circle
+                      cx="48"
+                      cy="48"
+                      r={radius}
+                      stroke="currentColor"
+                      strokeWidth="7"
+                      fill="transparent"
+                      className="text-slate-100 dark:text-muted/40"
+                    />
+                    <circle
+                      cx="48"
+                      cy="48"
+                      r={radius}
+                      stroke={scoreBadge.stroke}
+                      strokeWidth="7"
+                      strokeLinecap="round"
+                      fill="transparent"
+                      strokeDasharray={circumference}
+                      strokeDashoffset={strokeDashoffset}
+                      className="transition-all duration-700 ease-out"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-xl font-black font-mono tracking-tight text-slate-900 dark:text-white">
+                      {score}%
+                    </span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                      Fit Score
+                    </span>
+                  </div>
                 </div>
+
+                {/* Verdict & Breakdown */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className={cn('px-2 py-0.5 rounded-full text-[10px] font-bold border', scoreBadge.bg)}>
+                      {report.verdict}
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-slate-400">
+                      Grade: {report.grade}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                    {report.verdictDescription}
+                  </p>
+                </div>
+              </div>
+
+              {/* 4 Pillars Breakdown Progress Bars */}
+              <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-border/60 grid grid-cols-2 gap-2.5">
+                {/* 1. Technical Keywords */}
+                <div
+                  onClick={() => setActiveTab('skills')}
+                  className="p-2.5 rounded-xl bg-slate-50/80 dark:bg-muted/30 border border-slate-200/60 dark:border-border/40 hover:border-slate-300 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center justify-between text-[10.5px]">
+                    <span className="font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                      <Zap className="w-3 h-3 text-amber-500" />
+                      <span>Keywords</span>
+                    </span>
+                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200">
+                      {report.breakdown.skillsMatch.score}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-muted h-1.5 rounded-full mt-1.5 overflow-hidden">
+                    <div
+                      className="bg-amber-500 h-full rounded-full transition-all duration-500"
+                      style={{ width: `${report.breakdown.skillsMatch.score}%` }}
+                    />
+                  </div>
+                  <div className="text-[9.5px] text-slate-400 mt-1">
+                    {report.breakdown.skillsMatch.matchedCount} matched, {report.breakdown.skillsMatch.missingCount} missing
+                  </div>
+                </div>
+
+                {/* 2. Mandatory Sections */}
+                <div
+                  onClick={() => setActiveTab('mandatory')}
+                  className="p-2.5 rounded-xl bg-slate-50/80 dark:bg-muted/30 border border-slate-200/60 dark:border-border/40 hover:border-slate-300 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center justify-between text-[10.5px]">
+                    <span className="font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                      <ListChecks className="w-3 h-3 text-emerald-500" />
+                      <span>Sections</span>
+                    </span>
+                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200">
+                      {report.breakdown.mandatorySections.score}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-muted h-1.5 rounded-full mt-1.5 overflow-hidden">
+                    <div
+                      className="bg-emerald-500 h-full rounded-full transition-all duration-500"
+                      style={{ width: `${report.breakdown.mandatorySections.score}%` }}
+                    />
+                  </div>
+                  <div className="text-[9.5px] text-slate-400 mt-1">
+                    {report.breakdown.mandatorySections.passedCount}/{report.breakdown.mandatorySections.totalCount} sections complete
+                  </div>
+                </div>
+
+                {/* 3. Experience Alignment */}
+                <div
+                  onClick={() => setActiveTab('requirements')}
+                  className="p-2.5 rounded-xl bg-slate-50/80 dark:bg-muted/30 border border-slate-200/60 dark:border-border/40 hover:border-slate-300 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center justify-between text-[10.5px]">
+                    <span className="font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                      <Clock className="w-3 h-3 text-blue-500" />
+                      <span>Experience</span>
+                    </span>
+                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200">
+                      {report.breakdown.experienceAlignment.score}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-muted h-1.5 rounded-full mt-1.5 overflow-hidden">
+                    <div
+                      className="bg-blue-500 h-full rounded-full transition-all duration-500"
+                      style={{ width: `${report.breakdown.experienceAlignment.score}%` }}
+                    />
+                  </div>
+                  <div className="text-[9.5px] text-slate-400 mt-1 truncate">
+                    ~{report.breakdown.experienceAlignment.actualYears} yrs vs {report.breakdown.experienceAlignment.requiredYears !== null ? `${report.breakdown.experienceAlignment.requiredYears}+ yrs` : 'Flexible'}
+                  </div>
+                </div>
+
+                {/* 4. Education & Credentials */}
+                <div
+                  onClick={() => setActiveTab('requirements')}
+                  className="p-2.5 rounded-xl bg-slate-50/80 dark:bg-muted/30 border border-slate-200/60 dark:border-border/40 hover:border-slate-300 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center justify-between text-[10.5px]">
+                    <span className="font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-1">
+                      <GraduationCap className="w-3 h-3 text-indigo-500" />
+                      <span>Education</span>
+                    </span>
+                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200">
+                      {report.breakdown.educationAlignment.score}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-muted h-1.5 rounded-full mt-1.5 overflow-hidden">
+                    <div
+                      className="bg-indigo-500 h-full rounded-full transition-all duration-500"
+                      style={{ width: `${report.breakdown.educationAlignment.score}%` }}
+                    />
+                  </div>
+                  <div className="text-[9.5px] text-slate-400 mt-1 truncate">
+                    {report.breakdown.educationAlignment.actualDegree || 'Listed in resume'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Top Action Items (Prioritized Fixes) */}
+            {report.actionItems.length > 0 && (
+              <div className="p-4 rounded-2xl border border-slate-200/90 dark:border-border bg-white dark:bg-card shadow-xs space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <ShieldAlert className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white">
+                      Top Priority Fixes for This Job ({report.actionItems.length})
+                    </h3>
+                  </div>
+                  <span className="text-[10px] text-slate-400">Recruiter Checklist</span>
+                </div>
+
+                <div className="space-y-2">
+                  {report.actionItems.slice(0, 4).map((action) => (
+                    <div
+                      key={action.id}
+                      className={cn(
+                        'p-2.5 rounded-xl border text-xs flex items-start justify-between gap-3 transition-colors',
+                        action.severity === 'critical'
+                          ? 'border-rose-200 dark:border-rose-900/50 bg-rose-50/50 dark:bg-rose-950/20'
+                          : 'border-slate-200 dark:border-border bg-slate-50/60 dark:bg-muted/30'
+                      )}
+                    >
+                      <div className="space-y-0.5 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span
+                            className={cn(
+                              'w-1.5 h-1.5 rounded-full shrink-0',
+                              action.severity === 'critical' ? 'bg-rose-500' : 'bg-amber-500'
+                            )}
+                          />
+                          <span className="font-bold text-slate-900 dark:text-white">
+                            {action.title}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed pl-3">
+                          {action.description}
+                        </p>
+                      </div>
+
+                      {action.sectionKey && onNavigateSection && (
+                        <button
+                          type="button"
+                          onClick={() => onNavigateSection(action.sectionKey!)}
+                          className="shrink-0 text-[10.5px] font-semibold text-emerald-700 dark:text-emerald-400 hover:underline flex items-center gap-0.5 cursor-pointer mt-0.5"
+                        >
+                          <span>Fix</span>
+                          <ChevronRight className="w-3 h-3" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 3. AI Tailor Banner */}
+            {onOpenTailorStudio && (
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50/80 via-teal-50/50 to-indigo-50/40 dark:from-emerald-950/20 dark:via-teal-950/20 dark:to-indigo-950/20 border border-emerald-200/70 dark:border-emerald-900/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
                 <div>
-                  <h3 className="text-xs font-bold text-slate-900 dark:text-white">
-                    No Job Description Entered Yet
-                  </h3>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 max-w-xs mx-auto leading-relaxed">
-                    Paste the target job requirements to see your real-time ATS match rate and missing keywords.
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white">
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Auto-Tailor Summary & Bullets?</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                    Generate custom accomplishment bullets injected with missing JD keywords.
                   </p>
                 </div>
                 <Button
                   type="button"
-                  onClick={() => setActiveTab('jd')}
-                  className="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold h-8.5 px-4 rounded-xl cursor-pointer"
+                  size="sm"
+                  onClick={() => onOpenTailorStudio(jobDescription)}
+                  className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs h-8 px-3 rounded-xl cursor-pointer shrink-0"
                 >
-                  <Plus className="w-3.5 h-3.5 mr-1" />
-                  <span>Paste Target Job Description</span>
+                  <Sparkles className="w-3 h-3 mr-1" />
+                  <span>Launch AI Studio</span>
                 </Button>
               </div>
-            ) : (
-              <>
-                {/* 1. The Real-time Radial Gauge Card */}
-                <div className="p-4 rounded-2xl border border-slate-200/90 dark:border-border bg-white dark:bg-card shadow-xs">
-                  <div className="flex items-center gap-4">
-                    {/* SVG Radial Progress Ring */}
-                    <div className="relative w-24 h-24 shrink-0 flex items-center justify-center">
-                      <svg className="w-24 h-24 -rotate-90 transform" viewBox="0 0 96 96">
-                        {/* Background Track */}
-                        <circle
-                          cx="48"
-                          cy="48"
-                          r={radius}
-                          stroke="currentColor"
-                          strokeWidth="7"
-                          fill="transparent"
-                          className="text-slate-100 dark:text-muted/40"
-                        />
-                        {/* Dynamic Progress Arc */}
-                        <circle
-                          cx="48"
-                          cy="48"
-                          r={radius}
-                          stroke={scoreBadge.stroke}
-                          strokeWidth="7"
-                          strokeLinecap="round"
-                          fill="transparent"
-                          strokeDasharray={circumference}
-                          strokeDashoffset={strokeDashoffset}
-                          className="transition-all duration-700 ease-out"
-                        />
-                      </svg>
-                      {/* Center Score Text */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="text-xl font-black font-mono tracking-tight text-slate-900 dark:text-white">
-                          {matchRate}%
+            )}
+          </div>
+        ) : activeTab === 'mandatory' ? (
+          /* TAB: Mandatory Sections Health Check */
+          <div className="space-y-3 animate-in fade-in duration-150">
+            <div className="p-3 bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-900/50 rounded-xl text-xs text-slate-700 dark:text-slate-300">
+              <strong className="font-bold text-emerald-800 dark:text-emerald-300">ATS Mandatory Sections Audit:</strong>{' '}
+              Recruiter screening systems require every resume to have fully populated contact info, summary, experience, education, and skills.
+            </div>
+
+            <div className="space-y-2.5">
+              {report.mandatorySections.map((sec) => (
+                <div
+                  key={sec.id}
+                  className={cn(
+                    'p-3.5 rounded-xl border bg-white dark:bg-card shadow-2xs space-y-2 transition-all',
+                    sec.status === 'passed'
+                      ? 'border-emerald-200/70 dark:border-emerald-900/40'
+                      : sec.status === 'warning'
+                      ? 'border-amber-200/80 dark:border-amber-900/40'
+                      : 'border-rose-200 dark:border-rose-900/60'
+                  )}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      {sec.status === 'passed' ? (
+                        <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                          <Check className="w-3 h-3 stroke-[3]" />
+                        </div>
+                      ) : sec.status === 'warning' ? (
+                        <div className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                          <AlertTriangle className="w-3 h-3" />
+                        </div>
+                      ) : (
+                        <div className="w-5 h-5 rounded-full bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+                          <X className="w-3 h-3 stroke-[3]" />
+                        </div>
+                      )}
+                      <div>
+                        <span className="text-xs font-bold text-slate-900 dark:text-white">
+                          {sec.name}
                         </span>
-                        <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">
-                          Match
-                        </span>
+                        {sec.isRequiredByJd && (
+                          <span className="ml-2 text-[9px] uppercase tracking-wider font-bold text-slate-400">
+                            Required
+                          </span>
+                        )}
                       </div>
                     </div>
 
-                    {/* Verdict & Stat Breakdown */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className={cn('px-2 py-0.5 rounded-full text-[10px] font-bold border', scoreBadge.bg)}>
-                          {scoreBadge.label}
-                        </span>
-                      </div>
-                      <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                        {scoreBadge.verdict}
-                      </p>
-
-                      <div className="flex items-center gap-3 mt-2 text-[10.5px] font-mono text-slate-400">
-                        <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
-                          <Check className="w-3 h-3 stroke-[2.5]" />
-                          {keywordResult.matchedKeywords.length} Matched
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1 text-rose-600 dark:text-rose-400 font-semibold">
-                          <AlertTriangle className="w-3 h-3" />
-                          {keywordResult.missingKeywords.length} Missing
-                        </span>
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
+                        {sec.score}%
+                      </span>
+                      {onNavigateSection && (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => onNavigateSection(sec.sectionKey)}
+                          className="h-6 px-2 text-[10px] font-semibold rounded-lg"
+                        >
+                          Edit
+                        </Button>
+                      )}
                     </div>
                   </div>
 
-                  {/* Experience & Degree Quick Sanity Check */}
-                  {(detectedJdExperience || detectedDegree) && (
-                    <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-border/60 grid grid-cols-2 gap-2 text-xs">
-                      {detectedJdExperience && (
-                        <div className="p-2 rounded-xl bg-slate-50 dark:bg-muted/40 border border-slate-200/60 dark:border-border/40">
-                          <div className="text-[10px] text-slate-400 font-semibold">Experience Target</div>
-                          <div className="font-bold text-slate-800 dark:text-slate-200 mt-0.5">
-                            {detectedJdExperience}
-                          </div>
-                          <div className="text-[9.5px] text-emerald-600 dark:text-emerald-400 mt-0.5">
-                            Your resume: ~{candidateYearsExp} yrs
-                          </div>
-                        </div>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                    {sec.recommendation}
+                  </p>
+
+                  {sec.missingItems.length > 0 && (
+                    <div className="flex flex-wrap gap-1 pt-0.5">
+                      {sec.missingItems.map((item, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200/80 dark:border-rose-900/50"
+                        >
+                          ⚠ {item}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : activeTab === 'requirements' ? (
+          /* TAB: Specific JD Requirements Audit */
+          <div className="space-y-3 animate-in fade-in duration-150">
+            <div className="p-3 bg-blue-50/60 dark:bg-blue-950/30 border border-blue-200/80 dark:border-blue-900/50 rounded-xl text-xs text-slate-700 dark:text-slate-300">
+              <strong className="font-bold text-blue-800 dark:text-blue-300">Job Qualification Matching:</strong>{' '}
+              Verifying candidate experience duration, educational degree, role title, certifications, and portfolio links directly against criteria parsed from the JD.
+            </div>
+
+            <div className="space-y-2.5">
+              {report.jdRequirements.map((req) => (
+                <div
+                  key={req.id}
+                  className="p-3.5 rounded-xl border border-slate-200/90 dark:border-border bg-white dark:bg-card shadow-2xs space-y-2"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 min-w-0">
+                      {req.status === 'matched' ? (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      ) : req.status === 'partial' ? (
+                        <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" />
+                      ) : (
+                        <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0" />
                       )}
-                      {detectedDegree && (
-                        <div className="p-2 rounded-xl bg-slate-50 dark:bg-muted/40 border border-slate-200/60 dark:border-border/40">
-                          <div className="text-[10px] text-slate-400 font-semibold">Education Target</div>
-                          <div className="font-bold text-slate-800 dark:text-slate-200 mt-0.5 truncate">
-                            {detectedDegree}
-                          </div>
-                          <div className="text-[9.5px] text-emerald-600 dark:text-emerald-400 mt-0.5 truncate">
-                            {candidateHighestDegree || 'Not specified'}
-                          </div>
-                        </div>
+                      <span className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                        {req.label}
+                      </span>
+                    </div>
+
+                    <span
+                      className={cn(
+                        'px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0',
+                        req.status === 'matched'
+                          ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200'
+                          : req.status === 'partial'
+                          ? 'bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300 border border-amber-200'
+                          : 'bg-rose-50 text-rose-700 dark:bg-rose-950/50 dark:text-rose-300 border border-rose-200'
+                      )}
+                    >
+                      {req.status === 'matched' ? '✓ Matched' : req.status === 'partial' ? '⚠ Partial' : '✕ Missing'}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-[11px] p-2 rounded-lg bg-slate-50 dark:bg-muted/40 font-mono">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block font-sans">JD Expected</span>
+                      <span className="font-semibold text-slate-700 dark:text-slate-200">{req.expected}</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block font-sans">Resume Actual</span>
+                      <span className="font-semibold text-slate-700 dark:text-slate-200 truncate block">
+                        {req.actual}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                    {req.detail}
+                  </p>
+
+                  {req.recommendation && (
+                    <div className="flex items-center justify-between text-[11px] pt-1">
+                      <span className="text-amber-700 dark:text-amber-400 text-[10.5px]">
+                        💡 {req.recommendation}
+                      </span>
+                      {req.sectionKey && onNavigateSection && (
+                        <button
+                          type="button"
+                          onClick={() => onNavigateSection(req.sectionKey!)}
+                          className="text-emerald-700 dark:text-emerald-400 font-semibold text-[10px] hover:underline cursor-pointer ml-2 shrink-0"
+                        >
+                          Go to section
+                        </button>
                       )}
                     </div>
                   )}
                 </div>
-
-                {/* 2. Missing Keywords & 1-Click "Add to Skills" */}
-                {keywordResult.missingKeywords.length > 0 && (
-                  <div className="p-4 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 bg-white dark:bg-card shadow-xs space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <AlertTriangle className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
-                        <h3 className="text-xs font-bold text-slate-900 dark:text-white">
-                          Missing High-Priority Keywords ({keywordResult.missingKeywords.length})
-                        </h3>
-                      </div>
-                      <span className="text-[10px] text-slate-400 font-medium">Click + to add</span>
-                    </div>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
-                      Recruiters and ATS scan for these exact terms. Click <strong className="font-semibold text-emerald-700 dark:text-emerald-400">+ Add</strong> to append them to your skills list and immediately boost your score:
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {keywordResult.missingKeywords.map((item) => {
-                        const isJustAdded = addedSkills.has(item.keyword);
-                        return (
-                          <button
-                            key={item.keyword}
-                            type="button"
-                            onClick={() => handleAddSkill(item.keyword, item.category)}
-                            className={cn(
-                              'group inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer',
-                              isJustAdded
-                                ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 font-semibold'
-                                : 'bg-rose-50/60 dark:bg-rose-950/20 hover:bg-emerald-50 hover:border-emerald-300 border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300 hover:text-emerald-700'
-                            )}
-                            title={`Click to add "${item.keyword}" to your resume skills`}
-                          >
-                            {isJustAdded ? (
-                              <Check className="w-3 h-3 text-emerald-600" />
-                            ) : (
-                              <Plus className="w-3 h-3 text-rose-500 group-hover:text-emerald-600 transition-colors" />
-                            )}
-                            <span>{item.keyword}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* TAB: Keywords & Hard Skills with 1-Click Ingestion */
+          <div className="space-y-4 animate-in fade-in duration-150">
+            {/* 1. Missing Keywords */}
+            {report.keywordMatch.missingKeywords.length > 0 ? (
+              <div className="p-4 rounded-2xl border border-rose-200/80 dark:border-rose-900/40 bg-white dark:bg-card shadow-xs space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <AlertTriangle className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white">
+                      Missing High-Priority Keywords ({report.keywordMatch.missingKeywords.length})
+                    </h3>
                   </div>
-                )}
+                  <span className="text-[10px] text-slate-400 font-medium">Click + to add</span>
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Recruiters and ATS scan for these exact terms. Click <strong className="font-semibold text-emerald-700 dark:text-emerald-400">+ Add</strong> to append them to your skills list and immediately boost your score:
+                </p>
 
-                {/* 3. Matched Keywords Verified in Resume */}
-                {keywordResult.matchedKeywords.length > 0 && (
-                  <div className="p-4 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/40 bg-white dark:bg-card shadow-xs space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                        <h3 className="text-xs font-bold text-slate-900 dark:text-white">
-                          Verified Matched Keywords ({keywordResult.matchedKeywords.length})
-                        </h3>
-                      </div>
-                      <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold font-mono">
-                        ✓ In Resume
-                      </span>
-                    </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {report.keywordMatch.missingKeywords.map((item) => {
+                    const isJustAdded = addedSkills.has(item.keyword);
+                    return (
+                      <button
+                        key={item.keyword}
+                        type="button"
+                        onClick={() => handleAddSkill(item.keyword, item.category)}
+                        className={cn(
+                          'group inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all cursor-pointer',
+                          isJustAdded
+                            ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 font-semibold'
+                            : 'bg-rose-50/60 dark:bg-rose-950/20 hover:bg-emerald-50 hover:border-emerald-300 border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300 hover:text-emerald-700'
+                        )}
+                        title={`Click to add "${item.keyword}" to your resume skills`}
+                      >
+                        {isJustAdded ? (
+                          <Check className="w-3 h-3 text-emerald-600" />
+                        ) : (
+                          <Plus className="w-3 h-3 text-rose-500 group-hover:text-emerald-600 transition-colors" />
+                        )}
+                        <span>{item.keyword}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="p-4 rounded-2xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/40 dark:bg-emerald-950/20 text-center space-y-1">
+                <CheckCircle2 className="w-6 h-6 text-emerald-600 mx-auto" />
+                <h4 className="text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                  All Key Technical Skills Matched!
+                </h4>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Your resume contains all primary industry keywords detected in the Job Description.
+                </p>
+              </div>
+            )}
 
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {keywordResult.matchedKeywords.map((item) => (
-                        <span
-                          key={item.keyword}
-                          className="inline-flex items-center gap-1 px-2 py-0.8 rounded-lg text-xs font-medium bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300"
-                        >
-                          <Check className="w-2.5 h-2.5 text-emerald-600 stroke-[3]" />
-                          <span>{item.keyword}</span>
-                          {item.count > 1 && (
-                            <span className="text-[10px] font-mono opacity-70">
-                              ({item.count}x)
-                            </span>
-                          )}
-                        </span>
-                      ))}
-                    </div>
+            {/* 2. Matched Keywords */}
+            {report.keywordMatch.matchedKeywords.length > 0 && (
+              <div className="p-4 rounded-2xl border border-emerald-200/80 dark:border-emerald-900/40 bg-white dark:bg-card shadow-xs space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white">
+                      Verified Matched Keywords ({report.keywordMatch.matchedKeywords.length})
+                    </h3>
                   </div>
-                )}
+                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold font-mono">
+                    ✓ In Resume
+                  </span>
+                </div>
 
-                {/* 4. Instant Action to Launch AI Tailor Studio */}
-                {onOpenTailorStudio && (
-                  <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-50/80 via-teal-50/50 to-indigo-50/40 dark:from-emerald-950/20 dark:via-teal-950/20 dark:to-indigo-950/20 border border-emerald-200/70 dark:border-emerald-900/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-                    <div>
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white">
-                        <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>Need tailored bullet points?</span>
-                      </div>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                        Let AI automatically rewrite your summary and experience bullets for this role.
-                      </p>
-                    </div>
-                    <Button
-                      type="button"
-                      size="sm"
-                      onClick={() => onOpenTailorStudio(jobDescription)}
-                      className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs h-8 px-3 rounded-xl cursor-pointer shrink-0"
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {report.keywordMatch.matchedKeywords.map((item) => (
+                    <span
+                      key={item.keyword}
+                      className="inline-flex items-center gap-1 px-2 py-0.8 rounded-lg text-xs font-medium bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/60 text-emerald-800 dark:text-emerald-300"
                     >
-                      <Sparkles className="w-3 h-3 mr-1" />
-                      <span>Launch AI Studio</span>
-                    </Button>
-                  </div>
-                )}
-              </>
+                      <Check className="w-2.5 h-2.5 text-emerald-600 stroke-[3]" />
+                      <span>{item.keyword}</span>
+                      {item.count > 1 && (
+                        <span className="text-[10px] font-mono opacity-70">
+                          ({item.count}x)
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         )}

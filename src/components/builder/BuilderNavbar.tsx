@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 import { ResumeData } from '@/types/resume';
 import { analyzeResumeAts } from '@/lib/ats/ats-analyzer';
-import { matchJobDescriptionKeywords } from '@/lib/ats/keyword-matcher';
+import { analyzeJobDescriptionFit } from '@/lib/ats/jd-analyzer';
 import { checkGrammar } from '@/lib/grammar/grammarEngine';
 import { Button } from '@/components/ui/button';
 import { UserMenu } from '@/components/auth/UserMenu';
@@ -101,11 +101,13 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
     return analyzeResumeAts(resume);
   }, [resume]);
 
-  const jdMatchRate = useMemo(() => {
+  const jdFitReport = useMemo(() => {
     const jd = resume.targetJob?.jobDescription;
     if (!jd || jd.trim().length < 20) return null;
-    return matchJobDescriptionKeywords(jd, resume).matchRate;
+    return analyzeJobDescriptionFit(jd, resume);
   }, [resume]);
+
+  const jdMatchRate = jdFitReport ? jdFitReport.overallScore : null;
 
   const grammarIssuesCount = useMemo(() => {
     let count = 0;

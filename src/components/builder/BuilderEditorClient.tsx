@@ -423,6 +423,10 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               resume={resume}
               onChange={handleChange}
               onOpenTailorStudio={() => setIsJobTailorModalOpen(true)}
+              onNavigateSection={(sec) => {
+                setEditorMode('content');
+                router.push(`/builder/${id}?step=${sec}`);
+              }}
               onClose={() => setEditorMode('content')}
             />
           )}
