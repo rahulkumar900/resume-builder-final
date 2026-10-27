@@ -110,16 +110,17 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'canva',
     name: 'Canva',
     tagline: 'Why Canva Resumes Fail ATS — The Recruiter-Approved Alternative',
-    title: 'Canva Resume Alternative: 100% ATS Safe',
-    metaDescription: 'Discover why 75% of Canva resumes fail ATS parsers. Build beautiful, recruiter-approved resumes with guaranteed ATS parsing and free PDF downloads.',
+    title: 'Canva Resume Builder & CV Maker Alternative',
+    metaDescription: 'Why 75% of Canva resumes fail ATS bots. Free Canva resume alternative & Canva CV maker with guaranteed ATS parsing and instant vector PDF downloads.',
     targetKeywords: [
       'canva resume builder',
-      'canva resume maker',
-      'canvas resume builder',
-      'resume maker canva',
+      'canva cv maker',
+      'canva resume alternative',
       'canva resume ats friendly',
       'canva vs ats resume',
-      'canva resume alternative'
+      'canvas resume builder',
+      'resume maker canva',
+      'canva cv alternative'
     ],
     competitorPrice: 'Free (with paid Canva Pro elements)',
     competitorPricingModel: 'Freemium graphic design tool with paid templates and assets',
@@ -165,8 +166,12 @@ export const COMPETITORS: CompetitorComparison[] = [
         answer: 'Generally, no. Most Canva templates use two-column floating text frames, icons for contact info, and graphical skill bars that automated ATS systems cannot parse, resulting in immediate algorithmic rejection.'
       },
       {
+        question: 'Can I use ResumeBabu as a Canva CV maker alternative?',
+        answer: 'Yes! ResumeBabu serves as the ultimate Canva CV maker alternative for European, UK, and global corporate roles. Our 30+ templates look clean, modern, and designer-crafted while maintaining strict ATS compliance.'
+      },
+      {
         question: 'Can I make my resume look modern without using Canva?',
-        answer: 'Yes! ResumeBabu offers 12 modern, beautifully designed templates (like Prawira, Amelia, and Stockholm) that pair contemporary typography with 100% ATS compliance.'
+        answer: 'Yes! ResumeBabu offers modern, beautifully designed templates (like Stockholm, Vienna, and Amelia) that pair contemporary typography with 100% ATS compliance.'
       },
       {
         question: 'Does ResumeBabu support vector PDF export?',
@@ -178,15 +183,16 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'teal',
     name: 'Teal',
     tagline: 'The Free Alternative to Teal Resume Builder & Job Tracker',
-    title: 'Free Teal Alternative: Unlimited AI Resumes',
-    metaDescription: 'Looking for a free alternative to Teal? Get unlimited AI resume tailoring, Google XYZ bullet points, and PDF exports without a $29/mo subscription.',
+    title: 'Free Teal Resume Builder & AI Alternative',
+    metaDescription: 'Free alternative to Teal resume builder. Get unlimited AI resume tailoring, Google XYZ metrics, and instant vector PDF exports without a $29/mo paywall.',
     targetKeywords: [
       'teal resume builder',
-      'teal alternative',
-      'teal vs resume builder',
-      'is teal resume builder free',
+      'free alternative to teal',
+      'teal alternative free',
       'teal resume cost',
-      'teal free alternative'
+      'is teal resume builder free',
+      'teal vs resume builder',
+      'teal ai resume builder'
     ],
     competitorPrice: '$29/month for Teal+',
     competitorPricingModel: 'Basic free tier with strict keyword and AI limits, $29/mo for full features',
@@ -194,7 +200,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     atsPassRateCompetitor: '92%',
     atsPassRateOurPlatform: '98%',
     heroHeadline: 'Everything You Love About Teal, Without the $29/Month Subscription',
-    heroSubheadline: 'Get unlimited AI job description keyword matching, quantifiable bullet enhancements, and 12 ATS-compliant templates 100% free.',
+    heroSubheadline: 'Get unlimited AI job description keyword matching, quantifiable bullet enhancements, and 30+ ATS-compliant templates 100% free.',
     whyCandidatesLeave: [
       {
         title: '$29/Month Subscription Barrier',
@@ -215,7 +221,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     featureMatrix: [
       { feature: 'ATS Keyword Matching', competitor: 'Limited in Free (Unlimited in $29/mo)', ourPlatform: 'Unlimited & Free' },
       { feature: 'AI Bullet Rewriting (Google X-Y-Z)', competitor: '5 credits in Free', ourPlatform: 'Unlimited Free' },
-      { feature: 'Template Variety', competitor: '4 basic styles', ourPlatform: '12 ATS-Tested Templates' },
+      { feature: 'Template Variety', competitor: '4 basic styles', ourPlatform: '30+ ATS-Tested Templates' },
       { feature: 'Export Formats', competitor: 'PDF & Docx', ourPlatform: 'High-Res Vector PDF' },
       { feature: 'Indian & Regional Calibrated Roles', competitor: false, ourPlatform: true, note: 'Includes Naukri and Indian campus formats.' }
     ],
@@ -228,7 +234,11 @@ export const COMPETITORS: CompetitorComparison[] = [
     faqs: [
       {
         question: 'Is Teal resume builder free?',
-        answer: 'Teal has a free tier, but it limits your access to AI assistance, keyword matching frequency, and advanced tailoring. Full access requires Teal+ at $29/month.'
+        answer: 'Teal has a basic free tier, but it strictly restricts AI bullet generation, keyword tailoring frequency, and advanced match scoring behind Teal+ at $29/month.'
+      },
+      {
+        question: 'What is the best free alternative to Teal resume builder?',
+        answer: 'ResumeBabu is the leading 100% free alternative to Teal. You get unlimited AI job description tailoring, Google XYZ achievement bullet rewrites, and instant vector PDF downloads without paying $29/month.'
       },
       {
         question: 'How does ResumeBabu compare to Teal for job tailoring?',
