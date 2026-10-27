@@ -40,6 +40,21 @@ const BLOG_SEO_TITLES: Record<string, string> = {
   'resume-vs-cv-complete-guide': 'Resume vs CV: Differences & Format Guide',
 };
 
+const BLOG_SEO_DESCRIPTIONS: Record<string, string> = {
+  'how-to-beat-applicant-tracking-systems-2026':
+    'Over 75% of resumes fail ATS screening. Learn the exact formatting rules, parsing secrets, and keyword strategies to beat corporate ATS filters in 2026.',
+  'how-to-write-resume-with-no-experience':
+    'Learn how to write a standout resume with no experience. Proven tips for students and freshers to showcase projects, skills, and land interviews.',
+  '120-high-impact-resume-action-verbs':
+    'Replace passive duty words with 120+ power verbs recruiters love. Categorized by role and impact to make your resume stand out and pass ATS screening.',
+  'top-10-resume-mistakes-costing-interviews':
+    'Avoid the top 10 resume mistakes costing you job interviews. Discover common formatting, bullet point, and ATS errors with quick fixes to pass screening.',
+  'how-to-tailor-resume-to-job-description':
+    'Learn how to tailor your resume to any job description in 5 minutes. Match top keywords, beat ATS parsers, and boost your callback rate above 20%.',
+  'resume-vs-cv-complete-guide':
+    'Understand key differences between a Resume and a CV. Learn length, layout, and global standards (US, UK, EU, India) to choose the right format.',
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
@@ -51,14 +66,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const seoTitle = BLOG_SEO_TITLES[slug] || post.title.slice(0, 42);
+  const seoDescription = BLOG_SEO_DESCRIPTIONS[slug] || post.excerpt;
 
   return {
     title: seoTitle,
-    description: post.excerpt,
+    description: seoDescription,
     keywords: post.keywords,
     openGraph: {
       title: `${seoTitle} | ResumeBabu`,
-      description: post.excerpt,
+      description: seoDescription,
       type: 'article',
       url: `https://resumebabu.com/blog/${post.slug}`,
       publishedTime: post.publishedAt,
@@ -76,7 +92,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: 'summary_large_image',
       title: `${seoTitle} | ResumeBabu`,
-      description: post.excerpt,
+      description: seoDescription,
       images: ['https://resumebabu.com/twitter-image'],
     },
     alternates: {

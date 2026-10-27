@@ -121,7 +121,7 @@ export const metadata: Metadata = {
     template: '%s | ResumeBabu',
   },
   description:
-    'Build an ATS-compliant resume tailored to any job description. 100% free resume builder with 30 ATS templates, real-time A4 pagination, and vector PDF export without paywalls.',
+    'Build an ATS-compliant resume tailored to any job. Free with 30 ATS templates, real-time A4 pagination, and instant vector PDF export without paywalls.',
   applicationName: 'ResumeBabu',
   authors: [{ name: 'ResumeBabu Editorial Team', url: 'https://resumebabu.com/about' }],
   keywords: [

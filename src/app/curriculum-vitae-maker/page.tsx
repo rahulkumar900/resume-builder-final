@@ -21,7 +21,7 @@ import { TEMPLATES } from '@/lib/templates';
 export const metadata: Metadata = {
   title: 'Curriculum Vitae Maker: Academic & Medical',
   description:
-    'Build academic-standard Curriculum Vitaes for free. Dedicated sections for peer-reviewed publications, clinical rotations, grants, and research credentials.',
+    'Build academic Curriculum Vitaes for free. Dedicated sections for peer-reviewed publications, clinical rotations, grants, and research credentials.',
   keywords: [
     'curriculum vitae maker',
     'academic cv maker',
