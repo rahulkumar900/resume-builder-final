@@ -145,6 +145,14 @@ export default function ResumeMakerPage() {
           text: 'Yes. All templates in our resume maker are formatted to pass corporate ATS scanners like Workday, Taleo, and Greenhouse with 98%+ parsing accuracy.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'How does ResumeBabu differ from Zety and Rezi?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Unlike Zety which requires a recurring $24.95/month subscription to download your resume, or Rezi which meters exports with credit limits, ResumeBabu provides completely free, unlimited vector PDF downloads with no credit cards and zero watermarks.',
+        },
+      },
     ],
   };
 
@@ -176,8 +184,7 @@ export default function ResumeMakerPage() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
-              Make a job-winning resume in{' '}
-              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">3 minutes</span>.
+              The Free <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Online Resume Maker</span> for ATS-approved resumes.
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
@@ -263,6 +270,65 @@ export default function ResumeMakerPage() {
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Click download and receive your crisp vector PDF instantly. No surprise charges, no blurry scans, no watermarks.
               </p>
+            </div>
+          </div>
+
+          {/* Competitor Comparison Matrix */}
+          <div className="mt-16 bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs overflow-hidden">
+            <div className="mb-6 space-y-1">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">
+                FAIR COMPARISON
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                ResumeBabu vs. Zety vs. Rezi
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                Compare features, pricing, and download policies across top online resume makers.
+              </p>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-border text-slate-500 dark:text-slate-400 font-mono text-xs">
+                    <th className="py-3 px-4 font-semibold">Feature</th>
+                    <th className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06] rounded-t-xl">ResumeBabu</th>
+                    <th className="py-3 px-4 font-semibold">Zety</th>
+                    <th className="py-3 px-4 font-semibold">Rezi</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border text-slate-700 dark:text-slate-300">
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Vector PDF Download</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">100% Free Forever</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">$24.95/mo Paywall</td>
+                    <td className="py-3.5 px-4 text-slate-500">Limited Free Credits</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Auto-Renewing Trials</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Never (No Credit Card)</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">Yes ($2.70 14-day Trap)</td>
+                    <td className="py-3.5 px-4 text-slate-500">Tiered Subscription</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Live A4 Page-Split Visualizer</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Real-time Boundary Check</td>
+                    <td className="py-3.5 px-4 text-slate-400">Basic Preview</td>
+                    <td className="py-3.5 px-4 text-slate-400">Fixed Box Model</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">JD Match Rate Analysis</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Free Built-in Gauge</td>
+                    <td className="py-3.5 px-4 text-slate-400">Not Available</td>
+                    <td className="py-3.5 px-4 text-slate-500">Paid ($29/mo)</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Watermark on Downloads</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Zero Watermarks</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">Locked Until Paid</td>
+                    <td className="py-3.5 px-4 text-slate-500">None</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
