@@ -26,7 +26,7 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Builder: 100% Free PDF Download (No Paywalls)',
+  title: 'Free Resume Builder: 100% Free PDF Download',
   description:
     'Build an ATS-friendly resume for free. 100% free resume builder with real-time A4 pagination, instant vector PDF export, and zero hidden paywalls.',
   keywords: [
