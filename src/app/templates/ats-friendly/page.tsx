@@ -25,10 +25,13 @@ export const metadata: Metadata = {
     'Free ATS-friendly resume templates guaranteed to pass Workday, Greenhouse, and Taleo. Clean layouts with instant vector PDF download and zero paywalls.',
   keywords: [
     'ats friendly resume template',
+    'ats resume builder',
     'ats friendly cv template',
-    'ats resume template free',
-    'best ats resume template',
+    'free ats resume builder',
     'ats compliant resume template',
+    'ats resume checker',
+    'ats resume maker',
+    'best ats resume template',
     'applicant tracking system resume template',
     'workday friendly resume template'
   ],
@@ -166,7 +169,7 @@ export default function AtsFriendlyTemplatesPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              Don&apos;t let an algorithm reject your application before a human ever sees it. Choose from tested ATS templates with clean typography and zero unparseable graphics.
+              Don&apos;t let an algorithm reject your application before a human ever sees it. Choose from tested ATS compliant resume templates and ATS friendly CV templates with clean typography, real-time ATS resume checker scoring, and zero paywalls.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">

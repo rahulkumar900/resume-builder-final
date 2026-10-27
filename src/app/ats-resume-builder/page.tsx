@@ -25,25 +25,24 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free ATS Resume Builder: 100% Pass Rate',
+  title: 'Free ATS Resume Builder & ATS Template',
   description:
-    'Free ATS resume builder engineered to pass Workday, Greenhouse, Taleo, and Lever. Build and download ATS-friendly resumes in vector PDF with no paywalls.',
+    'Free ATS resume builder & ATS friendly resume template. Create ATS compliant resumes with built-in ATS resume checker and 100% free vector PDF download.',
   keywords: [
     'ats resume builder',
+    'ats friendly resume template',
     'free ats resume builder',
-    'ats cv maker',
+    'ats compliant resume template',
+    'ats friendly cv template',
+    'ats resume checker',
     'ats resume maker',
-    'best ats resume builder',
-    'ats friendly resume builder free',
-    'ats compliant resume builder',
+    'ats friendly resume maker',
     'workday ats resume builder',
-    'resume builder ats free',
-    'ats resume creator',
     'applicant tracking system resume builder',
     'ats resume format'
   ],
   openGraph: {
-    title: 'Free ATS Resume Builder - 98% Pass Rate on Workday & Taleo',
+    title: 'Free ATS Resume Builder & ATS Template | ResumeBabu',
     description:
       'Engineered with strict semantic HTML, standard section hierarchies, and instant keyword auditing. Download your free ATS resume PDF now.',
     type: 'website',
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free ATS Resume Builder - 98% Pass Rate on Workday & Taleo',
+    title: 'Free ATS Resume Builder & ATS Template | ResumeBabu',
     description:
       'Engineered with strict semantic HTML, standard section hierarchies, and instant keyword auditing. Download your free ATS resume PDF now.',
     images: ['https://resumebabu.com/og-image.png'],
@@ -134,10 +133,34 @@ export default function AtsResumeBabuPage() {
       },
       {
         '@type': 'Question',
-        name: 'Is this ATS resume builder really 100% free?',
+        name: 'What is an ATS compliant resume template?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Unlike sites that charge $24.95 at the final download screen, ResumeBabu allows you to create, format, and download high-resolution vector PDF resumes with no credit card, no paywall, and no watermarks.',
+          text: 'An ATS compliant resume template is formatted to eliminate parsing errors. It uses standard font families (Inter, Roboto, Arial), standard heading tags (Work Experience, Education, Skills), single or CSS-ordered double columns, and selectable vector text rather than flattened raster images.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does the free ATS resume checker work?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Our integrated ATS resume checker compares your resume against target job descriptions in real time. It analyzes hard skill frequency, job title alignment, section completeness, and formatting compliance to provide a percentage score and missing keyword recommendations before you apply.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use an ATS friendly CV template for international applications?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Our ATS friendly CV templates support standard international A4 dimensions, multi-page overflow tracking, and comprehensive academic, publication, and project sections that comply with UK, European, and Middle Eastern applicant tracking standards.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why choose ResumeBabu over Rezi or Novorésumé?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'While Rezi and Novorésumé gate vector PDF downloads, multi-page layouts, or keyword matching behind $19.99–$29/month subscriptions, ResumeBabu offers 100% free unlimited vector PDF exports, 30+ ATS templates, live A4 pagination, and instant job description matching with zero paywalls.',
         },
       },
       {
@@ -154,14 +177,6 @@ export default function AtsResumeBabuPage() {
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Modern enterprise ATS engines (Workday, Greenhouse, Taleo) prefer vector PDF files because they preserve typography and visual layout while allowing instant text extraction. ResumeBabu outputs vector A4 PDFs that parse with 98%+ accuracy.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do I know if my resume will pass the ATS screen?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'You can test your resume inside our built-in ATS Job Description Matcher. Simply paste the target job description to get a real-time keyword match score and a checklist of missing skills before you apply.',
         },
       },
     ],
@@ -206,14 +221,14 @@ export default function AtsResumeBabuPage() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
-              Free ATS Resume Builder:{' '}
+              Free ATS Resume Builder &amp;{' '}
               <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">
-                Beat the Bot, Get the Interview
+                ATS Friendly Resume Template
               </span>
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              75% of qualified resumes get dropped by automated Applicant Tracking Systems before a human recruiter sees them. Build an ATS-certified resume with guaranteed machine readability and instant PDF export.
+              Over 75% of qualified applicants are filtered out before reaching hiring managers. Build with our free ATS resume maker, choose an ATS compliant resume template, and run our built-in ATS resume checker with zero paywalls.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -286,6 +301,79 @@ export default function AtsResumeBabuPage() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            {/* Comparison Matrix: ResumeBabu vs Rezi vs Novorésumé vs Canva */}
+            <div className="mt-16 bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
+              <div className="text-center max-w-2xl mx-auto mb-8">
+                <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                  Head-to-Head Comparison
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                  ResumeBabu vs. Paid ATS Builders vs. Canva
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 font-sans">
+                  See why job seekers switch to our free ATS resume builder and ATS compliant resume templates.
+                </p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs font-sans border-collapse">
+                  <thead>
+                    <tr className="border-b border-border text-slate-500 dark:text-slate-400">
+                      <th className="py-3 px-4 font-mono font-medium">Feature / Capability</th>
+                      <th className="py-3 px-4 font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBabu</th>
+                      <th className="py-3 px-4 font-mono font-medium">Rezi</th>
+                      <th className="py-3 px-4 font-mono font-medium">Novorésumé</th>
+                      <th className="py-3 px-4 font-mono font-medium">Canva</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border">
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">ATS Pass Rate Guarantee</td>
+                      <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">98%+ Certified</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">95%+ Certified</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">90%+ (Basic)</td>
+                      <td className="py-3 px-4 text-rose-500 font-semibold">35% (Frequent Drops)</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Full Pricing &amp; Paywall</td>
+                      <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">100% Free Forever</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$29/mo or Paid Tokens</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$19.99/mo Premium Paywall</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Free / $12.99 Pro</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Integrated ATS Resume Checker</td>
+                      <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Included Free (Real-time JD)</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Limited / Paid Credits</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Paid Add-on</td>
+                      <td className="py-3 px-4 text-rose-500">None</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">ATS Compliant Resume Templates</td>
+                      <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">30+ Free Designs</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Limited Free Templates</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">8 Free Templates</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Graphic (Non-ATS)</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Vector PDF Text Layer</td>
+                      <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Embedded Vector Fonts</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Vector PDF</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Standard PDF</td>
+                      <td className="py-3 px-4 text-rose-500">Rasterized Flatten Risk</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Multi-Page A4 Pagination Engine</td>
+                      <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Live GhostDOM A4 Previews</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic Pagination</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Paywalled 2nd Page</td>
+                      <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Manual Canvas Align</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </section>
@@ -422,9 +510,9 @@ export default function AtsResumeBabuPage() {
                 <span className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 font-mono font-bold text-sm flex items-center justify-center">
                   02
                 </span>
-                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Audit Against JD</h3>
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Audit with ATS Checker</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                  Paste your target job description. Our scanner flags missing skills and computes your match percentage.
+                  Paste your target job description into our free ATS resume checker to flag missing skills and verify your match score.
                 </p>
               </div>
 
@@ -469,10 +557,10 @@ export default function AtsResumeBabuPage() {
                 Recruiter-Approved Designs
               </span>
               <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-                ATS-Optimized Resume Formats<span className="text-emerald-700 dark:text-emerald-400">.</span>
+                Certified ATS Compliant Resume Templates &amp; CV Formats<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
               <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
-                Every layout is calibrated for standard single-page or two-page printing with crisp typography.
+                Browse 30+ ATS friendly resume templates and ATS friendly CV templates engineered with semantic tags and linear column ordering.
               </p>
             </div>
             <Link
@@ -546,10 +634,40 @@ export default function AtsResumeBabuPage() {
               <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
-                  What makes a resume ATS-compliant?
+                  What makes a resume template &ldquo;ATS-compliant&rdquo;?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
-                  An ATS-compliant resume utilizes standard section headings (Work Experience, Education, Skills), simple linear hierarchy, selectable text layers without rasterization, and standard fonts (Inter, Helvetica, Roboto). It avoids floating text boxes, tables inside tables, and skill rating graphics.
+                  An ATS-compliant resume utilizes standard section headings (Work Experience, Education, Skills), simple linear hierarchy, selectable text layers without rasterization, and standard fonts (Inter, Helvetica, Roboto). It avoids floating text boxes, nested tables, and skill rating graphics that confuse parsers.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
+                  How does the free ATS resume checker work?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
+                  Our integrated ATS resume checker compares your resume against target job descriptions in real time. It analyzes hard skill frequency, job title alignment, section completeness, and formatting compliance to provide a percentage score and missing keyword recommendations before you apply.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
+                  Can I use an ATS friendly CV template for international applications?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
+                  Yes. Our ATS friendly CV templates support standard international A4 dimensions, multi-page overflow tracking, and comprehensive academic, publication, and project sections that comply with UK, European, and Middle Eastern applicant tracking standards.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
+                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
+                  Why choose ResumeBabu over Rezi or Novor&eacute;sum&eacute;?
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
+                  While Rezi and Novor&eacute;sum&eacute; gate vector PDF downloads, multi-page layouts, or keyword matching behind $19.99&ndash;$29/month subscriptions, ResumeBabu offers 100% free unlimited vector PDF exports, 30+ ATS templates, live A4 pagination, and instant job description matching with zero paywalls.
                 </p>
               </div>
 
@@ -576,20 +694,10 @@ export default function AtsResumeBabuPage() {
               <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
                 <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
                   <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
-                  Does this tool charge any fee at download?
+                  Does this ATS resume maker charge any hidden fee at download?
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
-                  No. We believe access to high-quality career tools should be universal. You can create, edit, customize, and export unlimited high-resolution vector PDF resumes completely free.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-border p-6 sm:p-7 bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2">
-                <h3 className="font-serif font-bold text-slate-900 dark:text-white text-base sm:text-lg flex items-center gap-2">
-                  <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
-                  Can I tailor my resume for each job application?
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
-                  Yes! We encourage candidates to paste the job listing into our built-in ATS Job Description Matcher. It instantly checks for matching keywords, hard skills, and certifications, helping you reach an 85%+ match score before applying.
+                  No. We believe access to high-quality career tools should be universal. You can create, edit, customize, and export unlimited high-resolution vector PDF resumes completely free with zero credit cards required.
                 </p>
               </div>
             </div>
