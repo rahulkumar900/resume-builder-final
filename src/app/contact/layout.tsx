@@ -12,12 +12,16 @@ export const metadata: Metadata = {
     description:
       'Need help with your resume or templates? Contact ResumeBabu support for technical assistance, template requests, or account inquiries.',
     url: 'https://resumebabu.com/contact',
+    type: 'website',
+    siteName: 'ResumeBabu',
+    locale: 'en_US',
     images: [
       {
         url: 'https://resumebabu.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'ResumeBabu Support & Help',
+        type: 'image/png',
       },
     ],
   },

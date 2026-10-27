@@ -20,6 +20,15 @@ export const metadata: Metadata = {
     siteName: 'ResumeBabu',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: 'https://resumebabu.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ResumeBabu - Free AI Resume Builder & ATS Resume Checker',
+        type: 'image/png',
+      },
+    ],
   },
 };
 
