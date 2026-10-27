@@ -21,26 +21,24 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free CV Maker Online: Professional PDF',
+  title: 'Free CV Maker Online: Curriculum Vitae PDF',
   description:
-    'Create an international, academic, or corporate CV online for free. Multi-page support, ATS-friendly templates, and instant vector PDF downloads.',
+    'Free CV maker online. Create professional curriculum vitae with 30+ ATS friendly CV templates, multi-page A4 support, and free vector PDF downloads.',
   keywords: [
     'cv maker',
     'curriculum vitae maker',
-    'cv cv maker',
+    'cv maker free',
     'create cv online free',
     'cv builder free',
+    'ats friendly cv template',
+    'free curriculum vitae maker',
+    'curriculum vitae generator',
     'online cv maker',
     'cv creator free',
-    'cv maker online free',
-    'cv builder online',
-    'build cv online free',
-    'cv create free',
-    'prepare cv online free',
-    'ats friendly cv template'
+    'build cv online free'
   ],
   openGraph: {
-    title: 'Free CV Maker Online (Curriculum Vitae Builder)',
+    title: 'Free CV Maker Online: Curriculum Vitae PDF | ResumeBabu',
     description:
       'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
     type: 'website',
@@ -57,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free CV Maker Online (Curriculum Vitae Builder)',
+    title: 'Free CV Maker Online: Curriculum Vitae PDF | ResumeBabu',
     description:
       'Format professional CVs for UK, Europe, academic, and international applications. Zero paywalls, free vector PDF download.',
     images: ['https://resumebabu.com/og-image.png'],
@@ -116,6 +114,22 @@ export default function CvMakerPage() {
     mainEntity: [
       {
         '@type': 'Question',
+        name: 'How can I create a CV online for free?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Choose an ATS friendly CV template on ResumeBabu, input your career, education, and research accomplishments, and export a publication-ready vector PDF in under 3 minutes with zero fees and no credit card required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is an ATS friendly CV template?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'An ATS friendly CV template uses machine-readable section tags, standard system typography, linear single or dual column DOM partitions, and clean text layers rather than flattened images, ensuring 98%+ pass rates across corporate and university applicant tracking systems.',
+        },
+      },
+      {
+        '@type': 'Question',
         name: 'What is the difference between a CV and a Resume?',
         acceptedAnswer: {
           '@type': 'Answer',
@@ -124,10 +138,18 @@ export default function CvMakerPage() {
       },
       {
         '@type': 'Question',
-        name: 'Can I build a multi-page CV with this tool?',
+        name: 'Can I build a multi-page curriculum vitae with this tool?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. Our platform supports both single-page corporate CVs and multi-page academic CVs. The real-time A4 GhostDOM engine automatically manages page breaks cleanly without splitting sentences across pages.',
+          text: 'Yes. Our platform supports both single-page corporate CVs and multi-page academic CVs. The real-time A4 GhostDOM engine automatically manages page breaks cleanly without splitting sentences or tables across pages.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why choose ResumeBabu over Novorésumé or Resume.io for CVs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'While Novorésumé and Resume.io paywall 2nd and 3rd pages and charge $19.99 to $24.95/month for PDF downloads, ResumeBabu offers 100% free unlimited multi-page CV exports, live A4 formatting, and academic section support with zero paywalls.',
         },
       },
       {
@@ -173,11 +195,11 @@ export default function CvMakerPage() {
             </div>
 
             <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-foreground leading-[1.08] max-w-4xl mx-auto">
-              Professional <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">CV Maker Online</span> with free PDF download.
+              Free <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">CV Maker Online</span>: Curriculum Vitae Builder.
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed">
-              Format European, UK, academic, and global Curriculum Vitae formats with ease. Seamless multi-page layout management, research sections, and zero subscription paywalls.
+              Create an international, corporate, or academic CV online for free. Choose from 30+ ATS friendly CV templates, format multi-page A4 layouts with real-time pagination, and download high-resolution vector PDFs with zero paywalls.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -255,6 +277,72 @@ export default function CvMakerPage() {
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                 Verified against global Applicant Tracking Systems including Workday Global, Taleo International, and SAP SuccessFactors.
               </p>
+            </div>
+          </div>
+
+          {/* Comparison Matrix: ResumeBabu vs Novorésumé vs Resume.io vs Kickresume */}
+          <div className="mt-16 bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
+            <div className="text-center max-w-2xl mx-auto mb-8">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Curriculum Vitae Comparison
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                ResumeBabu vs. Paid Online CV Makers
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 font-sans">
+                Compare multi-page formatting and vector PDF export features before you start.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs font-sans border-collapse">
+                <thead>
+                  <tr className="border-b border-border text-slate-500 dark:text-slate-400">
+                    <th className="py-3 px-4 font-mono font-medium">Feature</th>
+                    <th className="py-3 px-4 font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBabu</th>
+                    <th className="py-3 px-4 font-mono font-medium">Novorésumé</th>
+                    <th className="py-3 px-4 font-mono font-medium">Resume.io</th>
+                    <th className="py-3 px-4 font-mono font-medium">Kickresume</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Multi-Page A4 CV Exports</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Unlimited Free Pages</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Paywalled 2nd Page</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic Flow (Paywalled)</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$19/mo Sub Needed</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">PDF Download Paywall</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">100% Free Forever</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$19.99/mo Paywall</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$24.95/mo Paywall</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Watermarked / $19/mo</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Academic &amp; Research Sections</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Dedicated Publications/Grants</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Generic Text Blocks</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic Custom Sections</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Standard Text</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">ATS Pass Rate Certification</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">98%+ on Workday &amp; Taleo</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">90%+ Pass Rate</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic ATS</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Standard ATS</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Page Overflow Engine</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">GhostDOM A4 Pagination</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Manual Canvas Align</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic Split</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Flowing Content</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>

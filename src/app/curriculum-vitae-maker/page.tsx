@@ -21,16 +21,18 @@ import { TEMPLATES } from '@/lib/templates';
 export const metadata: Metadata = {
   title: 'Curriculum Vitae Maker: Academic & Medical',
   description:
-    'Build academic Curriculum Vitaes for free. Dedicated sections for peer-reviewed publications, clinical rotations, grants, and research credentials.',
+    'Free curriculum vitae maker for academic and medical CVs. Multi-page A4 formatting for publications, grants, and 100% free vector PDF downloads.',
   keywords: [
     'curriculum vitae maker',
+    'curriculum vitae format',
     'academic cv maker',
+    'free curriculum vitae maker',
     'medical cv builder',
     'research cv maker',
-    'curriculum vitae format',
     'phd cv builder',
-    'fellowship cv format',
-    'curriculum vitae online free'
+    'curriculum vitae online free',
+    'cv maker free',
+    'fellowship cv format'
   ],
   openGraph: {
     title: 'Curriculum Vitae Maker | Academic, Medical & Research CVs',
@@ -103,6 +105,53 @@ export default function CurriculumVitaeMakerPage() {
     ],
   };
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is a Curriculum Vitae maker?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A Curriculum Vitae (CV) maker is specialized software designed to organize comprehensive academic, medical, and scientific credentials. Unlike standard resumes, it supports multi-page formatting for publications, peer reviews, laboratory appointments, research grants, and clinical rotations.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I format an academic curriculum vitae?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'An academic CV follows a formal chronological structure: Education and Postdoctoral Appointments first, followed by Publications, Research Grants, Teaching Experience, Conference Presentations, and Professional Affiliations.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this curriculum vitae maker free to download as PDF?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! You can create, edit, and export unlimited multi-page vector PDF Curriculum Vitaes completely free with zero paywalls, zero watermarks, and no credit card required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I include multi-page publications and grant history?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Our platform includes dedicated sections for peer-reviewed journal papers, books, conference proceedings, and grant details (NIH, NSF, ERC). The live A4 GhostDOM engine automatically paginates without cutting citations across pages.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why use ResumeBabu instead of Novorésumé for academic CVs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Novorésumé locks multi-page CVs behind a $19.99/month paywall and limits publication formatting. ResumeBabu offers 100% free multi-page A4 exports, dedicated academic citation sections, and full ATS compliance.',
+        },
+      },
+    ],
+  };
+
   const academicTemplates = TEMPLATES.filter(
     (t) => t.id === 'traditional' || t.id === 'vienna' || t.id === 'ats' || t.id === 'stockholm'
   );
@@ -116,6 +165,10 @@ export default function CurriculumVitaeMakerPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Navbar />
 
@@ -265,6 +318,38 @@ export default function CurriculumVitaeMakerPage() {
               <span>Instant Generator</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </Link>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-5xl mx-auto border-t border-border">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">
+              ACADEMIC DOSSIER FAQS
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Questions About Curriculum Vitae<span className="text-emerald-700 dark:text-emerald-400">.</span>
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+              Guidance on structuring peer-reviewed publications, research grants, and international CVs.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqJsonLd.mainEntity.map((faq, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl border border-border bg-card/90 shadow-xs space-y-2"
+              >
+                <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <span className="text-emerald-700 dark:text-emerald-400 font-mono">Q:</span>
+                  {faq.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
+                  {faq.acceptedAnswer.text}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
