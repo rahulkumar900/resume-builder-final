@@ -26,9 +26,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: '100% Free Resume Builder: No Paywalls',
+  title: 'Free Resume Builder: 100% Free PDF Download (No Paywalls)',
   description:
-    'Build and download your resume in high-resolution PDF for free. No credit card required, no 14-day trial traps, and zero paywalls at download.',
+    'Build an ATS-friendly resume for free. 100% free resume builder with real-time A4 pagination, instant vector PDF export, and zero hidden paywalls.',
   keywords: [
     'free resume builder',
     'free resume builder and download',
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     'build cv online free'
   ],
   openGraph: {
-    title: '100% Free Resume Builder & PDF Download | No Paywalls',
+    title: 'Free Resume Builder: 100% Free PDF Download | ResumeBabu',
     description:
-      'Tired of spending 45 minutes formatting only to hit a $24.95 download paywall? Use our 100% free resume builder with instant vector PDF download.',
+      'Build an ATS-friendly resume for free. 100% free resume builder with real-time A4 pagination, instant vector PDF export, and zero hidden paywalls.',
     type: 'website',
     url: 'https://resumebabu.com/free-resume-builder',
     images: [
@@ -58,16 +58,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: '100% Free Resume Builder - ResumeBabu',
+        alt: 'Free Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '100% Free Resume Builder & PDF Download | No Paywalls',
+    title: 'Free Resume Builder: 100% Free PDF Download | ResumeBabu',
     description:
-      'Tired of spending 45 minutes formatting only to hit a $24.95 download paywall? Use our 100% free resume builder with instant vector PDF download.',
+      'Build an ATS-friendly resume for free. 100% free resume builder with real-time A4 pagination, instant vector PDF export, and zero hidden paywalls.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
@@ -152,6 +152,22 @@ export default function FreeResumeBabuPage() {
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Yes. You can duplicate your resumes, tailor them to specific job descriptions with our AI assistant, and export as many PDF versions as you need.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I create multi-page resumes for free without paywalls?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. While platforms like Novorésumé restrict free users to a single page and lock page 2 behind a monthly subscription, ResumeBabu provides real-time dynamic A4 pagination with zero page count limits on all templates.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does ResumeBabu compare to Novorésumé and Zety?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Unlike Zety which charges a $24.95/month fee after an initial trial, or Novorésumé which locks multi-page layouts and custom sections, ResumeBabu offers completely free vector PDF downloads, built-in Job Description matching, and zero credit card requirements.',
         },
       },
     ],
@@ -290,6 +306,68 @@ export default function FreeResumeBabuPage() {
                   <span><strong>Zero Watermarks:</strong> Clean, recruiter-grade presentation that looks 100% professional to hiring managers.</span>
                 </li>
               </ul>
+            </div>
+          </div>
+
+          {/* Feature Comparison Matrix */}
+          <div className="mt-16 bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs overflow-hidden">
+            <div className="mb-6 space-y-1">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">
+                COMPETITOR BREAKDOWN
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                ResumeBabu vs. Novorésumé vs. Zety
+              </h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse">
+                <thead>
+                  <tr className="border-b border-border text-slate-500 dark:text-slate-400 font-mono text-xs">
+                    <th className="py-3 px-4 font-semibold">Core Feature</th>
+                    <th className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06] rounded-t-xl">ResumeBabu</th>
+                    <th className="py-3 px-4 font-semibold">Novorésumé (Free)</th>
+                    <th className="py-3 px-4 font-semibold">Zety</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border text-slate-700 dark:text-slate-300">
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Vector PDF Download</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">100% Free Forever</td>
+                    <td className="py-3.5 px-4 text-slate-500">1-Page Only</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">$24.95/mo Paywall</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Multi-Page A4 Formatting</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Free (Dynamic Pagination)</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">Locked (Premium Only)</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">Paid Subscription</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Credit Card Required</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Never</td>
+                    <td className="py-3.5 px-4 text-slate-500">For Multi-Page</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">Yes ($2.70 Auto-Trial)</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Side-by-Side JD Matcher</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Built-in Live Gauge</td>
+                    <td className="py-3.5 px-4 text-slate-400">Not Available</td>
+                    <td className="py-3.5 px-4 text-slate-400">Not Available</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">6-Pillar ATS Scanner</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Included Free</td>
+                    <td className="py-3.5 px-4 text-slate-500">Separate Tool ($)</td>
+                    <td className="py-3.5 px-4 text-slate-500">Basic Tips</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3.5 px-4 font-medium">Download Watermarks</td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Zero Watermarks</td>
+                    <td className="py-3.5 px-4 text-slate-500">None</td>
+                    <td className="py-3.5 px-4 text-rose-600 font-medium">Blocks Download</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
