@@ -219,7 +219,11 @@ export default function CvMakerPage() {
               </div>
               <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Publications &amp; Research</h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                Dedicated fields for journal articles, conference papers, citations, and DOI links formatted for peer review boards.
+                Dedicated fields for journal articles, conference papers, citations, and DOI links formatted for peer review boards. Need a specialized academic dossier? Try our dedicated{' '}
+                <Link href="/curriculum-vitae-maker" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2 hover:opacity-80">
+                  Curriculum Vitae Maker
+                </Link>
+                .
               </p>
             </div>
 
@@ -336,6 +340,24 @@ export default function CvMakerPage() {
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 p-6 rounded-2xl border border-border bg-emerald-500/[0.04] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center sm:text-left">
+              <span className="font-serif font-bold text-sm text-slate-900 dark:text-white block">
+                Looking for alternative formats?
+              </span>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
+                Explore our specialized <Link href="/curriculum-vitae-maker" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">Curriculum Vitae Maker</Link> for academic and medical positions, or use our <Link href="/generate-resume" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">Instant Resume Generator</Link> for fast corporate roles.
+              </p>
+            </div>
+            <Link
+              href="/curriculum-vitae-maker"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-card border border-border text-xs font-bold text-slate-900 dark:text-white hover:border-emerald-500/40 transition shrink-0"
+            >
+              <span>Academic CV Maker</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </section>
 

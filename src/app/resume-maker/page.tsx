@@ -360,6 +360,23 @@ export default function ResumeMakerPage() {
                 Yes! Our resume maker includes dedicated mobile live previews and a bottom customization sheet. You can edit sections, change templates, and export directly from your phone.
               </p>
             </div>
+
+            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-7 shadow-xs">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                Do you have options for academic CVs or fast AI generation?
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Yes! For researchers, doctors, and PhD candidates requiring multi-page publication layouts, use our specialized{' '}
+                <Link href="/curriculum-vitae-maker" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">
+                  Curriculum Vitae Maker
+                </Link>
+                . If you need a corporate resume generated in under 5 minutes with pre-written bullet suggestions, try our{' '}
+                <Link href="/generate-resume" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">
+                  Instant Resume Generator
+                </Link>
+                .
+              </p>
+            </div>
           </div>
 
           {/* Bottom Call to Action */}

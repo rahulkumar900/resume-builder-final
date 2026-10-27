@@ -248,6 +248,24 @@ export default function CurriculumVitaeMakerPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-14 p-6 sm:p-8 rounded-2xl border border-border bg-emerald-500/[0.04] flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="space-y-1 text-center sm:text-left">
+              <span className="font-serif font-bold text-base text-slate-900 dark:text-white block">
+                Looking for a non-academic corporate resume?
+              </span>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-2xl">
+                If applying for corporate or technical roles, use our <Link href="/generate-resume" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">Instant Resume Generator</Link> to craft pre-written bullet points, or check out our general <Link href="/cv-maker" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">CV Maker</Link> and <Link href="/free-resume-builder" className="text-emerald-700 dark:text-emerald-400 font-semibold underline underline-offset-2">Free Resume Builder</Link>.
+              </p>
+            </div>
+            <Link
+              href="/generate-resume"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-card border border-border text-xs font-bold text-slate-900 dark:text-white hover:border-emerald-500/40 transition shrink-0 shadow-xs"
+            >
+              <span>Instant Generator</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </section>
 
         {/* Final CTA */}

@@ -19,6 +19,11 @@ export function RxFooter() {
                 </Link>
               </li>
               <li>
+                <Link href="/generate-resume" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Generate Resume Online
+                </Link>
+              </li>
+              <li>
                 <Link href="/ats-resume-builder" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   ATS Resume Builder
                 </Link>
@@ -31,6 +36,11 @@ export function RxFooter() {
               <li>
                 <Link href="/resume-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   Online Resume Maker
+                </Link>
+              </li>
+              <li>
+                <Link href="/curriculum-vitae-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Curriculum Vitae Maker
                 </Link>
               </li>
               <li>
@@ -82,6 +92,11 @@ export function RxFooter() {
             </span>
             <ul className="space-y-2">
               <li>
+                <Link href="/generate-resume" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Instant Resume Generator
+                </Link>
+              </li>
+              <li>
                 <Link href="/ai-resume-builder" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   AI Bullet Re-writer
                 </Link>
@@ -89,6 +104,11 @@ export function RxFooter() {
               <li>
                 <Link href="/ats-checker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
                   ATS Resume Checker
+                </Link>
+              </li>
+              <li>
+                <Link href="/curriculum-vitae-maker" className="hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors">
+                  Academic &amp; Medical CV
                 </Link>
               </li>
               <li>
