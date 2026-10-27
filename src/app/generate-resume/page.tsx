@@ -19,21 +19,24 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Generate Resume Online: Instant AI Maker',
+  title: 'Generate Resume: Free Online Resume Generator',
   description:
-    'Generate an ATS-optimized resume in under 5 minutes. Select a template, auto-generate high-impact bullets, and export your free vector PDF instantly.',
+    'Generate resume free online in 3 minutes. Free online resume generator with 30+ ATS templates, pre-written bullet suggestions, and instant vector PDF export.',
   keywords: [
     'generate resume',
-    'resume generator online',
-    'online resume maker',
-    'build your resume',
-    'create your resume',
-    'myresumebuilder',
-    'resume creator',
-    'fast resume maker free'
+    'resume generator free',
+    'online resume generator',
+    'generate resume online',
+    'free resume generator',
+    'free resume generator online',
+    'online resume maker free pdf',
+    'instant resume generator',
+    'fast resume maker free',
+    'resume creator free',
+    'build your resume free'
   ],
   openGraph: {
-    title: 'Generate Resume Online in 5 Minutes | Free Resume Creator',
+    title: 'Generate Resume: Free Online Resume Generator | ResumeBabu',
     description:
       'Generate a professional, ATS-ready resume with pre-written industry bullet points and instant vector PDF export.',
     type: 'website',
@@ -43,14 +46,14 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Generate Resume Online in 5 Minutes - ResumeBabu',
+        alt: 'Generate Resume Online in 3 Minutes - ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Generate Resume Online in 5 Minutes | Free Resume Creator',
+    title: 'Generate Resume: Free Online Resume Generator | ResumeBabu',
     description:
       'Generate a professional, ATS-ready resume with pre-written industry bullet points and instant vector PDF export.',
     images: ['https://resumebabu.com/og-image.png'],
@@ -102,6 +105,61 @@ export default function GenerateResumePage() {
     ],
   };
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How can I generate a resume online for free?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Simply select any of our 30+ ATS-compliant templates, enter your job title to receive pre-written bullet point suggestions, customize your details, and click download. You will get a high-resolution vector PDF in under 3 minutes with zero payment required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this free online resume generator really free with zero watermarks?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! Unlike sites that hit you with a $24.95 credit card paywall at the download step, ResumeBabu offers 100% free resume generation and vector PDF downloads with no watermarks, no trials, and no hidden fees.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How does this instant resume generator ensure ATS compliance?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Every template is engineered with standard semantic HTML heading hierarchies, sequential column ordering, and embedded typography that parse cleanly across Workday, Taleo, Greenhouse, and Lever with a 98%+ pass rate.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why choose ResumeBabu over Kickresume, Novorésumé, or Resume.io?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'While Kickresume, Novorésumé, and Resume.io charge $19.99 to $24.95/month and lock multi-page exports or high-res PDFs behind paywalls, ResumeBabu gives you unlimited free vector PDF downloads, live A4 pagination, and real-time job description matching completely free.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What format does the generated resume download in?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Resumes are exported as crisp, publication-grade vector A4 PDF files with selectable text layers, ensuring your layout appears identical across desktop monitors, mobile phones, and recruiter printouts.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I customize sections after generating my resume?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. You can reorder sections, add custom sections (Projects, Certifications, Awards), adjust font pairings, line heights, and margins in real time using our visual interactive editor.',
+        },
+      },
+    ],
+  };
+
   const topTemplates = TEMPLATES.slice(0, 4);
 
   return (
@@ -114,6 +172,10 @@ export default function GenerateResumePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Navbar />
 
       <main className="flex-1">
@@ -124,18 +186,18 @@ export default function GenerateResumePage() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
               <Zap className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              <span>Fast 5-Minute Resume Generation Engine</span>
+              <span>Fast 3-Minute Online Resume Generator</span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
-              Generate a Professional Resume{' '}
+              Generate Resume Free:{' '}
               <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">
-                in Under 5 Minutes
+                Online Resume Generator
               </span>
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              Skip hours of blank-page paralysis. Choose an ATS-approved layout, auto-generate metric-driven bullets with AI, and download your free vector PDF right away.
+              Skip hours of formatting frustration. Use our free online resume generator to pick an ATS-approved layout, auto-generate recruiter-approved bullet points, and export your free vector PDF with zero hidden fees or credit cards.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -201,6 +263,72 @@ export default function GenerateResumePage() {
               </p>
             </div>
           </div>
+
+          {/* Comparison Matrix: ResumeBabu vs Kickresume vs Novorésumé vs Resume.io */}
+          <div className="mt-16 bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
+            <div className="text-center max-w-2xl mx-auto mb-8">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Market Comparison
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                ResumeBabu vs. Paid Online Resume Generators
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 font-sans">
+                Compare our free online resume generator with other popular commercial makers.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs font-sans border-collapse">
+                <thead>
+                  <tr className="border-b border-border text-slate-500 dark:text-slate-400">
+                    <th className="py-3 px-4 font-mono font-medium">Feature</th>
+                    <th className="py-3 px-4 font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBabu</th>
+                    <th className="py-3 px-4 font-mono font-medium">Kickresume</th>
+                    <th className="py-3 px-4 font-mono font-medium">Novorésumé</th>
+                    <th className="py-3 px-4 font-mono font-medium">Resume.io</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Vector PDF Export Paywalls</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">100% Free Forever</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Watermark or $19/mo</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$19.99/mo Paywall</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$24.95/mo Paywall</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Instant Online Generation Speed</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">&lt; 3 Minutes (No Signup)</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Multi-Step Sign-up</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Account Required</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Long Wizard</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">ATS Pass Rate Certification</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">98%+ on Workday &amp; Taleo</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic ATS</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">90%+ Pass Rate</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic ATS</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Pre-Written Bullet Generator</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Included Free (Google XYZ)</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Limited AI Credits</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic Bullet Library</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Pre-written Phrases</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Multi-Page A4 Precision</td>
+                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">GhostDOM Live Previews</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Flowing Content</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Paywalled 2nd Page</td>
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Basic Split</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </section>
 
         {/* Templates Grid */}
@@ -263,6 +391,40 @@ export default function GenerateResumePage() {
                 <span>Academic CV Maker</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Frequently Asked Questions */}
+        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Frequently Asked Questions
+              </span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Questions About Resume Generation<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              </h2>
+              <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
+                Everything you need to know about generating your resume online for free.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {faqJsonLd.mainEntity.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 sm:p-7 rounded-2xl border border-border bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2"
+                >
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
+                    {faq.name}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
+                    {faq.acceptedAnswer.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
