@@ -26,20 +26,19 @@ import { TEMPLATES } from '@/lib/templates';
 export const metadata: Metadata = {
   title: 'Free Student Resume Builder & Internships',
   description:
-    'Free student resume builder for high schoolers, college students, and interns. Showcase academic projects, GPA, clubs, and skills with free PDF download.',
+    'Free student resume builder for high school and college students. Showcase academic projects, GPA, internships, and clubs with free vector PDF downloads.',
   keywords: [
     'student resume builder',
-    'resume format for freshers 12th pass',
-    'internship resume builder',
-    'resume for high school students',
+    'resume maker for students',
+    'resume builder for freshers',
     'college student resume builder',
-    'first job resume builder',
+    'internship resume builder',
     'resume builder for students free',
+    'first job resume builder',
     'high school resume maker',
-    'internship resume format',
-    'resume format for diploma students',
-    'entry level student resume format',
-    'part time job resume builder'
+    'fresher resume builder free',
+    'resume format for freshers 12th pass',
+    'entry level student resume format'
   ],
   openGraph: {
     title: 'Free Student Resume Builder - Land Your First Job or Internship',
