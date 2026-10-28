@@ -165,14 +165,21 @@ export function TechStudioLanding() {
             </div>
           )}
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-medium shadow-xs mb-6 hover:border-emerald-500/40 transition-all">
-            <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>100% Free Forever · No Paywalls · Zero Watermarks · Vector PDF</span>
+          {/* Rating & Social Proof Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 mb-6 shadow-2xs backdrop-blur-md">
+            <div className="flex text-amber-500 text-xs tracking-tight">
+              ★★★★★
+            </div>
+            <span className="font-bold text-slate-900 dark:text-white">4.9/5</span>
+            <span className="text-slate-400">·</span>
+            <span>45,000+ Resumes Created</span>
+            <span className="text-slate-400">·</span>
+            <span className="text-emerald-700 dark:text-emerald-400 font-bold">100% Free Forever</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-5xl mx-auto leading-[1.08]">
             The Free{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 dark:from-emerald-400 dark:via-teal-300 dark:to-emerald-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 dark:from-emerald-400 dark:via-teal-300 dark:to-cyan-400">
               Resume Builder
             </span>{' '}
             Engineered to Beat the ATS.
@@ -207,21 +214,21 @@ export function TechStudioLanding() {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-sans">
-            <span className="flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              45,000+ Resumes Exported
+            <span className="flex items-center gap-1.5 font-medium">
+              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
+              Zero Sign-Up Required to Start
             </span>
-            <span className="flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span className="flex items-center gap-1.5 font-medium">
+              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
               98.4% ATS Parsing Rate
             </span>
-            <span className="flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              30 Recruiter-Approved Layouts
+            <span className="flex items-center gap-1.5 font-medium">
+              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
+              30 Tested Layouts
             </span>
-            <span className="flex items-center gap-1.5">
-              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              No Credit Card Required
+            <span className="flex items-center gap-1.5 font-medium">
+              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
+              100% Free Vector PDF
             </span>
           </div>
 
@@ -280,8 +287,8 @@ export function TechStudioLanding() {
                   <span className="w-3 h-3 rounded-full bg-[#ff5f57] inline-block shadow-2xs" />
                   <span className="w-3 h-3 rounded-full bg-[#febc2e] inline-block shadow-2xs" />
                   <span className="w-3 h-3 rounded-full bg-[#28c840] inline-block shadow-2xs" />
-                  <span className="ml-2 hidden sm:inline text-slate-600 dark:text-teal-200/80 text-[11px] font-sans font-medium">
-                    ResumeBabu Pro Studio — Live Split-Screen Workspace
+                  <span className="ml-2 hidden sm:inline text-slate-700 dark:text-teal-200/80 text-[11px] font-sans font-semibold">
+                    ResumeBabu Studio — Live Split-Screen Workspace
                   </span>
                 </div>
 
@@ -308,14 +315,54 @@ export function TechStudioLanding() {
                 </div>
               </div>
 
-              {/* Clean Editor Screenshot Container */}
-              <div className="relative w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
+              {/* Clean Editor Screenshot Container with Floating Interactive SaaS Badges */}
+              <div className="relative w-full overflow-hidden bg-slate-950">
+                {/* Continuous Laser Scanning Beam across the Hero Image */}
+                <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 via-teal-300 to-transparent shadow-[0_0_20px_#10b981] animate-[laserScan_7s_ease-in-out_infinite] pointer-events-none z-10 opacity-75" />
+
+                {/* Floating Glass Badge 1: Top-Left (ATS Algorithm Passed) */}
+                <div className="absolute top-4 left-4 z-20 hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/90 dark:bg-black/85 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 shadow-2xl shadow-black/20 animate-float-chip">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div className="text-left">
+                    <span className="text-[10px] font-mono uppercase font-bold text-slate-400 dark:text-slate-500 block leading-none">
+                      ATS Compliance
+                    </span>
+                    <span className="text-xs font-bold text-slate-900 dark:text-white mt-0.5 block">
+                      98% · Workday & Taleo Passed
+                    </span>
+                  </div>
+                </div>
+
+                {/* Floating Glass Badge 2: Top-Right (Google X-Y-Z AI Rewriter) */}
+                <div className="absolute top-4 right-4 z-20 hidden md:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/90 dark:bg-black/85 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 shadow-2xl shadow-black/20 animate-float-drift">
+                  <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <div className="text-left">
+                    <span className="text-[10px] font-mono uppercase font-bold text-teal-600 dark:text-teal-400 block leading-none">
+                      Google X-Y-Z AI
+                    </span>
+                    <span className="text-xs font-bold text-slate-900 dark:text-white mt-0.5 block">
+                      +45% Quantified KPI Boost
+                    </span>
+                  </div>
+                </div>
+
+                {/* Floating Glass Badge 3: Bottom-Left (1200 DPI Vector) */}
+                <div className="absolute bottom-4 left-4 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/90 text-white backdrop-blur-md border border-white/15 shadow-lg text-[11px] font-mono">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>1200 DPI Vector Engine · 0 KB Watermark</span>
+                </div>
+
+                {/* Main Hero Screenshot */}
                 <Image
                   src="/images/editor-screenshot.png"
                   alt="ResumeBabu Live Editor Split Screen: Real-Time Form Controls and Vector A4 Preview"
                   width={1024}
                   height={500}
-                  className="w-full h-auto object-cover sm:object-contain transition-transform duration-500 group-hover:scale-[1.008]"
+                  className="w-full h-auto object-cover sm:object-contain transition-transform duration-700 group-hover:scale-[1.012]"
                   priority
                 />
               </div>
