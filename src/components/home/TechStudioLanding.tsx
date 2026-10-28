@@ -233,213 +233,39 @@ export function TechStudioLanding() {
           </div>
 
           {/* =======================================================================
-              HERO STUDIO WORKSPACE SHOWCASE (Modern SaaS Clean Light & Dark Aurora)
+              HERO STUDIO WORKSPACE SHOWCASE (Clean, Minimal Frame)
               ======================================================================= */}
-          <div className="mt-14 sm:mt-24 max-w-6xl mx-auto text-left relative px-2 sm:px-0">
-            
-            {/* -------------------------------------------------------------
-                THE AURORA LIGHT CREST & CONE
-                Luminous wave of teal/cyan light that adapts seamlessly to both Light & Dark modes
-                ------------------------------------------------------------- */}
-            <div className="absolute inset-x-0 -top-24 sm:-top-40 flex items-center justify-center pointer-events-none select-none z-0 overflow-visible">
-              <div className="relative w-full max-w-5xl h-[460px] sm:h-[620px]">
-                {/* 1. Volumetric Ambient Glow - Soft in light mode, deep in dark mode */}
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_75%,rgba(16,185,129,0.18),rgba(6,182,212,0.12),transparent_75%)] dark:bg-[radial-gradient(ellipse_70%_60%_at_50%_75%,rgba(45,212,191,0.35),rgba(6,182,212,0.2),rgba(5,150,105,0.1),transparent_75%)] blur-3xl opacity-80 dark:opacity-100" />
-
-                {/* 2. Parabolic Curved Light Crest */}
-                <svg
-                  viewBox="0 0 1000 600"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full opacity-40 dark:opacity-90 blur-xl drop-shadow-[0_0_40px_rgba(45,212,191,0.35)]"
+          <div className="mt-12 sm:mt-16 max-w-5xl mx-auto px-2 sm:px-4">
+            <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0c1411] shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+              {/* Clean Minimal Titlebar */}
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-200/80 dark:border-white/10 bg-slate-50/80 dark:bg-black/40 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#ff5f57] inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-[#febc2e] inline-block" />
+                  <span className="w-3 h-3 rounded-full bg-[#28c840] inline-block" />
+                  <span className="ml-2 text-slate-500 dark:text-slate-400 text-xs font-mono">
+                    resumebabu.com/create
+                  </span>
+                </div>
+                <Link
+                  href="/create"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs transition-colors shadow-2xs"
                 >
-                  <defs>
-                    <radialGradient id="auroraCrestGrad" cx="50%" cy="100%" r="70%" fx="50%" fy="100%">
-                      <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.85" />
-                      <stop offset="25%" stopColor="#06b6d4" stopOpacity="0.65" />
-                      <stop offset="55%" stopColor="#0d9488" stopOpacity="0.3" />
-                      <stop offset="85%" stopColor="#0d9488" stopOpacity="0.05" />
-                      <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
-                    </radialGradient>
-                  </defs>
-                  <path
-                    d="M0 600 C 260 580, 340 180, 500 70 C 660 180, 740 580, 1000 600 Z"
-                    fill="url(#auroraCrestGrad)"
-                  />
-                </svg>
-
-                {/* 3. Center Teal Core Flare */}
-                <div className="absolute left-1/2 -translate-x-1/2 bottom-16 sm:bottom-20 w-44 sm:w-80 h-64 sm:h-96 bg-gradient-to-t from-teal-400/40 via-cyan-400/20 to-transparent dark:from-teal-300/80 dark:via-cyan-400/50 dark:to-transparent rounded-full blur-2xl opacity-75" />
-              </div>
-            </div>
-
-            {/* -------------------------------------------------------------
-                STUDIO WORKSPACE WINDOW (Modern Clean SaaS Frame)
-                ------------------------------------------------------------- */}
-            <div className="relative z-10 rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-teal-500/35 bg-white/95 dark:bg-[#070c0a]/95 shadow-[0_20px_50px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] dark:shadow-[0_0_60px_rgba(45,212,191,0.2),0_30px_70px_rgba(0,0,0,0.85)] overflow-hidden backdrop-blur-2xl group transition-all duration-300">
-              
-              {/* Top Accent Line */}
-              <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-emerald-500/60 via-teal-400 to-transparent dark:via-cyan-400 dark:via-teal-300 dark:shadow-[0_0_14px_#2dd4bf]" />
-
-              {/* Window Titlebar */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-200/80 dark:border-teal-500/20 bg-slate-50/95 dark:bg-[#0a1210]/90 text-xs font-mono backdrop-blur-md">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-[#ff5f57] inline-block shadow-2xs" />
-                  <span className="w-3 h-3 rounded-full bg-[#febc2e] inline-block shadow-2xs" />
-                  <span className="w-3 h-3 rounded-full bg-[#28c840] inline-block shadow-2xs" />
-                  <span className="ml-2 hidden sm:inline text-slate-700 dark:text-teal-200/80 text-[11px] font-sans font-semibold">
-                    ResumeBabu Studio — Live Split-Screen Workspace
-                  </span>
-                </div>
-
-                {/* Center URL / State Bar (Visible on tablets and desktop) */}
-                <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white dark:bg-black/60 border border-slate-200 dark:border-teal-500/40 text-[11px] text-slate-700 dark:text-teal-100 shadow-2xs">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600 dark:bg-teal-400 shadow-[0_0_8px_#10b981]" />
-                  </span>
-                  <span className="font-mono text-[10px] text-emerald-700 dark:text-teal-400 font-bold">HTTPS</span>
-                  <span className="font-sans font-medium truncate max-w-[140px] sm:max-w-none text-slate-800 dark:text-slate-200">resumebabu.com/create</span>
-                  <span className="text-slate-400 dark:text-teal-400/80 font-mono hidden md:inline text-[10px]">· 0ms Vector Sync</span>
-                </div>
-
-                {/* Right Action Tag */}
-                <div className="flex items-center gap-2">
-                  <Link
-                    href="/create"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white dark:bg-gradient-to-r dark:from-teal-500 dark:to-cyan-500 dark:hover:from-teal-400 dark:hover:to-cyan-400 dark:text-slate-950 font-sans text-xs font-bold transition-all shadow-xs cursor-pointer"
-                  >
-                    <span>Launch Editor</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
+                  <span>Launch Editor</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
               </div>
 
-              {/* Clean Editor Screenshot Container with Floating Interactive SaaS Badges */}
-              <div className="relative w-full overflow-hidden bg-slate-950">
-                {/* Continuous Laser Scanning Beam across the Hero Image */}
-                <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 via-teal-300 to-transparent shadow-[0_0_20px_#10b981] animate-[laserScan_7s_ease-in-out_infinite] pointer-events-none z-10 opacity-75" />
-
-                {/* Floating Glass Badge 1: Top-Left (ATS Algorithm Passed) */}
-                <div className="absolute top-4 left-4 z-20 hidden sm:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/90 dark:bg-black/85 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 shadow-2xl shadow-black/20 animate-float-chip">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div className="text-left">
-                    <span className="text-[10px] font-mono uppercase font-bold text-slate-400 dark:text-slate-500 block leading-none">
-                      ATS Compliance
-                    </span>
-                    <span className="text-xs font-bold text-slate-900 dark:text-white mt-0.5 block">
-                      98% · Workday & Taleo Passed
-                    </span>
-                  </div>
-                </div>
-
-                {/* Floating Glass Badge 2: Top-Right (Google X-Y-Z AI Rewriter) */}
-                <div className="absolute top-4 right-4 z-20 hidden md:flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/90 dark:bg-black/85 backdrop-blur-xl border border-slate-200/90 dark:border-white/15 shadow-2xl shadow-black/20 animate-float-drift">
-                  <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <div className="text-left">
-                    <span className="text-[10px] font-mono uppercase font-bold text-teal-600 dark:text-teal-400 block leading-none">
-                      Google X-Y-Z AI
-                    </span>
-                    <span className="text-xs font-bold text-slate-900 dark:text-white mt-0.5 block">
-                      +45% Quantified KPI Boost
-                    </span>
-                  </div>
-                </div>
-
-                {/* Floating Glass Badge 3: Bottom-Left (1200 DPI Vector) */}
-                <div className="absolute bottom-4 left-4 z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/90 text-white backdrop-blur-md border border-white/15 shadow-lg text-[11px] font-mono">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>1200 DPI Vector Engine · 0 KB Watermark</span>
-                </div>
-
-                {/* Main Hero Screenshot */}
+              {/* Clean Hero Screenshot */}
+              <div className="relative w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
                 <Image
                   src="/images/editor-screenshot.png"
                   alt="ResumeBabu Live Editor Split Screen: Real-Time Form Controls and Vector A4 Preview"
                   width={1024}
                   height={500}
-                  className="w-full h-auto object-cover sm:object-contain transition-transform duration-700 group-hover:scale-[1.012]"
+                  className="w-full h-auto object-cover sm:object-contain"
                   priority
                 />
-              </div>
-
-              {/* Bottom Feature Capability Strip */}
-              <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-200/80 dark:divide-teal-500/20 border-t border-slate-200/80 dark:border-teal-500/30 bg-slate-50/90 dark:bg-[#091210]/90">
-                <div className="p-3.5 sm:p-4 text-left">
-                  <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-teal-400 dark:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)] shrink-0" />
-                    <span>0ms Latency Vector Sync</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600 dark:text-teal-200/60 mt-0.5">
-                    Every keystroke updates the live A4 preview instantaneously.
-                  </p>
-                </div>
-                <div className="p-3.5 sm:p-4 text-left">
-                  <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-teal-400 dark:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)] shrink-0" />
-                    <span>30 Professional Templates</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600 dark:text-teal-200/60 mt-0.5">
-                    Switch between Harvard, Oxford, and Modern layouts in 1 click.
-                  </p>
-                </div>
-                <div className="p-3.5 sm:p-4 text-left">
-                  <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-teal-400 dark:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)] shrink-0" />
-                    <span>Built-In ATS Validator</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600 dark:text-teal-200/60 mt-0.5">
-                    Live check scoring typography, margins, and parsable headings.
-                  </p>
-                </div>
-                <div className="p-3.5 sm:p-4 text-left">
-                  <div className="text-xs font-bold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-teal-400 dark:drop-shadow-[0_0_6px_rgba(45,212,191,0.7)] shrink-0" />
-                    <span>1-Click Vector PDF Export</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600 dark:text-teal-200/60 mt-0.5">
-                    Clean, full-res downloadable PDF with zero watermarks or fee.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* -------------------------------------------------------------
-                THE GLOWING HORIZON LINE
-                Clean and balanced across both modes
-                ------------------------------------------------------------- */}
-            <div className="relative w-full mt-10 sm:mt-14 mb-8 sm:mb-12 flex items-center justify-center">
-              <div className="w-full h-[1.5px] bg-gradient-to-r from-transparent via-teal-500/50 via-emerald-500/60 to-transparent dark:via-cyan-400 dark:via-teal-300 dark:via-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)] dark:shadow-[0_0_25px_#2dd4bf,0_0_50px_#06b6d4]" />
-            </div>
-
-            {/* -------------------------------------------------------------
-                DEPTH TYPOGRAPHY SECTION (Clean, High-Contrast Modern SaaS)
-                ------------------------------------------------------------- */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-14 px-4 sm:px-8">
-              {/* Left Column: ATS Safe */}
-              <div className="space-y-2">
-                <div className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-baseline gap-2">
-                  <span>ATS Safe</span>
-                  <span className="text-emerald-600 dark:text-teal-400/90 font-sans font-light blur-[0.5px]">100%</span>
-                </div>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans max-w-md leading-relaxed">
-                  Single-layer semantic vector trees parsed with 98.4% accuracy across Workday, Taleo, Greenhouse & Lever algorithms.
-                </p>
-              </div>
-
-              {/* Right Column: Fast & Accurate */}
-              <div className="space-y-2 md:text-right flex flex-col md:items-end">
-                <div className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-baseline gap-2">
-                  <span>Fast &</span>
-                  <span className="text-teal-600 dark:text-cyan-400/90 font-sans font-light blur-[0.5px]">Accurate</span>
-                </div>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans max-w-md leading-relaxed">
-                  0ms continuous vector A4 layout sync. Exactly what you see is what exports to crisp, print-ready vector PDF.
-                </p>
               </div>
             </div>
           </div>
