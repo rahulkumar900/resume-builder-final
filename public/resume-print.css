@@ -61,7 +61,6 @@
     --color-teal-600: oklch(60% 0.118 184.704);
     --color-teal-700: oklch(51.1% 0.096 186.391);
     --color-teal-800: oklch(43.7% 0.078 188.216);
-    --color-teal-900: oklch(38.6% 0.063 188.416);
     --color-teal-950: oklch(27.7% 0.046 192.524);
     --color-cyan-400: oklch(78.9% 0.154 211.53);
     --color-cyan-500: oklch(71.5% 0.143 215.221);
@@ -4314,6 +4313,9 @@
   .pb-7 {
     padding-bottom: calc(var(--spacing) * 7);
   }
+  .pb-8 {
+    padding-bottom: calc(var(--spacing) * 8);
+  }
   .pb-12 {
     padding-bottom: calc(var(--spacing) * 12);
   }
@@ -6719,9 +6721,6 @@
     .sm\:justify-between {
       justify-content: space-between;
     }
-    .sm\:justify-center {
-      justify-content: center;
-    }
     .sm\:gap-1\.5 {
       gap: calc(var(--spacing) * 1.5);
     }
@@ -6886,9 +6885,6 @@
     .sm\:py-2 {
       padding-block: calc(var(--spacing) * 2);
     }
-    .sm\:py-2\.5 {
-      padding-block: calc(var(--spacing) * 2.5);
-    }
     .sm\:py-3 {
       padding-block: calc(var(--spacing) * 3);
     }
@@ -6933,9 +6929,6 @@
     }
     .sm\:pt-32 {
       padding-top: calc(var(--spacing) * 32);
-    }
-    .sm\:pb-0 {
-      padding-bottom: 0px;
     }
     .sm\:pb-3\.5 {
       padding-bottom: calc(var(--spacing) * 3.5);

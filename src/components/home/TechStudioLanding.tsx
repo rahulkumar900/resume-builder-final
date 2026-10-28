@@ -168,9 +168,6 @@ export function TechStudioLanding() {
     }
   }, [user?.id]);
 
-  // Main Playground Tab Switcher
-  const [activePlaygroundTab, setActivePlaygroundTab] = useState<'design' | 'tailor' | 'ats' | 'bullet' | 'canvas'>('design');
-
   // Feature 1: Design Studio Live Morpher State
   const [studioTemplate, setStudioTemplate] = useState<TemplateId>('harvard');
   const [studioColor, setStudioColor] = useState<string>('#15803d');
@@ -578,60 +575,29 @@ export function TechStudioLanding() {
         <ScrollStorySection />
 
         {/* =======================================================================
-            APP FEATURES PLAYGROUND (Live Interactive Demos of Real Superpowers)
+            APP FEATURES PLAYGROUND (100% Screen Height Sections - Zero Tabs)
             ======================================================================= */}
-        <section id="features" className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal animation="fade-up">
-            <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
-                <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>Interactive Superpowers</span>
-              </div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                Features built into our online resume builder.
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
-                Interact with our live design studio, keyword tailor, ATS auditor, and bullet re-writer before writing a single word.
-              </p>
+        <section id="features" className="pt-24 pb-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
+              <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>Interactive Superpowers</span>
             </div>
-          </ScrollReveal>
-
-          {/* Playground Mode Tabs - Horizontal scroll on mobile for native app feel */}
-          <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2 mb-8 pb-2 sm:pb-0 px-2 sm:px-0 select-none">
-            {[
-              { id: 'design', label: '1. Design Studio Morpher', icon: Palette },
-              { id: 'tailor', label: '2. AI Job Keyword Matcher', icon: Target },
-              { id: 'ats', label: '3. 30-Point ATS Auditor', icon: ShieldCheck },
-              { id: 'bullet', label: '4. Google X-Y-Z Re-writer', icon: Sparkles },
-              { id: 'canvas', label: '5. A4 Page Safety Engine', icon: FileCheck2 },
-            ].map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activePlaygroundTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setActivePlaygroundTab(tab.id as typeof activePlaygroundTab)}
-                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all shrink-0 cursor-pointer ${
-                    isActive
-                      ? 'bg-emerald-600 text-white shadow-md font-semibold'
-                      : 'bg-card hover:bg-accent text-slate-700 dark:text-slate-300 border border-border/80'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Features built into our online resume builder.
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
+              Interact with each live engine below as you scroll — from template morphing to AI job tailoring, ATS auditing, and A4 page safety.
+            </p>
           </div>
+        </section>
 
-          {/* PLAYGROUND STAGE BOX */}
-          <div className="rounded-3xl border border-border/80 dark:border-white/10 bg-card/60 dark:bg-[#121210]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-8 lg:p-10 transition-all">
-            
-            {/* -------------------------------------------------------------------
-                PLAYGROUND 1: DESIGN STUDIO MORPHER
-                ------------------------------------------------------------------- */}
-            {activePlaygroundTab === 'design' && (
+        {/* -------------------------------------------------------------------
+            FEATURE 01: DESIGN STUDIO MORPHER (100% Screen Height)
+            ------------------------------------------------------------------- */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="rounded-3xl border border-border/80 dark:border-white/10 bg-card/60 dark:bg-[#121210]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-8 lg:p-10 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Left Controls */}
                 <div className="lg:col-span-6 space-y-6 text-left">
@@ -732,12 +698,16 @@ export function TechStudioLanding() {
                   </span>
                 </div>
               </div>
-            )}
+            </div>
+          </div>
+        </section>
 
-            {/* -------------------------------------------------------------------
-                PLAYGROUND 2: AI JOB KEYWORD MATCHER
-                ------------------------------------------------------------------- */}
-            {activePlaygroundTab === 'tailor' && (
+        {/* -------------------------------------------------------------------
+            FEATURE 02: AI JOB KEYWORD MATCHER (100% Screen Height)
+            ------------------------------------------------------------------- */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="rounded-3xl border border-border/80 dark:border-white/10 bg-card/60 dark:bg-[#121210]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-8 lg:p-10 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
                 <div className="lg:col-span-6 space-y-6">
                   <div className="space-y-2">
@@ -864,12 +834,16 @@ export function TechStudioLanding() {
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+          </div>
+        </section>
 
-            {/* -------------------------------------------------------------------
-                PLAYGROUND 3: 30-POINT ATS AUDITOR
-                ------------------------------------------------------------------- */}
-            {activePlaygroundTab === 'ats' && (
+        {/* -------------------------------------------------------------------
+            FEATURE 03: 30-POINT ATS AUDITOR (100% Screen Height)
+            ------------------------------------------------------------------- */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="rounded-3xl border border-border/80 dark:border-white/10 bg-card/60 dark:bg-[#121210]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-8 lg:p-10 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
                 <div className="lg:col-span-5 space-y-6">
                   <div className="space-y-2">
@@ -970,12 +944,16 @@ export function TechStudioLanding() {
                   })}
                 </div>
               </div>
-            )}
+            </div>
+          </div>
+        </section>
 
-            {/* -------------------------------------------------------------------
-                PLAYGROUND 4: GOOGLE X-Y-Z BULLET RE-WRITER
-                ------------------------------------------------------------------- */}
-            {activePlaygroundTab === 'bullet' && (
+        {/* -------------------------------------------------------------------
+            FEATURE 04: GOOGLE X-Y-Z BULLET RE-WRITER (100% Screen Height)
+            ------------------------------------------------------------------- */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="rounded-3xl border border-border/80 dark:border-white/10 bg-card/60 dark:bg-[#121210]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-8 lg:p-10 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
                 <div className="lg:col-span-5 space-y-6">
                   <div className="space-y-2">
@@ -1072,12 +1050,16 @@ export function TechStudioLanding() {
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+          </div>
+        </section>
 
-            {/* -------------------------------------------------------------------
-                PLAYGROUND 5: REAL-TIME A4 PAGE SAFETY ENGINE
-                ------------------------------------------------------------------- */}
-            {activePlaygroundTab === 'canvas' && (
+        {/* -------------------------------------------------------------------
+            FEATURE 05: REAL-TIME A4 PAGE SAFETY ENGINE (100% Screen Height)
+            ------------------------------------------------------------------- */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="rounded-3xl border border-border/80 dark:border-white/10 bg-card/60 dark:bg-[#121210]/60 backdrop-blur-xl shadow-2xl p-6 sm:p-8 lg:p-10 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
                 <div className="lg:col-span-6 space-y-6">
                   <div className="space-y-2">
@@ -1180,8 +1162,7 @@ export function TechStudioLanding() {
                   </div>
                 </div>
               </div>
-            )}
-
+            </div>
           </div>
         </section>
 
