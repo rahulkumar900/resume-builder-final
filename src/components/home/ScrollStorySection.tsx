@@ -12,76 +12,91 @@ import {
   CheckCircle2,
   ArrowRight,
   Zap,
+  FileCheck2,
 } from 'lucide-react';
 import { fireConfetti } from '@/lib/confetti';
 
 const FULL_SUGGESTION_TEXT =
   'Architected distributed Go microservices on AWS EKS, slashing p99 API latency by 45% and sustaining 99.98% SLA across 12M daily queries.';
 
-type StoryScene = 'write' | 'design' | 'check' | 'export';
-
 export function ScrollStorySection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeScene, setActiveScene] = useState<StoryScene>('write');
+  // Section 1: Typewriter & Strikethrough state
+  const section1Ref = useRef<HTMLDivElement>(null);
+  const [s1InView, setS1InView] = useState(false);
+  const [typedChars, setTypedChars] = useState(0);
 
-  // Interactive overrides (if user clicks controls manually)
-  const [manualColor, setManualColor] = useState<string>('#10b981');
-  const [isExporting, setIsExporting] = useState<boolean>(false);
-  const [hasExported, setHasExported] = useState<boolean>(false);
+  // Section 2: Design Layout & Palette state
+  const [activeLayout, setActiveLayout] = useState<'single' | 'double' | 'banner'>('single');
+  const [activeColor, setActiveColor] = useState<string>('#10b981');
 
-  // Mouse spotlight lamp tracker
-  const [lampPos, setLampPos] = useState({ x: 300, y: 300, isHovered: false });
+  // Section 3: ATS Laser & Score state
+  const section3Ref = useRef<HTMLDivElement>(null);
+  const [s3InView, setS3InView] = useState(false);
+  const [atsScore, setAtsScore] = useState(42);
 
-  // Handle continuous scroll tracking
+  // Section 4: Vector PDF Export state
+  const [isExporting, setIsExporting] = useState(false);
+  const [hasExported, setHasExported] = useState(false);
+
+  // IntersectionObserver for Section 1 (Typewriter animation)
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalDistance = rect.height - windowHeight;
-
-      if (totalDistance <= 0) return;
-
-      const currentScroll = -rect.top;
-      const progress = Math.min(1, Math.max(0, currentScroll / totalDistance));
-      setScrollProgress(progress);
-
-      // Determine active scene based on scroll thresholds
-      if (progress < 0.28) {
-        setActiveScene('write');
-      } else if (progress < 0.58) {
-        setActiveScene('design');
-      } else if (progress < 0.84) {
-        setActiveScene('check');
-      } else {
-        setActiveScene('export');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setS1InView(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (section1Ref.current) observer.observe(section1Ref.current);
+    return () => observer.disconnect();
   }, []);
 
-  // Jump to specific scene smoothly on tab click
-  const scrollToScene = (scene: StoryScene) => {
-    if (!sectionRef.current) return;
-    const rect = sectionRef.current.getBoundingClientRect();
-    const scrollTop = window.scrollY + rect.top;
-    const totalDistance = rect.height - window.innerHeight;
+  // Run typewriter when Section 1 is visible
+  useEffect(() => {
+    if (!s1InView) return;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += 2;
+      if (current >= FULL_SUGGESTION_TEXT.length) {
+        setTypedChars(FULL_SUGGESTION_TEXT.length);
+        clearInterval(interval);
+      } else {
+        setTypedChars(current);
+      }
+    }, 28);
+    return () => clearInterval(interval);
+  }, [s1InView]);
 
-    let targetP = 0;
-    if (scene === 'write') targetP = 0.05;
-    else if (scene === 'design') targetP = 0.38;
-    else if (scene === 'check') targetP = 0.68;
-    else if (scene === 'export') targetP = 0.92;
+  // IntersectionObserver for Section 3 (ATS Score counter animation)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setS3InView(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (section3Ref.current) observer.observe(section3Ref.current);
+    return () => observer.disconnect();
+  }, []);
 
-    window.scrollTo({
-      top: scrollTop + totalDistance * targetP,
-      behavior: 'smooth',
-    });
-  };
+  // Increment ATS score when Section 3 enters view
+  useEffect(() => {
+    if (!s3InView) return;
+    let score = 42;
+    const interval = setInterval(() => {
+      score += 2;
+      if (score >= 98) {
+        setAtsScore(98);
+        clearInterval(interval);
+      } else {
+        setAtsScore(score);
+      }
+    }, 35);
+    return () => clearInterval(interval);
+  }, [s3InView]);
 
   const handleSimulateExport = () => {
     setIsExporting(true);
@@ -96,485 +111,469 @@ export function ScrollStorySection() {
     }, 700);
   };
 
-  // Derive scene-specific sub-progresses
-  // 1. Write scene: Strikethrough (0.03 -> 0.12) & Typewriter (0.10 -> 0.25)
-  const strikeProgress = Math.min(1, Math.max(0, (scrollProgress - 0.03) / 0.1));
-  const typeProgress = Math.min(1, Math.max(0, (scrollProgress - 0.1) / 0.15));
-  const typedCharCount = Math.floor(typeProgress * FULL_SUGGESTION_TEXT.length);
-
-  // 2. Design scene: Layout morphing
-  const designProgress = Math.min(1, Math.max(0, (scrollProgress - 0.28) / 0.3));
-  const activeDesignLayout =
-    designProgress < 0.45 ? 'single' : designProgress < 0.8 ? 'double' : 'banner';
-
-  // 3. Check scene: Laser scan line progress and checkmarks
-  const checkProgress = Math.min(1, Math.max(0, (scrollProgress - 0.58) / 0.26));
-  const calculatedScore = Math.floor(62 + checkProgress * 36); // 62% to 98%
-  const checkedCount = Math.floor(checkProgress * 6.5); // 0 to 6
-
   return (
-    <section
-      id="workflow"
-      ref={sectionRef}
-      className="relative h-[360vh] bg-slate-50/50 dark:bg-[#070c0a] border-y border-border/80 transition-colors duration-300"
-    >
-      {/* Sticky Fullscreen Storytelling Canvas */}
-      <div className="sticky top-16 h-[calc(100vh-4rem)] w-full flex flex-col justify-between overflow-hidden py-4 sm:py-6">
-        {/* Subtle background hairline grid */}
-        <div className="absolute inset-0 pointer-events-none -z-20 opacity-40 dark:opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:3.5rem_3.5rem]" />
-
-        {/* Ambient Mouse Lamp Follower */}
-        {lampPos.isHovered && (
-          <div
-            className="absolute pointer-events-none -z-10 transition-opacity duration-300"
-            style={{
-              left: lampPos.x - 300,
-              top: lampPos.y - 300,
-              width: 600,
-              height: 600,
-              background:
-                'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.02) 45%, transparent 70%)',
-            }}
-          />
-        )}
-
-        {/* 1. Header with Sticky Story Navigation Bar (RxResume Style) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 shrink-0">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-border/80 pb-3">
-            <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100/80 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-300 dark:border-emerald-800 mb-1">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-                <span>Scroll-Driven Resume Builder Superpowers</span>
-              </div>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-                Watch Your Resume Evolve As You Scroll
-              </h2>
+    <div className="w-full">
+      {/* =======================================================================
+          SCENE 1: WRITE (100% Screen Height)
+          ======================================================================= */}
+      <section
+        ref={section1Ref}
+        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent relative overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Narrative & Explanation */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-bold border border-emerald-300 dark:border-emerald-800">
+              <PenTool className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>STEP 01 · AI BULLET REWRITER</span>
             </div>
 
-            {/* 4 Interactive Story Navigation Pills */}
-            <div className="flex items-center gap-1 bg-slate-200/60 dark:bg-white/10 p-1 rounded-full border border-border shadow-2xs">
-              {[
-                { id: 'write', label: '1. Write (AI)', icon: PenTool },
-                { id: 'design', label: '2. Design', icon: Palette },
-                { id: 'check', label: '3. ATS Audit', icon: ShieldCheck },
-                { id: 'export', label: '4. Vector PDF', icon: Download },
-              ].map((tab) => {
-                const Icon = tab.icon;
-                const isActive = activeScene === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => scrollToScene(tab.id as StoryScene)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm border border-border'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/5'
-                    }`}
-                  >
-                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`} />
-                    <span>{tab.label}</span>
-                  </button>
-                );
-              })}
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.15] tracking-tight">
+              Turn passive task lists into quantified business impact.
+            </h2>
+
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+              Recruiters instantly reject resumes full of vague task descriptions. As you build your resume, our integrated AI rewriter automatically detects weak verbs and reframes them using the Google X-Y-Z formula.
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <div className="p-3.5 bg-card/80 dark:bg-[#0c1411]/80 rounded-xl border border-border">
+                <span className="text-[11px] font-mono text-slate-400 uppercase font-semibold block">Formula</span>
+                <span className="text-sm font-bold text-slate-900 dark:text-white">Google X-Y-Z</span>
+              </div>
+              <div className="p-3.5 bg-card/80 dark:bg-[#0c1411]/80 rounded-xl border border-border">
+                <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 uppercase font-semibold block">Impact Boost</span>
+                <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">+45% Interview Rate</span>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <Link
+                href="/create"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer"
+              >
+                <span>Try Bullet Rewriter Free</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Live Animated Document Card */}
+          <div className="lg:col-span-7">
+            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-6">
+              {/* Document Header */}
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping" />
+                  <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
+                    REAL-TIME AI REWRITER WORKSPACE
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                  Google X-Y-Z Mode
+                </span>
+              </div>
+
+              {/* Step A: Weak Draft with Animated Strikethrough */}
+              <div className="p-4 bg-red-50/60 dark:bg-red-950/20 rounded-2xl border border-red-200 dark:border-red-900/50 space-y-1.5 relative overflow-hidden">
+                <div className="flex items-center justify-between text-[11px] font-mono font-bold text-red-600 dark:text-red-400">
+                  <span>BEFORE: PASSIVE DUTY (42/100 RECRUITER IMPACT)</span>
+                  <span>Filtered</span>
+                </div>
+                <p className="text-sm text-slate-700 dark:text-slate-300 line-through decoration-red-500 decoration-2 font-sans italic">
+                  &quot;Responsible for working on backend microservices and databases for high traffic web applications.&quot;
+                </p>
+              </div>
+
+              {/* Step B: AI Streamed Rewrite */}
+              <div className="p-5 bg-emerald-50/80 dark:bg-emerald-950/30 rounded-2xl border border-emerald-300 dark:border-emerald-800 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-emerald-800 dark:text-emerald-300 text-xs flex items-center gap-1.5">
+                    <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    <span>AFTER: QUANTIFIED LEADERSHIP (98/100 ATS SCORE)</span>
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-200/80 dark:bg-emerald-900/60 px-2 py-0.5 rounded-full">
+                    Validated
+                  </span>
+                </div>
+
+                <p className="text-sm sm:text-base text-slate-900 dark:text-white font-medium leading-relaxed font-sans min-h-[56px]">
+                  • {FULL_SUGGESTION_TEXT.slice(0, Math.max(16, typedChars))}
+                  {typedChars < FULL_SUGGESTION_TEXT.length && (
+                    <span className="inline-block w-2 h-4 bg-emerald-600 dark:bg-emerald-400 ml-0.5 animate-pulse align-middle" />
+                  )}
+                </p>
+
+                <div className="pt-3 border-t border-emerald-200 dark:border-emerald-800/60 flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-emerald-700 dark:text-emerald-400">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Metric Extracted: 45% Latency Reduction · 12M Queries</span>
+                  </div>
+                  <span className="px-3 py-1 text-xs font-bold text-white bg-emerald-600 rounded-lg shadow-xs flex items-center gap-1">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    <span>Applied to Resume</span>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* 2. Main Stage: Two Columns (Narrative Controls on Left, Live Morphing Document on Right) */}
-        <div
-          onMouseMove={(e) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            setLampPos({
-              x: e.clientX - rect.left,
-              y: e.clientY - rect.top,
-              isHovered: true,
-            });
-          }}
-          onMouseLeave={() => setLampPos((prev) => ({ ...prev, isHovered: false }))}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto min-h-0 py-4"
-        >
-          {/* Left Column: Story Chapter Explanation & Interactive Tweaks */}
-          <div className="lg:col-span-5 space-y-5">
-            {activeScene === 'write' && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 text-[11px] font-bold border border-emerald-300 dark:border-emerald-800">
-                  <PenTool className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-                  <span>Phase 01 · Real-Time Google XYZ Rewriter</span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
-                  Turn passive task lists into quantifiable metric bullets
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                  As you scroll, notice how weak duty statements get struck through in real-time while our AI resume builder generates recruiter-grade achievements character-by-character.
-                </p>
+      {/* =======================================================================
+          SCENE 2: DESIGN & LAYOUT MORPHER (100% Screen Height)
+          ======================================================================= */}
+      <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.02] to-transparent relative overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Narrative & Interactive Controls */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-mono font-bold border border-teal-300 dark:border-teal-800">
+              <Palette className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+              <span>STEP 02 · REAL-TIME LAYOUT MORPHER</span>
+            </div>
 
-                <div className="p-3 bg-emerald-50/80 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800/60 text-xs text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  <span className="font-semibold">Scroll Progress:</span>
-                  <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">
-                    {Math.round((scrollProgress / 0.28) * 100)}% through Write Phase
-                  </span>
-                </div>
-              </div>
-            )}
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.15] tracking-tight">
+              Switch layouts & palettes in 1 click without losing text.
+            </h2>
 
-            {activeScene === 'design' && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-100/80 dark:bg-teal-950/60 text-teal-900 dark:text-teal-300 text-[11px] font-bold border border-teal-300 dark:border-teal-800">
-                  <Palette className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                  <span>Phase 02 · Scroll-Driven Layout Morph</span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
-                  Switch between ATS Single Column and Modern Dual Column
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                  Keep scrolling to watch the resume document morph smoothly between Ivy Classic, Tech Dual Column, and Executive layouts without losing a single character of content.
-                </p>
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+              Switching templates in traditional builders breaks margins and reformats your career data. In ResumeBabu, your content is stored in an independent semantic data layer that reflows instantly into any single-column or dual-column layout.
+            </p>
 
-                <div className="space-y-3 pt-2">
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1.5">
-                      Accent Color Theme
-                    </span>
-                    <div className="flex items-center gap-2">
-                      {[
-                        { name: 'Emerald', hex: '#10b981' },
-                        { name: 'Teal', hex: '#0f766e' },
-                        { name: 'Royal Blue', hex: '#2563eb' },
-                        { name: 'Tech Violet', hex: '#7c3aed' },
-                        { name: 'Charcoal', hex: '#334155' },
-                      ].map((pal) => (
-                        <button
-                          key={pal.hex}
-                          onClick={() => setManualColor(pal.hex)}
-                          className={`w-6 h-6 rounded-full transition-transform cursor-pointer ${
-                            manualColor === pal.hex
-                              ? 'scale-125 ring-2 ring-emerald-500 ring-offset-2 dark:ring-offset-slate-950'
-                              : 'hover:scale-110'
-                          }`}
-                          style={{ backgroundColor: pal.hex }}
-                          title={pal.name}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeScene === 'check' && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 text-[11px] font-bold border border-emerald-300 dark:border-emerald-800">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-                  <span>Phase 03 · 30-Point Live ATS Diagnostic</span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
-                  Live parser verification with keyword detection
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                  The green laser scans down the page as you scroll. Each critical section ticks green as it passes corporate ATS compliance checks, boosting your interview readiness.
-                </p>
-
-                <div className="p-3 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center justify-between text-xs">
-                  <span className="font-semibold text-emerald-900 dark:text-emerald-200">ATS Match Readiness:</span>
-                  <span className="font-bold text-emerald-700 dark:text-emerald-400 text-sm">{calculatedScore}% Score</span>
-                </div>
-              </div>
-            )}
-
-            {activeScene === 'export' && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-100/80 dark:bg-teal-950/60 text-teal-900 dark:text-teal-300 text-[11px] font-bold border border-teal-300 dark:border-teal-800">
-                  <Download className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                  <span>Phase 04 · Vector PDF & Recruiter Ready</span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
-                  Instant vector PDF export with zero watermarks
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                  Your tailored resume is now parsed, styled, and validated. Test our vector PDF export engine below or jump straight into the full online resume builder.
-                </p>
-
-                <div className="pt-2 flex items-center gap-3">
+            {/* Layout Switcher Buttons */}
+            <div className="space-y-2">
+              <label className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                Select Layout Architecture:
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: 'single', label: 'Harvard Classic', tag: 'Single Column' },
+                  { id: 'double', label: 'Silicon Tech', tag: 'Dual Column' },
+                  { id: 'banner', label: 'Executive Lead', tag: 'Header Accent' },
+                ].map((l) => (
                   <button
-                    onClick={handleSimulateExport}
-                    disabled={isExporting}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer"
+                    key={l.id}
+                    onClick={() => setActiveLayout(l.id as typeof activeLayout)}
+                    className={`p-2.5 rounded-xl border text-xs text-left transition-all cursor-pointer ${
+                      activeLayout === l.id
+                        ? 'bg-teal-600 text-white font-bold border-teal-600 shadow-md'
+                        : 'bg-card text-slate-700 dark:text-slate-300 border-border hover:bg-accent'
+                    }`}
                   >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>{isExporting ? 'Generating PDF...' : 'Simulate Vector PDF Export'}</span>
+                    <span className="block truncate font-bold">{l.label}</span>
+                    <span className="text-[10px] opacity-80 block truncate">{l.tag}</span>
                   </button>
-                  {hasExported && (
-                    <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 animate-in fade-in">
-                      <Check className="w-4 h-4 stroke-[3]" />
-                      Vector Ready!
-                    </span>
-                  )}
-                </div>
+                ))}
               </div>
-            )}
+            </div>
+
+            {/* Accent Color Palette Picker */}
+            <div className="space-y-2">
+              <label className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
+                Accent Theme Color:
+              </label>
+              <div className="flex items-center gap-3">
+                {[
+                  { name: 'Emerald', hex: '#10b981' },
+                  { name: 'Teal', hex: '#0f766e' },
+                  { name: 'Royal Blue', hex: '#2563eb' },
+                  { name: 'Executive Navy', hex: '#1e3a8a' },
+                  { name: 'Tech Violet', hex: '#7c3aed' },
+                ].map((pal) => (
+                  <button
+                    key={pal.hex}
+                    onClick={() => setActiveColor(pal.hex)}
+                    className={`w-7 h-7 rounded-full transition-transform cursor-pointer flex items-center justify-center ${
+                      activeColor === pal.hex
+                        ? 'scale-125 ring-2 ring-teal-500 ring-offset-2 dark:ring-offset-slate-950 shadow-md'
+                        : 'hover:scale-110'
+                    }`}
+                    style={{ backgroundColor: pal.hex }}
+                    title={pal.name}
+                  >
+                    {activeColor === pal.hex && <Check className="w-3.5 h-3.5 text-white stroke-[3]" />}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Right Column: Live Morphing Resume Document Driven by Scroll Progress */}
-          <div className="lg:col-span-7 relative">
-            <div className="relative bg-white dark:bg-[#0c1411] rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 overflow-hidden transition-all duration-300">
-              
-              {/* ATS Laser Beam across Document during Scene 3 */}
-              {activeScene === 'check' && (
-                <div
-                  className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent shadow-[0_0_18px_#10b981] z-30 pointer-events-none transition-all duration-100"
-                  style={{ top: `${Math.min(95, Math.max(5, checkProgress * 100))}%` }}
-                />
-              )}
-
-              {/* Top Document Header Bar */}
-              <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                    {activeScene === 'write' && 'Phase 01 · Active Editor & AI Tuning'}
-                    {activeScene === 'design' && `Phase 02 · ${activeDesignLayout === 'single' ? 'Single Column Classic' : activeDesignLayout === 'double' ? 'Modern Dual Column' : 'Executive Banner'}`}
-                    {activeScene === 'check' && 'Phase 03 · ATS Parsing Verification'}
-                    {activeScene === 'export' && 'Phase 04 · Print-Ready Vector PDF'}
-                  </span>
-                </div>
-                <div className="text-[11px] font-semibold text-slate-400 dark:text-slate-500">
-                  {activeScene === 'design' && (
-                    <span className="text-teal-700 dark:text-teal-300 font-bold bg-teal-50 dark:bg-teal-950/50 px-2 py-0.5 rounded-md border border-teal-200 dark:border-teal-800">
-                      {activeDesignLayout === 'single' ? 'Layout: Ivy League' : activeDesignLayout === 'double' ? 'Layout: Silicon Dual' : 'Layout: Executive'}
-                    </span>
-                  )}
-                  {activeScene !== 'design' && 'A4 · Vector Engine'}
-                </div>
-              </div>
-
-              {/* Resume Header Area */}
+          {/* Right Column: Live Morphing Layout Preview */}
+          <div className="lg:col-span-7">
+            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-5 transition-all">
+              {/* Document Banner / Header based on layout selection */}
               <div
-                className={`pb-4 border-b border-border transition-all ${
-                  activeScene === 'design' && activeDesignLayout === 'banner'
-                    ? 'bg-slate-900 dark:bg-black text-white p-4 -mx-6 sm:-mx-8 -mt-4 mb-4 rounded-t-2xl'
-                    : ''
+                className={`p-4 rounded-2xl transition-all ${
+                  activeLayout === 'banner'
+                    ? 'bg-slate-900 text-white'
+                    : 'border-b border-border pb-4'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <div
-                      className="text-base sm:text-lg font-bold transition-colors"
+                    <h3
+                      className="text-lg sm:text-xl font-bold tracking-tight transition-colors"
                       style={{
-                        color:
-                          activeScene === 'design' && activeDesignLayout === 'banner'
-                            ? '#ffffff'
-                            : manualColor,
+                        color: activeLayout === 'banner' ? '#ffffff' : activeColor,
                       }}
                     >
                       Alex Morgan
-                    </div>
+                    </h3>
                     <p
                       className={`text-xs font-medium ${
-                        activeScene === 'design' && activeDesignLayout === 'banner'
-                          ? 'text-slate-300'
-                          : 'text-slate-500 dark:text-slate-400'
+                        activeLayout === 'banner' ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'
                       }`}
                     >
                       Senior Cloud Infrastructure Engineer · Bengaluru, India
                     </p>
                   </div>
-                  {activeScene === 'check' && (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold animate-in fade-in">
-                      <span>{calculatedScore}% ATS Match</span>
-                    </div>
-                  )}
+                  <span
+                    className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md uppercase"
+                    style={{
+                      backgroundColor: `${activeColor}15`,
+                      color: activeColor,
+                    }}
+                  >
+                    {activeLayout === 'single' ? 'Harvard Single' : activeLayout === 'double' ? 'Silicon Dual' : 'Executive'}
+                  </span>
                 </div>
               </div>
 
-              {/* Resume Dynamic Body: Morphs according to active scene and scroll position */}
-              <div className="pt-2 space-y-4">
-                
-                {/* SCENE 1: WRITE (Scroll-Driven Strikethrough & Typewriter) */}
-                {activeScene === 'write' && (
-                  <div className="space-y-3">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                      Experience Bullet Point (Senior Architect)
+              {/* Dynamic Body adapting to layout */}
+              <div
+                className={`transition-all duration-300 ${
+                  activeLayout === 'double' ? 'grid grid-cols-1 sm:grid-cols-12 gap-5' : 'space-y-4'
+                }`}
+              >
+                {/* Main Content Column */}
+                <div className={activeLayout === 'double' ? 'sm:col-span-8 space-y-3' : 'space-y-3'}>
+                  <div className="space-y-1">
+                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: activeColor }}>
+                      Experience · Stripe
                     </div>
-
-                    {/* Original Draft with scroll-driven Strikethrough */}
-                    <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border text-xs text-slate-600 dark:text-slate-300 leading-relaxed relative overflow-hidden">
-                      <span className="font-semibold text-slate-400 dark:text-slate-500 block mb-1">Original Passive Draft:</span>
-                      <p className="relative">
-                        • Responsible for working on backend microservices and databases for high traffic web applications.
-                        {/* Red Animated Strikethrough Line */}
-                        <span
-                          className="absolute left-0 top-1/2 h-[2px] bg-rose-500 transition-all duration-100"
-                          style={{ width: `${strikeProgress * 100}%` }}
-                        />
-                      </p>
-                    </div>
-
-                    {/* AI Suggestion Container with Scroll-Driven Character Progression */}
-                    <div className="relative pl-4 border-l-2 border-dashed border-emerald-400 space-y-2 animate-in fade-in">
-                      <div className="p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 rounded-xl border border-emerald-300 dark:border-emerald-800 text-xs text-slate-800 dark:text-slate-200 leading-relaxed space-y-2">
-                        <div className="flex items-center justify-between">
-                          <span className="font-bold text-emerald-800 dark:text-emerald-300 text-[11px] flex items-center gap-1">
-                            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                            AI Bullet Optimizer (Google XYZ Formula):
-                          </span>
-                          <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-900/60 px-2 py-0.5 rounded-full">
-                            +45% Recruiter Impact
-                          </span>
-                        </div>
-
-                        {/* Streamed Characters Driven by Scroll */}
-                        <p className="text-slate-900 dark:text-white font-medium">
-                          • {FULL_SUGGESTION_TEXT.slice(0, Math.max(12, typedCharCount))}
-                          {typedCharCount < FULL_SUGGESTION_TEXT.length && (
-                            <span className="inline-block w-1.5 h-3.5 bg-emerald-600 dark:bg-emerald-400 ml-0.5 animate-pulse align-middle" />
-                          )}
-                        </p>
-
-                        <div className="pt-2 flex items-center justify-between border-t border-emerald-200 dark:border-emerald-800/60">
-                          <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
-                            Scroll down to keep typing
-                          </span>
-                          <span className="px-3 py-1 text-[11px] font-bold text-white bg-emerald-700 dark:bg-emerald-600 rounded-md shadow-2xs flex items-center gap-1">
-                            <Check className="w-3 h-3 stroke-[3]" />
-                            <span>Accepted</span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* SCENE 2: DESIGN (Scroll-Driven Layout Transitions) */}
-                {activeScene === 'design' && (
-                  <div
-                    className={`transition-all duration-500 ${
-                      activeDesignLayout === 'double'
-                        ? 'grid grid-cols-1 sm:grid-cols-12 gap-4'
-                        : 'space-y-3'
-                    }`}
-                  >
-                    <div className={activeDesignLayout === 'double' ? 'sm:col-span-8 space-y-2' : 'space-y-2'}>
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                        Experience · Stripe
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
-                        Led 8-engineer pod deploying Kubernetes cluster automation. Engineered PostgreSQL partitioning strategy reducing query wait times by 40%.
-                      </p>
-                    </div>
-
-                    <div
-                      className={
-                        activeDesignLayout === 'double'
-                          ? 'sm:col-span-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border space-y-2'
-                          : 'pt-2 flex flex-wrap gap-1.5'
-                      }
-                    >
-                      <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: manualColor }}>
-                        Core Skills
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {['Kubernetes', 'Go', 'PostgreSQL', 'AWS', 'Docker'].map((sk) => (
-                          <span
-                            key={sk}
-                            className="text-[10px] font-semibold px-1.5 py-0.5 bg-white dark:bg-slate-800 rounded border border-border text-slate-800 dark:text-slate-200"
-                          >
-                            {sk}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* SCENE 3: CHECK (Scroll-Driven Sequential ATS Checkmarks) */}
-                {activeScene === 'check' && (
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400">
-                      <span>ATS Hard Skills Verification:</span>
-                      <span className="text-emerald-600 dark:text-emerald-400">{Math.min(6, checkedCount)} / 6 Checked</span>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                      {[
-                        'Distributed Systems Architecture',
-                        'Kubernetes & Docker Containerization',
-                        'SQL Query & Index Optimization',
-                        'AWS Cloud Infrastructure',
-                        'CI/CD GitHub Actions',
-                        'Microservices REST / gRPC',
-                      ].map((item, idx) => {
-                        const isChecked = idx < checkedCount;
-                        return (
-                          <div
-                            key={idx}
-                            className={`flex items-center gap-1.5 p-2 rounded-lg border text-[11px] transition-all duration-300 ${
-                              isChecked
-                                ? 'bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-slate-800 dark:text-slate-200'
-                                : 'bg-slate-50/40 dark:bg-slate-900/30 border-border text-slate-400 dark:text-slate-600 opacity-40'
-                            }`}
-                          >
-                            <CheckCircle2
-                              className={`w-3.5 h-3.5 shrink-0 ${
-                                isChecked ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-300 dark:text-slate-600'
-                              }`}
-                            />
-                            <span className="truncate font-medium">{item}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* SCENE 4: TAILOR & EXPORT (Keywords Highlighted & High-DPI Output) */}
-                {activeScene === 'export' && (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50/80 dark:bg-emerald-950/50 p-2.5 rounded-xl border border-emerald-300 dark:border-emerald-800">
-                      <span>Target Role Matched: Lead Infrastructure Engineer</span>
-                      <span className="font-bold">99% Tailored</span>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-3 text-center">
-                      <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border">
-                        <div className="text-sm font-bold text-slate-900 dark:text-white">1200 DPI</div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Vector Print</div>
-                      </div>
-                      <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border">
-                        <div className="text-sm font-bold text-slate-900 dark:text-white">0 KB</div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Watermark</div>
-                      </div>
-                      <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border">
-                        <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400">100%</div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Searchable Text</div>
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center pt-1 font-sans">
-                      Text remains selectable and searchable vector nodes rather than rasterized canvas pixels.
+                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                      Architected distributed Go microservices on AWS EKS, slashing p99 latency by 45%. Led 8-engineer squad migrating 120+ database tables to sharded PostgreSQL instances.
                     </p>
                   </div>
-                )}
+
+                  <div className="space-y-1">
+                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: activeColor }}>
+                      Education · B.Tech Computer Science
+                    </div>
+                    <p className="text-xs text-slate-700 dark:text-slate-300 font-sans">
+                      Indian Institute of Technology · GPA 8.9/10 · Dean&apos;s Honor List
+                    </p>
+                  </div>
+                </div>
+
+                {/* Sidebar Column (when in dual mode) or Footer Tags (when in single mode) */}
+                <div
+                  className={
+                    activeLayout === 'double'
+                      ? 'sm:col-span-4 p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-3'
+                      : 'pt-2 flex flex-wrap gap-1.5'
+                  }
+                >
+                  <div className="text-[11px] font-mono font-bold uppercase" style={{ color: activeColor }}>
+                    Core Stack:
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Go', 'AWS EKS', 'Kubernetes', 'PostgreSQL', 'Docker', 'Terraform', 'Kafka'].map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-border"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* 3. Bottom Progress Bar in Sticky Container */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 shrink-0">
-          <div className="flex items-center justify-between gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
-            <span>Scroll down to advance through scenes</span>
-            <div className="flex-1 max-w-xs h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden border border-border">
-              <div
-                className="h-full bg-emerald-600 dark:bg-emerald-400 rounded-full transition-all duration-75"
-                style={{ width: `${scrollProgress * 100}%` }}
-              />
+      {/* =======================================================================
+          SCENE 3: ATS AUDITOR & LASER SCANNER (100% Screen Height)
+          ======================================================================= */}
+      <section
+        ref={section3Ref}
+        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
+      >
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Narrative */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-bold border border-emerald-300 dark:border-emerald-800">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>STEP 03 · 30-POINT ATS DIAGNOSTIC</span>
             </div>
-            <span className="font-mono text-slate-800 dark:text-slate-200 font-bold">
-              {Math.round(scrollProgress * 100)}%
-            </span>
+
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.15] tracking-tight">
+              Pre-flight checks engineered to beat enterprise ATS parsers.
+            </h2>
+
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+              Applicant Tracking Systems (Workday, Taleo, Greenhouse, Lever) discard resumes with floating boxes, non-standard headings, or unsearchable graphics. Our 30-point diagnostic engine verifies parser passability before you apply.
+            </p>
+
+            {/* Big ATS Live Match Meter */}
+            <div className="p-5 bg-card/80 dark:bg-[#0c1411]/80 rounded-2xl border border-emerald-500/30 flex items-center justify-between">
+              <div>
+                <span className="text-xs font-mono text-slate-400 uppercase font-semibold block">ATS Readiness Score</span>
+                <span className="text-3xl sm:text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">
+                  {atsScore}% Pass Rate
+                </span>
+              </div>
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
+                Top 2% Tier
+              </span>
+            </div>
+
+            <div className="pt-2">
+              <Link
+                href="/ats-checker"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer"
+              >
+                <span>Check Your Resume ATS Score</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column: Laser Scanline Card with Checkmarks */}
+          <div className="lg:col-span-7">
+            <div className="relative bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-5 overflow-hidden">
+              {/* Laser Scanning Line Animation */}
+              <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500 via-teal-400 to-transparent shadow-[0_0_20px_#10b981] animate-[laserScan_3.5s_ease-in-out_infinite] pointer-events-none z-20" />
+
+              <div className="flex items-center justify-between border-b border-border pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200">
+                    LIVE ATS PARSER AUDIT ENGINE
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                  PASS: 30 / 30 RULES
+                </span>
+              </div>
+
+              {/* 6 Automated Verification Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {[
+                  { title: 'Single-Layer Semantic Vector Tree', sub: 'No floating textboxes or canvas raster' },
+                  { title: 'Standard Header Hierarchy', sub: 'Recognized H1, H2, and Workday sections' },
+                  { title: 'Extractable Contact & LinkedIn Data', sub: 'Email & GitHub parsed with 100% fidelity' },
+                  { title: 'Quantified KPI Metric Density', sub: 'Meets 40%+ quantifiable metric threshold' },
+                  { title: 'Font Embedding Compliance', sub: 'Standard typefaces embedded in vector node' },
+                  { title: 'Zero Multi-Page Spillover Risk', sub: 'Calculated A4 boundary margin safety' },
+                ].map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 dark:bg-emerald-950/20 flex items-start gap-2.5 text-left"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                        {item.title}
+                      </div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400 font-sans mt-0.5">
+                        {item.sub}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* =======================================================================
+          SCENE 4: VECTOR PDF EXPORT (100% Screen Height)
+          ======================================================================= */}
+      <section className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Narrative & Action */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-mono font-bold border border-teal-300 dark:border-teal-800">
+              <Download className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+              <span>STEP 04 · ZERO-PAYWALL VECTOR PDF</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.15] tracking-tight">
+              Export crisp vector PDFs with zero watermarks & zero paywalls.
+            </h2>
+
+            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+              Unlike other resume builders that trap your hours of work behind a surprise \$24/mo paywall or blurry rasterized watermark, ResumeBabu generates native, uncompressed vector PDFs that recruiters can search, highlight, and print at full 1200 DPI clarity.
+            </p>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <button
+                type="button"
+                onClick={handleSimulateExport}
+                disabled={isExporting}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg transition-all cursor-pointer"
+              >
+                <Download className="w-4 h-4" />
+                <span>{isExporting ? 'Generating Vector PDF...' : 'Test Vector PDF Export'}</span>
+              </button>
+
+              <Link
+                href="/create"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-card hover:bg-accent text-slate-800 dark:text-slate-200 border border-border font-bold text-sm transition-all shadow-xs cursor-pointer"
+              >
+                <span>Build Resume Now</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {hasExported && (
+              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 rounded-xl text-xs font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2 animate-in fade-in">
+                <Check className="w-4 h-4 stroke-[3]" />
+                <span>Vector PDF Generated! 100% Vector Nodes · Zero Watermark</span>
+              </div>
+            )}
+          </div>
+
+          {/* Right Column: Visual Export Metrics Box */}
+          <div className="lg:col-span-7">
+            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-6">
+              <div className="flex items-center justify-between border-b border-border pb-3">
+                <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
+                  EXPORT QUALITY SPECIFICATIONS
+                </span>
+                <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                  ENTERPRISE GRADE
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 text-center">
+                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1">
+                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">1200 DPI</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">Full Vector Resolution</div>
+                </div>
+
+                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1">
+                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">0 KB</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">Zero Watermarks</div>
+                </div>
+
+                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1">
+                  <div className="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">100%</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">Selectable Text</div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-2xl border border-emerald-500/25 bg-emerald-500/5 dark:bg-emerald-950/20 text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                💡 <strong>Why Vector PDF Matters:</strong> Unlike rasterized images or canvas screenshots that become blurry when zoomed in or read by OCR bots, vector PDFs preserve mathematical glyphs and hyperlinks, guaranteeing perfect rendering on any recruiter screen or ATS database.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

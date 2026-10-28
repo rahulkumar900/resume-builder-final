@@ -573,11 +573,9 @@ export function TechStudioLanding() {
         </section>
 
         {/* =======================================================================
-            SCROLL-DRIVEN FEATURE STORY ENGINE (Reactive Resume Style)
+            SCROLL-DRIVEN FEATURE STORY ENGINE (100% Screen Height Sections)
             ======================================================================= */}
-        <ScrollReveal animation="fade-in">
-          <ScrollStorySection />
-        </ScrollReveal>
+        <ScrollStorySection />
 
         {/* =======================================================================
             APP FEATURES PLAYGROUND (Live Interactive Demos of Real Superpowers)

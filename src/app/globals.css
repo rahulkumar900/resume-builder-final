@@ -498,3 +498,20 @@ body {
   animation: blink-cursor 0.9s infinite;
 }
 
+/* ATS Laser Scanner Beam */
+@keyframes laserScan {
+  0% {
+    top: 8%;
+    opacity: 0.3;
+  }
+  50% {
+    top: 92%;
+    opacity: 1;
+  }
+  100% {
+    top: 8%;
+    opacity: 0.3;
+  }
+}
+
+
