@@ -119,20 +119,7 @@ const AI_REWRITE_STYLES = [
   },
 ];
 
-const STORY_STEPS = [
-  { id: 1, title: 'Import', label: 'AI Parser', icon: UploadCloud },
-  { id: 2, title: 'Target', label: 'Job Matcher', icon: Target },
-  { id: 3, title: 'Design', label: '30 Templates', icon: Palette },
-  { id: 4, title: 'Rewrite', label: 'Google X-Y-Z', icon: Sparkles },
-  { id: 5, title: 'Audit', label: 'ATS & Safety', icon: ShieldCheck },
-  { id: 6, title: 'Export', label: 'Vector PDF', icon: Download },
-];
-
 export function ScrollStorySection() {
-  // Global Scroll-Driven Story State
-  const [activeStep, setActiveStep] = useState<number>(1);
-  const [visitedSteps, setVisitedSteps] = useState<Record<number, boolean>>({ 1: true });
-
   // Section Refs for scroll tracking
   const step1Ref = useRef<HTMLDivElement>(null);
   const step2Ref = useRef<HTMLDivElement>(null);
@@ -215,8 +202,6 @@ export function ScrollStorySection() {
           const stepAttr = entry.target.getAttribute('data-step');
           const stepNum = Number(stepAttr);
           if (entry.isIntersecting && stepNum) {
-            setActiveStep(stepNum);
-            setVisitedSteps((prev) => ({ ...prev, [stepNum]: true }));
             const match = refs.find((r) => r.step === stepNum);
             if (match) match.setInView(true);
           }
@@ -297,13 +282,6 @@ export function ScrollStorySection() {
   }, [step5InView]);
 
   // Handlers
-  const scrollToStep = (stepId: number) => {
-    const el = document.getElementById(`story-step-${stepId}`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
   const toggleKeyword = (kwName: string) => {
     const key = `${activeJd.id}-${kwName}`;
     const nextState = !(userAddedKeywords[key] ?? activeJd.keywords.find((k) => k.name === kwName)?.added);
@@ -366,66 +344,6 @@ export function ScrollStorySection() {
           <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
             Scroll down to advance through each step of our studio engine — with real-time AI parsing, keyword matching, live template reflow, and instant vector PDF export.
           </p>
-        </div>
-      </div>
-
-      {/* =======================================================================
-          STICKY SCROLL-DRIVEN STORY PROGRESS DOCK (Clean Buffer & Slim Bar)
-          ======================================================================= */}
-      <div className="sticky top-20 z-40 max-w-4xl mx-auto px-3 sm:px-6 py-2 pointer-events-none">
-        <div className="pointer-events-auto bg-white/95 dark:bg-[#141310]/95 backdrop-blur-xl rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] p-2 sm:p-2.5 transition-all">
-          <div className="flex items-center justify-between gap-1 sm:gap-2">
-            {/* Step Track Buttons */}
-            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
-              {STORY_STEPS.map((s) => {
-                const isActive = activeStep === s.id;
-                const isVisited = visitedSteps[s.id];
-                const StepIcon = s.icon;
-
-                return (
-                  <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => scrollToStep(s.id)}
-                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer shrink-0 ${
-                      isActive
-                        ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 scale-[1.03] ring-2 ring-emerald-400/40'
-                        : isVisited
-                        ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950/80 border border-emerald-200/60 dark:border-emerald-800/60'
-                        : 'bg-card text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-border'
-                    }`}
-                  >
-                    <StepIcon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'}`} />
-                    <span className="text-[11px] font-bold">0{s.id}</span>
-                    <span className={`text-[11px] hidden sm:inline font-sans font-semibold ${isActive ? 'text-white' : ''}`}>
-                      {s.title}
-                    </span>
-                    {isVisited && !isActive && (
-                      <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400 stroke-[3] ml-0.5" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Step Counter Badge */}
-            <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-border shrink-0">
-              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-semibold uppercase">
-                Step {activeStep} of 6:
-              </span>
-              <span className="text-xs font-bold text-slate-800 dark:text-slate-200 font-sans">
-                {STORY_STEPS.find((s) => s.id === activeStep)?.label}
-              </span>
-            </div>
-          </div>
-
-          {/* Slim Visual Progress Line */}
-          <div className="w-full bg-slate-200/60 dark:bg-white/10 h-1 rounded-full overflow-hidden mt-1.5 sm:mt-2">
-            <div
-              className="h-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 transition-all duration-300 ease-out"
-              style={{ width: `${(activeStep / 6) * 100}%` }}
-            />
-          </div>
         </div>
       </div>
 
