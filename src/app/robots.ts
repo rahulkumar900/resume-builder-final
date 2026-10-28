@@ -3,12 +3,6 @@ import { MetadataRoute } from 'next';
 const DISALLOWED_PATHS = [
   '/api/',
   '/print/',
-  '/dashboard/',
-  '/dashboard',
-  '/builder/',
-  '/builder',
-  '/create/',
-  '/create',
   '/auth/',
 ];
 
