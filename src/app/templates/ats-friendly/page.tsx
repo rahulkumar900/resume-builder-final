@@ -20,9 +20,9 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'ATS-Friendly Resume Templates (Free PDF)',
+  title: 'ATS Friendly Resume Template & Free PDF',
   description:
-    'Free ATS-friendly resume templates guaranteed to pass Workday, Greenhouse, and Taleo. Clean layouts with instant vector PDF download and zero paywalls.',
+    'Free ATS friendly resume template guaranteed to pass Workday, Greenhouse, and Taleo. Clean layouts with instant vector PDF download and zero paywalls.',
   keywords: [
     'ats friendly resume template',
     'ats resume builder',
@@ -126,6 +126,14 @@ export default function AtsFriendlyTemplatesPage() {
           text: 'Modern ATS software (Workday, Greenhouse, Lever, iCIMS) reads vector PDF files with selectable text flawlessly. Our builder generates vector PDFs that preserve your exact visual typography without layout shifting.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'Is there a free ATS resume builder that includes these templates?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! ResumeBabu is a 100% free ATS resume builder where all ATS compliant resume template designs and integrated ATS resume checker diagnostics are available with zero paywalls and free vector PDF downloads.',
+        },
+      },
     ],
   };
 
@@ -169,7 +177,7 @@ export default function AtsFriendlyTemplatesPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              Don&apos;t let an algorithm reject your application before a human ever sees it. Choose from tested ATS compliant resume templates and ATS friendly CV templates with clean typography, real-time ATS resume checker scoring, and zero paywalls.
+              Don&apos;t let an algorithm reject your application before a human ever sees it. Powered by our free ATS resume builder, choose from tested ATS compliant resume template designs with clean typography, real-time ATS resume checker diagnostics, and zero paywalls.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">

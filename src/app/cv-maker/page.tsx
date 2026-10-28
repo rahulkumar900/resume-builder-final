@@ -114,10 +114,18 @@ export default function CvMakerPage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'How can I create a CV online for free?',
+        name: 'How can I create CV online free with instant PDF export?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Choose an ATS friendly CV template on ResumeBabu, input your career, education, and research accomplishments, and export a publication-ready vector PDF in under 3 minutes with zero fees and no credit card required.',
+          text: 'Choose an ATS friendly CV template on ResumeBabu, input your career, education, and research accomplishments, and export a publication-ready vector PDF in under 3 minutes with our CV builder free platform.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this CV maker free for multi-page academic and international formats?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! While competitors lock page 2 behind a subscription, our CV maker free tier offers unlimited pages, dynamic A4 page boundary fitting, and zero credit card requirements.',
         },
       },
       {
@@ -199,7 +207,7 @@ export default function CvMakerPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto font-sans leading-relaxed">
-              Create an international, corporate, or academic CV online for free. Choose from 30+ ATS friendly CV templates, format multi-page A4 layouts with real-time pagination, and download high-resolution vector PDFs with zero paywalls.
+              The premier CV maker free for job seekers. Create CV online free with our intuitive CV builder free, choose from 30+ ATS friendly CV templates, format multi-page A4 layouts, and download vector PDFs with zero paywalls.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">

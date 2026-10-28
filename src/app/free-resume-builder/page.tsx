@@ -124,23 +124,39 @@ export default function FreeResumeBabuPage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'Is this resume builder really 100% free to download?',
+        name: 'Is this free resume builder and download 100% free with no paywall?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Unlike Zety, LiveCareer, or Novoresume that let you build for free but demand a credit card at the final download screen, ResumeBabu exports clean, high-resolution vector A4 PDFs completely free of charge with zero watermarks.',
+          text: 'Yes! Unlike Zety, LiveCareer, or Novoresume that let you build for free but demand a credit card at the final download screen, ResumeBabu is a 100% free resume builder and download platform that exports clean, high-resolution vector A4 PDFs completely free of charge with zero watermarks.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Do I need to enter a credit card or start a trial?',
+        name: 'How do I create resume online free without a credit card?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Never. You do not need to submit any payment details or credit card information. You can create your account and download your PDF resume immediately.',
+          text: 'You can create resume online free by selecting any of our 30+ ATS templates, adding your work experience and skills with AI assistance, and clicking download. You never need to enter payment credentials or start an auto-renewing trial.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Will my downloaded PDF be ATS friendly?',
+        name: 'Is this resume maker free for multi-page documents?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. While platforms like Novorésumé restrict free users to a single page and lock page 2 behind a monthly subscription, our resume maker free tier provides real-time dynamic A4 pagination with zero page count limits on all templates.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I use this tool as a CV maker free or CV builder free for international jobs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Absolutely. ResumeBabu doubles as an international CV maker free and CV builder free, offering global A4 sizing, academic section modules, and strict ATS-tested layouts for UK, European, Canadian, and Middle Eastern employers.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will my downloaded PDF pass corporate ATS scanners?',
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Yes. Every template uses strict semantic HTML typography and single or structured two-column grids tested against Workday, Greenhouse, Taleo, and Naukri ATS parsers for a 98%+ pass rate.',
@@ -148,26 +164,10 @@ export default function FreeResumeBabuPage() {
       },
       {
         '@type': 'Question',
-        name: 'Can I download multiple versions for different job applications?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. You can duplicate your resumes, tailor them to specific job descriptions with our AI assistant, and export as many PDF versions as you need.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I create multi-page resumes for free without paywalls?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. While platforms like Novorésumé restrict free users to a single page and lock page 2 behind a monthly subscription, ResumeBabu provides real-time dynamic A4 pagination with zero page count limits on all templates.',
-        },
-      },
-      {
-        '@type': 'Question',
         name: 'How does ResumeBabu compare to Novorésumé and Zety?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Unlike Zety which charges a $24.95/month fee after an initial trial, or Novorésumé which locks multi-page layouts and custom sections, ResumeBabu offers completely free vector PDF downloads, built-in Job Description matching, and zero credit card requirements.',
+          text: 'Unlike Zety which charges a $24.95/month fee after an initial trial, or Novorésumé which locks multi-page layouts and custom sections, ResumeBabu is a free resume creator and download engine offering completely free vector PDF downloads, built-in Job Description matching, and zero credit card requirements.',
         },
       },
     ],
@@ -208,7 +208,7 @@ export default function FreeResumeBabuPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              No subscription traps. No 14-day auto-renewing trials. No blurry watermarks. Build your ATS-optimized resume in under 10 minutes and export it immediately.
+              Create resume online free with zero subscription traps, auto-renewing trials, or watermarks. Build your resume for free using our free easy resume builder and download instant, recruiter-grade vector PDFs.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -256,10 +256,10 @@ export default function FreeResumeBabuPage() {
               SUBSCRIPTION TRAP COMPARISON
             </div>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              How Most &quot;Free&quot; Builders Trick Candidates<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              Why Choose a Free Resume Creator and Download Platform<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-              The bait-and-switch subscription model is broken. Here is why job seekers are switching to our platform.
+              Unlike &quot;free easy resume builder&quot; sites that lock downloads behind a $24.95 credit card paywall, ResumeBabu lets you build your resume for free with unlimited vector PDF exports.
             </p>
           </div>
 

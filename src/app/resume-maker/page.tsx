@@ -131,10 +131,18 @@ export default function ResumeMakerPage() {
       },
       {
         '@type': 'Question',
-        name: 'How long does it take to create a resume with this resume maker?',
+        name: 'How do I make resume online free with instant PDF export?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Most job seekers complete a tailored resume in 3 to 5 minutes. You can start with pre-written industry bullet points, customize your details, and download an ATS-compliant PDF immediately.',
+          text: 'To make resume online free, choose any of our 30+ ATS templates, fill in your background with AI bullet assistance, and download your crisp vector PDF immediately in under 3 minutes with zero fees.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this the best resume maker online free for freshers and college students?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes! ResumeBabu is widely recognized as the best resume maker online free for freshers because it includes dedicated entry-level layouts highlighting college projects, coursework, technical skills, and degrees with zero prior experience required.',
         },
       },
       {
@@ -142,7 +150,7 @@ export default function ResumeMakerPage() {
         name: 'Will my resume pass Applicant Tracking Systems (ATS)?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. All templates in our resume maker are formatted to pass corporate ATS scanners like Workday, Taleo, and Greenhouse with 98%+ parsing accuracy.',
+          text: 'Yes. All templates in our online resume maker are formatted to pass corporate ATS scanners like Workday, Taleo, and Greenhouse with 98%+ parsing accuracy.',
         },
       },
       {
@@ -188,7 +196,7 @@ export default function ResumeMakerPage() {
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
-              No credit card. No paywall tricks at the download step. Pick an ATS-ready template, fill in your details with AI suggestions, and download your crisp vector PDF instantly.
+              Rated the best resume maker to make resume online free with no credit card or paywalls. Pick an ATS-ready template, fill in your details with AI suggestions, and download your crisp vector PDF instantly.
             </p>
 
             {/* Primary CTA */}
@@ -234,10 +242,10 @@ export default function ResumeMakerPage() {
               Simple Workflow
             </span>
             <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              How our online resume maker works<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              Create resume online free in 3 easy steps<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h2>
             <p className="mt-4 text-slate-600 dark:text-slate-400 text-base leading-relaxed">
-              Three simple steps to go from blank page to a recruiter-ready resume.
+              Whether you are an executive or need a resume maker online free for freshers, here is how our online resume maker works.
             </p>
           </div>
 

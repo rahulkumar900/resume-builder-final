@@ -21,7 +21,7 @@ import { TEMPLATES } from '@/lib/templates';
 export const metadata: Metadata = {
   title: 'Generate Resume: Free Online Resume Generator',
   description:
-    'Generate resume free online in 3 minutes. Free online resume generator with 30+ ATS templates, pre-written bullet suggestions, and instant vector PDF export.',
+    'Generate resume free online in 3 minutes. Free online resume generator with 30+ ATS templates, pre-written bullets, and instant vector PDF export.',
   keywords: [
     'generate resume',
     'resume generator free',
@@ -119,10 +119,10 @@ export default function GenerateResumePage() {
       },
       {
         '@type': 'Question',
-        name: 'Is this free online resume generator really free with zero watermarks?',
+        name: 'Is this resume generator free with unlimited PDF downloads?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Unlike sites that hit you with a $24.95 credit card paywall at the download step, ResumeBabu offers 100% free resume generation and vector PDF downloads with no watermarks, no trials, and no hidden fees.',
+          text: 'Yes! Unlike sites that hit you with a $24.95 credit card paywall at the download step, ResumeBabu is a 100% free resume generator online offering instant vector PDF downloads with no watermarks, no trials, and no hidden fees.',
         },
       },
       {
@@ -197,7 +197,7 @@ export default function GenerateResumePage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              Skip hours of formatting frustration. Use our free online resume generator to pick an ATS-approved layout, auto-generate recruiter-approved bullet points, and export your free vector PDF with zero hidden fees or credit cards.
+              The fastest resume generator free for job seekers. Use our free resume generator online to generate resume online in 3 minutes, customize recruiter-grade bullets, and export vector PDFs with zero paywalls.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3">

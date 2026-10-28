@@ -120,18 +120,18 @@ export default function ResumeBabuForFreshersPage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'How do I make a resume if I have zero work experience?',
+        name: 'How do I create resume for freshers with no formal experience?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Focus on your academic projects, technical skills, coursework, degree GPA, college leadership roles, and hackathons/internships. Our Fresher template places education and technical projects at the top so recruiters see your potential first.',
+          text: 'To create resume for freshers, use our dedicated student resume builder layouts that prioritize academic projects, technical skills, coursework, degree GPA, college leadership roles, and hackathons so recruiters see your potential first.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is this fresher resume maker free to download?',
+        name: 'Is this resume maker online free for freshers and college students?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! You can choose the Fresher or Classic format, fill out your academic and skill details, and export a clean vector PDF without any fees, watermarks, or credit card requirements.',
+          text: 'Yes! ResumeBabu is a 100% free resume maker online free for freshers and resume maker for students, offering unlimited vector PDF downloads with zero credit card requirements and no watermarks.',
         },
       },
       {
@@ -194,7 +194,7 @@ export default function ResumeBabuForFreshersPage() {
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
-              Don&apos;t let a blank work history hold you back. Highlight college projects, technical skills, certifications, and academic achievements with recruiter-approved fresher templates and 100% free vector PDF downloads.
+              The premier student resume builder to create resume for freshers with no experience. Use our resume maker online free for freshers and resume maker for students to turn college projects and skills into interview offers.
             </p>
 
             {/* Primary Action Button */}

@@ -127,10 +127,10 @@ export default function CurriculumVitaeMakerPage() {
       },
       {
         '@type': 'Question',
-        name: 'Is this curriculum vitae maker free to download as PDF?',
+        name: 'Is this a free curriculum vitae maker with vector PDF downloads?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! You can create, edit, and export unlimited multi-page vector PDF Curriculum Vitaes completely free with zero paywalls, zero watermarks, and no credit card required.',
+          text: 'Yes! ResumeBabu is a 100% free curriculum vitae maker and academic CV maker designed for university faculty, PhD researchers, and medical doctors. You can use our CV maker free tier with zero paywalls and zero watermarks.',
         },
       },
       {
@@ -188,7 +188,7 @@ export default function CurriculumVitaeMakerPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              Designed for professors, PhD researchers, physicians, and scientific fellows. Showcase peer-reviewed papers, lab appointments, research grants, and teaching awards in immaculate multi-page A4 PDF.
+              A specialized free curriculum vitae maker, academic CV maker, and medical CV builder for professors, researchers, and physicians. Showcase peer-reviewed publications and grants with our CV maker free tier.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">

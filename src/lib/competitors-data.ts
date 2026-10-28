@@ -127,8 +127,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     ourPrice: '100% Free',
     atsPassRateCompetitor: '32% (severe graphic layer & text bounding box parsing failures)',
     atsPassRateOurPlatform: '98% (clean semantic HTML5 & ATS-tested typography)',
-    heroHeadline: 'Why Canva Resumes Look Great to Humans but Fail ATS Scanners',
-    heroSubheadline: 'Canva was designed for social media graphics, not job applications. Switch to a builder engineered specifically to pass Workday, Taleo, and Greenhouse ATS screeners.',
+    heroHeadline: 'Canva Resume Builder & CV Maker: Why 75% Fail ATS Scanners',
+    heroSubheadline: 'Canva was built for social graphics, not applicant tracking systems. Switch to the #1 Canva resume alternative engineered to pass Workday, Taleo, and Greenhouse ATS screeners with 100% free vector PDF downloads.',
     whyCandidatesLeave: [
       {
         title: 'Unparseable Graphic Bounding Boxes',
@@ -199,8 +199,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     ourPrice: '100% Free',
     atsPassRateCompetitor: '92%',
     atsPassRateOurPlatform: '98%',
-    heroHeadline: 'Everything You Love About Teal, Without the $29/Month Subscription',
-    heroSubheadline: 'Get unlimited AI job description keyword matching, quantifiable bullet enhancements, and 30+ ATS-compliant templates 100% free.',
+    heroHeadline: 'Free Alternative to Teal Resume Builder: Unlimited AI Matching',
+    heroSubheadline: 'The leading free alternative to Teal resume builder. Get unlimited AI job description keyword matching, Google XYZ bullet enhancements, and 30+ ATS templates without the $29/month subscription.',
     whyCandidatesLeave: [
       {
         title: '$29/Month Subscription Barrier',

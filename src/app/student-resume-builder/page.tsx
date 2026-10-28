@@ -140,18 +140,18 @@ export default function StudentResumeBabuPage() {
       },
       {
         '@type': 'Question',
-        name: 'Can I use this builder to apply for summer internships?',
+        name: 'Can I use this as an internship resume builder or college student resume builder?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! Our student and fresher templates are specifically calibrated for competitive summer internship screening, university research fellowships, and entry-level corporate internships.',
+          text: 'Yes! Our student and fresher templates serve as a dedicated internship resume builder and college student resume builder, specifically calibrated for competitive summer internship screening, university research fellowships, and entry-level corporate roles.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is this student resume builder completely free to download?',
+        name: 'Is this resume maker for students and resume builder for freshers completely free?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, 100% free. We believe students and early-career job seekers should never have to pay for career tools. There are zero watermarks, no paywalls, and no credit card required.',
+          text: 'Yes, 100% free. We believe students and early-career job seekers should never have to pay for career tools. Our resume maker for students and resume builder for freshers features zero watermarks, no paywalls, and no credit card required.',
         },
       },
     ],
@@ -194,7 +194,7 @@ export default function StudentResumeBabuPage() {
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed">
-              No formal employment history? You don&apos;t need one. Turn your class projects, leadership roles, volunteer hours, and skills into an interview-winning resume in under 3 minutes.
+              The #1 resume maker for students and internship resume builder. Turn college coursework, leadership roles, and projects into a professional CV using our free college student resume builder and resume builder for freshers.
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-4">
