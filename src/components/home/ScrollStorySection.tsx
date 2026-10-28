@@ -11,12 +11,6 @@ import {
   Check,
   CheckCircle2,
   ArrowRight,
-  RefreshCw,
-  Sliders,
-  Layers,
-  FileText,
-  GripVertical,
-  ArrowUpDown,
   Zap,
 } from 'lucide-react';
 import { fireConfetti } from '@/lib/confetti';
@@ -32,11 +26,9 @@ export function ScrollStorySection() {
   const [activeScene, setActiveScene] = useState<StoryScene>('write');
 
   // Interactive overrides (if user clicks controls manually)
-  const [manualColor, setManualColor] = useState<string>('#2563eb');
-  const [manualLayout, setManualLayout] = useState<'single' | 'double' | 'banner'>('double');
+  const [manualColor, setManualColor] = useState<string>('#10b981');
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [hasExported, setHasExported] = useState<boolean>(false);
-  const [bulletAccepted, setBulletAccepted] = useState<boolean>(true);
 
   // Mouse spotlight lamp tracker
   const [lampPos, setLampPos] = useState({ x: 300, y: 300, isHovered: false });
@@ -120,19 +112,16 @@ export function ScrollStorySection() {
   const calculatedScore = Math.floor(62 + checkProgress * 36); // 62% to 98%
   const checkedCount = Math.floor(checkProgress * 6.5); // 0 to 6
 
-  // 4. Export scene
-  const exportProgress = Math.min(1, Math.max(0, (scrollProgress - 0.84) / 0.16));
-
   return (
     <section
       id="workflow"
       ref={sectionRef}
-      className="relative h-[380vh] bg-white border-b border-slate-100"
+      className="relative h-[360vh] bg-slate-50/50 dark:bg-[#070c0a] border-y border-border/80 transition-colors duration-300"
     >
       {/* Sticky Fullscreen Storytelling Canvas */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between overflow-hidden py-4 sm:py-6">
+      <div className="sticky top-16 h-[calc(100vh-4rem)] w-full flex flex-col justify-between overflow-hidden py-4 sm:py-6">
         {/* Subtle background hairline grid */}
-        <div className="absolute inset-0 pointer-events-none -z-20 opacity-40 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:3.5rem_3.5rem]" />
+        <div className="absolute inset-0 pointer-events-none -z-20 opacity-40 dark:opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:3.5rem_3.5rem]" />
 
         {/* Ambient Mouse Lamp Follower */}
         {lampPos.isHovered && (
@@ -144,31 +133,31 @@ export function ScrollStorySection() {
               width: 600,
               height: 600,
               background:
-                'radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.02) 45%, transparent 70%)',
+                'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0.02) 45%, transparent 70%)',
             }}
           />
         )}
 
         {/* 1. Header with Sticky Story Navigation Bar (RxResume Style) */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 shrink-0">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-100 pb-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-border/80 pb-3">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50/80 px-2.5 py-1 rounded-full border border-emerald-300/60 mb-1">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-700 animate-spin-slow" />
-                <span>Scroll-Driven Interactive Story</span>
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100/80 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-300 dark:border-emerald-800 mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
+                <span>Scroll-Driven Resume Builder Superpowers</span>
               </div>
-              <h2 className="font-serif text-xl sm:text-2xl font-normal text-slate-900 tracking-tight">
-                Watch Your Resume Come To Life As You Scroll
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Watch Your Resume Evolve As You Scroll
               </h2>
             </div>
 
             {/* 4 Interactive Story Navigation Pills */}
-            <div className="flex items-center gap-1 bg-slate-100/90 p-1 rounded-full border border-slate-200/80 shadow-2xs">
+            <div className="flex items-center gap-1 bg-slate-200/60 dark:bg-white/10 p-1 rounded-full border border-border shadow-2xs">
               {[
-                { id: 'write', label: '1. Write', icon: PenTool },
+                { id: 'write', label: '1. Write (AI)', icon: PenTool },
                 { id: 'design', label: '2. Design', icon: Palette },
-                { id: 'check', label: '3. Check', icon: ShieldCheck },
-                { id: 'export', label: '4. Tailor & Export', icon: Download },
+                { id: 'check', label: '3. ATS Audit', icon: ShieldCheck },
+                { id: 'export', label: '4. Vector PDF', icon: Download },
               ].map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeScene === tab.id;
@@ -178,11 +167,11 @@ export function ScrollStorySection() {
                     onClick={() => scrollToScene(tab.id as StoryScene)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-white text-slate-900 shadow-sm border border-slate-200/90'
-                        : 'text-slate-500 hover:text-slate-900 hover:bg-white/50'
+                        ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm border border-border'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/5'
                     }`}
                   >
-                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-700' : 'text-slate-400'}`} />
+                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'}`} />
                     <span>{tab.label}</span>
                   </button>
                 );
@@ -208,21 +197,21 @@ export function ScrollStorySection() {
           <div className="lg:col-span-5 space-y-5">
             {activeScene === 'write' && (
               <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-100/70 text-blue-800 text-[11px] font-bold">
-                  <PenTool className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Scene 01 &bull; Real-Time AI STAR Rewriter</span>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 text-[11px] font-bold border border-emerald-300 dark:border-emerald-800">
+                  <PenTool className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
+                  <span>Phase 01 · Real-Time Google XYZ Rewriter</span>
                 </div>
-                <h3 className="font-serif text-3xl sm:text-4xl font-normal text-slate-900 leading-[1.2]">
-                  Transform passive duties into quantifiable impact
+                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
+                  Turn passive task lists into quantifiable metric bullets
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  As you scroll, notice the red line strike through generic job duties while our AI engine types recruiter-tested metrics character-by-character.
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                  As you scroll, notice how weak duty statements get struck through in real-time while our AI resume builder generates recruiter-grade achievements character-by-character.
                 </p>
 
-                <div className="p-3 bg-emerald-50/50 rounded-xl border border-blue-100 text-xs text-slate-700 flex items-center justify-between">
+                <div className="p-3 bg-emerald-50/80 dark:bg-emerald-950/30 rounded-xl border border-emerald-200 dark:border-emerald-800/60 text-xs text-slate-700 dark:text-slate-300 flex items-center justify-between">
                   <span className="font-semibold">Scroll Progress:</span>
-                  <span className="font-mono text-blue-700 font-bold">
-                    {Math.round((scrollProgress / 0.28) * 100)}% through Write Scene
+                  <span className="font-mono text-emerald-700 dark:text-emerald-400 font-bold">
+                    {Math.round((scrollProgress / 0.28) * 100)}% through Write Phase
                   </span>
                 </div>
               </div>
@@ -230,36 +219,36 @@ export function ScrollStorySection() {
 
             {activeScene === 'design' && (
               <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-100/70 text-purple-800 text-[11px] font-bold">
-                  <Palette className="w-3.5 h-3.5 text-purple-600" />
-                  <span>Scene 02 &bull; Scroll-Driven Layout Morph</span>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-100/80 dark:bg-teal-950/60 text-teal-900 dark:text-teal-300 text-[11px] font-bold border border-teal-300 dark:border-teal-800">
+                  <Palette className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                  <span>Phase 02 · Scroll-Driven Layout Morph</span>
                 </div>
-                <h3 className="font-serif text-3xl sm:text-4xl font-normal text-slate-900 leading-[1.2]">
-                  Switch layouts and color palettes with zero data loss
+                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
+                  Switch between ATS Single Column and Modern Dual Column
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  Keep scrolling to watch the resume morph between Ivy Single Column, Tech Dual Column, and Executive Banner layouts without losing a single character.
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                  Keep scrolling to watch the resume document morph smoothly between Ivy Classic, Tech Dual Column, and Executive layouts without losing a single character of content.
                 </p>
 
                 <div className="space-y-3 pt-2">
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1.5">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1.5">
                       Accent Color Theme
                     </span>
                     <div className="flex items-center gap-2">
                       {[
+                        { name: 'Emerald', hex: '#10b981' },
+                        { name: 'Teal', hex: '#0f766e' },
                         { name: 'Royal Blue', hex: '#2563eb' },
-                        { name: 'Emerald', hex: '#059669' },
-                        { name: 'Violet', hex: '#7c3aed' },
-                        { name: 'Ruby', hex: '#e11d48' },
-                        { name: 'Slate', hex: '#1e293b' },
+                        { name: 'Tech Violet', hex: '#7c3aed' },
+                        { name: 'Charcoal', hex: '#334155' },
                       ].map((pal) => (
                         <button
                           key={pal.hex}
                           onClick={() => setManualColor(pal.hex)}
                           className={`w-6 h-6 rounded-full transition-transform cursor-pointer ${
                             manualColor === pal.hex
-                              ? 'scale-125 ring-2 ring-blue-500 ring-offset-2'
+                              ? 'scale-125 ring-2 ring-emerald-500 ring-offset-2 dark:ring-offset-slate-950'
                               : 'hover:scale-110'
                           }`}
                           style={{ backgroundColor: pal.hex }}
@@ -274,48 +263,48 @@ export function ScrollStorySection() {
 
             {activeScene === 'check' && (
               <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/70 text-emerald-800 text-[11px] font-bold">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Scene 03 &bull; Live ATS Scanner &amp; Ticks</span>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-300 text-[11px] font-bold border border-emerald-300 dark:border-emerald-800">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
+                  <span>Phase 03 · 30-Point Live ATS Diagnostic</span>
                 </div>
-                <h3 className="font-serif text-3xl sm:text-4xl font-normal text-slate-900 leading-[1.2]">
+                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
                   Live parser verification with keyword detection
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  The green laser beam scans down the page as you scroll. Each section ticks green as it passes parser compliance checks, boosting your readiness score.
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                  The green laser scans down the page as you scroll. Each critical section ticks green as it passes corporate ATS compliance checks, boosting your interview readiness.
                 </p>
 
-                <div className="p-3 bg-emerald-50/60 rounded-xl border border-emerald-100 flex items-center justify-between text-xs">
-                  <span className="font-semibold text-emerald-900">ATS Match Readiness:</span>
-                  <span className="font-bold text-emerald-700 text-sm">{calculatedScore}% Score</span>
+                <div className="p-3 bg-emerald-50/80 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-800 flex items-center justify-between text-xs">
+                  <span className="font-semibold text-emerald-900 dark:text-emerald-200">ATS Match Readiness:</span>
+                  <span className="font-bold text-emerald-700 dark:text-emerald-400 text-sm">{calculatedScore}% Score</span>
                 </div>
               </div>
             )}
 
             {activeScene === 'export' && (
               <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-100/70 text-amber-800 text-[11px] font-bold">
-                  <Download className="w-3.5 h-3.5 text-amber-700" />
-                  <span>Scene 04 &bull; Vector PDF &amp; Recruiter Ready</span>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-teal-100/80 dark:bg-teal-950/60 text-teal-900 dark:text-teal-300 text-[11px] font-bold border border-teal-300 dark:border-teal-800">
+                  <Download className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+                  <span>Phase 04 · Vector PDF & Recruiter Ready</span>
                 </div>
-                <h3 className="font-serif text-3xl sm:text-4xl font-normal text-slate-900 leading-[1.2]">
-                  1200 DPI vector exports with zero watermarks
+                <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-[1.2]">
+                  Instant vector PDF export with zero watermarks
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  Your tailored resume is now parsed, styled, and validated. Test our vector PDF simulation below or launch the full studio editor.
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                  Your tailored resume is now parsed, styled, and validated. Test our vector PDF export engine below or jump straight into the full online resume builder.
                 </p>
 
                 <div className="pt-2 flex items-center gap-3">
                   <button
                     onClick={handleSimulateExport}
                     disabled={isExporting}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-full shadow-xs transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer"
                   >
                     <Download className="w-3.5 h-3.5" />
                     <span>{isExporting ? 'Generating PDF...' : 'Simulate Vector PDF Export'}</span>
                   </button>
                   {hasExported && (
-                    <span className="text-xs font-bold text-emerald-600 flex items-center gap-1 animate-in fade-in">
+                    <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 animate-in fade-in">
                       <Check className="w-4 h-4 stroke-[3]" />
                       Vector Ready!
                     </span>
@@ -327,7 +316,7 @@ export function ScrollStorySection() {
 
           {/* Right Column: Live Morphing Resume Document Driven by Scroll Progress */}
           <div className="lg:col-span-7 relative">
-            <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 p-6 sm:p-8 overflow-hidden transition-all duration-300">
+            <div className="relative bg-white dark:bg-[#0c1411] rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 overflow-hidden transition-all duration-300">
               
               {/* ATS Laser Beam across Document during Scene 3 */}
               {activeScene === 'check' && (
@@ -338,31 +327,31 @@ export function ScrollStorySection() {
               )}
 
               {/* Top Document Header Bar */}
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-bold text-slate-800">
-                    {activeScene === 'write' && 'Scene 01 &bull; Active Editor & AI Tuning'}
-                    {activeScene === 'design' && `Scene 02 &bull; ${activeDesignLayout === 'single' ? 'Single Column Classic' : activeDesignLayout === 'double' ? 'Modern Dual Column' : 'Executive Banner'}`}
-                    {activeScene === 'check' && 'Scene 03 &bull; ATS Parsing Verification'}
-                    {activeScene === 'export' && 'Scene 04 &bull; Print-Ready High DPI Render'}
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                    {activeScene === 'write' && 'Phase 01 · Active Editor & AI Tuning'}
+                    {activeScene === 'design' && `Phase 02 · ${activeDesignLayout === 'single' ? 'Single Column Classic' : activeDesignLayout === 'double' ? 'Modern Dual Column' : 'Executive Banner'}`}
+                    {activeScene === 'check' && 'Phase 03 · ATS Parsing Verification'}
+                    {activeScene === 'export' && 'Phase 04 · Print-Ready Vector PDF'}
                   </span>
                 </div>
-                <div className="text-[11px] font-semibold text-slate-400">
+                <div className="text-[11px] font-semibold text-slate-400 dark:text-slate-500">
                   {activeScene === 'design' && (
-                    <span className="text-purple-600 font-bold bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200/60">
-                      {activeDesignLayout === 'single' ? 'Layout No. 01' : activeDesignLayout === 'double' ? 'Layout No. 02' : 'Layout No. 03'}
+                    <span className="text-teal-700 dark:text-teal-300 font-bold bg-teal-50 dark:bg-teal-950/50 px-2 py-0.5 rounded-md border border-teal-200 dark:border-teal-800">
+                      {activeDesignLayout === 'single' ? 'Layout: Ivy League' : activeDesignLayout === 'double' ? 'Layout: Silicon Dual' : 'Layout: Executive'}
                     </span>
                   )}
-                  {activeScene !== 'design' && 'A4 &bull; Vector Engine'}
+                  {activeScene !== 'design' && 'A4 · Vector Engine'}
                 </div>
               </div>
 
               {/* Resume Header Area */}
               <div
-                className={`pb-4 border-b border-slate-100 transition-all ${
+                className={`pb-4 border-b border-border transition-all ${
                   activeScene === 'design' && activeDesignLayout === 'banner'
-                    ? 'bg-slate-900 text-white p-4 -mx-6 sm:-mx-8 -mt-4 mb-4 rounded-t-2xl'
+                    ? 'bg-slate-900 dark:bg-black text-white p-4 -mx-6 sm:-mx-8 -mt-4 mb-4 rounded-t-2xl'
                     : ''
                 }`}
               >
@@ -383,14 +372,14 @@ export function ScrollStorySection() {
                       className={`text-xs font-medium ${
                         activeScene === 'design' && activeDesignLayout === 'banner'
                           ? 'text-slate-300'
-                          : 'text-slate-500'
+                          : 'text-slate-500 dark:text-slate-400'
                       }`}
                     >
-                      Senior Cloud Infrastructure Engineer &bull; Bengaluru, India
+                      Senior Cloud Infrastructure Engineer · Bengaluru, India
                     </p>
                   </div>
                   {activeScene === 'check' && (
-                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-xs font-bold animate-in fade-in">
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-bold animate-in fade-in">
                       <span>{calculatedScore}% ATS Match</span>
                     </div>
                   )}
@@ -403,49 +392,49 @@ export function ScrollStorySection() {
                 {/* SCENE 1: WRITE (Scroll-Driven Strikethrough & Typewriter) */}
                 {activeScene === 'write' && (
                   <div className="space-y-3">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                       Experience Bullet Point (Senior Architect)
                     </div>
 
                     {/* Original Draft with scroll-driven Strikethrough */}
-                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 leading-relaxed relative overflow-hidden">
-                      <span className="font-semibold text-slate-400 block mb-1">Original Passive Draft:</span>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border text-xs text-slate-600 dark:text-slate-300 leading-relaxed relative overflow-hidden">
+                      <span className="font-semibold text-slate-400 dark:text-slate-500 block mb-1">Original Passive Draft:</span>
                       <p className="relative">
-                        &bull; Responsible for working on backend microservices and databases for high traffic web applications.
+                        • Responsible for working on backend microservices and databases for high traffic web applications.
                         {/* Red Animated Strikethrough Line */}
                         <span
-                          className="absolute left-0 top-1/2 h-[2px] bg-red-500 transition-all duration-100"
+                          className="absolute left-0 top-1/2 h-[2px] bg-rose-500 transition-all duration-100"
                           style={{ width: `${strikeProgress * 100}%` }}
                         />
                       </p>
                     </div>
 
                     {/* AI Suggestion Container with Scroll-Driven Character Progression */}
-                    <div className="relative pl-4 border-l-2 border-dashed border-blue-400 space-y-2 animate-in fade-in">
-                      <div className="p-3.5 bg-emerald-50/70 rounded-xl border border-emerald-300 text-xs text-slate-800 leading-relaxed space-y-2">
+                    <div className="relative pl-4 border-l-2 border-dashed border-emerald-400 space-y-2 animate-in fade-in">
+                      <div className="p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 rounded-xl border border-emerald-300 dark:border-emerald-800 text-xs text-slate-800 dark:text-slate-200 leading-relaxed space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-bold text-blue-700 text-[11px] flex items-center gap-1">
-                            <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-                            AI Assistant Suggestion (STAR Formula):
+                          <span className="font-bold text-emerald-800 dark:text-emerald-300 text-[11px] flex items-center gap-1">
+                            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                            AI Bullet Optimizer (Google XYZ Formula):
                           </span>
-                          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-900/60 px-2 py-0.5 rounded-full">
                             +45% Recruiter Impact
                           </span>
                         </div>
 
                         {/* Streamed Characters Driven by Scroll */}
-                        <p className="text-slate-900 font-medium">
-                          &bull; {FULL_SUGGESTION_TEXT.slice(0, Math.max(12, typedCharCount))}
+                        <p className="text-slate-900 dark:text-white font-medium">
+                          • {FULL_SUGGESTION_TEXT.slice(0, Math.max(12, typedCharCount))}
                           {typedCharCount < FULL_SUGGESTION_TEXT.length && (
-                            <span className="inline-block w-1.5 h-3.5 bg-emerald-700 ml-0.5 animate-blink align-middle" />
+                            <span className="inline-block w-1.5 h-3.5 bg-emerald-600 dark:bg-emerald-400 ml-0.5 animate-pulse align-middle" />
                           )}
                         </p>
 
-                        <div className="pt-2 flex items-center justify-between border-t border-blue-100">
-                          <span className="text-[10px] text-emerald-700 font-semibold">
+                        <div className="pt-2 flex items-center justify-between border-t border-emerald-200 dark:border-emerald-800/60">
+                          <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">
                             Scroll down to keep typing
                           </span>
-                          <span className="px-3 py-1 text-[11px] font-bold text-white bg-emerald-700 rounded-md shadow-2xs flex items-center gap-1">
+                          <span className="px-3 py-1 text-[11px] font-bold text-white bg-emerald-700 dark:bg-emerald-600 rounded-md shadow-2xs flex items-center gap-1">
                             <Check className="w-3 h-3 stroke-[3]" />
                             <span>Accepted</span>
                           </span>
@@ -465,10 +454,10 @@ export function ScrollStorySection() {
                     }`}
                   >
                     <div className={activeDesignLayout === 'double' ? 'sm:col-span-8 space-y-2' : 'space-y-2'}>
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                        Experience &bull; Stripe
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+                        Experience · Stripe
                       </div>
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
                         Led 8-engineer pod deploying Kubernetes cluster automation. Engineered PostgreSQL partitioning strategy reducing query wait times by 40%.
                       </p>
                     </div>
@@ -476,7 +465,7 @@ export function ScrollStorySection() {
                     <div
                       className={
                         activeDesignLayout === 'double'
-                          ? 'sm:col-span-4 p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-2'
+                          ? 'sm:col-span-4 p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border space-y-2'
                           : 'pt-2 flex flex-wrap gap-1.5'
                       }
                     >
@@ -487,7 +476,7 @@ export function ScrollStorySection() {
                         {['Kubernetes', 'Go', 'PostgreSQL', 'AWS', 'Docker'].map((sk) => (
                           <span
                             key={sk}
-                            className="text-[10px] font-semibold px-1.5 py-0.5 bg-white rounded border border-slate-200"
+                            className="text-[10px] font-semibold px-1.5 py-0.5 bg-white dark:bg-slate-800 rounded border border-border text-slate-800 dark:text-slate-200"
                           >
                             {sk}
                           </span>
@@ -500,9 +489,9 @@ export function ScrollStorySection() {
                 {/* SCENE 3: CHECK (Scroll-Driven Sequential ATS Checkmarks) */}
                 {activeScene === 'check' && (
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-500">
+                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400">
                       <span>ATS Hard Skills Verification:</span>
-                      <span className="text-emerald-600">{Math.min(6, checkedCount)} / 6 Checked</span>
+                      <span className="text-emerald-600 dark:text-emerald-400">{Math.min(6, checkedCount)} / 6 Checked</span>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 text-xs">
@@ -520,13 +509,13 @@ export function ScrollStorySection() {
                             key={idx}
                             className={`flex items-center gap-1.5 p-2 rounded-lg border text-[11px] transition-all duration-300 ${
                               isChecked
-                                ? 'bg-emerald-50/70 border-emerald-200/80 text-slate-800 animate-pop-in'
-                                : 'bg-slate-50/40 border-slate-100 text-slate-400 opacity-30'
+                                ? 'bg-emerald-50/80 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-slate-800 dark:text-slate-200'
+                                : 'bg-slate-50/40 dark:bg-slate-900/30 border-border text-slate-400 dark:text-slate-600 opacity-40'
                             }`}
                           >
                             <CheckCircle2
                               className={`w-3.5 h-3.5 shrink-0 ${
-                                isChecked ? 'text-emerald-600' : 'text-slate-300'
+                                isChecked ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-300 dark:text-slate-600'
                               }`}
                             />
                             <span className="truncate font-medium">{item}</span>
@@ -540,27 +529,27 @@ export function ScrollStorySection() {
                 {/* SCENE 4: TAILOR & EXPORT (Keywords Highlighted & High-DPI Output) */}
                 {activeScene === 'export' && (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between text-[11px] font-bold text-emerald-700 bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-200/70">
+                    <div className="flex items-center justify-between text-[11px] font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50/80 dark:bg-emerald-950/50 p-2.5 rounded-xl border border-emerald-300 dark:border-emerald-800">
                       <span>Target Role Matched: Lead Infrastructure Engineer</span>
                       <span className="font-bold">99% Tailored</span>
                     </div>
 
                     <div className="grid grid-cols-3 gap-3 text-center">
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <div className="text-sm font-bold text-slate-900">1200 DPI</div>
-                        <div className="text-[10px] text-slate-500">Vector Print</div>
+                      <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border">
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">1200 DPI</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Vector Print</div>
                       </div>
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <div className="text-sm font-bold text-slate-900">0 KB</div>
-                        <div className="text-[10px] text-slate-500">Watermark</div>
+                      <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border">
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">0 KB</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Watermark</div>
                       </div>
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <div className="text-sm font-bold text-emerald-600">100%</div>
-                        <div className="text-[10px] text-slate-500">Searchable Text</div>
+                      <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-border">
+                        <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400">100%</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Searchable Text</div>
                       </div>
                     </div>
 
-                    <p className="text-xs text-slate-500 text-center pt-1">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center pt-1 font-sans">
                       Text remains selectable and searchable vector nodes rather than rasterized canvas pixels.
                     </p>
                   </div>
@@ -572,15 +561,15 @@ export function ScrollStorySection() {
 
         {/* 3. Bottom Progress Bar in Sticky Container */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 shrink-0">
-          <div className="flex items-center justify-between gap-4 text-xs font-semibold text-slate-400">
+          <div className="flex items-center justify-between gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
             <span>Scroll down to advance through scenes</span>
-            <div className="flex-1 max-w-xs h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/60">
+            <div className="flex-1 max-w-xs h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden border border-border">
               <div
-                className="h-full bg-emerald-700 rounded-full transition-all duration-75"
+                className="h-full bg-emerald-600 dark:bg-emerald-400 rounded-full transition-all duration-75"
                 style={{ width: `${scrollProgress * 100}%` }}
               />
             </div>
-            <span className="font-mono text-slate-700 font-bold">
+            <span className="font-mono text-slate-800 dark:text-slate-200 font-bold">
               {Math.round(scrollProgress * 100)}%
             </span>
           </div>

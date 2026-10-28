@@ -30,6 +30,8 @@ import {
 import { TemplateCardRealPreview } from '@/components/common/TemplateCardRealPreview';
 import { HomeComparisonMatrix } from '@/components/home/HomeComparisonMatrix';
 import { HomeRoleExamplesGallery } from '@/components/home/HomeRoleExamplesGallery';
+import { ScrollStorySection } from '@/components/home/ScrollStorySection';
+import { ScrollReveal } from '@/components/home/ScrollReveal';
 import { RxFooter } from '@/components/common/RxFooter';
 import { TEMPLATES } from '@/lib/templates';
 import { fireConfetti } from '@/lib/confetti';
@@ -322,14 +324,15 @@ export function TechStudioLanding() {
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-5xl mx-auto leading-[1.08]">
-            The resume builder engineered to{' '}
+            The Free{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 dark:from-emerald-400 dark:via-teal-300 dark:to-emerald-500">
-              beat the ATS.
-            </span>
+              Resume Builder
+            </span>{' '}
+            Engineered to Beat the ATS.
           </h1>
 
           <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-sans">
-            Build recruiter-tested resumes in minutes. Powered by real-time A4 vector rendering, instant job description tailoring, and a 30-point ATS diagnostic engine.
+            Build recruiter-tested resumes in minutes with the best free online resume builder. Powered by real-time A4 vector rendering, instant job description tailoring, and a 30-point ATS diagnostic engine.
           </p>
 
           {/* CTA Buttons - Premium Single-Line Responsive Layout */}
@@ -570,21 +573,30 @@ export function TechStudioLanding() {
         </section>
 
         {/* =======================================================================
+            SCROLL-DRIVEN FEATURE STORY ENGINE (Reactive Resume Style)
+            ======================================================================= */}
+        <ScrollReveal animation="fade-in">
+          <ScrollStorySection />
+        </ScrollReveal>
+
+        {/* =======================================================================
             APP FEATURES PLAYGROUND (Live Interactive Demos of Real Superpowers)
             ======================================================================= */}
         <section id="features" className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
-              <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span>Interactive Superpowers</span>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
+                <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>Interactive Superpowers</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Features built into our online resume builder.
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
+                Interact with our live design studio, keyword tailor, ATS auditor, and bullet re-writer before writing a single word.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Try the features right now on this page.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
-              Interact with our live design studio, keyword tailor, ATS auditor, and bullet re-writer before writing a single word.
-            </p>
-          </div>
+          </ScrollReveal>
 
           {/* Playground Mode Tabs - Horizontal scroll on mobile for native app feel */}
           <div className="flex items-center justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2 mb-8 pb-2 sm:pb-0 px-2 sm:px-0 select-none">
@@ -1179,18 +1191,20 @@ export function TechStudioLanding() {
             TEMPLATE SHOWCASE: Fast Filterable Grid (30 Designs)
             ======================================================================= */}
         <section id="templates" className="mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
-              <LayoutTemplate className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span>30 Tested Designs</span>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
+                <LayoutTemplate className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>30 Tested Designs</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Free Resume Builder Templates for Every Career Level.
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
+                Switch between ATS-tested resume templates in one click. Your career content automatically reflows to every layout.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Pick your template. Customize in seconds.
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
-              Switch between templates at any point. Your text automatically adapts to every design.
-            </p>
-          </div>
+          </ScrollReveal>
 
           {/* Category Tabs */}
           <div className="flex items-center justify-center flex-wrap gap-2 mb-10">
@@ -1273,95 +1287,103 @@ export function TechStudioLanding() {
             ROLE-BASED EXAMPLES GALLERY
             ======================================================================= */}
         <section className="mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <HomeRoleExamplesGallery />
+          <ScrollReveal animation="fade-up">
+            <HomeRoleExamplesGallery />
+          </ScrollReveal>
         </section>
 
         {/* =======================================================================
             HONEST COMPARISON MATRIX
             ======================================================================= */}
         <section className="mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <HomeComparisonMatrix />
+          <ScrollReveal animation="fade-up">
+            <HomeComparisonMatrix />
+          </ScrollReveal>
         </section>
 
         {/* =======================================================================
             FAQ SECTION
             ======================================================================= */}
         <section className="mt-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-3 mb-12">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
-              <span>Transparent Answers</span>
+          <ScrollReveal animation="fade-up">
+            <div className="text-center space-y-3 mb-12">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
+                <span>Transparent Answers</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Frequently Asked Questions About Our Resume Builder
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
+                Everything you need to know about ATS scoring, vector PDF export, and zero-paywall privacy.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
-              Everything you need to know about ATS scoring, vector PDF export, and zero-paywall privacy.
-            </p>
-          </div>
 
-          <div className="space-y-3">
-            {faqs.map((faq, idx) => {
-              const isOpen = activeFaq === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-xl border border-border/80 bg-card/60 dark:bg-[#121210]/60 overflow-hidden transition-all"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setActiveFaq(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between p-4 sm:p-5 text-left font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors cursor-pointer"
+            <div className="space-y-3">
+              {faqs.map((faq, idx) => {
+                const isOpen = activeFaq === idx;
+                return (
+                  <div
+                    key={idx}
+                    className="rounded-xl border border-border/80 bg-card/60 dark:bg-[#121210]/60 overflow-hidden transition-all"
                   >
-                    <span>{faq.q}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ml-4 ${
-                        isOpen ? 'rotate-180 text-emerald-600 dark:text-emerald-400' : ''
-                      }`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans border-t border-border/40 pt-3">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                    <button
+                      type="button"
+                      onClick={() => setActiveFaq(isOpen ? null : idx)}
+                      className="w-full flex items-center justify-between p-4 sm:p-5 text-left font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors cursor-pointer"
+                    >
+                      <span>{faq.q}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ml-4 ${
+                          isOpen ? 'rotate-180 text-emerald-600 dark:text-emerald-400' : ''
+                        }`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div className="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans border-t border-border/40 pt-3">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </ScrollReveal>
         </section>
 
         {/* =======================================================================
             FINAL HIGH-IMPACT STUDIO CTA BANNER
             ======================================================================= */}
         <section className="mt-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-emerald-600/5 to-transparent p-8 sm:p-12 lg:p-16 text-center shadow-2xl overflow-hidden">
-            <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-bold">
-                100% FREE · NO SUBSCRIPTION REQUIRED
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                Ready to land interviews at top companies?
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans">
-                Build a recruiter-approved, ATS-tested resume in under 5 minutes. Instant vector PDF export included.
-              </p>
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href="/create"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-base shadow-xl shadow-emerald-600/25 transition-all hover:-translate-y-0.5 cursor-pointer"
-                >
-                  <span>Build My Resume Free</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="/templates"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-card hover:bg-accent text-slate-800 dark:text-slate-200 border border-border font-medium text-base transition-all shadow-xs cursor-pointer"
-                >
-                  <span>Explore Templates</span>
-                </Link>
+          <ScrollReveal animation="fade-up">
+            <div className="relative rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-emerald-600/5 to-transparent p-8 sm:p-12 lg:p-16 text-center shadow-2xl overflow-hidden">
+              <div className="relative z-10 max-w-2xl mx-auto space-y-4">
+                <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-bold">
+                  100% FREE · NO SUBSCRIPTION REQUIRED
+                </span>
+                <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                  Ready to land interviews at top companies?
+                </h2>
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans">
+                  Build a recruiter-approved, ATS-tested resume in under 5 minutes with our free resume builder. Instant vector PDF export included.
+                </p>
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link
+                    href="/create"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-base shadow-xl shadow-emerald-600/25 transition-all hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <span>Build My Resume Free</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                  <Link
+                    href="/templates"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-card hover:bg-accent text-slate-800 dark:text-slate-200 border border-border font-medium text-base transition-all shadow-xs cursor-pointer"
+                  >
+                    <span>Explore Templates</span>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </section>
 
         {/* =======================================================================

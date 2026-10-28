@@ -50,11 +50,11 @@ export function HomeComparisonMatrix() {
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
           <span>The Honest Comparison</span>
         </div>
-        <h2 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Why Job Seekers Choose Us<span className="text-emerald-700 dark:text-emerald-400">.</span>
+        <h2 className="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Why Job Seekers Switch to Our Free Resume Builder<span className="text-emerald-700 dark:text-emerald-400">.</span>
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
-          No surprise subscriptions when you click download. Transparent, recruiter-grade tools engineered for career impact.
+        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
+          No surprise subscriptions when you click download. The modern online resume builder engineered for career impact and 98%+ ATS pass rates.
         </p>
       </div>
 
