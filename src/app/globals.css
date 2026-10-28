@@ -514,4 +514,51 @@ body {
   }
 }
 
+/* Shimmer Sweep Animation */
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmerSweep 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Glowing Radar Pulse */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+/* Red Strikethrough draw */
+@keyframes strikeDraw {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-strike {
+  animation: strikeDraw 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
 
