@@ -128,14 +128,14 @@ export function TechStudioLanding() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
-      <div className="relative z-10 pt-24 sm:pt-32 pb-16">
+      <div className="relative z-10 pt-28 sm:pt-36 pb-20">
         {/* =======================================================================
             HERO SECTION
             ======================================================================= */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Personalized User Resume Banner (If user has a resume in database/local storage) */}
           {userResume && (
-            <div className="mb-6 p-3 sm:p-4 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 dark:bg-emerald-950/30 backdrop-blur-md max-w-xl mx-auto flex items-center justify-between gap-4 text-left shadow-lg">
+            <div className="mb-8 p-3.5 sm:p-4 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 dark:bg-emerald-950/30 backdrop-blur-md max-w-xl mx-auto flex items-center justify-between gap-4 text-left shadow-lg">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
                   {userResume.personalInfo?.fullName ? userResume.personalInfo.fullName[0].toUpperCase() : 'R'}
@@ -166,7 +166,7 @@ export function TechStudioLanding() {
           )}
 
           {/* Rating & Social Proof Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 mb-6 shadow-2xs backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 shadow-2xs backdrop-blur-md">
             <div className="flex text-amber-500 text-xs tracking-tight">
               ★★★★★
             </div>
@@ -177,7 +177,7 @@ export function TechStudioLanding() {
             <span className="text-emerald-700 dark:text-emerald-400 font-bold">100% Free Forever</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-5xl mx-auto leading-[1.08]">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-5xl mx-auto leading-[1.08] sm:leading-[1.05]">
             The Free{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 dark:from-emerald-400 dark:via-teal-300 dark:to-cyan-400">
               Resume Builder
@@ -213,7 +213,7 @@ export function TechStudioLanding() {
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-sans">
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-y-2.5 gap-x-6 sm:gap-x-8 text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-sans">
             <span className="flex items-center gap-1.5 font-medium">
               <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
               Zero Sign-Up Required to Start
@@ -235,10 +235,10 @@ export function TechStudioLanding() {
           {/* =======================================================================
               HERO STUDIO WORKSPACE SHOWCASE (Clean, Minimal Frame)
               ======================================================================= */}
-          <div className="mt-12 sm:mt-16 max-w-5xl mx-auto px-2 sm:px-4">
+          <div className="mt-12 sm:mt-16 lg:mt-20 max-w-5xl mx-auto px-2 sm:px-4">
             <div className="rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#0c1411] shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
               {/* Clean Minimal Titlebar */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-200/80 dark:border-white/10 bg-slate-50/80 dark:bg-black/40 text-xs">
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-slate-200/80 dark:border-white/10 bg-slate-50/80 dark:bg-black/40 text-xs">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#ff5f57] inline-block" />
                   <span className="w-3 h-3 rounded-full bg-[#febc2e] inline-block" />
@@ -274,7 +274,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             RECRUITER BENCHMARK LOGOS
             ======================================================================= */}
-        <section className="mt-16 border-y border-border/60 py-8 bg-slate-50/50 dark:bg-white/[0.01]">
+        <section className="mt-16 sm:mt-24 border-y border-border/60 py-8 sm:py-10 bg-slate-50/50 dark:bg-white/[0.01]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-semibold block mb-4">
               ENGINEERED TO PASS SCREENING AT TOP GLOBAL COMPANIES
@@ -300,7 +300,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             TEMPLATE SHOWCASE: Fast Filterable Grid (30 Designs)
             ======================================================================= */}
-        <section id="templates" className="mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="templates" className="mt-24 sm:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
@@ -396,7 +396,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             ROLE-BASED EXAMPLES GALLERY
             ======================================================================= */}
-        <section className="mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="mt-24 sm:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <HomeRoleExamplesGallery />
           </ScrollReveal>
@@ -405,7 +405,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             HONEST COMPARISON MATRIX
             ======================================================================= */}
-        <section className="mt-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="mt-24 sm:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <HomeComparisonMatrix />
           </ScrollReveal>
@@ -414,7 +414,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             FAQ SECTION
             ======================================================================= */}
-        <section className="mt-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="mt-24 sm:mt-32 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center space-y-3 mb-12">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
@@ -463,7 +463,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             FINAL HIGH-IMPACT STUDIO CTA BANNER
             ======================================================================= */}
-        <section className="mt-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="mt-24 sm:mt-32 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="relative rounded-3xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 via-emerald-600/5 to-transparent p-8 sm:p-12 lg:p-16 text-center shadow-2xl overflow-hidden">
               <div className="relative z-10 max-w-2xl mx-auto space-y-4">
@@ -499,7 +499,7 @@ export function TechStudioLanding() {
         {/* =======================================================================
             FOOTER
             ======================================================================= */}
-        <div className="mt-24">
+        <div className="mt-24 sm:mt-32">
           <RxFooter />
         </div>
       </div>

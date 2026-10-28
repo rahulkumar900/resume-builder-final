@@ -120,12 +120,12 @@ const AI_REWRITE_STYLES = [
 ];
 
 const STORY_STEPS = [
-  { id: 1, title: 'Import', label: 'AI Parser', icon: UploadCloud, href: 'story-step-1' },
-  { id: 2, title: 'Target', label: 'Job Matcher', icon: Target, href: 'story-step-2' },
-  { id: 3, title: 'Design', label: '30 Templates', icon: Palette, href: 'story-step-3' },
-  { id: 4, title: 'Rewrite', label: 'Google X-Y-Z', icon: Sparkles, href: 'story-step-4' },
-  { id: 5, title: 'Audit', label: 'ATS & Safety', icon: ShieldCheck, href: 'story-step-5' },
-  { id: 6, title: 'Export', label: 'Vector PDF', icon: Download, href: 'story-step-6' },
+  { id: 1, title: 'Import', label: 'AI Parser', icon: UploadCloud },
+  { id: 2, title: 'Target', label: 'Job Matcher', icon: Target },
+  { id: 3, title: 'Design', label: '30 Templates', icon: Palette },
+  { id: 4, title: 'Rewrite', label: 'Google X-Y-Z', icon: Sparkles },
+  { id: 5, title: 'Audit', label: 'ATS & Safety', icon: ShieldCheck },
+  { id: 6, title: 'Export', label: 'Vector PDF', icon: Download },
 ];
 
 export function ScrollStorySection() {
@@ -223,7 +223,7 @@ export function ScrollStorySection() {
         });
       },
       {
-        threshold: 0.3,
+        threshold: 0.28,
         rootMargin: '-10% 0px -10% 0px',
       }
     );
@@ -260,7 +260,7 @@ export function ScrollStorySection() {
       if (current === target) {
         clearInterval(interval);
       }
-    }, 20);
+    }, 18);
 
     return () => clearInterval(interval);
   }, [step2InView, targetMatchScore]);
@@ -280,7 +280,7 @@ export function ScrollStorySection() {
       } else {
         setTypedChars(current);
       }
-    }, 22);
+    }, 20);
     return () => clearInterval(interval);
   }, [step4InView, activeBulletStyle]);
 
@@ -292,7 +292,7 @@ export function ScrollStorySection() {
       count += 1;
       setAuditCheckCount(count);
       if (count >= 4) clearInterval(interval);
-    }, 220);
+    }, 200);
     return () => clearInterval(interval);
   }, [step5InView]);
 
@@ -352,70 +352,79 @@ export function ScrollStorySection() {
   return (
     <div className="w-full relative">
       {/* =======================================================================
-          WORKFLOW OVERVIEW BANNER
+          WORKFLOW OVERVIEW BANNER (Generous Spacing & Centered Typography)
           ======================================================================= */}
-      <div className="pt-20 pb-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
+      <div className="pt-24 sm:pt-32 pb-12 sm:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-3xl mx-auto space-y-4 sm:space-y-5">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
             <Zap className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>Interactive 6-Step Engineering Journey</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
             How our free resume builder works from start to finish.
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
             Scroll down to advance through each step of our studio engine — with real-time AI parsing, keyword matching, live template reflow, and instant vector PDF export.
           </p>
         </div>
       </div>
 
       {/* =======================================================================
-          STICKY SCROLL-DRIVEN STORY PROGRESS DOCK
+          STICKY SCROLL-DRIVEN STORY PROGRESS DOCK (Clean Buffer & Slim Bar)
           ======================================================================= */}
-      <div className="sticky top-18 z-40 max-w-5xl mx-auto px-3 sm:px-6 py-2.5 pointer-events-none">
-        <div className="pointer-events-auto bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.12)] p-2 sm:p-2.5 flex items-center justify-between gap-1 sm:gap-2 transition-all">
-          
-          {/* Step Track Buttons */}
-          <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
-            {STORY_STEPS.map((s) => {
-              const isActive = activeStep === s.id;
-              const isVisited = visitedSteps[s.id];
-              const StepIcon = s.icon;
+      <div className="sticky top-20 z-40 max-w-4xl mx-auto px-3 sm:px-6 py-2 pointer-events-none">
+        <div className="pointer-events-auto bg-white/95 dark:bg-[#141310]/95 backdrop-blur-xl rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.12)] p-2 sm:p-2.5 transition-all">
+          <div className="flex items-center justify-between gap-1 sm:gap-2">
+            {/* Step Track Buttons */}
+            <div className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar w-full sm:w-auto">
+              {STORY_STEPS.map((s) => {
+                const isActive = activeStep === s.id;
+                const isVisited = visitedSteps[s.id];
+                const StepIcon = s.icon;
 
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => scrollToStep(s.id)}
-                  className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer shrink-0 ${
-                    isActive
-                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 scale-102 ring-2 ring-emerald-400/40'
-                      : isVisited
-                      ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950/80 border border-emerald-200/60 dark:border-emerald-800/60'
-                      : 'bg-card text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-border'
-                  }`}
-                >
-                  <StepIcon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'}`} />
-                  <span className="text-[11px] font-bold">0{s.id}</span>
-                  <span className={`text-[11px] hidden md:inline font-sans font-semibold ${isActive ? 'text-white' : ''}`}>
-                    {s.title}
-                  </span>
-                  {isVisited && !isActive && (
-                    <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400 stroke-[3] ml-0.5" />
-                  )}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => scrollToStep(s.id)}
+                    className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all duration-300 cursor-pointer shrink-0 ${
+                      isActive
+                        ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 scale-[1.03] ring-2 ring-emerald-400/40'
+                        : isVisited
+                        ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950/80 border border-emerald-200/60 dark:border-emerald-800/60'
+                        : 'bg-card text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-border'
+                    }`}
+                  >
+                    <StepIcon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'}`} />
+                    <span className="text-[11px] font-bold">0{s.id}</span>
+                    <span className={`text-[11px] hidden sm:inline font-sans font-semibold ${isActive ? 'text-white' : ''}`}>
+                      {s.title}
+                    </span>
+                    {isVisited && !isActive && (
+                      <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400 stroke-[3] ml-0.5" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Step Counter Badge */}
+            <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-border shrink-0">
+              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-semibold uppercase">
+                Step {activeStep} of 6:
+              </span>
+              <span className="text-xs font-bold text-slate-800 dark:text-slate-200 font-sans">
+                {STORY_STEPS.find((s) => s.id === activeStep)?.label}
+              </span>
+            </div>
           </div>
 
-          {/* Step Counter Badge */}
-          <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-border shrink-0">
-            <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 font-semibold uppercase">
-              Step {activeStep} of 6:
-            </span>
-            <span className="text-xs font-bold text-slate-800 dark:text-slate-200 font-sans">
-              {STORY_STEPS.find((s) => s.id === activeStep)?.label}
-            </span>
+          {/* Slim Visual Progress Line */}
+          <div className="w-full bg-slate-200/60 dark:bg-white/10 h-1 rounded-full overflow-hidden mt-1.5 sm:mt-2">
+            <div
+              className="h-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-400 transition-all duration-300 ease-out"
+              style={{ width: `${(activeStep / 6) * 100}%` }}
+            />
           </div>
         </div>
       </div>
@@ -427,9 +436,9 @@ export function ScrollStorySection() {
         id="story-step-1"
         data-step="1"
         ref={step1Ref}
-        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
+        className="min-h-screen scroll-mt-28 sm:scroll-mt-32 w-full flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6 text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-bold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
@@ -441,18 +450,18 @@ export function ScrollStorySection() {
               Start fresh or import your existing resume with 0 manual typing.
             </h3>
 
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               Have an existing resume? Upload your PDF or Word document. Our parser automatically extracts your work history, degrees, and skills into clean, editable fields in seconds.
             </p>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 type="button"
                 onClick={() => setCreationTab('upload')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   creationTab === 'upload'
                     ? 'bg-emerald-600 text-white shadow-md'
-                    : 'bg-card text-slate-700 dark:text-slate-300 border border-border'
+                    : 'bg-card text-slate-700 dark:text-slate-300 border border-border hover:bg-accent'
                 }`}
               >
                 Upload Existing Resume
@@ -460,10 +469,10 @@ export function ScrollStorySection() {
               <button
                 type="button"
                 onClick={() => setCreationTab('scratch')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   creationTab === 'scratch'
                     ? 'bg-emerald-600 text-white shadow-md'
-                    : 'bg-card text-slate-700 dark:text-slate-300 border border-border'
+                    : 'bg-card text-slate-700 dark:text-slate-300 border border-border hover:bg-accent'
                 }`}
               >
                 Start from Scratch with AI
@@ -473,7 +482,7 @@ export function ScrollStorySection() {
             <div className="pt-2">
               <Link
                 href="/create"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer hover:-translate-y-0.5"
               >
                 <span>Start Creating in Studio</span>
                 <ArrowRight className="w-4 h-4" />
@@ -483,13 +492,13 @@ export function ScrollStorySection() {
 
           {/* Right Column: Interactive Dropzone & Automated Parser Stream */}
           <div className="lg:col-span-7">
-            <div className="relative bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-5 overflow-hidden">
+            <div className="relative bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-10 space-y-6 overflow-hidden">
               {/* Shimmer sweep line when active */}
               {step1InView && (
                 <div className="absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent pointer-events-none" />
               )}
 
-              <div className="flex items-center justify-between border-b border-border pb-3">
+              <div className="flex items-center justify-between border-b border-border pb-3.5">
                 <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                   SMART RESUME IMPORTER
@@ -500,16 +509,16 @@ export function ScrollStorySection() {
               </div>
 
               {creationTab === 'upload' ? (
-                <div className="p-6 sm:p-8 border-2 border-dashed border-emerald-500/40 dark:border-emerald-500/30 rounded-2xl bg-emerald-50/30 dark:bg-emerald-950/20 text-center space-y-4 relative">
-                  <div className="w-14 h-14 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-inner">
-                    <UploadCloud className="w-7 h-7" />
+                <div className="p-6 sm:p-10 border-2 border-dashed border-emerald-500/40 dark:border-emerald-500/30 rounded-2xl bg-emerald-50/30 dark:bg-emerald-950/20 text-center space-y-5 relative">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shadow-inner">
+                    <UploadCloud className="w-8 h-8" />
                   </div>
 
                   <div>
-                    <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                       Drop your resume here or click to simulate import
                     </h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-sans mt-1">
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-sans mt-1.5">
                       Supports PDF and Word formats up to 10MB
                     </p>
                   </div>
@@ -518,34 +527,34 @@ export function ScrollStorySection() {
                     type="button"
                     onClick={handleSimulateUpload}
                     disabled={isSimulatingUpload}
-                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition-all cursor-pointer"
+                    className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md transition-all cursor-pointer"
                   >
                     {isSimulatingUpload ? 'Extracting Career Data...' : 'Simulate 1-Click Upload'}
                   </button>
 
                   {/* Animated Parsed Data Stream */}
                   {parsedItemsVisible && (
-                    <div className="mt-4 pt-4 border-t border-emerald-200 dark:border-emerald-900/50 space-y-2.5 text-left text-xs">
+                    <div className="mt-5 pt-5 border-t border-emerald-200 dark:border-emerald-900/50 space-y-3 text-left text-xs sm:text-sm">
                       <div className="font-mono text-[10px] text-emerald-700 dark:text-emerald-300 font-bold uppercase flex items-center justify-between">
                         <span>Extracted Career Schema</span>
-                        <span className="bg-emerald-200/70 dark:bg-emerald-900 px-2 py-0.5 rounded text-[9px]">100% Parsed</span>
+                        <span className="bg-emerald-200/70 dark:bg-emerald-900 px-2 py-0.5 rounded text-[9px] font-bold">100% Parsed</span>
                       </div>
 
-                      <div className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/60 dark:border-emerald-800/60 flex items-center justify-between shadow-2xs">
+                      <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/60 dark:border-emerald-800/60 flex items-center justify-between shadow-2xs">
                         <span className="font-semibold text-slate-800 dark:text-slate-200">
                           👤 Alex Morgan · Senior Full-Stack Engineer
                         </span>
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                       </div>
 
-                      <div className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/60 dark:border-emerald-800/60 flex items-center justify-between shadow-2xs">
+                      <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/60 dark:border-emerald-800/60 flex items-center justify-between shadow-2xs">
                         <span className="font-semibold text-slate-800 dark:text-slate-200">
                           💼 3 Work Roles (Stripe, Amazon, CloudOps)
                         </span>
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                       </div>
 
-                      <div className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/60 dark:border-emerald-800/60 flex items-center justify-between shadow-2xs">
+                      <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-emerald-300/60 dark:border-emerald-800/60 flex items-center justify-between shadow-2xs">
                         <span className="font-semibold text-slate-800 dark:text-slate-200">
                           ⚡ 14 Technical Skills Tagged (TypeScript, Go, React, AWS)
                         </span>
@@ -555,19 +564,19 @@ export function ScrollStorySection() {
                   )}
                 </div>
               ) : (
-                <div className="p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-4 text-left">
+                <div className="p-6 sm:p-8 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-4 text-left">
                   <span className="text-xs font-mono font-bold text-slate-400 uppercase">
                     Curated Role Templates for Fast Start
                   </span>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="grid grid-cols-2 gap-2.5 text-xs sm:text-sm">
                     {['Software Engineer', 'Product Manager', 'Data Scientist', 'Business Analyst'].map((r) => (
-                      <div key={r} className="p-3 rounded-xl bg-white dark:bg-slate-800 border border-border flex items-center justify-between">
+                      <div key={r} className="p-3.5 rounded-xl bg-white dark:bg-slate-800 border border-border flex items-center justify-between">
                         <span className="font-semibold text-slate-800 dark:text-slate-200">{r}</span>
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
                       </div>
                     ))}
                   </div>
-                  <p className="text-xs text-slate-500 font-sans">
+                  <p className="text-xs text-slate-500 font-sans pt-1">
                     Pre-populated with industry-standard section headings and Google-tested bullet frameworks.
                   </p>
                 </div>
@@ -584,9 +593,9 @@ export function ScrollStorySection() {
         id="story-step-2"
         data-step="2"
         ref={step2Ref}
-        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden"
+        className="min-h-screen scroll-mt-28 sm:scroll-mt-32 w-full flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6 text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-mono font-bold border border-teal-300 dark:border-teal-800 shadow-2xs">
@@ -598,18 +607,18 @@ export function ScrollStorySection() {
               Paste any job description to pinpoint missing keywords.
             </h3>
 
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               Applicant Tracking Systems scan for exact keyword matches. Select a target employer below or paste any job description. Watch your ATS match score surge in real-time as you add missing high-impact keywords.
             </p>
 
             {/* Presets */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {JD_PRESETS.map((p, idx) => (
                 <button
                   key={p.id}
                   type="button"
                   onClick={() => setActiveJdIdx(idx)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                  className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all cursor-pointer ${
                     activeJdIdx === idx
                       ? 'bg-teal-600 text-white border-teal-600 shadow-sm'
                       : 'bg-card text-slate-700 dark:text-slate-300 border-border hover:bg-accent'
@@ -621,7 +630,7 @@ export function ScrollStorySection() {
             </div>
 
             {/* Clickable Keywords */}
-            <div className="space-y-2 pt-1">
+            <div className="space-y-2.5 pt-2">
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                 Click missing keywords to add them to your resume:
               </span>
@@ -633,7 +642,7 @@ export function ScrollStorySection() {
                       key={kw.name}
                       type="button"
                       onClick={() => toggleKeyword(kw.name)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+                      className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
                         isAdded
                           ? 'bg-teal-100 dark:bg-teal-950/80 text-teal-900 dark:text-teal-200 border border-teal-400 font-bold shadow-xs'
                           : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:border-teal-500'
@@ -651,23 +660,23 @@ export function ScrollStorySection() {
 
           {/* Right Column: Live Animated Match Meter */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-5">
-              <div className="p-6 rounded-2xl border border-teal-500/30 bg-teal-500/5 dark:bg-teal-950/20 space-y-3">
+            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-10 space-y-6">
+              <div className="p-6 sm:p-8 rounded-2xl border border-teal-500/30 bg-teal-500/5 dark:bg-teal-950/20 space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
                     Target ATS Match Readiness
                   </span>
-                  <span className="font-mono text-xs font-bold text-teal-700 dark:text-teal-300 bg-teal-100 dark:bg-teal-950 px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+                  <span className="font-mono text-xs font-bold text-teal-700 dark:text-teal-300 bg-teal-100 dark:bg-teal-950 px-3 py-1 rounded-full flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping inline-block" />
                     {animatedScore >= 90 ? 'INTERVIEW READY' : 'NEEDS KEYWORDS'}
                   </span>
                 </div>
 
                 <div className="flex items-baseline gap-3">
-                  <span className="font-serif text-6xl font-normal text-slate-900 dark:text-white transition-all">
+                  <span className="font-serif text-6xl sm:text-7xl font-normal text-slate-900 dark:text-white transition-all">
                     {animatedScore}%
                   </span>
-                  <span className="text-xs text-slate-500 font-sans">
+                  <span className="text-xs sm:text-sm text-slate-500 font-sans">
                     Matching target criteria for {activeJd.company}
                   </span>
                 </div>
@@ -682,7 +691,7 @@ export function ScrollStorySection() {
               </div>
 
               {/* Sample Job Description Analysis */}
-              <div className="p-4 rounded-xl border border-border bg-slate-50 dark:bg-white/[0.02] space-y-2 text-xs">
+              <div className="p-5 rounded-xl border border-border bg-slate-50 dark:bg-white/[0.02] space-y-2 text-xs sm:text-sm">
                 <span className="font-mono text-[10px] uppercase font-bold text-slate-400 block">
                   Extracted Job Requirements
                 </span>
@@ -702,9 +711,9 @@ export function ScrollStorySection() {
         id="story-step-3"
         data-step="3"
         ref={step3Ref}
-        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
+        className="min-h-screen scroll-mt-28 sm:scroll-mt-32 w-full flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column */}
           <div className="lg:col-span-6 space-y-6 text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-bold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
@@ -716,16 +725,16 @@ export function ScrollStorySection() {
               Switch templates & palettes live with zero content loss.
             </h3>
 
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               Choose from 30 single-column (Harvard, Oxford, Naukri) and dual-column (Silicon Valley, Prawira) templates. Your content reflows instantly with sub-millimeter typography precision.
             </p>
 
             {/* Template Selector Grid */}
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <label className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                 Select Layout Architecture:
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                 {CURATED_TEMPLATES.map((tmpl) => {
                   const isSelected = selectedTemplate === tmpl.id;
                   return (
@@ -733,14 +742,14 @@ export function ScrollStorySection() {
                       key={tmpl.id}
                       type="button"
                       onClick={() => handleSelectTemplate(tmpl.id)}
-                      className={`p-2.5 rounded-xl text-left border text-xs transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl text-left border text-xs transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-emerald-500/10 border-emerald-500 dark:bg-emerald-950/30 font-bold text-slate-900 dark:text-white shadow-2xs'
+                          ? 'bg-emerald-500/10 border-emerald-500 dark:bg-emerald-950/30 font-bold text-slate-900 dark:text-white shadow-2xs ring-1 ring-emerald-500/30'
                           : 'bg-card border-border text-slate-600 dark:text-slate-400 hover:border-slate-400'
                       }`}
                     >
-                      <span className="block truncate font-serif font-bold">{tmpl.name}</span>
-                      <span className="text-[10px] text-slate-400 font-sans block truncate">{tmpl.role}</span>
+                      <span className="block truncate font-serif font-bold text-xs sm:text-sm">{tmpl.name}</span>
+                      <span className="text-[10px] text-slate-400 font-sans block truncate mt-0.5">{tmpl.role}</span>
                     </button>
                   );
                 })}
@@ -748,11 +757,11 @@ export function ScrollStorySection() {
             </div>
 
             {/* Palette Picker */}
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <label className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                 Executive Accent Color:
               </label>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3.5">
                 {CURATED_PALETTES.map((p) => {
                   const isSelected = selectedColor === p.color;
                   return (
@@ -761,7 +770,7 @@ export function ScrollStorySection() {
                       type="button"
                       onClick={() => handleSelectColor(p.color)}
                       title={p.name}
-                      className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer flex items-center justify-center ${
+                      className={`w-7.5 h-7.5 rounded-full border-2 transition-transform cursor-pointer flex items-center justify-center ${
                         isSelected
                           ? 'scale-125 border-slate-900 dark:border-white shadow-md'
                           : 'border-transparent hover:scale-110'
@@ -778,7 +787,7 @@ export function ScrollStorySection() {
             <div className="pt-2">
               <Link
                 href={`/create?template=${selectedTemplate}&color=${encodeURIComponent(selectedColor)}`}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer hover:-translate-y-0.5"
               >
                 <span>Open Builder with This Design</span>
                 <ArrowRight className="w-4 h-4" />
@@ -788,7 +797,7 @@ export function ScrollStorySection() {
 
           {/* Right Column: Live Morphing A4 Card Preview with Shimmer */}
           <div className="lg:col-span-6 flex flex-col items-center justify-center">
-            <div className={`relative w-[280px] sm:w-[320px] aspect-[794/1123] rounded-2xl shadow-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden bg-white transition-all duration-300 ${isReflowing ? 'scale-98 opacity-80' : 'scale-100 opacity-100'}`}>
+            <div className={`relative w-[280px] sm:w-[320px] md:w-[340px] aspect-[794/1123] rounded-2xl shadow-2xl border border-slate-200/90 dark:border-slate-800 overflow-hidden bg-white transition-all duration-300 ${isReflowing ? 'scale-98 opacity-80' : 'scale-100 opacity-100'}`}>
               <TemplateCardRealPreview
                 templateId={selectedTemplate}
                 themeColor={selectedColor}
@@ -801,7 +810,7 @@ export function ScrollStorySection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent animate-shimmer pointer-events-none" />
               )}
             </div>
-            <div className="mt-3 flex items-center gap-2 font-mono text-[11px] text-slate-400 dark:text-slate-500">
+            <div className="mt-4 flex items-center gap-2 font-mono text-[11px] text-slate-400 dark:text-slate-500">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Live 1:1 Vector Reflow · 0ms Shift</span>
             </div>
@@ -816,9 +825,9 @@ export function ScrollStorySection() {
         id="story-step-4"
         data-step="4"
         ref={step4Ref}
-        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden"
+        className="min-h-screen scroll-mt-28 sm:scroll-mt-32 w-full flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6 text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-mono font-bold border border-teal-300 dark:border-teal-800 shadow-2xs">
@@ -830,12 +839,12 @@ export function ScrollStorySection() {
               Turn passive task lists into quantified Google X-Y-Z metrics.
             </h3>
 
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               As you type in the split-screen editor, our AI bullet rewriter automatically identifies weak verbs and restructures them using Google recruiters&apos; formula: Accomplished [X], measured by [Y], by doing [Z].
             </p>
 
             {/* AI Focus Switcher */}
-            <div className="space-y-2">
+            <div className="space-y-2.5 pt-1">
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 block">
                 Select AI Optimization Focus:
               </span>
@@ -850,7 +859,7 @@ export function ScrollStorySection() {
                         setActiveBulletStyle(idx);
                         fireConfetti({ particleCount: 20, spread: 40 });
                       }}
-                      className={`w-full text-left p-3 rounded-xl border text-xs transition-all cursor-pointer flex items-center justify-between ${
+                      className={`w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition-all cursor-pointer flex items-center justify-between ${
                         isSelected
                           ? 'bg-teal-600 text-white border-teal-600 font-bold shadow-xs'
                           : 'bg-card text-slate-700 dark:text-slate-300 border-border hover:bg-accent'
@@ -866,9 +875,9 @@ export function ScrollStorySection() {
           </div>
 
           {/* Right Column: Live Strikethrough & Streamed Typewriter */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-7 space-y-5">
             {/* Before (Passive with Red Strikethrough) */}
-            <div className="p-4 rounded-2xl border border-red-500/25 bg-red-500/5 dark:bg-red-950/20 space-y-2">
+            <div className="p-5 sm:p-6 rounded-2xl border border-red-500/25 bg-red-500/5 dark:bg-red-950/20 space-y-2.5">
               <div className="flex items-center justify-between text-[11px] font-mono text-red-600 dark:text-red-400 font-bold uppercase">
                 <span>BEFORE: VAGUE JOB DUTY (42/100 ATS SCORE)</span>
                 <span>Filtered by Workday</span>
@@ -881,21 +890,21 @@ export function ScrollStorySection() {
             </div>
 
             {/* After Streamed Typewriter */}
-            <div className="p-5 rounded-2xl border border-teal-500/40 bg-teal-500/10 dark:bg-teal-950/30 space-y-3">
+            <div className="p-6 sm:p-7 rounded-2xl border border-teal-500/40 bg-teal-500/10 dark:bg-teal-950/30 space-y-4">
               <div className="flex items-center justify-between text-[11px] font-mono text-teal-700 dark:text-teal-300 font-bold uppercase">
                 <span>AFTER: QUANTIFIED GOOGLE X-Y-Z FORMULA (98/100 ATS)</span>
-                <span className="bg-teal-200/60 dark:bg-teal-900 px-2 py-0.5 rounded text-[10px]">Validated</span>
+                <span className="bg-teal-200/60 dark:bg-teal-900 px-2 py-0.5 rounded text-[10px] font-bold">Validated</span>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-900 dark:text-slate-100 font-sans font-medium leading-relaxed min-h-[50px]">
+              <p className="text-xs sm:text-sm md:text-base text-slate-900 dark:text-slate-100 font-sans font-medium leading-relaxed min-h-[60px]">
                 • {AI_REWRITE_STYLES[activeBulletStyle].output.slice(0, Math.max(16, typedChars))}
                 {typedChars < AI_REWRITE_STYLES[activeBulletStyle].output.length && (
-                  <span className="inline-block w-2 h-4 bg-teal-600 dark:bg-teal-400 ml-0.5 animate-pulse align-middle" />
+                  <span className="inline-block w-2 h-4.5 bg-teal-600 dark:bg-teal-400 ml-0.5 animate-pulse align-middle" />
                 )}
               </p>
 
               {/* Animated Pop-in KPI Badges */}
-              <div className="pt-2 border-t border-teal-500/20 flex flex-wrap items-center gap-2">
+              <div className="pt-3 border-t border-teal-500/20 flex flex-wrap items-center gap-2">
                 <span className="text-[10px] font-mono text-slate-500 font-semibold uppercase">
                   KPIs Detected:
                 </span>
@@ -921,9 +930,9 @@ export function ScrollStorySection() {
         id="story-step-5"
         data-step="5"
         ref={step5Ref}
-        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
+        className="min-h-screen scroll-mt-28 sm:scroll-mt-32 w-full flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6 text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-bold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
@@ -935,13 +944,13 @@ export function ScrollStorySection() {
               Pre-flight checks engineered to beat enterprise ATS parsers.
             </h3>
 
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               Our automated scanner audits 30 parser failure modes across Workday, Taleo, Greenhouse, and Lever. Simultaneously, our A4 Page Safety Engine prevents awkward single-bullet spillovers to Page 2.
             </p>
 
             {/* Slider Control for Page Safety */}
-            <div className="space-y-3 p-4 rounded-xl border border-border bg-slate-50 dark:bg-white/[0.02]">
-              <div className="flex items-center justify-between text-xs font-mono font-semibold">
+            <div className="space-y-3.5 p-5 sm:p-6 rounded-2xl border border-border bg-slate-50 dark:bg-white/[0.02]">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-mono font-semibold">
                 <span>Simulated Content Volume</span>
                 <span>{pageLinesCount} Bullet Points</span>
               </div>
@@ -962,7 +971,7 @@ export function ScrollStorySection() {
 
             {/* Status Banner */}
             {isOverflowing ? (
-              <div className="p-3.5 rounded-xl border border-amber-500/40 bg-amber-500/10 dark:bg-amber-950/20 flex items-center justify-between gap-3 text-xs">
+              <div className="p-4 rounded-xl border border-amber-500/40 bg-amber-500/10 dark:bg-amber-950/20 flex items-center justify-between gap-3 text-xs sm:text-sm">
                 <div className="flex items-center gap-2 text-amber-700 dark:text-amber-300">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>Warning: {pageLinesCount - 18} bullet(s) spilling onto Page 2</span>
@@ -973,14 +982,14 @@ export function ScrollStorySection() {
                     setPageLinesCount(17);
                     fireConfetti({ particleCount: 40, spread: 60 });
                   }}
-                  className="px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold text-xs shadow-xs hover:bg-emerald-700 transition-colors cursor-pointer shrink-0"
+                  className="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white font-semibold text-xs shadow-xs hover:bg-emerald-700 transition-colors cursor-pointer shrink-0"
                 >
                   Auto-Fit to 1 Page
                 </button>
               </div>
             ) : (
-              <div className="p-3.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-950/20 flex items-center gap-2 text-xs text-emerald-800 dark:text-emerald-300 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 dark:bg-emerald-950/20 flex items-center gap-2 text-xs sm:text-sm text-emerald-800 dark:text-emerald-300 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Perfect 1-Page Layout · Standard US Letter / International A4 Compliant</span>
               </div>
             )}
@@ -988,11 +997,11 @@ export function ScrollStorySection() {
 
           {/* Right Column: Laser Scanline Card & Sequential Pillar Audits */}
           <div className="lg:col-span-7">
-            <div className="relative bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-4 overflow-hidden">
+            <div className="relative bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-10 space-y-5 overflow-hidden">
               {/* Laser Scanning Line Animation */}
               <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500 via-teal-400 to-transparent shadow-[0_0_20px_#10b981] animate-[laserScan_3.5s_ease-in-out_infinite] pointer-events-none z-20" />
 
-              <div className="flex items-center justify-between border-b border-border pb-3">
+              <div className="flex items-center justify-between border-b border-border pb-3.5">
                 <div className="flex items-center gap-2">
                   <span className="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="text-xs font-mono font-bold text-slate-800 dark:text-slate-200">
@@ -1005,7 +1014,7 @@ export function ScrollStorySection() {
               </div>
 
               {/* 4 Clickable Rule Pillars with Sequential In-View Checkmarks */}
-              <div className="space-y-2 pt-1">
+              <div className="space-y-2.5 pt-1">
                 {[
                   {
                     title: 'Standard Semantic Section Tags',
@@ -1036,23 +1045,23 @@ export function ScrollStorySection() {
                       key={idx}
                       type="button"
                       onClick={() => setSelectedAuditRule(idx)}
-                      className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer ${
+                      className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-emerald-500/10 border-emerald-500/50 dark:bg-emerald-950/20 shadow-xs'
+                          ? 'bg-emerald-500/10 border-emerald-500/50 dark:bg-emerald-950/20 shadow-xs ring-1 ring-emerald-500/30'
                           : 'bg-card border-border/80 hover:border-slate-400'
                       }`}
                     >
                       <div className="flex items-center justify-between text-[10px] font-mono font-bold">
                         <span className="text-emerald-700 dark:text-emerald-400 uppercase">{rule.pillar}</span>
-                        <span className={`px-2 py-0.5 rounded transition-all duration-300 ${isPassed ? 'text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950' : 'text-slate-400 bg-slate-100 dark:bg-slate-800'}`}>
+                        <span className={`px-2 py-0.5 rounded transition-all duration-300 font-bold ${isPassed ? 'text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950' : 'text-slate-400 bg-slate-100 dark:bg-slate-800'}`}>
                           {isPassed ? 'PASS' : 'CHECKING...'}
                         </span>
                       </div>
-                      <div className="font-serif text-xs font-bold text-slate-900 dark:text-white mt-0.5 flex items-center justify-between">
+                      <div className="font-serif text-xs sm:text-sm font-bold text-slate-900 dark:text-white mt-1 flex items-center justify-between">
                         <span>{rule.title}</span>
                         {isPassed && <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />}
                       </div>
-                      <p className="text-[11px] text-slate-600 dark:text-slate-300 font-sans mt-0.5">
+                      <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 font-sans mt-0.5">
                         {rule.desc}
                       </p>
                     </button>
@@ -1071,9 +1080,9 @@ export function ScrollStorySection() {
         id="story-step-6"
         data-step="6"
         ref={step6Ref}
-        className="min-h-screen w-full flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden"
+        className="min-h-screen scroll-mt-28 sm:scroll-mt-32 w-full flex items-center justify-center py-20 sm:py-28 px-4 sm:px-6 lg:px-8 border-b border-border/70 bg-gradient-to-b from-transparent via-teal-500/[0.03] to-transparent relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6 text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-mono font-bold border border-teal-300 dark:border-teal-800 shadow-2xs">
@@ -1085,16 +1094,16 @@ export function ScrollStorySection() {
               Export crisp vector PDFs with zero watermarks & zero paywalls.
             </h3>
 
-            <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
               Unlike other resume builders that trap your hours of work behind a surprise $24/mo paywall or blurry rasterized watermark, ResumeBabu generates native, uncompressed vector PDFs that recruiters can search, highlight, and print at full 1200 DPI clarity.
             </p>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <button
                 type="button"
                 onClick={handleSimulateExport}
                 disabled={isExporting}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-lg transition-all cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base shadow-lg transition-all cursor-pointer hover:-translate-y-0.5"
               >
                 <Download className="w-4 h-4" />
                 <span>{isExporting ? 'Compiling Vector PDF...' : 'Test Vector PDF Export'}</span>
@@ -1102,7 +1111,7 @@ export function ScrollStorySection() {
 
               <Link
                 href="/create"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-card hover:bg-accent text-slate-800 dark:text-slate-200 border border-border font-bold text-sm transition-all shadow-xs cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-card hover:bg-accent text-slate-800 dark:text-slate-200 border border-border font-bold text-sm sm:text-base transition-all shadow-xs cursor-pointer hover:-translate-y-0.5"
               >
                 <span>Build My Resume Free</span>
                 <ArrowRight className="w-4 h-4" />
@@ -1111,14 +1120,14 @@ export function ScrollStorySection() {
 
             {/* Export Stage Status */}
             {isExporting && (
-              <div className="p-3 bg-teal-50 dark:bg-teal-950/40 border border-teal-300 dark:border-teal-800 rounded-xl text-xs font-mono text-teal-800 dark:text-teal-300 flex items-center gap-2 animate-pulse">
+              <div className="p-3.5 bg-teal-50 dark:bg-teal-950/40 border border-teal-300 dark:border-teal-800 rounded-xl text-xs sm:text-sm font-mono text-teal-800 dark:text-teal-300 flex items-center gap-2 animate-pulse">
                 <span className="w-2 h-2 rounded-full bg-teal-600 animate-ping" />
                 <span>{exportStage}</span>
               </div>
             )}
 
             {hasExported && (
-              <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 rounded-xl text-xs font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2 animate-pop-in">
+              <div className="p-3.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 rounded-xl text-xs sm:text-sm font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-2 animate-pop-in">
                 <Check className="w-4 h-4 stroke-[3]" />
                 <span>Vector PDF Generated! 100% Vector Nodes · Zero Watermark</span>
               </div>
@@ -1127,8 +1136,8 @@ export function ScrollStorySection() {
 
           {/* Right Column: Visual Export Metrics Box */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-8 space-y-6">
-              <div className="flex items-center justify-between border-b border-border pb-3">
+            <div className="bg-white dark:bg-[#0c1411] rounded-3xl shadow-2xl border border-slate-200/90 dark:border-teal-500/30 p-6 sm:p-10 space-y-6">
+              <div className="flex items-center justify-between border-b border-border pb-3.5">
                 <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
                   EXPORT QUALITY SPECIFICATIONS
                 </span>
@@ -1137,24 +1146,24 @@ export function ScrollStorySection() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1 hover:border-emerald-500/40 transition-colors">
-                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">1200 DPI</div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">Full Vector Print</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-center">
+                <div className="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1.5 hover:border-emerald-500/40 transition-colors">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">1200 DPI</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 font-sans">Full Vector Print</div>
                 </div>
 
-                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1 hover:border-emerald-500/40 transition-colors">
-                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">0 KB</div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">Zero Watermarks</div>
+                <div className="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1.5 hover:border-emerald-500/40 transition-colors">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">0 KB</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 font-sans">Zero Watermarks</div>
                 </div>
 
-                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1 hover:border-emerald-500/40 transition-colors">
-                  <div className="text-xl sm:text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">100%</div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-sans">Selectable Text</div>
+                <div className="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-border space-y-1.5 hover:border-emerald-500/40 transition-colors">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">100%</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 font-sans">Selectable Text</div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl border border-emerald-500/25 bg-emerald-500/5 dark:bg-emerald-950/20 text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+              <div className="p-4 sm:p-5 rounded-2xl border border-emerald-500/25 bg-emerald-500/5 dark:bg-emerald-950/20 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
                 💡 <strong>Why Vector PDF Matters:</strong> Unlike rasterized images or canvas screenshots that become blurry when zoomed in or read by OCR bots, vector PDFs preserve mathematical glyphs and hyperlinks, guaranteeing perfect rendering on any recruiter screen or ATS database.
               </div>
             </div>
