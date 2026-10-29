@@ -68,7 +68,8 @@ export const BLOG_POSTS: BlogPost[] = [
       { id: 'use-ai-to-improve-resume', title: '12. Use AI to Improve Your Resume' },
       { id: 'write-matching-cover-letter', title: '13. Write a Matching Cover Letter' },
       { id: 'review-before-applying', title: '14. Review Your Resume Before Applying' },
-      { id: 'faqs-resume-advice', title: '15. Frequently Asked Questions' },
+      { id: 'harvard-resume-templates', title: '15. Harvard FAS Resume Templates & Sample Blueprints' },
+      { id: 'faqs-resume-advice', title: '16. Frequently Asked Questions' },
     ],
     contentHtml: [
       {
@@ -632,6 +633,63 @@ export const BLOG_POSTS: BlogPost[] = [
         calloutTitle: 'Turn Good Resume Advice Into Action',
         text: 'A strong resume does not depend on complicated design or impressive-sounding jargon. It depends on clear communication, relevant evidence, and thoughtful presentation.\n\nReady to put these tips into practice? Build your recruiter-approved resume using ResumeBabu\'s free online resume builder. Select an ATS-tested template, tailor your bullet points with real-time feedback, and export crisp vector PDFs with zero paywalls.',
       },
+      {
+        id: 'harvard-resume-templates',
+        type: 'heading2',
+        text: '15. Harvard FAS Resume Templates & Sample Blueprints',
+      },
+      {
+        type: 'paragraph',
+        text: 'The Harvard FAS Mignone Center for Career Success provides three canonical template models tailored for distinct career stages. Below are the exact structural blueprints for each format, which you can use immediately in our free visual resume builder.',
+      },
+      {
+        type: 'heading3',
+        text: 'Template Model 1: Harvard College / Undergraduate Resume',
+      },
+      {
+        type: 'paragraph',
+        text: 'Ideal for students, freshers, and early-career candidates with 0–2 years of experience. Prioritizes Education at the top, followed by Relevant Academic Projects, Leadership Activities, and Technical Skills.',
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'Harvard Undergraduate Blueprint (Text Copy)',
+        text: '[FULL NAME]\n[City, State] | [Phone Number] | [Professional Email] | [LinkedIn URL] | [GitHub URL]\n\nEDUCATION\n[University Name], [City, State]\n[Degree Title, e.g., Bachelor of Science in Computer Science] — Expected [Month Year]\n• Cumulative GPA: 3.8/4.0 | Dean\'s List (All Semesters)\n• Relevant Coursework: Data Structures & Algorithms, Distributed Systems, Database Management, Cloud Computing\n\nACADEMIC & TECHNICAL PROJECTS\n[Project Title] | [Tech Stack: React, Node.js, PostgreSQL, Docker] | [GitHub URL]\n• Engineered real-time collaborative workspace supporting 500+ active sockets with <45ms message latency.\n• Architected automated CI/CD pipeline using GitHub Actions, cutting staging deployment duration by 40%.\n\nLEADERSHIP & CAMPUS ACTIVITIES\n[Organization / Club Name], [University Name]\n[Role Title, e.g., Vice President & Technical Lead] — [Month Year] – Present\n• Directed 24-member engineering committee; organized annual hackathon with 350+ student participants.\n• Allocated $15,000 annual operating budget across 8 technical workshops with zero audit discrepancies.\n\nTECHNICAL SKILLS\n• Programming Languages: Python, TypeScript, Java, C++, SQL\n• Frameworks & Tools: Next.js, Node.js, Docker, Git, PostgreSQL, AWS (S3, EC2)',
+      },
+      {
+        type: 'heading3',
+        text: 'Template Model 2: Harvard Tech & Engineering Resume',
+      },
+      {
+        type: 'paragraph',
+        text: 'Designed for software engineers, data scientists, and technical specialists. Puts Technical Skills and Production Projects in the primary visual scan zone.',
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'Harvard Technical & Systems Blueprint (Text Copy)',
+        text: '[FULL NAME]\n[City, State] | [Phone Number] | [Professional Email] | [GitHub URL] | [LinkedIn URL]\n\nTECHNICAL SKILLS\n• Languages: Python, Go, C++, TypeScript, SQL, Bash\n• Distributed Systems: Kubernetes, Docker, Kafka, Redis, gRPC, Terraform\n• Cloud & Databases: AWS, Google Cloud, PostgreSQL, MongoDB\n\nEXPERIENCE\n[Company Name], [City, State]\n[Job Title, e.g., Software Engineer] — [Month Year] – Present\n• Architected high-throughput microservice handling 12,000 req/sec with 99.98% uptime.\n• Refactored legacy batch ETL pipeline into Apache Kafka event stream, reducing data freshness lag from 4 hours to 90 seconds.\n\nEDUCATION\n[University Name], [City, State]\n[Degree Title] — [Graduation Year]',
+      },
+      {
+        type: 'heading3',
+        text: 'Template Model 3: Harvard Experienced & Master\'s Resume',
+      },
+      {
+        type: 'paragraph',
+        text: 'For professionals with 3+ years experience, MBA candidates, or Master\'s graduates. Uses split "Relevant Experience" and "Additional Experience" sections to maximize industry focus.',
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'Harvard Experienced Professional Blueprint (Text Copy)',
+        text: '[FULL NAME]\n[City, State] | [Phone Number] | [Professional Email] | [LinkedIn URL]\n\nPROFESSIONAL SUMMARY\nSenior Product Strategist with 6+ years driving enterprise SaaS growth. Track record scaling platform revenue from $2M to $11M ARR while mentoring 8 product managers.\n\nRELEVANT EXPERIENCE\n[Target Enterprise Name], [City, State]\n[Senior Product Manager] — [Month Year] – Present\n• Spearheaded zero-to-one launch of automated workflow suite, onboarding 42 Fortune 500 clients in 6 months.\n• Increased net revenue retention (NRR) from 104% to 121% by redesigning onboarding analytics.\n\nEDUCATION\n[Graduate School / University], [City, State]\nMaster of Business Administration (MBA) / M.S. — [Year]',
+      },
+      {
+        type: 'callout',
+        calloutType: 'info',
+        calloutTitle: 'Launch Pre-Formatted Harvard Template in ResumeBabu',
+        text: 'You don\'t need to format these templates manually in Microsoft Word or LaTeX. Click below to launch the pre-calibrated Harvard Ivy Classic template in ResumeBabu\'s free visual editor with instant vector PDF export.',
+      },
     ],
     faqs: [
       {
@@ -797,6 +855,12 @@ export const BLOG_POSTS: BlogPost[] = [
       "calloutType": "tip",
       "calloutTitle": "Harvard FAS \"Express, Don't Impress\" Rule for ATS",
       "text": "Avoid decorative lines, icons, headshots, and graphical shading. An ATS scores documents based on relevant keyword matches and clear syntactic structure, not aesthetic novelty. A clean, austere layout always outperforms an ornate graphic design template."
+    },
+    {
+      "type": "callout",
+      "calloutType": "info",
+      "calloutTitle": "Harvard ATS-Tested Single-Column Template Blueprint",
+      "text": "[CANDIDATE NAME]\n[City, State] • [Phone] • [Email] • [LinkedIn URL] • [GitHub/Portfolio URL]\n\nPROFESSIONAL SUMMARY\n[Target Job Title] with [X] years experience specializing in [Core Competency A, B, and C]. Proven history delivering [Quantified Result, e.g., $1.2M pipeline, 40% latency reduction] at [Company/Org].\n\nEXPERIENCE\n[Company Name] | [Job Title] | [City, State] | [Month Year – Present]\n• Accomplished [X] by executing [Y] as measured by [Z] using [Specific Tools/Technologies].\n• Spearheaded [Initiative] resulting in [Quantifiable Impact, e.g., 28% efficiency boost].\n\nEDUCATION\n[University Name] | [City, State] | [Degree Title] | [Graduation Month Year]\n\nTECHNICAL SKILLS\n• Core Languages & Platforms: [List specific hard skills matched to job description]"
     },
     {
       "id": "vector-pdf-vs-docx",
@@ -988,8 +1052,12 @@ export const BLOG_POSTS: BlogPost[] = [
       "title": "7. Before & After Bullets: Weak Student vs. Harvard FAS Standard"
     },
     {
+      "id": "fresher-template-blueprint",
+      "title": "8. The Harvard Student Fill-In-The-Blank Template Blueprint"
+    },
+    {
       "id": "fresher-checklist",
-      "title": "8. The Fresher Pre-Submission Checklist"
+      "title": "9. The Fresher Pre-Submission Checklist"
     }
   ],
   "contentHtml": [
@@ -1130,9 +1198,30 @@ export const BLOG_POSTS: BlogPost[] = [
       ]
     },
     {
+      "id": "fresher-template-blueprint",
+      "type": "heading2",
+      "text": "8. The Harvard Student Fill-In-The-Blank Template Blueprint"
+    },
+    {
+      "type": "paragraph",
+      "text": "Use this pre-structured template modeled after the Harvard Mignone Center for Career Success undergraduate guidelines. Copy this text into your notes or launch the Harvard Ivy Classic template directly in ResumeBabu's visual editor."
+    },
+    {
+      "type": "callout",
+      "calloutType": "tip",
+      "calloutTitle": "Harvard Undergraduate Student Resume Template (Copy & Fill)",
+      "text": "[YOUR FULL NAME]\n[City, State] | [Phone Number] | [Professional Email] | [LinkedIn URL] | [GitHub URL]\n\nEDUCATION\n[Your University Name], [City, State]\n[Degree Title, e.g., Bachelor of Science in Computer Science / B.Tech] — Expected [Month Year]\n• Cumulative GPA: [3.X/4.0 or CGPA — Include only if 3.5+ or top tier; otherwise omit]\n• Honors: Dean\'s List ([Semesters/Years]), [Merit Scholarship Name]\n• Relevant Coursework: [4 to 6 Advanced Courses directly mapping to target role]\n\nTECHNICAL & QUANTITATIVE SKILLS\n• Programming Languages: [e.g., Python, C++, Java, TypeScript, SQL]\n• Frameworks & Web: [e.g., React, Next.js, Node.js, Tailwind CSS]\n• Tools & Cloud: [e.g., Git, GitHub, Docker, Postman, Linux CLI, AWS]\n\nACADEMIC & PERSONAL PROJECTS\n[Project Title] | Tech Stack: [Technologies Used] | [GitHub / Demo URL]\n• [Action Verb] [System / Application Name] to [solve specific problem], supporting [metric: users/data size].\n• [Action Verb] [specific feature or optimization], improving [latency / accuracy / performance] by [X%].\n\nCAMPUS LEADERSHIP & ACTIVITIES\n[Club / Society / Team Name], [University]\n[Leadership Role Title] — [Month Year – Month Year / Present]\n• [Action Verb] [event / initiative / budget], leading a team of [X] peers and engaging [Y] attendees."
+    },
+    {
+      "type": "callout",
+      "calloutType": "info",
+      "calloutTitle": "Quick Launch: Harvard Ivy Classic Template",
+      "text": "You can load this entire structure pre-formatted with EB Garamond typography and calibrated margins by launching the Harvard Ivy Classic template in our free builder."
+    },
+    {
       "id": "fresher-checklist",
       "type": "heading2",
-      "text": "8. The Fresher Pre-Submission Checklist"
+      "text": "9. The Fresher Pre-Submission Checklist"
     },
     {
       "type": "bulletList",
@@ -1642,6 +1731,26 @@ export const BLOG_POSTS: BlogPost[] = [
       "calloutType": "tip",
       "calloutTitle": "Rule of Thumb",
       "text": "If you are applying for a corporate tech, finance, marketing, or operations job in North America, submit a tailored 1-2 page Resume. If you are applying for a professorship, scientific lab fellowship, or any job in the UK/Europe, submit a CV."
+    },
+    {
+      "type": "heading3",
+      "text": "Harvard FAS 1-Page Resume Template Blueprint"
+    },
+    {
+      "type": "callout",
+      "calloutType": "info",
+      "calloutTitle": "Harvard 1-Page Corporate Resume Template",
+      "text": "1. Contact Header: Name, City/State, Phone, Email, LinkedIn, Portfolio\n2. Education: University, Degree, Major, Graduation Date, Honors, Coursework\n3. Experience: Reverse-chronological roles with action verbs & metric bullets\n4. Projects: 2-3 substantial technical builds with GitHub links and performance stats\n5. Skills: Categorized hard technical competencies (languages, tools, frameworks)\nTotal Length: Strictly 1 A4 Page (EB Garamond / Inter, 0.5\"–1.0\" margins)"
+    },
+    {
+      "type": "heading3",
+      "text": "Harvard FAS Academic Curriculum Vitae (CV) Template Blueprint"
+    },
+    {
+      "type": "callout",
+      "calloutType": "info",
+      "calloutTitle": "Harvard Academic CV Template Architecture",
+      "text": "1. Contact Information & Institutional Affiliation\n2. Education & Dissertation Title (with Advisor Names)\n3. Research Experience & Laboratory Appointments\n4. Peer-Reviewed Publications (APA/MLA format, ordered by date)\n5. Conference Presentations & Invited Talks\n6. Grants, Fellowships & Capital Awards (Agency, Grant Number, $)\n7. Teaching Experience & Guest Lectures (Course Titles, Evaluations)\n8. Academic Service & Departmental Committees\nTotal Length: 3 to 10+ Pages (Cumulative scholarly record)"
     }
   ],
   "faqs": [
@@ -1754,6 +1863,12 @@ export const BLOG_POSTS: BlogPost[] = [
       "calloutType": "tip",
       "calloutTitle": "Harvard FAS \"Express, Don't Impress\" Alignment",
       "text": "Tailoring does not mean exaggerating your credentials. It means framing your genuine accomplishments using the exact terminology and priorities specified by the hiring organization."
+    },
+    {
+      "type": "callout",
+      "calloutType": "info",
+      "calloutTitle": "Harvard Master Resume Inventory Template (Structure)",
+      "text": "Maintain this 3–5 page private repository with all career data:\n• Comprehensive Contact & Link Archive\n• All Degrees, Past GPAs, Full Coursework Lists & Capstone Abstracts\n• Master Experience Bank: 6–8 bullets per position with exact historical metrics\n• Master Project Bank: Full tech stacks, repos, architecture diagrams, and user stats\n• Complete Certification & License Registry\nWhen applying to a job, copy 10–12 targeted bullets from this master into the Harvard Ivy Classic template for a tailored 1-page submission."
     },
     {
       "id": "deconstructing-the-jd",
@@ -2032,6 +2147,12 @@ export const BLOG_POSTS: BlogPost[] = [
       "id": "pre-submission-audit",
       "type": "heading2",
       "text": "11. The Harvard FAS Pre-Application Error Audit Checklist"
+    },
+    {
+      "type": "callout",
+      "calloutType": "tip",
+      "calloutTitle": "The Pre-Calibrated Harvard FAS Template Solution",
+      "text": "The fastest way to avoid all 10 mistakes is to start with a pre-calibrated template. The Harvard Ivy Classic template on ResumeBabu enforces correct 0.75\" margins, EB Garamond typography, right-aligned dates (preventing dates-first reading), and zero text-box traps by default."
     },
     {
       "type": "bulletList",

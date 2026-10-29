@@ -5730,6 +5730,14 @@
         border-color: color-mix(in oklab, var(--color-emerald-500) 50%, transparent);
       }
     }
+    .hover\:border-emerald-500\/80:hover {
+      border-color: color-mix(in srgb, oklch(69.6% 0.17 162.48) 80%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:border-emerald-500\/80:hover {
+        border-color: color-mix(in oklab, var(--color-emerald-500) 80%, transparent);
+      }
+    }
     .hover\:border-emerald-600:hover {
       border-color: var(--color-emerald-600);
     }
@@ -8785,6 +8793,9 @@
       .dark\:hover\:bg-rose-950\/40:where(.dark, .dark *):hover {
         background-color: color-mix(in oklab, var(--color-rose-950) 40%, transparent);
       }
+    }
+    .dark\:hover\:bg-slate-100:where(.dark, .dark *):hover {
+      background-color: var(--color-slate-100);
     }
     .dark\:hover\:bg-slate-700:where(.dark, .dark *):hover {
       background-color: var(--color-slate-700);

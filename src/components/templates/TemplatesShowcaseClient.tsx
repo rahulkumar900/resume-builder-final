@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -24,10 +24,11 @@ const PALETTES = [
 
 export function TemplatesShowcaseClient() {
   const router = useRouter();
-  const [activeFilter, setActiveFilter] = useState<'all' | 'top10' | 'indian' | 'ats' | 'double' | 'single' | 'creative' | 'executive'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'harvard' | 'top10' | 'indian' | 'ats' | 'double' | 'single' | 'creative' | 'executive'>('all');
   const [selectedColor, setSelectedColor] = useState('#15803d');
 
   const filtered = TEMPLATES.filter((tpl) => {
+    if (activeFilter === 'harvard') return ['harvard', 'oxford', 'ats', 'silicon', 'traditional'].includes(tpl.id);
     if (activeFilter === 'top10') return ['harvard', 'cascade', 'novoresume', 'toronto', 'enhancv', 'flow', 'silicon', 'oxford', 'canva', 'europass'].includes(tpl.id);
     if (activeFilter === 'indian') return ['traditional', 'naukri', 'fresher', 'sarkari'].includes(tpl.id);
     if (activeFilter === 'ats') return tpl.id === 'ats' || tpl.id === 'harvard' || tpl.id === 'silicon' || tpl.layout === 'single';
@@ -66,6 +67,7 @@ export function TemplatesShowcaseClient() {
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
             {[
               { id: 'all', label: `All Templates (${TEMPLATES.length})` },
+              { id: 'harvard', label: '🎓 Harvard & Ivy League' },
               { id: 'top10', label: '🏆 Top Classics (10)' },
               { id: 'indian', label: '🇮🇳 Indian Formats' },
               { id: 'ats', label: 'ATS-Optimized' },

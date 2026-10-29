@@ -164,6 +164,111 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
         </div>
       )}
 
+      {/* Featured Harvard FAS & ATS Templates Strip */}
+      {selectedCategory === 'All' && !searchQuery && (
+        <div className="mb-14 bg-slate-50 dark:bg-[#141412] rounded-3xl border border-border p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                <Award className="w-4 h-4" />
+                <span>Featured Templates</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight mt-1">
+                Harvard FAS &amp; ATS-Tested Resume Templates
+              </h3>
+            </div>
+            <Link
+              href="/templates"
+              className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition shrink-0"
+            >
+              <span>Explore all 30+ templates</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
+            Put these career frameworks into immediate action. Every template follows Harvard FAS guidelines with 0.5&quot;–1.0&quot; margins, single-column flow, and zero unparseable graphics.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Template Card 1 */}
+            <div className="bg-white dark:bg-[#1a1916] rounded-2xl border border-border p-5 flex flex-col justify-between space-y-4 hover:border-emerald-500/80 hover:shadow-md transition group">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                    Harvard FAS Standard
+                  </span>
+                  <span className="text-[11px] font-mono text-slate-400">100% ATS</span>
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                  Harvard Ivy Classic
+                </h4>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  EB Garamond serif, Education-first reverse chronology, and classic Wall Street / consulting pedigree.
+                </p>
+              </div>
+              <Link
+                href="/create?template=harvard"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition shadow-xs"
+              >
+                <span>Use Harvard Template</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            {/* Template Card 2 */}
+            <div className="bg-white dark:bg-[#1a1916] rounded-2xl border border-border p-5 flex flex-col justify-between space-y-4 hover:border-emerald-500/80 hover:shadow-md transition group">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-300">
+                    Clean Single-Column
+                  </span>
+                  <span className="text-[11px] font-mono text-slate-400">99% ATS</span>
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                  ATS Minimal Pro
+                </h4>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Strict monochrome linear DOM stream. Tested across Workday, Taleo, and Greenhouse with zero parsing loss.
+                </p>
+              </div>
+              <Link
+                href="/create?template=ats"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold rounded-xl transition shadow-xs"
+              >
+                <span>Use ATS Minimal</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            {/* Template Card 3 */}
+            <div className="bg-white dark:bg-[#1a1916] rounded-2xl border border-border p-5 flex flex-col justify-between space-y-4 hover:border-emerald-500/80 hover:shadow-md transition group">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-300">
+                    Tech &amp; Engineering
+                  </span>
+                  <span className="text-[11px] font-mono text-slate-400">98% ATS</span>
+                </div>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+                  Silicon Tech Minimal
+                </h4>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  Engineered for software engineers and data scientists with highlighted project cards and categorized tech stacks.
+                </p>
+              </div>
+              <Link
+                href="/create?template=silicon"
+                className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold rounded-xl transition shadow-xs"
+              >
+                <span>Use Silicon Tech</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Grid of Articles */}
       <div>
         <div className="flex items-center justify-between mb-6">
