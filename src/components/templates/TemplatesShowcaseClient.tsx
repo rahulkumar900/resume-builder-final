@@ -28,14 +28,14 @@ export function TemplatesShowcaseClient() {
   const [selectedColor, setSelectedColor] = useState('#15803d');
 
   const filtered = TEMPLATES.filter((tpl) => {
-    if (activeFilter === 'harvard') return ['harvard', 'oxford', 'ats', 'silicon', 'traditional'].includes(tpl.id);
+    if (activeFilter === 'harvard') return ['harvard', 'harvard_tech', 'harvard_experienced', 'oxford', 'ats', 'silicon', 'traditional'].includes(tpl.id);
     if (activeFilter === 'top10') return ['harvard', 'cascade', 'novoresume', 'toronto', 'enhancv', 'flow', 'silicon', 'oxford', 'canva', 'europass'].includes(tpl.id);
     if (activeFilter === 'indian') return ['traditional', 'naukri', 'fresher', 'sarkari'].includes(tpl.id);
-    if (activeFilter === 'ats') return tpl.id === 'ats' || tpl.id === 'harvard' || tpl.id === 'silicon' || tpl.layout === 'single';
+    if (activeFilter === 'ats') return tpl.id === 'ats' || tpl.id === 'harvard' || tpl.id === 'harvard_tech' || tpl.id === 'harvard_experienced' || tpl.id === 'silicon' || tpl.layout === 'single';
     if (activeFilter === 'single') return tpl.layout === 'single';
     if (activeFilter === 'double') return tpl.layout === 'double';
     if (activeFilter === 'creative') return ['santoso', 'rahadian', 'chastain', 'canva', 'enhancv', 'canvapastel', 'canvanotebook', 'canvaeditorial', 'canvaretro', 'canvaaesthetic'].includes(tpl.id);
-    if (activeFilter === 'executive') return ['amelia', 'prawira', 'stockholm', 'oxford', 'harvard'].includes(tpl.id);
+    if (activeFilter === 'executive') return ['amelia', 'prawira', 'stockholm', 'oxford', 'harvard', 'harvard_experienced'].includes(tpl.id);
     return true;
   });
 

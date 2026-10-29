@@ -51,6 +51,8 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
       templateId === 'fresher' ? 'Software Development Engineer' :
       templateId === 'naukri' ? 'Senior Technical Specialist' :
       templateId === 'harvard' ? 'Investment Banking Associate' :
+      templateId === 'harvard_tech' ? 'Distributed Systems Engineer' :
+      templateId === 'harvard_experienced' ? 'Engagement Manager & Strategy Lead' :
       templateId === 'silicon' ? 'Senior Staff Software Engineer' :
       templateId === 'oxford' ? 'Vice President of Operations' :
       templateId === 'canva' ? 'Lead Creative Director' :
@@ -76,6 +78,8 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
       templateId === 'fresher' ? 'Aarav Patel' :
       templateId === 'sarkari' ? 'Suresh Chandra Sharma' :
       templateId === 'harvard' ? 'Jonathan E. Vance' :
+      templateId === 'harvard_tech' ? 'Nathaniel K. Brooks' :
+      templateId === 'harvard_experienced' ? 'Catherine L. Sterling' :
       templateId === 'silicon' ? 'Alex Chen' :
       templateId === 'oxford' ? 'Alistair Sterling' :
       templateId === 'canva' ? 'Chloe Deschanel' :

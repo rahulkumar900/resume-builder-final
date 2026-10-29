@@ -24,6 +24,8 @@ import { NaukriTemplate } from '@/components/resume-templates/NaukriTemplate';
 import { FresherTemplate } from '@/components/resume-templates/FresherTemplate';
 import { SarkariTemplate } from '@/components/resume-templates/SarkariTemplate';
 import { HarvardTemplate } from '@/components/resume-templates/HarvardTemplate';
+import { HarvardTechTemplate } from '@/components/resume-templates/HarvardTechTemplate';
+import { HarvardExperiencedTemplate } from '@/components/resume-templates/HarvardExperiencedTemplate';
 import { CascadeTemplate } from '@/components/resume-templates/CascadeTemplate';
 import { NovoresumeTemplate } from '@/components/resume-templates/NovoresumeTemplate';
 import { TorontoTemplate } from '@/components/resume-templates/TorontoTemplate';
@@ -68,6 +70,8 @@ export const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
   fresher: FresherTemplate,
   sarkari: SarkariTemplate,
   harvard: HarvardTemplate,
+  harvard_tech: HarvardTechTemplate,
+  harvard_experienced: HarvardExperiencedTemplate,
   cascade: CascadeTemplate,
   novoresume: NovoresumeTemplate,
   toronto: TorontoTemplate,

@@ -16,6 +16,8 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
       expect(getTemplateLayout('vienna')).toBe('single');
       expect(getTemplateLayout('madrid')).toBe('single');
       expect(getTemplateLayout('harvard')).toBe('single');
+      expect(getTemplateLayout('harvard_tech')).toBe('single');
+      expect(getTemplateLayout('harvard_experienced')).toBe('single');
     });
 
     it('should correctly identify double-column templates', () => {

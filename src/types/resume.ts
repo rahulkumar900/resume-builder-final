@@ -15,6 +15,8 @@ export type TemplateId =
   | 'fresher'
   | 'sarkari'
   | 'harvard'
+  | 'harvard_tech'
+  | 'harvard_experienced'
   | 'cascade'
   | 'novoresume'
   | 'toronto'

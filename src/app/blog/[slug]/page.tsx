@@ -444,77 +444,77 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                  {/* Template Card 1: Harvard Ivy Classic */}
+                  {/* Template Card 1: Harvard College Classic */}
                   <div className="bg-white dark:bg-[#1a1916] rounded-2xl border border-border p-5 flex flex-col justify-between space-y-4 hover:border-emerald-500/80 hover:shadow-md transition group">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
-                          Harvard FAS Standard
+                          Harvard College Standard
                         </span>
                         <span className="text-[11px] font-mono text-slate-400">100% ATS</span>
                       </div>
                       <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                        Harvard Ivy Classic
+                        Harvard College Classic
                       </h4>
                       <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                        EB Garamond typography, uppercase section bars, Education-first flow, and classic Wall Street &amp; consulting pedigree.
+                        EB Garamond serif, Education &amp; coursework first, academic project cards, and campus leadership. Ideal for freshers and undergraduates.
                       </p>
                     </div>
                     <Link
                       href="/create?template=harvard"
                       className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition shadow-xs"
                     >
-                      <span>Use Harvard Template</span>
+                      <span>Use College Template</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
 
-                  {/* Template Card 2: ATS Minimal Pro */}
+                  {/* Template Card 2: Harvard Technical & Systems */}
                   <div className="bg-white dark:bg-[#1a1916] rounded-2xl border border-border p-5 flex flex-col justify-between space-y-4 hover:border-emerald-500/80 hover:shadow-md transition group">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-300">
-                          Clean Single-Column
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                          Harvard Tech Standard
                         </span>
-                        <span className="text-[11px] font-mono text-slate-400">99% ATS</span>
+                        <span className="text-[11px] font-mono text-slate-400">100% ATS</span>
                       </div>
                       <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                        ATS Minimal Pro
+                        Harvard Technical &amp; Systems
                       </h4>
                       <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                        Monochrome linear DOM flow. Strict zero-graphic structure engineered specifically for Workday, Taleo, and Greenhouse.
+                        Technical skills &amp; systems projects at the top with verified GitHub metrics. Built for software engineers, ML engineers, and data scientists.
                       </p>
                     </div>
                     <Link
-                      href="/create?template=ats"
+                      href="/create?template=harvard_tech"
                       className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold rounded-xl transition shadow-xs"
                     >
-                      <span>Use ATS Minimal</span>
+                      <span>Use Tech Template</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
 
-                  {/* Template Card 3: Silicon Tech Minimal */}
+                  {/* Template Card 3: Harvard Experienced & MBA */}
                   <div className="bg-white dark:bg-[#1a1916] rounded-2xl border border-border p-5 flex flex-col justify-between space-y-4 hover:border-emerald-500/80 hover:shadow-md transition group">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-white/[0.08] text-slate-700 dark:text-slate-300">
-                          Tech &amp; Engineering
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+                          Harvard MBA Standard
                         </span>
-                        <span className="text-[11px] font-mono text-slate-400">98% ATS</span>
+                        <span className="text-[11px] font-mono text-slate-400">100% ATS</span>
                       </div>
                       <h4 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
-                        Silicon Tech Minimal
+                        Harvard Experienced &amp; MBA
                       </h4>
                       <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                        Optimized for software engineers, product managers, and data scientists with highlighted project cards and categorized skills.
+                        Executive summary, dual-tier experience with quantified ROI metrics, and MBA credential hierarchy. Favored by consulting and Wall St.
                       </p>
                     </div>
                     <Link
-                      href="/create?template=silicon"
+                      href="/create?template=harvard_experienced"
                       className="inline-flex items-center justify-center gap-1.5 w-full py-2 px-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold rounded-xl transition shadow-xs"
                     >
-                      <span>Use Silicon Tech</span>
+                      <span>Use MBA Template</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
