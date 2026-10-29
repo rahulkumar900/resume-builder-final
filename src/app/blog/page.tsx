@@ -7,23 +7,25 @@ import { BLOG_POSTS } from '@/lib/blog-data';
 import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Career & Resume Strategy Blog',
+  title: 'Career & Resume Strategy Blog | Ivy League & ATS Standards',
   description:
-    'Actionable career advice, ATS technical audits, fresher resume strategies, and Google XYZ bullet formulas written by veteran recruiters and HR leads.',
+    'Actionable career advice, Harvard FAS resume frameworks, ATS technical audits, fresher strategies, and Google XYZ formulas written by veteran recruiters.',
   keywords: [
     'resume blog',
     'career advice',
+    'harvard resume guide',
+    'harvard career services resume',
     'how to beat ats',
     'resume bullet formulas',
     'fresher resume tips',
     'resume vs cv',
     'ats resume guide',
-    'job search advice'
+    'job search advice',
   ],
   openGraph: {
     title: 'Career & Resume Strategy Blog | ResumeBabu',
     description:
-      'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
+      'Learn how to beat ATS filters, tailor resumes to job descriptions, write Harvard-standard metric bullets, and land more interviews.',
     type: 'website',
     url: 'https://resumebabu.com/blog',
     images: [
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Career & Resume Strategy Blog',
     description:
-      'Learn how to beat ATS filters, tailor resumes to job descriptions, write high-impact metrics, and land more interviews.',
+      'Learn how to beat ATS filters, tailor resumes to job descriptions, write Harvard-standard metric bullets, and land more interviews.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
@@ -107,7 +109,7 @@ export default function BlogIndexPage() {
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold mb-6 shadow-2xs">
               <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              <span>Recruiter-Backed Career Guides &amp; ATS Intel</span>
+              <span>Harvard FAS Frameworks · Recruiter-Backed ATS Intel</span>
             </div>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-4xl mx-auto">
@@ -118,7 +120,7 @@ export default function BlogIndexPage() {
             </h1>
 
             <p className="mt-5 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              No generic fluff. Actionable frameworks, ATS parsing deep-dives, metric formulas, and verified placement strategies to help you get hired faster.
+              No generic fluff. Grounded in Harvard FAS Mignone Center for Career Success guidelines and Fortune 500 ATS parsing intel. Learn how to write specific, active, and fact-based resumes that win interviews.
             </p>
           </div>
         </section>

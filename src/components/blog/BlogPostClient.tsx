@@ -8,7 +8,9 @@ import {
   Link2,
   ChevronRight,
   BookOpen,
-  ArrowRight
+  ArrowRight,
+  Award,
+  Sparkles
 } from 'lucide-react';
 import { LinkedinIcon, TwitterIcon } from '@/components/common/BrandIcons';
 import { BlogPost } from '@/lib/blog-data';
@@ -104,20 +106,50 @@ export const BlogPostClient: React.FC<BlogPostClientProps> = ({ post }) => {
         </div>
       </div>
 
+      {/* Harvard FAS Career Standards Card */}
+      <div className="bg-slate-900 dark:bg-[#141412] rounded-2xl p-5 text-white shadow-md border border-slate-800 dark:border-white/10 space-y-3">
+        <div className="flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-emerald-400">
+          <Award className="w-3.5 h-3.5 text-emerald-400" />
+          <span>Ivy League Standards</span>
+        </div>
+        <h4 className="text-sm font-bold text-slate-100">
+          Harvard FAS Resume Rules
+        </h4>
+        <ul className="text-xs text-slate-300 space-y-2.5">
+          <li className="flex items-start gap-2">
+            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+            <span><strong>Express, Don&apos;t Impress:</strong> Clear, factual phrasing over jargon.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+            <span><strong>Active Verbs First:</strong> Never start lines with dates or duties.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+            <span><strong>No First Person:</strong> 0 pronouns (&quot;I&quot;, &quot;we&quot;, &quot;my&quot;) allowed.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+            <span><strong>Page Budget:</strong> 1 page standard; 2 pages only with 5+ yrs experience.</span>
+          </li>
+        </ul>
+      </div>
+
       {/* Sidebar Tooling CTA */}
-      <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-5 text-white shadow-md space-y-3">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-blue-200">
-          Free Resume Tool
-        </span>
+      <div className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-teal-700 rounded-2xl p-5 text-white shadow-md space-y-3">
+        <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-emerald-200">
+          <Sparkles className="w-3.5 h-3.5 text-emerald-200" />
+          <span>Free Resume Tool</span>
+        </div>
         <h4 className="text-base font-black leading-snug">
           Build Your ATS-Ready Resume Today
         </h4>
-        <p className="text-xs text-blue-100 leading-relaxed">
-          Zero paywalls, instant vector PDF export, and built-in Google XYZ bullet suggestions.
+        <p className="text-xs text-emerald-100 leading-relaxed">
+          Zero paywalls, instant vector PDF export, and built-in Harvard FAS action verb suggestions.
         </p>
         <Link
           href="/create"
-          className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 bg-white text-emerald-700 hover:bg-emerald-50 text-xs font-bold rounded-xl transition shadow-xs"
+          className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 bg-white text-emerald-800 hover:bg-emerald-50 text-xs font-bold rounded-xl transition shadow-xs"
         >
           <span>Create My Resume Free</span>
           <ArrowRight className="w-3.5 h-3.5" />

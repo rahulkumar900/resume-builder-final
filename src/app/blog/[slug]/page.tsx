@@ -13,7 +13,8 @@ import {
   AlertTriangle,
   Info,
   HelpCircle,
-  FileText
+  FileText,
+  Award
 } from 'lucide-react';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
@@ -45,17 +46,17 @@ const BLOG_SEO_DESCRIPTIONS: Record<string, string> = {
   'resume-advice-guide':
     'The complete guide to actionable resume advice: learn how to tailor your resume, format for ATS algorithms, quantify achievements, and land more interviews.',
   'how-to-beat-applicant-tracking-systems-2026':
-    'Over 75% of resumes fail ATS screening. Learn the exact formatting rules, parsing secrets, and keyword strategies to beat corporate ATS filters in 2026.',
+    'Over 75% of resumes fail ATS screening. Discover Harvard FAS formatting benchmarks, parser extraction rules, and keyword strategies to beat corporate ATS filters in 2026.',
   'how-to-write-resume-with-no-experience':
-    'Learn how to write a standout resume with no experience. Proven tips for students and freshers to showcase projects, skills, and land interviews.',
+    'Learn how to write a standout resume with no experience. Proven tips based on Harvard FAS guidelines for students and freshers to showcase projects, skills, and land interviews.',
   '120-high-impact-resume-action-verbs':
-    'Replace passive duty words with 120+ power verbs recruiters love. Categorized by role and impact to make your resume stand out and pass ATS screening.',
+    'Replace passive duty words with 120+ power verbs recruiters love. Categorized across all 8 Harvard FAS domains to make your resume stand out and pass ATS screening.',
   'top-10-resume-mistakes-costing-interviews':
-    'Avoid the top 10 resume mistakes costing you job interviews. Discover common formatting, bullet point, and ATS errors with quick fixes to pass screening.',
+    'Avoid the top 10 resume mistakes costing you job interviews. Discover formatting, bullet point, pronoun, and ATS errors with quick fixes based on Harvard FAS standards.',
   'how-to-tailor-resume-to-job-description':
-    'Learn how to tailor your resume to any job description in 5 minutes. Match top keywords, beat ATS parsers, and boost your callback rate above 20%.',
+    'Learn how to tailor your resume to any job description in 5 minutes. Use Harvard FAS master resume principles to match top keywords and boost callback rates above 20%.',
   'resume-vs-cv-complete-guide':
-    'Understand key differences between a Resume and a CV. Learn length, layout, and global standards (US, UK, EU, India) to choose the right format.',
+    'Understand key differences between a Resume and a CV. Learn length, layout, and global standards (US, UK, EU, India) based on Harvard FAS career frameworks.',
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -222,6 +223,10 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
             <div className="flex flex-wrap items-center gap-2.5 mb-4">
               <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
                 {post.category}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 text-xs font-semibold border border-border">
+                <Award className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>Harvard FAS Standards Aligned</span>
               </span>
               <span className="text-xs text-slate-400 dark:text-slate-400 flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5" />

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -13,7 +13,8 @@ import {
   ShieldCheck,
   ChevronRight,
   TrendingUp,
-  Tag
+  Tag,
+  Award
 } from 'lucide-react';
 import { BlogPost } from '@/lib/blog-data';
 
@@ -142,20 +143,20 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
               </div>
 
               {/* Stat card on right */}
-              <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 to-blue-950 text-white p-6 sm:p-8 rounded-2xl space-y-4">
-                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>ATS Intelligence Benchmark</span>
+              <div className="lg:col-span-4 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white p-6 sm:p-8 rounded-2xl space-y-4 border border-white/10 shadow-lg">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 font-mono uppercase tracking-wider">
+                  <Award className="w-4 h-4 text-emerald-400" />
+                  <span>Ivy League Standards</span>
                 </div>
-                <div className="text-3xl font-black text-white">75%+</div>
+                <div className="text-2xl sm:text-3xl font-black text-white">Harvard FAS Framework</div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Of resumes submitted online are filtered out before reaching a recruiter. Learn the 6 technical rules to guarantee 98%+ parsing accuracy.
+                  Grounded in Harvard FAS Mignone Center for Career Success guidelines: &quot;Express, don&apos;t impress&quot;, action verbs first, zero personal pronouns, and calibrated vector ATS formatting.
                 </p>
                 <Link
                   href={`/blog/${featuredPost.slug}`}
-                  className="block w-full py-2.5 px-4 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold rounded-xl text-center transition"
+                  className="block w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl text-center transition shadow-xs"
                 >
-                  Explore Complete Teardown
+                  Read Flagship Guide
                 </Link>
               </div>
             </div>
@@ -244,29 +245,29 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
         )}
       </div>
 
-      {/* Career Advice Newsletter / Action Banner */}
-      <div className="mt-16 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 rounded-3xl p-8 sm:p-12 text-white shadow-xl shadow-blue-500/10">
+      {/* Career Advice Action Banner */}
+      <div className="mt-16 bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl border border-emerald-800/40">
         <div className="max-w-3xl mx-auto text-center space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold backdrop-blur-xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Turn Theory Into Hired Status</span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+            <Award className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Harvard FAS &amp; ATS-Tested Standards</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-black tracking-tight">
+          <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
             Build Your Recruiter-Approved Resume in Minutes
           </h3>
-          <p className="text-blue-100 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
-            Apply these exact ATS rules, metric bullet formulas, and keyword optimization strategies using our free resume builder.
+          <p className="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
+            Apply these exact Harvard FAS guidelines, metric bullet formulas, and keyword optimization strategies using our free resume builder.
           </p>
           <div className="pt-2 flex flex-wrap justify-center gap-3">
             <Link
               href="/create"
-              className="px-6 py-3 rounded-xl bg-white text-emerald-700 font-bold text-xs sm:text-sm hover:bg-emerald-50 transition shadow-md"
+              className="px-6 py-3 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs sm:text-sm hover:bg-emerald-400 transition shadow-md"
             >
               Build Free Resume Now
             </Link>
             <Link
               href="/templates"
-              className="px-6 py-3 rounded-xl bg-emerald-800/60 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm border border-white/20 transition"
+              className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm border border-white/20 transition"
             >
               Browse 12 Verified Templates
             </Link>
