@@ -79,6 +79,8 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
           return 'font-rubik font-sans';
         case 'opensans':
           return 'font-opensans font-sans';
+        case 'times':
+          return 'font-times font-serif';
         case 'garamond':
           return 'font-garamond font-serif';
         case 'playfair':

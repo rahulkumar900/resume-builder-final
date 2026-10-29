@@ -101,6 +101,8 @@ export const GhostDOMMeasurer: React.FC<GhostDOMMeasurerProps> = ({ data, onMeas
         return 'font-rubik font-sans';
       case 'opensans':
         return 'font-opensans font-sans';
+      case 'times':
+        return 'font-times font-serif';
       case 'garamond':
         return 'font-garamond font-serif';
       case 'playfair':

@@ -33,8 +33,10 @@ export function generateResumeHtml(data: ResumeData): string {
         return "font-family: 'Rubik', sans-serif;";
       case 'opensans':
         return "font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;";
+      case 'times':
+        return "font-family: 'Times New Roman', Times, 'EB Garamond', Georgia, serif;";
       case 'garamond':
-        return "font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;";
+        return "font-family: 'Times New Roman', Times, 'EB Garamond', Georgia, serif;";
       case 'playfair':
         return "font-family: 'Playfair Display', Georgia, Cambria, serif;";
       case 'merriweather':

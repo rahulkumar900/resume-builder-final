@@ -46,7 +46,8 @@ export type FontFamily =
   | 'playfair'
   | 'merriweather'
   | 'outfit'
-  | 'jakarta';
+  | 'jakarta'
+  | 'times';
 
 export interface PersonalInfo {
   fullName: string;
