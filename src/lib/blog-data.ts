@@ -808,6 +808,656 @@ export const BLOG_POSTS: BlogPost[] = [
       'how-to-beat-applicant-tracking-systems-2026',
       '120-high-impact-resume-action-verbs',
       'how-to-tailor-resume-to-job-description',
+      'resume-advice-guide',
+    ],
+  },
+  {
+    slug: 'resume-advice-guide',
+    title: 'Resume Advice: The Complete Guide to Writing a Resume That Gets Interviews',
+    subtitle: 'Tailor your resume, choose the right format, craft quantified Google X-Y-Z bullet points, pass ATS screening, and avoid critical mistakes.',
+    excerpt: 'The complete guide to actionable resume advice: learn how to tailor your resume, format for ATS algorithms, quantify achievements, write power bullets, and review before applying.',
+    category: 'Resume Strategy',
+    readTime: '14 min read',
+    publishedAt: 'October 29, 2026',
+    updatedAt: 'October 29, 2026',
+    author: {
+      name: 'Aditya Sharma',
+      role: 'Principal Recruiter & Career Architect',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    },
+    keywords: [
+      'resume advice',
+      'how to write a resume that gets interviews',
+      'resume writing guide',
+      'tailor resume to job',
+      'ats friendly resume format',
+      'resume action verbs',
+      'resume advice for freshers',
+      'resume bullet formula',
+    ],
+    tableOfContents: [
+      { id: 'purpose-of-a-resume', title: '1. What Is the Purpose of a Resume?' },
+      { id: 'tailor-to-the-job', title: '2. Tailor Your Resume to the Job' },
+      { id: 'choose-resume-format', title: '3. Choose the Right Resume Format' },
+      { id: 'resume-sections', title: '4. What to Include in Each Resume Section' },
+      { id: 'write-stronger-bullets', title: '5. Write Stronger Resume Bullet Points' },
+      { id: 'use-action-verbs', title: '6. Use Action Verbs Effectively' },
+      { id: 'show-achievements', title: '7. Show Achievements With Evidence' },
+      { id: 'make-resume-ats-friendly', title: '8. Make Your Resume ATS-Friendly' },
+      { id: 'common-resume-mistakes', title: '9. Common Resume Mistakes to Avoid' },
+      { id: 'what-to-include-leave-out', title: '10. What to Include and Leave Out' },
+      { id: 'resume-advice-for-freshers', title: '11. Resume Advice for Freshers With No Work Experience' },
+      { id: 'use-ai-to-improve-resume', title: '12. Use AI to Improve Your Resume' },
+      { id: 'write-matching-cover-letter', title: '13. Write a Matching Cover Letter' },
+      { id: 'review-before-applying', title: '14. Review Your Resume Before Applying' },
+      { id: 'faqs-resume-advice', title: '15. Frequently Asked Questions' },
+    ],
+    contentHtml: [
+      {
+        type: 'paragraph',
+        text: 'Your resume is often the first opportunity to show an employer what you can do. Within a short review, a recruiter should be able to understand your qualifications, recognize your most relevant skills, and see why you may be a good fit for the position.',
+      },
+      {
+        type: 'paragraph',
+        text: 'But writing a strong resume is not simply about choosing a professional template or listing your previous jobs. You also need to present your experience clearly, demonstrate achievements, use relevant keywords, and organize information so it is easy to review.',
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'The Core Pillars of Great Resume Advice',
+        text: 'The best resume advice focuses on these fundamentals: tailor your resume to the job, use specific and active language, demonstrate results, maintain consistent formatting, and check every detail before applying.',
+      },
+      {
+        type: 'paragraph',
+        text: 'This complete guide explains how to write a resume step by step, with practical examples, action verbs, ATS-friendly formatting tips, advice for freshers, and a final checklist you can use before submitting your application.',
+      },
+      {
+        id: 'purpose-of-a-resume',
+        type: 'heading2',
+        text: '1. What Is the Purpose of a Resume?',
+      },
+      {
+        type: 'paragraph',
+        text: 'A resume is a concise, factual summary of your education, skills, experience, and relevant achievements. Its purpose is to help an employer evaluate your suitability for a particular position.',
+      },
+      {
+        type: 'callout',
+        calloutType: 'info',
+        calloutTitle: 'A Realistic Perspective',
+        text: 'A resume does not guarantee a job. It helps you earn the opportunity to explain your qualifications in an interview.',
+      },
+      {
+        type: 'paragraph',
+        text: 'An effective resume should answer three core questions:',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'What qualifications and skills do you have?',
+          'What relevant work or projects have you completed?',
+          'What evidence shows that you can contribute to the organization?',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'For example, writing "Good communication skills" tells an employer very little about your ability. Describing how you presented project findings, coordinated with customers, or prepared reports provides more useful evidence.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Your objective is not to include everything you have ever done. It is to select and present the information that best supports your application.',
+      },
+      {
+        id: 'tailor-to-the-job',
+        type: 'heading2',
+        text: '2. Tailor Your Resume to the Job',
+      },
+      {
+        type: 'paragraph',
+        text: 'One of the most valuable pieces of resume advice is to customize your resume for the position you are applying for. Employers hiring for different roles look for different qualifications. A software developer may need programming experience, while an accountant may need financial reporting skills and knowledge of accounting software.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Using one unchanged resume for every application can hide your most relevant strengths.',
+      },
+      {
+        type: 'heading3',
+        text: 'How to Tailor Your Resume Step by Step',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Step 1: Review the job description. Read the responsibilities, required qualifications, technical skills, and preferred experience. Identify the requirements that appear most important.',
+          'Step 2: Compare several similar vacancies. If possible, review two or three job postings for the same type of role to understand what employers commonly expect.',
+          'Step 3: List your relevant experience. Include employment, internships, academic projects, volunteering, training, and extracurricular activities. Experience does not have to come from a directly related job to demonstrate a useful skill.',
+          'Step 4: Connect your experience to the role. A retail position may demonstrate customer service and problem-solving. A college club may demonstrate coordination and leadership. An academic project may demonstrate research or analytical skills.',
+          'Step 5: Reorder and refine your content. Place your most relevant qualifications first. Adjust your summary, skills, and experience descriptions to emphasize the requirements you genuinely meet.',
+        ],
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'Pro Strategy: The Master Resume',
+        text: 'Keep a comprehensive master resume containing your full work history, projects, and certifications. For each important job application, duplicate your master copy and tailor the bullet points to target the specific job description.',
+      },
+      {
+        type: 'heading3',
+        text: 'Example: Tailoring a Bullet Point',
+      },
+      {
+        type: 'paragraph',
+        text: 'Suppose you are applying for an operations role.',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Generic bullet: "Worked in an office and handled daily tasks."',
+          'Tailored bullet: "Coordinated daily documentation, maintained operational records, and tracked pending tasks across departments."',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'The second version is far more informative because it identifies the actual work and its relevance to the target role. Remember that not every experience must directly match the job; your resume should present an overall picture of the skills and qualifications the employer values.',
+      },
+      {
+        id: 'choose-resume-format',
+        type: 'heading2',
+        text: '3. Choose the Right Resume Format',
+      },
+      {
+        type: 'paragraph',
+        text: 'A resume format determines how your information is organized. Choose a layout that helps recruiters find relevant details quickly.',
+      },
+      {
+        type: 'heading3',
+        text: 'Reverse-Chronological Format',
+      },
+      {
+        type: 'paragraph',
+        text: 'This format lists your most recent experience first, followed by earlier positions. It is the gold standard default for most job seekers because it makes career progression easy to follow for both human recruiters and ATS software. It works well for freshers with internships, professionals with established work histories, and many applicants changing jobs within the same field.',
+      },
+      {
+        type: 'heading3',
+        text: 'Functional or Skills-Focused Format',
+      },
+      {
+        type: 'paragraph',
+        text: 'This approach emphasizes skills and areas of expertise rather than presenting employment history as the primary focus. It may be useful in some career transitions, but a skills-focused resume should not conceal or misrepresent your employment history.',
+      },
+      {
+        type: 'heading3',
+        text: 'Combination Format',
+      },
+      {
+        type: 'paragraph',
+        text: 'A combination resume highlights important skills while also presenting a clear employment timeline. It can work well for experienced professionals whose transferable or technical skills are particularly relevant.',
+      },
+      {
+        type: 'heading3',
+        text: 'Resume Length Recommendations',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Freshers & Students: One page is usually enough.',
+          'Early-Career Professionals (1-5 years): One page is typically sufficient; use additional space when relevant experience warrants it.',
+          'Experienced Professionals (5+ years): One or two pages are often practical.',
+          'Academic or Specialist Applications: Longer documents may be appropriate when the application requires detailed publications, research, or clinical project records.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'These are guidelines, not strict limits. Do not remove important, relevant evidence simply to achieve an arbitrary page count.',
+      },
+      {
+        type: 'heading3',
+        text: 'Visual Formatting Best Practices',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Use a clean, readable font such as Arial, Calibri, Inter, or Aptos (10-12pt for body text, 14-18pt for headings).',
+          'Maintain consistent headings, spacing, capitalization, and date formats across all sections.',
+          'Use bullet points for experience descriptions rather than dense blocks of narrative text.',
+          'Leave adequate white space (0.5 to 1 inch margins) to separate sections, avoiding crowded layouts.',
+          'For online applications, a simple single-column layout with conventional headings is the safest starting point.',
+        ],
+      },
+      {
+        id: 'resume-sections',
+        type: 'heading2',
+        text: '4. What to Include in Each Resume Section',
+      },
+      {
+        type: 'paragraph',
+        text: 'The order of your sections should reflect your career stage and the requirements of the job you want.',
+      },
+      {
+        type: 'heading3',
+        text: 'Contact Information',
+      },
+      {
+        type: 'paragraph',
+        text: 'Include your professional name, phone number, email address, and general location (City, State/Country). You can also include a LinkedIn profile, portfolio, GitHub account, or professional website if it directly supports your application. A full street address is unnecessary and creates privacy risks.',
+      },
+      {
+        type: 'heading3',
+        text: 'Professional Summary or Objective',
+      },
+      {
+        type: 'paragraph',
+        text: 'A professional summary briefly explains your background, strongest qualifications, and relevance to the position. For example:',
+      },
+      {
+        type: 'callout',
+        calloutType: 'info',
+        calloutTitle: 'Example Professional Summary',
+        text: '"Operations professional with three years of experience in inventory coordination, reporting, and vendor communication. Skilled in Excel and documentation, with experience maintaining records and coordinating daily workflows across multi-department teams."',
+      },
+      {
+        type: 'paragraph',
+        text: 'Freshers may use a short career objective or profile when it adds useful context. Avoid generic statements such as "Seeking a challenging position in a reputed company" without explaining what value you actually offer.',
+      },
+      {
+        type: 'heading3',
+        text: 'Work Experience',
+      },
+      {
+        type: 'paragraph',
+        text: 'For each relevant position, include your Job Title, Employer Name, Location (where useful), Employment Dates, and 3-5 bullet points describing your contributions, responsibilities, and measurable achievements in reverse chronological order.',
+      },
+      {
+        type: 'heading3',
+        text: 'Education',
+      },
+      {
+        type: 'paragraph',
+        text: 'Include your qualification/degree, institution, and graduation year or expected completion date. Add relevant coursework, academic honors, or GPA when it strengthens your application or is required by campus hiring. For recent graduates, education should appear before work experience; experienced applicants should place experience first.',
+      },
+      {
+        type: 'heading3',
+        text: 'Skills, Projects & Additional Sections',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Skills: Prioritize tools and competencies required for the target position. Separate technical tools, software, languages, and core competencies into clear categories.',
+          'Projects: Add academic, open-source, or freelance projects that provide tangible proof of your abilities.',
+          'Certifications: Highlight recognized industry credentials (e.g., AWS, PMP, Google Data Analytics).',
+          'Volunteering & Activities: Include meaningful examples of leadership, coordination, or community impact.',
+        ],
+      },
+      {
+        id: 'write-stronger-bullets',
+        type: 'heading2',
+        text: '5. Write Stronger Resume Bullet Points',
+      },
+      {
+        type: 'paragraph',
+        text: 'A resume should communicate what you accomplished rather than merely reproducing a passive job description. Notice how the bullet point improves across three levels:',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Weak: "Responsible for inventory management."',
+          'Better: "Maintained inventory records and coordinated stock updates with warehouse staff."',
+          'Stronger (with verified data): "Reconciled inventory records for more than 500 items and helped reduce recurring stock discrepancies by 15%."',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'The final example gives the recruiter an immediate understanding of the scale, scope, and impact of the work.',
+      },
+      {
+        type: 'heading3',
+        text: 'The Proven Resume Bullet Formula',
+      },
+      {
+        type: 'codeFormula',
+        text: 'Action Verb + Task / Contribution + Method / Scope + Measurable Result (when available)',
+      },
+      {
+        type: 'paragraph',
+        text: 'For example: "Prepared weekly Excel reports for the operations team, helping managers identify overdue tasks and prioritize follow-ups." Not every bullet needs a numerical result; a clear description of the work, its scope, and its purpose is still highly valuable.',
+      },
+      {
+        type: 'heading3',
+        text: 'Before-and-After Bullet Transformations Across Roles',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Administration — Before: "Did office documentation." | After: "Maintained office records, prepared routine reports, and coordinated document requests across 4 departments."',
+          'Customer Service — Before: "Handled customer complaints." | After: "Investigated customer complaints, coordinated resolutions with technical support, and documented recurring issues to improve resolution speed by 20%."',
+          'Marketing — Before: "Worked on social media." | After: "Scheduled multi-channel social media content, coordinated campaign launches, and monitored engagement metrics across 25,000 followers."',
+          'Academic Project — Before: "Made a website for a college project." | After: "Developed a responsive web portal using HTML, CSS, and JavaScript, featuring dedicated pages for course schedules and student resources."',
+        ],
+      },
+      {
+        id: 'use-action-verbs',
+        type: 'heading2',
+        text: '6. Use Action Verbs Effectively',
+      },
+      {
+        type: 'paragraph',
+        text: 'Action verbs make your writing direct and help recruiters immediately understand your contribution. Instead of repeatedly using passive phrases like "responsible for," "worked on," or "helped with," choose a strong verb that describes what you actually did.',
+      },
+      {
+        type: 'comparisonTable',
+        tableHeaders: ['Skill or Activity', 'Useful Action Verbs'],
+        tableRows: [
+          ['Leadership & Strategy', 'Led, coordinated, supervised, delegated, prioritized, spearheaded'],
+          ['Communication & Writing', 'Presented, drafted, negotiated, documented, translated, briefed'],
+          ['Research & Investigation', 'Investigated, tested, surveyed, evaluated, summarized, benchmarked'],
+          ['Technical & Engineering', 'Built, designed, programmed, maintained, optimized, refactored'],
+          ['Teaching & Mentoring', 'Trained, coached, instructed, explained, guided, on-boarded'],
+          ['Finance & Analysis', 'Audited, calculated, forecasted, reconciled, analyzed, modeled'],
+          ['Creative & Design', 'Created, designed, launched, redesigned, developed, authored'],
+          ['Customer Support', 'Assisted, resolved, supported, guided, served, troubleshot'],
+          ['Operations & Execution', 'Implemented, compiled, monitored, streamlined, verified, scheduled'],
+        ],
+      },
+      {
+        type: 'heading3',
+        text: 'Three Critical Rules for Action Verbs',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Vary your language: Avoid beginning multiple consecutive bullets with "assisted" or "handled". Varying your verbs keeps the recruiter engaged.',
+          'Use the correct tense: Use present tense for current, ongoing responsibilities (e.g., "Coordinate") and past tense for completed work (e.g., "Coordinated").',
+          'Be accurate: "Led" should mean you led a team or project. "Developed" should reflect actual development work. Verbs should clarify your contribution, not exaggerate it.',
+        ],
+      },
+      {
+        id: 'show-achievements',
+        type: 'heading2',
+        text: '7. Show Achievements With Evidence',
+      },
+      {
+        type: 'paragraph',
+        text: 'Measurable results help employers understand the tangible value you bring. When reflecting on your past experience, ask yourself these diagnostic questions:',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'How many people, customers, products, or records were involved?',
+          'Did you reduce errors, costs, or processing time?',
+          'Did you improve accuracy, customer satisfaction, or operational efficiency?',
+          'Did you beat or meet an important deadline?',
+          'Did you receive recognition, bonuses, or complete a significant project milestone?',
+          'Who directly benefited from the work you completed?',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Compare these two approaches: "Prepared monthly reports for five departments" gives clear context on scale. "Reduced monthly reporting time by 20% by standardizing the Excel reporting process" communicates a quantified outcome when supported by real evidence.',
+      },
+      {
+        type: 'callout',
+        calloutType: 'warning',
+        calloutTitle: 'Never Fabricate Numbers',
+        text: 'If you do not know the exact percentage or metric, describe the work accurately without inventing numbers. A truthful, specific bullet is always stronger than an impressive but unverifiable claim that falls apart during an interview.',
+      },
+      {
+        id: 'make-resume-ats-friendly',
+        type: 'heading2',
+        text: '8. Make Your Resume ATS-Friendly',
+      },
+      {
+        type: 'paragraph',
+        text: 'Applicant Tracking Systems (ATS) help employers collect, organize, and filter applications. An ATS-friendly resume must be easy for software parsers to interpret into structured database fields and effortless for human recruiters to read.',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Use Standard Section Headings: Stick to recognizable titles like Work Experience, Education, Skills, Projects, and Certifications. Decorative headings like "My Journey" confuse parsers.',
+          'Incorporate Keywords Naturally: Identify core tools and qualifications in the job posting (e.g., "SQL", "React", "Account Reconciliation") and integrate them where you have genuine experience.',
+          'Keep the Layout Simple: Avoid complex multi-layered tables, floating text boxes, and graphic skill bars. Linear layouts ensure parsers read text in logical sequence.',
+          'Choose the Correct File Format: Submit in PDF with selectable vector text unless the employer specifically requests a Word (.docx) document.',
+          'Check Text After Exporting: Copy and paste text from your exported PDF into Notepad to verify that characters copy cleanly without missing or garbled sections.',
+        ],
+      },
+      {
+        type: 'callout',
+        calloutType: 'info',
+        calloutTitle: 'ATS Reality Check',
+        text: 'No template guarantees an automated interview or a "100% ATS score". Every employer configures their system differently. Focus on clean structure, readable formatting, and accurate qualifications tailored to the role.',
+      },
+      {
+        id: 'common-resume-mistakes',
+        type: 'heading2',
+        text: '9. Common Resume Mistakes to Avoid',
+      },
+      {
+        type: 'paragraph',
+        text: 'A resume can lose its impact when critical information is difficult to find or formatting is inconsistent. Be vigilant about avoiding these common pitfalls:',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Spelling and grammar errors: Proofread thoroughly. Check employer names, job titles, technical acronyms, and contact details. Ask a peer or mentor to review your draft.',
+          'Missing or outdated contact information: Ensure your email, phone number, and location are up to date and typed correctly.',
+          'Passive or vague language: Eliminate filler phrasing such as "duties included" or "helped out with" in favor of decisive action verbs.',
+          'Disorganized visual formatting: Avoid mismatched fonts, random bolding, misaligned dates, and cramped margins.',
+          'Omitting evidence of contribution: Do not just list job duties; highlight the impact and outcome of your daily efforts.',
+          'Irrelevant details: Exclude high school information (for experienced professionals), unrelated hobbies, and personal opinions.',
+          'Unverified claims: Never fabricate skills, degrees, or accomplishments. Background checks and interview questions will quickly uncover inconsistencies.',
+        ],
+      },
+      {
+        id: 'what-to-include-leave-out',
+        type: 'heading2',
+        text: '10. What to Include and Leave Out',
+      },
+      {
+        type: 'paragraph',
+        text: 'Resume conventions vary across industries and countries. For general professional corporate applications, use this practical guide:',
+      },
+      {
+        type: 'heading3',
+        text: 'Usually Useful to Include',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Accurate contact information (Phone, Professional Email, City/State)',
+          'Relevant education and degrees',
+          'Chronological employment history with measurable contributions',
+          'Skills directly connected to the target role',
+          'Projects and certifications that demonstrate practical competence',
+          'Links to professional portfolio, GitHub, or LinkedIn profile',
+        ],
+      },
+      {
+        type: 'heading3',
+        text: 'Usually Unnecessary to Include',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Personal pronouns ("I", "my", "we") in bullet points',
+          'Casual slang or conversational narrative paragraphs',
+          'References and their personal contact details (provide separately upon request)',
+          'Personal details such as age, marital status, religion, or social security number',
+          'Headshots or photos (in US/UK/Canada markets where non-discrimination laws discourage them)',
+        ],
+      },
+      {
+        type: 'heading3',
+        text: 'How to Address Employment Gaps',
+      },
+      {
+        type: 'paragraph',
+        text: 'Do not invent false employment dates or attempt to hide gaps with misleading dates. If an employment gap is significant, briefly explain it in your cover letter or during the interview. You can also highlight genuine activities during that timeframe, such as freelance work, continuous education, certifications, caregiving, or volunteering.',
+      },
+      {
+        id: 'resume-advice-for-freshers',
+        type: 'heading2',
+        text: '11. Resume Advice for Freshers With No Work Experience',
+      },
+      {
+        type: 'paragraph',
+        text: 'If you are applying for your first professional job, you may not have formal full-time employment to list. That does not mean you lack valuable qualifications. Focus on concrete evidence from your academic projects, internships, technical coursework, and extracurricular leadership.',
+      },
+      {
+        type: 'heading3',
+        text: 'Recommended Section Hierarchy for Freshers',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          '1. Contact Information & Clean Links (LinkedIn, GitHub)',
+          '2. Brief Career Objective or Profile (tailored to the target field)',
+          '3. Education (Degree, University, GPA if 3.5+, graduation year)',
+          '4. Academic & Personal Projects (highlight tools and methods)',
+          '5. Internships, Training & Practical Coursework',
+          '6. Technical & Soft Skills (categorized by discipline)',
+          '7. Extracurricular Leadership, Awards & Certifications',
+        ],
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'Fresher Project Example',
+        text: 'Sales Analysis Academic Project:\n• Analyzed a sample dataset of 1,000 sales transactions using Microsoft Excel and Pivot Tables.\n• Prepared weekly summary reports comparing monthly regional performance and product returns.\n• Presented analytical findings to faculty using interactive charts and optimization recommendations.\n\nThis demonstrates data handling and analytical competence without claiming full-time professional experience.',
+      },
+      {
+        id: 'use-ai-to-improve-resume',
+        type: 'heading2',
+        text: '12. Use AI to Improve Your Resume',
+      },
+      {
+        type: 'paragraph',
+        text: 'AI writing tools and resume checkers can help identify unclear phrasing, suggest powerful action verbs, uncover missing job keywords, and rephrase passive sentences. However, completely AI-generated resumes often sound generic or contain hallucinations that do not match your true background.',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Draft First: Write your initial resume draft using your real-world experience.',
+          'Compare to Job Post: Paste the job description and your bullets into an AI tool to spot missing keywords.',
+          'Refine Verbs & Phrasing: Use AI to transform passive duty phrases into active achievement statements.',
+          'Review Every Statement: Verify every suggested bullet point yourself before adding it to your resume.',
+        ],
+      },
+      {
+        type: 'heading3',
+        text: 'Effective AI Prompt Template',
+      },
+      {
+        type: 'codeFormula',
+        text: '"Review my resume against this job description. Flag unclear bullets, repetitive verbs, and missing technical keywords. Suggest concise improvements using my actual experience without inventing new qualifications or unverified metrics."',
+      },
+      {
+        id: 'write-matching-cover-letter',
+        type: 'heading2',
+        text: '13. Write a Matching Cover Letter',
+      },
+      {
+        type: 'paragraph',
+        text: 'While your resume summarizes your qualifications in structured bullet points, a cover letter provides narrative space to explain why your background and motivations align with the employer’s unique mission and team.',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Opening: State the position you are applying for, mention how you discovered the opening, and summarize your core qualification.',
+          'Body Paragraph 1: Connect your most relevant experience or technical skill directly to a major challenge or goal mentioned in the job post.',
+          'Body Paragraph 2: Share a concrete achievement or project demonstrating your problem-solving, collaboration, or leadership abilities.',
+          'Closing: Reiterate your enthusiasm for the role, thank the hiring manager, and invite an interview conversation.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text: 'Keep your cover letter to a single page (250-400 words) and ensure typography and styling match your resume for a unified professional presentation.',
+      },
+      {
+        id: 'review-before-applying',
+        type: 'heading2',
+        text: '14. Review Your Resume Before Applying',
+      },
+      {
+        type: 'paragraph',
+        text: 'A structured final review helps catch small errors before submitting. Run through this pre-flight checklist before submitting your application:',
+      },
+      {
+        type: 'heading3',
+        text: 'Content & Relevance Checklist',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'My resume is tailored to the specific role and target company.',
+          'My strongest qualifications and relevant skills appear on the upper half of page 1.',
+          'Every bullet begins with a decisive action verb and describes a clear contribution.',
+          'Achievements, metrics, and project numbers are accurate and verifiable.',
+          'Skills listed reflect tools and technologies I can confidently discuss in an interview.',
+          'Employment and education dates, degrees, and company names are accurate.',
+        ],
+      },
+      {
+        type: 'heading3',
+        text: 'Formatting & Technical Checklist',
+      },
+      {
+        type: 'bulletList',
+        items: [
+          'Headings, bullet indents, date formats, and line spacing are visually consistent.',
+          'Margins are between 0.5 and 1.0 inch with no awkward single-line page spillovers.',
+          'Font styling is uniform (10-12pt body text with distinct section headings).',
+          'Contact phone number and email are verified; all hyperlinks (LinkedIn, portfolio) function.',
+          'The exported PDF preserves selectable vector text without garbled characters.',
+          'The document has been proofread by another person or checked with an automated grammar tool.',
+        ],
+      },
+      {
+        type: 'callout',
+        calloutType: 'tip',
+        calloutTitle: 'Turn Good Resume Advice Into Action',
+        text: 'A strong resume does not depend on complicated design or impressive-sounding jargon. It depends on clear communication, relevant evidence, and thoughtful presentation.\n\nReady to put these tips into practice? Build your recruiter-approved resume using ResumeBabu\'s free online resume builder. Select an ATS-tested template, tailor your bullet points with real-time feedback, and export crisp vector PDFs with zero paywalls.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the most important resume advice?',
+        answer: 'Tailor your resume to the specific job description, use strong action verbs with quantified outcomes, and present your qualifications with clear evidence. Keep the layout clean, consistent, and easy for both ATS parsers and human recruiters to scan in seconds.',
+      },
+      {
+        question: 'How do I write a resume that gets interviews?',
+        answer: 'Carefully study the job requirements, prioritize your most relevant achievements on the top half of page one, structure bullets around the Google X-Y-Z formula (Accomplished X by doing Y as measured by Z), and eliminate unnecessary fluff.',
+      },
+      {
+        question: 'How do I make my resume ATS-friendly?',
+        answer: 'Use standard section headings (Work Experience, Education, Skills), stick to clean single-column layouts, avoid floating text boxes or graphic skill bars, incorporate relevant job keywords naturally, and export as a clean vector PDF.',
+      },
+      {
+        question: 'Should my resume be one page or two?',
+        answer: 'One page is standard for students, freshers, and professionals with under 5 years of experience. Experienced candidates with extensive relevant accomplishments can use two pages. Never stretch content to fill an unnecessary second page.',
+      },
+      {
+        question: 'What should freshers write on a resume without experience?',
+        answer: 'Highlight academic capstone projects, internships, practical coursework, technical tools, open-source contributions, certifications, and leadership roles in student organizations. Quantify project scope and outcomes wherever possible.',
+      },
+      {
+        question: 'Should I include references on my resume?',
+        answer: 'No. References are provided separately when requested by employers later in the hiring process. Use your valuable resume page space to showcase your skills and accomplishments instead of writing "References available upon request".',
+      },
+      {
+        question: 'Should I put a photo on my resume?',
+        answer: 'In the United States, Canada, and the UK, photos should never be included on resumes to comply with labor non-discrimination standards. In parts of Europe, Asia, and Latin America, photos may be customary. Always follow local industry norms.',
+      },
+      {
+        question: 'Can AI write my resume?',
+        answer: 'AI is an excellent editor for refining bullet points, fixing grammar, and brainstorming action verbs, but you should never rely on AI to generate your resume from scratch. AI can hallucinate skills and metrics that will unravel during technical interviews.',
+      },
+      {
+        question: 'How often should I update my resume?',
+        answer: 'Update your master resume every 3 to 6 months whenever you complete significant projects, acquire new certifications, or receive promotions. Tailor a fresh copy for each specific role you apply for.',
+      },
+    ],
+    relatedSlugs: [
+      'how-to-beat-applicant-tracking-systems-2026',
+      'how-to-tailor-resume-to-job-description',
+      'how-to-write-resume-with-no-experience',
+      '120-high-impact-resume-action-verbs',
     ],
   },
 ];
@@ -819,3 +1469,4 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 export function getRelatedBlogPosts(slugs: string[]): BlogPost[] {
   return BLOG_POSTS.filter((p) => slugs.includes(p.slug));
 }
+

@@ -32,6 +32,7 @@ export async function generateStaticParams() {
 }
 
 const BLOG_SEO_TITLES: Record<string, string> = {
+  'resume-advice-guide': 'Resume Advice: The Complete Guide to Writing a Resume',
   'how-to-beat-applicant-tracking-systems-2026': 'How to Beat ATS Systems in 2026',
   'how-to-write-resume-with-no-experience': 'How to Write a Resume With No Experience',
   '120-high-impact-resume-action-verbs': '120+ Resume Action Verbs Recruiters Love',
@@ -41,6 +42,8 @@ const BLOG_SEO_TITLES: Record<string, string> = {
 };
 
 const BLOG_SEO_DESCRIPTIONS: Record<string, string> = {
+  'resume-advice-guide':
+    'The complete guide to actionable resume advice: learn how to tailor your resume, format for ATS algorithms, quantify achievements, and land more interviews.',
   'how-to-beat-applicant-tracking-systems-2026':
     'Over 75% of resumes fail ATS screening. Learn the exact formatting rules, parsing secrets, and keyword strategies to beat corporate ATS filters in 2026.',
   'how-to-write-resume-with-no-experience':
