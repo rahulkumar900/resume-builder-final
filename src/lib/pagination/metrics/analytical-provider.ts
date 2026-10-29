@@ -65,6 +65,12 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
         data.sectionOrder?.singleColumn ||
         defaultOrder.singleColumn ||
         DEFAULT_SINGLE_COLUMN_SECTIONS;
+      if (
+        (templateId === 'sarkari' || templateId === 'traditional') &&
+        !singleOrder.includes('declaration')
+      ) {
+        singleOrder = [...singleOrder, 'declaration'];
+      }
       singleOrder = singleOrder.filter(s => !data.hiddenSections?.includes(s));
 
       const singleCol = this.measureColumn(data, singleOrder, 'single', false, true, spacing);
@@ -131,12 +137,13 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
         sumItemHeight += itemMetric.height;
       });
 
-      const sectionTotalHeight = headingH + sumItemHeight;
+      const effectiveHeadingH = secId === 'declaration' ? 0 : headingH;
+      const sectionTotalHeight = effectiveHeadingH + sumItemHeight;
       totalColHeight += sectionTotalHeight + (sections.length > 0 ? gapBetweenSections : 0);
 
       sections.push({
         sectionId: secId,
-        headerHeight: headingH,
+        headerHeight: effectiveHeadingH,
         items,
         totalHeight: sectionTotalHeight,
       });
@@ -313,6 +320,11 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
         };
       }
 
+      case 'declaration': {
+        const h = (spacing === 'compact' ? 120 : spacing === 'relaxed' ? 170 : 145);
+        return { id: itemId, sectionId, height: Math.ceil(h), bullets: [], splitStrategy: 'atomic' };
+      }
+
       default: {
         const h = (isSingleColumn ? 32 : 44) * mult;
         return { id: itemId, sectionId, height: Math.ceil(h), bullets: [], splitStrategy: 'atomic' };
@@ -329,6 +341,8 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
   ): number {
     const mult = spacing === 'compact' ? 0.85 : spacing === 'relaxed' ? 1.18 : 1.0;
     switch (sectionId) {
+      case 'declaration':
+        return spacing === 'compact' ? 120 : spacing === 'relaxed' ? 170 : 145;
       case 'experience':
       case 'volunteer':
       case 'internships':
@@ -453,6 +467,8 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
         return data.customSections && data.customSections.length > 0
           ? data.customSections.flatMap((c) => c.items || [])
           : [];
+      case 'declaration':
+        return [{ id: 'declaration-0' }];
       default:
         return [];
     }

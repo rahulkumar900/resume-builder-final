@@ -5,7 +5,6 @@ import { Plus, ArrowRight, ShieldCheck } from 'lucide-react';
 import { TemplateId } from '@/types/resume';
 import {
   PrawiraCardPreview,
-  AmeliaCardPreview,
   ChastainCardPreview,
   RahadianCardPreview,
 } from './SampleCardPreviews';
@@ -46,10 +45,10 @@ export const SampleResumeSection: React.FC<SampleResumeSectionProps> = ({
       preview: <ChastainCardPreview />,
     },
     {
-      id: 'amelia',
-      name: 'Amelia Minimal',
-      category: 'Two-Tone Header • Product & Ops',
-      preview: <AmeliaCardPreview />,
+      id: 'rahadian',
+      name: 'Rahadian Creative',
+      category: 'Minimal Badge • Modern & Ops',
+      preview: <RahadianCardPreview />,
     },
   ];
 

@@ -20,7 +20,6 @@ const DEMO_AVATARS: Record<string, string> = {
   santoso: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
   rahadian: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
   stockholm: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80',
-  amelia: '',
   ats: '',
   dublin: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80',
   sydney: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=80',
@@ -67,11 +66,13 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
       templateId === 'canvaeditorial' ? 'Digital Marketer & Strategist' :
       templateId === 'canvaretro' ? 'Creative Graphic & Visual Designer' :
       templateId === 'canvaaesthetic' ? 'Brand Stylist & Creative Director' :
+      templateId === 'ribbon' ? 'Lead Product Designer' :
+      templateId === 'marigold' ? 'Lead Product Designer & Design Architect' :
+      templateId === 'stamp' ? 'Computer Science Graduate & Software Engineer' :
       'Senior Product Designer'
     );
     const name = customName || (
       templateId === 'prawira' ? 'Muhammad Prawira' :
-      templateId === 'amelia' ? 'Amelia Stanford' :
       templateId === 'santoso' ? 'Rudian Santoso' :
       templateId === 'traditional' ? 'Arun Kumar Sharma' :
       templateId === 'naukri' ? 'Rahul Verma' :
@@ -94,6 +95,9 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
       templateId === 'canvaeditorial' ? 'Estelle Darcy' :
       templateId === 'canvaretro' ? 'Rachelle Beaudry' :
       templateId === 'canvaaesthetic' ? 'Clara Sterling' :
+      templateId === 'ribbon' ? 'Aarav Menon' :
+      templateId === 'marigold' ? 'Aarav Menon' :
+      templateId === 'stamp' ? 'Meera Das' :
       'Olivia Winata'
     );
 

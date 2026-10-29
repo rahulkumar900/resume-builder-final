@@ -234,102 +234,6 @@ export function generateResumeHtml(data: ResumeData): string {
     </div>
   `;
 
-  // Template 2: Amelia (Serif Executive)
-  const renderAmelia = () => `
-    <div class="${paddingClass} text-stone-800 text-[13.5px] leading-relaxed" style="font-family: 'Playfair Display', serif;">
-      <div class="text-center pb-6 border-b border-stone-300 break-inside-avoid">
-        <h1 class="text-4xl tracking-[0.25em] uppercase font-normal text-stone-900 mb-2 leading-tight">
-          ${escapeHtml(personalInfo.fullName || 'Amelia Stanford')}
-        </h1>
-        <p class="text-sm sm:text-base tracking-[0.2em] uppercase text-stone-600 mb-4 font-semibold" style="font-family: 'Inter', sans-serif;">
-          ${escapeHtml(personalInfo.jobTitle || 'Investment Banking Associate')}
-        </p>
-        <div class="flex flex-wrap items-center justify-center gap-x-7 gap-y-1.5 text-[13px] text-stone-600 font-medium" style="font-family: 'Inter', sans-serif;">
-          ${personalInfo.email ? `<span>${escapeHtml(personalInfo.email)}</span>` : ''}
-          ${personalInfo.phone ? `<span>${escapeHtml(personalInfo.phone)}</span>` : ''}
-          ${personalInfo.location ? `<span>${escapeHtml(personalInfo.location)}</span>` : ''}
-          ${personalInfo.linkedin ? `<span>${escapeHtml(personalInfo.linkedin)}</span>` : ''}
-        </div>
-      </div>
-
-      <div class="grid grid-cols-12 gap-9 pt-7">
-        <div class="col-span-4 ${sectionSpaceClass}" style="font-family: 'Inter', sans-serif;">
-          ${
-            personalInfo.summary
-              ? `
-            <div class="break-inside-avoid">
-              <h2 style="color: ${themeColor || '#1e293b'};" class="text-[13px] font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid">About Me</h2>
-              <p class="text-[13px] text-stone-700 leading-relaxed">${escapeHtml(personalInfo.summary)}</p>
-            </div>
-          `
-              : ''
-          }
-          <div class="break-inside-avoid">
-            <h2 style="color: ${themeColor || '#1e293b'};" class="text-[13px] font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid">Education</h2>
-            <div class="${itemSpaceClass}">
-              ${education
-                .map(
-                  (edu) => `
-                <div class="text-[13px] break-inside-avoid">
-                  <div class="font-bold text-stone-800 text-[14px]">${escapeHtml(edu.degree)}</div>
-                  <div class="text-stone-700 italic" style="font-family: 'Playfair Display', serif;">${escapeHtml(edu.school)}</div>
-                  <div class="text-[12px] text-stone-500 mt-0.5">${escapeHtml(edu.graduationDate)} | ${escapeHtml(edu.location)}</div>
-                </div>
-              `
-                )
-                .join('')}
-            </div>
-          </div>
-          <div class="break-inside-avoid">
-            <h2 style="color: ${themeColor || '#1e293b'};" class="text-[13px] font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-2.5 break-after-avoid">Expertise</h2>
-            <div class="${itemSpaceClass}">
-              ${skills
-                .map(
-                  (cat) => `
-                <div class="break-inside-avoid">
-                  <div class="text-[12px] font-bold text-stone-800 uppercase mb-1.5">${escapeHtml(cat.category)}</div>
-                  <div class="flex flex-wrap gap-1.5">
-                    ${cat.items.map((it) => `<span class="text-[12px] bg-stone-100 px-2.5 py-1 rounded text-stone-800 font-medium">${escapeHtml(it)}</span>`).join('')}
-                  </div>
-                </div>
-              `
-                )
-                .join('')}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-span-8 ${sectionSpaceClass}">
-          <div>
-            <h2 style="color: ${themeColor || '#1e293b'}; font-family: 'Inter', sans-serif;" class="text-[13px] font-bold tracking-[0.2em] uppercase pb-1.5 border-b border-stone-300 mb-4 break-after-avoid">
-              Professional Experience
-            </h2>
-            <div class="${itemSpaceClass}">
-              ${experience
-                .map(
-                  (exp) => `
-                <div class="break-inside-avoid">
-                  <div class="flex justify-between items-baseline mb-0.5">
-                    <span class="font-bold text-stone-900 text-[15px] tracking-wide">${escapeHtml(exp.role)}</span>
-                    <span class="text-[12px] text-stone-500 font-semibold" style="font-family: 'Inter', sans-serif;">${escapeHtml(exp.startDate)} – ${exp.current ? 'Present' : escapeHtml(exp.endDate)}</span>
-                  </div>
-                  <div class="text-[13.5px] font-semibold text-stone-700 mb-2" style="font-family: 'Inter', sans-serif;">
-                    ${escapeHtml(exp.company)} &mdash; <span class="text-stone-500 font-normal">${escapeHtml(exp.location)}</span>
-                  </div>
-                  <ul class="list-disc pl-4 space-y-1.5 text-[13px] text-stone-700 leading-normal" style="font-family: 'Inter', sans-serif;">
-                    ${exp.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}
-                  </ul>
-                </div>
-              `
-                )
-                .join('')}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
   // Template 3: Chastain (Modern Clean)
   const renderChastain = () => `
     <div class="text-slate-800 text-[13.5px] leading-relaxed">
@@ -460,9 +364,6 @@ export function generateResumeHtml(data: ResumeData): string {
 
   let innerHtml = '';
   switch (templateId) {
-    case 'amelia':
-      innerHtml = renderAmelia();
-      break;
     case 'chastain':
       innerHtml = renderChastain();
       break;

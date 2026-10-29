@@ -139,7 +139,7 @@ export default function AtsFriendlyTemplatesPage() {
 
   // Curated ATS-optimal templates
   const atsTemplates = TEMPLATES.filter(
-    (t) => t.id === 'ats' || t.id === 'traditional' || t.id === 'vienna' || t.id === 'stockholm' || t.id === 'amelia' || t.id === 'prawira'
+    (t) => t.id === 'ats' || t.id === 'traditional' || t.id === 'vienna' || t.id === 'stockholm' || t.id === 'prawira'
   );
 
   return (

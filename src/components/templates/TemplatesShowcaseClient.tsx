@@ -35,7 +35,7 @@ export function TemplatesShowcaseClient() {
     if (activeFilter === 'single') return tpl.layout === 'single';
     if (activeFilter === 'double') return tpl.layout === 'double';
     if (activeFilter === 'creative') return ['santoso', 'rahadian', 'chastain', 'canva', 'enhancv', 'canvapastel', 'canvanotebook', 'canvaeditorial', 'canvaretro', 'canvaaesthetic'].includes(tpl.id);
-    if (activeFilter === 'executive') return ['amelia', 'prawira', 'stockholm', 'oxford', 'harvard', 'harvard_experienced'].includes(tpl.id);
+    if (activeFilter === 'executive') return ['prawira', 'stockholm', 'oxford', 'harvard', 'harvard_experienced', 'chastain'].includes(tpl.id);
     return true;
   });
 

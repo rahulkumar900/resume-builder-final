@@ -31,6 +31,8 @@ export class PageCapacityPlanner implements ICapacityPlanner {
     switch (templateId) {
       case 'ats':
       case 'harvard':
+      case 'harvard_tech':
+      case 'harvard_experienced':
       case 'silicon':
       case 'flow':
         return {
@@ -101,6 +103,27 @@ export class PageCapacityPlanner implements ICapacityPlanner {
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,
         };
+      case 'ribbon':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 120 : spacing === 'relaxed' ? 150 : 135,
+          runningHeaderHeight: 46,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'marigold':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 130 : spacing === 'relaxed' ? 160 : 145,
+          runningHeaderHeight: 38,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'stamp':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 190 : spacing === 'relaxed' ? 240 : 215,
+          runningHeaderHeight: 40,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
       case 'stockholm':
       case 'dublin':
       case 'sydney':
@@ -108,13 +131,6 @@ export class PageCapacityPlanner implements ICapacityPlanner {
           headerHeightPage1: hasAvatar
             ? (spacing === 'compact' ? 110 : spacing === 'relaxed' ? 135 : 120)
             : (spacing === 'compact' ? 85 : spacing === 'relaxed' ? 110 : 95),
-          runningHeaderHeight: runningHeader,
-          pagePaddingVertical: basePadding,
-          safetyMargin: this.defaultSafetyMargin,
-        };
-      case 'amelia':
-        return {
-          headerHeightPage1: spacing === 'compact' ? 145 : spacing === 'relaxed' ? 185 : 165,
           runningHeaderHeight: runningHeader,
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,

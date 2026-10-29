@@ -338,6 +338,13 @@ export const SECTION_METAS: Record<ResumeSectionId, SectionMeta> = {
     icon: Layers,
     getCount: (r) => r.customSections?.length || 0,
   },
+  declaration: {
+    id: 'declaration',
+    label: 'Formal Declaration & Signature',
+    builderKey: 'personal',
+    icon: FileCheck,
+    getCount: () => 1,
+  },
 };
 
 export const SECTION_PLACEMENT_RECOMMENDATIONS: Partial<Record<ResumeSectionId, {

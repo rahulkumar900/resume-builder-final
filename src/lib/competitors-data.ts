@@ -171,7 +171,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       },
       {
         question: 'Can I make my resume look modern without using Canva?',
-        answer: 'Yes! ResumeBabu offers modern, beautifully designed templates (like Stockholm, Vienna, and Amelia) that pair contemporary typography with 100% ATS compliance.'
+        answer: 'Yes! ResumeBabu offers modern, beautifully designed templates (like Stockholm, Vienna, and Chastain) that pair contemporary typography with 100% ATS compliance.'
       },
       {
         question: 'Does ResumeBabu support vector PDF export?',

@@ -172,7 +172,7 @@ export default function CvMakerPage() {
   };
 
   const cvTemplates = TEMPLATES.filter(
-    (t) => t.id === 'traditional' || t.id === 'vienna' || t.id === 'ats' || t.id === 'stockholm' || t.id === 'amelia'
+    (t) => t.id === 'traditional' || t.id === 'vienna' || t.id === 'ats' || t.id === 'stockholm'
   );
 
   return (

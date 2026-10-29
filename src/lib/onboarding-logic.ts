@@ -8,7 +8,7 @@ export const getRecommendedTemplates = (role: string): TemplateId[] => {
   }
   
   if (normalizedRole.includes('frontend') || normalizedRole.includes('developer') || normalizedRole.includes('engineer') || normalizedRole.includes('software')) {
-    return ['prawira', 'amelia', 'stockholm'];
+    return ['prawira', 'silicon', 'stockholm'];
   }
   
   if (normalizedRole.includes('data') || normalizedRole.includes('analyst') || normalizedRole.includes('finance') || normalizedRole.includes('manager') || normalizedRole.includes('executive')) {
@@ -16,7 +16,7 @@ export const getRecommendedTemplates = (role: string): TemplateId[] => {
   }
   
   // Default recommendations for general roles
-  return ['prawira', 'amelia', 'sydney'];
+  return ['prawira', 'chastain', 'sydney'];
 };
 
 export const getDynamicSections = (

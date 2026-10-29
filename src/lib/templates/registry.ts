@@ -9,7 +9,6 @@ import React from 'react';
 import { ResumeData, TemplateId } from '@/types/resume';
 
 import { PrawiraTemplate } from '@/components/resume-templates/PrawiraTemplate';
-import { AmeliaTemplate } from '@/components/resume-templates/AmeliaTemplate';
 import { ChastainTemplate } from '@/components/resume-templates/ChastainTemplate';
 import { LukitoTemplate } from '@/components/resume-templates/LukitoTemplate';
 import { SantosoTemplate } from '@/components/resume-templates/SantosoTemplate';
@@ -40,6 +39,9 @@ import { CanvaNotebookTemplate } from '@/components/resume-templates/CanvaNotebo
 import { CanvaEditorialTemplate } from '@/components/resume-templates/CanvaEditorialTemplate';
 import { CanvaRetroTemplate } from '@/components/resume-templates/CanvaRetroTemplate';
 import { CanvaAestheticTemplate } from '@/components/resume-templates/CanvaAestheticTemplate';
+import { RibbonTemplate } from '@/components/resume-templates/RibbonTemplate';
+import { MarigoldTemplate } from '@/components/resume-templates/MarigoldTemplate';
+import { StampTemplate } from '@/components/resume-templates/StampTemplate';
 
 /**
  * Common prop contract adhered to by all resume template components.
@@ -55,7 +57,6 @@ export type TemplateComponent = React.ComponentType<TemplateProps>;
  */
 export const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
   prawira: PrawiraTemplate,
-  amelia: AmeliaTemplate,
   chastain: ChastainTemplate,
   rahadian: LukitoTemplate,
   santoso: SantosoTemplate,
@@ -86,6 +87,9 @@ export const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
   canvaeditorial: CanvaEditorialTemplate,
   canvaretro: CanvaRetroTemplate,
   canvaaesthetic: CanvaAestheticTemplate,
+  ribbon: RibbonTemplate,
+  marigold: MarigoldTemplate,
+  stamp: StampTemplate,
 };
 
 /**

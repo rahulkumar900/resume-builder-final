@@ -56,6 +56,7 @@ export const SECTION_TITLES: Record<ResumeSectionId, string> = {
   militaryService: 'Military Service',
   licenses: 'Licenses',
   customSections: 'Additional Information',
+  declaration: 'Declaration',
 };
 
 export const getDefaultColumnForSection = (
@@ -146,6 +147,7 @@ export const ALL_AVAILABLE_SECTIONS: ResumeSectionId[] = [
   'militaryService',
   'licenses',
   'customSections',
+  'declaration',
 ];
 
 export const DEFAULT_ACTIVE_SECTIONS: ResumeSectionId[] = [
@@ -155,6 +157,8 @@ export const DEFAULT_ACTIVE_SECTIONS: ResumeSectionId[] = [
   'skills',
   'projects',
   'certifications',
+  'leadership',
+  'awards',
   'languages',
 ];
 
@@ -610,6 +614,7 @@ const TRADITIONAL_SINGLE_SECTIONS: ResumeSectionId[] = [
   'professionalLinks',
   'socialLinks',
   'customSections',
+  'declaration',
 ];
 
 // 6. Fresher / Campus Placement (Education matrix first, then Projects & Internships)
@@ -743,48 +748,6 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     mainFraction: 0.67,
     sidebarFraction: 0.33,
     sidebarPosition: 'right',
-  },
-  amelia: {
-    mainSections: [
-      'experience',
-      'projects',
-      'volunteer',
-      'internships',
-      'freelance',
-      'leadership',
-      'teaching',
-      'militaryService',
-      'extracurricular',
-      'research',
-      'publications',
-      'conferences',
-      'patents',
-      'openSource',
-      'speaking',
-      'portfolio',
-      'customSections',
-    ],
-    sidebarSections: [
-      'summary',
-      'skills',
-      'education',
-      'certifications',
-      'languages',
-      'awards',
-      'achievements',
-      'courses',
-      'licenses',
-      'organizations',
-      'testScores',
-      'interests',
-      'references',
-      'professionalLinks',
-      'socialLinks',
-    ],
-    summaryPlacement: 'sidebar',
-    mainFraction: 0.67,
-    sidebarFraction: 0.33,
-    sidebarPosition: 'left',
   },
   chastain: {
     // Chastain: education in main, summary in sidebar
@@ -1115,6 +1078,62 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     sidebarFraction: 0.35,
     sidebarPosition: 'left',
   },
+  ribbon: {
+    mainSections: [...STANDARD_SINGLE_ALL_SECTIONS],
+    sidebarSections: [],
+    summaryPlacement: 'main',
+    mainFraction: 1.0,
+    sidebarFraction: 0,
+  },
+  marigold: {
+    mainSections: [...STANDARD_TWO_COL_MAIN_SECTIONS],
+    sidebarSections: [...STANDARD_TWO_COL_SIDEBAR_SECTIONS],
+    summaryPlacement: 'main',
+    mainFraction: 0.65,
+    sidebarFraction: 0.35,
+    sidebarPosition: 'right',
+  },
+  stamp: {
+    mainSections: [
+      'education',
+      'projects',
+      'experience',
+      'internships',
+      'volunteer',
+      'freelance',
+      'leadership',
+      'teaching',
+      'militaryService',
+      'extracurricular',
+      'research',
+      'publications',
+      'conferences',
+      'patents',
+      'openSource',
+      'speaking',
+      'portfolio',
+      'customSections',
+    ],
+    sidebarSections: [
+      'skills',
+      'certifications',
+      'languages',
+      'awards',
+      'achievements',
+      'courses',
+      'licenses',
+      'organizations',
+      'testScores',
+      'interests',
+      'references',
+      'professionalLinks',
+      'socialLinks',
+    ],
+    summaryPlacement: 'headerBanner',
+    mainFraction: 0.60,
+    sidebarFraction: 0.40,
+    sidebarPosition: 'right',
+  },
 };
 
 export const TEMPLATES: TemplateDefinition[] = [
@@ -1130,19 +1149,6 @@ export const TEMPLATES: TemplateDefinition[] = [
     description: 'Modern two-tone layout with professional header accent, prominent photo, and crisp executive sections.',
     mainSections: TEMPLATE_COLUMN_CONTRACTS.prawira.mainSections,
     sidebarSections: TEMPLATE_COLUMN_CONTRACTS.prawira.sidebarSections,
-  },
-  {
-    id: 'amelia',
-    name: 'Amelia Minimal',
-    subtitle: 'Executive Two-Tone',
-    isPro: true,
-    userCount: '9,840 users',
-    accentColor: '#1e293b',
-    fontFamily: 'playfair',
-    layout: 'double',
-    description: 'Clean typographic layout with classic serif styling, ideal for corporate, finance, and legal roles.',
-    mainSections: TEMPLATE_COLUMN_CONTRACTS.amelia.mainSections,
-    sidebarSections: TEMPLATE_COLUMN_CONTRACTS.amelia.sidebarSections,
   },
   {
     id: 'chastain',
@@ -1534,6 +1540,45 @@ export const TEMPLATES: TemplateDefinition[] = [
     mainSections: TEMPLATE_COLUMN_CONTRACTS.canvaaesthetic.mainSections,
     sidebarSections: TEMPLATE_COLUMN_CONTRACTS.canvaaesthetic.sidebarSections,
   },
+  {
+    id: 'ribbon',
+    name: 'Kindley Ribbon',
+    subtitle: 'Editorial Bookmark & Side Header',
+    isPro: false,
+    userCount: '17,400 users',
+    accentColor: '#26235A',
+    fontFamily: 'merriweather',
+    layout: 'single',
+    description: 'A distinguished literary format featuring an elegant hanging bookmark monogram ribbon, refined serif typography, and side-aligned category headers.',
+    mainSections: TEMPLATE_COLUMN_CONTRACTS.ribbon.mainSections,
+    sidebarSections: TEMPLATE_COLUMN_CONTRACTS.ribbon.sidebarSections,
+  },
+  {
+    id: 'marigold',
+    name: 'Kindley Marigold',
+    subtitle: 'Deep Pine & Warm Golden Split',
+    isPro: false,
+    userCount: '19,800 users',
+    accentColor: '#17332E',
+    fontFamily: 'playfair',
+    layout: 'double',
+    description: 'A rich two-tone layout featuring a forest pine header band, marigold 8-point spark bullets, sage green sidebar, and pill skill chips.',
+    mainSections: TEMPLATE_COLUMN_CONTRACTS.marigold.mainSections,
+    sidebarSections: TEMPLATE_COLUMN_CONTRACTS.marigold.sidebarSections,
+  },
+  {
+    id: 'stamp',
+    name: 'Kindley Stamp',
+    subtitle: 'Perforated Postage Badge & Tech Grid',
+    isPro: false,
+    userCount: '16,200 users',
+    accentColor: '#45214A',
+    fontFamily: 'inter',
+    layout: 'double',
+    description: 'An iconic fresher and graduate format with a perforated postage-stamp monogram badge, dashed coupon rules, and an education credential strip.',
+    mainSections: TEMPLATE_COLUMN_CONTRACTS.stamp.mainSections,
+    sidebarSections: TEMPLATE_COLUMN_CONTRACTS.stamp.sidebarSections,
+  },
 ];
 
 export const getTemplateLayout = (templateId: TemplateId): 'single' | 'double' => {
@@ -1586,7 +1631,7 @@ export const getDefaultSectionOrder = (
     }
     return {
       singleColumn: activeOnly
-        ? contract.mainSections.filter((s) => DEFAULT_ACTIVE_SECTIONS.includes(s))
+        ? contract.mainSections.filter((s) => DEFAULT_ACTIVE_SECTIONS.includes(s) || s === 'declaration')
         : [...contract.mainSections],
     };
   }
@@ -1656,8 +1701,12 @@ export const migrateSectionOrder = (
 
   if (targetLayout === 'single') {
     // Single column: preserve active order with summary pinned at the front if present
+    const singleList: ResumeSectionId[] = hasSummary ? ['summary', ...otherActiveIds] : [...otherActiveIds];
+    if (contract.mainSections.includes('declaration') && !singleList.includes('declaration')) {
+      singleList.push('declaration');
+    }
     return {
-      singleColumn: hasSummary ? ['summary', ...otherActiveIds] : [...otherActiveIds],
+      singleColumn: singleList,
     };
   }
 
@@ -1714,7 +1763,12 @@ export const getEffectiveSectionOrder = (
 
   if (layout === 'single') {
     if (Array.isArray(sectionOrder.singleColumn) && sectionOrder.singleColumn.length > 0) {
-      return { singleColumn: [...sectionOrder.singleColumn] };
+      const singleList = [...sectionOrder.singleColumn];
+      const contract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
+      if (contract.mainSections.includes('declaration') && !singleList.includes('declaration')) {
+        singleList.push('declaration');
+      }
+      return { singleColumn: singleList };
     }
     // Migrate from main/sidebar to single
     return migrateSectionOrder(sectionOrder, templateId);

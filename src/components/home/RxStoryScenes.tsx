@@ -48,7 +48,6 @@ export const TEMPLATE_DISPLAY_NAMES: Partial<Record<TemplateId, string>> = {
   prawira: 'Prawira Modern',
   harvard: 'Harvard Classic',
   cascade: 'Cascade Two-Tone',
-  amelia: 'Amelia Executive',
   novoresume: 'Novorésumé Pro',
   dublin: 'Dublin Compact',
   stockholm: 'Stockholm Modern',
@@ -117,7 +116,7 @@ export const DESIGN_LAYOUT_CONFIG: Record<ArchitecturalLayoutKey, ArchitecturalL
   executive: {
     key: 'executive',
     name: 'Executive Leadership Suite',
-    templateId: 'amelia',
+    templateId: 'oxford',
     tagline: 'Commanding Presence for Directors & C-Suite',
     description: 'High-contrast header blocks and executive summary styling designed to showcase P&L ownership, team scale, and board impact.',
     badge: 'C-Suite & Board Approved',
@@ -195,7 +194,6 @@ export const DESIGN_17_TEMPLATES: { id: TemplateId; name: string; color: string 
   { id: 'ats', name: 'Clean Mono', color: '#0f172a' },
   { id: 'silicon', name: 'Silicon Tech', color: '#059669' },
   { id: 'cascade', name: 'Cascade Two-Tone', color: '#0284c7' },
-  { id: 'amelia', name: 'Amelia Executive', color: '#4338ca' },
   { id: 'stockholm', name: 'Stockholm Modern', color: '#d97706' },
   { id: 'canva', name: 'Yours · Editorial', color: '#15803d' },
   { id: 'dublin', name: 'Dublin Compact', color: '#0f766e' },
@@ -284,11 +282,11 @@ export const PATHWAY_DATA = {
   },
   executive: {
     stage: 'Tech Lead & Director (8+ YOE)',
-    templateId: 'amelia' as TemplateId,
-    templateName: 'Amelia Executive Leadership',
+    templateId: 'oxford' as TemplateId,
+    templateName: 'Oxford Executive Leadership',
     badge: 'Strategic Vision & Scale',
     role: 'VP of Engineering & Platform Director',
-    name: 'Amelia Stanford',
+    name: 'Eleanor Vance',
     priorities: [
       {
         tag: 'PRIORITY #1',
@@ -507,7 +505,6 @@ export function RxStoryScenes() {
     'canvaeditorial',
     'cascade',
     'canvaretro',
-    'amelia',
     'canvaaesthetic',
     'novoresume',
     'canva',

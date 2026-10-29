@@ -1,6 +1,5 @@
 export type TemplateId =
   | 'prawira'
-  | 'amelia'
   | 'chastain'
   | 'rahadian'
   | 'santoso'
@@ -30,7 +29,10 @@ export type TemplateId =
   | 'canvanotebook'
   | 'canvaeditorial'
   | 'canvaretro'
-  | 'canvaaesthetic';
+  | 'canvaaesthetic'
+  | 'ribbon'
+  | 'marigold'
+  | 'stamp';
 
 export type FontFamily =
   | 'inter'
@@ -379,7 +381,8 @@ export type ResumeSectionId =
   | 'teaching'
   | 'militaryService'
   | 'licenses'
-  | 'customSections';
+  | 'customSections'
+  | 'declaration';
 
 export interface SectionOrderConfig {
   singleColumn?: ResumeSectionId[];

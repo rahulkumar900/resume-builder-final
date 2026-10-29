@@ -35,7 +35,12 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
   const headerPadding =
     spacing === 'compact' ? 'pb-3 mb-3' : spacing === 'relaxed' ? 'pb-5 mb-5' : 'pb-4 mb-4';
 
-  const sectionOrder = data.sectionOrder?.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS;
+  const isPaginated = typeof data.pageNumber === 'number';
+  const rawSectionOrder = (data.sectionOrder?.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS) as ResumeSectionId[];
+  const sectionOrder: ResumeSectionId[] =
+    !isPaginated && !rawSectionOrder.includes('declaration')
+      ? [...rawSectionOrder, 'declaration']
+      : rawSectionOrder;
 
   const renderSectionHeader = (title: string) => (
     <div
@@ -237,6 +242,37 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
           </div>
         );
 
+      case 'declaration':
+        return (
+          <div
+            key="declaration"
+            data-ghost-section="declaration"
+            className="mt-8 pt-4 border-t border-slate-300 text-[11.5px] text-slate-700 break-inside-avoid space-y-4"
+          >
+            <div data-ghost-item="declaration-0" className="space-y-4 break-inside-avoid">
+              <div>
+                <span className="font-bold text-slate-900 uppercase">Declaration: </span>
+                <span>
+                  I hereby solemnly declare that all the information provided in this curriculum vitae is true,
+                  complete, and correct to the best of my knowledge and belief.
+                </span>
+              </div>
+              <div className="flex justify-between items-end pt-3">
+                <div className="space-y-1 text-slate-600">
+                  <div>Date: ____________________</div>
+                  <div>Place: ____________________</div>
+                </div>
+                <div className="text-right">
+                  <div className="font-bold text-slate-900 uppercase tracking-wide">
+                    ({personalInfo.fullName || 'Candidate Name'})
+                  </div>
+                  <div className="text-[10.5px] text-slate-500">Signature</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
       default:
         return (
           <UniversalSectionRenderer
@@ -347,32 +383,9 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Sections Container */}
       <div data-ghost-col="single" className="flex-1">
         {sectionOrder.map((secId) => renderSection(secId))}
+        {/* Defensive fallback for unmeasured legacy data */}
+        {isLastPage && !sectionOrder.includes('declaration') && renderSection('declaration')}
       </div>
-
-      {/* Traditional Indian Declaration Block on the Final Page */}
-      {isLastPage && (
-        <div className="mt-8 pt-4 border-t border-slate-300 text-[11.5px] text-slate-700 break-inside-avoid space-y-4">
-          <div>
-            <span className="font-bold text-slate-900 uppercase">Declaration: </span>
-            <span>
-              I hereby solemnly declare that all the information provided in this curriculum vitae is true,
-              complete, and correct to the best of my knowledge and belief.
-            </span>
-          </div>
-          <div className="flex justify-between items-end pt-3">
-            <div className="space-y-1 text-slate-600">
-              <div>Date: ____________________</div>
-              <div>Place: ____________________</div>
-            </div>
-            <div className="text-right">
-              <div className="font-bold text-slate-900 uppercase tracking-wide">
-                ({personalInfo.fullName || 'Candidate Name'})
-              </div>
-              <div className="text-[10.5px] text-slate-500">Signature</div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

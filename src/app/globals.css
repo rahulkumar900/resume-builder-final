@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif&family=Young+Serif&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -574,6 +575,52 @@ body {
 .animate-strike {
   animation: strikeDraw 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Kindley Ribbon Signature */
+.kindley-ribbon-badge {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
+}
+
+/* Kindley Marigold Signature Spark (8-point star) */
+.kindley-marigold-spark {
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+}
+
+/* Kindley Stamp Signature Perforated Postage Mask */
+.kindley-stamp-badge {
+  -webkit-mask:
+    radial-gradient(circle 2.4px at 50% 0, #0000 98%, #000) top / 7px 100% repeat-x,
+    radial-gradient(circle 2.4px at 50% 100%, #0000 98%, #000) bottom / 7px 100% repeat-x,
+    radial-gradient(circle 2.4px at 0 50%, #0000 98%, #000) left / 100% 7px repeat-y,
+    radial-gradient(circle 2.4px at 100% 50%, #0000 98%, #000) right / 100% 7px repeat-y;
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle 2.4px at 50% 0, #0000 98%, #000) top / 7px 100% repeat-x,
+    radial-gradient(circle 2.4px at 50% 100%, #0000 98%, #000) bottom / 7px 100% repeat-x,
+    radial-gradient(circle 2.4px at 0 50%, #0000 98%, #000) left / 100% 7px repeat-y,
+    radial-gradient(circle 2.4px at 100% 50%, #0000 98%, #000) right / 100% 7px repeat-y;
+  mask-composite: intersect;
+}
+
+.font-instrument {
+  font-family: "Instrument Serif", Georgia, serif;
+}
+.font-hanken {
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+}
+.font-young {
+  font-family: "Young Serif", Georgia, serif;
+}
+.font-figtree {
+  font-family: "Figtree", system-ui, sans-serif;
+}
+.font-bricolage {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+}
+.font-atkinson {
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
 
 
 

@@ -33,7 +33,7 @@ src/lib/pagination/
 ├── strategies/
 │   ├── partition-strategy.interface.ts # O: Open/Closed (Pluggable strategy contract)
 │   ├── single-column-strategy.ts   # Strategy for ATS, Vienna, Madrid
-│   └── double-column-strategy.ts   # Strategy for Prawira, Amelia, Chastain, etc.
+│   └── double-column-strategy.ts   # Strategy for Prawira, Chastain, Stockholm, etc.
 ├── index.ts                        # Unified barrel exports & factory methods
 └── README.md                       # Documentation & API reference
 ```

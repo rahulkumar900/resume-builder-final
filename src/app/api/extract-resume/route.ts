@@ -35,7 +35,7 @@ I need you to extract this directly into our strict ResumeData JSON schema.
 IMPORTANT: You must analyze the candidate's background and make the following decisions:
 1. "recommendedRole": Determine their primary job title (e.g. "Senior React Developer", "Data Analyst").
 2. "recommendedExperience": Choose one of ["entry", "mid", "senior"] based on their years of experience.
-3. "recommendedTemplate": Select the best template for their industry from ["ats", "prawira", "santoso", "chastain", "amelia", "rahadian", "madrid", "vienna"].
+3. "recommendedTemplate": Select the best template for their industry from ["ats", "prawira", "santoso", "chastain", "rahadian", "madrid", "vienna"].
    - "ats" for traditional, corporate or finance roles.
    - "prawira" or "madrid" for modern tech and engineering roles.
    - "santoso" or "chastain" for creative, marketing or product roles.

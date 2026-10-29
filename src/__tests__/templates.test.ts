@@ -18,14 +18,16 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
       expect(getTemplateLayout('harvard')).toBe('single');
       expect(getTemplateLayout('harvard_tech')).toBe('single');
       expect(getTemplateLayout('harvard_experienced')).toBe('single');
+      expect(getTemplateLayout('ribbon')).toBe('single');
     });
 
     it('should correctly identify double-column templates', () => {
       expect(getTemplateLayout('prawira')).toBe('double');
-      expect(getTemplateLayout('amelia')).toBe('double');
       expect(getTemplateLayout('chastain')).toBe('double');
       expect(getTemplateLayout('sydney')).toBe('double');
       expect(getTemplateLayout('stockholm')).toBe('double');
+      expect(getTemplateLayout('marigold')).toBe('double');
+      expect(getTemplateLayout('stamp')).toBe('double');
     });
 
     it('should fallback safely to single column for invalid template ids', () => {
@@ -38,10 +40,11 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
       expect(getTemplateSidebarPosition('sydney')).toBe('right');
       expect(getTemplateSidebarPosition('dublin')).toBe('right');
       expect(getTemplateSidebarPosition('prawira')).toBe('right');
+      expect(getTemplateSidebarPosition('marigold')).toBe('right');
+      expect(getTemplateSidebarPosition('stamp')).toBe('right');
     });
 
     it('should identify templates with left sidebar', () => {
-      expect(getTemplateSidebarPosition('amelia')).toBe('left');
       expect(getTemplateSidebarPosition('stockholm')).toBe('left');
       expect(getTemplateSidebarPosition('chastain')).toBe('left');
       expect(getTemplateSidebarPosition('santoso')).toBe('left');

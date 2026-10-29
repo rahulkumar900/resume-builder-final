@@ -16,7 +16,6 @@ interface ResumeTemplateCardProps {
 
 const TEMPLATE_PALETTES: Record<string, string[]> = {
   ats: [], // Monochrome
-  amelia: ['#1e293b', '#0f766e', '#1d4ed8', '#7c3aed', '#991b1b'],
   prawira: ['#1d4ed8', '#0f766e', '#1e293b', '#d97706', '#dc2626'],
   chastain: ['#1e293b', '#1d4ed8', '#059669', '#7c3aed', '#d97706'],
   rahadian: ['#eab308', '#2563eb', '#1e293b', '#059669', '#dc2626'],
@@ -47,6 +46,9 @@ const TEMPLATE_PALETTES: Record<string, string[]> = {
   canvaeditorial: ['#1d4ed8', '#ea580c', '#0f172a', '#047857', '#b91c1c'],
   canvaretro: ['#2e1065', '#f97316', '#ec4899', '#0284c7', '#15803d'],
   canvaaesthetic: ['#c2410c', '#059669', '#b45309', '#1e293b', '#6b7280'],
+  ribbon: ['#26235A', '#1e293b', '#0f766e', '#831843', '#1e3a8a'],
+  marigold: ['#17332E', '#1e293b', '#1e3a8a', '#3f3f46', '#713f12'],
+  stamp: ['#45214A', '#1e293b', '#0f766e', '#1e3a8a', '#9a3412'],
 };
 
 export const ResumeTemplateCard: React.FC<ResumeTemplateCardProps> = ({

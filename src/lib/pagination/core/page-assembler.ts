@@ -378,7 +378,10 @@ export class ResumePageAssembler implements IPageAssembler {
       extracurricular: collectSplittableItems(data.extracurricular, allSlots, 'extracurricular'),
 
       // 2. Academic & Scholarly Archetype
-      education: collectSplittableItems(data.education, allSlots, 'education'),
+      education:
+        data.templateId === 'stamp' && pageIndex === 0
+          ? data.education || []
+          : collectSplittableItems(data.education, allSlots, 'education'),
       research: collectSplittableItems(data.research, allSlots, 'research'),
       publications: collectAtomicOrItemized(data.publications, allSlots, 'publications'),
       conferences: collectAtomicOrItemized(data.conferences, allSlots, 'conferences'),

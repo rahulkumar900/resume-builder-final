@@ -379,7 +379,7 @@ export const INITIAL_RESUMES: ResumeData[] = [
     title: 'Untitled Resume 3',
     status: 'draft',
     updatedAt: '2 days ago',
-    templateId: 'amelia',
+    templateId: 'chastain',
     themeColor: '#1e293b',
     fontFamily: 'playfair',
     spacing: 'normal',

@@ -828,11 +828,11 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
       'product management', 'product strategy', 'mba', 'roadmap', 'user research',
       'kpis', 'a/b testing', 'agile', 'scrum', 'sql', 'gtm', 'cross-functional leadership',
     ],
-    recommendedTemplate: 'amelia',
+    recommendedTemplate: 'oxford',
     whyItWorks: [
       {
         title: 'Executive Serif Typography',
-        desc: 'Amelia Minimal layout offers sophisticated corporate aesthetics favored by consulting firms (McKinsey, BCG) and B-school placement committees (PlaceCom).',
+        desc: 'Oxford layout offers sophisticated corporate aesthetics favored by consulting firms (McKinsey, BCG) and B-school placement committees (PlaceCom).',
       },
       {
         title: 'Strategic User & Revenue Impact',
@@ -881,7 +881,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
       title: 'MBA Product Manager - Resume Example',
       status: 'completed',
       updatedAt: 'Just now',
-      templateId: 'amelia',
+      templateId: 'oxford',
       themeColor: '#1e293b',
       fontFamily: 'playfair',
       spacing: 'normal',
@@ -1743,7 +1743,7 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
       'hr resume', 'talent acquisition resume', 'human resources resume', 'recruiter resume',
       'naukri resdex', 'linkedin recruiter', 'darwinbox', 'zoho people', 'payroll', 'posh compliance', 'onboarding'
     ],
-    recommendedTemplate: 'amelia',
+    recommendedTemplate: 'chastain',
     whyItWorks: [
       {
         title: 'Recruitment Funnel & Metric Clarity',
@@ -1793,9 +1793,9 @@ export const RESUME_EXAMPLES: ResumeExample[] = [
       title: 'HR Executive - Talent Acquisition Resume',
       status: 'completed',
       updatedAt: 'Just now',
-      templateId: 'amelia',
+      templateId: 'chastain',
       themeColor: '#7c3aed',
-      fontFamily: 'playfair',
+      fontFamily: 'inter',
       spacing: 'normal',
       personalInfo: {
         fullName: 'Pooja Deshmukh',
