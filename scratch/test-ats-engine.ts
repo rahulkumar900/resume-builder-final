@@ -1,6 +1,5 @@
 import { analyzeResumeAts } from '../src/lib/ats/ats-analyzer';
 import { matchJobDescriptionKeywords } from '../src/lib/ats/keyword-matcher';
-import { getFullyPopulatedResume } from '../src/lib/sample-data';
 import { ResumeData } from '../src/types/resume';
 
 console.log('--- Testing ATS Analyzer ---');
@@ -22,15 +21,64 @@ const baseResume: ResumeData = {
     linkedin: 'linkedin.com/in/alexmorgan',
     summary: 'Results-driven Senior Full Stack Engineer with 7+ years of experience leading teams, optimizing cloud platforms, and building resilient microservices.',
   },
-  experience: [],
-  education: [],
-  skills: [],
-  projects: [],
-  certifications: [],
-  languages: [],
+  experience: [
+    {
+      id: 'exp-1',
+      role: 'Lead Developer',
+      company: 'Tech Corp',
+      location: 'Remote',
+      startDate: '2020',
+      endDate: 'Present',
+      current: true,
+      highlights: [
+        'Built scalable microservices increasing throughput by 45%.',
+        'Mentored junior developers and led code reviews for 12 engineers.',
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 'edu-1',
+      degree: 'B.S. Computer Science',
+      school: 'MIT',
+      location: 'Cambridge, MA',
+      graduationDate: '2015',
+      gpa: '3.9',
+    },
+  ],
+  skills: [
+    {
+      id: 'sk-1',
+      category: 'Technical',
+      items: ['React', 'TypeScript', 'Node.js', 'AWS', 'Docker', 'PostgreSQL'],
+    },
+  ],
+  projects: [
+    {
+      id: 'proj-1',
+      title: 'Cloud Orchestrator',
+      technologies: ['Go', 'Kubernetes'],
+      highlights: ['Reduced deployment times by 60% across 50+ clusters.'],
+    },
+  ],
+  certifications: [
+    {
+      id: 'cert-1',
+      name: 'AWS Solutions Architect Professional',
+      issuer: 'Amazon Web Services',
+      date: '2022',
+    },
+  ],
+  languages: [
+    {
+      id: 'lang-1',
+      language: 'English',
+      proficiency: 'Native',
+    },
+  ],
 };
 
-const sampleResume = getFullyPopulatedResume(baseResume);
+const sampleResume = baseResume;
 const sampleResult = analyzeResumeAts(sampleResume);
 console.log('Sample Resume ATS Score:', sampleResult.overallScore, '/ 100');
 console.log('Tier:', sampleResult.tier.label, 'Grade:', sampleResult.tier.grade);

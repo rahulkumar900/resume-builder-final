@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
-import { RESUME_EXAMPLES, getResumeExampleBySlug } from '@/lib/examples-data';
+import { RESUME_EXAMPLES, getResumeExampleBySlug } from '@/data/examples';
 import { ResumeExampleDetailClient } from '@/components/examples/ResumeExampleDetailClient';
 
 interface PageProps {

@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import { TemplateDefinition, TemplateId } from '@/types/resume';
 import { TemplateCardRealPreview } from './TemplateCardRealPreview';
-import { CircleDot } from 'lucide-react';
+import { CircleDot, Eye } from 'lucide-react';
 
 interface ResumeTemplateCardProps {
   template: TemplateDefinition;
   onSelect: (templateId: TemplateId, color: string) => void;
+  onPreview?: (template: TemplateDefinition, color: string) => void;
   customRole?: string;
   customName?: string;
   initialColor?: string;
@@ -54,6 +55,7 @@ const TEMPLATE_PALETTES: Record<string, string[]> = {
 export const ResumeTemplateCard: React.FC<ResumeTemplateCardProps> = ({
   template,
   onSelect,
+  onPreview,
   customRole,
   customName,
   initialColor,
@@ -84,6 +86,21 @@ export const ResumeTemplateCard: React.FC<ResumeTemplateCardProps> = ({
             : 'border-slate-200/80 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/[0.15] shadow-xs hover:shadow-md'
         }`}
       >
+        {/* Mobile Quick-Preview Floating Badge */}
+        {onPreview && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onPreview(template, activeColor);
+            }}
+            className="sm:hidden absolute top-2 right-2 z-20 px-2 py-1 bg-white/95 dark:bg-slate-900/95 text-slate-800 dark:text-slate-200 rounded-lg text-[10px] font-bold shadow-xs border border-slate-200 dark:border-slate-700 flex items-center gap-1 active:scale-95"
+            title="Preview Template Full Screen"
+          >
+            <Eye className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+            <span>Preview</span>
+          </button>
+        )}
 
         {/* 2. Full-Width White A4 Paper Preview - Big & Clear with No Extra Padding */}
         <div className="relative w-full flex items-center justify-center my-0.5">
@@ -95,18 +112,31 @@ export const ResumeTemplateCard: React.FC<ResumeTemplateCardProps> = ({
             className="shadow-[0_4px_16px_-2px_rgba(0,0,0,0.06)] group-hover:shadow-[0_12px_24px_-4px_rgba(0,0,0,0.12)] transition-all duration-300"
           />
 
-          {/* Hover Overlay: Centered "Use this template" Button */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-200 bg-slate-900/5 backdrop-blur-[0.5px] rounded-[3px] z-10">
+          {/* Hover Overlay: "Use Template" and "Preview" Buttons */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-slate-900/10 backdrop-blur-[0.5px] rounded-[3px] z-10 p-2">
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 onSelect(template.id, activeColor);
               }}
-              className="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm rounded-xl shadow-lg transform scale-95 group-hover:scale-100 transition-all cursor-pointer"
+              className="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm rounded-xl shadow-lg transform scale-95 group-hover:scale-100 transition-all cursor-pointer min-h-[40px] flex items-center justify-center"
             >
               Use this template
             </button>
+            {onPreview && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPreview(template, activeColor);
+                }}
+                className="px-4 py-1.5 bg-white/95 hover:bg-white text-slate-800 font-semibold text-xs rounded-lg shadow-md transition-all cursor-pointer flex items-center gap-1.5 min-h-[32px]"
+              >
+                <Eye className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Full Preview</span>
+              </button>
+            )}
           </div>
         </div>
 

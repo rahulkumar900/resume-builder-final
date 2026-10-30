@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
-import { BLOG_POSTS, getBlogPostBySlug, getRelatedBlogPosts } from '@/lib/blog-data';
+import { BLOG_POSTS, getBlogPostBySlug, getRelatedBlogPosts } from '@/data/blog';
 import { BlogPostClient } from '@/components/blog/BlogPostClient';
 import { BlogBackButton } from '@/components/blog/BlogBackButton';
 

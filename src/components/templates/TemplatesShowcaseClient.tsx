@@ -5,12 +5,16 @@ import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
-import { TemplateId } from '@/types/resume';
+import { TemplateId, TemplateDefinition } from '@/types/resume';
 import { ResumeTemplateCard } from '@/components/common/ResumeTemplateCard';
+import { TemplateCardRealPreview } from '@/components/common/TemplateCardRealPreview';
 import {
   ShieldCheck,
   Sliders,
   Check,
+  X,
+  ArrowRight,
+  Sparkles,
 } from 'lucide-react';
 
 const PALETTES = [
@@ -26,6 +30,10 @@ export function TemplatesShowcaseClient() {
   const router = useRouter();
   const [activeFilter, setActiveFilter] = useState<'all' | 'harvard' | 'top10' | 'indian' | 'ats' | 'double' | 'single' | 'creative' | 'executive'>('all');
   const [selectedColor, setSelectedColor] = useState('#15803d');
+  const [previewModalTemplate, setPreviewModalTemplate] = useState<{
+    template: TemplateDefinition;
+    color: string;
+  } | null>(null);
 
   const filtered = TEMPLATES.filter((tpl) => {
     if (activeFilter === 'harvard') return ['harvard', 'harvard_tech', 'harvard_experienced', 'oxford', 'ats', 'silicon', 'traditional'].includes(tpl.id);
@@ -123,13 +131,81 @@ export function TemplatesShowcaseClient() {
               key={tpl.id}
               template={tpl}
               initialColor={selectedColor}
-              onSelect={(tplId) => {
-                router.push(`/create?template=${tplId}`);
+              onSelect={(tplId, color) => {
+                router.push(`/create?template=${tplId}&color=${encodeURIComponent(color)}`);
+              }}
+              onPreview={(template, color) => {
+                setPreviewModalTemplate({ template, color });
               }}
             />
           ))}
         </div>
       </main>
+
+      {/* High-Resolution Template Fullscreen Preview Modal (Mobile & Desktop) */}
+      {previewModalTemplate && (
+        <div
+          className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-hidden animate-in fade-in duration-200"
+          onClick={() => setPreviewModalTemplate(null)}
+        >
+          <div
+            className="relative bg-white dark:bg-[#161614] rounded-2xl sm:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-slate-200 dark:border-white/10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Top Header */}
+            <div className="px-4 sm:px-6 py-3.5 border-b border-slate-200/80 dark:border-white/10 flex items-center justify-between shrink-0 bg-slate-50/80 dark:bg-card">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="p-1 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">
+                  <Sparkles className="w-4 h-4" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white truncate">
+                    {previewModalTemplate.template.name}
+                  </h3>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    {previewModalTemplate.template.layout === 'double' ? 'Two-Column ATS Layout' : 'Single-Column Classic ATS'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const tplId = previewModalTemplate.template.id;
+                    const color = previewModalTemplate.color;
+                    setPreviewModalTemplate(null);
+                    router.push(`/create?template=${tplId}&color=${encodeURIComponent(color)}`);
+                  }}
+                  className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center gap-1.5 min-h-[38px]"
+                >
+                  <span>Use This Template</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPreviewModalTemplate(null)}
+                  className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
+                  title="Close preview"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body: Scrollable Real Vector Preview */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-8 flex items-center justify-center bg-slate-100/70 dark:bg-black/30">
+              <div className="w-full max-w-[580px] shadow-2xl rounded-lg overflow-hidden border border-slate-200 dark:border-white/10">
+                <TemplateCardRealPreview
+                  templateId={previewModalTemplate.template.id}
+                  themeColor={previewModalTemplate.color}
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

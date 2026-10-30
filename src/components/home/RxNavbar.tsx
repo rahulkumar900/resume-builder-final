@@ -103,7 +103,7 @@ export function RxNavbar() {
           {/* Center: Real Page Navigation Links with active highlight */}
           <nav
             aria-label="Main Navigation"
-            className="hidden md:flex items-center gap-1 bg-slate-900/[0.04] dark:bg-white/[0.06] p-1 rounded-full border border-black/[0.05] dark:border-white/[0.08] backdrop-blur-xs"
+            className="hidden lg:flex items-center gap-1 bg-slate-900/[0.04] dark:bg-white/[0.06] p-1 rounded-full border border-black/[0.05] dark:border-white/[0.08] backdrop-blur-xs"
           >
             {PAGE_NAV_LINKS.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
@@ -131,7 +131,7 @@ export function RxNavbar() {
               <button
                 type="button"
                 onClick={() => openAuthModal('signin')}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.08em] font-semibold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs transition-all cursor-pointer"
+                className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.08em] font-semibold text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs transition-all cursor-pointer min-h-[36px]"
                 title="Sign in to your account"
               >
                 <LogIn className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -141,7 +141,7 @@ export function RxNavbar() {
               <div className="flex items-center gap-2 shrink-0">
                 <Link
                   href="/dashboard"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.08em] font-medium text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs transition-all"
+                  className="hidden lg:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.08em] font-medium text-slate-700 dark:text-slate-200 hover:text-emerald-700 dark:hover:text-emerald-400 bg-white/70 dark:bg-slate-800/70 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs transition-all min-h-[36px]"
                 >
                   <span>Dashboard</span>
                 </Link>
@@ -155,7 +155,7 @@ export function RxNavbar() {
               onClick={toggleDarkMode}
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 hover:border-emerald-500 dark:hover:border-emerald-400 text-slate-700 dark:text-slate-200 transition-all cursor-pointer shadow-2xs group shrink-0"
+              className="flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-full border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 hover:border-emerald-500 dark:hover:border-emerald-400 text-slate-700 dark:text-slate-200 transition-all cursor-pointer shadow-2xs group shrink-0 active:scale-95"
             >
               {isDark ? (
                 <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform" />
@@ -164,11 +164,11 @@ export function RxNavbar() {
               )}
             </button>
 
-            {/* Mobile Hamburger Menu Toggle */}
+            {/* Mobile/Tablet Hamburger Menu Toggle */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden flex items-center justify-center w-8 h-8 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer shrink-0"
+              className="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer shrink-0 active:scale-95"
               aria-label="Toggle Navigation Menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -177,9 +177,9 @@ export function RxNavbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu with page links & full Auth actions */}
+        {/* Mobile & Tablet Dropdown Menu with page links & full Auth actions */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#F8F7F3]/98 dark:bg-[#100F0C]/98 backdrop-blur-md border-b border-border shadow-xl px-4 py-4 space-y-3">
+          <div className="lg:hidden bg-[#F8F7F3]/98 dark:bg-[#100F0C]/98 backdrop-blur-md border-b border-border shadow-xl px-4 py-4 space-y-3">
             <nav className="flex flex-col space-y-1">
               {PAGE_NAV_LINKS.map((link) => {
                 const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));

@@ -99,6 +99,47 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
   const [isMobileDesignSheetOpen, setIsMobileDesignSheetOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  // Monitor virtual keyboard focus on mobile/tablet to auto-compact headers
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleFocusIn = (e: FocusEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.isContentEditable ||
+          target.closest('.ProseMirror'))
+      ) {
+        setIsInputFocused(true);
+      }
+    };
+    const handleFocusOut = () => {
+      setTimeout(() => {
+        const active = document.activeElement as HTMLElement | null;
+        if (
+          !active ||
+          !(
+            active.tagName === 'INPUT' ||
+            active.tagName === 'TEXTAREA' ||
+            active.isContentEditable ||
+            active.closest('.ProseMirror')
+          )
+        ) {
+          setIsInputFocused(false);
+        }
+      }, 120);
+    };
+
+    window.addEventListener('focusin', handleFocusIn);
+    window.addEventListener('focusout', handleFocusOut);
+    return () => {
+      window.removeEventListener('focusin', handleFocusIn);
+      window.removeEventListener('focusout', handleFocusOut);
+    };
+  }, []);
 
   const handleDeleteResume = async () => {
     if (!resume) return;
@@ -211,7 +252,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     return Math.max(0.35, Math.min(1.2, parseFloat(computed.toFixed(2))));
   };
 
-  // Handle responsive scale on mount and resize
+  // Handle responsive scale on mount, resize, and layout changes
   useEffect(() => {
     const updateScale = () => {
       setScale(calculateFitScale());
@@ -219,7 +260,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     updateScale();
     window.addEventListener('resize', updateScale);
     return () => window.removeEventListener('resize', updateScale);
-  }, []);
+  }, [activeTab]);
 
   if (!resume) {
     return <BuilderSkeleton />;
@@ -294,10 +335,18 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         canUndo={canUndo}
         canRedo={canRedo}
         onDeleteResume={() => setIsDeleteModalOpen(true)}
+        isInputFocused={isInputFocused}
       />
 
-      {/* Mobile & Tablet Segmented Tab Switcher (Write / Design / Check / Preview) */}
-      <div className="lg:hidden flex items-center justify-between px-2.5 py-1.5 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0 z-30">
+      {/* Mobile & Tablet Segmented Tab Switcher (Write / Design / Check / Preview) with Auto-Compact on Focus */}
+      <div
+        className={cn(
+          "lg:hidden flex items-center justify-between px-2 py-1 bg-white dark:bg-card border-b border-slate-200 dark:border-border shrink-0 z-30 transition-all duration-200 overflow-hidden",
+          isInputFocused && activeTab === 'edit'
+            ? "max-h-0 opacity-0 py-0 border-none pointer-events-none"
+            : "max-h-12 opacity-100"
+        )}
+      >
         <div className="flex bg-slate-100 dark:bg-muted p-0.5 rounded-xl text-xs font-semibold w-full gap-0.5">
           <button
             type="button"
@@ -306,7 +355,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('content');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'edit' && editorMode === 'content' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -314,12 +363,12 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             title="Edit Content"
           >
             <Edit3 className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-[11px] sm:text-xs">Write</span>
+            <span className="text-[11px] sm:text-xs whitespace-nowrap">Write</span>
           </button>
           <button
             type="button"
             onClick={handleMobileDesignClick}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -327,7 +376,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             title="Design & Style"
           >
             <Palette className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-[11px] sm:text-xs">Design</span>
+            <span className="text-[11px] sm:text-xs whitespace-nowrap">Design</span>
           </button>
           <button
             type="button"
@@ -336,7 +385,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('check');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'edit' && editorMode === 'check' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -344,7 +393,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             title="ATS & Grammar Check"
           >
             <CheckSquare className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-[11px] sm:text-xs">Check</span>
+            <span className="text-[11px] sm:text-xs whitespace-nowrap">Check</span>
           </button>
           <button
             type="button"
@@ -353,7 +402,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setEditorMode('match');
               setActiveTab('edit');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'edit' && editorMode === 'match' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -361,7 +410,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             title="Target JD Match Rate"
           >
             <Target className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-[11px] sm:text-xs">JD Match</span>
+            <span className="text-[11px] sm:text-xs whitespace-nowrap"><span className="hidden min-[420px]:inline">JD </span>Match</span>
           </button>
           <button
             type="button"
@@ -369,7 +418,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               setIsMobileDesignSheetOpen(false);
               handleTabSwitch('preview');
             }}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all cursor-pointer min-h-[34px] active:scale-[0.98] ${
+            className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'preview' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
                 : 'text-slate-500 dark:text-muted-foreground hover:text-foreground'
@@ -377,7 +426,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             title="A4 Preview"
           >
             <Eye className="w-3.5 h-3.5 shrink-0" />
-            <span className="text-[11px] sm:text-xs">Preview</span>
+            <span className="text-[11px] sm:text-xs whitespace-nowrap">Preview</span>
           </button>
         </div>
       </div>
@@ -386,9 +435,11 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
         {/* Left Column: Editor Form OR Docked Design Studio OR Docked Check Audit OR Docked JD Match */}
         <div
-          className={`w-full lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:shrink-0 h-full flex-1 lg:flex-initial flex flex-col lg:border-r border-slate-200 dark:border-border bg-background overflow-hidden min-h-0 ${
-            activeTab === 'preview' ? 'hidden lg:flex' : 'flex'
-          }`}
+          className={cn(
+            "w-full h-full flex flex-col border-slate-200 dark:border-border bg-background overflow-hidden min-h-0",
+            "lg:w-[480px] xl:w-[520px] 2xl:w-[560px] lg:shrink-0 lg:border-r",
+            activeTab === 'preview' ? "hidden lg:flex" : "flex"
+          )}
         >
           {editorMode === 'content' ? (
             <BuilderForm
@@ -434,9 +485,10 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
 
         {/* Right Column: Live A4 Preview Canvas & Controls */}
         <div
-          className={`flex-1 bg-slate-100/90 dark:bg-muted/30 flex flex-col h-full overflow-hidden ${
-            activeTab === 'edit' ? 'hidden lg:flex' : 'flex'
-          }`}
+          className={cn(
+            "flex-1 bg-slate-100/90 dark:bg-muted/30 flex flex-col h-full overflow-hidden",
+            activeTab === 'edit' ? "hidden lg:flex" : "flex"
+          )}
         >
           {/* Scrollable Canvas Viewport */}
           <div

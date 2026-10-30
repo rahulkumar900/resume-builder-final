@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
-import { RESUME_EXAMPLES } from '@/lib/examples-data';
+import { RESUME_EXAMPLES } from '@/data/examples';
 
 export function ResumeExamplesHubClient() {
   const router = useRouter();

@@ -1,5 +1,5 @@
 ---
-name: seo-auditor
+name: seo-master
 description: On-page and technical SEO auditing, optimization, and content briefing grounded in Google Search Central guidance plus Ahrefs/Semrush-style intent and keyword practice and Yoast-style readability heuristics. Works from a focus keyword and competitor pages: it benchmarks the top-ranking competitor pages for the keyword, finds content and metadata gaps, and tells the user what to change. Use this skill whenever the user asks to audit, review, optimize, rewrite, or write a web page, blog post, landing page, template, or markdown file for search; mentions SEO, rankings, keywords, search intent, title tags, meta descriptions, headings, canonical URLs, hreflang, sitemaps, Core Web Vitals, rich results, schema markup, or JSON-LD; or asks why a page is not indexed or ranking, or to compare their page against competitors or the top Google results for a keyword. Also use it for questions about AI Overviews, AI Mode, GEO/AEO, llms.txt, or getting cited in AI answers. Use it even when the user does not say "SEO" but wants a page to be found on Google.
 ---
 

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
-import { COMPETITORS, getCompetitorBySlug } from '@/lib/competitors-data';
+import { COMPETITORS, getCompetitorBySlug } from '@/data/competitors';
 
 interface PageProps {
   params: Promise<{ slug: string }>;

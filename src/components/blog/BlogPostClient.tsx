@@ -13,7 +13,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { LinkedinIcon, TwitterIcon } from '@/components/common/BrandIcons';
-import { BlogPost } from '@/lib/blog-data';
+import { BlogPost } from '@/data/blog';
 
 interface BlogPostClientProps {
   post: BlogPost;

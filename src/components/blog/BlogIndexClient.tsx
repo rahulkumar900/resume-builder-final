@@ -16,7 +16,7 @@ import {
   Tag,
   Award
 } from 'lucide-react';
-import { BlogPost } from '@/lib/blog-data';
+import { BlogPost } from '@/data/blog';
 
 interface BlogIndexClientProps {
   posts: BlogPost[];

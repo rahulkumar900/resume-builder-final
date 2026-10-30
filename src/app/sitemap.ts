@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
-import { RESUME_EXAMPLES } from '@/lib/examples-data';
-import { COMPETITORS } from '@/lib/competitors-data';
-import { BLOG_POSTS } from '@/lib/blog-data';
+import { RESUME_EXAMPLES } from '@/data/examples';
+import { COMPETITORS } from '@/data/competitors';
+import { BLOG_POSTS } from '@/data/blog';
 
 const BASE_URL = 'https://resumebabu.com';
 
@@ -179,12 +179,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedAt),
-    changeFrequency: 'weekly',
-    priority: 0.85,
-  }));
+  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => {
+    const parsedDate = post.updatedAt ? new Date(post.updatedAt) : new Date();
+    return {
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: isNaN(parsedDate.getTime()) ? new Date() : parsedDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    };
+  });
 
   return [...staticRoutes, ...competitorRoutes, ...exampleRoutes, ...blogRoutes];
 }

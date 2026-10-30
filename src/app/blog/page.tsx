@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 import { BlogIndexClient } from '@/components/blog/BlogIndexClient';
-import { BLOG_POSTS } from '@/lib/blog-data';
+import { BLOG_POSTS } from '@/data/blog';
 import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {

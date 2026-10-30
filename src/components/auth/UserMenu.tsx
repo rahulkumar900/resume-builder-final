@@ -36,11 +36,11 @@ export const UserMenu: React.FC<UserMenuProps> = ({ showName = false }) => {
     return (
       <button
         onClick={() => openAuthModal('signin')}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-blue-100 border border-emerald-200 rounded-lg transition-colors cursor-pointer"
+        className="inline-flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800/80 rounded-lg transition-colors cursor-pointer min-h-[32px] sm:min-h-[34px] shrink-0 whitespace-nowrap active:scale-95"
         title="Sign in to save and sync resumes to the cloud"
       >
-        <LogIn className="w-3.5 h-3.5" />
-        <span>Sign In</span>
+        <LogIn className="w-3.5 h-3.5 shrink-0" />
+        <span className="hidden sm:inline whitespace-nowrap">Sign In</span>
       </button>
     );
   }

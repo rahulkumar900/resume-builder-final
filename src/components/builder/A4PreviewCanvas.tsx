@@ -7,6 +7,7 @@ import { getPageFormatConfig, PageFormat } from '@/lib/page-format';
 import {
   ChevronLeft,
   ChevronRight,
+  Layers,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -30,6 +31,7 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
   const docRef = useRef<HTMLDivElement>(null);
   const [pageCount, setPageCount] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [viewMode, setViewMode] = useState<'single' | 'all'>('single');
 
   const formatConfig = getPageFormatConfig(resume.layout?.format);
   const currentFormat = formatConfig.id;
@@ -97,7 +99,9 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
         className="transition-all duration-150 flex justify-center shrink-0 my-2 sm:my-auto mb-16"
         style={{
           width: `${formatConfig.widthMm * scale}mm`,
-          height: `${formatConfig.heightMm * scale}mm`,
+          height: viewMode === 'all'
+            ? `${(formatConfig.heightMm * pageCount + (pageCount - 1) * 8) * scale}mm`
+            : `${formatConfig.heightMm * scale}mm`,
           position: 'relative',
         }}
       >
@@ -112,7 +116,7 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
             ref={docRef}
             data={resume}
             isPrint={false}
-            activePage={currentPage}
+            activePage={viewMode === 'all' ? undefined : currentPage}
             onPageCountChange={(count) => {
               setPageCount(count);
               setCurrentPage((prev) => (prev > count ? count : Math.max(1, prev)));
@@ -185,6 +189,21 @@ export const A4PreviewCanvas: React.FC<A4PreviewCanvasProps> = ({
               title="Next Page"
             >
               <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+            <span className="h-3 w-[1px] bg-slate-200 dark:bg-border mx-0.5" />
+            <button
+              type="button"
+              onClick={() => setViewMode((prev) => (prev === 'all' ? 'single' : 'all'))}
+              className={cn(
+                "px-1.5 py-0.5 rounded text-[10px] font-semibold transition-colors cursor-pointer flex items-center gap-1",
+                viewMode === 'all'
+                  ? "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 font-bold"
+                  : "text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-accent"
+              )}
+              title={viewMode === 'all' ? "View Single Page" : "View All Pages Simultaneously"}
+            >
+              <Layers className="w-3 h-3" />
+              <span>{viewMode === 'all' ? 'All' : '1-by-1'}</span>
             </button>
           </div>
         ) : (

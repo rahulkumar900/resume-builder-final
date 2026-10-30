@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
-import { COMPETITORS } from '@/lib/competitors-data';
+import { COMPETITORS } from '@/data/competitors';
 
 export const metadata: Metadata = {
   title: 'Resume Builder Alternatives & Reviews',

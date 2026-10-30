@@ -222,11 +222,6 @@ export const PersonalSection: React.FC<SectionComponentProps<PersonalInfo>> = ({
               A concise 2–3 sentence overview highlighting your core strengths and impact
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-slate-400 dark:text-muted-foreground">
-              {words} {words === 1 ? 'word' : 'words'}
-            </span>
-          </div>
         </div>
 
         <RichTextEditor

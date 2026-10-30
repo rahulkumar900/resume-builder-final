@@ -18,7 +18,7 @@ import {
   ChevronRight,
   Maximize2,
 } from 'lucide-react';
-import { ResumeExample, RESUME_EXAMPLES } from '@/lib/examples-data';
+import { ResumeExample, RESUME_EXAMPLES } from '@/data/examples';
 import { DynamicResumeCardPreview } from '@/components/dashboard/DynamicResumeCardPreview';
 import { saveResume } from '@/lib/storage';
 
