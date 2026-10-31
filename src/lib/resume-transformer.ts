@@ -159,24 +159,26 @@ export function transformExtractedToResumeData(options: TransformOptions): Resum
     skills = rawSkills.map((cat: any, idx: number) => {
       if (typeof cat === 'string') {
         return {
-          id: `sk-${idx}-${Date.now()}`,
+          id: `sk-${idx}`,
           category: 'Skills',
           items: [cat],
         };
       }
       return {
-        id: cat.id || `sk-${idx}-${Date.now()}`,
+        id: cat.id || `sk-${idx}`,
         category: cat.category || cat.name || 'Core Skills',
         items: Array.isArray(cat.items)
           ? cat.items
           : Array.isArray(cat.skills)
           ? cat.skills
           : [],
+        enabled: cat.enabled !== false,
+        levels: cat.levels || {},
       };
     });
   } else if (rawSkills && typeof rawSkills === 'object') {
     skills = Object.entries(rawSkills).map(([catName, items], idx) => ({
-      id: `sk-${idx}-${Date.now()}`,
+      id: `sk-${idx}`,
       category: catName.charAt(0).toUpperCase() + catName.slice(1),
       items: Array.isArray(items) ? (items as string[]) : [String(items)],
     }));
@@ -274,6 +276,7 @@ export function transformExtractedToResumeData(options: TransformOptions): Resum
     experience,
     education,
     skills,
+    skillsConfig: rawData.skillsConfig,
     projects,
     certifications,
     languages,

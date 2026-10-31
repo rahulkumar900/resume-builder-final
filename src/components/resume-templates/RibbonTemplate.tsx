@@ -165,7 +165,7 @@ export const RibbonTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1.5 text-[10.2px] leading-[1.5] text-stone-800">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
-                  <span className="font-semibold text-stone-900">{cat.category}:</span>{' '}
+                  {cat.category ? <span className="font-semibold text-stone-900">{cat.category}: </span> : null}
                   <span className="text-stone-700">{cat.items.join(', ')}</span>
                 </div>
               ))}

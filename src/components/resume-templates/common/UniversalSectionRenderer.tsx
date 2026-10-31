@@ -29,7 +29,7 @@ import {
   ReferenceItem,
   CustomSection,
 } from '@/types/resume';
-import { SECTION_TITLES } from '@/lib/templates';
+import { SECTION_TITLES, normalizeCustomSectionType } from '@/lib/templates';
 import { ResumeHighlights } from '@/components/common/ResumeHighlights';
 import { RichText } from '@/components/common/RichText';
 
@@ -571,32 +571,277 @@ export const UniversalSectionRenderer: React.FC<UniversalSectionRendererProps> =
       if (customSections.length === 0) return null;
       return (
         <div key="customSections" className="space-y-4">
-          {customSections.map((sec) => (
-            <div key={sec.id} data-ghost-section="customSections" className="space-y-2">
-              {renderHeader(sec.title || 'Additional Information', secId)}
-              <div className={itemSpacingClass}>
-                {(sec.items || []).map((item) => (
-                  <div key={item.id} data-ghost-item={item.id} className="space-y-1 break-inside-avoid">
-                    <div data-ghost-item-header="true">
-                      <div className="flex justify-between items-baseline">
-                        <span className="font-bold text-[13px] text-slate-900">{item.title}</span>
-                        {item.date && <span className="text-[11px] text-slate-500">{item.date}</span>}
-                      </div>
-                      {item.subtitle && (
-                        <div className="text-[12px] text-slate-600">
-                          {item.subtitle} {item.location ? `• ${item.location}` : ''}
-                        </div>
-                      )}
-                    </div>
-                    {item.description && <div className="text-[12px] text-slate-600">{item.description}</div>}
-                    {item.highlights && item.highlights.length > 0 && (
-                      <ResumeHighlights highlights={item.highlights} className="text-slate-700 text-[12px] pt-0.5" />
-                    )}
+          {customSections.map((sec) => {
+            const normType = normalizeCustomSectionType(sec.type);
+
+            return (
+              <div key={sec.id} data-ghost-section="customSections" className="space-y-2">
+                {renderHeader(sec.title || 'Additional Information', secId)}
+
+                {/* 1. Statement / Text Block Type */}
+                {normType === 'statement' && (
+                  <div
+                    data-ghost-item={`${sec.id}-content`}
+                    className="text-[12px] leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-line"
+                  >
+                    {sec.content || sec.items?.[0]?.description || ''}
                   </div>
-                ))}
+                )}
+
+                {/* 2. Tags / List Type */}
+                {normType === 'tags' && (
+                  <div className="space-y-2">
+                    {(sec.items || []).map((item, idx) => {
+                      const tags =
+                        item.items && item.items.length > 0
+                          ? item.items
+                          : item.description
+                          ? item.description.split(',').map((s) => s.trim()).filter(Boolean)
+                          : [];
+
+                      return (
+                        <div key={item.id || idx} data-ghost-item={item.id || `${sec.id}-${idx}`} className="space-y-1">
+                          {item.title && (
+                            <div className="font-semibold text-xs text-slate-800 dark:text-slate-200">
+                              {item.title}
+                            </div>
+                          )}
+                          <div className="flex flex-wrap gap-1.5">
+                            {tags.map((tag, tIdx) => (
+                              <span
+                                key={tIdx}
+                                className="text-xs bg-slate-100 dark:bg-muted text-slate-800 dark:text-slate-200 px-2.5 py-0.5 rounded font-medium border border-slate-200/60 dark:border-border"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* 3. Contacts / Reference Type */}
+                {normType === 'contacts' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {(sec.items || []).map((item, idx) => (
+                      <div
+                        key={item.id || idx}
+                        data-ghost-item={item.id || `${sec.id}-${idx}`}
+                        className="p-2.5 rounded-lg border border-slate-200/70 dark:border-border bg-slate-50/50 dark:bg-card/40 space-y-0.5 text-xs"
+                      >
+                        <div className="font-bold text-slate-900 dark:text-foreground">{item.title}</div>
+                        {item.subtitle && <div className="text-slate-600 dark:text-muted-foreground">{item.subtitle}</div>}
+                        {item.description && <div className="text-slate-500 text-[11px]">{item.description}</div>}
+                        <div className="text-[11px] text-slate-600 dark:text-muted-foreground pt-1 space-y-0.5">
+                          {item.email && <div>✉️ {item.email}</div>}
+                          {item.phone && <div>📞 {item.phone}</div>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 4. Awards / Credential Type */}
+                {normType === 'awards' && (
+                  <div className={itemSpacingClass}>
+                    {(sec.items || []).map((item, idx) => (
+                      <div key={item.id || idx} data-ghost-item={item.id || `${sec.id}-${idx}`} className="space-y-0.5 break-inside-avoid">
+                        <div className="flex justify-between items-baseline">
+                          <span className="font-bold text-[13px] text-slate-900 dark:text-foreground">{item.title}</span>
+                          {item.date && <span className="text-[11px] text-slate-500">{item.date}</span>}
+                        </div>
+                        {(item.subtitle || item.issuer || item.score) && (
+                          <div className="text-[12px] text-slate-600 dark:text-muted-foreground">
+                            {item.subtitle || item.issuer} {item.score ? `• ${item.score}` : ''}
+                          </div>
+                        )}
+                        {item.description && <div className="text-[12px] text-slate-600 dark:text-muted-foreground">{item.description}</div>}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 5. Showcase / Project Type */}
+                {normType === 'showcase' && (
+                  <div className={itemSpacingClass}>
+                    {(sec.items || []).map((item, idx) => (
+                      <div key={item.id || idx} data-ghost-item={item.id || `${sec.id}-${idx}`} className="space-y-1 break-inside-avoid">
+                        <div className="flex justify-between items-baseline">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-bold text-[13px] text-slate-900 dark:text-foreground">{item.title}</span>
+                            {item.link && (
+                              <a
+                                href={item.link.startsWith('http') ? item.link : `https://${item.link}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                              >
+                                ↗
+                              </a>
+                            )}
+                          </div>
+                          {item.date && <span className="text-[11px] text-slate-500">{item.date}</span>}
+                        </div>
+                        {item.subtitle && <div className="text-[11.5px] font-medium text-slate-600 dark:text-muted-foreground">{item.subtitle}</div>}
+                        {item.description && <div className="text-[12px] text-slate-600 dark:text-muted-foreground">{item.description}</div>}
+                        {item.highlights && item.highlights.length > 0 && (
+                          <ResumeHighlights highlights={item.highlights} className="text-slate-700 text-[12px] pt-0.5" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 6. Academic / Extended Education Type */}
+                {normType === 'academic' && (
+                  <div className={itemSpacingClass}>
+                    {(sec.items || []).map((item, idx) => (
+                      <div key={item.id || idx} data-ghost-item={item.id || `${sec.id}-${idx}`} className="space-y-0.5 break-inside-avoid">
+                        <div className="flex justify-between items-baseline">
+                          <span className="font-bold text-[13px] text-slate-900 dark:text-foreground">{item.title}</span>
+                          {item.date && <span className="text-[11px] text-slate-500">{item.date}</span>}
+                        </div>
+                        <div className="flex justify-between items-baseline text-[12px] text-slate-700 dark:text-slate-300">
+                          <span>{item.subtitle || ''}</span>
+                          {item.location && <span className="text-[11px] text-slate-500">{item.location}</span>}
+                        </div>
+                        {item.score && (
+                          <div className="text-[11px] font-medium text-purple-700 dark:text-purple-400">
+                            GPA / Honors: {item.score}
+                          </div>
+                        )}
+                        {item.description && (
+                          <div className="text-[12px] text-slate-600 dark:text-muted-foreground pt-0.5 leading-relaxed">
+                            {item.description}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 7. Publication / Research Type */}
+                {normType === 'publication' && (
+                  <div className={itemSpacingClass}>
+                    {(sec.items || []).map((item, idx) => (
+                      <div key={item.id || idx} data-ghost-item={item.id || `${sec.id}-${idx}`} className="space-y-0.5 break-inside-avoid">
+                        <div className="flex justify-between items-baseline">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-bold text-[13px] text-slate-900 dark:text-foreground">{item.title}</span>
+                            {item.link && (
+                              <a
+                                href={item.link.startsWith('http') ? item.link : `https://${item.link}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                              >
+                                ↗
+                              </a>
+                            )}
+                          </div>
+                          {item.date && <span className="text-[11px] text-slate-500">{item.date}</span>}
+                        </div>
+                        {item.subtitle && (
+                          <div className="text-[12px] italic text-slate-600 dark:text-muted-foreground">
+                            {item.subtitle}
+                          </div>
+                        )}
+                        {item.description && (
+                          <div className="text-[12px] text-slate-600 dark:text-muted-foreground pt-0.5 leading-relaxed">
+                            {item.description}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 8. Levels / Ranked Skills Type */}
+                {normType === 'levels' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    {(sec.items || []).map((item, idx) => {
+                      const lvl = item.level || item.subtitle || 'Intermediate';
+                      const score = lvl === 'Expert' ? 5 : lvl === 'Advanced' ? 4 : lvl === 'Intermediate' ? 3 : lvl === 'Elementary' ? 2 : 1;
+                      return (
+                        <div
+                          key={item.id || idx}
+                          data-ghost-item={item.id || `${sec.id}-${idx}`}
+                          className="flex items-center justify-between p-2 rounded-lg bg-slate-50 dark:bg-muted/40 border border-slate-200/60 dark:border-border"
+                        >
+                          <span className="font-semibold text-slate-800 dark:text-slate-200">{item.title}</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[11px] font-medium text-slate-500">{lvl}</span>
+                            <div className="flex gap-0.5">
+                              {[1, 2, 3, 4, 5].map((s) => (
+                                <div
+                                  key={s}
+                                  className={`w-1.5 h-1.5 rounded-full ${s <= score ? 'bg-purple-600' : 'bg-slate-200 dark:bg-slate-700'}`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* 9. Metrics / Key Impact Stats Type */}
+                {normType === 'metrics' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+                    {(sec.items || []).map((item, idx) => (
+                      <div
+                        key={item.id || idx}
+                        data-ghost-item={item.id || `${sec.id}-${idx}`}
+                        className="p-3 rounded-xl bg-slate-50 dark:bg-muted/40 border border-slate-200/70 dark:border-border space-y-1 text-center sm:text-left"
+                      >
+                        <div className="text-lg font-black text-purple-700 dark:text-purple-400 tracking-tight">
+                          {item.title}
+                        </div>
+                        {item.subtitle && (
+                          <div className="text-xs font-bold text-slate-900 dark:text-foreground">
+                            {item.subtitle}
+                          </div>
+                        )}
+                        {item.description && (
+                          <div className="text-[11px] text-slate-500 dark:text-muted-foreground leading-snug">
+                            {item.description}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* 10. Timeline / Experience Type (Default) */}
+                {normType === 'timeline' && (
+                  <div className={itemSpacingClass}>
+                    {(sec.items || []).map((item, idx) => (
+                      <div key={item.id || idx} data-ghost-item={item.id || `${sec.id}-${idx}`} className="space-y-1 break-inside-avoid">
+                        <div data-ghost-item-header="true">
+                          <div className="flex justify-between items-baseline">
+                            <span className="font-bold text-[13px] text-slate-900 dark:text-foreground">{item.title}</span>
+                            {item.date && <span className="text-[11px] text-slate-500">{item.date}</span>}
+                          </div>
+                          {item.subtitle && (
+                            <div className="text-[12px] text-slate-600 dark:text-muted-foreground">
+                              {item.subtitle} {item.location ? `• ${item.location}` : ''}
+                            </div>
+                          )}
+                        </div>
+                        {item.description && <div className="text-[12px] text-slate-600 dark:text-muted-foreground">{item.description}</div>}
+                        {item.highlights && item.highlights.length > 0 && (
+                          <ResumeHighlights highlights={item.highlights} className="text-slate-700 text-[12px] pt-0.5" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       );
     }
@@ -684,7 +929,7 @@ export const UniversalSectionRenderer: React.FC<UniversalSectionRendererProps> =
 
     // 28. Skills
     case 'skills': {
-      const skillsList = data.skills || [];
+      const skillsList = (data.skills || []).filter((cat) => cat.enabled !== false);
       if (skillsList.length === 0) return null;
       return (
         <div key="skills" data-ghost-section="skills" className="space-y-2 break-inside-avoid">
@@ -692,9 +937,11 @@ export const UniversalSectionRenderer: React.FC<UniversalSectionRendererProps> =
           <div className="space-y-2.5">
             {skillsList.map((cat, idx) => (
               <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="space-y-1 break-inside-avoid">
-                <div data-ghost-item-header="true" className="font-semibold text-slate-800 text-[11px]">
-                  {cat.category}
-                </div>
+                {cat.category && (
+                  <div data-ghost-item-header="true" className="font-semibold text-slate-800 text-[11px]">
+                    {cat.category}
+                  </div>
+                )}
                 <div className="flex flex-wrap gap-1">
                   {cat.items.map((item, sidx) => (
                     <span

@@ -130,12 +130,14 @@ export const FresherTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1.5 text-[11.5px]">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-2 break-inside-avoid">
-                  <span
-                    className="font-bold shrink-0 min-w-[150px] uppercase text-[10.5px] tracking-wider"
-                    style={{ color: themeColor }}
-                  >
-                    • {cat.category || 'Domain Skills'}:
-                  </span>
+                  {cat.category ? (
+                    <span
+                      className="font-bold shrink-0 min-w-[150px] uppercase text-[10.5px] tracking-wider"
+                      style={{ color: themeColor }}
+                    >
+                      • {cat.category}:
+                    </span>
+                  ) : null}
                   <span className="text-slate-800 font-medium leading-relaxed">
                     {cat.items.join(', ')}
                   </span>

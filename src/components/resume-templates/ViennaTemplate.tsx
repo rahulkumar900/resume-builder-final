@@ -100,7 +100,7 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1.5 font-sans text-[12px]">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="flex gap-2">
-                  <span className="font-bold text-slate-800 shrink-0">{cat.category}:</span>
+                  {cat.category ? <span className="font-bold text-slate-800 shrink-0">{cat.category}:</span> : null}
                   <span className="text-slate-600">{cat.items.join(', ')}</span>
                 </div>
               ))}

@@ -294,8 +294,12 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
           <SkillsSection
             key="skills"
             data={resume.skills || []}
+            config={resume.skillsConfig}
+            templateId={resume.templateId}
             targetRole={resume.personalInfo?.jobTitle}
-            onChange={(skills) => onChange({ skills })}
+            onChange={(skills, skillsConfig) =>
+              onChange({ skills, ...(skillsConfig !== undefined ? { skillsConfig } : {}) })
+            }
           />
         );
       case 'projects':

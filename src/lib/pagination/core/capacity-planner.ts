@@ -135,6 +135,48 @@ export class PageCapacityPlanner implements ICapacityPlanner {
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,
         };
+      case 'neon_creative':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 160 : spacing === 'relaxed' ? 210 : 185,
+          runningHeaderHeight: runningHeader,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'neobrutalist':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 205 : spacing === 'relaxed' ? 265 : 235,
+          runningHeaderHeight: 38,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'academic_teaching':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 120 : spacing === 'relaxed' ? 165 : 140,
+          runningHeaderHeight: runningHeader,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'boxed_engineer':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 95 : spacing === 'relaxed' ? 135 : 115,
+          runningHeaderHeight: 38,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'accentbar':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 115 : spacing === 'relaxed' ? 150 : 130,
+          runningHeaderHeight: runningHeader,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'numbered':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 125 : spacing === 'relaxed' ? 160 : 140,
+          runningHeaderHeight: runningHeader,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
       case 'chastain':
         return {
           headerHeightPage1: spacing === 'compact' ? 195 : spacing === 'relaxed' ? 245 : 220,

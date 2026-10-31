@@ -90,6 +90,8 @@ import {
   DEFAULT_SINGLE_COLUMN_SECTIONS,
   DEFAULT_MAIN_COLUMN_SECTIONS,
   DEFAULT_SIDEBAR_COLUMN_SECTIONS,
+  getSectionArchetype,
+  SECTION_ARCHETYPE_CONFIG,
 } from '@/lib/templates';
 
 interface SectionReorderModalProps {
@@ -491,6 +493,8 @@ function SortableSectionCard({
   const Icon = meta.icon;
   const count = meta.getCount(resume);
   const isActiveTab = activeTab === meta.builderKey;
+  const archetype = getSectionArchetype(id);
+  const archetypeConfig = SECTION_ARCHETYPE_CONFIG[archetype];
 
   const style: React.CSSProperties = {
     transform: CSS.Translate.toString(transform),
@@ -566,9 +570,15 @@ function SortableSectionCard({
           title="Click to jump to editing this section"
         >
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-1 min-w-0">
+            <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
               <span className="font-bold text-[11px] sm:text-[13px] text-slate-900 dark:text-white leading-tight truncate">
                 {meta.label}
+              </span>
+              <span
+                className={`text-[9px] px-1.5 py-0.2 rounded-full font-semibold border ${archetypeConfig.badgeClass} shrink-0`}
+                title={archetypeConfig.description}
+              >
+                {archetypeConfig.badgeLabel}
               </span>
               {isActiveTab && (
                 <span className="text-[9px] sm:text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 shrink-0 hidden xs:inline">
@@ -1245,6 +1255,8 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                   if (!meta) return null;
                   const Icon = meta.icon;
                   const count = meta.getCount(resume);
+                  const archetype = getSectionArchetype(secId);
+                  const archetypeConfig = SECTION_ARCHETYPE_CONFIG[archetype];
 
                   return (
                     <div
@@ -1266,9 +1278,17 @@ export const SectionReorderModal: React.FC<SectionReorderModalProps> = ({
                           <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <span className="font-bold text-xs sm:text-[13px] text-slate-800 dark:text-slate-200 truncate block">
-                            {meta.label}
-                          </span>
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="font-bold text-xs sm:text-[13px] text-slate-800 dark:text-slate-200 truncate">
+                              {meta.label}
+                            </span>
+                            <span
+                              className={`text-[9px] px-1.5 py-0.2 rounded-full font-semibold border ${archetypeConfig.badgeClass} shrink-0`}
+                              title={archetypeConfig.description}
+                            >
+                              {archetypeConfig.badgeLabel}
+                            </span>
+                          </div>
                           {count !== null && count > 0 && (
                             <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                               {count} {count === 1 ? 'item' : 'items'} saved

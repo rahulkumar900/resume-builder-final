@@ -118,7 +118,7 @@ export const TorontoTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="pl-3 space-y-1 text-[11.5px]">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-2 break-inside-avoid">
-                  <span className="font-bold text-slate-800 shrink-0 min-w-[130px]">{cat.category}:</span>
+                  {cat.category ? <span className="font-bold text-slate-800 shrink-0 min-w-[130px]">{cat.category}:</span> : null}
                   <span className="text-slate-600">{cat.items.join(', ')}</span>
                 </div>
               ))}

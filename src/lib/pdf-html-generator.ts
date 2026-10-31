@@ -1,6 +1,8 @@
 import { ResumeData } from '@/types/resume';
+import { sanitizeSkillsForRender } from '@/lib/templates';
 
-export function generateResumeHtml(data: ResumeData): string {
+export function generateResumeHtml(rawData: ResumeData): string {
+  const data = sanitizeSkillsForRender(rawData);
   const {
     personalInfo,
     experience = [],

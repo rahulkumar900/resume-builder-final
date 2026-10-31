@@ -64,7 +64,7 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1 text-[11px] text-slate-800">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-1.5 break-inside-avoid">
-                  <span className="font-bold text-slate-900 shrink-0 min-w-[140px]">{cat.category}:</span>
+                  {cat.category ? <span className="font-bold text-slate-900 shrink-0 min-w-[140px]">{cat.category}:</span> : null}
                   <span className="text-slate-700">{cat.items.join(', ')}</span>
                 </div>
               ))}

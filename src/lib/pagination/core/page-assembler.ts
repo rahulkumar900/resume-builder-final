@@ -249,7 +249,11 @@ export class ResumePageAssembler implements IPageAssembler {
       slots.forEach((slot) => {
         if (slot.sectionId === 'skills' && slot.itemId) {
           const found = sourceList.find(
-            (item, idx) => (item.id || `skills-${idx}`) === slot.itemId
+            (item, idx) =>
+              (item.id || `skills-${idx}`) === slot.itemId ||
+              (item.id || `skill-${idx}`) === slot.itemId ||
+              slot.itemId === `skill-${idx}` ||
+              slot.itemId === `skills-${idx}`
           );
           if (found) {
             const rawItems = found.items || [];
@@ -317,9 +321,17 @@ export class ResumePageAssembler implements IPageAssembler {
           });
         } else if (
           customSlots.some(
-            (s) => !s.itemId || s.itemId === sec.id || s.itemId === 'customSections-content'
+            (s) =>
+              !s.itemId ||
+              s.itemId === sec.id ||
+              s.itemId === 'customSections-content' ||
+              s.itemId.startsWith('fallback-') ||
+              s.itemId.startsWith(`${sec.id}-`)
           )
         ) {
+          result.push(sec);
+        } else if (customSlots.length > 0) {
+          // Safety fallback: if customSlots allocated space for customSections, preserve it
           result.push(sec);
         }
       });

@@ -9,6 +9,7 @@ import {
   DEFAULT_SIDEBAR_COLUMN_SECTIONS,
   DEFAULT_SINGLE_COLUMN_SECTIONS,
   getDefaultSectionOrder,
+  getResolvedTemplateSectionOrder,
   getTemplateLayout,
 } from '@/lib/templates';
 import {
@@ -58,20 +59,17 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
       hasAvatar
     );
 
-    const defaultOrder = getDefaultSectionOrder(templateId);
+    const resolvedOrder = getResolvedTemplateSectionOrder(templateId, data);
 
     if (layout === 'single') {
-      let singleOrder =
-        data.sectionOrder?.singleColumn ||
-        defaultOrder.singleColumn ||
-        DEFAULT_SINGLE_COLUMN_SECTIONS;
+      let singleOrder = resolvedOrder.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS;
       if (
         (templateId === 'sarkari' || templateId === 'traditional') &&
         !singleOrder.includes('declaration')
       ) {
         singleOrder = [...singleOrder, 'declaration'];
       }
-      singleOrder = singleOrder.filter(s => !data.hiddenSections?.includes(s));
+      singleOrder = singleOrder.filter((s) => !data.hiddenSections?.includes(s));
 
       const singleCol = this.measureColumn(data, singleOrder, 'single', false, true, spacing);
 
@@ -86,17 +84,12 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
     }
 
     // Double column
-    let mainOrder =
-      data.sectionOrder?.mainColumn ||
-      defaultOrder.mainColumn ||
-      DEFAULT_MAIN_COLUMN_SECTIONS;
-    mainOrder = mainOrder.filter(s => !data.hiddenSections?.includes(s));
-
-    let sidebarOrder =
-      data.sectionOrder?.sidebarColumn ||
-      defaultOrder.sidebarColumn ||
-      DEFAULT_SIDEBAR_COLUMN_SECTIONS;
-    sidebarOrder = sidebarOrder.filter(s => !data.hiddenSections?.includes(s));
+    let mainOrder = (resolvedOrder.mainColumn || DEFAULT_MAIN_COLUMN_SECTIONS).filter(
+      (s) => !data.hiddenSections?.includes(s)
+    );
+    let sidebarOrder = (resolvedOrder.sidebarColumn || DEFAULT_SIDEBAR_COLUMN_SECTIONS).filter(
+      (s) => !data.hiddenSections?.includes(s)
+    );
 
     const mainCol = this.measureColumn(data, mainOrder, 'main', false, false, spacing);
     const sidebarCol = this.measureColumn(data, sidebarOrder, 'sidebar', true, false, spacing);

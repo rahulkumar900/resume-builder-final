@@ -85,8 +85,8 @@ export function calculateSectionProgress(
     }
 
     case 'skills': {
-      const list = resume.skills;
-      if (!list || list.length === 0) return 0;
+      const list = (resume.skills || []).filter((cat) => cat.enabled !== false);
+      if (list.length === 0) return 0;
 
       // Mandatory: Skills must contain non-empty keywords
       const totalSkills = list.reduce(
@@ -387,10 +387,9 @@ export function calculateOverallCompleteness(resume: ResumeData): number {
     const validProj = (resume.projects || []).filter((pr) => pr.title?.trim());
     if (validProj.length > 0) score += 25;
 
-    const totalSkills = (resume.skills || []).reduce(
-      (acc, cat) => acc + (cat.items?.length || 0),
-      0
-    );
+    const totalSkills = (resume.skills || [])
+      .filter((cat) => cat.enabled !== false)
+      .reduce((acc, cat) => acc + (cat.items?.length || 0), 0);
     if (totalSkills >= 5) score += 20;
     else if (totalSkills >= 2) score += 12;
     else if (totalSkills > 0) score += 6;
@@ -416,10 +415,9 @@ export function calculateOverallCompleteness(resume: ResumeData): number {
     );
     if (validEdu.length > 0) score += 15;
 
-    const totalSkills = (resume.skills || []).reduce(
-      (acc, cat) => acc + (cat.items?.length || 0),
-      0
-    );
+    const totalSkills = (resume.skills || [])
+      .filter((cat) => cat.enabled !== false)
+      .reduce((acc, cat) => acc + (cat.items?.length || 0), 0);
     if (totalSkills >= 5) score += 15;
     else if (totalSkills >= 2) score += 10;
     else if (totalSkills > 0) score += 5;

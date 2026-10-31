@@ -165,7 +165,7 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className={itemSpaceClass}>
               {skills.map((cat, idx) => (
                 <div key={cat.id || `sk-${idx}`} data-ghost-item={cat.id || `sk-${idx}`} className="break-inside-avoid">
-                  <div data-ghost-item-header="true" className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">{cat.category}</div>
+                  {cat.category ? <div data-ghost-item-header="true" className="text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">{cat.category}</div> : null}
                   <div className="flex flex-wrap gap-1.5">
                     {cat.items.map((it, i) => (
                       <span key={i} data-ghost-bullet={i} className="bg-slate-100 text-slate-800 text-xs px-2.5 py-1 rounded font-medium">

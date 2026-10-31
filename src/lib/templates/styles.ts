@@ -6,6 +6,7 @@
 
 import { FontFamily, LineHeightOption, TemplateId } from '@/types/resume';
 import { TEMPLATES } from './definitions';
+import { getTemplateDefaultSkillsGrouping } from './skills-sanitizer';
 export const COLOR_PALETTES = [
   { name: 'Kindley Royal Blue', value: '#2563eb' },
   { name: 'Slate Dark', value: '#1e293b' },
@@ -66,10 +67,15 @@ export const getTemplateDefaults = (templateId: TemplateId) => {
   const template = TEMPLATES.find(t => t.id === templateId);
   const themeColor = template?.accentColor || '#2563eb';
   const fontFamily: FontFamily = template?.fontFamily || getTemplateSignatureFont(templateId);
+  const enableGrouping = getTemplateDefaultSkillsGrouping(templateId);
 
   return {
     themeColor,
     fontFamily,
+    skillsConfig: {
+      enableGrouping,
+      showLevels: !enableGrouping,
+    },
     typography: {
       primaryFont: fontFamily,
       secondaryFont: fontFamily,

@@ -1,13 +1,36 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ResumeData, SectionOrderConfig } from '@/types/resume';
+import { ResumeData, SectionOrderConfig, CustomSectionType } from '@/types/resume';
 import { SectionKey } from '@/types/builder';
-import { SECTION_TITLES } from '@/lib/templates';
+import { SECTION_TITLES, normalizeCustomSectionType } from '@/lib/templates';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Trash2, PlusCircle, Check, ChevronDown, ChevronUp, Pencil, GripVertical } from 'lucide-react';
+import {
+  Plus,
+  Trash2,
+  PlusCircle,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Pencil,
+  GripVertical,
+  Briefcase,
+  FolderGit2,
+  GraduationCap,
+  Award,
+  BookOpen,
+  Tag,
+  Sliders,
+  TrendingUp,
+  AlignLeft,
+  Users,
+  Sparkles,
+  ExternalLink,
+  Layers,
+  X,
+} from 'lucide-react';
 import { RichTextEditor } from '@/components/ui/RichTextEditor';
 import { MobileFullscreenItemModal } from '@/components/builder/MobileFullscreenItemModal';
 import { SortableList } from '@/components/ui/sortable-list';
@@ -1075,21 +1098,125 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
     );
   }
 
-  // 7. Custom Section
+  // 7. Custom Section with Type Archetype Selection
   if (sectionKey === 'customSections') {
     const customSections = resume.customSections || [];
 
-    const addSection = () => {
+    const customTypeOptions: {
+      type: CustomSectionType;
+      label: string;
+      badge: string;
+      icon: React.ElementType;
+      hint: string;
+      defaultTitle: string;
+    }[] = [
+      {
+        type: 'custom_timeline',
+        label: 'Timeline',
+        badge: 'Roles & Dates',
+        icon: Briefcase,
+        hint: 'Custom roles, organizations, dates, location & accomplishments',
+        defaultTitle: 'Leadership & Advisory',
+      },
+      {
+        type: 'custom_showcase',
+        label: 'Showcase',
+        badge: 'Projects',
+        icon: FolderGit2,
+        hint: 'Project showcase, tech stack, external links & deliverables',
+        defaultTitle: 'Side Projects & Ventures',
+      },
+      {
+        type: 'custom_academic',
+        label: 'Academic',
+        badge: 'Degrees',
+        icon: GraduationCap,
+        hint: 'Degrees, institutions, location, dates, GPA & coursework',
+        defaultTitle: 'Extended Education & Coursework',
+      },
+      {
+        type: 'custom_awards',
+        label: 'Accreditations',
+        badge: 'Awards',
+        icon: Award,
+        hint: 'Certificates, special honors, issuer & credential ID',
+        defaultTitle: 'Accreditations & Honors',
+      },
+      {
+        type: 'custom_publication',
+        label: 'Publications',
+        badge: 'Papers',
+        icon: BookOpen,
+        hint: 'Research papers, articles, conferences, DOIs & abstracts',
+        defaultTitle: 'Publications & Research',
+      },
+      {
+        type: 'custom_tags',
+        label: 'Tag List',
+        badge: 'Pill Tags',
+        icon: Tag,
+        hint: 'Competency categories, tools & comma-separated tags',
+        defaultTitle: 'Technical Toolsets & Domains',
+      },
+      {
+        type: 'custom_levels',
+        label: 'Levels',
+        badge: 'Skill Levels',
+        icon: Sliders,
+        hint: 'Ranked competencies or languages with 5-tier proficiency',
+        defaultTitle: 'Core Proficiencies & Levels',
+      },
+      {
+        type: 'custom_metrics',
+        label: 'Key Metrics',
+        badge: 'KPI Stats',
+        icon: TrendingUp,
+        hint: 'Prominent metric stats, percentage gains, KPIs & context',
+        defaultTitle: 'Key Business Metrics & Impact',
+      },
+      {
+        type: 'custom_statement',
+        label: 'Statement',
+        badge: 'Narrative',
+        icon: AlignLeft,
+        hint: 'Freeform text block, executive philosophy or client reviews',
+        defaultTitle: 'Executive Statement & Philosophy',
+      },
+      {
+        type: 'custom_contacts',
+        label: 'Contacts',
+        badge: 'Referees',
+        icon: Users,
+        hint: 'Referee names, job titles, companies, email & phone',
+        defaultTitle: 'Professional References & Mentors',
+      },
+    ];
+
+    const addSection = (chosenType: CustomSectionType = 'custom_timeline') => {
+      const typeOpt = customTypeOptions.find((o) => o.type === chosenType);
+      const defaultTitle = typeOpt ? typeOpt.defaultTitle : `Custom Section #${customSections.length + 1}`;
+
       const newSec = {
         id: `custom-${Date.now()}`,
-        title: 'Custom Section',
+        title: defaultTitle,
+        type: chosenType,
+        content: '',
         items: [
           {
             id: `citem-${Date.now()}`,
             title: '',
             subtitle: '',
             date: '',
+            location: '',
             description: '',
+            highlights: [''],
+            link: '',
+            issuer: '',
+            score: '',
+            items: [],
+            email: '',
+            phone: '',
+            level: 'Intermediate',
           },
         ],
       };
@@ -1108,126 +1235,1094 @@ export const GenericSectionEditor: React.FC<GenericSectionEditorProps> = ({
 
     return (
       <div className="space-y-6">
-        {renderHeader('Custom Sections', 'Create user-defined custom resume sections')}
+        {renderHeader('Custom Sections', 'Create customizable sections and choose their layout type')}
 
         {customSections.length === 0 ? (
-          <div className="rounded-2xl border-2 border-dashed border-slate-200 dark:border-border bg-slate-50/70 dark:bg-card/40 p-8 text-center space-y-3.5">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mx-auto border border-emerald-200/60 dark:border-emerald-800 shadow-2xs">
-              <Plus className="w-5 h-5" />
+          <div className="rounded-2xl border-2 border-dashed border-slate-200 dark:border-border bg-slate-50/70 dark:bg-card/40 p-8 text-center space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-400 flex items-center justify-center mx-auto border border-purple-200/60 dark:border-purple-800 shadow-2xs">
+              <Sparkles className="w-5 h-5" />
             </div>
             <div className="max-w-md mx-auto space-y-1">
               <h3 className="text-sm font-bold text-slate-900 dark:text-foreground">
                 No custom sections created yet
               </h3>
               <p className="text-xs text-slate-500 dark:text-muted-foreground leading-relaxed">
-                Need to add something unique like consulting work, side projects, or press coverage? Create a custom section.
+                Add unique sections like consulting projects, advisory boards, patents, or client testimonials, and choose any format shape.
               </p>
             </div>
-            <div className="pt-1">
-              <Button
-                type="button"
-                variant="default"
-                size="sm"
-                onClick={addSection}
-                className="gap-1.5 font-semibold shadow-xs"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Create custom section</span>
-              </Button>
+            <div className="pt-2 flex flex-wrap justify-center gap-2 max-w-lg mx-auto">
+              {customTypeOptions.map((opt) => {
+                const Icon = opt.icon;
+                return (
+                  <Button
+                    key={opt.type}
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => addSection(opt.type)}
+                    className="gap-1.5 font-medium text-xs shadow-2xs hover:border-purple-300 dark:hover:border-purple-700"
+                  >
+                    <Icon className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                    <span>+ {opt.label}</span>
+                  </Button>
+                );
+              })}
             </div>
           </div>
         ) : (
           <div className="space-y-6">
-            {customSections.map((sec, sIdx) => (
-              <div key={sec.id} className="p-5 bg-white dark:bg-card rounded-2xl border border-slate-200 dark:border-border shadow-xs space-y-4">
-                <div className="flex justify-between items-center gap-4">
-                  <div className="flex-1">
-                    <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Section Header Title</label>
-                    <Input
-                      value={sec.title}
-                      onChange={(e) => updateSection(sIdx, { title: e.target.value })}
-                      placeholder="e.g. Major Consulting Engagements"
-                      className="font-bold text-base"
-                    />
-                  </div>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeSection(sIdx)}
-                    className="text-slate-400 hover:text-red-600 shrink-0"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
+            {customSections.map((sec, sIdx) => {
+              const normType = normalizeCustomSectionType(sec.type);
+              const activeTypeInfo =
+                customTypeOptions.find((o) => normalizeCustomSectionType(o.type) === normType) ||
+                customTypeOptions[0];
 
-                {/* Items */}
-                <div className="space-y-3 pt-2">
-                  {(sec.items || []).map((item, iIdx) => (
-                    <div key={item.id || iIdx} className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2">
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        <Input
-                          value={item.title}
-                          onChange={(e) => {
-                            const newItems = [...sec.items];
-                            newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
-                            updateSection(sIdx, { items: newItems });
-                          }}
-                          placeholder="Item Title"
-                          className="text-xs font-semibold"
-                        />
-                        <Input
-                          value={item.subtitle || ''}
-                          onChange={(e) => {
-                            const newItems = [...sec.items];
-                            newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
-                            updateSection(sIdx, { items: newItems });
-                          }}
-                          placeholder="Subtitle / Organization"
-                          className="text-xs"
-                        />
-                        <Input
-                          value={item.date || ''}
-                          onChange={(e) => {
-                            const newItems = [...sec.items];
-                            newItems[iIdx] = { ...newItems[iIdx], date: e.target.value };
-                            updateSection(sIdx, { items: newItems });
-                          }}
-                          placeholder="Date / Period"
-                          className="text-xs"
-                        />
-                      </div>
+              return (
+                <div
+                  key={sec.id}
+                  className="p-5 sm:p-6 bg-white dark:bg-card rounded-2xl border border-slate-200 dark:border-border shadow-xs space-y-5"
+                >
+                  {/* Top Bar: Section Title & Delete */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-border">
+                    <div className="flex-1">
+                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">
+                        Section Header Title
+                      </label>
                       <Input
-                        value={item.description || ''}
-                        onChange={(e) => {
-                          const newItems = [...sec.items];
-                          newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
-                          updateSection(sIdx, { items: newItems });
-                        }}
-                        placeholder="Description..."
-                        className="text-xs"
+                        value={sec.title}
+                        onChange={(e) => updateSection(sIdx, { title: e.target.value })}
+                        placeholder="e.g. Major Consulting Engagements, Key Clients, Speaking"
+                        className="font-bold text-base"
                       />
                     </div>
-                  ))}
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      const newItems = [
-                        ...(sec.items || []),
-                        { id: `citem-${Date.now()}`, title: '', subtitle: '', date: '', description: '' },
-                      ];
-                      updateSection(sIdx, { items: newItems });
-                    }}
-                    className="text-xs gap-1 h-7"
-                  >
-                    <Plus className="w-3 h-3" />
-                    <span>Add Item</span>
-                  </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeSection(sIdx)}
+                      className="text-slate-400 hover:text-rose-600 gap-1 self-end sm:self-center"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      <span className="text-xs">Remove Section</span>
+                    </Button>
+                  </div>
+
+                  {/* Section Type Selector (User can pick ANY type) */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                        Section Type:
+                      </span>
+                      <span className="text-[11px] text-purple-700 dark:text-purple-300 font-medium">
+                        {activeTypeInfo.hint}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 rounded-xl bg-slate-50 dark:bg-muted/40 border border-slate-200/80 dark:border-border">
+                      {customTypeOptions.map((opt) => {
+                        const Icon = opt.icon;
+                        const isSelected = normalizeCustomSectionType(opt.type) === normType;
+
+                        return (
+                          <button
+                            key={opt.type}
+                            type="button"
+                            onClick={() => updateSection(sIdx, { type: opt.type })}
+                            className={`flex flex-col items-center justify-center p-2 rounded-lg text-center transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-white dark:bg-card text-purple-700 dark:text-purple-300 shadow-xs border border-purple-200 dark:border-purple-800 font-bold'
+                                : 'text-slate-600 dark:text-muted-foreground hover:bg-white/60 dark:hover:bg-card/60'
+                            }`}
+                          >
+                            <Icon className={`w-4 h-4 mb-1 shrink-0 ${isSelected ? 'text-purple-600 dark:text-purple-400' : 'text-slate-400'}`} />
+                            <span className="text-[11px] font-semibold leading-tight">{opt.label}</span>
+                            <span className="text-[9px] text-slate-400 opacity-80 leading-tight hidden xs:block">{opt.badge}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Dynamic Form Content by Section Type */}
+
+                  {/* 1. TEXT BLOCK TYPE */}
+                  {normType === 'statement' && (
+                    <div className="space-y-2 pt-1">
+                      <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block">
+                        Paragraph Content / Narrative
+                      </label>
+                      <Textarea
+                        value={sec.content || sec.items?.[0]?.description || ''}
+                        onChange={(e) => updateSection(sIdx, { content: e.target.value })}
+                        placeholder="Write your custom statement, personal philosophy, declaration, or client review here..."
+                        rows={5}
+                        className="text-xs leading-relaxed"
+                      />
+                    </div>
+                  )}
+
+                  {/* 2. LIST & TAGS TYPE */}
+                  {normType === 'tags' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => {
+                        const rawTags = item.description || (item.items || []).join(', ');
+                        const tagList = rawTags
+                          .split(',')
+                          .map((s) => s.trim())
+                          .filter(Boolean);
+
+                        return (
+                          <div
+                            key={item.id || iIdx}
+                            className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                                Tag Group #{iIdx + 1}
+                              </span>
+                              {(sec.items || []).length > 1 && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                    updateSection(sIdx, { items: nextItems });
+                                  }}
+                                  className="text-slate-400 hover:text-rose-600 text-xs"
+                                >
+                                  Delete
+                                </button>
+                              )}
+                            </div>
+
+                            <div className="space-y-1">
+                              <label className="text-[11px] text-slate-500 font-medium">Category / Group Name (Optional)</label>
+                              <Input
+                                value={item.title || ''}
+                                onChange={(e) => {
+                                  const newItems = [...sec.items];
+                                  newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                  updateSection(sIdx, { items: newItems });
+                                }}
+                                placeholder="e.g. Methodologies, Tools, Focus Areas"
+                                className="text-xs font-semibold"
+                              />
+                            </div>
+
+                            <div className="space-y-1">
+                              <label className="text-[11px] text-slate-500 font-medium">Items (comma-separated)</label>
+                              <Input
+                                value={rawTags}
+                                onChange={(e) => {
+                                  const newItems = [...sec.items];
+                                  const tags = e.target.value.split(',').map((s) => s.trim()).filter(Boolean);
+                                  newItems[iIdx] = {
+                                    ...newItems[iIdx],
+                                    description: e.target.value,
+                                    items: tags,
+                                  };
+                                  updateSection(sIdx, { items: newItems });
+                                }}
+                                placeholder="Agile, Scrum, Design Thinking, CI/CD, Product Strategy"
+                                className="text-xs"
+                              />
+                            </div>
+
+                            {tagList.length > 0 && (
+                              <div className="flex flex-wrap gap-1.5 pt-1">
+                                {tagList.map((tag, tIdx) => (
+                                  <span
+                                    key={tIdx}
+                                    className="inline-flex items-center gap-1 text-[11px] bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 px-2 py-0.5 rounded-md font-medium group"
+                                  >
+                                    <span>{tag}</span>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const updated = tagList.filter((_, idx) => idx !== tIdx);
+                                        const newItems = [...sec.items];
+                                        newItems[iIdx] = {
+                                          ...newItems[iIdx],
+                                          description: updated.join(', '),
+                                          items: updated,
+                                        };
+                                        updateSection(sIdx, { items: newItems });
+                                      }}
+                                      className="text-purple-400 hover:text-rose-600 dark:hover:text-rose-400 p-0.5 rounded cursor-pointer"
+                                      title={`Remove tag "${tag}"`}
+                                    >
+                                      <X className="w-2.5 h-2.5" />
+                                    </button>
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', description: '', items: [] },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Tag Group</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 3. REFERENCE TYPE */}
+                  {normType === 'contacts' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Referee #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <Input
+                              value={item.title || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Full Name (e.g. Dr. Jane Doe)"
+                              className="text-xs font-semibold"
+                            />
+                            <Input
+                              value={item.subtitle || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Job Title (e.g. Engineering Director)"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.description || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Company / University"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.email || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], email: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Email Address"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.phone || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], phone: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Phone Number / Relationship"
+                              className="text-xs"
+                            />
+                          </div>
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', description: '', email: '', phone: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Referee</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 4. CREDENTIAL / AWARD TYPE */}
+                  {normType === 'awards' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Credential #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.title || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Award / Certification Title"
+                              className="text-xs font-semibold"
+                            />
+                            <Input
+                              value={item.subtitle || item.issuer || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value, issuer: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Issuer / Organization / Authority"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.date || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], date: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Date / Year"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.score || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], score: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Credential ID / Score / URL (Optional)"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <Input
+                            value={item.description || ''}
+                            onChange={(e) => {
+                              const newItems = [...sec.items];
+                              newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                              updateSection(sIdx, { items: newItems });
+                            }}
+                            placeholder="Brief description / scope (Optional)"
+                            className="text-xs"
+                          />
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', date: '', score: '', description: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Credential</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 5. ACADEMIC / EXTENDED EDUCATION TYPE */}
+                  {normType === 'academic' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Program #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.title || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Degree / Program Title"
+                              className="text-xs font-semibold"
+                            />
+                            <Input
+                              value={item.subtitle || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Institution / University"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <Input
+                              value={item.location || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], location: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Location"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.date || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], date: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Date / Period"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.score || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], score: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="GPA / Honors (Optional)"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <Textarea
+                            value={item.description || ''}
+                            onChange={(e) => {
+                              const newItems = [...sec.items];
+                              newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                              updateSection(sIdx, { items: newItems });
+                            }}
+                            placeholder="Coursework, research honors, activities..."
+                            rows={3}
+                            className="text-xs leading-relaxed"
+                          />
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', location: '', date: '', score: '', description: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Program</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 6. PUBLICATION / RESEARCH TYPE */}
+                  {normType === 'publication' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Publication #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.title || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Paper / Article / Book Title"
+                              className="text-xs font-semibold"
+                            />
+                            <Input
+                              value={item.subtitle || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Journal / Conference / Publisher"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.date || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], date: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Publication Date / Year"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.link || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], link: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="DOI / Link (e.g. doi.org/...)"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <Textarea
+                            value={item.description || ''}
+                            onChange={(e) => {
+                              const newItems = [...sec.items];
+                              newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                              updateSection(sIdx, { items: newItems });
+                            }}
+                            placeholder="Abstract, co-authors, key discoveries..."
+                            rows={3}
+                            className="text-xs leading-relaxed"
+                          />
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', date: '', link: '', description: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Publication</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 7. LEVELS / RANKED SKILLS TYPE */}
+                  {normType === 'levels' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => {
+                        const levelSegments: { key: string; label: string; score: number }[] = [
+                          { key: 'Beginner', label: 'Beginner', score: 1 },
+                          { key: 'Elementary', label: 'Elementary', score: 2 },
+                          { key: 'Intermediate', label: 'Intermediate', score: 3 },
+                          { key: 'Advanced', label: 'Advanced', score: 4 },
+                          { key: 'Expert', label: 'Expert', score: 5 },
+                        ];
+                        const currentLevel = item.level || item.subtitle || 'Intermediate';
+                        const currentScore =
+                          levelSegments.find((l) => l.key === currentLevel)?.score || 3;
+
+                        return (
+                          <div
+                            key={item.id || iIdx}
+                            className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                                Proficiency #{iIdx + 1}
+                              </span>
+                              {(sec.items || []).length > 1 && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                    updateSection(sIdx, { items: nextItems });
+                                  }}
+                                  className="text-slate-400 hover:text-rose-600 text-xs"
+                                >
+                                  Delete
+                                </button>
+                              )}
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                              <div className="space-y-1">
+                                <label className="text-[11px] text-slate-500 font-medium">Competency / Language Name</label>
+                                <Input
+                                  value={item.title || ''}
+                                  onChange={(e) => {
+                                    const newItems = [...sec.items];
+                                    newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                    updateSection(sIdx, { items: newItems });
+                                  }}
+                                  placeholder="e.g. TypeScript, German, Cloud Architecture"
+                                  className="text-xs font-semibold"
+                                />
+                              </div>
+
+                              <div className="space-y-1">
+                                <div className="flex items-center justify-between">
+                                  <label className="text-[11px] text-slate-500 font-medium">Level</label>
+                                  <span className="text-[11px] font-bold text-purple-700 dark:text-purple-300">
+                                    {currentLevel} ({currentScore}/5)
+                                  </span>
+                                </div>
+                                <div className="grid grid-cols-5 gap-1 p-0.5 rounded-lg bg-slate-200/60 dark:bg-muted border border-slate-200 dark:border-border">
+                                  {levelSegments.map((lvl) => {
+                                    const isSelected = currentLevel === lvl.key;
+                                    const isFilled = currentScore >= lvl.score;
+                                    return (
+                                      <button
+                                        key={lvl.key}
+                                        type="button"
+                                        onClick={() => {
+                                          const newItems = [...sec.items];
+                                          newItems[iIdx] = {
+                                            ...newItems[iIdx],
+                                            level: lvl.key,
+                                            subtitle: lvl.key,
+                                          };
+                                          updateSection(sIdx, { items: newItems });
+                                        }}
+                                        className={`py-1.5 px-0.5 text-center rounded text-[10px] font-bold transition-all cursor-pointer truncate ${
+                                          isSelected
+                                            ? 'bg-purple-600 text-white shadow-xs'
+                                            : isFilled
+                                            ? 'bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300'
+                                            : 'bg-white dark:bg-card text-slate-500 hover:bg-slate-50'
+                                        }`}
+                                      >
+                                        {lvl.label}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: 'Intermediate', level: 'Intermediate' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Proficiency</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 8. METRICS / KEY IMPACT STATS TYPE */}
+                  {normType === 'metrics' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Metric #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div className="space-y-1">
+                              <label className="text-[11px] text-slate-500 font-medium">Metric Stat / Number</label>
+                              <Input
+                                value={item.title || ''}
+                                onChange={(e) => {
+                                  const newItems = [...sec.items];
+                                  newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                  updateSection(sIdx, { items: newItems });
+                                }}
+                                placeholder="e.g. +145%, $12M+, 99.99%, #1"
+                                className="text-sm font-bold text-purple-700 dark:text-purple-400"
+                              />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-[11px] text-slate-500 font-medium">Metric Label / Headline</label>
+                              <Input
+                                value={item.subtitle || ''}
+                                onChange={(e) => {
+                                  const newItems = [...sec.items];
+                                  newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
+                                  updateSection(sIdx, { items: newItems });
+                                }}
+                                placeholder="e.g. ARR Growth, System Uptime, Cost Reduction"
+                                className="text-xs font-semibold"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[11px] text-slate-500 font-medium">Context / Description</label>
+                            <Input
+                              value={item.description || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="e.g. Scaled across 4 distributed engineering teams and 500k active users"
+                              className="text-xs"
+                            />
+                          </div>
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', description: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Metric</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 5. PROJECT TYPE */}
+                  {normType === 'showcase' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Project #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.title || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Project Name"
+                              className="text-xs font-semibold"
+                            />
+                            <Input
+                              value={item.subtitle || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Technologies / Role"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.link || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], link: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Project Link / URL (e.g. github.com/...)"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.date || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], date: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Date / Period"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <Textarea
+                            value={item.description || ''}
+                            onChange={(e) => {
+                              const newItems = [...sec.items];
+                              newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                              updateSection(sIdx, { items: newItems });
+                            }}
+                            placeholder="Project description, deliverables & impact..."
+                            rows={3}
+                            className="text-xs leading-relaxed"
+                          />
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', link: '', date: '', description: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Project</span>
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* 6. EXPERIENCE / TIMELINE TYPE (Default) */}
+                  {normType === 'timeline' && (
+                    <div className="space-y-3 pt-1">
+                      {(sec.items || []).map((item, iIdx) => (
+                        <div
+                          key={item.id || iIdx}
+                          className="p-3.5 bg-slate-50 dark:bg-muted/40 rounded-xl border border-slate-200/60 dark:border-border space-y-2.5"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                              Position #{iIdx + 1}
+                            </span>
+                            {(sec.items || []).length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const nextItems = sec.items.filter((_, i) => i !== iIdx);
+                                  updateSection(sIdx, { items: nextItems });
+                                }}
+                                className="text-slate-400 hover:text-rose-600 text-xs"
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.title || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], title: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Position / Role Title"
+                              className="text-xs font-semibold"
+                            />
+                            <Input
+                              value={item.subtitle || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], subtitle: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Company / Organization"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input
+                              value={item.location || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], location: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Location (e.g. Remote, City)"
+                              className="text-xs"
+                            />
+                            <Input
+                              value={item.date || ''}
+                              onChange={(e) => {
+                                const newItems = [...sec.items];
+                                newItems[iIdx] = { ...newItems[iIdx], date: e.target.value };
+                                updateSection(sIdx, { items: newItems });
+                              }}
+                              placeholder="Date / Period (e.g. 2022 - Present)"
+                              className="text-xs"
+                            />
+                          </div>
+
+                          <Textarea
+                            value={item.description || ''}
+                            onChange={(e) => {
+                              const newItems = [...sec.items];
+                              newItems[iIdx] = { ...newItems[iIdx], description: e.target.value };
+                              updateSection(sIdx, { items: newItems });
+                            }}
+                            placeholder="Description, key responsibilities & accomplishments..."
+                            rows={3}
+                            className="text-xs leading-relaxed"
+                          />
+                        </div>
+                      ))}
+
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const newItems = [
+                            ...(sec.items || []),
+                            { id: `citem-${Date.now()}`, title: '', subtitle: '', location: '', date: '', description: '' },
+                          ];
+                          updateSection(sIdx, { items: newItems });
+                        }}
+                        className="text-xs gap-1 h-8"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>Add Item</span>
+                      </Button>
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

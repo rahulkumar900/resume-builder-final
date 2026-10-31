@@ -38,10 +38,11 @@ import {
   Check,
   ArrowRight,
 } from 'lucide-react';
-import { ResumeData, SectionOrderConfig } from '@/types/resume';
+import { ResumeData, SectionOrderConfig, ResumeSectionId } from '@/types/resume';
 import { Button } from '@/components/ui/button';
 import { SectionReorderModal } from '@/components/builder/SectionReorderModal';
 import { calculateSectionProgress } from '@/lib/section-progress';
+import { getSectionArchetype, SECTION_ARCHETYPE_CONFIG } from '@/lib/templates';
 import { cn } from '@/lib/utils';
 
 interface SectionNavProps {
@@ -420,6 +421,16 @@ export const SectionNav: React.FC<SectionNavProps> = ({
                         <Icon className="w-3.5 h-3.5" />
                       </div>
                       <span className="truncate">{item.label}</span>
+                      {key !== 'review' && key !== 'personal' && (
+                        <span
+                          className={cn(
+                            'text-[9px] px-1.5 py-0.2 rounded font-semibold border hidden sm:inline shrink-0',
+                            SECTION_ARCHETYPE_CONFIG[getSectionArchetype(key as ResumeSectionId)]?.badgeClass
+                          )}
+                        >
+                          {SECTION_ARCHETYPE_CONFIG[getSectionArchetype(key as ResumeSectionId)]?.badgeLabel}
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex items-center gap-1.5 shrink-0">

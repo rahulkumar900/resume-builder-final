@@ -186,9 +186,11 @@ export const HarvardExperiencedTemplate: React.FC<TemplateProps> = ({ data }) =>
                   data-ghost-item={cat.id || `skill-${idx}`}
                   className="flex flex-row items-baseline gap-1.5 break-inside-avoid"
                 >
-                  <span className="font-bold shrink-0">
-                    {cat.category}:
-                  </span>
+                  {cat.category ? (
+                    <span className="font-bold shrink-0">
+                      {cat.category}:
+                    </span>
+                  ) : null}
                   <span className="text-slate-800">{cat.items.join(', ')}</span>
                 </div>
               ))}

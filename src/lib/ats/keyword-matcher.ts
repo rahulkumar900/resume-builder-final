@@ -106,7 +106,7 @@ export const buildResumeCorpus = (resume: ResumeData): string => {
   (resume.skills || []).forEach((cat: any) => {
     if (typeof cat === 'string') {
       parts.push(cat);
-    } else if (cat && typeof cat === 'object') {
+    } else if (cat && typeof cat === 'object' && cat.enabled !== false) {
       if (cat.category) parts.push(cat.category);
       if (Array.isArray(cat.items)) {
         cat.items.forEach((item: string) => parts.push(item));

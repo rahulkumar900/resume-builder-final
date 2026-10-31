@@ -171,7 +171,7 @@ export const generateAtsPlainText = (data: ResumeData): string => {
   if (data.skills && data.skills.length > 0) {
     const skillLines: string[] = ['SKILLS & COMPETENCIES'];
     data.skills.forEach((cat) => {
-      if (cat.items && cat.items.length > 0) {
+      if (cat.enabled !== false && cat.items && cat.items.length > 0) {
         skillLines.push(`${cat.category || 'Skills'}: ${cat.items.join(', ')}`);
       }
     });
@@ -537,7 +537,7 @@ export const analyzeResumeAts = (data?: ResumeData | null): AtsAuditResult => {
   // 4. Skills & Keyword Relevance (20 pts)
   // ==========================================
   let skillsScore = 0;
-  const skills = safeData.skills || [];
+  const skills = (safeData.skills || []).filter((cat) => cat.enabled !== false);
   const totalSkills = skills.reduce((acc, cat) => acc + (cat.items?.length || 0), 0);
 
   if (totalSkills > 0) {

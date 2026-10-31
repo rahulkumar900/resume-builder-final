@@ -125,7 +125,7 @@ export const FlowTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="pl-4 space-y-1.5 text-[11px]">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-center gap-2 break-inside-avoid">
-                  <span className="font-bold text-slate-800 shrink-0 min-w-[120px]">{cat.category}:</span>
+                  {cat.category ? <span className="font-bold text-slate-800 shrink-0 min-w-[120px]">{cat.category}:</span> : null}
                   <div className="flex flex-wrap gap-1">
                     {cat.items.map((item, sidx) => (
                       <span

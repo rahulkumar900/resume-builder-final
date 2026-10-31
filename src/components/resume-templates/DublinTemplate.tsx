@@ -153,7 +153,7 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-2.5">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1">
-                  <div data-ghost-item-header="true" className="text-[11.5px] font-bold text-slate-700">{cat.category}</div>
+                  {cat.category ? <div data-ghost-item-header="true" className="text-[11.5px] font-bold text-slate-700">{cat.category}</div> : null}
                   <div className="flex flex-wrap gap-1">
                     {cat.items.map((item, i) => (
                       <span

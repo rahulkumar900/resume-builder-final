@@ -205,7 +205,7 @@ export const CanvaTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-2 text-[11px]">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="space-y-1 break-inside-avoid">
-                  <div className="font-semibold text-slate-800 text-[10.5px]">{cat.category}</div>
+                  {cat.category ? <div className="font-semibold text-slate-800 text-[10.5px]">{cat.category}</div> : null}
                   <div className="flex flex-wrap gap-1">
                     {cat.items.map((item, sidx) => (
                       <span

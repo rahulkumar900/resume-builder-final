@@ -167,9 +167,11 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1 text-[11.5px]">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-1 break-inside-avoid">
-                  <span className="font-bold min-w-[170px] uppercase text-[10.5px] text-slate-800">
-                    {cat.category || 'Competencies'}:
-                  </span>
+                  {cat.category ? (
+                    <span className="font-bold min-w-[170px] uppercase text-[10.5px] text-slate-800">
+                      {cat.category}:
+                    </span>
+                  ) : null}
                   <span className="text-slate-800 font-medium">
                     {cat.items.join(', ')}
                   </span>

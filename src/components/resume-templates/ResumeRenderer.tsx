@@ -8,7 +8,7 @@ import { paginateWithMeasuredDOM, DOMResumeMetrics } from '@/lib/ghost-dom-measu
 import { CustomThemeStyles } from '@/components/common/CustomThemeStyles';
 import { getPageFormatConfig } from '@/lib/page-format';
 import { getTemplateComponent } from '@/lib/templates/registry';
-import { getTemplateSignatureFont } from '@/lib/templates';
+import { getTemplateSignatureFont, sanitizeSkillsForRender } from '@/lib/templates';
 import { cn } from '@/lib/utils';
 
 interface ResumeRendererProps {
@@ -23,22 +23,25 @@ interface ResumeRendererProps {
 
 export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererProps>(
   ({ data, scale = 1, className, isPrint = false, activePage, disableGhostDOM = false, onPageCountChange }, ref) => {
+    // Sanitize skills: filter disabled groups, apply level formats and grouping options
+    const sanitizedData = React.useMemo(() => sanitizeSkillsForRender(data), [data]);
+
     // Initial analytical pass (SSR safe & zero flash, memoized)
-    const analyticalPages = React.useMemo(() => paginateResume(data), [data]);
+    const analyticalPages = React.useMemo(() => paginateResume(sanitizedData), [sanitizedData]);
 
     // Measured DOM pagination state
     const [domPages, setDomPages] = useState<ResumeData[] | null>(null);
 
     const handleMeasured = useCallback((metrics: DOMResumeMetrics) => {
       try {
-        const measured = paginateWithMeasuredDOM(data, metrics);
+        const measured = paginateWithMeasuredDOM(sanitizedData, metrics);
         if (measured && measured.length > 0) {
           setDomPages(measured);
         }
       } catch (err) {
         console.warn('Ghost DOM pagination fallback to analytical:', err);
       }
-    }, [data]);
+    }, [sanitizedData]);
 
     // Use DOM-measured pages if available, otherwise fallback to analytical
     const pages = domPages || analyticalPages;
@@ -198,7 +201,7 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
         })}
 
         {/* Ghost DOM Measurer (Invisible, measures true rendered heights, disabled for preview cards) */}
-        {!disableGhostDOM && <GhostDOMMeasurer data={data} onMeasured={handleMeasured} />}
+        {!disableGhostDOM && <GhostDOMMeasurer data={sanitizedData} onMeasured={handleMeasured} />}
       </div>
     );
   }

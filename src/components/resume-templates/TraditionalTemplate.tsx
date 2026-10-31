@@ -161,9 +161,11 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
                   data-ghost-item={skillGroup.id || `skill-${sIdx}`}
                   className="flex flex-row items-start gap-2 break-inside-avoid"
                 >
-                  <span className="font-bold text-slate-900 min-w-[140px] shrink-0">
-                    {skillGroup.category}:
-                  </span>
+                  {skillGroup.category ? (
+                    <span className="font-bold text-slate-900 min-w-[140px] shrink-0">
+                      {skillGroup.category}:
+                    </span>
+                  ) : null}
                   <span className="text-slate-700 font-medium">
                     {skillGroup.items.join(', ')}
                   </span>

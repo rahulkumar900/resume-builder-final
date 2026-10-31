@@ -166,7 +166,7 @@ export const StampTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1.5 text-[10.5px] leading-[1.5]">
               {skills.map((cat) => (
                 <p key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
-                  <span className="font-bold text-[#231526]">{cat.category}:</span>{' '}
+                  {cat.category ? <span className="font-bold text-[#231526]">{cat.category}: </span> : null}
                   <span className="text-[#231526]">{cat.items.join(', ')}</span>
                 </p>
               ))}

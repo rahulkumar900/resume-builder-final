@@ -87,12 +87,14 @@ export const NaukriTemplate: React.FC<TemplateProps> = ({ data }) => {
                   data-ghost-item={cat.id || `skill-${idx}`}
                   className="p-2.5 rounded-lg border border-slate-200/90 bg-slate-50/60 flex flex-col gap-1 break-inside-avoid"
                 >
-                  <span
-                    className="font-bold text-[11.5px] uppercase tracking-wide"
-                    style={{ color: themeColor }}
-                  >
-                    {cat.category || 'Core Competencies'}
-                  </span>
+                  {cat.category ? (
+                    <span
+                      className="font-bold text-[11.5px] uppercase tracking-wide"
+                      style={{ color: themeColor }}
+                    >
+                      {cat.category}
+                    </span>
+                  ) : null}
                   <div className="flex flex-wrap gap-1 mt-0.5">
                     {cat.items.map((skill, sIdx) => (
                       <span

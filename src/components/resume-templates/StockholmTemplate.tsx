@@ -65,7 +65,7 @@ export const StockholmTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-3">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1.5">
-                  <div className="text-[11.5px] font-bold text-slate-800">{cat.category}</div>
+                  {cat.category ? <div className="text-[11.5px] font-bold text-slate-800">{cat.category}</div> : null}
                   <div className="flex flex-wrap gap-1">
                     {cat.items.map((item, i) => (
                       <span

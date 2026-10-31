@@ -8,6 +8,7 @@ import { ResumeSectionId, TemplateId, SectionOrderConfig, ResumeData } from '@/t
 import { DEFAULT_SINGLE_COLUMN_SECTIONS, DEFAULT_MAIN_COLUMN_SECTIONS, DEFAULT_SIDEBAR_COLUMN_SECTIONS, DEFAULT_ACTIVE_SECTIONS } from './sections';
 import { TEMPLATE_COLUMN_CONTRACTS } from './contracts';
 import { TEMPLATES } from './definitions';
+import { isSectionPopulated } from './content-check';
 export const getTemplateLayout = (templateId: TemplateId): 'single' | 'double' => {
   const t = TEMPLATES.find((item) => item.id === templateId);
   return t ? t.layout : 'single';
@@ -261,5 +262,72 @@ export const getEffectiveSectionOrder = (
 
     // If either column is missing or it only had singleColumn, migrate
     return migrateSectionOrder(sectionOrder, templateId);
+  }
+};
+
+/**
+ * Resolves a complete, validated section order for rendering a template.
+ * Strictly respects the user's active sections and their configured order.
+ * If customSections has populated data but was newly created, it is gracefully appended.
+ */
+export const getResolvedTemplateSectionOrder = (
+  templateId: TemplateId,
+  data: ResumeData
+): {
+  singleColumn?: ResumeSectionId[];
+  mainColumn?: ResumeSectionId[];
+  sidebarColumn?: ResumeSectionId[];
+} => {
+  const layout = getTemplateLayout(templateId);
+  const effective = getEffectiveSectionOrder(templateId, data.sectionOrder, data.experienceLevel);
+
+  if (layout === 'single') {
+    let list = [...(effective.singleColumn || [])];
+
+    // Filter out hidden sections
+    if (data.hiddenSections && data.hiddenSections.length > 0) {
+      list = list.filter((secId) => !data.hiddenSections!.includes(secId));
+    }
+
+    // Only auto-append customSections if user created customSections data
+    // but customSections is not yet in the configured order or hidden
+    if (
+      data.customSections &&
+      data.customSections.length > 0 &&
+      !list.includes('customSections') &&
+      !data.hiddenSections?.includes('customSections')
+    ) {
+      list.push('customSections');
+    }
+
+    return { singleColumn: list };
+  } else {
+    let mainList = [...(effective.mainColumn || [])];
+    let sidebarList = [...(effective.sidebarColumn || [])];
+
+    // Filter out hidden sections
+    if (data.hiddenSections && data.hiddenSections.length > 0) {
+      mainList = mainList.filter((secId) => !data.hiddenSections!.includes(secId));
+      sidebarList = sidebarList.filter((secId) => !data.hiddenSections!.includes(secId));
+    }
+
+    // Only auto-append customSections if user created customSections data
+    // but customSections is not yet in the configured order or hidden
+    if (
+      data.customSections &&
+      data.customSections.length > 0 &&
+      !mainList.includes('customSections') &&
+      !sidebarList.includes('customSections') &&
+      !data.hiddenSections?.includes('customSections')
+    ) {
+      const col = getDefaultColumnForSection('customSections', templateId);
+      if (col === 'sidebar') {
+        sidebarList.push('customSections');
+      } else {
+        mainList.push('customSections');
+      }
+    }
+
+    return { mainColumn: mainList, sidebarColumn: sidebarList };
   }
 };

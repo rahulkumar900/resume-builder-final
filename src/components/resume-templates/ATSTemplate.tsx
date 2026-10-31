@@ -105,7 +105,7 @@ export const ATSTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-1.5 text-[13px]">
               {skills.map((s) => (
                 <div key={s.id} data-ghost-item={s.id} className="break-inside-avoid">
-                  <span className="font-bold">{s.category}: </span>
+                  {s.category ? <span className="font-bold">{s.category}: </span> : null}
                   <span className="text-neutral-800">{s.items.join(', ')}</span>
                 </div>
               ))}

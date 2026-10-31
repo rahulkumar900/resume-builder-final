@@ -42,6 +42,12 @@ import { CanvaAestheticTemplate } from '@/components/resume-templates/CanvaAesth
 import { RibbonTemplate } from '@/components/resume-templates/RibbonTemplate';
 import { MarigoldTemplate } from '@/components/resume-templates/MarigoldTemplate';
 import { StampTemplate } from '@/components/resume-templates/StampTemplate';
+import { AccentBarTemplate } from '@/components/resume-templates/AccentBarTemplate';
+import { NumberedTemplate } from '@/components/resume-templates/NumberedTemplate';
+import { NeonCreativeTemplate } from '@/components/resume-templates/NeonCreativeTemplate';
+import { NeoBrutalistTemplate } from '@/components/resume-templates/NeoBrutalistTemplate';
+import { AcademicTeachingTemplate } from '@/components/resume-templates/AcademicTeachingTemplate';
+import { BoxedEngineerTemplate } from '@/components/resume-templates/BoxedEngineerTemplate';
 
 /**
  * Common prop contract adhered to by all resume template components.
@@ -90,6 +96,12 @@ export const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
   ribbon: RibbonTemplate,
   marigold: MarigoldTemplate,
   stamp: StampTemplate,
+  accentbar: AccentBarTemplate,
+  numbered: NumberedTemplate,
+  neon_creative: NeonCreativeTemplate,
+  neobrutalist: NeoBrutalistTemplate,
+  academic_teaching: AcademicTeachingTemplate,
+  boxed_engineer: BoxedEngineerTemplate,
 };
 
 /**

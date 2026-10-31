@@ -5,9 +5,10 @@ import {
   getDefaultSectionOrder,
   migrateSectionOrder,
   getDefaultColumnForSection,
+  getResolvedTemplateSectionOrder,
   TEMPLATES,
 } from '@/lib/templates';
-import { SectionOrderConfig } from '@/types/resume';
+import { SectionOrderConfig, ResumeData } from '@/types/resume';
 
 describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)', () => {
   describe('getTemplateLayout', () => {
@@ -19,6 +20,7 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
       expect(getTemplateLayout('harvard_tech')).toBe('single');
       expect(getTemplateLayout('harvard_experienced')).toBe('single');
       expect(getTemplateLayout('ribbon')).toBe('single');
+      expect(getTemplateLayout('academic_teaching')).toBe('single');
     });
 
     it('should correctly identify double-column templates', () => {
@@ -106,6 +108,65 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
 
       // Skills should end up in sidebarColumn
       expect(doubleMigrated.sidebarColumn).toContain('skills');
+    });
+
+    it('should guarantee populated customSections are included in resolved columns even if omitted from sectionOrder', () => {
+      const mockResumeData = {
+        templateId: 'neon_creative' as const,
+        personalInfo: {
+          fullName: 'Test User',
+          jobTitle: 'Developer',
+          email: 'test@example.com',
+          phone: '1234567890',
+          location: 'City',
+          summary: 'Summary text',
+        },
+        experience: [
+          {
+            id: 'exp-1',
+            role: 'Dev',
+            company: 'Acme',
+            location: 'City',
+            startDate: '2020',
+            endDate: '',
+            current: true,
+            highlights: ['Built apps'],
+          },
+        ],
+        customSections: [
+          {
+            id: 'custom-1',
+            title: 'Technical Toolsets & Domains',
+            type: 'custom_tags' as const,
+            items: [{ id: 'item-1', title: 'Methodologies', description: 'Agile, Scrum', items: ['Agile', 'Scrum'] }],
+          },
+        ],
+        // sectionOrder omitted customSections
+        sectionOrder: {
+          mainColumn: ['summary', 'experience'],
+          sidebarColumn: ['skills'],
+        },
+      } as unknown as ResumeData;
+
+      const resolvedDouble = getResolvedTemplateSectionOrder('neon_creative', mockResumeData);
+      expect(
+        resolvedDouble.mainColumn?.includes('customSections') ||
+        resolvedDouble.sidebarColumn?.includes('customSections')
+      ).toBe(true);
+
+      const resolvedSingle = getResolvedTemplateSectionOrder('accentbar', mockResumeData);
+      expect(resolvedSingle.singleColumn?.includes('customSections')).toBe(true);
+
+      const resolvedAcademic = getResolvedTemplateSectionOrder('academic_teaching', mockResumeData);
+      expect(resolvedAcademic.singleColumn?.includes('customSections')).toBe(true);
+
+      // Verify that inactive sections are NOT forcefully resurrected
+      expect(resolvedDouble.mainColumn?.includes('certifications')).toBe(false);
+      expect(resolvedDouble.sidebarColumn?.includes('certifications')).toBe(false);
+
+      // Verify strict preservation of user configured order with gracefully appended customSections
+      expect(resolvedDouble.mainColumn).toEqual(['summary', 'experience', 'customSections']);
+      expect(resolvedDouble.sidebarColumn).toEqual(['skills']);
     });
   });
 

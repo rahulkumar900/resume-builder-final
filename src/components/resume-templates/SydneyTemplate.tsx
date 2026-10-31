@@ -151,7 +151,7 @@ export const SydneyTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className="space-y-2.5">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1">
-                  <div className="text-[11.5px] font-bold text-slate-700">{cat.category}</div>
+                  {cat.category ? <div className="text-[11.5px] font-bold text-slate-700">{cat.category}</div> : null}
                   <div className="flex flex-wrap gap-1">
                     {cat.items.map((it, i) => (
                       <span

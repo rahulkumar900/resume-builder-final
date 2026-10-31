@@ -32,7 +32,13 @@ export type TemplateId =
   | 'canvaaesthetic'
   | 'ribbon'
   | 'marigold'
-  | 'stamp';
+  | 'stamp'
+  | 'accentbar'
+  | 'numbered'
+  | 'neon_creative'
+  | 'neobrutalist'
+  | 'academic_teaching'
+  | 'boxed_engineer';
 
 export type FontFamily =
   | 'inter'
@@ -253,10 +259,19 @@ export interface OrganizationItem {
 }
 
 // 4. Skills, Tags & Assessment Archetype
+export type SkillLevel = 'Beginner' | 'Elementary' | 'Intermediate' | 'Advanced' | 'Expert';
+
 export interface SkillCategory {
   id: string;
   category: string;
   items: string[];
+  enabled?: boolean; // Defaults to true; false disables/hides this group from resume
+  levels?: Record<string, SkillLevel | string>; // Maps skill item string -> level
+}
+
+export interface SkillsConfig {
+  enableGrouping?: boolean; // Defaults to true; false renders skills as a flat list
+  showLevels?: boolean; // Defaults to true; false hides levels from resume
 }
 
 export interface LanguageItem {
@@ -331,7 +346,26 @@ export interface ReferenceItem {
   relation?: string;
 }
 
-// 7. Custom Section Archetype
+// 7. Custom Section Archetype & Types
+// Explicitly namespaced with custom_* prefix to prevent naming collisions with standard resume sections
+export type CustomSectionType =
+  | 'custom_timeline'      // Roles, organizations, location, dates & accomplishments
+  | 'custom_showcase'       // Project / product showcase, tech stack, external links
+  | 'custom_academic'       // Education, degrees, diplomas, institutions, GPA & coursework
+  | 'custom_awards'         // Certifications, awards, honors, licenses, credential IDs
+  | 'custom_publication'    // Publications, papers, journals, conferences, DOIs & abstracts
+  | 'custom_tags'           // Competencies, categories, pill badges & comma-separated tags
+  | 'custom_levels'         // Ranked skills, languages, proficiencies (with 5-tier level)
+  | 'custom_metrics'        // Key metrics, stats, KPI milestones, test scores & context
+  | 'custom_statement'      // Freeform narrative, executive philosophy, paragraphs
+  | 'custom_contacts'       // Professional references, mentors, contact cards
+  | 'experience'            // Legacy alias
+  | 'project'               // Legacy alias
+  | 'credential'            // Legacy alias
+  | 'list'                  // Legacy alias
+  | 'text'                  // Legacy alias
+  | 'reference';            // Legacy alias
+
 export interface CustomSectionItem {
   id: string;
   title: string;
@@ -340,11 +374,20 @@ export interface CustomSectionItem {
   location?: string;
   description?: string;
   highlights?: string[];
+  link?: string;
+  issuer?: string;
+  score?: string;
+  level?: string;
+  items?: string[];
+  email?: string;
+  phone?: string;
 }
 
 export interface CustomSection {
   id: string;
   title: string;
+  type?: CustomSectionType;
+  content?: string;
   items: CustomSectionItem[];
 }
 
@@ -406,6 +449,7 @@ export interface ResumeData {
   experience: ExperienceItem[];
   education: EducationItem[];
   skills: SkillCategory[];
+  skillsConfig?: SkillsConfig;
   projects: ProjectItem[];
   certifications: CertificationItem[];
   languages: LanguageItem[];

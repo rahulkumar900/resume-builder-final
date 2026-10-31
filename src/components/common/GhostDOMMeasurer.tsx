@@ -4,7 +4,7 @@ import React, { useRef, useLayoutEffect, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { ResumeData } from '@/types/resume';
 import { measureGhostDOM, DOMResumeMetrics } from '@/lib/ghost-dom-measurer';
-import { TEMPLATE_COLUMN_CONTRACTS, getDefaultSectionOrder, getEffectiveSectionOrder, getTemplateSignatureFont } from '@/lib/templates';
+import { TEMPLATE_COLUMN_CONTRACTS, getDefaultSectionOrder, getEffectiveSectionOrder, getResolvedTemplateSectionOrder, getTemplateSignatureFont } from '@/lib/templates';
 import { getTemplateComponent } from '@/lib/templates/registry';
 import { CustomThemeStyles } from '@/components/common/CustomThemeStyles';
 import { getPageFormatConfig } from '@/lib/page-format';
@@ -28,7 +28,7 @@ export const GhostDOMMeasurer: React.FC<GhostDOMMeasurerProps> = ({ data, onMeas
   }, []);
 
   const templateId = data.templateId || 'prawira';
-  const effectiveOrder = getEffectiveSectionOrder(templateId, data.sectionOrder, data.experienceLevel);
+  const effectiveOrder = getResolvedTemplateSectionOrder(templateId, data);
 
   // Unpaginated full dataset
   const unpaginatedData: ResumeData = {
