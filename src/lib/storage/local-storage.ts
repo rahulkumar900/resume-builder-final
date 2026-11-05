@@ -198,11 +198,56 @@ export async function getResumeByIdAsync(id: string): Promise<ResumeData | null>
   return null;
 }
 
+export interface SaveResumeOptions {
+  /** If true, skips queuing a cloud sync to Supabase (e.g. when managed by useAutoSaveResume) */
+  skipCloudSync?: boolean;
+  /** Custom debounce delay in milliseconds for cloud sync (default: 2500ms) */
+  cloudDelayMs?: number;
+}
+
+let cloudSyncTimeout: NodeJS.Timeout | null = null;
+let pendingCloudResume: ResumeData | null = null;
+
+/**
+ * Debounces saving a resume to Supabase by a few seconds (default 2500ms)
+ * to avoid excessive network requests during rapid edits.
+ */
+export function debouncedSaveResumeToDatabase(resume: ResumeData, delayMs: number = 2500): void {
+  pendingCloudResume = resume;
+  if (cloudSyncTimeout) {
+    clearTimeout(cloudSyncTimeout);
+  }
+  cloudSyncTimeout = setTimeout(() => {
+    if (pendingCloudResume) {
+      saveResumeToDatabase(pendingCloudResume).catch(() => {});
+      pendingCloudResume = null;
+      cloudSyncTimeout = null;
+    }
+  }, delayMs);
+}
+
+/**
+ * Immediately flushes any pending debounced Supabase save.
+ */
+export function flushCloudSync(): void {
+  if (cloudSyncTimeout && pendingCloudResume) {
+    clearTimeout(cloudSyncTimeout);
+    cloudSyncTimeout = null;
+    const toSave = pendingCloudResume;
+    pendingCloudResume = null;
+    saveResumeToDatabase(toSave).catch(() => {});
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.addEventListener('beforeunload', flushCloudSync);
+}
+
 /**
  * Saves a single resume to local storage, IndexedDB, and asynchronously triggers
- * cloud sync if authenticated.
+ * cloud sync with a debounce delay (default: 2500ms) to prevent network flooding.
  */
-export function saveResume(resume: ResumeData): void {
+export function saveResume(resume: ResumeData, options?: SaveResumeOptions): void {
   removeDeletedResumeId(resume.id);
   const resumes = getStoredResumes();
   const index = resumes.findIndex((r) => r.id === resume.id);
@@ -229,9 +274,9 @@ export function saveResume(resume: ResumeData): void {
     }
   }
 
-  // Auto-sync to Supabase if authenticated
-  if (typeof window !== 'undefined') {
-    saveResumeToDatabase(updatedResume).catch(() => {});
+  // Auto-sync to Supabase if authenticated, debounced by a few seconds (2500ms)
+  if (typeof window !== 'undefined' && !options?.skipCloudSync) {
+    debouncedSaveResumeToDatabase(updatedResume, options?.cloudDelayMs ?? 2500);
   }
 }
 

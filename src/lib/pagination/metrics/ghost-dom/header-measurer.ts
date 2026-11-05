@@ -25,7 +25,7 @@ export function measureHeaders(
   resolver: GhostElementResolver,
   unscale: (val: number) => number
 ): HeaderMeasurementResult {
-  const mainColEl = resolver.getColumn('main');
+  const mainColEl = resolver.getColumn('main') || resolver.getColumn('single');
   const sidebarColEl = resolver.getColumn('sidebar');
 
   const allHeaderEls = resolver.getAllHeaders();

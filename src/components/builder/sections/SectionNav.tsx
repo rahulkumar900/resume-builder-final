@@ -246,6 +246,12 @@ export const NAV_ITEMS: NavItemConfig[] = [
     getCount: (r) => r.customSections?.length || 0,
   },
   {
+    key: 'declaration',
+    label: 'Declaration',
+    icon: FileCheck,
+    getCount: (r) => (r.declaration?.text || r.declaration?.place ? 1 : 0),
+  },
+  {
     key: 'review',
     label: 'Review',
     icon: Sparkles,

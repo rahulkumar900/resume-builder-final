@@ -113,6 +113,10 @@ export const GhostDOMMeasurer: React.FC<GhostDOMMeasurerProps> = ({ data, onMeas
         return 'font-outfit font-sans';
       case 'jakarta':
         return 'font-jakarta font-sans';
+      case 'manrope':
+        return 'font-manrope font-sans';
+      case 'space_grotesk':
+        return 'font-spacegrotesk font-sans';
       case 'inter':
       default:
         return 'font-inter font-sans';

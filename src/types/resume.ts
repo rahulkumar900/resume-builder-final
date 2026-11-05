@@ -38,7 +38,13 @@ export type TemplateId =
   | 'neon_creative'
   | 'neobrutalist'
   | 'academic_teaching'
-  | 'boxed_engineer';
+  | 'boxed_engineer'
+  | 'clinical_healthcare'
+  | 'gov_traditional'
+  | 'editorial_hr'
+  | 'creative_portfolio'
+  | 'executive_finance'
+  | 'infrastructure_engineer';
 
 export type FontFamily =
   | 'inter'
@@ -55,7 +61,9 @@ export type FontFamily =
   | 'merriweather'
   | 'outfit'
   | 'jakarta'
-  | 'times';
+  | 'times'
+  | 'manrope'
+  | 'space_grotesk';
 
 export interface PersonalInfo {
   fullName: string;
@@ -391,6 +399,13 @@ export interface CustomSection {
   items: CustomSectionItem[];
 }
 
+export interface DeclarationData {
+  text?: string;
+  place?: string;
+  date?: string;
+  signatureName?: string;
+}
+
 // Union of all 33 section IDs
 export type ResumeSectionId =
   | 'summary'
@@ -480,6 +495,7 @@ export interface ResumeData {
   militaryService?: MilitaryItem[];
   licenses?: LicenseItem[];
   customSections?: CustomSection[];
+  declaration?: DeclarationData;
 
   pageNumber?: number;
   totalPages?: number;
@@ -506,6 +522,10 @@ export type FontWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export interface TypographySettings {
   primaryFont?: FontFamily;
   secondaryFont?: FontFamily;
+  headerFont?: FontFamily;
+  subHeaderFont?: FontFamily;
+  sectionHeaderFont?: FontFamily;
+  bodyFont?: FontFamily;
   lineHeight?: number;
 
   sizes?: {
@@ -526,6 +546,8 @@ export interface TypographySettings {
 export interface LayoutSettings {
   format?: 'A4' | 'Letter';
   dateFormat?: 'Short Name (Jan YYYY)' | 'Numeric (01/2023)' | 'Year Only (2023)' | 'Hidden';
+
+  pagePadding?: number; // in px (16 to 48)
 
   margins?: {
     topBottom?: number; // in inches

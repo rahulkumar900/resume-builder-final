@@ -14,6 +14,7 @@ import { ProjectsSection } from './sections/ProjectsSection';
 import { CertificationsSection } from './sections/CertificationsSection';
 import { LanguagesSection } from './sections/LanguagesSection';
 import { InternshipsSection } from './sections/InternshipsSection';
+import { DeclarationSection } from './sections/DeclarationSection';
 import { FinalReviewSection } from './sections/FinalReviewSection';
 import { GenericSectionEditor } from './sections/GenericSectionEditor';
 import { ShareResumeModal } from '@/components/builder/ShareResumeModal';
@@ -325,6 +326,33 @@ export const BuilderForm: React.FC<BuilderFormProps> = ({
             key="languages"
             data={resume.languages || []}
             onChange={(languages) => onChange({ languages })}
+          />
+        );
+      case 'declaration':
+        return (
+          <DeclarationSection
+            key="declaration"
+            data={resume.declaration || {}}
+            personalInfo={resume.personalInfo}
+            onChange={(declaration) => onChange({ declaration })}
+            onRemove={() => {
+              const nextKeys = stepKeys.filter((k) => k !== 'declaration');
+              setStepKeys(nextKeys);
+              const currentOrder = resume.sectionOrder || {};
+              const nextSingle = (currentOrder.singleColumn || []).filter((s) => s !== 'declaration');
+              const nextMain = (currentOrder.mainColumn || []).filter((s) => s !== 'declaration');
+              const nextSidebar = (currentOrder.sidebarColumn || []).filter((s) => s !== 'declaration');
+              onChange({
+                declaration: undefined,
+                sectionOrder: {
+                  ...currentOrder,
+                  singleColumn: nextSingle,
+                  mainColumn: nextMain,
+                  sidebarColumn: nextSidebar,
+                },
+              });
+              setActiveTab(nextKeys[nextKeys.length - 1] || 'personal');
+            }}
           />
         );
       case 'review':

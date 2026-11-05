@@ -50,6 +50,14 @@ export const isSectionPopulated = (data: ResumeData, secId: ResumeSectionId): bo
       return Array.isArray(data.organizations) && data.organizations.length > 0;
     case 'customSections':
       return Array.isArray(data.customSections) && data.customSections.length > 0;
+    case 'declaration':
+      return Boolean(
+        data.declaration?.text?.trim() ||
+        data.declaration?.place?.trim() ||
+        data.declaration?.date?.trim() ||
+        data.declaration?.signatureName?.trim() ||
+        (data as any).declarationText?.trim()
+      );
     default: {
       const val = (data as any)[secId];
       return Array.isArray(val) ? val.length > 0 : !!val;

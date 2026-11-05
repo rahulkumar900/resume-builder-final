@@ -108,20 +108,40 @@ describe('Sarkari & Traditional Template Declaration Pagination', () => {
     ],
   };
 
-  it('includes declaration in default single column order for sarkari and traditional', () => {
+  const baseResumeWithDeclaration: ResumeData = {
+    ...baseResume,
+    sectionOrder: {
+      singleColumn: [
+        'summary',
+        'education',
+        'experience',
+        'projects',
+        'skills',
+        'certifications',
+        'languages',
+        'declaration',
+      ],
+    },
+    declaration: {
+      text: 'I hereby solemnly affirm and declare that the statements made in this curriculum vitae are true, complete and correct.',
+      place: 'New Delhi',
+      date: '2026-11-03',
+      signatureName: 'Rahul Kumar',
+    },
+  };
+
+  it('does NOT include declaration in default single column order by default', () => {
     const sarkariOrder = getDefaultSectionOrder('sarkari');
-    expect(sarkariOrder.singleColumn).toContain('declaration');
-    expect(sarkariOrder.singleColumn?.[sarkariOrder.singleColumn.length - 1]).toBe('declaration');
+    expect(sarkariOrder.singleColumn).not.toContain('declaration');
 
     const traditionalOrder = getDefaultSectionOrder('traditional');
-    expect(traditionalOrder.singleColumn).toContain('declaration');
-    expect(traditionalOrder.singleColumn?.[traditionalOrder.singleColumn.length - 1]).toBe('declaration');
+    expect(traditionalOrder.singleColumn).not.toContain('declaration');
   });
 
   it('paginates into 2 pages when content + declaration exceeds Page 1 capacity', () => {
     // Dense resume with extra experience items pushing declaration over Page 1 capacity
     const denseResume: ResumeData = {
-      ...baseResume,
+      ...baseResumeWithDeclaration,
       experience: [
         ...baseResume.experience,
         {
@@ -168,7 +188,7 @@ describe('Sarkari & Traditional Template Declaration Pagination', () => {
 
   it('keeps declaration on Page 1 when the resume is short enough to fit comfortably', () => {
     const shortResume: ResumeData = {
-      ...baseResume,
+      ...baseResumeWithDeclaration,
       experience: [baseResume.experience[0]], // Only 1 experience item
       projects: [],
       education: [baseResume.education[0]],

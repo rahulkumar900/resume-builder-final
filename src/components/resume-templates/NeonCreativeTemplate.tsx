@@ -30,6 +30,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
   } = data;
 
   const isPage1 = !data.pageNumber || data.pageNumber === 1;
+  const isLastPage = !data.totalPages || data.pageNumber === data.totalPages;
 
   const contentPadding =
     spacing === 'compact' ? 'p-5 sm:p-6' : spacing === 'relaxed' ? 'p-8 sm:p-10' : 'p-6 sm:p-8';
@@ -39,8 +40,14 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
     spacing === 'compact' ? 'space-y-2' : spacing === 'relaxed' ? 'space-y-3.5' : 'space-y-2.5';
 
   const resolvedOrder = getResolvedTemplateSectionOrder('neon_creative', data);
-  const mainSectionIds = resolvedOrder.mainColumn || [];
-  const sidebarSectionIds = resolvedOrder.sidebarColumn || [];
+  const rawMainSectionIds = resolvedOrder.mainColumn || [];
+  const rawSidebarSectionIds = resolvedOrder.sidebarColumn || [];
+  const mainSectionIds = rawMainSectionIds.filter(
+    (secId) => secId !== 'declaration' || isLastPage
+  );
+  const sidebarSectionIds = rawSidebarSectionIds.filter(
+    (secId) => secId !== 'declaration' || isLastPage
+  );
   const hasSidebarContent = hasPageSidebarContent(data, sidebarSectionIds);
 
   // Filter non-empty contact items
@@ -113,8 +120,8 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="experience" data-ghost-section="experience" className={sectionMarginClass}>
             {renderSectionHeader('Experience', 'experience')}
             <div className={itemSpaceClass}>
-              {experience.map((exp) => (
-                <div key={exp.id} data-ghost-item={exp.id} className="space-y-1 break-inside-avoid">
+              {experience.map((exp, idx) => (
+                <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-1 break-inside-avoid">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
                       <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
@@ -154,8 +161,8 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="projects" data-ghost-section="projects" className={sectionMarginClass}>
             {renderSectionHeader('Projects', 'projects')}
             <div className={itemSpaceClass}>
-              {projects.map((proj) => (
-                <div key={proj.id} data-ghost-item={proj.id} className="space-y-0.5 break-inside-avoid">
+              {projects.map((proj, idx) => (
+                <div key={proj.id || idx} data-ghost-item={proj.id || `proj-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
@@ -194,37 +201,55 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
         const activeSkills = (skills || []).filter((cat) => cat.enabled !== false);
         if (activeSkills.length === 0) return null;
 
-        // Collect all individual skills with their parsed or mapped levels
-        const skillItems: { name: string; level?: string }[] = [];
-        activeSkills.forEach((cat) => {
-          (cat.items || []).forEach((it) => {
-            const lvl = cat.levels?.[it.trim()];
-            skillItems.push({ name: it, level: lvl });
-          });
-        });
+        const hasCategories = activeSkills.some(
+          (g) => g.category && g.category.trim() !== '' && g.category.trim() !== 'General'
+        );
 
         return (
           <div key="skills" data-ghost-section="skills" className={sectionMarginClass}>
             {renderSectionHeader('Core Skills', 'skills')}
             <div className="space-y-2.5">
-              {skillItems.map((skill, sIdx) => {
-                const percent = getSkillPercentage(skill.level);
+              {activeSkills.map((cat, cIdx) => {
+                const items = (cat.items || []).filter((it) => it && it.trim());
+                if (items.length === 0) return null;
                 return (
-                  <div key={sIdx} data-ghost-item={`skill-${sIdx}`} className="space-y-1 break-inside-avoid">
-                    <div className="flex justify-between items-center text-[11.5px] font-semibold text-slate-800">
-                      <span>{skill.name}</span>
-                      {skill.level && (
-                        <span className="text-[10px] text-slate-400 font-normal">
-                          {skill.level}
-                        </span>
-                      )}
-                    </div>
-                    {/* Glowing Cyan-to-Blue Horizontal Gradient Bar */}
-                    <div className="h-1.5 w-full bg-slate-100 dark:bg-muted rounded-full overflow-hidden">
+                  <div
+                    key={cat.id || cIdx}
+                    data-ghost-item={cat.id || `skill-${cIdx}`}
+                    className="space-y-2"
+                  >
+                    {hasCategories && activeSkills.length > 1 && cat.category && (
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 transition-all duration-300"
-                        style={{ width: `${percent}%` }}
-                      />
+                        data-ghost-item-header="true"
+                        className="text-[10px] font-bold text-purple-900 uppercase tracking-wider mb-0.5"
+                      >
+                        {cat.category}
+                      </div>
+                    )}
+                    <div className="space-y-2">
+                      {items.map((it, iIdx) => {
+                        const lvl = cat.levels?.[it.trim()];
+                        const percent = getSkillPercentage(lvl);
+                        return (
+                          <div key={iIdx} data-ghost-bullet={iIdx} className="space-y-0.5 min-w-0">
+                            <div className="flex justify-between items-baseline text-[10.5px] font-semibold text-slate-800 leading-tight">
+                              <span className="truncate pr-1">{it}</span>
+                              {lvl && (
+                                <span className="text-[8.5px] text-slate-400 font-normal shrink-0">
+                                  {lvl}
+                                </span>
+                              )}
+                            </div>
+                            {/* Glowing Cyan-to-Blue Horizontal Gradient Bar */}
+                            <div className="h-1.5 w-full bg-slate-100 dark:bg-muted rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 transition-all duration-300"
+                                style={{ width: `${percent}%` }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 );
@@ -240,8 +265,8 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="education" data-ghost-section="education" className={sectionMarginClass}>
             {renderSectionHeader('Education', 'education')}
             <div className={itemSpaceClass}>
-              {education.map((edu) => (
-                <div key={edu.id} data-ghost-item={edu.id} className="space-y-0.5 break-inside-avoid">
+              {education.map((edu, idx) => (
+                <div key={edu.id || idx} data-ghost-item={edu.id || `edu-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
                     <span className="font-bold text-[12px] text-slate-900 tracking-tight">
                       {edu.degree}
@@ -296,8 +321,8 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="certifications" data-ghost-section="certifications" className={sectionMarginClass}>
             {renderSectionHeader('Certifications', 'certifications')}
             <ul className="list-disc list-outside pl-4 space-y-1 text-[11px] text-slate-700">
-              {certifications.map((cert) => (
-                <li key={cert.id} data-ghost-item={cert.id} className="break-inside-avoid">
+              {certifications.map((cert, idx) => (
+                <li key={cert.id || idx} data-ghost-item={cert.id || `cert-${idx}`} className="break-inside-avoid">
                   <span className="font-medium text-slate-900">{cert.name}</span>
                   {cert.issuer && <span className="text-slate-600"> &mdash; {cert.issuer}</span>}
                   {cert.date && <span className="text-slate-500"> ({cert.date})</span>}
@@ -313,8 +338,8 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="achievements" data-ghost-section="achievements" className={sectionMarginClass}>
             {renderSectionHeader('Achievements', 'achievements')}
             <ul className="list-disc list-outside pl-4 space-y-1 text-[11px] text-slate-700">
-              {achievements.map((ach) => (
-                <li key={ach.id} data-ghost-item={ach.id} className="space-y-0.5 break-inside-avoid">
+              {achievements.map((ach, idx) => (
+                <li key={ach.id || idx} data-ghost-item={ach.id || `ach-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div className="flex justify-between items-baseline">
                     <span className="font-medium text-slate-900">{ach.title}</span>
                     {ach.date && <span className="text-slate-500"> ({ach.date})</span>}
@@ -329,6 +354,41 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
             </ul>
           </div>
         );
+
+      case 'declaration': {
+        const isLastPage = !data.totalPages || data.pageNumber === data.totalPages;
+        if (!isLastPage) return null;
+        const text =
+          data.declaration?.text ||
+          (data as any).declarationText;
+        const place = data.declaration?.place;
+        const date = data.declaration?.date;
+        const signature = data.declaration?.signatureName;
+
+        if (!text?.trim() && !place?.trim() && !date?.trim() && !signature?.trim()) {
+          return null;
+        }
+
+        return (
+          <div key="declaration" data-ghost-section="declaration" className={sectionMarginClass}>
+            {renderSectionHeader('Declaration', 'declaration')}
+            <div data-ghost-item="declaration-0" className="pt-1 text-[11px] text-slate-700 space-y-3 break-inside-avoid">
+              {text && <p className="leading-relaxed italic">{text}</p>}
+              <div className="flex justify-between items-end pt-2">
+                <div className="space-y-0.5 text-[10.5px] text-slate-500">
+                  {date && <p>Date: {date}</p>}
+                  {place && <p>Place: {place}</p>}
+                  {!place && !date && personalInfo.location && <p>Place: {personalInfo.location}</p>}
+                </div>
+                <div className="text-right">
+                  <p className="font-bold text-slate-900 text-xs">{signature || personalInfo.fullName || 'Candidate Signature'}</p>
+                  <p className="text-[10px] text-slate-400">Signature</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
 
       case 'customSections': {
         const customSections = data.customSections || [];
@@ -418,7 +478,10 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div className="w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans flex flex-col box-border">
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-b border-purple-200/80 px-7 sm:px-9 py-2.5 mb-4 flex items-center justify-between text-xs font-semibold text-purple-900 break-inside-avoid">
+        <div
+          data-ghost-header="true"
+          className="border-b border-purple-200/80 px-7 sm:px-9 py-2.5 mb-4 flex items-center justify-between text-xs font-semibold text-purple-900 break-inside-avoid"
+        >
           <span>
             {personalInfo.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
@@ -430,24 +493,24 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
       {isPage1 && (
         <header
           data-ghost-header="true"
-          className="bg-gradient-to-r from-[#29084d] via-[#3d126b] to-[#1c0836] text-white p-7 sm:p-9 rounded-b-[28px] shadow-sm break-inside-avoid"
+          className="bg-gradient-to-r from-[#29084d] via-[#3d126b] to-[#1c0836] text-white p-6 sm:p-7 rounded-b-[24px] shadow-sm break-inside-avoid"
         >
           {personalInfo.jobTitle && (
-            <div className="inline-block px-3.5 py-1 rounded-full border border-purple-400/40 bg-purple-950/40 text-[10.5px] font-bold tracking-[0.2em] uppercase text-purple-200">
+            <div className="inline-block px-3 py-0.5 rounded-full border border-purple-400/40 bg-purple-950/40 text-[10px] font-bold tracking-[0.2em] uppercase text-purple-200">
               {personalInfo.jobTitle}
             </div>
           )}
 
-          <h1 className="text-[36px] sm:text-[42px] font-black tracking-tight text-white mt-2 leading-tight">
+          <h1 className="text-[32px] sm:text-[38px] font-black tracking-tight text-white mt-1.5 leading-tight">
             {personalInfo.fullName}
           </h1>
 
           {contactItems.length > 0 && (
-            <div className="flex flex-wrap items-center gap-2 mt-4">
+            <div className="flex flex-wrap items-center gap-1.5 mt-3">
               {contactItems.map((item, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 rounded-md bg-white/10 border border-white/10 text-[11px] text-purple-100 font-medium"
+                  className="px-2.5 py-0.5 rounded-md bg-white/10 border border-white/10 text-[10.5px] text-purple-100 font-medium"
                 >
                   {item}
                 </span>

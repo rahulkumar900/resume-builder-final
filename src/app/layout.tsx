@@ -12,7 +12,6 @@ import {
   Open_Sans,
   EB_Garamond,
   Playfair_Display,
-  Merriweather,
   Outfit,
   Plus_Jakarta_Sans,
 } from 'next/font/google';
@@ -93,13 +92,6 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-playfair',
-});
-
-const merriweather = Merriweather({
-  weight: ['300', '400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-merriweather',
 });
 
 const outfit = Outfit({
@@ -280,7 +272,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full antialiased ${inter.variable} ${roboto.variable} ${sourcesans.variable} ${poppins.variable} ${montserrat.variable} ${lato.variable} ${raleway.variable} ${rubik.variable} ${opensans.variable} ${garamond.variable} ${playfair.variable} ${merriweather.variable} ${outfit.variable} ${jakarta.variable}`}
+      className={`h-full antialiased ${inter.variable} ${roboto.variable} ${sourcesans.variable} ${poppins.variable} ${montserrat.variable} ${lato.variable} ${raleway.variable} ${rubik.variable} ${opensans.variable} ${garamond.variable} ${playfair.variable} ${outfit.variable} ${jakarta.variable}`}
     >
       <head>
         <script

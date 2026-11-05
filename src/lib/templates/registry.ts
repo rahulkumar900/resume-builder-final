@@ -48,6 +48,12 @@ import { NeonCreativeTemplate } from '@/components/resume-templates/NeonCreative
 import { NeoBrutalistTemplate } from '@/components/resume-templates/NeoBrutalistTemplate';
 import { AcademicTeachingTemplate } from '@/components/resume-templates/AcademicTeachingTemplate';
 import { BoxedEngineerTemplate } from '@/components/resume-templates/BoxedEngineerTemplate';
+import { ClinicalHealthcareTemplate } from '@/components/resume-templates/ClinicalHealthcareTemplate';
+import { GovTraditionalTemplate } from '@/components/resume-templates/GovTraditionalTemplate';
+import { EditorialHrTemplate } from '@/components/resume-templates/EditorialHrTemplate';
+import { CreativePortfolioTemplate } from '@/components/resume-templates/CreativePortfolioTemplate';
+import { ExecutiveFinanceTemplate } from '@/components/resume-templates/ExecutiveFinanceTemplate';
+import { InfrastructureEngineerTemplate } from '@/components/resume-templates/InfrastructureEngineerTemplate';
 
 /**
  * Common prop contract adhered to by all resume template components.
@@ -102,6 +108,12 @@ export const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
   neobrutalist: NeoBrutalistTemplate,
   academic_teaching: AcademicTeachingTemplate,
   boxed_engineer: BoxedEngineerTemplate,
+  clinical_healthcare: ClinicalHealthcareTemplate,
+  gov_traditional: GovTraditionalTemplate,
+  editorial_hr: EditorialHrTemplate,
+  creative_portfolio: CreativePortfolioTemplate,
+  executive_finance: ExecutiveFinanceTemplate,
+  infrastructure_engineer: InfrastructureEngineerTemplate,
 };
 
 /**

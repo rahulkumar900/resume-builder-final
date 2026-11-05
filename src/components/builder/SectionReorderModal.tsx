@@ -343,9 +343,9 @@ export const SECTION_METAS: Record<ResumeSectionId, SectionMeta> = {
   declaration: {
     id: 'declaration',
     label: 'Formal Declaration & Signature',
-    builderKey: 'personal',
+    builderKey: 'declaration',
     icon: FileCheck,
-    getCount: () => 1,
+    getCount: (r) => (r.declaration?.text || r.declaration?.place ? 1 : 0),
   },
 };
 

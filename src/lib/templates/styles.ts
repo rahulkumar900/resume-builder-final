@@ -34,6 +34,8 @@ export const FONT_OPTIONS: { id: FontFamily; name: string; className: string }[]
   { id: 'merriweather', name: 'Merriweather (Sarkari Editorial)', className: 'font-merriweather' },
   { id: 'outfit', name: 'Outfit (Modern Geometric)', className: 'font-outfit' },
   { id: 'jakarta', name: 'Plus Jakarta Sans (Tech Executive)', className: 'font-jakarta' },
+  { id: 'manrope', name: 'Manrope (Executive Geometric)', className: 'font-manrope' },
+  { id: 'space_grotesk', name: 'Space Grotesk (Creative Display)', className: 'font-spacegrotesk' },
 ];
 
 export const getTemplateSignatureFont = (templateId: TemplateId): FontFamily => {

@@ -108,7 +108,7 @@ export const getDefaultSectionOrder = (
     }
     return {
       singleColumn: activeOnly
-        ? contract.mainSections.filter((s) => DEFAULT_ACTIVE_SECTIONS.includes(s) || s === 'declaration')
+        ? contract.mainSections.filter((s) => DEFAULT_ACTIVE_SECTIONS.includes(s) || (templateId === 'editorial_hr' && s === 'achievements'))
         : [...contract.mainSections],
     };
   }
@@ -179,9 +179,6 @@ export const migrateSectionOrder = (
   if (targetLayout === 'single') {
     // Single column: preserve active order with summary pinned at the front if present
     const singleList: ResumeSectionId[] = hasSummary ? ['summary', ...otherActiveIds] : [...otherActiveIds];
-    if (contract.mainSections.includes('declaration') && !singleList.includes('declaration')) {
-      singleList.push('declaration');
-    }
     return {
       singleColumn: singleList,
     };
@@ -240,12 +237,7 @@ export const getEffectiveSectionOrder = (
 
   if (layout === 'single') {
     if (Array.isArray(sectionOrder.singleColumn) && sectionOrder.singleColumn.length > 0) {
-      const singleList = [...sectionOrder.singleColumn];
-      const contract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
-      if (contract.mainSections.includes('declaration') && !singleList.includes('declaration')) {
-        singleList.push('declaration');
-      }
-      return { singleColumn: singleList };
+      return { singleColumn: [...sectionOrder.singleColumn] };
     }
     // Migrate from main/sidebar to single
     return migrateSectionOrder(sectionOrder, templateId);
@@ -300,6 +292,38 @@ export const getResolvedTemplateSectionOrder = (
       list.push('customSections');
     }
 
+    if (
+      templateId === 'editorial_hr' &&
+      data.achievements &&
+      data.achievements.length > 0 &&
+      !list.includes('achievements') &&
+      !data.hiddenSections?.includes('achievements')
+    ) {
+      const sumIdx = list.indexOf('summary');
+      if (sumIdx !== -1) {
+        list.splice(sumIdx + 1, 0, 'achievements');
+      } else {
+        list.unshift('achievements');
+      }
+    }
+
+    // Auto-append any populated sections in data that are not yet in list and not hidden
+    const contract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
+    contract.mainSections.forEach((secId) => {
+      if (
+        !list.includes(secId) &&
+        !data.hiddenSections?.includes(secId) &&
+        isSectionPopulated(data, secId)
+      ) {
+        const declIdx = list.indexOf('declaration');
+        if (declIdx !== -1) {
+          list.splice(declIdx, 0, secId);
+        } else {
+          list.push(secId);
+        }
+      }
+    });
+
     return { singleColumn: list };
   } else {
     let mainList = [...(effective.mainColumn || [])];
@@ -327,6 +351,23 @@ export const getResolvedTemplateSectionOrder = (
         mainList.push('customSections');
       }
     }
+
+    const doubleContract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
+    const allCandidateSections = [...doubleContract.mainSections, ...doubleContract.sidebarSections];
+    allCandidateSections.forEach((secId) => {
+      if (
+        !mainList.includes(secId) &&
+        !sidebarList.includes(secId) &&
+        !data.hiddenSections?.includes(secId) &&
+        isSectionPopulated(data, secId)
+      ) {
+        if (doubleContract.sidebarSections.includes(secId)) {
+          sidebarList.push(secId);
+        } else {
+          mainList.push(secId);
+        }
+      }
+    });
 
     return { mainColumn: mainList, sidebarColumn: sidebarList };
   }

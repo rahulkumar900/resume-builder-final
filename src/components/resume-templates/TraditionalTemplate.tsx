@@ -37,10 +37,7 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const isPaginated = typeof data.pageNumber === 'number';
   const rawSectionOrder = (data.sectionOrder?.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS) as ResumeSectionId[];
-  const sectionOrder: ResumeSectionId[] =
-    !isPaginated && !rawSectionOrder.includes('declaration')
-      ? [...rawSectionOrder, 'declaration']
-      : rawSectionOrder;
+  const sectionOrder: ResumeSectionId[] = rawSectionOrder;
 
   const renderSectionHeader = (title: string) => (
     <div
@@ -244,7 +241,11 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
           </div>
         );
 
-      case 'declaration':
+      case 'declaration': {
+        const decl = data.declaration;
+        const declText = decl?.text || (data as any).declarationText;
+        if (!declText && !decl?.place && !decl?.date && !decl?.signatureName) return null;
+
         return (
           <div
             key="declaration"
@@ -252,21 +253,20 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
             className="mt-8 pt-4 border-t border-slate-300 text-[11.5px] text-slate-700 break-inside-avoid space-y-4"
           >
             <div data-ghost-item="declaration-0" className="space-y-4 break-inside-avoid">
-              <div>
-                <span className="font-bold text-slate-900 uppercase">Declaration: </span>
-                <span>
-                  I hereby solemnly declare that all the information provided in this curriculum vitae is true,
-                  complete, and correct to the best of my knowledge and belief.
-                </span>
-              </div>
+              {declText && (
+                <div>
+                  <span className="font-bold text-slate-900 uppercase">Declaration: </span>
+                  <span>{declText}</span>
+                </div>
+              )}
               <div className="flex justify-between items-end pt-3">
                 <div className="space-y-1 text-slate-600">
-                  <div>Date: ____________________</div>
-                  <div>Place: ____________________</div>
+                  <div>Date: {decl?.date || '____________________'}</div>
+                  <div>Place: {decl?.place || personalInfo.location || '____________________'}</div>
                 </div>
                 <div className="text-right">
                   <div className="font-bold text-slate-900 uppercase tracking-wide">
-                    ({personalInfo.fullName || 'Candidate Name'})
+                    ({decl?.signatureName || personalInfo.fullName || 'Candidate Name'})
                   </div>
                   <div className="text-[10.5px] text-slate-500">Signature</div>
                 </div>
@@ -274,6 +274,7 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
             </div>
           </div>
         );
+      }
 
       default:
         return (
@@ -385,8 +386,6 @@ export const TraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Sections Container */}
       <div data-ghost-col="single" className="flex-1">
         {sectionOrder.map((secId) => renderSection(secId))}
-        {/* Defensive fallback for unmeasured legacy data */}
-        {isLastPage && !sectionOrder.includes('declaration') && renderSection('declaration')}
       </div>
     </div>
   );

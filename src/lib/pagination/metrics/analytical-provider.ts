@@ -62,14 +62,9 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
     const resolvedOrder = getResolvedTemplateSectionOrder(templateId, data);
 
     if (layout === 'single') {
-      let singleOrder = resolvedOrder.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS;
-      if (
-        (templateId === 'sarkari' || templateId === 'traditional') &&
-        !singleOrder.includes('declaration')
-      ) {
-        singleOrder = [...singleOrder, 'declaration'];
-      }
-      singleOrder = singleOrder.filter((s) => !data.hiddenSections?.includes(s));
+      let singleOrder = (resolvedOrder.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS).filter(
+        (s) => !data.hiddenSections?.includes(s)
+      );
 
       const singleCol = this.measureColumn(data, singleOrder, 'single', false, true, spacing);
 
@@ -114,7 +109,11 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
     spacing: 'compact' | 'normal' | 'relaxed'
   ): NormalizedColumnMetric {
     const sections: NormalizedSectionMetric[] = [];
-    const { headingH, gapBetweenSections } = this.getSectionSpacingMetrics(spacing, isSingleColumn);
+    const { headingH, gapBetweenSections } = this.getSectionSpacingMetrics(
+      spacing,
+      isSingleColumn,
+      data.templateId
+    );
     let totalColHeight = 0;
 
     sectionIds.forEach((secId) => {
@@ -125,12 +124,13 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
       let sumItemHeight = 0;
 
       rawItems.forEach((item, idx) => {
-        const itemMetric = this.measureItem(item, secId, idx, isSidebar, isSingleColumn, spacing);
+        const itemMetric = this.measureItem(item, secId, idx, isSidebar, isSingleColumn, spacing, data.templateId);
         items.push(itemMetric);
         sumItemHeight += itemMetric.height;
       });
 
-      const effectiveHeadingH = secId === 'declaration' ? 0 : headingH;
+      const isLeftRail = data.templateId === 'editorial_hr' || data.templateId === 'executive_finance';
+      const effectiveHeadingH = secId === 'declaration' || isLeftRail ? 0 : headingH;
       const sectionTotalHeight = effectiveHeadingH + sumItemHeight;
       totalColHeight += sectionTotalHeight + (sections.length > 0 ? gapBetweenSections : 0);
 
@@ -155,10 +155,11 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
     index: number,
     isSidebar: boolean,
     isSingleColumn: boolean,
-    spacing: 'compact' | 'normal' | 'relaxed'
+    spacing: 'compact' | 'normal' | 'relaxed',
+    templateId?: TemplateId
   ): NormalizedItemMetric {
     const mult = spacing === 'compact' ? 0.85 : spacing === 'relaxed' ? 1.18 : 1.0;
-    const charsPerLine = isSidebar ? 28 : isSingleColumn ? 96 : 52;
+    const charsPerLine = isSidebar ? 28 : templateId === 'infrastructure_engineer' ? 84 : isSingleColumn ? 96 : 52;
     const defaultLineH = isSingleColumn ? 18 : 20;
     const itemId = item?.id || `${sectionId}-${index}`;
 
@@ -265,7 +266,7 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
       case 'licenses':
       case 'organizations':
       case 'testScores': {
-        const h = (isSingleColumn ? 28 : 46) * mult;
+        const h = (templateId === 'editorial_hr' && sectionId === 'achievements' ? 22 : isSingleColumn ? 28 : 46) * mult;
         return { id: itemId, sectionId, height: Math.ceil(h), bullets: [] };
       }
 
@@ -378,8 +379,15 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
 
   private getSectionSpacingMetrics(
     spacing: 'compact' | 'normal' | 'relaxed',
-    isSingleColumn: boolean
+    isSingleColumn: boolean,
+    templateId?: TemplateId
   ) {
+    if (templateId === 'editorial_hr') {
+      return {
+        headingH: 0,
+        gapBetweenSections: spacing === 'compact' ? 8 : spacing === 'relaxed' ? 14 : 10,
+      };
+    }
     if (isSingleColumn) {
       return {
         headingH: spacing === 'compact' ? 26 : spacing === 'relaxed' ? 34 : 30,

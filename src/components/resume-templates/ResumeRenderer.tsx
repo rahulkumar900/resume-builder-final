@@ -64,7 +64,11 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
     };
 
     const getFontFamilyClass = () => {
-      const activeFont = data.fontFamily || getTemplateSignatureFont(data.templateId);
+      const signatureFont = getTemplateSignatureFont(data.templateId);
+      const activeFont =
+        data.typography?.primaryFont ||
+        (data.fontFamily && data.fontFamily !== 'inter' ? data.fontFamily : signatureFont || data.fontFamily || 'inter');
+
       switch (activeFont) {
         case 'roboto':
           return 'font-roboto font-sans';
@@ -94,6 +98,10 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
           return 'font-outfit font-sans';
         case 'jakarta':
           return 'font-jakarta font-sans';
+        case 'manrope':
+          return 'font-manrope font-sans';
+        case 'space_grotesk':
+          return 'font-spacegrotesk font-sans';
         case 'inter':
         default:
           return 'font-inter font-sans';

@@ -12,3 +12,4 @@ export * from './styles';
 export * from './content-check';
 export * from './registry';
 export * from './skills-sanitizer';
+export * from './template-config';

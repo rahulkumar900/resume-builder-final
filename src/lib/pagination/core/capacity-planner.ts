@@ -137,7 +137,7 @@ export class PageCapacityPlanner implements ICapacityPlanner {
         };
       case 'neon_creative':
         return {
-          headerHeightPage1: spacing === 'compact' ? 160 : spacing === 'relaxed' ? 210 : 185,
+          headerHeightPage1: spacing === 'compact' ? 140 : spacing === 'relaxed' ? 180 : 160,
           runningHeaderHeight: runningHeader,
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,
@@ -162,6 +162,48 @@ export class PageCapacityPlanner implements ICapacityPlanner {
           runningHeaderHeight: 38,
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'clinical_healthcare':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 110 : spacing === 'relaxed' ? 155 : 135,
+          runningHeaderHeight: 38,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'gov_traditional':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 95 : spacing === 'relaxed' ? 135 : 115,
+          runningHeaderHeight: 36,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'editorial_hr':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 70 : spacing === 'relaxed' ? 100 : 85,
+          runningHeaderHeight: 34,
+          pagePaddingVertical: spacing === 'compact' ? 36 : spacing === 'relaxed' ? 56 : 46,
+          safetyMargin: 10,
+        };
+      case 'creative_portfolio':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 105 : spacing === 'relaxed' ? 145 : 125,
+          runningHeaderHeight: 36,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'executive_finance':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 75 : spacing === 'relaxed' ? 110 : 90,
+          runningHeaderHeight: 34,
+          pagePaddingVertical: spacing === 'compact' ? 36 : spacing === 'relaxed' ? 56 : 46,
+          safetyMargin: 10,
+        };
+      case 'infrastructure_engineer':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 45 : spacing === 'relaxed' ? 65 : 55,
+          runningHeaderHeight: 34,
+          pagePaddingVertical: spacing === 'compact' ? 40 : spacing === 'relaxed' ? 60 : 50,
+          safetyMargin: 10,
         };
       case 'accentbar':
         return {

@@ -212,7 +212,7 @@ export class ResumePageAssembler implements IPageAssembler {
             } else {
               result.push({
                 ...found,
-                highlights: normalizedH.length > 0 ? normalizedH : found.highlights,
+                highlights: found.highlights,
               });
             }
           }
@@ -237,7 +237,7 @@ export class ResumePageAssembler implements IPageAssembler {
       if (matched.length > 0) return matched;
 
       const hasSection = slots.some((s) => s.sectionId === secId);
-      return hasSection ? sourceList : [];
+      return hasSection && pageIndex === 0 ? sourceList : [];
     }
 
     function collectSplittableSkills(
@@ -253,7 +253,8 @@ export class ResumePageAssembler implements IPageAssembler {
               (item.id || `skills-${idx}`) === slot.itemId ||
               (item.id || `skill-${idx}`) === slot.itemId ||
               slot.itemId === `skill-${idx}` ||
-              slot.itemId === `skills-${idx}`
+              slot.itemId === `skills-${idx}` ||
+              (sourceList.length === 1 && (slot.itemId === 'skills-flat' || slot.itemId === 'skill-flat'))
           );
           if (found) {
             const rawItems = found.items || [];
@@ -279,7 +280,9 @@ export class ResumePageAssembler implements IPageAssembler {
       if (result.length > 0) return result;
 
       const hasSection = slots.some((s) => s.sectionId === 'skills');
-      return hasSection ? sourceList : [];
+      // Only fallback to sourceList on Page 1 (pageIndex === 0) if section was allocated.
+      // On Page 2+, never duplicate the full sourceList if no items were allocated to this page.
+      return hasSection && pageIndex === 0 ? sourceList : [];
     }
 
     function collectCustomSections(
@@ -304,8 +307,8 @@ export class ResumePageAssembler implements IPageAssembler {
             let itemToAdd: CustomSectionItem = { ...found };
             if (slot.bulletStart !== undefined && slot.bulletEnd !== undefined && normalizedH.length > 0) {
               itemToAdd.highlights = normalizedH.slice(slot.bulletStart, slot.bulletEnd);
-            } else if (normalizedH.length > 0) {
-              itemToAdd.highlights = normalizedH;
+            } else {
+              itemToAdd.highlights = found.highlights;
             }
             if (slot.textRatioStart !== undefined && slot.textRatioEnd !== undefined && found.description) {
               itemToAdd.description = splitTextByRatio(found.description, slot.textRatioStart, slot.textRatioEnd);

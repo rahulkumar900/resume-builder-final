@@ -44,6 +44,7 @@ export type SectionKey =
   | 'militaryService'
   | 'licenses'
   | 'customSections'
+  | 'declaration'
   | 'review';
 
 export interface SectionComponentProps<T> {
