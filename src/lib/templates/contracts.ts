@@ -1161,20 +1161,6 @@ export const TEMPLATE_COLUMN_CONTRACTS: Record<TemplateId, TemplateColumnContrac
     mainFraction: 1.0,
     sidebarFraction: 0,
   },
-  harvard_tech: {
-    mainSections: [...HARVARD_TECH_SINGLE_SECTIONS],
-    sidebarSections: [],
-    summaryPlacement: 'main',
-    mainFraction: 1.0,
-    sidebarFraction: 0,
-  },
-  harvard_experienced: {
-    mainSections: [...HARVARD_EXPERIENCED_SINGLE_SECTIONS],
-    sidebarSections: [],
-    summaryPlacement: 'main',
-    mainFraction: 1.0,
-    sidebarFraction: 0,
-  },
   cascade: {
     mainSections: [...TWO_COL_MAIN_WITH_EDUCATION],
     sidebarSections: [...TWO_COL_SIDEBAR_SKILLS_FIRST],

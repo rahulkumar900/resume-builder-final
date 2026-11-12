@@ -189,6 +189,14 @@ body {
   font-family: 'Times New Roman', Times, var(--font-garamond), 'EB Garamond', Georgia, serif;
 }
 
+.font-eb-garamond {
+  font-family: var(--font-garamond), 'EB Garamond', Georgia, serif;
+}
+
+.font-source-serif {
+  font-family: var(--font-source-serif), 'Source Serif 4', Georgia, serif;
+}
+
 .font-times {
   font-family: 'Times New Roman', Times, var(--font-garamond), 'EB Garamond', Georgia, serif;
 }
@@ -198,10 +206,16 @@ body {
 }
 
 /* Harvard Ivy League Document styling */
-[data-template="harvard"],
-[data-template="harvard_tech"],
-[data-template="harvard_experienced"] {
+[data-template="harvard"] {
   font-family: 'Times New Roman', Times, var(--font-garamond), 'EB Garamond', Georgia, serif;
+}
+
+[data-template="harvard"] .text-slate-500,
+[data-template="harvard"] .text-slate-600,
+[data-template="harvard"] .text-slate-700,
+[data-template="harvard"] .text-slate-800,
+[data-template="harvard"] .text-slate-900 {
+  color: #000000 !important;
 }
 
 .font-playfair {

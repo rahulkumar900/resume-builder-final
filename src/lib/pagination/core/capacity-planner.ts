@@ -31,8 +31,6 @@ export class PageCapacityPlanner implements ICapacityPlanner {
     switch (templateId) {
       case 'ats':
       case 'harvard':
-      case 'harvard_tech':
-      case 'harvard_experienced':
       case 'silicon':
       case 'flow':
         return {

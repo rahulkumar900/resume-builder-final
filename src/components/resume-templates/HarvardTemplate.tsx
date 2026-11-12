@@ -32,10 +32,14 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
     skills = [],
     projects = [],
     certifications = [],
+    achievements = [],
     languages = [],
-    themeColor = '#0f172a',
+    interests = [],
+    themeColor: rawThemeColor,
     spacing = 'normal',
   } = data;
+
+  const themeColor = !rawThemeColor || rawThemeColor === '#0f172a' ? '#000000' : rawThemeColor;
 
   const sectionMarginClass =
     spacing === 'compact' ? 'mt-2.5' : spacing === 'relaxed' ? 'mt-4' : 'mt-3';
@@ -46,11 +50,11 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const order = data.sectionOrder?.singleColumn || DEFAULT_ORDER;
 
-  // Authentic Harvard FAS section heading: Bold uppercase with crisp 1px solid bottom divider
+  // Official Harvard OCS section heading: Centered, Bold, Title Case, no bottom rule
   const renderSectionHeader = (title: string) => (
-    <div data-ghost-section-title="true" className="border-b-[1.5px] border-black pb-0.5 mb-1.5 break-after-avoid">
+    <div data-ghost-section-title="true" className="text-center mb-1 break-after-avoid">
       <div
-        className="text-[16px] font-bold uppercase tracking-[0.06em]"
+        className="text-[14.5px] font-bold"
         style={{ color: themeColor }}
       >
         {title}
@@ -76,26 +80,27 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
                         <span className="text-[13px] font-normal text-slate-700">{edu.location}</span>
                       )}
                     </div>
-                    {/* Line 2: Degree, Concentration & GPA (Left, Italic) | Graduation Date (Right, Normal) */}
-                    <div className="flex justify-between items-baseline text-[13.5px] text-slate-800">
+                    {/* Line 2: Degree, Concentration & GPA (Left, Normal) | Graduation Date (Right, Normal) */}
+                    <div className="flex justify-between items-baseline text-[13.5px] text-slate-900">
                       <span>
-                        <span className="italic">{edu.degree}</span>
+                        <span>{edu.degree}</span>
                         {edu.gpa && (
-                          <span className="not-italic">. GPA: {edu.gpa}</span>
+                          <span>. GPA {edu.gpa}.</span>
                         )}
                       </span>
                       {edu.graduationDate && (
-                        <span className="text-[13px] text-slate-700 whitespace-nowrap">{edu.graduationDate}</span>
+                        <span className="text-[13.5px] text-slate-900 whitespace-nowrap">{edu.graduationDate}</span>
                       )}
                     </div>
                   </div>
-                  {/* Line 3: Coursework, Honors, or Capstone Thesis */}
+                  {/* Line 3: Coursework, Honors, or Capstone Thesis (clean unbulleted lines per official Harvard OCS) */}
                   {edu.highlights && edu.highlights.length > 0 && (
-                    <div className="mt-0.5">
-                      <ResumeHighlights
-                        highlights={edu.highlights}
-                        className="text-slate-900 text-[13.5px] leading-[20px] pl-4 space-y-0.5"
-                      />
+                    <div className="mt-0.5 space-y-0.5 text-[13.5px] leading-[1.35] text-slate-900">
+                      {edu.highlights.map((h, hIdx) => (
+                        <div key={hIdx}>
+                          <RichText content={h} />
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -120,19 +125,20 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
                         <span className="text-[13px] font-normal text-slate-700">{exp.location}</span>
                       )}
                     </div>
-                    {/* Line 2: Position Title (Left, Italic) | Date Range (Right, Normal) */}
-                    <div className="flex justify-between items-baseline text-[13.5px] text-slate-800 mb-0.5">
-                      <span className="italic">{exp.role}</span>
-                      <span className="text-[13px] text-slate-700 whitespace-nowrap">
-                        {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
+                    {/* Line 2: Position Title (Left, Bold) | Date Range (Right, Normal) */}
+                    <div className="flex justify-between items-baseline text-[13.5px] text-slate-900 mb-0.5">
+                      <span className="font-bold">{exp.role}</span>
+                      <span className="text-[13.5px] text-slate-900 whitespace-nowrap">
+                        {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
                   </div>
-                  {/* Action-Verb CAR Result Bullets */}
-                  <ResumeHighlights
-                    highlights={exp.highlights}
-                    className="text-slate-900 text-[13.5px] leading-[20px] pl-4 space-y-0.5"
-                  />
+                  {/* Official Harvard OCS paragraph prose (no bullets) */}
+                  {exp.highlights && exp.highlights.length > 0 && (
+                    <div className="text-slate-900 text-[13.5px] leading-[1.38]">
+                      <RichText content={exp.highlights.join(' ')} />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -143,7 +149,7 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!leadership || leadership.length === 0) return null;
         return (
           <div key="leadership" data-ghost-section="leadership" className={sectionMarginClass}>
-            {renderSectionHeader('Leadership & Activities')}
+            {renderSectionHeader('Leadership')}
             <div className={itemSpaceClass}>
               {leadership.map((act) => (
                 <div key={act.id} data-ghost-item={act.id} className="break-inside-avoid">
@@ -152,22 +158,21 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
                     <div className="flex justify-between items-baseline text-[14px] text-slate-900">
                       <span className="font-bold">{act.organization}</span>
                       {act.location && (
-                        <span className="text-[13px] font-normal text-slate-700">{act.location}</span>
+                        <span className="text-[13.5px] font-normal text-slate-900">{act.location}</span>
                       )}
                     </div>
-                    {/* Line 2: Role (Left, Italic) | Date Range (Right, Normal) */}
-                    <div className="flex justify-between items-baseline text-[13.5px] text-slate-800 mb-0.5">
-                      <span className="italic">{act.role}</span>
-                      <span className="text-[13px] text-slate-700 whitespace-nowrap">
-                        {act.startDate} – {act.current ? 'Present' : act.endDate}
+                    {/* Line 2: Role (Left, Bold) | Date Range (Right, Normal) */}
+                    <div className="flex justify-between items-baseline text-[13.5px] text-slate-900 mb-0.5">
+                      <span className="font-bold">{act.role}</span>
+                      <span className="text-[13.5px] text-slate-900 whitespace-nowrap">
+                        {act.startDate} - {act.current ? 'Present' : act.endDate}
                       </span>
                     </div>
                   </div>
                   {act.highlights && act.highlights.length > 0 && (
-                    <ResumeHighlights
-                      highlights={act.highlights}
-                      className="text-slate-900 text-[13.5px] leading-[20px] pl-4 space-y-0.5"
-                    />
+                    <div className="text-slate-900 text-[13.5px] leading-[1.38]">
+                      <RichText content={act.highlights.join(' ')} />
+                    </div>
                   )}
                 </div>
               ))}
@@ -175,12 +180,27 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
           </div>
         );
 
-      case 'skills':
+      case 'skills': {
         if (!skills || skills.length === 0) return null;
+        const hasSeparateLanguages = order.includes('languages') && languages.length > 0;
+        const hasSeparateInterests = order.includes('interests') && interests.length > 0;
+        const inlineLanguages =
+          !hasSeparateLanguages &&
+          languages.length > 0 &&
+          !skills.some((s) => s.category.toLowerCase().includes('lang'));
+        const inlineInterests =
+          !hasSeparateInterests &&
+          interests.length > 0 &&
+          !skills.some((s) => s.category.toLowerCase().includes('interest'));
+        const skillsHeading =
+          inlineInterests || skills.some((s) => s.category.toLowerCase().includes('interest'))
+            ? 'Skills & Interests'
+            : 'Skills';
+
         return (
           <div key="skills" data-ghost-section="skills" className={`${sectionMarginClass} break-inside-avoid`}>
-            {renderSectionHeader('Skills & Interests')}
-            <div className="space-y-1 text-[13.5px] text-slate-900 leading-[20px]">
+            {renderSectionHeader(skillsHeading)}
+            <div className="space-y-0.5 text-[13.5px] text-black leading-[1.38]">
               {skills.map((cat, idx) => (
                 <div
                   key={cat.id || idx}
@@ -192,23 +212,33 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
                       {cat.category}:
                     </span>
                   ) : null}
-                  <span className="text-slate-900">{cat.items.join(', ')}</span>
+                  <span className="text-black">{cat.items.join(', ')}</span>
                 </div>
               ))}
-              {/* If languages are separate, render inline under Skills & Interests per Harvard standard */}
-              {languages && languages.length > 0 && !skills.some(s => s.category.toLowerCase().includes('lang')) && (
+              {inlineLanguages && (
                 <div className="flex flex-row items-baseline gap-1.5 break-inside-avoid">
                   <span className="font-bold shrink-0">
                     Language:
                   </span>
-                  <span className="text-slate-900">
+                  <span className="text-black">
                     {languages.map(l => `${l.language}${l.proficiency ? ` (${l.proficiency})` : ''}`).join(', ')}
+                  </span>
+                </div>
+              )}
+              {inlineInterests && (
+                <div className="flex flex-row items-baseline gap-1.5 break-inside-avoid">
+                  <span className="font-bold shrink-0">
+                    Interests:
+                  </span>
+                  <span className="text-black">
+                    {interests.map(i => (typeof i === 'string' ? i : i.name)).filter(Boolean).join(', ')}
                   </span>
                 </div>
               )}
             </div>
           </div>
         );
+      }
 
       case 'projects':
         if (!projects || projects.length === 0) return null;
@@ -247,15 +277,15 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className={`${sectionMarginClass} break-inside-avoid`}>
-            {renderSectionHeader('Honors & Certifications')}
-            <div className="space-y-0.5 text-[12px]">
+            {renderSectionHeader('Certifications')}
+            <div className="space-y-0.5 text-[13.5px] text-black">
               {certifications.map((cert) => (
                 <div key={cert.id} data-ghost-item={cert.id} className="flex justify-between items-baseline break-inside-avoid">
-                  <span className="text-slate-900">
+                  <span className="text-black">
                     <span className="font-bold">{cert.name}</span>
-                    {cert.issuer && <span className="text-slate-800">, {cert.issuer}</span>}
+                    {cert.issuer && <span>, {cert.issuer}</span>}
                   </span>
-                  {cert.date && <span className="text-[12px] text-slate-800">{cert.date}</span>}
+                  {cert.date && <span className="text-[13.5px] text-black">{cert.date}</span>}
                 </div>
               ))}
             </div>
@@ -263,19 +293,38 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
         );
 
       case 'languages':
-        // If already rendered inside Skills & Interests, skip duplicate section
-        if (skills && skills.length > 0 && !order.includes('skills')) {
-          return null;
-        }
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className={`${sectionMarginClass} break-inside-avoid`}>
             {renderSectionHeader('Languages')}
-            <div className="flex flex-wrap gap-x-4 gap-y-0.5 text-[12px] text-slate-900">
+            <div className="flex flex-wrap gap-x-4 gap-y-0.5 text-[13.5px] text-black">
               {languages.map((l, lidx) => (
                 <div key={l.id || lidx} data-ghost-item={l.id || `lang-${lidx}`} className="break-inside-avoid">
                   <span className="font-bold">{l.language}</span>
-                  {l.proficiency && <span className="text-slate-700"> ({l.proficiency})</span>}
+                  {l.proficiency && <span> ({l.proficiency})</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'achievements':
+        if (!achievements || achievements.length === 0) return null;
+        return (
+          <div key="achievements" data-ghost-section="achievements" className={sectionMarginClass}>
+            {renderSectionHeader('Key Achievements')}
+            <div className={itemSpaceClass}>
+              {achievements.map((a) => (
+                <div key={a.id} data-ghost-item={a.id} className="break-inside-avoid text-[13.5px] leading-[1.38] text-black">
+                  <div className="flex justify-between items-baseline gap-4">
+                    <span className="font-bold text-black">{a.title}</span>
+                    {a.date && <span className="text-[13.5px] text-black whitespace-nowrap shrink-0">{a.date}</span>}
+                  </div>
+                  {a.description && (
+                    <div className="text-[13.5px] text-black mt-0.5">
+                      <RichText content={a.description} />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -287,7 +336,7 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="summary" data-ghost-section="summary" className={sectionMarginClass}>
             {renderSectionHeader('Profile')}
-            <div data-ghost-item="summary-0" className="text-[12px] leading-[1.45] text-slate-900 text-justify">
+            <div data-ghost-item="summary-0" className="text-[13.5px] leading-[1.38] text-black text-justify">
               <RichText content={personalInfo.summary} />
             </div>
           </div>
@@ -320,39 +369,39 @@ export const HarvardTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div
       data-template="harvard"
       style={{ fontFamily: "'Times New Roman', Times, var(--font-garamond), 'EB Garamond', Georgia, serif" }}
-      className={`w-full h-full min-h-[297mm] bg-white text-slate-900 flex flex-col ${paddingClass} text-[12.5px] leading-normal box-border`}
+      className={`w-full h-full min-h-[297mm] bg-white text-black flex flex-col ${paddingClass} text-[13.5px] leading-[1.38] box-border`}
     >
       {/* Running Header (Page > 1) */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="pb-1.5 border-b border-black mb-3 break-inside-avoid flex items-center justify-between text-[11px] uppercase tracking-wider text-slate-700">
+        <div className="pb-1.5 border-b border-black mb-3 break-inside-avoid flex items-center justify-between text-[11px] uppercase tracking-wider text-black">
           <span style={{ color: themeColor }} className="font-bold">
             {personalInfo?.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
           {personalInfo?.email && (
-            <span className="text-[11px] text-slate-600 font-normal">
+            <span className="text-[11px] text-black font-normal">
               {personalInfo.email}
             </span>
           )}
         </div>
       )}
 
-      {/* Main Header (Page 1 only) - Authentic Harvard FAS Word/Doc standard */}
+      {/* Main Header (Page 1 only) - Official Harvard OCS Resume Sample */}
       {(!data.pageNumber || data.pageNumber === 1) && (
-        <div data-ghost-header="true" className="text-center pb-1 mb-2.5 break-inside-avoid">
-          {/* Firstname Lastname */}
+        <div data-ghost-header="true" className="text-center mb-2.5 break-inside-avoid">
+          {/* Firstname Lastname with full-width horizontal rule underneath */}
           <div
-            className="text-[25px] font-bold tracking-[0.03em] uppercase mb-1 text-slate-900"
+            className="text-[18px] font-bold pb-1.5 border-b border-black text-slate-900"
             style={{ color: themeColor }}
           >
             {personalInfo?.fullName || 'Firstname Lastname'}
           </div>
 
-          {/* Home or Campus Address • City, State Zip • youremail@college.harvard.edu • phone number */}
+          {/* 17 Main Street • Los Angeles, CA 92720 • youremail@college.harvard.edu • (714) 558-9857 */}
           {contactItems.length > 0 && (
-            <div className="text-[12.5px] text-slate-800 flex flex-wrap justify-center items-center gap-x-2 gap-y-0.5 font-medium">
+            <div className="pt-1.5 text-[13.5px] text-slate-900 flex flex-wrap justify-center items-center gap-x-1.5 gap-y-0.5 font-normal">
               {contactItems.map((item, idx) => (
                 <React.Fragment key={idx}>
-                  {idx > 0 && <span className="text-slate-600 font-semibold">•</span>}
+                  {idx > 0 && <span>•</span>}
                   <span>{item}</span>
                 </React.Fragment>
               ))}

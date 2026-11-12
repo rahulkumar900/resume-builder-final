@@ -14,6 +14,7 @@ import {
   Playfair_Display,
   Outfit,
   Plus_Jakarta_Sans,
+  Source_Serif_4,
 } from 'next/font/google';
 import './globals.css';
 import { AppProviders } from '@/components/providers/AppProviders';
@@ -104,6 +105,14 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-jakarta',
+});
+
+const sourceSerif4 = Source_Serif_4({
+  weight: ['400', '600', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-source-serif',
 });
 
 export const metadata: Metadata = {
@@ -272,7 +281,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full antialiased ${inter.variable} ${roboto.variable} ${sourcesans.variable} ${poppins.variable} ${montserrat.variable} ${lato.variable} ${raleway.variable} ${rubik.variable} ${opensans.variable} ${garamond.variable} ${playfair.variable} ${outfit.variable} ${jakarta.variable}`}
+      className={`h-full antialiased ${inter.variable} ${roboto.variable} ${sourcesans.variable} ${poppins.variable} ${montserrat.variable} ${lato.variable} ${raleway.variable} ${rubik.variable} ${opensans.variable} ${garamond.variable} ${playfair.variable} ${outfit.variable} ${jakarta.variable} ${sourceSerif4.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

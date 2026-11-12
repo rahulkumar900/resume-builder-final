@@ -30,9 +30,7 @@ const TEMPLATE_PALETTES: Record<string, string[]> = {
   naukri: ['#0077b5', '#1e3a8a', '#0f766e', '#1e293b', '#b91c1c'],
   fresher: ['#0f766e', '#2563eb', '#1e293b', '#7c3aed', '#d97706'],
   sarkari: ['#1e293b', '#1e3a8a', '#334155', '#0f766e', '#991b1b'],
-  harvard: ['#1e293b', '#991b1b', '#1e3a8a', '#0f766e', '#334155'],
-  harvard_tech: ['#0f172a', '#1e293b', '#0369a1', '#047857', '#334155'],
-  harvard_experienced: ['#991b1b', '#1e293b', '#1e3a8a', '#0f766e', '#475569'],
+  harvard: ['#000000', '#1e293b', '#991b1b', '#1e3a8a', '#0f766e'],
   cascade: ['#1e3a8a', '#0f766e', '#1e293b', '#7c3aed', '#b91c1c'],
   novoresume: ['#0f766e', '#2563eb', '#1e293b', '#d97706', '#dc2626'],
   toronto: ['#2563eb', '#0f766e', '#1e293b', '#7c3aed', '#d97706'],
@@ -190,7 +188,7 @@ export const ResumeTemplateCard: React.FC<ResumeTemplateCardProps> = ({
           >
             {template.name}
           </h3>
-          {['harvard', 'harvard_tech', 'harvard_experienced'].includes(template.id) && (
+          {template.id === 'harvard' && (
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
               Harvard FAS Standard
             </span>

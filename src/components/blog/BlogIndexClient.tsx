@@ -233,7 +233,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
                 </p>
               </div>
               <Link
-                href="/create?template=harvard_tech"
+                href="/create?template=harvard"
                 className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold rounded-xl transition shadow-xs"
               >
                 <span>Use Tech Template</span>
@@ -258,7 +258,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
                 </p>
               </div>
               <Link
-                href="/create?template=harvard_experienced"
+                href="/create?template=harvard"
                 className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 text-xs font-bold rounded-xl transition shadow-xs"
               >
                 <span>Use MBA Template</span>

@@ -14,8 +14,6 @@ export type TemplateId =
   | 'fresher'
   | 'sarkari'
   | 'harvard'
-  | 'harvard_tech'
-  | 'harvard_experienced'
   | 'cascade'
   | 'novoresume'
   | 'toronto'
@@ -71,7 +69,8 @@ export type FontFamily =
   | 'manrope'
   | 'space_grotesk'
   | 'fraunces'
-  | 'dm_serif';
+  | 'dm_serif'
+  | 'source_serif';
 
 export interface PersonalInfo {
   fullName: string;

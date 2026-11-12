@@ -168,7 +168,7 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
 
   describe('Template Registry Contract Consistency', () => {
     it('should register all templates with non-empty names and valid layouts', () => {
-      expect(TEMPLATES.length).toBe(17);
+      expect(TEMPLATES.length).toBe(50);
       TEMPLATES.forEach((tpl) => {
         expect(tpl.id).toBeTruthy();
         expect(tpl.name).toBeTruthy();

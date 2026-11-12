@@ -29,6 +29,7 @@ export const FONT_OPTIONS: { id: FontFamily; name: string; className: string }[]
   { id: 'rubik', name: 'Rubik (Enhancv Friendly Sans)', className: 'font-rubik' },
   { id: 'opensans', name: 'Open Sans (Europass Standard)', className: 'font-opensans' },
   { id: 'garamond', name: 'EB Garamond (Oxford Serif)', className: 'font-garamond' },
+  { id: 'source_serif', name: 'Source Serif 4 (Harvard Modern)', className: 'font-source-serif' },
   { id: 'times', name: 'Times New Roman (Harvard FAS Classic)', className: 'font-times' },
   { id: 'playfair', name: 'Playfair Display (Luxury Serif)', className: 'font-playfair' },
   { id: 'merriweather', name: 'Merriweather (Sarkari Editorial)', className: 'font-merriweather' },
@@ -424,8 +425,6 @@ export const getEffectiveTypographyDefaults = (templateId: TemplateId) => {
         bodyWeight: 'normal' as FontWeight,
       };
     case 'harvard':
-    case 'harvard_tech':
-    case 'harvard_experienced':
       return {
         headingFont: 'times' as FontFamily,
         headingSize: 25, // 18.75 pt (recommended 16-20 pt)
@@ -516,9 +515,9 @@ export const getTemplateDefaults = (templateId: TemplateId) => {
         leftRight: 0.5,
       },
       spacing: {
-        betweenSections: ['ats', 'fresher', 'sarkari', 'harvard', 'harvard_tech', 'harvard_experienced', 'silicon', 'flow'].includes(templateId) ? 16 : 24,
-        betweenTitlesContent: ['ats', 'harvard', 'harvard_tech', 'harvard_experienced', 'silicon'].includes(templateId) ? 8 : 12,
-        betweenBlocks: ['ats', 'harvard', 'harvard_tech', 'harvard_experienced', 'silicon'].includes(templateId) ? 8 : 12,
+        betweenSections: ['ats', 'fresher', 'sarkari', 'harvard', 'silicon', 'flow'].includes(templateId) ? 16 : 24,
+        betweenTitlesContent: ['ats', 'harvard', 'silicon'].includes(templateId) ? 8 : 12,
+        betweenBlocks: ['ats', 'harvard', 'silicon'].includes(templateId) ? 8 : 12,
         insideBlock: 4,
       },
       dateFormat: 'Short Name (Jan YYYY)',
