@@ -7,6 +7,7 @@ import { ArrowRight, Check, Copy, Download, Sparkles } from 'lucide-react';
 import { ResumeData } from '@/types/resume';
 import { createTeacherResumeFromSample } from '@/data/teacher-cluster/samples';
 import { saveResume } from '@/lib/storage';
+import { downloadResumeDocx } from '@/lib/export/docxExporter';
 
 export const TEACHER_CLUSTER_PAGES = [
   {
@@ -47,126 +48,8 @@ export const TEACHER_CLUSTER_PAGES = [
   },
 ];
 
-export function downloadSampleAsWord(sample: ResumeData, customFilename?: string) {
-  const filename = (customFilename || sample.title).replace(/[^a-zA-Z0-9]/g, '_');
-  const p = sample.personalInfo;
-
-  const experienceList =
-    sample.experience && sample.experience.length > 0
-      ? sample.experience
-      : sample.internships || [];
-
-  const experienceHeading =
-    sample.experience && sample.experience.length > 0
-      ? 'Teaching Experience'
-      : 'Teaching Practice & Internships';
-
-  const experienceHtml = experienceList
-    .map(
-      (exp) => `
-      <div style="margin-bottom: 10pt;">
-        <p style="margin: 0;">
-          <strong style="font-size: 11pt; color: #0f172a;">${exp.role}</strong> — 
-          <span style="font-style: italic; color: #334155;">${exp.company}</span>
-          <span style="float: right; color: #64748b; font-size: 10pt;">${exp.startDate} – ${exp.current ? 'Present' : exp.endDate}</span>
-        </p>
-        <ul style="margin: 3pt 0 6pt 18pt; padding: 0;">
-          ${(exp.highlights || []).map((b) => `<li style="margin-bottom: 3pt; color: #334155; font-size: 10.5pt;">${b}</li>`).join('')}
-        </ul>
-      </div>
-    `
-    )
-    .join('');
-
-  const educationHtml = (sample.education || [])
-    .map(
-      (edu) => `
-      <div style="margin-bottom: 6pt;">
-        <p style="margin: 0;">
-          <strong style="color: #0f172a;">${edu.degree}</strong>
-          <span style="float: right; color: #64748b; font-size: 10pt;">${edu.graduationDate}</span>
-        </p>
-        <p style="margin: 0; color: #475569; font-size: 10pt;">${edu.school}${edu.location ? `, ${edu.location}` : ''}${edu.gpa ? ` • ${edu.gpa}` : ''}</p>
-      </div>
-    `
-    )
-    .join('');
-
-  const skillsHtml = (sample.skills || [])
-    .map((s) => `<p style="margin-bottom: 3pt;"><strong>${s.category}:</strong> ${s.items.join(', ')}</p>`)
-    .join('');
-
-  const certsHtml = (sample.certifications || [])
-    .map((c) => `<li style="margin-bottom: 2pt; color: #334155; font-size: 10pt;">${c.name} (${c.issuer}, ${c.date})</li>`)
-    .join('');
-
-  const projectsHtml =
-    sample.projects && sample.projects.length > 0
-      ? `<h2>Academic Projects</h2>${sample.projects
-          .map(
-            (pr) => `
-        <div style="margin-bottom: 6pt;">
-          <p style="margin: 0;"><strong>${pr.title}</strong></p>
-          <ul style="margin: 2pt 0 4pt 18pt; padding: 0;">
-            ${(pr.highlights || []).map((h) => `<li style="font-size: 10pt; color: #334155;">${h}</li>`).join('')}
-          </ul>
-        </div>
-      `
-          )
-          .join('')}`
-      : '';
-
-  const achievementsHtml =
-    sample.achievements && sample.achievements.length > 0
-      ? `<h2>Achievements</h2><ul style="margin: 3pt 0 6pt 18pt; padding: 0;">${sample.achievements
-          .map((a) => `<li style="font-size: 10pt; color: #334155;"><strong>${a.title}</strong> (${a.date || ''}): ${a.description}</li>`)
-          .join('')}</ul>`
-      : '';
-
-  const htmlContent = `
-    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-    <head>
-      <meta charset='utf-8'>
-      <title>${sample.title}</title>
-      <style>
-        body { font-family: 'Calibri', 'Arial', sans-serif; font-size: 11pt; line-height: 1.35; color: #1e293b; margin: 20pt; }
-        h1 { font-size: 18pt; font-weight: bold; margin: 0 0 2pt 0; color: #0f172a; text-transform: uppercase; }
-        .headline { font-size: 11pt; font-weight: bold; color: #7a1f2b; margin: 0 0 4pt 0; }
-        .contact { font-size: 9.5pt; color: #475569; margin: 0 0 14pt 0; border-bottom: 1.5pt solid #7a1f2b; padding-bottom: 6pt; }
-        h2 { font-size: 12pt; font-weight: bold; text-transform: uppercase; border-bottom: 1pt solid #cbd5e1; padding-bottom: 2pt; margin-top: 14pt; margin-bottom: 6pt; color: #7a1f2b; }
-      </style>
-    </head>
-    <body>
-      <h1>${p.fullName}</h1>
-      <p class="headline">${p.jobTitle}</p>
-      <p class="contact">${[p.phone, p.email, p.location, p.linkedin].filter(Boolean).join(' | ')}</p>
-
-      <h2>Professional Summary</h2>
-      <p style="color: #334155; margin-bottom: 10pt;">${p.summary}</p>
-
-      ${sample.experienceLevel === 'entry' ? `<h2>Education</h2>${educationHtml}<h2>${experienceHeading}</h2>${experienceHtml}` : `<h2>${experienceHeading}</h2>${experienceHtml}<h2>Education</h2>${educationHtml}`}
-
-      <h2>Skills</h2>
-      ${skillsHtml}
-
-      <h2>Certifications</h2>
-      <ul style="margin: 3pt 0 6pt 18pt; padding: 0;">${certsHtml}</ul>
-
-      ${projectsHtml}
-      ${achievementsHtml}
-    </body>
-    </html>
-  `;
-
-  const blob = new Blob(['\ufeff', htmlContent], { type: 'application/msword;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `${filename}.doc`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+export async function downloadSampleAsWord(sample: ResumeData, customFilename?: string) {
+  await downloadResumeDocx(sample, customFilename);
 }
 
 export function CreateTeacherResumeButton({
@@ -295,9 +178,9 @@ export function TeacherResumePreviewBox({
               {badge}
             </span>
           )}
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+          <div className="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
             {title}
-          </h3>
+          </div>
           {description && (
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
               {description}
@@ -339,7 +222,7 @@ export function TeacherResumePreviewBox({
           className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800 font-mono font-bold text-xs hover:bg-blue-100 transition cursor-pointer"
         >
           <Download className="w-3.5 h-3.5" />
-          <span>Download Word (.doc)</span>
+          <span>Download Word (.docx)</span>
         </button>
         <button
           onClick={handleCopyText}
@@ -418,9 +301,9 @@ export function TeacherClusterLinks({ currentPath }: { currentPath: string }) {
                 <span className="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                   {item.badge}
                 </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mt-2">
+                <div className="font-bold text-slate-900 dark:text-white text-sm mt-2">
                   {item.title}
-                </h3>
+                </div>
                 <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">{item.subtitle}</p>
               </div>
               <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 mt-3 inline-flex items-center gap-1">

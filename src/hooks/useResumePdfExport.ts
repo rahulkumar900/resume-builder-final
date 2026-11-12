@@ -8,6 +8,7 @@ import { useState, useCallback } from 'react';
 import { ResumeData } from '@/types/resume';
 import { supabase } from '@/lib/supabaseClient';
 import { analyzeResumeAts, AtsSuggestion } from '@/lib/ats/ats-analyzer';
+import { downloadResumeDocx } from '@/lib/export/docxExporter';
 
 export interface UseResumePdfExportOptions {
   resume: ResumeData | null;
@@ -23,6 +24,7 @@ export interface UseResumePdfExportOptions {
 export interface UseResumePdfExportReturn {
   isDownloading: boolean;
   handleDownloadPdf: (skipCriticalCheck?: boolean) => Promise<void>;
+  handleDownloadDocx: (skipCriticalCheck?: boolean) => Promise<void>;
   handlePrint: () => void;
 }
 
@@ -105,6 +107,36 @@ export function useResumePdfExport({
     }
   }, [resume, user, openAuthModal, flushSave, onCriticalIssuesDetected]);
 
+  const handleDownloadDocx = useCallback(async (skipCriticalCheck = false) => {
+    flushSave();
+    if (!resume) return;
+
+    if (!user) {
+      openAuthModal('signin', 'Please sign in or create a free account to download your Word (.docx) resume.');
+      return;
+    }
+
+    if (!skipCriticalCheck && onCriticalIssuesDetected) {
+      const audit = analyzeResumeAts(resume);
+      const critical = (audit?.suggestions || []).filter((s) => s.severity === 'critical');
+      if (critical.length > 0) {
+        onCriticalIssuesDetected(critical, async () => {
+          await handleDownloadDocx(true);
+        });
+        return;
+      }
+    }
+
+    setIsDownloading(true);
+    try {
+      await downloadResumeDocx(resume);
+    } catch (err) {
+      console.error('DOCX generation failed:', err);
+    } finally {
+      setIsDownloading(false);
+    }
+  }, [resume, user, openAuthModal, flushSave, onCriticalIssuesDetected]);
+
   const handlePrint = useCallback(() => {
     flushSave();
     if (!resume) return;
@@ -114,6 +146,7 @@ export function useResumePdfExport({
   return {
     isDownloading,
     handleDownloadPdf,
+    handleDownloadDocx,
     handlePrint,
   };
 }

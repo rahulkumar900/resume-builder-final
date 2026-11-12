@@ -40,6 +40,7 @@ interface BuilderNavbarProps {
   resume: ResumeData;
   onChange: (updated: Partial<ResumeData>) => void;
   onDownloadPdf: () => void;
+  onDownloadDocx?: () => void;
   onPrint: () => void;
   onScore: () => void;
   onOpenGrammar?: () => void;
@@ -65,6 +66,7 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
   resume,
   onChange,
   onDownloadPdf,
+  onDownloadDocx,
   onPrint,
   onScore,
   onOpenGrammar,
@@ -389,6 +391,20 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
                 <Download className="w-3.5 h-3.5 text-slate-400 dark:text-muted-foreground" />
                 <span>Download PDF</span>
               </button>
+              {onDownloadDocx && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setExportMenuOpen(false);
+                    onDownloadDocx();
+                  }}
+                  disabled={isDownloading}
+                  className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-accent hover:text-primary text-left transition-colors cursor-pointer"
+                >
+                  <FileText className="w-3.5 h-3.5 text-slate-400 dark:text-muted-foreground" />
+                  <span>Download Word (.docx)</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => {

@@ -92,37 +92,64 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Schema.org Structured Data for Google Rich Snippets (Valid TechArticle, no invalid JobPosting)
+  // Schema.org Structured Data for Google Rich Snippets (Valid BreadcrumbList + TechArticle)
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'TechArticle',
-    headline: `${example.role} Resume Example & Guide`,
-    description: example.metaDescription,
-    image: 'https://resumebabu.com/opengraph-image',
-    datePublished: '2026-01-15T00:00:00Z',
-    dateModified: '2026-10-25T00:00:00Z',
-    author: {
-      '@type': 'Organization',
-      name: 'ResumeBabu Editorial Team',
-      url: 'https://resumebabu.com/about',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'ResumeBabu',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://resumebabu.com/logo.png',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://resumebabu.com',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Resume Examples',
+            item: 'https://resumebabu.com/examples',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: example.role,
+            item: `https://resumebabu.com/examples/${example.slug}`,
+          },
+        ],
       },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://resumebabu.com/examples/${example.slug}`,
-    },
-    about: {
-      '@type': 'Thing',
-      name: example.role,
-      description: `${example.role} career profile and ATS resume format`,
-    },
+      {
+        '@type': 'TechArticle',
+        headline: `${example.role} Resume Example & Guide`,
+        description: example.metaDescription,
+        image: 'https://resumebabu.com/opengraph-image',
+        datePublished: '2026-01-15T00:00:00Z',
+        dateModified: '2026-10-25T00:00:00Z',
+        author: {
+          '@type': 'Organization',
+          name: 'ResumeBabu Editorial Team',
+          url: 'https://resumebabu.com/about',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'ResumeBabu',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://resumebabu.com/logo.png',
+          },
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': `https://resumebabu.com/examples/${example.slug}`,
+        },
+        about: {
+          '@type': 'Thing',
+          name: example.role,
+          description: `${example.role} career profile and ATS resume format`,
+        },
+      },
+    ],
   };
 
   return (
@@ -135,7 +162,7 @@ export default async function ResumeExampleDetailPage({ params }: PageProps) {
 
       <Navbar />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="flex-1">
         <ResumeExampleDetailClient example={example} />
       </main>
 

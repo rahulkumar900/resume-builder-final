@@ -127,9 +127,9 @@ export function ResumeExamplesHubClient() {
                     <span className="text-[10px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/40">
                       {item.experienceLevel}
                     </span>
-                    <h2 className="text-lg font-bold text-slate-900 dark:text-white mt-1.5 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors line-clamp-1 font-serif">
+                    <div className="text-lg font-bold text-slate-900 dark:text-white mt-1.5 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors line-clamp-1 font-serif">
                       {item.role}
-                    </h2>
+                    </div>
                   </div>
                 </div>
 
@@ -224,6 +224,56 @@ export function ResumeExamplesHubClient() {
               <p>
                 Applicant Tracking Systems parse your resume for exact job description keywords. Organize technical tools into clear semantic categories (Languages, Frameworks, Databases, Cloud) instead of long unformatted paragraphs.
               </p>
+            </div>
+          </div>
+
+          <div className="pt-4 border-t border-border flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <span>
+              ResumeBabu examples align with{' '}
+              <a
+                href="https://careerservices.fas.harvard.edu/resources/bullet-point-writing-guide/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline"
+              >
+                Harvard OCS Standards
+              </a>{' '}
+              and{' '}
+              <a
+                href="https://www.ncs.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline"
+              >
+                National Career Service (NCS)
+              </a>
+              .
+            </span>
+            <div className="flex flex-wrap items-center gap-2 font-semibold">
+              <a
+                href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fresumebabu.com%2Fexamples"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://api.whatsapp.com/send?text=20%2B%20Recruiter%20Resume%20Examples%20%26%20Guides%20-%20https%3A%2F%2Fresumebabu.com%2Fexamples"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                WhatsApp
+              </a>
+              <a
+                href="https://twitter.com/intent/tweet?text=20%2B%20Recruiter%20Resume%20Examples%20%26%20Guides&url=https%3A%2F%2Fresumebabu.com%2Fexamples"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                X / Twitter
+              </a>
             </div>
           </div>
         </section>

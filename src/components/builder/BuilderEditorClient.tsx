@@ -77,7 +77,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     });
   };
 
-  const { isDownloading, handleDownloadPdf, handlePrint } = useResumePdfExport({
+  const { isDownloading, handleDownloadPdf, handleDownloadDocx, handlePrint } = useResumePdfExport({
     resume,
     user,
     openAuthModal,
@@ -321,6 +321,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         resume={resume}
         onChange={handleChange}
         onDownloadPdf={handleDownloadPdf}
+        onDownloadDocx={handleDownloadDocx}
         onPrint={handlePrint}
         onScore={() => setEditorMode((prev) => (prev === 'check' ? 'content' : 'check'))}
         onOpenGrammar={() => setIsGrammarModalOpen(true)}

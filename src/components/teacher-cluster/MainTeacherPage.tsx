@@ -282,9 +282,9 @@ export function MainTeacherPage() {
                   </Link>
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div>
-                      <h3 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg leading-snug">
+                      <div className="font-bold text-slate-900 dark:text-white text-base sm:text-lg leading-snug">
                         {ex.title}
-                      </h3>
+                      </div>
                       <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1.5 leading-relaxed">
                         {ex.desc}
                       </p>
@@ -333,10 +333,10 @@ export function MainTeacherPage() {
               { title: 'Certifications & Awards', desc: 'Workshops, DIKSHA courses & recognition.' },
             ].map((item) => (
               <div key={item.title} className="bg-card rounded-2xl border border-border p-4 space-y-1">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
+                <div className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
                   <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>{item.title}</span>
-                </h3>
+                </div>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   {item.desc}
                 </p>
@@ -379,11 +379,11 @@ export function MainTeacherPage() {
               ))}
             </ul>
             <div className="bg-card rounded-2xl border border-border p-5 space-y-2">
-              <h4 className="font-bold text-sm text-slate-900 dark:text-white">A good teacher resume should be:</h4>
+              <div className="font-bold text-sm text-slate-900 dark:text-white">A good teacher resume should be:</div>
               <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
                 {g.section1.fiveQualities.map((q) => (
                   <li key={q.label}>
-                    <strong className="text-slate-900 dark:text-white">{q.label}:</strong> {q.desc}
+                    <span className="font-semibold text-slate-900 dark:text-white">{q.label}:</span> {q.desc}
                   </li>
                 ))}
               </ul>
@@ -407,7 +407,7 @@ export function MainTeacherPage() {
             </ul>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-card p-5 rounded-2xl border border-border space-y-2">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Example: Primary School Teacher</h4>
+                <div className="font-bold text-sm text-slate-900 dark:text-white">Example: Primary School Teacher</div>
                 <ul className="space-y-1 text-xs text-slate-600 dark:text-slate-400">
                   {g.section2.primaryExample.map((item) => (
                     <li key={item}>• {item}</li>
@@ -415,7 +415,7 @@ export function MainTeacherPage() {
                 </ul>
               </div>
               <div className="bg-card p-5 rounded-2xl border border-border space-y-2">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Example: Mathematics Teacher</h4>
+                <div className="font-bold text-sm text-slate-900 dark:text-white">Example: Mathematics Teacher</div>
                 <ul className="space-y-1 text-xs text-slate-600 dark:text-slate-400">
                   {g.section2.mathsExample.map((item) => (
                     <li key={item}>• {item}</li>
@@ -436,7 +436,7 @@ export function MainTeacherPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {g.section3.formats.map((fmt) => (
                 <div key={fmt.name} className="bg-card p-5 rounded-2xl border border-border space-y-2">
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-white">{fmt.name}</h4>
+                  <div className="font-bold text-sm text-slate-900 dark:text-white">{fmt.name}</div>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{fmt.desc}</p>
                   <ul className="space-y-1 text-[11px] text-slate-600 dark:text-slate-400 pt-1">
                     {fmt.suitableFor.map((s) => (
@@ -508,30 +508,34 @@ export function MainTeacherPage() {
               <div className="space-y-3">
                 {g.section4.bulletProgressions.map((bp, i) => (
                   <div key={i} className="bg-card p-4 rounded-xl border border-border text-xs space-y-1">
-                    <p className="text-rose-700 dark:text-rose-400"><strong>Weak:</strong> {bp.weak}</p>
-                    <p className="text-amber-700 dark:text-amber-400"><strong>Better:</strong> {bp.better}</p>
-                    <p className="text-emerald-700 dark:text-emerald-400"><strong>Stronger:</strong> {bp.stronger}</p>
+                    <p className="text-rose-700 dark:text-rose-400"><span className="font-semibold">Weak:</span> {bp.weak}</p>
+                    <p className="text-amber-700 dark:text-amber-400"><span className="font-semibold">Better:</span> {bp.better}</p>
+                    <p className="text-emerald-700 dark:text-emerald-400"><span className="font-semibold">Stronger:</span> {bp.stronger}</p>
                   </div>
                 ))}
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400">
-                <strong>Genuine numbers to include:</strong> {g.section4.genuineNumbers.join(' • ')}. Never invent academic results or student statistics.
+                <span className="font-semibold text-slate-900 dark:text-white">Genuine numbers to include:</span> {g.section4.genuineNumbers.join(' • ')}. Never invent academic results or student statistics.
               </p>
             </div>
 
             {/* 4D Education & 4E Certifications */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2.5">
-                <h4 className="font-bold text-lg text-slate-900 dark:text-white">D. Education</h4>
+                <div className="font-bold text-lg text-slate-900 dark:text-white">D. Education</div>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
                   For freshers, Education appears before experience. For experienced teachers, place it after work experience.
                 </p>
                 <CopySnippetBox label="Education Format Example" text={g.section4.educationExample} />
               </div>
               <div className="space-y-2.5">
-                <h4 className="font-bold text-lg text-slate-900 dark:text-white">E. Teaching Certifications &amp; Eligibility</h4>
+                <div className="font-bold text-lg text-slate-900 dark:text-white">E. Teaching Certifications &amp; Eligibility</div>
                 <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Include: {g.section4.certificationsList.join(', ')}. Clearly distinguish between completed, qualified, and currently pursuing.
+                  Include: {g.section4.certificationsList.join(', ')}. Clearly distinguish between completed, qualified, and currently pursuing. Reference official portals for{' '}
+                  <a href="https://ctet.nic.in/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline">CTET</a>,{' '}
+                  <a href="https://www.cbse.gov.in/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline">CBSE</a>, and{' '}
+                  <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline">NCERT</a>{' '}
+                  standards.
                 </p>
                 <CopySnippetBox label="Certifications Example" text={g.section4.certificationsExample} />
               </div>
@@ -539,11 +543,11 @@ export function MainTeacherPage() {
 
             {/* 4F Teaching Skills (All 5 Categories) */}
             <div className="space-y-3">
-              <h4 className="font-bold text-lg text-slate-900 dark:text-white">F. Teaching Skills (5 Essential Categories)</h4>
+              <div className="font-bold text-lg text-slate-900 dark:text-white">F. Teaching Skills (5 Essential Categories)</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {g.section4.skillCategories.map((cat) => (
                   <div key={cat.name} className="bg-card p-4 rounded-xl border border-border space-y-1.5">
-                    <h5 className="font-bold text-xs text-slate-900 dark:text-white">{cat.name}</h5>
+                    <div className="font-bold text-xs text-slate-900 dark:text-white">{cat.name}</div>
                     <ul className="space-y-1 text-xs text-slate-600 dark:text-slate-400">
                       {cat.items.map((item) => (
                         <li key={item}>• {item}</li>
@@ -628,18 +632,18 @@ export function MainTeacherPage() {
               Formula: <strong className="text-slate-900 dark:text-white">{g.section6.formula}</strong>
             </p>
             <div className="bg-card rounded-2xl border border-border p-5">
-              <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-3">Powerful Action Verbs for Teachers</h4>
+              <div className="font-bold text-sm text-slate-900 dark:text-white mb-3">Powerful Action Verbs for Teachers</div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                 {actionVerbs.map((row) => (
                   <div key={row.category}>
-                    <strong className="text-emerald-700 dark:text-emerald-400">{row.category}:</strong>{' '}
+                    <span className="font-semibold text-emerald-700 dark:text-emerald-400">{row.category}:</span>{' '}
                     <span className="text-slate-600 dark:text-slate-400">{row.verbs}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="bg-card rounded-2xl border border-border p-5 space-y-1.5">
-              <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-2">8 Examples of Strong Teacher Resume Bullet Points</h4>
+              <div className="font-bold text-sm text-slate-900 dark:text-white mb-2">8 Examples of Strong Teacher Resume Bullet Points</div>
               {g.section6.strongExamples.map((ex) => (
                 <p key={ex} className="text-xs text-slate-600 dark:text-slate-400">• {ex}</p>
               ))}
@@ -687,10 +691,10 @@ export function MainTeacherPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {g.section9.mistakes.map((m) => (
                 <div key={m.title} className="bg-card p-4 rounded-xl border border-border space-y-1">
-                  <h4 className="font-bold text-xs text-rose-700 dark:text-rose-400 flex items-start gap-1.5">
+                  <div className="font-bold text-xs text-rose-700 dark:text-rose-400 flex items-start gap-1.5">
                     <X className="w-3.5 h-3.5 shrink-0 mt-0.5" />
                     <span>{m.title}</span>
-                  </h4>
+                  </div>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{m.desc}</p>
                 </div>
               ))}
@@ -715,19 +719,19 @@ export function MainTeacherPage() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-600 dark:text-slate-400">
               <div className="bg-card p-4 rounded-xl border border-border space-y-1.5">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Content Checklist</h4>
+                <div className="font-bold text-sm text-slate-900 dark:text-white">Content Checklist</div>
                 {g.section11.contentChecklist.map((c) => (
                   <p key={c}>✓ {c}</p>
                 ))}
               </div>
               <div className="bg-card p-4 rounded-xl border border-border space-y-1.5">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Formatting Checklist</h4>
+                <div className="font-bold text-sm text-slate-900 dark:text-white">Formatting Checklist</div>
                 {g.section11.formattingChecklist.map((c) => (
                   <p key={c}>✓ {c}</p>
                 ))}
               </div>
               <div className="bg-card p-4 rounded-xl border border-border space-y-1.5">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-white">Final Review</h4>
+                <div className="font-bold text-sm text-slate-900 dark:text-white">Final Review</div>
                 {g.section11.finalReview.map((c) => (
                   <p key={c}>✓ {c}</p>
                 ))}
@@ -765,9 +769,9 @@ export function MainTeacherPage() {
           <div className="space-y-6 mb-14">
             {faqs.map((item) => (
               <div key={item.q} className="pb-6 border-b border-border last:border-b-0">
-                <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1.5">
+                <div className="font-bold text-slate-900 dark:text-white text-base mb-1.5">
                   {item.q}
-                </h3>
+                </div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   {item.a}
                 </p>
@@ -788,14 +792,54 @@ export function MainTeacherPage() {
         {/* CLUSTER NAVIGATION LINKS */}
         <TeacherClusterLinks currentPath="/resume-for-teacher-job" />
 
-        {/* SECTION 8: FINAL CTA */}
-        <section className="py-16 px-4 sm:px-8 max-w-4xl mx-auto">
+        {/* SECTION 8: SOCIAL SHARE & FINAL CTA */}
+        <section className="py-16 px-4 sm:px-8 max-w-4xl mx-auto space-y-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-card border border-border px-5 py-4">
+            <span className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+              Share this Teacher Resume Guide &amp; Samples:
+            </span>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
+              <a
+                href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fresumebabu.com%2Fresume-for-teacher-job"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://api.whatsapp.com/send?text=Resume%20for%20Teacher%20Job%3A%20Format%20%26%20Samples%20-%20https%3A%2F%2Fresumebabu.com%2Fresume-for-teacher-job"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                WhatsApp
+              </a>
+              <a
+                href="https://twitter.com/intent/tweet?text=Resume%20for%20Teacher%20Job%3A%20Format%20%26%20Samples&url=https%3A%2F%2Fresumebabu.com%2Fresume-for-teacher-job"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                X / Twitter
+              </a>
+              <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fresumebabu.com%2Fresume-for-teacher-job"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                Facebook
+              </a>
+            </div>
+          </div>
+
           <div className="rounded-3xl bg-slate-50 dark:bg-[#161512] border border-border p-8 sm:p-12 text-center">
             <h2 className="font-serif text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
               Ready to Apply for Your Teaching Job?
             </h2>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto mb-6">
-              Create your professional teacher resume and download it in PDF format.
+              Create your professional resume for teacher job vacancies on ResumeBabu using our free format and samples, then download it in PDF format.
             </p>
             <CreateTeacherResumeButton
               sample={FRESHER_TEACHER_RESUME}

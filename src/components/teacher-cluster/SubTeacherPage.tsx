@@ -161,13 +161,52 @@ export function SubTeacherPage({ data }: { data: SubPageData }) {
               </div>
             ))}
           </div>
+
+          <p className="mt-8 text-xs text-slate-500 dark:text-slate-400">
+            Teaching eligibility and curriculum references:{' '}
+            <a href="https://ctet.nic.in/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline">CTET Official Portal</a>,{' '}
+            <a href="https://www.cbse.gov.in/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline">CBSE</a>, and{' '}
+            <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" className="text-emerald-700 dark:text-emerald-400 underline hover:no-underline">NCERT</a>.
+          </p>
         </section>
 
         {/* CLUSTER LINKS */}
         <TeacherClusterLinks currentPath={data.path} />
 
-        {/* FINAL CTA */}
-        <section className="py-14 px-4 sm:px-8 max-w-4xl mx-auto">
+        {/* SOCIAL SHARE & FINAL CTA */}
+        <section className="py-14 px-4 sm:px-8 max-w-4xl mx-auto space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-card border border-border px-5 py-4">
+            <span className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+              Share this {data.h1} guide on ResumeBabu:
+            </span>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://resumebabu.com${data.path}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                LinkedIn
+              </a>
+              <a
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`${data.h1} - https://resumebabu.com${data.path}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                WhatsApp
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(data.h1)}&url=${encodeURIComponent(`https://resumebabu.com${data.path}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-lg border border-border hover:border-emerald-500/40 text-slate-700 dark:text-slate-300 transition"
+              >
+                X / Twitter
+              </a>
+            </div>
+          </div>
+
           <div className="rounded-3xl bg-slate-50 dark:bg-[#161512] border border-border p-8 sm:p-12 text-center">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-3">
               {data.ctaTitle}

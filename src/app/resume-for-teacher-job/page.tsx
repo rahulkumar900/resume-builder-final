@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { MainTeacherPage } from '@/components/teacher-cluster/MainTeacherPage';
 
 export const metadata: Metadata = {
-  title: 'Resume for Teacher Job: Format & Samples (2026)',
+  title: 'Resume for Teacher Job: Format & Samples',
   description:
     'Build a resume for teacher job vacancies. Free fresher, experienced, PRT, TGT & PGT samples, 2026 writing guide, and instant Word & PDF download.',
   keywords: [
