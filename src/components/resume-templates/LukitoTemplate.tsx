@@ -77,7 +77,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline mb-0.5">
                       <span className="font-bold text-neutral-900 text-[15px]">{exp.role}</span>
-                      <span className="text-[12px] font-mono text-neutral-500">
+                      <span className="text-[12px] font-mono text-neutral-700 font-medium">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
@@ -108,7 +108,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
                     <div className="flex justify-between items-baseline mb-1">
                       <span className="font-bold text-neutral-900 text-[14px]">{p.title}</span>
                       {p.link && (
-                        <span className="text-[11.5px] font-mono text-neutral-500">
+                        <span className="text-[11.5px] font-mono text-neutral-700">
                           {p.link.replace(/^https?:\/\//, '')}
                         </span>
                       )}
@@ -116,7 +116,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
                     {p.technologies && p.technologies.length > 0 && (
                       <div className="flex flex-wrap gap-1 mb-2">
                         {p.technologies.map((t, i) => (
-                          <span key={i} className="text-[10.5px] bg-neutral-100 text-neutral-600 px-1.5 py-0.5 rounded font-mono">
+                          <span key={i} className="text-[10.5px] bg-neutral-100 text-neutral-800 px-1.5 py-0.5 rounded font-mono font-medium">
                             {t}
                           </span>
                         ))}
@@ -145,7 +145,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="font-bold text-neutral-900 text-[14px]">{edu.degree}</div>
                     <div className="text-neutral-700 font-medium">{edu.school}</div>
-                    <div className="text-[12px] font-mono text-neutral-500 mt-0.5">
+                    <div className="text-[12px] font-mono text-neutral-700 font-medium mt-0.5">
                       {edu.graduationDate} // {edu.location}
                     </div>
                   </div>
@@ -168,7 +168,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className={itemSpaceClass}>
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
-                  <div className="text-[11.5px] font-bold uppercase tracking-wider text-neutral-500 mb-1">
+                  <div className="text-[11.5px] font-bold uppercase tracking-wider text-neutral-700 mb-1">
                     {cat.category}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -200,7 +200,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="text-[12.5px] bg-neutral-50 p-2.5 rounded border border-neutral-200 break-inside-avoid">
                   <div className="font-bold text-neutral-900">{c.name}</div>
-                  <div className="text-[11px] font-mono text-neutral-500">{c.issuer} // {c.date}</div>
+                  <div className="text-[11px] font-mono text-neutral-700">{c.issuer} // {c.date}</div>
                 </div>
               ))}
             </div>
@@ -220,7 +220,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between">
                   <span className="font-bold">{l.language}</span>
-                  <span className="text-neutral-500">{l.proficiency}</span>
+                  <span className="text-neutral-700 font-medium">{l.proficiency}</span>
                 </div>
               ))}
             </div>
@@ -250,7 +250,7 @@ export const LukitoTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div className={`w-full h-full min-h-[297mm] bg-white text-neutral-900 font-sans ${paddingClass} text-[13px] leading-normal flex flex-col box-border`}>
       {/* Running Header */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="pb-3 border-b-2 border-neutral-900 mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-neutral-500 break-inside-avoid">
+        <div className="pb-3 border-b-2 border-neutral-900 mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-neutral-700 font-medium break-inside-avoid">
           <span>// {personalInfo.fullName || 'Candidate'}</span>
           <span>PAGE {data.pageNumber} OF {data.totalPages || 2}</span>
         </div>

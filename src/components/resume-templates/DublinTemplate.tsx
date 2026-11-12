@@ -247,10 +247,10 @@ export const DublinTemplate: React.FC<TemplateProps> = ({ data }) => {
         <div data-ghost-header="true" style={{ backgroundColor: themeColor }} className={`text-white ${headerPadding}`}>
           <div className="flex items-center justify-between gap-6">
             <div className="flex-1">
-              <div className="text-4xl font-black tracking-tight uppercase leading-none">
+              <h1 className="text-4xl font-black tracking-tight uppercase leading-none">
                 {personalInfo.fullName || 'Olivia Winata'}
-              </div>
-              <div className="text-base font-bold text-white/90 tracking-wider uppercase mt-2">
+              </h1>
+              <div data-ghost-role="true" className="text-base font-bold text-white/90 tracking-wider uppercase mt-2">
                 {personalInfo.jobTitle || 'Senior Product Designer'}
               </div>
               {personalInfo.summary && (

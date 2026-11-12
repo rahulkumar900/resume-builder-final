@@ -21,7 +21,7 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
     certifications = [],
     languages = [],
     achievements = [],
-    themeColor = '#1d4ed8', // Refined Royal Blue accent
+    themeColor = '#1F3DD6', // Meridian Blue accent
     spacing = 'normal',
   } = data;
 
@@ -37,7 +37,7 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
   const resolvedOrder = getResolvedTemplateSectionOrder('accentbar', data);
   const sectionOrder = resolvedOrder.singleColumn || [];
 
-  // Render vertical accent bar followed by wide-tracked uppercase section header
+  // Render vertical accent bar followed by wide-tracked uppercase section header (Manrope 11px / 16.5px, 700 bold, #222222)
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
@@ -45,9 +45,9 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
     >
       <div
         className="w-[4px] h-[15px] rounded-[1px] shrink-0"
-        style={{ backgroundColor: themeColor }}
+        style={{ backgroundColor: themeColor || '#1F3DD6' }}
       />
-      <h2 className="text-[12px] font-black uppercase tracking-[0.2em] text-slate-900">
+      <h2 className="font-manrope text-[11px] font-bold uppercase tracking-[0.2em] text-[#222222] leading-[16.5px]">
         {title}
       </h2>
     </div>
@@ -73,7 +73,7 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
-                className="text-[11.5px] text-slate-800 leading-relaxed"
+                className="font-manrope text-[12.5px] text-[#222222] leading-[18.8px] font-normal"
               />
             </div>
           </div>
@@ -85,19 +85,19 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="experience" data-ghost-section="experience" className={sectionMarginClass}>
             {renderSectionHeader('Experience', 'experience')}
             <div className={itemSpaceClass}>
-              {experience.map((exp) => (
-                <div key={exp.id} data-ghost-item={exp.id} className="space-y-1 break-inside-avoid">
+              {experience.map((exp, idx) => (
+                <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-1 break-inside-avoid">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
-                      <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
+                      <span className="font-manrope font-bold text-[12.5px] text-[#222222] leading-[18.8px]">
                         {exp.role}
                       </span>
-                      <span className="text-[11px] text-slate-500 font-normal">
+                      <span className="font-manrope font-medium text-[12.5px] text-[#222222] leading-[18.8px]">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
                     {(exp.company || exp.location) && (
-                      <div className="text-[11.5px] font-medium text-slate-700">
+                      <div className="font-manrope font-normal text-[12.5px] text-[#222222] leading-[18.8px]">
                         {exp.company}
                         {exp.location ? `, ${exp.location}` : ''}
                       </div>
@@ -106,7 +106,8 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
                   {exp.highlights && exp.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="text-slate-700 text-[11px] leading-normal pt-0.5 space-y-0.5"
+                      className="font-manrope text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5 space-y-0.5"
+                      itemClassName="font-manrope text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -121,21 +122,21 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="projects" data-ghost-section="projects" className={sectionMarginClass}>
             {renderSectionHeader('Projects', 'projects')}
             <div className={itemSpaceClass}>
-              {projects.map((proj) => (
-                <div key={proj.id} data-ghost-item={proj.id} className="space-y-0.5 break-inside-avoid">
+              {projects.map((proj, idx) => (
+                <div key={proj.id || idx} data-ghost-item={proj.id || `proj-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
+                      <span className="font-manrope font-bold text-[12.5px] text-[#222222] leading-[18.8px]">
                         {proj.title}
                       </span>
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="text-[11px] text-slate-500 font-normal">
+                        <span className="font-manrope text-[12.5px] text-[#222222]/80 font-normal">
                           ({proj.technologies.join(', ')})
                         </span>
                       )}
                     </div>
                     {proj.link && (
-                      <span className="text-[11px] text-blue-600 truncate max-w-[200px]">
+                      <span className="font-manrope text-[12.5px] text-[#1F3DD6] truncate max-w-[200px]">
                         {proj.link}
                       </span>
                     )}
@@ -143,7 +144,8 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
                   {proj.highlights && proj.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={proj.highlights}
-                      className="text-slate-700 text-[11px] leading-normal pt-0.5"
+                      className="font-manrope text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-manrope text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -158,17 +160,17 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="education" data-ghost-section="education" className={sectionMarginClass}>
             {renderSectionHeader('Education', 'education')}
             <div className={itemSpaceClass}>
-              {education.map((edu) => (
-                <div key={edu.id} data-ghost-item={edu.id} className="space-y-0.5 break-inside-avoid">
+              {education.map((edu, idx) => (
+                <div key={edu.id || idx} data-ghost-item={edu.id || `edu-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
+                    <span className="font-manrope font-bold text-[12.5px] text-[#222222] leading-[18.8px]">
                       {edu.degree}
                     </span>
-                    <span className="text-[11px] text-slate-500 font-normal">
+                    <span className="font-manrope font-medium text-[12.5px] text-[#222222] leading-[18.8px]">
                       {edu.graduationDate}
                     </span>
                   </div>
-                  <div className="text-[11.5px] text-slate-700">
+                  <div className="font-manrope font-normal text-[12.5px] text-[#222222] leading-[18.8px]">
                     {edu.school}
                     {edu.location ? `, ${edu.location}` : ''}
                     {edu.gpa ? ` · CGPA: ${edu.gpa}` : ''}
@@ -176,7 +178,8 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={edu.highlights}
-                      className="text-slate-600 text-[11px] leading-normal pt-0.5"
+                      className="font-manrope text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-manrope text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -190,12 +193,12 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="certifications" data-ghost-section="certifications" className={sectionMarginClass}>
             {renderSectionHeader('Certifications', 'certifications')}
-            <ul className="list-disc list-outside pl-4 space-y-1 text-[11.5px] text-slate-800">
-              {certifications.map((cert) => (
-                <li key={cert.id} data-ghost-item={cert.id} className="break-inside-avoid">
-                  <span className="font-medium text-slate-900">{cert.name}</span>
-                  {cert.issuer && <span className="text-slate-600"> — {cert.issuer}</span>}
-                  {cert.date && <span className="text-slate-500"> ({cert.date})</span>}
+            <ul className="list-disc list-outside pl-4 space-y-1 font-manrope text-[12.5px] text-[#222222] leading-[18.8px]">
+              {certifications.map((cert, idx) => (
+                <li key={cert.id || idx} data-ghost-item={cert.id || `cert-${idx}`} className="break-inside-avoid">
+                  <span className="font-bold text-[#222222]">{cert.name}</span>
+                  {cert.issuer && <span className="text-[#222222]"> — {cert.issuer}</span>}
+                  {cert.date && <span className="text-[#222222]/80"> ({cert.date})</span>}
                 </li>
               ))}
             </ul>
@@ -207,12 +210,12 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="achievements" data-ghost-section="achievements" className={sectionMarginClass}>
             {renderSectionHeader('Achievements', 'achievements')}
-            <ul className="list-disc list-outside pl-4 space-y-1 text-[11.5px] text-slate-800">
-              {achievements.map((ach) => (
-                <li key={ach.id} data-ghost-item={ach.id} className="break-inside-avoid">
-                  <span className="font-medium text-slate-900">{ach.title}</span>
-                  {ach.date && <span className="text-slate-500"> ({ach.date})</span>}
-                  {ach.description && <span className="text-slate-700"> — {ach.description}</span>}
+            <ul className="list-disc list-outside pl-4 space-y-1 font-manrope text-[12.5px] text-[#222222] leading-[18.8px]">
+              {achievements.map((ach, idx) => (
+                <li key={ach.id || idx} data-ghost-item={ach.id || `ach-${idx}`} className="break-inside-avoid">
+                  <span className="font-bold text-[#222222]">{ach.title}</span>
+                  {ach.date && <span className="text-[#222222]/80"> ({ach.date})</span>}
+                  {ach.description && <span className="text-[#222222]"> — {ach.description}</span>}
                 </li>
               ))}
             </ul>
@@ -223,18 +226,17 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
         const activeSkills = (skills || []).filter((cat) => cat.enabled !== false);
         if (activeSkills.length === 0) return null;
 
-        // Flatten skills or render with category prefix
         const hasCategories = activeSkills.some((cat) => Boolean(cat.category && cat.category.trim()));
 
         return (
           <div key="skills" data-ghost-section="skills" className={sectionMarginClass}>
             {renderSectionHeader('Skills', 'skills')}
-            <div className="space-y-1.5 text-[11.5px] text-slate-800 leading-relaxed">
+            <div className="space-y-1.5 font-manrope text-[12.5px] text-[#222222] leading-[18.8px] font-normal">
               {hasCategories ? (
                 activeSkills.map((cat, idx) => (
                   <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`}>
                     {cat.category && (
-                      <span className="font-bold text-slate-900 mr-1.5">{cat.category}:</span>
+                      <span className="font-bold text-[#222222] mr-1.5">{cat.category}:</span>
                     )}
                     <span>{cat.items.join(' · ')}</span>
                   </div>
@@ -254,12 +256,12 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="languages" data-ghost-section="languages" className={sectionMarginClass}>
             {renderSectionHeader('Languages', 'languages')}
-            <div className="text-[11.5px] text-slate-800">
+            <div className="font-manrope text-[12.5px] text-[#222222] leading-[18.8px]">
               {languages.map((l, idx) => (
                 <span key={l.id || idx} data-ghost-item={l.id || `lang-${idx}`}>
                   {idx > 0 && ' · '}
                   <span className="font-medium">{l.language}</span>
-                  {l.proficiency && <span className="text-slate-500"> ({l.proficiency})</span>}
+                  {l.proficiency && <span className="text-[#222222]/80"> ({l.proficiency})</span>}
                 </span>
               ))}
             </div>
@@ -281,41 +283,42 @@ export const AccentBarTemplate: React.FC<TemplateProps> = ({ data }) => {
   };
 
   return (
-    <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans flex flex-col box-border ${paddingClass}`}>
+    <div className={`w-full h-full min-h-[297mm] bg-white text-[#222222] font-manrope flex flex-col box-border ${paddingClass}`}>
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-b border-slate-300 pb-2 mb-4 flex items-center justify-between text-xs font-semibold text-slate-600 break-inside-avoid">
+        <div className="border-b border-[#222222]/20 pb-2 mb-4 flex items-center justify-between text-xs font-semibold text-[#222222] break-inside-avoid">
           <span>
             {personalInfo.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
-          <span style={{ color: themeColor }}>{personalInfo.jobTitle}</span>
+          <span style={{ color: themeColor || '#1F3DD6' }}>{personalInfo.jobTitle}</span>
         </div>
       )}
 
-      {/* Refined Header matching PDF Page 1 (Page 1 only) */}
+      {/* Refined Meridian Header (Page 1 only) */}
       {isPage1 && (
         <header
           data-ghost-header="true"
-          className="border-b border-slate-900 pb-2.5 mb-2 break-inside-avoid"
+          className="border-b border-[#222222]/30 pb-2.5 mb-2 break-inside-avoid"
         >
-          <h1 className="font-serif text-[32px] sm:text-[35px] font-black tracking-tight text-slate-900 leading-tight">
+          <h1 className="font-fraunces text-[40px] font-bold text-[#222222] leading-[40px] tracking-tight">
             {personalInfo.fullName}
           </h1>
 
           {personalInfo.jobTitle && (
             <div
-              className="text-[11px] font-bold tracking-[0.2em] uppercase mt-1"
-              style={{ color: themeColor }}
+              data-ghost-role="true"
+              className="font-manrope text-[11px] font-bold tracking-[0.2em] uppercase mt-1 leading-[16.5px]"
+              style={{ color: themeColor || '#1F3DD6' }}
             >
               {personalInfo.jobTitle}
             </div>
           )}
 
           {contactItems.length > 0 && (
-            <div className="text-[11.5px] text-slate-600 mt-2 flex flex-wrap items-center gap-x-2 gap-y-0.5">
+            <div className="font-manrope text-[11.5px] text-[#222222]/80 mt-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 leading-[16.5px]">
               {contactItems.map((item, idx) => (
                 <React.Fragment key={idx}>
-                  {idx > 0 && <span className="text-slate-400 font-bold">·</span>}
+                  {idx > 0 && <span className="text-[#222222]/40 font-bold">·</span>}
                   <span>{item}</span>
                 </React.Fragment>
               ))}

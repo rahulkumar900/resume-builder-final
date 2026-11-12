@@ -56,10 +56,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${BASE_URL}/teacher-resume-builder`,
+      url: `${BASE_URL}/resume-for-teacher-job`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.95,
+    },
+    {
+      url: `${BASE_URL}/resume-for-teacher-job/freshers`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/resume-for-teacher-job/experienced`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/resume-for-teacher-job/primary-teacher`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/resume-for-teacher-job/pgt-teacher`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/resume-for-teacher-job/tgt-teacher`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.85,
     },
     {
       url: `${BASE_URL}/download-resume-free-pdf`,

@@ -101,14 +101,14 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
   const renderSectionTitle = (title: string) => (
     <h2
       data-ghost-section-title="true"
-      className="text-[11px] sm:text-[11.5px] font-black tracking-[0.2em] text-neutral-900 uppercase mb-2.5 select-none break-after-avoid"
+      className="font-spacegrotesk text-[12px] font-bold tracking-[0.2em] text-[#222222] uppercase mb-2.5 select-none break-after-avoid leading-[18px]"
     >
       {title}
     </h2>
   );
 
-  // Unified typography matching the summary text across all paragraphs, descriptions, and bullet points
-  const bodyTextClass = 'text-[12px] sm:text-[12.5px] leading-relaxed text-neutral-800 font-normal';
+  // Unified typography matching Vertical: Space Grotesk 14.5px (10.9pt), 400 regular, #222222, leading 25.4px (1.75)
+  const bodyTextClass = 'font-spacegrotesk text-[14.5px] leading-[25px] text-[#222222] font-normal';
 
   const renderSkillsContent = () => {
     // If multi-category skills exist with distinct titles
@@ -181,20 +181,20 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
           <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
             <h3 className="text-[12.5px] font-bold text-neutral-900 leading-snug">{edu.degree}</h3>
             {edu.graduationDate && (
-              <span className="text-[11.5px] text-neutral-600 shrink-0 font-normal tracking-wide whitespace-nowrap">
+              <span className="text-[11.5px] text-neutral-700 shrink-0 font-medium tracking-wide whitespace-nowrap">
                 {edu.graduationDate}
               </span>
             )}
           </div>
           {(edu.school || edu.location) && (
-            <p className="text-[11.5px] text-neutral-500 font-normal">
+            <p className="text-[11.5px] text-neutral-700 font-normal">
               {edu.school}
               {edu.school && edu.location ? ', ' : ''}
               {edu.location}
             </p>
           )}
           {edu.gpa && (
-            <p className="text-[11px] text-neutral-500 font-normal">GPA: {edu.gpa}</p>
+            <p className="text-[11px] text-neutral-700 font-normal">GPA: {edu.gpa}</p>
           )}
         </div>
       ))}
@@ -226,16 +226,16 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
               {experience.map((exp, idx) => (
                 <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-0.5">
                   <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                    <h3 className="text-[13px] font-bold text-neutral-900">{exp.role}</h3>
+                    <h3 className="text-[14.5px] font-bold text-[#222222] font-spacegrotesk leading-[25px]">{exp.role}</h3>
                     {(exp.startDate || exp.endDate) && (
-                      <span className="text-[11.5px] text-neutral-600 shrink-0 font-normal tracking-wide whitespace-nowrap">
+                      <span className="text-[12px] text-neutral-700 shrink-0 font-medium tracking-wide whitespace-nowrap">
                         {exp.startDate} {exp.startDate && (exp.endDate || exp.current) ? '–' : ''}{' '}
                         {exp.current ? 'Present' : exp.endDate}
                       </span>
                     )}
                   </div>
                   {(exp.company || exp.location) && (
-                    <p className="text-[11.5px] text-neutral-500 font-normal">
+                    <p className="text-[13.5px] text-neutral-700 font-normal leading-[25px]">
                       {exp.company}
                       {exp.company && exp.location ? ', ' : ''}
                       {exp.location}
@@ -271,7 +271,7 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
                     <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
                       <h3 className="text-[13px] font-bold text-neutral-900">{proj.title}</h3>
                       {period && (
-                        <span className="text-[11.5px] text-neutral-600 shrink-0 font-normal tracking-wide whitespace-nowrap">
+                        <span className="text-[11.5px] text-neutral-700 shrink-0 font-medium tracking-wide whitespace-nowrap">
                           {period}
                         </span>
                       )}
@@ -327,8 +327,8 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
               {certifications.map((cert, idx) => (
                 <li key={cert.id || idx} data-ghost-item={cert.id || `cert-${idx}`} className={bodyTextClass}>
                   <span className="font-bold text-neutral-900">{cert.name}</span>
-                  {cert.issuer && <span className="text-neutral-600">, {cert.issuer}</span>}
-                  {cert.date && <span className="text-neutral-500"> ({cert.date})</span>}
+                  {cert.issuer && <span className="text-neutral-700">, {cert.issuer}</span>}
+                  {cert.date && <span className="text-neutral-700 font-medium"> ({cert.date})</span>}
                 </li>
               ))}
             </ul>
@@ -345,8 +345,8 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
               {awards.map((award, idx) => (
                 <li key={award.id || idx} data-ghost-item={award.id || `award-${idx}`} className={bodyTextClass}>
                   <span className="font-bold text-neutral-900">{award.title}</span>
-                  {award.issuer && <span className="text-neutral-600">, {award.issuer}</span>}
-                  {award.date && <span className="text-neutral-500"> ({award.date})</span>}
+                  {award.issuer && <span className="text-neutral-700">, {award.issuer}</span>}
+                  {award.date && <span className="text-neutral-700 font-medium"> ({award.date})</span>}
                 </li>
               ))}
             </ul>
@@ -395,13 +395,13 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
                   <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
                     <h3 className="text-[13px] font-bold text-neutral-900">{v.role}</h3>
                     {(v.startDate || v.endDate) && (
-                      <span className="text-[11.5px] text-neutral-600 font-medium">
+                      <span className="text-[11.5px] text-neutral-700 font-medium">
                         {v.startDate} {v.startDate && (v.endDate || v.current) ? '–' : ''} {v.current ? 'Present' : v.endDate}
                       </span>
                     )}
                   </div>
                   {v.organization && (
-                    <p className="text-[11.5px] text-neutral-500 font-normal">{v.organization}</p>
+                    <p className="text-[11.5px] text-neutral-700 font-normal">{v.organization}</p>
                   )}
                   {v.highlights && v.highlights.length > 0 && (
                     <div className="pt-0.5">
@@ -431,13 +431,13 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
                   <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
                     <h3 className="text-[13px] font-bold text-neutral-900">{item.role || item.title}</h3>
                     {(item.startDate || item.endDate) && (
-                      <span className="text-[11.5px] text-neutral-600 font-medium">
+                      <span className="text-[11.5px] text-neutral-700 font-medium">
                         {item.startDate} {item.startDate && (item.endDate || item.current) ? '–' : ''} {item.current ? 'Present' : item.endDate}
                       </span>
                     )}
                   </div>
                   {item.company && (
-                    <p className="text-[11.5px] text-neutral-500 font-normal">{item.company}</p>
+                    <p className="text-[11.5px] text-neutral-700 font-normal">{item.company}</p>
                   )}
                   {item.highlights && item.highlights.length > 0 && (
                     <div className="pt-0.5">
@@ -465,8 +465,8 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
               {items.map((c: CourseItem, idx: number) => (
                 <li key={c.id || idx} data-ghost-item={c.id || `course-${idx}`} className={bodyTextClass}>
                   <span className="font-bold text-neutral-900">{c.name}</span>
-                  {c.institution && <span className="text-neutral-600">, {c.institution}</span>}
-                  {c.completionDate && <span className="text-neutral-500"> ({c.completionDate})</span>}
+                  {c.institution && <span className="text-neutral-700">, {c.institution}</span>}
+                  {c.completionDate && <span className="text-neutral-700 font-medium"> ({c.completionDate})</span>}
                 </li>
               ))}
             </ul>
@@ -484,8 +484,8 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
               {items.map((lic: LicenseItem, idx: number) => (
                 <li key={lic.id || idx} data-ghost-item={lic.id || `lic-${idx}`} className={bodyTextClass}>
                   <span className="font-bold text-neutral-900">{lic.name}</span>
-                  {lic.issuingAuthority && <span className="text-neutral-600">, {lic.issuingAuthority}</span>}
-                  {lic.date && <span className="text-neutral-500"> ({lic.date})</span>}
+                  {lic.issuingAuthority && <span className="text-neutral-700">, {lic.issuingAuthority}</span>}
+                  {lic.date && <span className="text-neutral-700 font-medium"> ({lic.date})</span>}
                 </li>
               ))}
             </ul>
@@ -504,9 +504,9 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
                 <div key={pub.id || idx} data-ghost-item={pub.id || `pub-${idx}`} className="space-y-0.5">
                   <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
                     <h3 className="text-[13px] font-bold text-neutral-900">{pub.title}</h3>
-                    {pub.date && <span className="text-[11.5px] text-neutral-500">{pub.date}</span>}
+                    {pub.date && <span className="text-[11.5px] text-neutral-700 font-medium">{pub.date}</span>}
                   </div>
-                  {pub.publisher && <p className="text-[11.5px] text-neutral-500 font-normal">{pub.publisher}</p>}
+                  {pub.publisher && <p className="text-[11.5px] text-neutral-700 font-normal">{pub.publisher}</p>}
                   {pub.summary && <p className={bodyTextClass}>{pub.summary}</p>}
                 </div>
               ))}
@@ -526,8 +526,8 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
                 <div key={ref.id || idx} data-ghost-item={ref.id || `ref-${idx}`} className="space-y-0.5">
                   <p className="font-bold text-neutral-900">{ref.name}</p>
                   <p className={bodyTextClass}>{ref.position}{ref.company ? `, ${ref.company}` : ''}</p>
-                  {ref.email && <p className="text-[11.5px] text-neutral-500">{ref.email}</p>}
-                  {ref.phone && <p className="text-[11.5px] text-neutral-500">{ref.phone}</p>}
+                  {ref.email && <p className="text-[11.5px] text-neutral-700">{ref.email}</p>}
+                  {ref.phone && <p className="text-[11.5px] text-neutral-700">{ref.phone}</p>}
                 </div>
               ))}
             </div>
@@ -549,13 +549,13 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
                       <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
                         <h3 className="text-[13px] font-bold text-neutral-900">{item.title}</h3>
                         {item.date && (
-                          <span className="text-[11.5px] text-neutral-500 shrink-0 font-medium whitespace-nowrap">
+                          <span className="text-[11.5px] text-neutral-700 shrink-0 font-medium whitespace-nowrap">
                             {item.date}
                           </span>
                         )}
                       </div>
                       {item.subtitle && (
-                        <p className="text-[11.5px] text-neutral-500 font-normal">{item.subtitle}</p>
+                        <p className="text-[11.5px] text-neutral-700 font-normal">{item.subtitle}</p>
                       )}
                       {item.description && (
                         <div className={bodyTextClass}>
@@ -665,12 +665,13 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
               transform: 'rotate(180deg)',
             }}
           >
-            <h1 className="text-[32px] sm:text-[38px] font-bold text-white tracking-tight leading-none">
+            <h1 className="font-spacegrotesk text-[44px] font-bold text-white tracking-tight leading-[58px]">
               {personalInfo?.fullName || 'Candidate Name'}
             </h1>
             {personalInfo?.jobTitle && (
               <div
-                className="text-[10px] sm:text-[11px] font-bold tracking-[0.25em] uppercase"
+                data-ghost-role="true"
+                className="font-spacegrotesk text-[12px] font-medium tracking-[0.25em] uppercase leading-[18px]"
                 style={{ color: themeColor || '#ffd23f' }}
               >
                 {personalInfo.jobTitle}
@@ -699,7 +700,7 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
       <div className={`flex-1 flex flex-col min-w-0 ${paddingClass}`}>
         {/* Running Header on Page 2+ */}
         {!isPage1 && (
-          <div data-ghost-header="true" className="border-b-2 border-neutral-200 pb-2 mb-4 flex justify-between items-baseline text-xs text-neutral-600 break-inside-avoid">
+          <div data-ghost-header="true" className="border-b-2 border-neutral-200 pb-2 mb-4 flex justify-between items-baseline text-xs text-neutral-700 break-inside-avoid">
             <span className="font-bold text-neutral-900 uppercase tracking-wider">{personalInfo?.fullName}</span>
             <span>Page {data.pageNumber} of {data.totalPages || 2}</span>
           </div>
@@ -709,10 +710,10 @@ export const InfrastructureEngineerTemplate: React.FC<InfrastructureEngineerTemp
         {isPage1 && (
           <header data-ghost-header="true" className="mb-5 break-inside-avoid">
             {contactItems.length > 0 && (
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-neutral-600 font-normal">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] text-neutral-800 font-normal">
                 {contactItems.map((item, idx) => (
                   <React.Fragment key={idx}>
-                    {idx > 0 && <span className="text-neutral-400 font-bold">·</span>}
+                    {idx > 0 && <span className="text-neutral-500 font-bold">·</span>}
                     <span>{item}</span>
                   </React.Fragment>
                 ))}

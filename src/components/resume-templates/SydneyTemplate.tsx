@@ -246,10 +246,10 @@ export const SydneyTemplate: React.FC<TemplateProps> = ({ data }) => {
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="flex items-center justify-between gap-6 pb-6 border-b border-slate-200">
           <div className="space-y-1.5 flex-1">
-            <div className="text-4xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-4xl font-black text-slate-900 tracking-tight">
               {personalInfo.fullName || 'Olivia Winata'}
-            </div>
-            <div className="text-base font-bold tracking-wide" style={{ color: themeColor }}>
+            </h1>
+            <div data-ghost-role="true" className="text-base font-bold tracking-wide" style={{ color: themeColor }}>
               {personalInfo.jobTitle || 'Senior Product Designer'}
             </div>
             {personalInfo.summary && (

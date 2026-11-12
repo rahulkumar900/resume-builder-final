@@ -31,14 +31,14 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!personalInfo.summary) return null;
         return (
           <div key="summary" data-ghost-section="summary" className="space-y-1.5">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Profile</span>
             </div>
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
-                className="text-[12.5px] text-slate-600 leading-relaxed font-normal"
+                className="text-[13px] text-slate-800 leading-[20px] font-normal"
               />
             </div>
           </div>
@@ -47,8 +47,8 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience" className="space-y-2">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Employment History</span>
             </div>
             <div className={itemSpaceClass}>
@@ -56,16 +56,16 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={exp.id} data-ghost-item={exp.id} className="space-y-1 break-inside-avoid">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
-                      <span className="font-bold text-[13px] text-slate-900">
-                        {exp.role} <span className="font-medium text-slate-600">at {exp.company}</span>
+                      <span className="font-bold text-[14px] text-slate-900">
+                        {exp.role} <span className="font-medium text-slate-700">at {exp.company}</span>
                       </span>
-                      <span className="text-[11px] font-semibold text-slate-400">
+                      <span className="text-[12.5px] font-semibold text-slate-700 whitespace-nowrap">
                         {exp.startDate} &mdash; {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
-                    {exp.location && <div className="text-[11.5px] text-slate-500">{exp.location}</div>}
+                    {exp.location && <div className="text-[12.5px] text-slate-600">{exp.location}</div>}
                   </div>
-                  <ResumeHighlights highlights={exp.highlights} className="text-slate-700 pt-0.5 leading-relaxed text-[12px]" />
+                  <ResumeHighlights highlights={exp.highlights} className="text-slate-800 pt-0.5 leading-[20px] text-[13px]" />
                 </div>
               ))}
             </div>
@@ -75,8 +75,8 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className="space-y-2">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Education</span>
             </div>
             <div className={itemSpaceClass}>
@@ -84,12 +84,12 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={edu.id} data-ghost-item={edu.id} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
-                      <span className="font-bold text-[12.5px] text-slate-900">{edu.degree}</span>
-                      <span className="text-[10.5px] text-slate-400">{edu.graduationDate}</span>
+                      <span className="font-bold text-[14px] text-slate-900">{edu.degree}</span>
+                      <span className="text-[12.5px] font-semibold text-slate-700 whitespace-nowrap">{edu.graduationDate}</span>
                     </div>
-                    <div className="text-[11.5px] text-slate-600">{edu.school} {edu.location ? `• ${edu.location}` : ''}</div>
+                    <div className="text-[13px] text-slate-700">{edu.school} {edu.location ? `• ${edu.location}` : ''}</div>
                   </div>
-                  {edu.highlights && <ResumeHighlights highlights={edu.highlights} className="text-slate-700 text-[12px] mt-1" />}
+                  {edu.highlights && <ResumeHighlights highlights={edu.highlights} className="text-slate-800 text-[13px] mt-1" />}
                 </div>
               ))}
             </div>
@@ -99,19 +99,19 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className="space-y-2">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Skills &amp; Competencies</span>
             </div>
             <div className="space-y-2">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="space-y-1">
-                  <div className="text-[11px] font-bold text-slate-700">{cat.category}</div>
-                  <div className="flex flex-wrap gap-1">
+                  <div className="text-[12.5px] font-bold text-slate-800">{cat.category}</div>
+                  <div className="flex flex-wrap gap-1.5">
                     {cat.items.map((it, i) => (
                       <span
                         key={i}
-                        className="text-[10.5px] bg-slate-100 text-slate-800 font-medium px-2 py-0.5 rounded"
+                        className="text-[12px] bg-slate-100 text-slate-800 font-medium px-2.5 py-0.5 rounded border border-slate-200/60"
                       >
                         {it}
                       </span>
@@ -126,22 +126,22 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects" className="space-y-2">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Projects</span>
             </div>
             <div className={itemSpaceClass}>
               {projects.map((p) => (
                 <div key={p.id} data-ghost-item={p.id} className="space-y-1 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-bold text-[12.5px] text-slate-900">{p.title}</span>
+                    <span className="font-bold text-[14px] text-slate-900">{p.title}</span>
                     {p.link && (
-                      <span className="text-[11px] text-blue-600">
+                      <span className="text-[12px] text-blue-600">
                         {p.link.replace(/^https?:\/\//, '')}
                       </span>
                     )}
                   </div>
-                  <ResumeHighlights highlights={p.highlights} className="text-slate-700 text-[12px]" />
+                  <ResumeHighlights highlights={p.highlights} className="text-slate-800 text-[13px] leading-[20px]" />
                 </div>
               ))}
             </div>
@@ -151,14 +151,14 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className="space-y-2.5">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Certifications</span>
             </div>
-            <div className="space-y-1 text-[12px] text-slate-700">
+            <div className="space-y-1 text-[13px] text-slate-800">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
-                  <span className="font-semibold text-slate-900">{c.name}</span> &mdash; {c.issuer} ({c.date})
+                  <span className="font-semibold text-slate-900">{c.name}</span> &mdash; {c.issuer} {c.date ? `(${c.date})` : ''}
                 </div>
               ))}
             </div>
@@ -168,14 +168,14 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className="space-y-2">
-            <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-              <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+            <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
               <span>Languages</span>
             </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] text-slate-700">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-slate-800">
               {languages.map((l) => (
                 <span key={l.id} data-ghost-item={l.id} className="break-inside-avoid">
-                  <span className="font-semibold text-slate-800">{l.language}:</span> {l.proficiency}
+                  <span className="font-semibold text-slate-900">{l.language}:</span> {l.proficiency}
                 </span>
               ))}
             </div>
@@ -188,8 +188,8 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <div data-ghost-section-title="true" className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
-                <span className="w-1.5 h-4 rounded-xs" style={{ backgroundColor: themeColor }} />
+              <div data-ghost-section-title="true" className="text-[16px] font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
+                <span className="w-1.5 h-4.5 rounded-xs" style={{ backgroundColor: themeColor }} />
                 <span>{title}</span>
               </div>
             )}
@@ -203,7 +203,7 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 flex flex-col font-sans ${paddingClass} text-[13px] leading-normal box-border`}>
       {/* Running Header */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="pb-3 border-b border-slate-200 mb-4 break-inside-avoid flex items-center justify-between text-[11px] text-slate-400">
+        <div className="pb-3 border-b border-slate-200 mb-4 break-inside-avoid flex items-center justify-between text-[11.5px] text-slate-700 font-medium">
           <span>
             {personalInfo.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
@@ -213,15 +213,17 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
 
       {/* Header Container (Page 1) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
-      <div data-ghost-header="true" className="border-b-2 border-slate-100 pb-4 break-inside-avoid">
+      <div data-ghost-header="true" className="border-b-2 border-slate-200 pb-4 break-inside-avoid">
         <div className="flex justify-between items-start">
           <div>
-            <div className="text-3xl font-black tracking-tight text-slate-900 uppercase">
+            <h1 className="text-[26px] font-black tracking-tight text-slate-900 uppercase">
               {personalInfo.fullName || 'Full Name'}
-            </div>
-            <div className="text-sm font-bold mt-1" style={{ color: themeColor }}>
-              {personalInfo.jobTitle}
-            </div>
+            </h1>
+            {personalInfo.jobTitle && (
+              <div data-ghost-role="true" className="text-[13.5px] font-bold mt-1" style={{ color: themeColor }}>
+                {personalInfo.jobTitle}
+              </div>
+            )}
           </div>
 
           {personalInfo.avatarUrl && (
@@ -234,28 +236,28 @@ export const MadridTemplate: React.FC<TemplateProps> = ({ data }) => {
         </div>
 
         {/* Contact Strip */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11.5px] text-slate-600 pt-3 font-medium">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[12.5px] text-slate-700 pt-3 font-medium">
           {personalInfo.email && (
             <span className="flex items-center gap-1.5">
-              <Mail className="w-3.5 h-3.5 text-slate-400" />
+              <Mail className="w-3.5 h-3.5 text-slate-600" />
               <span>{personalInfo.email}</span>
             </span>
           )}
           {personalInfo.phone && (
             <span className="flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5 text-slate-400" />
+              <Phone className="w-3.5 h-3.5 text-slate-600" />
               <span>{personalInfo.phone}</span>
             </span>
           )}
           {personalInfo.location && (
             <span className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-slate-400" />
+              <MapPin className="w-3.5 h-3.5 text-slate-600" />
               <span>{personalInfo.location}</span>
             </span>
           )}
           {personalInfo.linkedin && (
             <span className="flex items-center gap-1.5">
-              <LinkedinIcon className="w-3.5 h-3.5 text-slate-400" />
+              <LinkedinIcon className="w-3.5 h-3.5 text-slate-600" />
               <span>{personalInfo.linkedin.replace(/^https?:\/\//, '')}</span>
             </span>
           )}

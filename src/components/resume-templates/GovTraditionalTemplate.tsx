@@ -59,7 +59,7 @@ export const GovTraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
-      className="bg-[#e9e9e9] border border-neutral-400 px-3 py-1 font-serif font-bold text-[12px] uppercase tracking-wider text-black break-after-avoid mb-2.5"
+      className="bg-[#e9e9e9] border border-[#999999] px-3 py-1 font-serif font-bold text-[12.5px] uppercase tracking-wider text-[#111111] leading-[17px] break-after-avoid mb-2.5"
     >
       {title}
     </div>
@@ -74,7 +74,7 @@ export const GovTraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="summary" data-ghost-section="summary" className={sectionMarginClass}>
             {renderSectionHeader('Career Objective', 'summary')}
-            <div data-ghost-item="summary-0" className="text-[11.5px] text-black leading-relaxed text-justify px-0.5">
+            <div data-ghost-item="summary-0" className="text-[11.5px] text-[#111111] leading-[16px] text-justify px-0.5">
               <RichText content={rawSummary} />
             </div>
           </div>
@@ -148,21 +148,21 @@ export const GovTraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
               {validExperience.map((exp) => (
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid space-y-0.5">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline gap-2">
-                    <span className="font-bold text-[12px] text-black">
+                    <span className="font-bold text-[12px] text-[#111111]">
                       {exp.role}
                     </span>
-                    <span className="text-[11.5px] text-black font-normal whitespace-nowrap">
+                    <span className="text-[11.5px] text-[#111111] font-normal whitespace-nowrap">
                       {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                     </span>
                   </div>
                   {(exp.company || exp.location) && (
-                    <div className="text-[11.5px] italic text-neutral-800">
+                    <div className="text-[11.5px] italic text-[#111111]/80">
                       {exp.company}
                       {exp.location ? `, ${exp.location}` : ''}
                     </div>
                   )}
                   {(exp as any).description && (
-                    <div className="text-[11px] text-neutral-900 leading-normal pt-0.5">
+                    <div className="text-[11.5px] text-[#111111] leading-[16px] pt-0.5">
                       {(exp as any).description}
                     </div>
                   )}
@@ -170,7 +170,7 @@ export const GovTraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
                     <div className="pl-3.5 pt-0.5">
                       <ResumeHighlights
                         highlights={exp.highlights}
-                        className="text-neutral-900 text-[11px] leading-relaxed space-y-1"
+                        className="text-[#111111] text-[11.5px] leading-[16px] space-y-1"
                       />
                     </div>
                   )}
@@ -487,13 +487,13 @@ export const GovTraditionalTemplate: React.FC<TemplateProps> = ({ data }) => {
           </div>
 
           {/* Centered Full Name */}
-          <h1 className="text-[24px] sm:text-[26px] font-bold uppercase tracking-normal text-black mt-1 leading-tight">
+          <h1 className="font-serif text-[25px] font-bold uppercase tracking-normal text-[#111111] mt-1 leading-[30px]">
             {personalInfo.fullName || 'Candidate Name'}
           </h1>
 
           {/* Centered Designation */}
           {personalInfo.jobTitle && (
-            <div className="text-[12.5px] italic text-neutral-800 mt-0.5">
+            <div data-ghost-role="true" className="font-serif text-[11.5px] italic text-[#111111] mt-0.5 leading-[16px]">
               {personalInfo.jobTitle}
             </div>
           )}

@@ -54,13 +54,13 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
     personalInfo.github,
   ].filter(Boolean);
 
-  // Royal Iris Section Header matching PDF Page 7
+  // Royal Iris Section Header matching Care: Manrope 12px / 21px, 700 bold, #6D4CCF
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
-      className="border-b-[1.5px] border-[#6d4ccf]/20 pb-1 mb-3 break-after-avoid"
+      className="border-b-[1.5px] border-[#6D4CCF]/20 pb-1 mb-3 break-after-avoid"
     >
-      <h2 className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#6d4ccf]">
+      <h2 className="font-manrope text-[12px] font-bold uppercase tracking-[0.16em] text-[#6D4CCF] leading-[18px]">
         {title}
       </h2>
     </div>
@@ -73,7 +73,7 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
         return (
           <div key="summary" data-ghost-section="summary" className="mb-6 break-inside-avoid">
             {renderSectionHeader('Profile', 'summary')}
-            <div data-ghost-item="summary-0" className="text-[12px] text-slate-800 leading-relaxed font-normal">
+            <div data-ghost-item="summary-0" className="font-manrope text-[14.5px] text-[#222222] leading-[25px] font-normal">
               <RichText content={rawSummary} />
             </div>
           </div>
@@ -105,29 +105,29 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
 
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline gap-2">
-                      <span className="font-bold text-[13px] text-slate-900 tracking-tight">
+                      <span className="font-bold text-[14.5px] text-[#222222] tracking-tight leading-[25px]">
                         {exp.role}
                       </span>
-                      <span className="text-[10.5px] font-semibold text-[#6d4ccf] tracking-wider uppercase shrink-0">
+                      <span className="text-[12px] font-semibold text-[#6d4ccf] tracking-wider uppercase shrink-0">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
                     {(exp.company || exp.location) && (
-                      <div className="text-[11.5px] font-medium text-slate-600 italic">
+                      <div className="text-[13.5px] font-medium text-[#222222] italic">
                         {exp.company}
                         {exp.location ? `, ${exp.location}` : ''}
                       </div>
                     )}
                   </div>
                   {(exp as any).description && (
-                    <div className="text-[11.5px] text-slate-700 leading-relaxed pt-0.5">
+                    <div className="text-[14.5px] text-[#222222] leading-[25px] pt-0.5">
                       {(exp as any).description}
                     </div>
                   )}
                   {exp.highlights && exp.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="text-slate-800 text-[11px] leading-relaxed pt-0.5 space-y-1"
+                      className="text-[#222222] text-[14.5px] leading-[25px] pt-0.5 space-y-1"
                     />
                   )}
                 </div>
@@ -158,30 +158,30 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
                 >
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline gap-2">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="font-bold text-[12.5px] text-slate-900">
+                      <span className="font-bold text-[14.5px] text-[#222222]">
                         {proj.title}
                       </span>
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="text-[10.5px] font-medium text-[#6d4ccf]">
+                        <span className="text-[12px] font-medium text-[#6d4ccf]">
                           ({proj.technologies.join(', ')})
                         </span>
                       )}
                     </div>
                     {(proj.link || (proj as any).date) && (
-                      <span className="text-[10.5px] font-semibold text-[#6d4ccf] shrink-0">
+                      <span className="text-[12px] font-semibold text-[#6d4ccf] shrink-0">
                         {(proj as any).date || proj.link}
                       </span>
                     )}
                   </div>
                   {(proj as any).description && (
-                    <div className="text-[11px] text-slate-700 leading-relaxed">
+                    <div className="text-[14.5px] text-[#222222] leading-[25px]">
                       {(proj as any).description}
                     </div>
                   )}
                   {proj.highlights && proj.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={proj.highlights}
-                      className="text-slate-700 text-[11px] leading-relaxed"
+                      className="text-[#222222] text-[14.5px] leading-[25px]"
                     />
                   )}
                 </div>
@@ -206,7 +206,7 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
                   className="space-y-1.5 break-inside-avoid"
                 >
                   {cat.category && (
-                    <div className="font-bold text-[10.5px] uppercase tracking-wider text-slate-600">
+                    <div className="font-bold text-[12px] uppercase tracking-wider text-[#6d4ccf]">
                       {cat.category}
                     </div>
                   )}
@@ -214,7 +214,7 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
                     {(cat.items || []).map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="inline-block bg-[#ece6ff] text-[#4b2fa5] border border-[#cdbdf5]/60 px-2.5 py-0.5 text-[11px] font-semibold rounded-full"
+                        className="inline-block bg-[#ece6ff] text-[#4b2fa5] border border-[#cdbdf5]/60 px-2.5 py-0.5 text-[12.5px] font-semibold rounded-full"
                       >
                         {skill}
                       </span>
@@ -241,27 +241,27 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
                   className="space-y-0.5 break-inside-avoid"
                 >
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline gap-2">
-                    <span className="font-bold text-[12px] text-slate-900">
+                    <span className="font-bold text-[14px] text-[#222222]">
                       {edu.degree}
                     </span>
-                    <span className="text-[10.5px] font-semibold text-slate-500 shrink-0">
+                    <span className="text-[12px] font-semibold text-[#6d4ccf] shrink-0">
                       {edu.graduationDate}
                     </span>
                   </div>
-                  <div className="text-[11px] text-slate-700 italic">
+                  <div className="text-[13px] text-[#222222] italic">
                     {edu.school}
                     {edu.location ? `, ${edu.location}` : ''}
                     {edu.gpa ? ` · CGPA ${edu.gpa}` : ''}
                   </div>
                   {(edu as any).description && (
-                    <div className="text-[10.5px] text-slate-600 pt-0.5">
+                    <div className="text-[14.5px] text-[#222222] leading-[25px] pt-0.5">
                       {(edu as any).description}
                     </div>
                   )}
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={edu.highlights}
-                      className="text-slate-700 text-[10.5px] pt-0.5"
+                      className="text-[#222222] text-[14.5px] leading-[25px] pt-0.5"
                     />
                   )}
                 </div>
@@ -277,14 +277,14 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
         return (
           <div key="certifications" data-ghost-section="certifications" className="mb-6">
             {renderSectionHeader('Registration & Licenses', 'certifications')}
-            <ul className="space-y-1.5 text-[11px] text-slate-800">
+            <ul className="space-y-1.5 text-[13px] text-[#222222]">
               {certifications.map((cert) => (
                 <li key={cert.id} data-ghost-item={cert.id} className="flex items-start gap-1.5 break-inside-avoid">
-                  <span className="text-[#6d4ccf] font-bold text-xs mt-0.5">•</span>
+                  <span className="text-[#6d4ccf] font-bold text-sm mt-0.5">•</span>
                   <div>
-                    <span className="font-semibold text-slate-900">{cert.name}</span>
-                    {cert.issuer && <span className="text-slate-600"> &mdash; {cert.issuer}</span>}
-                    {cert.date && <span className="text-slate-500"> ({cert.date})</span>}
+                    <span className="font-semibold text-[#222222]">{cert.name}</span>
+                    {cert.issuer && <span className="text-[#222222]"> &mdash; {cert.issuer}</span>}
+                    {cert.date && <span className="text-[#6d4ccf] font-medium"> ({cert.date})</span>}
                   </div>
                 </li>
               ))}
@@ -299,11 +299,11 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
         return (
           <div key="languages" data-ghost-section="languages" className="mb-6">
             {renderSectionHeader('Languages', 'languages')}
-            <div className="space-y-1 text-[11px] text-slate-800">
+            <div className="space-y-1 text-[13px] text-[#222222]">
               {languages.map((l, idx) => (
                 <div key={l.id || idx} data-ghost-item={l.id || `lang-${idx}`} className="flex justify-between items-center break-inside-avoid">
-                  <span className="font-semibold text-slate-900">{l.language}</span>
-                  {l.proficiency && <span className="text-slate-600 text-[10.5px] italic">({l.proficiency})</span>}
+                  <span className="font-semibold text-[#222222]">{l.language}</span>
+                  {l.proficiency && <span className="text-[#6d4ccf] text-[12px] italic">({l.proficiency})</span>}
                 </div>
               ))}
             </div>
@@ -319,15 +319,15 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
         return (
           <div key={secId} data-ghost-section={secId} className="mb-6">
             {renderSectionHeader(secId === 'awards' ? 'Awards' : 'Achievements', secId)}
-            <ul className="space-y-1.5 text-[11px] text-slate-800">
+            <ul className="space-y-1.5 text-[13px] text-[#222222]">
               {items.map((item) => (
                 <li key={item.id} data-ghost-item={item.id} className="flex items-start gap-1.5 break-inside-avoid">
-                  <span className="text-[#6d4ccf] font-bold text-xs mt-0.5">•</span>
+                  <span className="text-[#6d4ccf] font-bold text-sm mt-0.5">•</span>
                   <div>
-                    <span className="font-semibold text-slate-900">{item.title}</span>
-                    {item.date && <span className="text-slate-500 font-medium"> ({item.date})</span>}
+                    <span className="font-semibold text-[#222222]">{item.title}</span>
+                    {item.date && <span className="text-[#6d4ccf] font-medium"> ({item.date})</span>}
                     {(item as any).description && (
-                      <div className="text-[10.5px] text-slate-600 leading-normal mt-0.5">
+                      <div className="text-[13px] text-[#222222] leading-normal mt-0.5">
                         {(item as any).description}
                       </div>
                     )}
@@ -429,45 +429,45 @@ export const ClinicalHealthcareTemplate: React.FC<TemplateProps> = ({ data }) =>
 
   return (
     <div
-      className={`w-full h-full min-h-[297mm] bg-[#faf8ff] text-slate-900 font-sans flex flex-col box-border ${paddingClass}`}
+      className={`w-full h-full min-h-[297mm] bg-[#faf8ff] text-[#222222] font-manrope flex flex-col box-border ${paddingClass}`}
     >
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-b-[1.5px] border-[#6d4ccf] pb-2 mb-5 flex items-center justify-between text-[11px] font-bold text-[#6d4ccf] break-inside-avoid">
+        <div className="border-b-[1.5px] border-[#6D4CCF] pb-2 mb-5 flex items-center justify-between text-[11px] font-bold text-[#6D4CCF] break-inside-avoid">
           <div className="flex items-center gap-2">
-            <span className="font-serif uppercase tracking-wider">
+            <span className="font-fraunces uppercase tracking-wider">
               {personalInfo.fullName || 'Candidate'}
             </span>
             {personalInfo.jobTitle && (
-              <span className="text-slate-500 font-normal"> &mdash; {personalInfo.jobTitle}</span>
+              <span className="text-[#222222] font-normal"> &mdash; {personalInfo.jobTitle}</span>
             )}
           </div>
-          <span className="font-medium text-slate-600">
+          <span className="font-medium text-[#222222]">
             Page {data.pageNumber} of {data.totalPages || 2}
           </span>
         </div>
       )}
 
-      {/* Royal Iris Curved Header Banner (Page 1 only) matching PDF Page 7 */}
+      {/* Royal Iris Curved Header Banner (Page 1 only) matching Care */}
       {isPage1 && (
         <header
           data-ghost-header="true"
-          className="bg-[#6d4ccf] text-white p-6 sm:p-7 rounded-br-[36px] shadow-sm mb-6 break-inside-avoid"
+          className="bg-[#6D4CCF] text-white p-6 sm:p-7 rounded-br-[36px] shadow-sm mb-6 break-inside-avoid"
         >
-          {/* Candidate Name & Title */}
-          <h1 className="font-serif text-[30px] sm:text-[34px] font-bold tracking-tight text-white leading-none">
+          {/* Candidate Name & Title (Fraunces 32px / 38.4px, 700 bold, #FFFFFF) */}
+          <h1 className="font-fraunces text-[32px] font-bold tracking-tight text-white leading-[38px]">
             {personalInfo.fullName}
           </h1>
 
           {personalInfo.jobTitle && (
-            <div className="font-sans font-semibold text-[13px] sm:text-[14px] text-[#e5dcff] tracking-wide mt-1.5">
+            <div data-ghost-role="true" className="font-manrope font-bold text-[14.5px] text-[#E5DCFF] tracking-wide mt-1.5 leading-[25px]">
               {personalInfo.jobTitle}
             </div>
           )}
 
           {/* Contact Strip */}
           {contactItems.length > 0 && (
-            <div className="font-sans text-[11px] text-white/90 mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-medium">
+            <div className="font-manrope text-[11px] text-white/90 mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-medium">
               {contactItems.map((item, idx) => (
                 <React.Fragment key={idx}>
                   {idx > 0 && <span className="text-[#cdbdf5] font-bold">·</span>}

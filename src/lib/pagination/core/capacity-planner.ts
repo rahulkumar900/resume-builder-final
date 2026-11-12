@@ -137,7 +137,7 @@ export class PageCapacityPlanner implements ICapacityPlanner {
         };
       case 'neon_creative':
         return {
-          headerHeightPage1: spacing === 'compact' ? 140 : spacing === 'relaxed' ? 180 : 160,
+          headerHeightPage1: spacing === 'compact' ? 160 : spacing === 'relaxed' ? 200 : 180,
           runningHeaderHeight: runningHeader,
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,
@@ -223,6 +223,48 @@ export class PageCapacityPlanner implements ICapacityPlanner {
         return {
           headerHeightPage1: spacing === 'compact' ? 195 : spacing === 'relaxed' ? 245 : 220,
           runningHeaderHeight: runningHeader,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'career_gantt':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 160 : spacing === 'relaxed' ? 220 : 190,
+          runningHeaderHeight: 46,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'marginalia':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 115 : spacing === 'relaxed' ? 155 : 135,
+          runningHeaderHeight: 46,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'dossier':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 130 : spacing === 'relaxed' ? 175 : 150,
+          runningHeaderHeight: 46,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'monogram':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 155 : spacing === 'relaxed' ? 195 : 175,
+          runningHeaderHeight: 46,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'binder_tabs':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 115 : spacing === 'relaxed' ? 155 : 135,
+          runningHeaderHeight: 46,
+          pagePaddingVertical: basePadding,
+          safetyMargin: this.defaultSafetyMargin,
+        };
+      case 'competency_radar':
+        return {
+          headerHeightPage1: spacing === 'compact' ? 110 : spacing === 'relaxed' ? 150 : 130,
+          runningHeaderHeight: 46,
           pagePaddingVertical: basePadding,
           safetyMargin: this.defaultSafetyMargin,
         };

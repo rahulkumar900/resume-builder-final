@@ -361,7 +361,7 @@ export const MarigoldTemplate: React.FC<TemplateProps> = ({ data }) => {
             {personalInfo.fullName || 'Aarav Menon'}
           </h1>
           {personalInfo.jobTitle && (
-            <p className="mt-2 text-[13px] text-[#F2B632] font-medium">
+            <p data-ghost-role="true" className="mt-2 text-[13px] text-[#F2B632] font-medium">
               {personalInfo.jobTitle}
             </p>
           )}

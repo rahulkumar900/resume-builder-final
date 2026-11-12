@@ -57,7 +57,7 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
   const renderSectionHeader = (title: string, secId: ResumeSectionId, isSidebar: boolean = false) => (
     <h2
       data-ghost-section-title="true"
-      className="text-[12px] font-bold uppercase tracking-[0.2em] text-neutral-900 break-after-avoid mb-2.5"
+      className="font-spacegrotesk text-[12px] font-bold uppercase tracking-[0.2em] text-[#222222] leading-[18px] break-after-avoid mb-2.5"
     >
       {title}
     </h2>
@@ -74,7 +74,7 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
         return (
           <div key="summary" data-ghost-section="summary" className={sectionMarginClass}>
             {renderSectionHeader('Hello!', 'summary', isSidebar)}
-            <div data-ghost-item="summary-0" className="text-[12px] text-neutral-800 leading-relaxed font-normal">
+            <div data-ghost-item="summary-0" className="font-spacegrotesk text-[13.5px] text-[#222222] leading-[23px] font-normal">
               <RichText content={rawSummary} />
             </div>
           </div>
@@ -97,15 +97,15 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
               <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid space-y-1">
                 <div data-ghost-item-header="true">
                   <div className="flex justify-between items-baseline gap-2">
-                    <span className="font-bold text-[13px] text-neutral-900">
+                    <span className="font-bold text-[13.5px] text-[#222222] font-spacegrotesk leading-[23px]">
                       {exp.role}
                     </span>
-                    <span className="text-[11px] font-medium text-neutral-600 whitespace-nowrap">
+                    <span className="text-[12px] font-semibold text-[#222222] whitespace-nowrap">
                       {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                     </span>
                   </div>
                   {(exp.company || exp.location) && (
-                    <div className="text-[11.5px] font-medium text-neutral-700 mt-0.5">
+                    <div className="text-[13.5px] font-medium text-[#222222] mt-0.5 leading-[23px]">
                       {exp.company}
                       {exp.location ? `, ${exp.location}` : ''}
                     </div>
@@ -113,7 +113,7 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                 </div>
 
                 {(exp as any).description && (
-                  <div className="text-[11px] text-neutral-800 leading-normal pt-0.5">
+                  <div className="text-[13.5px] text-[#222222] leading-[23px] pt-0.5 font-spacegrotesk">
                     {(exp as any).description}
                   </div>
                 )}
@@ -122,7 +122,7 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                   <div className="pt-0.5">
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="text-neutral-800 text-[11px] leading-relaxed space-y-1"
+                      className="text-[#222222] text-[13.5px] leading-[23px] space-y-1 font-spacegrotesk"
                     />
                   </div>
                 )}
@@ -162,13 +162,13 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                     {proj.title}
                   </span>
                   {(proj as any).year || (proj as any).date ? (
-                    <span className="text-[11px] font-medium text-neutral-600 whitespace-nowrap">
+                    <span className="text-[11px] font-semibold text-neutral-900 whitespace-nowrap">
                       {(proj as any).year || (proj as any).date}
                     </span>
                   ) : null}
                 </div>
                 {(proj as any).description && (
-                  <div className="text-[11px] text-neutral-700 leading-normal">
+                  <div className="text-[11px] text-neutral-900 leading-normal">
                     {(proj as any).description}
                   </div>
                 )}
@@ -176,7 +176,7 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                   <div className="pt-0.5">
                     <ResumeHighlights
                       highlights={proj.highlights}
-                      className="text-neutral-800 text-[11px] leading-relaxed space-y-1"
+                      className="text-neutral-900 text-[11px] leading-relaxed space-y-1"
                     />
                   </div>
                 )}
@@ -212,15 +212,15 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
           <div
             key="skills"
             data-ghost-section="skills"
-            className={`${sectionMarginClass} ${isSidebar ? 'border-l-4 pl-3.5' : ''}`}
-            style={isSidebar ? { borderColor: accentColor } : undefined}
+            className={`${sectionMarginClass} ${isSidebar ? 'border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]' : ''}`}
+            style={isSidebar ? { backgroundColor: accentColor } : undefined}
           >
             {renderSectionHeader('Skills', 'skills', isSidebar)}
             <div data-ghost-item="skills-0" className="flex flex-wrap gap-1.5">
               {inlineSkillsList.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="inline-block bg-white border border-neutral-300 px-2 py-0.5 text-[11px] font-medium text-neutral-800 rounded shadow-xs"
+                  className="inline-block bg-white border border-black/80 px-2.5 py-0.5 text-[11px] font-medium text-black rounded-full"
                 >
                   {skill}
                 </span>
@@ -241,12 +241,12 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                     {edu.degree}
                   </span>
                   {edu.graduationDate && (
-                    <span className="text-[11px] font-medium text-neutral-600 whitespace-nowrap">
+                    <span className="text-[11px] font-semibold text-neutral-900 whitespace-nowrap">
                       {edu.graduationDate}
                     </span>
                   )}
                 </div>
-                <div className="text-[11px] text-neutral-700">
+                <div className="text-[11px] text-neutral-900">
                   {edu.school}
                   {edu.location ? `, ${edu.location}` : ''}
                   {edu.gpa ? ` · ${edu.gpa}` : ''}
@@ -260,8 +260,8 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
           <div
             key="education"
             data-ghost-section="education"
-            className={`${sectionMarginClass} ${isSidebar ? 'border-l-4 pl-3.5' : ''}`}
-            style={isSidebar ? { borderColor: accentColor } : undefined}
+            className={`${sectionMarginClass} ${isSidebar ? 'border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]' : ''}`}
+            style={isSidebar ? { backgroundColor: accentColor } : undefined}
           >
             {renderSectionHeader('Education', 'education', isSidebar)}
             {content}
@@ -280,21 +280,21 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
           <div
             key={secId}
             data-ghost-section={secId}
-            className={`${sectionMarginClass} ${isSidebar ? 'border-l-4 pl-3.5' : ''}`}
-            style={isSidebar ? { borderColor: accentColor } : undefined}
+            className={`${sectionMarginClass} ${isSidebar ? 'border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]' : ''}`}
+            style={isSidebar ? { backgroundColor: accentColor } : undefined}
           >
             {renderSectionHeader(title, secId, isSidebar)}
-            <div className="space-y-1.5 text-[11px] text-neutral-800">
+            <div className="space-y-1.5 text-[11px] text-neutral-900">
               {list.map((item) => (
                 <div key={item.id} data-ghost-item={item.id} className="break-inside-avoid">
                   <span className="font-semibold text-neutral-900">
                     {(item as any).title || (item as any).name}
                   </span>
                   {(item as any).date && (
-                    <span className="text-neutral-600 ml-1">({(item as any).date})</span>
+                    <span className="text-neutral-800 font-medium ml-1">({(item as any).date})</span>
                   )}
                   {(item as any).description && (
-                    <div className="text-[10.5px] text-neutral-700 mt-0.5 leading-snug">
+                    <div className="text-[10.5px] text-neutral-900 mt-0.5 leading-snug">
                       {(item as any).description}
                     </div>
                   )}
@@ -311,15 +311,15 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
           <div
             key="languages"
             data-ghost-section="languages"
-            className={`${sectionMarginClass} ${isSidebar ? 'border-l-4 pl-3.5' : ''}`}
-            style={isSidebar ? { borderColor: accentColor } : undefined}
+            className={`${sectionMarginClass} ${isSidebar ? 'border-2 border-black rounded-2xl p-4 shadow-[2px_2px_0px_#000]' : ''}`}
+            style={isSidebar ? { backgroundColor: accentColor } : undefined}
           >
             {renderSectionHeader('Languages', 'languages', isSidebar)}
             <div data-ghost-item="languages-0" className="flex flex-wrap gap-1.5">
               {languages.map((l, idx) => (
                 <span
                   key={l.id || idx}
-                  className="inline-block bg-white border border-neutral-300 px-2 py-0.5 text-[11px] font-medium text-neutral-800 rounded"
+                  className="inline-block bg-white border border-black/80 px-2.5 py-0.5 text-[11px] font-medium text-black rounded-full"
                 >
                   {l.language}
                   {l.proficiency ? ` (${l.proficiency})` : ''}
@@ -389,16 +389,16 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                       <div data-ghost-item-header="true" className="flex justify-between items-baseline gap-2">
                         <span className="font-bold text-[12px] text-neutral-900">{item.title}</span>
                         {item.date && (
-                          <span className="text-[11px] font-medium text-neutral-600 whitespace-nowrap">
+                          <span className="text-[11px] font-semibold text-neutral-900 whitespace-nowrap">
                             {item.date}
                           </span>
                         )}
                       </div>
                       {item.subtitle && (
-                        <div className="text-[11px] font-medium text-neutral-700">{item.subtitle}</div>
+                        <div className="text-[11px] font-medium text-neutral-900">{item.subtitle}</div>
                       )}
                       {item.description && (
-                        <div className="text-[11px] text-neutral-800 leading-normal">
+                        <div className="text-[11px] text-neutral-900 leading-normal">
                           <RichText content={item.description} />
                         </div>
                       )}
@@ -406,7 +406,7 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
                         <div className="pt-0.5">
                           <ResumeHighlights
                             highlights={item.highlights}
-                            className="text-neutral-800 text-[11px] leading-relaxed space-y-1"
+                            className="text-neutral-900 text-[11px] leading-relaxed space-y-1"
                           />
                         </div>
                       )}
@@ -465,35 +465,44 @@ export const CreativePortfolioTemplate: React.FC<TemplateProps> = ({ data }) => 
 
       {/* Creative Portfolio Header matching PDF Page 10 (Page 1 only) */}
       {isPage1 && (
-        <header data-ghost-header="true" className="mb-6 break-inside-avoid">
-          {/* Candidate Name in 44-50px Bold Space Grotesk */}
-          <h1 className="text-[38px] sm:text-[46px] font-bold uppercase tracking-tight text-neutral-900 leading-none">
-            {personalInfo.fullName || 'Candidate Name'}
-          </h1>
+        <header data-ghost-header="true" className="mb-6 break-inside-avoid relative overflow-hidden pr-24 sm:pr-32">
+          {/* Confetti Art Geometry (Top-Right) matching PDF Page 10 */}
+          <div className="absolute top-0 right-0 w-36 h-36 sm:w-44 sm:h-44 pointer-events-none select-none z-0">
+            <div className="absolute -top-8 -right-8 w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-[#fde047]" />
+            <div className="absolute top-4 right-10 sm:right-14 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#ff6b6b] rotate-12 shadow-sm" />
+            <div className="absolute top-20 -right-4 sm:-right-6 w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-[#4ecdc4]" />
+          </div>
 
-          {/* Subtitle Badge matching PDF Page 10 */}
-          {personalInfo.jobTitle && (
-            <div className="mt-2.5">
-              <span
-                className="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white rounded-md shadow-xs"
-                style={{ backgroundColor: themeColor }}
-              >
-                {personalInfo.jobTitle}
-              </span>
-            </div>
-          )}
+          <div className="relative z-10">
+            {/* Candidate Name in 50px Bold Space Grotesk */}
+            <h1 className="font-spacegrotesk text-[50px] font-bold uppercase tracking-tight text-[#222222] leading-[50px]">
+              {personalInfo.fullName || 'Candidate Name'}
+            </h1>
 
-          {/* Contact Line */}
-          {contactItems.length > 0 && (
-            <div className="text-[11.5px] text-neutral-700 flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-2.5 font-medium">
-              {contactItems.map((item, idx) => (
-                <React.Fragment key={idx}>
-                  {idx > 0 && <span className="text-neutral-400 font-bold">·</span>}
-                  <span>{item}</span>
-                </React.Fragment>
-              ))}
-            </div>
-          )}
+            {/* Subtitle Badge matching Confetti: 12px bold #FFFFFF on black pill */}
+            {personalInfo.jobTitle && (
+              <div className="mt-2.5">
+                <span
+                  data-ghost-role="true"
+                  className="inline-block px-3 py-1 text-[12px] font-bold uppercase tracking-wider text-white rounded-full shadow-xs bg-black leading-[18px]"
+                >
+                  {personalInfo.jobTitle}
+                </span>
+              </div>
+            )}
+
+            {/* Contact Line */}
+            {contactItems.length > 0 && (
+              <div className="text-[11.5px] text-neutral-900 flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-2.5 font-medium">
+                {contactItems.map((item, idx) => (
+                  <React.Fragment key={idx}>
+                    {idx > 0 && <span className="text-neutral-500 font-bold">·</span>}
+                    <span>{item}</span>
+                  </React.Fragment>
+                ))}
+              </div>
+            )}
+          </div>
         </header>
       )}
 

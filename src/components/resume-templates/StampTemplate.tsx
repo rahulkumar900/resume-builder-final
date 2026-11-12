@@ -238,7 +238,7 @@ export const StampTemplate: React.FC<TemplateProps> = ({ data }) => {
                 {personalInfo.fullName || 'Meera Das'}
               </h1>
               {personalInfo.jobTitle && (
-                <p className="mt-2 text-[13px] font-bold text-[#231526]">
+                <p data-ghost-role="true" className="mt-2 text-[13px] font-bold text-[#231526]">
                   {personalInfo.jobTitle}
                 </p>
               )}

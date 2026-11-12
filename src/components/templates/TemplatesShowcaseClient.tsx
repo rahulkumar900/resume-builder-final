@@ -28,7 +28,7 @@ const PALETTES = [
 
 export function TemplatesShowcaseClient() {
   const router = useRouter();
-  const [activeFilter, setActiveFilter] = useState<'all' | 'harvard' | 'top10' | 'indian' | 'ats' | 'double' | 'single' | 'creative' | 'executive'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'single' | 'double' | 'ats' | 'executive' | 'creative'>('all');
   const [selectedColor, setSelectedColor] = useState('#15803d');
   const [previewModalTemplate, setPreviewModalTemplate] = useState<{
     template: TemplateDefinition;
@@ -36,14 +36,11 @@ export function TemplatesShowcaseClient() {
   } | null>(null);
 
   const filtered = TEMPLATES.filter((tpl) => {
-    if (activeFilter === 'harvard') return ['harvard', 'harvard_tech', 'harvard_experienced', 'oxford', 'ats', 'silicon', 'traditional'].includes(tpl.id);
-    if (activeFilter === 'top10') return ['harvard', 'cascade', 'novoresume', 'toronto', 'enhancv', 'flow', 'silicon', 'oxford', 'canva', 'europass'].includes(tpl.id);
-    if (activeFilter === 'indian') return ['traditional', 'naukri', 'fresher', 'sarkari'].includes(tpl.id);
-    if (activeFilter === 'ats') return tpl.id === 'ats' || tpl.id === 'harvard' || tpl.id === 'harvard_tech' || tpl.id === 'harvard_experienced' || tpl.id === 'silicon' || tpl.layout === 'single';
     if (activeFilter === 'single') return tpl.layout === 'single';
     if (activeFilter === 'double') return tpl.layout === 'double';
-    if (activeFilter === 'creative') return ['santoso', 'rahadian', 'chastain', 'canva', 'enhancv', 'canvapastel', 'canvanotebook', 'canvaeditorial', 'canvaretro', 'canvaaesthetic'].includes(tpl.id);
-    if (activeFilter === 'executive') return ['prawira', 'stockholm', 'oxford', 'harvard', 'harvard_experienced', 'chastain'].includes(tpl.id);
+    if (activeFilter === 'ats') return tpl.layout === 'single' || ['stamp', 'boxed_engineer', 'career_gantt'].includes(tpl.id);
+    if (activeFilter === 'creative') return ['neon_creative', 'neobrutalist', 'stamp', 'boxed_engineer', 'marginalia', 'dossier', 'monogram', 'binder_tabs', 'competency_radar'].includes(tpl.id);
+    if (activeFilter === 'executive') return ['executive_finance', 'infrastructure_engineer', 'editorial_hr', 'accentbar', 'numbered', 'boxed_engineer', 'marginalia', 'career_gantt', 'monogram', 'dossier'].includes(tpl.id);
     return true;
   });
 
@@ -75,12 +72,9 @@ export function TemplatesShowcaseClient() {
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
             {[
               { id: 'all', label: `All Templates (${TEMPLATES.length})` },
-              { id: 'harvard', label: '🎓 Harvard & Ivy League' },
-              { id: 'top10', label: '🏆 Top Classics (10)' },
-              { id: 'indian', label: '🇮🇳 Indian Formats' },
-              { id: 'ats', label: 'ATS-Optimized' },
+              { id: 'single', label: 'Single-Column' },
               { id: 'double', label: 'Two-Column Modern' },
-              { id: 'single', label: 'Single-Column Classic' },
+              { id: 'ats', label: 'ATS-Optimized' },
               { id: 'executive', label: 'Executive & Senior' },
               { id: 'creative', label: 'Creative & Tech' },
             ].map((tab) => (

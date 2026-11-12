@@ -54,14 +54,14 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
     personalInfo.github && { label: 'GitHub', value: personalInfo.github },
   ].filter(Boolean) as { label: string; value: string }[];
 
-  // Blueprint Boxed Section Header: ▣ in Safety Orange (#e8590c) + Uppercase Navy Heading (#0f3b73)
+  // Blueprint Boxed Section Header: ▣ in Safety Orange (#E8590C) + Uppercase Navy Heading Space Grotesk 12px / 20.4px, 700 bold (#0F3B73)
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
-      className="flex items-center gap-2 border-b-[1.5px] border-[#0f3b73]/25 pb-1.5 mb-3 break-after-avoid"
+      className="flex items-center gap-2 border-b-[1.5px] border-[#0F3B73]/25 pb-1.5 mb-3 break-after-avoid"
     >
-      <span className="text-[#e8590c] font-black text-sm leading-none">▣</span>
-      <h2 className="font-bold uppercase tracking-[0.16em] text-[12px] text-[#0f3b73]">
+      <span className="text-[#E8590C] font-black text-sm leading-none">▣</span>
+      <h2 className="font-spacegrotesk font-bold uppercase tracking-[0.16em] text-[12px] text-[#0F3B73] leading-[18px]">
         {title}
       </h2>
     </div>
@@ -75,10 +75,10 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div
             key="summary"
             data-ghost-section="summary"
-            className="border-[1.5px] border-[#0f3b73] bg-white p-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.08)] mb-4 break-inside-avoid"
+            className="border-[1.5px] border-[#0F3B73] bg-white p-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.08)] mb-4 break-inside-avoid"
           >
             {renderSectionHeader('Professional Profile', 'summary')}
-            <div data-ghost-item="summary-0" className="text-[12px] text-slate-800 leading-relaxed">
+            <div data-ghost-item="summary-0" className="font-spacegrotesk text-[13.5px] text-[#222222] leading-[23px] font-normal">
               <RichText content={rawSummary} />
             </div>
           </div>
@@ -99,43 +99,44 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div
             key="experience"
             data-ghost-section="experience"
-            className="border-[1.5px] border-[#0f3b73] bg-white p-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.08)] mb-4"
+            className="border-[1.5px] border-[#0F3B73] bg-white p-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.08)] mb-4"
           >
             {renderSectionHeader('Work Experience', 'experience')}
             <div className="space-y-4">
               {validExperience.map((exp, idx) => (
                 <div
-                  key={exp.id}
-                  data-ghost-item={exp.id}
+                  key={exp.id || idx}
+                  data-ghost-item={exp.id || `exp-${idx}`}
                   className={`space-y-1.5 break-inside-avoid ${
-                    idx > 0 ? 'pt-3.5 border-t border-[#0f3b73]/15' : ''
+                    idx > 0 ? 'pt-3.5 border-t border-[#0F3B73]/15' : ''
                   }`}
                 >
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline gap-2">
-                      <span className="font-bold text-[13px] text-[#0f3b73]">
+                      <span className="font-spacegrotesk font-bold text-[13.5px] text-[#0F3B73] leading-[23px]">
                         {exp.role}
                       </span>
-                      <span className="text-[11px] font-semibold text-slate-600 tracking-wider uppercase shrink-0">
+                      <span className="font-spacegrotesk font-medium text-[13.5px] text-[#222222] leading-[23px] shrink-0">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
                     {(exp.company || exp.location) && (
-                      <div className="text-[11.5px] font-medium text-slate-700 italic">
+                      <div className="font-spacegrotesk font-normal text-[13.5px] text-[#222222] leading-[23px]">
                         {exp.company}
                         {exp.location ? `, ${exp.location}` : ''}
                       </div>
                     )}
                   </div>
                   {(exp as any).description && (
-                    <div className="text-[11.5px] text-slate-700 leading-relaxed pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[13.5px] text-[#222222] leading-[23px] pt-0.5">
                       {(exp as any).description}
                     </div>
                   )}
                   {exp.highlights && exp.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="text-slate-800 text-[11px] leading-relaxed pt-0.5 space-y-1"
+                      className="font-spacegrotesk text-[#222222] text-[13.5px] leading-[23px] font-normal pt-0.5 space-y-1"
+                      itemClassName="font-spacegrotesk text-[#222222] text-[13.5px] leading-[23px] font-normal"
                     />
                   )}
                 </div>
@@ -158,44 +159,45 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div
             key="projects"
             data-ghost-section="projects"
-            className="border-[1.5px] border-[#0f3b73] bg-white p-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.08)] mb-4"
+            className="border-[1.5px] border-[#0F3B73] bg-white p-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.08)] mb-4"
           >
             {renderSectionHeader('Major Projects', 'projects')}
             <div className="space-y-3.5">
               {validProjects.map((proj, idx) => (
                 <div
-                  key={proj.id}
-                  data-ghost-item={proj.id}
+                  key={proj.id || idx}
+                  data-ghost-item={proj.id || `proj-${idx}`}
                   className={`space-y-1 break-inside-avoid ${
-                    idx > 0 ? 'pt-3 border-t border-[#0f3b73]/15' : ''
+                    idx > 0 ? 'pt-3 border-t border-[#0F3B73]/15' : ''
                   }`}
                 >
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline gap-2">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="font-bold text-[12.5px] text-[#0f3b73]">
+                      <span className="font-spacegrotesk font-bold text-[13.5px] text-[#0F3B73] leading-[23px]">
                         {proj.title}
                       </span>
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="text-[10.5px] font-medium text-[#e8590c]">
+                        <span className="font-spacegrotesk font-bold text-[13.5px] text-[#E8590C] leading-[23px]">
                           [{proj.technologies.join(', ')}]
                         </span>
                       )}
                     </div>
                     {(proj.link || (proj as any).date) && (
-                      <span className="text-[10.5px] font-medium text-slate-500 shrink-0">
+                      <span className="font-spacegrotesk font-medium text-[13.5px] text-[#222222] leading-[23px] shrink-0">
                         {(proj as any).date || proj.link}
                       </span>
                     )}
                   </div>
                   {(proj as any).description && (
-                    <div className="text-[11px] text-slate-700 leading-relaxed pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[13.5px] text-[#222222] leading-[23px] pt-0.5">
                       {(proj as any).description}
                     </div>
                   )}
                   {proj.highlights && proj.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={proj.highlights}
-                      className="text-slate-800 text-[11px] leading-relaxed pt-0.5 space-y-0.5"
+                      className="font-spacegrotesk text-[#222222] text-[13.5px] leading-[23px] font-normal pt-0.5 space-y-0.5"
+                      itemClassName="font-spacegrotesk text-[#222222] text-[13.5px] leading-[23px] font-normal"
                     />
                   )}
                 </div>
@@ -265,27 +267,28 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
                   }`}
                 >
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline gap-2">
-                    <span className="font-bold text-[12px] text-[#0f3b73]">
+                    <span className="font-spacegrotesk font-bold text-[13.5px] text-[#0F3B73] leading-[23px]">
                       {edu.degree}
                     </span>
-                    <span className="text-[10.5px] font-semibold text-slate-600 shrink-0">
+                    <span className="font-spacegrotesk font-medium text-[13.5px] text-[#222222] leading-[23px] shrink-0">
                       {edu.graduationDate}
                     </span>
                   </div>
-                  <div className="text-[11px] text-slate-700 italic">
+                  <div className="font-spacegrotesk font-normal text-[13.5px] text-[#222222] leading-[23px]">
                     {edu.school}
                     {edu.location ? `, ${edu.location}` : ''}
                     {edu.gpa ? ` · CGPA ${edu.gpa}` : ''}
                   </div>
                   {(edu as any).description && (
-                    <div className="text-[10.5px] text-slate-600 pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[13.5px] text-[#222222] leading-[23px] pt-0.5">
                       {(edu as any).description}
                     </div>
                   )}
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={edu.highlights}
-                      className="text-slate-700 text-[10.5px] pt-0.5"
+                      className="font-spacegrotesk text-[#222222] text-[13.5px] leading-[23px] font-normal pt-0.5"
+                      itemClassName="font-spacegrotesk text-[#222222] text-[13.5px] leading-[23px] font-normal"
                     />
                   )}
                 </div>
@@ -311,8 +314,8 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <span className="text-[#e8590c] font-bold text-xs mt-0.5">▪</span>
                   <div>
                     <span className="font-bold text-[#0f3b73]">{cert.name}</span>
-                    {cert.issuer && <span className="text-slate-600"> &mdash; {cert.issuer}</span>}
-                    {cert.date && <span className="text-slate-500 font-medium"> ({cert.date})</span>}
+                    {cert.issuer && <span className="text-slate-800"> &mdash; {cert.issuer}</span>}
+                    {cert.date && <span className="text-slate-700 font-medium"> ({cert.date})</span>}
                   </div>
                 </li>
               ))}
@@ -335,7 +338,7 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
               {languages.map((l, idx) => (
                 <div key={l.id || idx} data-ghost-item={l.id || `lang-${idx}`} className="flex justify-between items-center break-inside-avoid">
                   <span className="font-semibold text-slate-900">{l.language}</span>
-                  {l.proficiency && <span className="text-slate-600 text-[10.5px] italic">{l.proficiency}</span>}
+                  {l.proficiency && <span className="text-slate-800 text-[10.5px] italic">{l.proficiency}</span>}
                 </div>
               ))}
             </div>
@@ -361,9 +364,9 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <span className="text-[#e8590c] font-bold text-xs mt-0.5">▪</span>
                   <div>
                     <span className="font-bold text-[#0f3b73]">{item.title}</span>
-                    {item.date && <span className="text-slate-500 font-medium"> ({item.date})</span>}
+                    {item.date && <span className="text-slate-700 font-medium"> ({item.date})</span>}
                     {(item as any).description && (
-                      <div className="text-[10.5px] text-slate-600 leading-normal mt-0.5">
+                      <div className="text-[10.5px] text-slate-800 leading-normal mt-0.5">
                         {(item as any).description}
                       </div>
                     )}
@@ -470,40 +473,40 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   return (
     <div
-      className={`w-full h-full min-h-[297mm] bg-[#f4f8ff] text-slate-900 font-sans flex flex-col box-border ${paddingClass}`}
+      className={`w-full h-full min-h-[297mm] bg-[#f4f8ff] [background-image:linear-gradient(to_right,rgba(15,59,115,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,59,115,0.06)_1px,transparent_1px)] [background-size:24px_24px] text-[#222222] font-spacegrotesk flex flex-col box-border ${paddingClass}`}
     >
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-[1.5px] border-[#0f3b73] bg-white px-4 py-2 mb-4 flex items-center justify-between text-[11px] font-bold text-[#0f3b73] break-inside-avoid shadow-[1px_1px_0px_0px_rgba(15,59,115,0.08)]">
+        <div className="border-[1.5px] border-[#0F3B73] bg-white px-4 py-2 mb-4 flex items-center justify-between text-[11px] font-bold text-[#0F3B73] break-inside-avoid shadow-[1px_1px_0px_0px_rgba(15,59,115,0.08)]">
           <div className="flex items-center gap-2">
-            <span className="text-[#e8590c] font-black text-xs">▣</span>
+            <span className="text-[#E8590C] font-black text-xs">▣</span>
             <span className="uppercase tracking-wider">
               {personalInfo.fullName || 'Candidate'}
             </span>
             {personalInfo.jobTitle && (
-              <span className="text-slate-500 font-normal"> &mdash; {personalInfo.jobTitle}</span>
+              <span className="text-[#222222] font-normal"> &mdash; {personalInfo.jobTitle}</span>
             )}
           </div>
-          <span className="font-semibold text-slate-600">
+          <span className="font-semibold text-[#222222]">
             Page {data.pageNumber} of {data.totalPages || 2}
           </span>
         </div>
       )}
 
-      {/* Blueprint Top Header Card (Page 1 only) matching PDF Page 6 */}
+      {/* Blueprint Top Header Card (Page 1 only) matching Blueprint */}
       {isPage1 && (
         <header
           data-ghost-header="true"
-          className="border-[1.5px] border-[#0f3b73] bg-white p-5 mb-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.12)] break-inside-avoid"
+          className="border-[1.5px] border-[#0F3B73] bg-white p-5 mb-4 shadow-[2px_2px_0px_0px_rgba(15,59,115,0.12)] break-inside-avoid"
         >
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            {/* Candidate Name & Title */}
+            {/* Candidate Name & Title (Space Grotesk 32px / 54.4px, 700 bold, #0F3B73) */}
             <div>
-              <h1 className="text-[28px] sm:text-[32px] font-extrabold uppercase tracking-tight text-[#0f3b73] leading-none">
+              <h1 className="font-spacegrotesk text-[32px] font-bold uppercase tracking-tight text-[#0F3B73] leading-[38px]">
                 {personalInfo.fullName}
               </h1>
               {personalInfo.jobTitle && (
-                <div className="text-[#e8590c] font-bold text-[13px] tracking-wide mt-1.5 flex items-center gap-1.5">
+                <div data-ghost-role="true" className="text-[#E8590C] font-spacegrotesk font-bold text-[13.5px] leading-[23px] tracking-wide mt-1.5 flex items-center gap-1.5">
                   <span className="text-[11px]">▣</span>
                   <span>{personalInfo.jobTitle}</span>
                 </div>
@@ -512,13 +515,13 @@ export const BoxedEngineerTemplate: React.FC<TemplateProps> = ({ data }) => {
 
             {/* Right-aligned Blueprint Contact Block */}
             {contactDetails.length > 0 && (
-              <div className="flex flex-col sm:items-end gap-1 text-[11px] text-slate-700 shrink-0">
+              <div className="flex flex-col sm:items-end gap-1 font-spacegrotesk text-[11px] text-[#222222] shrink-0">
                 {contactDetails.map((contact, idx) => (
                   <div key={idx} className="flex items-center gap-1.5">
-                    <span className="font-bold text-[#0f3b73] text-[10px] uppercase tracking-wider">
+                    <span className="font-bold text-[#0F3B73] text-[10px] uppercase tracking-wider">
                       {contact.label}:
                     </span>
-                    <span className="font-medium text-slate-800">{contact.value}</span>
+                    <span className="font-medium text-[#222222]">{contact.value}</span>
                   </div>
                 ))}
               </div>

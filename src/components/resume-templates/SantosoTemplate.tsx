@@ -73,7 +73,7 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="font-bold text-slate-900 text-[14px]">{edu.degree}</div>
                     <div className="text-slate-700">{edu.school}</div>
-                    <div className="text-[11.5px] text-slate-500 mt-0.5">{edu.graduationDate}</div>
+                    <div className="text-[11.5px] text-slate-700 font-medium mt-0.5">{edu.graduationDate}</div>
                   </div>
                   {edu.highlights && <ResumeHighlights highlights={edu.highlights} className="text-slate-700 text-[12px] mt-1" />}
                 </div>
@@ -91,7 +91,7 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div className={itemSpaceClass}>
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="break-inside-avoid">
-                  <div className="text-[11.5px] font-bold uppercase text-slate-500 mb-1">{cat.category}</div>
+                  <div className="text-[11.5px] font-bold uppercase text-slate-700 mb-1">{cat.category}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {cat.items.map((it, i) => (
                       <span
@@ -118,7 +118,7 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
                   <div className="font-bold text-slate-900">{c.name}</div>
-                  <div className="text-slate-500 text-[11px]">{c.issuer} ({c.date})</div>
+                  <div className="text-slate-700 text-[11px]">{c.issuer} ({c.date})</div>
                 </div>
               ))}
             </div>
@@ -135,7 +135,7 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between break-inside-avoid">
                   <span className="font-bold text-slate-800">{l.language}</span>
-                  <span className="text-slate-500">{l.proficiency}</span>
+                  <span className="text-slate-700 font-medium">{l.proficiency}</span>
                 </div>
               ))}
             </div>
@@ -154,7 +154,7 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline mb-0.5">
                       <span className="font-bold text-slate-900 text-[15px]">{exp.role}</span>
-                      <span className="text-[12px] font-medium text-slate-500">
+                      <span className="text-[12px] font-medium text-slate-700">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
@@ -235,28 +235,28 @@ export const SantosoTemplate: React.FC<TemplateProps> = ({ data }) => {
               {personalInfo.jobTitle || 'Product Designer & Art Director'}
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12px] text-slate-600 mt-3 font-medium">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12px] text-slate-800 mt-3 font-medium">
               {personalInfo.email && (
                 <div className="flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-slate-500" />
+                  <Mail className="w-3.5 h-3.5 text-slate-700" />
                   <span>{personalInfo.email}</span>
                 </div>
               )}
               {personalInfo.phone && (
                 <div className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-slate-500" />
+                  <Phone className="w-3.5 h-3.5 text-slate-700" />
                   <span>{personalInfo.phone}</span>
                 </div>
               )}
               {personalInfo.location && (
                 <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                  <MapPin className="w-3.5 h-3.5 text-slate-700" />
                   <span>{personalInfo.location}</span>
                 </div>
               )}
               {personalInfo.website && (
                 <div className="flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-slate-500" />
+                  <Globe className="w-3.5 h-3.5 text-slate-700" />
                   <span>{personalInfo.website.replace(/^https?:\/\//, '')}</span>
                 </div>
               )}

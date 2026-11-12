@@ -36,8 +36,8 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
   const order = data.sectionOrder?.singleColumn || DEFAULT_SINGLE_COLUMN_SECTIONS;
 
   const renderSectionHeader = (title: string) => (
-    <div data-ghost-section-title="true" className="border-b-2 border-slate-900 pb-0.5 mb-1.5 flex justify-between items-baseline">
-      <div className="text-[12px] font-black uppercase tracking-wider text-slate-900">
+    <div data-ghost-section-title="true" className="border-b-[1.5px] border-slate-900 pb-0.5 mb-2 flex justify-between items-baseline">
+      <div className="text-[16px] font-bold uppercase tracking-wider text-slate-900">
         {title}
       </div>
     </div>
@@ -50,7 +50,7 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="summary" data-ghost-section="summary" className={sectionMarginClass}>
             {renderSectionHeader('Summary')}
-            <div data-ghost-item="summary-0" className="text-[11px] leading-relaxed text-slate-700">
+            <div data-ghost-item="summary-0" className="text-[13.5px] leading-[21px] text-slate-800">
               <RichText content={personalInfo.summary} />
             </div>
           </div>
@@ -61,11 +61,11 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="skills" data-ghost-section="skills" className={sectionMarginClass}>
             {renderSectionHeader('Technical Skills')}
-            <div className="space-y-1 text-[11px] text-slate-800">
+            <div className="space-y-1.5 text-[13px] text-slate-800">
               {skills.map((cat, idx) => (
                 <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-1.5 break-inside-avoid">
-                  {cat.category ? <span className="font-bold text-slate-900 shrink-0 min-w-[140px]">{cat.category}:</span> : null}
-                  <span className="text-slate-700">{cat.items.join(', ')}</span>
+                  {cat.category ? <span className="font-bold text-slate-900 shrink-0 min-w-[150px]">{cat.category}:</span> : null}
+                  <span className="text-slate-800 font-medium">{cat.items.join(', ')}</span>
                 </div>
               ))}
             </div>
@@ -83,19 +83,19 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="flex flex-row items-baseline justify-between gap-1">
                       <div className="flex items-baseline gap-1.5">
-                        <span className="font-bold text-[12px] text-slate-900">{exp.role}</span>
+                        <span className="font-bold text-[14px] text-slate-900">{exp.role}</span>
                         <span className="text-slate-400">|</span>
-                        <span className="font-semibold text-[11.5px]" style={{ color: themeColor }}>
+                        <span className="font-semibold text-[13.5px]" style={{ color: themeColor }}>
                           {exp.company}
                         </span>
                       </div>
-                      <div className="text-[10.5px] font-semibold text-slate-500 whitespace-nowrap">
+                      <div className="text-[13px] font-semibold text-slate-700 whitespace-nowrap">
                         {exp.location && <span>{exp.location} • </span>}
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </div>
                     </div>
                   </div>
-                  <ResumeHighlights highlights={exp.highlights} className="text-slate-700 text-[11px] mt-0.5 pl-3.5" />
+                  <ResumeHighlights highlights={exp.highlights} className="text-slate-800 text-[13.5px] leading-[20px] mt-1 pl-3.5" />
                 </div>
               ))}
             </div>
@@ -112,9 +112,9 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={proj.id} data-ghost-item={proj.id} className="break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex flex-row items-baseline justify-between gap-1 mb-0.5">
                     <div className="flex items-baseline gap-1.5 flex-wrap">
-                      <span className="font-bold text-[12px] text-slate-900">{proj.title}</span>
+                      <span className="font-bold text-[14px] text-slate-900">{proj.title}</span>
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="text-[10px] font-mono text-slate-600 bg-slate-100 px-1.5 py-0.2 rounded">
+                        <span className="text-[11.5px] font-mono text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded font-semibold">
                           {proj.technologies.join(', ')}
                         </span>
                       )}
@@ -124,14 +124,14 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
                         href={proj.link.startsWith('http') ? proj.link : `https://${proj.link}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[10.5px] text-blue-600 hover:underline inline-flex items-center gap-0.5 truncate max-w-[180px]"
+                        className="text-[12px] text-blue-600 hover:underline inline-flex items-center gap-0.5 truncate max-w-[180px]"
                       >
                         <span>{proj.link.replace(/^https?:\/\/(www\.)?/, '')}</span>
-                        <ExternalLink className="w-2.5 h-2.5" />
+                        <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
                   </div>
-                  <ResumeHighlights highlights={proj.highlights} className="text-slate-700 text-[11px] pl-3.5" />
+                  <ResumeHighlights highlights={proj.highlights} className="text-slate-800 text-[13.5px] leading-[20px] pl-3.5" />
                 </div>
               ))}
             </div>
@@ -148,11 +148,11 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={edu.id} data-ghost-item={edu.id} className="break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex flex-row items-baseline justify-between gap-1">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="font-bold text-[12px] text-slate-900">{edu.school}</span>
+                      <span className="font-bold text-[14px] text-slate-900">{edu.school}</span>
                       <span className="text-slate-400">|</span>
-                      <span className="text-[11px] text-slate-700">{edu.degree}</span>
+                      <span className="text-[13.5px] text-slate-800 font-medium">{edu.degree}</span>
                     </div>
-                    <div className="text-[10.5px] font-semibold text-slate-500 whitespace-nowrap">
+                    <div className="text-[13px] font-semibold text-slate-700 whitespace-nowrap">
                       {edu.location && <span>{edu.location} • </span>}
                       {edu.graduationDate}
                       {edu.gpa && <span> (GPA: {edu.gpa})</span>}
@@ -169,14 +169,14 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="certifications" data-ghost-section="certifications" className={sectionMarginClass}>
             {renderSectionHeader('Certifications')}
-            <div className="space-y-1 text-[11px]">
+            <div className="space-y-1.5 text-[13px]">
               {certifications.map((cert) => (
                 <div key={cert.id} data-ghost-item={cert.id} className="flex justify-between items-baseline break-inside-avoid">
                   <span className="text-slate-800">
-                    <strong className="text-slate-900">{cert.name}</strong>
+                    <strong className="font-bold text-slate-900">{cert.name}</strong>
                     {cert.issuer && <span> — {cert.issuer}</span>}
                   </span>
-                  {cert.date && <span className="text-[10.5px] text-slate-500">{cert.date}</span>}
+                  {cert.date && <span className="text-[12px] text-slate-600 font-medium">{cert.date}</span>}
                 </div>
               ))}
             </div>
@@ -188,11 +188,11 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="languages" data-ghost-section="languages" className={sectionMarginClass}>
             {renderSectionHeader('Languages')}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-700">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-slate-800">
               {languages.map((l, lidx) => (
                 <div key={l.id || lidx} data-ghost-item={l.id || `lang-${lidx}`} className="break-inside-avoid">
                   <span className="font-bold text-slate-900">{l.language}</span>
-                  {l.proficiency && <span className="text-slate-500"> ({l.proficiency})</span>}
+                  {l.proficiency && <span className="text-slate-600"> ({l.proficiency})</span>}
                 </div>
               ))}
             </div>
@@ -258,14 +258,14 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
   if (personalInfo?.location) contactList.push(<span key="loc">{personalInfo.location}</span>);
 
   return (
-    <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans leading-normal flex flex-col ${paddingClass} box-border`}>
+    <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans leading-normal flex flex-col ${paddingClass} text-[13.5px] box-border`}>
       {/* Running Header (Page > 1) */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="pb-2.5 border-b border-slate-300 mb-4 break-inside-avoid flex items-center justify-between text-[11px] font-sans uppercase tracking-wider text-slate-500">
+        <div className="pb-2.5 border-b border-slate-300 mb-4 break-inside-avoid flex items-center justify-between text-[12px] font-sans uppercase tracking-wider text-slate-700 font-medium">
           <span style={{ color: themeColor }} className="font-bold">
             {personalInfo?.fullName || 'Candidate'} &mdash; {personalInfo?.jobTitle || 'Resume'}
           </span>
-          <span className="text-[10px] text-slate-400 font-normal">
+          <span className="text-[11px] text-slate-600 font-normal">
             Page {data.pageNumber} of {data.totalPages || 2}
           </span>
         </div>
@@ -274,15 +274,15 @@ export const SiliconTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Main Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="text-center pb-2 mb-3 break-inside-avoid">
-          <div className="text-[26px] font-black tracking-tight uppercase" style={{ color: themeColor }}>
+          <h1 className="text-[26px] font-black tracking-tight uppercase" style={{ color: themeColor }}>
             {personalInfo?.fullName || 'Candidate Name'}
-          </div>
+          </h1>
           {personalInfo?.jobTitle && (
-            <p className="text-[12.5px] font-bold text-slate-700 tracking-wide mt-0.5">
+            <p data-ghost-role="true" className="text-[13.5px] font-bold text-slate-800 tracking-wide mt-0.5">
               {personalInfo.jobTitle}
             </p>
           )}
-          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[10.5px] text-slate-600 mt-1.5 font-medium">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 text-[12.5px] text-slate-700 mt-1.5 font-medium">
             {contactList.map((item, idx) => (
               <React.Fragment key={idx}>
                 {idx > 0 && <span className="text-slate-400">|</span>}

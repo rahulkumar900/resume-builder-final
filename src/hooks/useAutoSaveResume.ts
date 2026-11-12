@@ -26,28 +26,21 @@ export interface UseAutoSaveResumeReturn {
 const MAX_HISTORY = 30;
 
 /**
- * Manages local resume editing state with dual-tier debounced persistence:
- * - Fast local storage persistence (default: 400ms) to protect against unexpected reloads
- * - Delayed cloud persistence to Supabase (default: 2500ms, i.e. a few seconds) to prevent excessive network requests while typing
- * - In-memory undo/redo history stack and guaranteed flush on unmount/unload
+ * Manages local resume editing state with debounced persistence and in-memory undo/redo stack.
  *
  * @param initialData - The initially loaded ResumeData (or null while loading).
- * @param cloudDebounceMs - Debounce window in milliseconds for Supabase cloud writes (default: 2500ms).
- * @param userId - Optional authenticated user ID.
- * @param localDebounceMs - Debounce window in milliseconds for local browser persistence (default: 400ms).
+ * @param debounceMs - Debounce window in milliseconds (default: 400ms).
  */
 export function useAutoSaveResume(
   initialData: ResumeData | null = null,
-  cloudDebounceMs: number = 2500,
-  userId?: string,
-  localDebounceMs: number = 400
+  debounceMs: number = 400,
+  userId?: string
 ): UseAutoSaveResumeReturn {
   const [resume, setResume] = useState<ResumeData | null>(initialData);
   const [cloudStatus, setCloudStatus] = useState<CloudSaveStatus>('saved');
   const [, setHistoryVersion] = useState<number>(0);
 
-  const localSaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const cloudSaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const latestResumeRef = useRef<ResumeData | null>(initialData);
   const pastRef = useRef<ResumeData[]>([]);
   const futureRef = useRef<ResumeData[]>([]);
@@ -58,28 +51,19 @@ export function useAutoSaveResume(
     latestResumeRef.current = resume;
   }, [resume]);
 
-  // Flush any pending debounced saves immediately (both local and Supabase cloud)
+  // Flush any pending debounced save immediately
   const flushSave = useCallback(async () => {
-    if (localSaveTimeoutRef.current) {
-      clearTimeout(localSaveTimeoutRef.current);
-      localSaveTimeoutRef.current = null;
-    }
-    if (cloudSaveTimeoutRef.current) {
-      clearTimeout(cloudSaveTimeoutRef.current);
-      cloudSaveTimeoutRef.current = null;
-    }
-    if (latestResumeRef.current) {
-      // 1. Immediate local save
-      saveResume(latestResumeRef.current, { skipCloudSync: true });
-
-      // 2. Immediate cloud save
-      if (userId) {
-        setCloudStatus('saving');
-        const success = await saveResumeToDatabase(latestResumeRef.current, userId);
-        setCloudStatus(success ? 'saved' : 'offline');
-      } else {
-        const success = await saveResumeToDatabase(latestResumeRef.current).catch(() => false);
-        setCloudStatus(success ? 'saved' : 'saved');
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+      saveTimeoutRef.current = null;
+      if (latestResumeRef.current) {
+        if (userId) {
+          const success = await saveResumeToDatabase(latestResumeRef.current, userId);
+          setCloudStatus(success ? 'saved' : 'offline');
+        } else {
+          saveResume(latestResumeRef.current);
+          setCloudStatus('saved');
+        }
       }
     }
   }, [userId]);
@@ -145,32 +129,22 @@ export function useAutoSaveResume(
     latestResumeRef.current = nextResume;
     setCloudStatus('saving');
 
-    // 1. Fast local persistence (400ms) to ensure crash safety
-    if (localSaveTimeoutRef.current) {
-      clearTimeout(localSaveTimeoutRef.current);
+    // Debounce heavy serialization, localStorage, IndexedDB, and Supabase writes
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
     }
-    localSaveTimeoutRef.current = setTimeout(() => {
-      if (latestResumeRef.current) {
-        saveResume(latestResumeRef.current, { skipCloudSync: true });
-      }
-    }, localDebounceMs);
-
-    // 2. Delayed cloud persistence to Supabase (default: 2500ms delay) to avoid network thrashing
-    if (cloudSaveTimeoutRef.current) {
-      clearTimeout(cloudSaveTimeoutRef.current);
-    }
-    cloudSaveTimeoutRef.current = setTimeout(async () => {
+    saveTimeoutRef.current = setTimeout(async () => {
       if (latestResumeRef.current) {
         if (userId) {
           const success = await saveResumeToDatabase(latestResumeRef.current, userId);
           setCloudStatus(success ? 'saved' : 'offline');
         } else {
-          const success = await saveResumeToDatabase(latestResumeRef.current).catch(() => false);
-          setCloudStatus(success ? 'saved' : 'saved');
+          saveResume(latestResumeRef.current);
+          setCloudStatus('saved');
         }
       }
-    }, cloudDebounceMs);
-  }, [cloudDebounceMs, localDebounceMs, userId]);
+    }, debounceMs);
+  }, [debounceMs, userId]);
 
   // Undo implementation
   const undo = useCallback(() => {
@@ -180,25 +154,12 @@ export function useAutoSaveResume(
 
     setResume(previous);
     latestResumeRef.current = previous;
-    saveResume(previous, { skipCloudSync: true });
-    setCloudStatus('saving');
-
-    // Debounce cloud save on undo
-    if (cloudSaveTimeoutRef.current) {
-      clearTimeout(cloudSaveTimeoutRef.current);
+    if (userId) {
+      saveResumeToDatabase(previous, userId).catch(() => {});
+    } else {
+      saveResume(previous);
     }
-    cloudSaveTimeoutRef.current = setTimeout(async () => {
-      if (latestResumeRef.current) {
-        if (userId) {
-          const success = await saveResumeToDatabase(latestResumeRef.current, userId);
-          setCloudStatus(success ? 'saved' : 'offline');
-        } else {
-          const success = await saveResumeToDatabase(latestResumeRef.current).catch(() => false);
-          setCloudStatus(success ? 'saved' : 'saved');
-        }
-      }
-    }, 1500);
-
+    setCloudStatus('saved');
     setHistoryVersion((v) => v + 1);
   }, [userId]);
 
@@ -210,25 +171,12 @@ export function useAutoSaveResume(
 
     setResume(next);
     latestResumeRef.current = next;
-    saveResume(next, { skipCloudSync: true });
-    setCloudStatus('saving');
-
-    // Debounce cloud save on redo
-    if (cloudSaveTimeoutRef.current) {
-      clearTimeout(cloudSaveTimeoutRef.current);
+    if (userId) {
+      saveResumeToDatabase(next, userId).catch(() => {});
+    } else {
+      saveResume(next);
     }
-    cloudSaveTimeoutRef.current = setTimeout(async () => {
-      if (latestResumeRef.current) {
-        if (userId) {
-          const success = await saveResumeToDatabase(latestResumeRef.current, userId);
-          setCloudStatus(success ? 'saved' : 'offline');
-        } else {
-          const success = await saveResumeToDatabase(latestResumeRef.current).catch(() => false);
-          setCloudStatus(success ? 'saved' : 'saved');
-        }
-      }
-    }, 1500);
-
+    setCloudStatus('saved');
     setHistoryVersion((v) => v + 1);
   }, [userId]);
 

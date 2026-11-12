@@ -69,6 +69,12 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
       templateId === 'ribbon' ? 'Lead Product Designer' :
       templateId === 'marigold' ? 'Lead Product Designer & Design Architect' :
       templateId === 'stamp' ? 'Computer Science Graduate & Software Engineer' :
+      templateId === 'marginalia' ? 'Senior Product Designer' :
+      templateId === 'dossier' ? 'Senior Product Designer' :
+      templateId === 'career_gantt' ? 'Senior Product Designer' :
+      templateId === 'monogram' ? 'Senior Product Designer' :
+      templateId === 'binder_tabs' ? 'Senior Product Designer' :
+      templateId === 'competency_radar' ? 'Senior Product Designer' :
       'Senior Product Designer'
     );
     const name = customName || (
@@ -98,6 +104,7 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
       templateId === 'ribbon' ? 'Aarav Menon' :
       templateId === 'marigold' ? 'Aarav Menon' :
       templateId === 'stamp' ? 'Meera Das' :
+      ['marginalia', 'dossier', 'career_gantt', 'monogram', 'binder_tabs', 'competency_radar'].includes(templateId) ? 'Aarav Mehta' :
       'Olivia Winata'
     );
 

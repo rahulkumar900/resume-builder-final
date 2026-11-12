@@ -13,23 +13,19 @@ import { SectionOrderConfig, ResumeData } from '@/types/resume';
 describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)', () => {
   describe('getTemplateLayout', () => {
     it('should correctly identify single-column templates', () => {
-      expect(getTemplateLayout('ats')).toBe('single');
-      expect(getTemplateLayout('vienna')).toBe('single');
-      expect(getTemplateLayout('madrid')).toBe('single');
-      expect(getTemplateLayout('harvard')).toBe('single');
-      expect(getTemplateLayout('harvard_tech')).toBe('single');
-      expect(getTemplateLayout('harvard_experienced')).toBe('single');
       expect(getTemplateLayout('ribbon')).toBe('single');
-      expect(getTemplateLayout('academic_teaching')).toBe('single');
+      expect(getTemplateLayout('accentbar')).toBe('single');
+      expect(getTemplateLayout('numbered')).toBe('single');
+      expect(getTemplateLayout('editorial_hr')).toBe('single');
+      expect(getTemplateLayout('executive_finance')).toBe('single');
+      expect(getTemplateLayout('infrastructure_engineer')).toBe('single');
     });
 
     it('should correctly identify double-column templates', () => {
-      expect(getTemplateLayout('prawira')).toBe('double');
-      expect(getTemplateLayout('chastain')).toBe('double');
-      expect(getTemplateLayout('sydney')).toBe('double');
-      expect(getTemplateLayout('stockholm')).toBe('double');
-      expect(getTemplateLayout('marigold')).toBe('double');
       expect(getTemplateLayout('stamp')).toBe('double');
+      expect(getTemplateLayout('neon_creative')).toBe('double');
+      expect(getTemplateLayout('neobrutalist')).toBe('double');
+      expect(getTemplateLayout('boxed_engineer')).toBe('double');
     });
 
     it('should fallback safely to single column for invalid template ids', () => {
@@ -59,20 +55,20 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
 
   describe('getDefaultColumnForSection', () => {
     it('should place skills and certifications in sidebar by default for double-column layouts', () => {
-      expect(getDefaultColumnForSection('skills', 'prawira')).toBe('sidebar');
-      expect(getDefaultColumnForSection('certifications', 'prawira')).toBe('sidebar');
-      expect(getDefaultColumnForSection('languages', 'prawira')).toBe('sidebar');
+      expect(getDefaultColumnForSection('skills', 'stamp')).toBe('sidebar');
+      expect(getDefaultColumnForSection('certifications', 'stamp')).toBe('sidebar');
+      expect(getDefaultColumnForSection('languages', 'stamp')).toBe('sidebar');
     });
 
     it('should place narrative experience and projects in main column', () => {
-      expect(getDefaultColumnForSection('experience', 'prawira')).toBe('main');
-      expect(getDefaultColumnForSection('projects', 'prawira')).toBe('main');
+      expect(getDefaultColumnForSection('experience', 'stamp')).toBe('main');
+      expect(getDefaultColumnForSection('projects', 'stamp')).toBe('main');
     });
   });
 
   describe('migrateSectionOrder', () => {
     it('should return valid defaults when previous order was empty or undefined', () => {
-      const order = migrateSectionOrder(undefined, 'ats');
+      const order = migrateSectionOrder(undefined, 'ribbon');
       expect(order.singleColumn).toBeDefined();
       expect(order.singleColumn!.length).toBeGreaterThan(0);
       expect(order.singleColumn).toContain('experience');
@@ -84,7 +80,7 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
         sidebarColumn: ['skills', 'education', 'certifications'],
       };
 
-      const singleMigrated = migrateSectionOrder(doubleOrder, 'ats');
+      const singleMigrated = migrateSectionOrder(doubleOrder, 'ribbon');
       expect(singleMigrated.singleColumn).toBeDefined();
       expect(singleMigrated.singleColumn).toContain('summary');
       expect(singleMigrated.singleColumn).toContain('experience');
@@ -99,7 +95,7 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
         singleColumn: ['summary', 'experience', 'skills', 'education', 'certifications', 'projects'],
       };
 
-      const doubleMigrated = migrateSectionOrder(singleOrder, 'prawira');
+      const doubleMigrated = migrateSectionOrder(singleOrder, 'stamp');
       expect(doubleMigrated.mainColumn).toBeDefined();
       expect(doubleMigrated.sidebarColumn).toBeDefined();
 
@@ -157,8 +153,8 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
       const resolvedSingle = getResolvedTemplateSectionOrder('accentbar', mockResumeData);
       expect(resolvedSingle.singleColumn?.includes('customSections')).toBe(true);
 
-      const resolvedAcademic = getResolvedTemplateSectionOrder('academic_teaching', mockResumeData);
-      expect(resolvedAcademic.singleColumn?.includes('customSections')).toBe(true);
+      const resolvedVertical = getResolvedTemplateSectionOrder('infrastructure_engineer', mockResumeData);
+      expect(resolvedVertical.singleColumn?.includes('customSections')).toBe(true);
 
       // Verify that inactive sections are NOT forcefully resurrected
       expect(resolvedDouble.mainColumn?.includes('certifications')).toBe(false);
@@ -172,7 +168,7 @@ describe('Templates & Section Order Migration (Open/Closed & Liskov Principles)'
 
   describe('Template Registry Contract Consistency', () => {
     it('should register all templates with non-empty names and valid layouts', () => {
-      expect(TEMPLATES.length).toBeGreaterThan(10);
+      expect(TEMPLATES.length).toBe(17);
       TEMPLATES.forEach((tpl) => {
         expect(tpl.id).toBeTruthy();
         expect(tpl.name).toBeTruthy();

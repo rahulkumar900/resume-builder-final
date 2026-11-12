@@ -47,7 +47,7 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
     personalInfo.github,
   ].filter(Boolean);
 
-  // Section Header with small-caps tracking and fine burgundy underline matching PDF Page 5
+  // Section Header with small-caps tracking and fine burgundy underline matching Scholar (Georgia/Serif 16px / 24px, 700 bold, #7A1F2B)
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
@@ -55,15 +55,15 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
     >
       <div className="flex items-baseline">
         <h2
-          className="font-serif font-bold uppercase tracking-[0.2em] text-[12px] sm:text-[12.5px]"
-          style={{ color: themeColor }}
+          className="font-serif font-bold uppercase tracking-[0.2em] text-[16px] leading-[22px]"
+          style={{ color: themeColor || '#7A1F2B' }}
         >
           {title}
         </h2>
       </div>
       <div
         className="w-full h-[0.75px] mt-0.5"
-        style={{ backgroundColor: themeColor }}
+        style={{ backgroundColor: themeColor || '#7A1F2B' }}
       />
     </div>
   );
@@ -78,7 +78,7 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
-                className="font-serif text-[11.5px] text-[#222222] leading-relaxed text-justify"
+                className="font-serif text-[12.5px] text-[#222222] leading-[18.8px] text-justify font-normal"
               />
             </div>
           </div>
@@ -90,30 +90,31 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="education" data-ghost-section="education" className={sectionMarginClass}>
             {renderSectionHeader('Education', 'education')}
             <div className={itemSpaceClass}>
-              {education.map((edu) => (
-                <div key={edu.id} data-ghost-item={edu.id} className="space-y-0.5 break-inside-avoid">
+              {education.map((edu, idx) => (
+                <div key={edu.id || idx} data-ghost-item={edu.id || `edu-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-serif font-bold text-[12.5px] text-[#111111]">
+                    <span className="font-serif font-bold text-[12.5px] text-[#222222] leading-[18.8px]">
                       {edu.degree}
                     </span>
-                    <span className="font-serif text-[11.5px] text-[#333333] shrink-0">
+                    <span className="font-serif font-medium text-[12.5px] text-[#222222] leading-[18.8px] shrink-0">
                       {edu.graduationDate}
                     </span>
                   </div>
-                  <div className="font-serif italic text-[11.5px] text-[#444444]">
+                  <div className="font-serif font-normal italic text-[12.5px] text-[#222222] leading-[18.8px]">
                     {edu.school}
                     {edu.location ? `, ${edu.location}` : ''}
                     {edu.gpa ? ` · ${edu.gpa}` : ''}
                   </div>
                   {(edu as any).description && (
-                    <div className="font-serif text-[11px] text-[#333333] pt-0.5">
+                    <div className="font-serif font-normal text-[12.5px] text-[#222222] leading-[18.8px] pt-0.5">
                       {(edu as any).description}
                     </div>
                   )}
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={edu.highlights}
-                      className="font-serif text-[#222222] text-[11px] pt-0.5 leading-normal"
+                      className="font-serif text-[#222222] text-[12.5px] pt-0.5 leading-[18.8px] font-normal"
+                      itemClassName="font-serif text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -128,24 +129,25 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="teaching" data-ghost-section="teaching" className={sectionMarginClass}>
             {renderSectionHeader('Teaching Appointments', 'teaching')}
             <div className={itemSpaceClass}>
-              {data.teaching.map((teach) => (
-                <div key={teach.id} data-ghost-item={teach.id} className="space-y-0.5 break-inside-avoid">
+              {data.teaching.map((teach, idx) => (
+                <div key={teach.id || idx} data-ghost-item={teach.id || `teach-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-serif font-bold text-[12.5px] text-[#111111]">
+                    <span className="font-serif font-bold text-[12.5px] text-[#222222] leading-[18.8px]">
                       {teach.role}
                     </span>
-                    <span className="font-serif text-[11.5px] text-[#333333] shrink-0">
+                    <span className="font-serif font-medium text-[12.5px] text-[#222222] leading-[18.8px] shrink-0">
                       {teach.startDate} – {teach.current ? 'Present' : teach.endDate}
                     </span>
                   </div>
-                  <div className="font-serif italic text-[11.5px] text-[#444444]">
+                  <div className="font-serif font-normal italic text-[12.5px] text-[#222222] leading-[18.8px]">
                     {teach.institution}
                     {teach.location ? `, ${teach.location}` : ''}
                   </div>
                   {teach.highlights && teach.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={teach.highlights}
-                      className="font-serif text-[#222222] text-[11px] leading-normal pt-0.5"
+                      className="font-serif text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-serif text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -160,31 +162,32 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="experience" data-ghost-section="experience" className={sectionMarginClass}>
             {renderSectionHeader('Teaching Experience', 'experience')}
             <div className={itemSpaceClass}>
-              {experience.map((exp) => (
-                <div key={exp.id} data-ghost-item={exp.id} className="space-y-0.5 break-inside-avoid">
+              {experience.map((exp, idx) => (
+                <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-serif font-bold text-[12.5px] text-[#111111]">
+                    <span className="font-serif font-bold text-[12.5px] text-[#222222] leading-[18.8px]">
                       {exp.role}
                     </span>
-                    <span className="font-serif text-[11.5px] text-[#333333] shrink-0">
+                    <span className="font-serif font-medium text-[12.5px] text-[#222222] leading-[18.8px] shrink-0">
                       {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                     </span>
                   </div>
                   {(exp.company || exp.location) && (
-                    <div className="font-serif italic text-[11.5px] text-[#444444]">
+                    <div className="font-serif font-normal italic text-[12.5px] text-[#222222] leading-[18.8px]">
                       {exp.company}
                       {exp.location ? `, ${exp.location}` : ''}
                     </div>
                   )}
                   {(exp as any).description && (
-                    <div className="font-serif text-[11px] text-[#222222] leading-normal pt-0.5">
+                    <div className="font-serif font-normal text-[12.5px] text-[#222222] leading-[18.8px] pt-0.5">
                       {(exp as any).description}
                     </div>
                   )}
                   {exp.highlights && exp.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="font-serif text-[#222222] text-[11px] leading-normal pt-0.5"
+                      className="font-serif text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-serif text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -472,7 +475,7 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
         </div>
       )}
 
-      {/* Editorial Header matching PDF Page 5 (Meera Iyer) (Page 1 only) */}
+      {/* Editorial Header matching Scholar (Page 1 only) */}
       {isPage1 && (
         <header
           data-ghost-header="true"
@@ -480,25 +483,25 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
         >
           {/* Top double rule */}
           <div className="flex flex-col gap-[2px] mb-3.5">
-            <div className="h-[1.5px] w-full" style={{ backgroundColor: themeColor }} />
-            <div className="h-[0.75px] w-full" style={{ backgroundColor: themeColor }} />
+            <div className="h-[1.5px] w-full" style={{ backgroundColor: themeColor || '#7A1F2B' }} />
+            <div className="h-[0.75px] w-full" style={{ backgroundColor: themeColor || '#7A1F2B' }} />
           </div>
 
           <h1
-            className="font-serif text-[32px] sm:text-[36px] font-bold tracking-normal leading-tight"
-            style={{ color: themeColor }}
+            className="font-fraunces text-[33px] font-bold tracking-normal leading-[38px]"
+            style={{ color: themeColor || '#7A1F2B' }}
           >
             {personalInfo.fullName}
           </h1>
 
           {personalInfo.jobTitle && (
-            <div className="font-serif italic text-[12.5px] sm:text-[13px] text-[#222222] mt-1 font-medium">
+            <div data-ghost-role="true" className="font-serif italic text-[12.5px] text-[#222222] mt-1 font-normal leading-[18.8px]">
               {personalInfo.jobTitle}
             </div>
           )}
 
           {contactItems.length > 0 && (
-            <div className="font-serif text-[11.5px] text-[#333333] mt-2 flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1">
+            <div className="font-serif text-[12.5px] text-[#222222] mt-2 flex flex-wrap justify-center items-center gap-x-2.5 gap-y-1 leading-[18.8px]">
               {contactItems.map((item, idx) => (
                 <React.Fragment key={idx}>
                   {idx > 0 && <span className="text-[#888888] font-bold">·</span>}
@@ -510,8 +513,8 @@ export const AcademicTeachingTemplate: React.FC<TemplateProps> = ({ data }) => {
 
           {/* Bottom double rule */}
           <div className="flex flex-col gap-[2px] mt-3.5">
-            <div className="h-[0.75px] w-full" style={{ backgroundColor: themeColor }} />
-            <div className="h-[1.5px] w-full" style={{ backgroundColor: themeColor }} />
+            <div className="h-[0.75px] w-full" style={{ backgroundColor: themeColor || '#7A1F2B' }} />
+            <div className="h-[1.5px] w-full" style={{ backgroundColor: themeColor || '#7A1F2B' }} />
           </div>
         </header>
       )}

@@ -44,7 +44,13 @@ export type TemplateId =
   | 'editorial_hr'
   | 'creative_portfolio'
   | 'executive_finance'
-  | 'infrastructure_engineer';
+  | 'infrastructure_engineer'
+  | 'marginalia'
+  | 'dossier'
+  | 'career_gantt'
+  | 'monogram'
+  | 'binder_tabs'
+  | 'competency_radar';
 
 export type FontFamily =
   | 'inter'
@@ -63,7 +69,9 @@ export type FontFamily =
   | 'jakarta'
   | 'times'
   | 'manrope'
-  | 'space_grotesk';
+  | 'space_grotesk'
+  | 'fraunces'
+  | 'dm_serif';
 
 export interface PersonalInfo {
   fullName: string;
@@ -502,6 +510,7 @@ export interface ResumeData {
   hasSidebarContent?: boolean;
   hasMainContent?: boolean;
   sectionOrder?: SectionOrderConfig;
+  sectionNumberMap?: Record<string, number>;
   hiddenSections?: ResumeSectionId[];
   experienceLevel?: 'entry' | 'mid' | 'senior' | 'experienced';
   targetJob?: {
@@ -517,14 +526,14 @@ export interface ResumeData {
   syncedToCloud?: boolean;
 }
 
-export type FontWeight = 'normal' | 'medium' | 'semibold' | 'bold';
+export type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
 
 export interface TypographySettings {
   primaryFont?: FontFamily;
   secondaryFont?: FontFamily;
-  headerFont?: FontFamily;
-  subHeaderFont?: FontFamily;
-  sectionHeaderFont?: FontFamily;
+  headingFont?: FontFamily;
+  roleFont?: FontFamily;
+  sectionFont?: FontFamily;
   bodyFont?: FontFamily;
   lineHeight?: number;
 
@@ -546,8 +555,6 @@ export interface TypographySettings {
 export interface LayoutSettings {
   format?: 'A4' | 'Letter';
   dateFormat?: 'Short Name (Jan YYYY)' | 'Numeric (01/2023)' | 'Year Only (2023)' | 'Hidden';
-
-  pagePadding?: number; // in px (16 to 48)
 
   margins?: {
     topBottom?: number; // in inches

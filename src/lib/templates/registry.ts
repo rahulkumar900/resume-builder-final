@@ -54,6 +54,12 @@ import { EditorialHrTemplate } from '@/components/resume-templates/EditorialHrTe
 import { CreativePortfolioTemplate } from '@/components/resume-templates/CreativePortfolioTemplate';
 import { ExecutiveFinanceTemplate } from '@/components/resume-templates/ExecutiveFinanceTemplate';
 import { InfrastructureEngineerTemplate } from '@/components/resume-templates/InfrastructureEngineerTemplate';
+import { MarginaliaTemplate } from '@/components/resume-templates/MarginaliaTemplate';
+import { DossierTemplate } from '@/components/resume-templates/DossierTemplate';
+import { CareerGanttTemplate } from '@/components/resume-templates/CareerGanttTemplate';
+import { MonogramTemplate } from '@/components/resume-templates/MonogramTemplate';
+import { BinderTabsTemplate } from '@/components/resume-templates/BinderTabsTemplate';
+import { CompetencyRadarTemplate } from '@/components/resume-templates/CompetencyRadarTemplate';
 
 /**
  * Common prop contract adhered to by all resume template components.
@@ -114,6 +120,12 @@ export const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
   creative_portfolio: CreativePortfolioTemplate,
   executive_finance: ExecutiveFinanceTemplate,
   infrastructure_engineer: InfrastructureEngineerTemplate,
+  marginalia: MarginaliaTemplate,
+  dossier: DossierTemplate,
+  career_gantt: CareerGanttTemplate,
+  monogram: MonogramTemplate,
+  binder_tabs: BinderTabsTemplate,
+  competency_radar: CompetencyRadarTemplate,
 };
 
 /**

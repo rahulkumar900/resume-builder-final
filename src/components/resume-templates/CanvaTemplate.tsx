@@ -307,11 +307,11 @@ export const CanvaTemplate: React.FC<TemplateProps> = ({ data }) => {
         <div data-ghost-header="true" className="pb-4 mb-5 border-b-2 border-slate-100 flex flex-row items-center justify-between gap-4 break-inside-avoid">
           <div>
             <span className="text-[11px] font-black uppercase tracking-widest text-slate-400">Portfolio Resume</span>
-            <div className="text-[32px] font-black tracking-tight" style={{ color: themeColor }}>
+            <h1 className="text-[32px] font-black tracking-tight" style={{ color: themeColor }}>
               {personalInfo?.fullName || 'Candidate Name'}
-            </div>
+            </h1>
             {personalInfo?.jobTitle && (
-              <p className="text-[14px] font-bold text-slate-700 tracking-wide mt-0.5">
+              <p data-ghost-role="true" className="text-[14px] font-bold text-slate-700 tracking-wide mt-0.5">
                 {personalInfo.jobTitle}
               </p>
             )}

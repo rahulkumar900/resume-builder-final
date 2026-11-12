@@ -52,7 +52,7 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="education" data-ghost-section="education">
             <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
-              <BookOpen className="w-4 h-4 text-slate-500" />
+              <BookOpen className="w-4 h-4 text-slate-700" />
               <span>Education</span>
             </div>
             <div className={itemSpaceClass}>
@@ -61,7 +61,7 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="font-bold text-slate-900 text-[14px]">{edu.degree}</div>
                     <div className="text-slate-700 font-medium">{edu.school}</div>
-                    <div className="text-[12px] text-slate-500">{edu.graduationDate}</div>
+                    <div className="text-[12px] text-slate-700 font-medium">{edu.graduationDate}</div>
                   </div>
                   {edu.highlights && <ResumeHighlights highlights={edu.highlights} className="text-slate-700 text-[12px] mt-1" />}
                 </div>
@@ -74,7 +74,7 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="skills" data-ghost-section="skills">
             <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
-              <Wrench className="w-4 h-4 text-slate-500" />
+              <Wrench className="w-4 h-4 text-slate-700" />
               <span>Key Skills</span>
             </div>
             <div className={itemSpaceClass}>
@@ -98,14 +98,14 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="certifications" data-ghost-section="certifications">
             <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
-              <Award className="w-4 h-4 text-slate-500" />
+              <Award className="w-4 h-4 text-slate-700" />
               <span>Certificates</span>
             </div>
             <div className="space-y-2.5">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="text-[12.5px] break-inside-avoid">
                   <span className="font-bold text-slate-800">{c.name}</span>
-                  <div className="text-slate-500 text-[11.5px]">{c.issuer} {c.date ? `(${c.date})` : ''}</div>
+                  <div className="text-slate-700 text-[11.5px]">{c.issuer} {c.date ? `(${c.date})` : ''}</div>
                 </div>
               ))}
             </div>
@@ -116,14 +116,14 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="languages" data-ghost-section="languages">
             <div data-ghost-section-title="true" className="text-sm font-bold uppercase tracking-wider text-slate-900 pb-1.5 mb-2.5 border-b border-slate-200 flex items-center gap-1.5 break-after-avoid">
-              <LanguagesIcon className="w-4 h-4 text-slate-500" />
+              <LanguagesIcon className="w-4 h-4 text-slate-700" />
               <span>Languages</span>
             </div>
             <div className="space-y-1.5 text-[12.5px]">
               {languages.map((l) => (
                 <div key={l.id} data-ghost-item={l.id} className="flex justify-between text-slate-700 break-inside-avoid">
                   <span className="font-semibold">{l.language}</span>
-                  <span className="text-slate-500 text-[11.5px]">{l.proficiency}</span>
+                  <span className="text-slate-700 font-medium text-[11.5px]">{l.proficiency}</span>
                 </div>
               ))}
             </div>
@@ -145,7 +145,7 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline mb-0.5">
                       <span className="font-bold text-slate-900 text-[14.5px]">{exp.role}</span>
-                      <span className="text-[12px] font-bold text-slate-500">
+                      <span className="text-[12px] font-bold text-slate-700">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
@@ -204,7 +204,7 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Running Header */}
       {data.pageNumber && data.pageNumber > 1 && (
         <div className={`w-full ${paddingClass} pb-0 break-inside-avoid`}>
-          <div className="flex items-center justify-between border-b border-slate-200 pb-3 text-slate-500 text-[12px] font-bold tracking-wider uppercase">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3 text-slate-700 text-[12px] font-bold tracking-wider uppercase">
             <span style={{ color: themeColor || '#475569' }}>
               {personalInfo.fullName || 'Jane Chastain'} &mdash; {personalInfo.jobTitle || 'Resume'}
             </span>
@@ -233,10 +233,10 @@ export const ChastainTemplate: React.FC<TemplateProps> = ({ data }) => {
             </div>
           )}
 
-          <div className="text-3xl font-bold tracking-tight text-slate-900 uppercase mb-1">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 uppercase mb-1">
             {personalInfo.fullName || 'Jane Chastain'}
-          </div>
-          <p className="text-sm font-bold tracking-widest text-slate-600 uppercase mb-3.5">
+          </h1>
+          <p data-ghost-role="true" className="text-sm font-bold tracking-widest text-slate-600 uppercase mb-3.5">
             {personalInfo.jobTitle || 'Head of People & Operations'}
           </p>
 

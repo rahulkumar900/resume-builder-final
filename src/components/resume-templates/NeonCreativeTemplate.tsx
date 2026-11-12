@@ -60,14 +60,14 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
     personalInfo.github,
   ].filter(Boolean);
 
-  // Render uppercase section header with accent pill
+  // Render uppercase section header with accent pill (Space Grotesk 12px / 18px, 700 bold, gradient #7C3AED to #06B6D4)
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
       className="flex items-center gap-2 mb-2.5 break-after-avoid"
     >
-      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 shrink-0 shadow-xs" />
-      <h2 className="text-[12px] font-black uppercase tracking-[0.18em] text-slate-900">
+      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] shrink-0 shadow-xs" />
+      <h2 className="font-spacegrotesk text-[12px] font-bold uppercase tracking-[0.18em] leading-[18px] bg-gradient-to-r from-[#7C3AED] to-[#06B6D4] bg-clip-text text-transparent">
         {title}
       </h2>
     </div>
@@ -108,7 +108,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div data-ghost-item="summary-0" className="break-inside-avoid">
               <RichText
                 content={personalInfo.summary}
-                className="text-[11.5px] text-slate-700 leading-relaxed"
+                className="font-spacegrotesk text-[12.5px] text-[#222222] leading-[18.8px] font-normal"
               />
             </div>
           </div>
@@ -121,32 +121,33 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
             {renderSectionHeader('Experience', 'experience')}
             <div className={itemSpaceClass}>
               {experience.map((exp, idx) => (
-                <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-1 break-inside-avoid">
+                <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-1 break-inside-avoid bg-[#F8F6FF] rounded-xl p-3.5 border border-[#ede9fe]/60">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
-                      <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
+                      <span className="font-spacegrotesk font-bold text-[12.5px] text-[#222222] leading-[18.8px] tracking-tight">
                         {exp.role}
                       </span>
-                      <span className="text-[11px] text-slate-500 font-normal">
+                      <span className="font-spacegrotesk font-medium text-[12.5px] text-[#222222] leading-[18.8px]">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
                     {(exp.company || exp.location) && (
-                      <div className="text-[11.5px] font-medium text-slate-600">
+                      <div className="font-spacegrotesk font-normal text-[12.5px] text-[#222222] leading-[18.8px]">
                         {exp.company}
                         {exp.location ? `, ${exp.location}` : ''}
                       </div>
                     )}
                   </div>
                   {(exp as any).description && (
-                    <div className="text-[11px] text-slate-700 leading-normal pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[12.5px] text-[#222222] leading-[18.8px] pt-0.5">
                       {(exp as any).description}
                     </div>
                   )}
                   {exp.highlights && exp.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="text-slate-700 text-[11px] leading-normal pt-0.5 space-y-0.5"
+                      className="font-spacegrotesk text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5 space-y-0.5"
+                      itemClassName="font-spacegrotesk text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -162,33 +163,34 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
             {renderSectionHeader('Projects', 'projects')}
             <div className={itemSpaceClass}>
               {projects.map((proj, idx) => (
-                <div key={proj.id || idx} data-ghost-item={proj.id || `proj-${idx}`} className="space-y-0.5 break-inside-avoid">
+                <div key={proj.id || idx} data-ghost-item={proj.id || `proj-${idx}`} className="space-y-0.5 break-inside-avoid bg-[#F8F6FF] rounded-xl p-3.5 border border-[#ede9fe]/60">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-[12.5px] text-slate-900 tracking-tight">
+                      <span className="font-spacegrotesk font-bold text-[12.5px] text-[#222222] leading-[18.8px] tracking-tight">
                         {proj.title}
                       </span>
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="text-[11px] text-slate-500 font-normal">
+                        <span className="font-spacegrotesk text-[12.5px] text-[#222222]/80 font-normal">
                           ({proj.technologies.join(', ')})
                         </span>
                       )}
                     </div>
                     {proj.link && (
-                      <span className="text-[11px] text-blue-600 truncate max-w-[180px]">
+                      <span className="font-spacegrotesk text-[12.5px] text-[#06B6D4] truncate max-w-[180px]">
                         {proj.link}
                       </span>
                     )}
                   </div>
                   {(proj as any).description && (
-                    <div className="text-[11px] text-slate-700 leading-normal pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[12.5px] text-[#222222] leading-[18.8px] pt-0.5">
                       {(proj as any).description}
                     </div>
                   )}
                   {proj.highlights && proj.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={proj.highlights}
-                      className="text-slate-700 text-[11px] leading-normal pt-0.5"
+                      className="font-spacegrotesk text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-spacegrotesk text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -208,7 +210,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="skills" data-ghost-section="skills" className={sectionMarginClass}>
             {renderSectionHeader('Core Skills', 'skills')}
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {activeSkills.map((cat, cIdx) => {
                 const items = (cat.items || []).filter((it) => it && it.trim());
                 if (items.length === 0) return null;
@@ -216,7 +218,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div
                     key={cat.id || cIdx}
                     data-ghost-item={cat.id || `skill-${cIdx}`}
-                    className="space-y-2"
+                    className="space-y-1.5"
                   >
                     {hasCategories && activeSkills.length > 1 && cat.category && (
                       <div
@@ -226,13 +228,13 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
                         {cat.category}
                       </div>
                     )}
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       {items.map((it, iIdx) => {
                         const lvl = cat.levels?.[it.trim()];
                         const percent = getSkillPercentage(lvl);
                         return (
-                          <div key={iIdx} data-ghost-bullet={iIdx} className="space-y-0.5 min-w-0">
-                            <div className="flex justify-between items-baseline text-[10.5px] font-semibold text-slate-800 leading-tight">
+                          <div key={iIdx} data-ghost-bullet={iIdx} className="space-y-0.5 min-w-0 break-inside-avoid">
+                            <div className="flex justify-between items-baseline text-[10px] font-semibold text-slate-800 leading-tight">
                               <span className="truncate pr-1">{it}</span>
                               {lvl && (
                                 <span className="text-[8.5px] text-slate-400 font-normal shrink-0">
@@ -241,7 +243,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
                               )}
                             </div>
                             {/* Glowing Cyan-to-Blue Horizontal Gradient Bar */}
-                            <div className="h-1.5 w-full bg-slate-100 dark:bg-muted rounded-full overflow-hidden">
+                            <div className="h-1 w-full bg-slate-100 dark:bg-muted rounded-full overflow-hidden">
                               <div
                                 className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 transition-all duration-300"
                                 style={{ width: `${percent}%` }}
@@ -268,27 +270,28 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
               {education.map((edu, idx) => (
                 <div key={edu.id || idx} data-ghost-item={edu.id || `edu-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-bold text-[12px] text-slate-900 tracking-tight">
+                    <span className="font-spacegrotesk font-bold text-[12.5px] text-[#222222] leading-[18.8px] tracking-tight">
                       {edu.degree}
                     </span>
-                    <span className="text-[10.5px] text-slate-500 font-normal">
+                    <span className="font-spacegrotesk font-medium text-[12.5px] text-[#222222] leading-[18.8px]">
                       {edu.graduationDate}
                     </span>
                   </div>
-                  <div className="text-[11px] text-slate-600">
+                  <div className="font-spacegrotesk font-normal text-[12.5px] text-[#222222] leading-[18.8px]">
                     {edu.school}
                     {edu.location ? `, ${edu.location}` : ''}
                     {edu.gpa ? ` · CGPA ${edu.gpa}` : ''}
                   </div>
                   {(edu as any).description && (
-                    <div className="text-[10.5px] text-slate-600 pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[12.5px] text-[#222222] leading-[18.8px] pt-0.5">
                       {(edu as any).description}
                     </div>
                   )}
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={edu.highlights}
-                      className="text-slate-600 text-[10.5px] pt-0.5 leading-normal"
+                      className="font-spacegrotesk text-[#222222] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-spacegrotesk text-[#222222] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -307,7 +310,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={l.id || lIdx} data-ghost-item={l.id || `lang-${lIdx}`} className="break-inside-avoid">
                   <span className="font-medium text-slate-900">{l.language}</span>
                   {l.proficiency && (
-                    <span className="text-slate-500"> ({l.proficiency})</span>
+                    <span className="text-slate-700 font-medium"> ({l.proficiency})</span>
                   )}
                 </div>
               ))}
@@ -324,8 +327,8 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
               {certifications.map((cert, idx) => (
                 <li key={cert.id || idx} data-ghost-item={cert.id || `cert-${idx}`} className="break-inside-avoid">
                   <span className="font-medium text-slate-900">{cert.name}</span>
-                  {cert.issuer && <span className="text-slate-600"> &mdash; {cert.issuer}</span>}
-                  {cert.date && <span className="text-slate-500"> ({cert.date})</span>}
+                  {cert.issuer && <span className="text-slate-700"> &mdash; {cert.issuer}</span>}
+                  {cert.date && <span className="text-slate-700 font-medium"> ({cert.date})</span>}
                 </li>
               ))}
             </ul>
@@ -342,10 +345,10 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <li key={ach.id || idx} data-ghost-item={ach.id || `ach-${idx}`} className="space-y-0.5 break-inside-avoid">
                   <div className="flex justify-between items-baseline">
                     <span className="font-medium text-slate-900">{ach.title}</span>
-                    {ach.date && <span className="text-slate-500"> ({ach.date})</span>}
+                    {ach.date && <span className="text-slate-700 font-medium"> ({ach.date})</span>}
                   </div>
                   {ach.description && (
-                    <div className="text-[10.5px] text-slate-600 leading-normal">
+                    <div className="text-[10.5px] text-slate-700 leading-normal">
                       {ach.description}
                     </div>
                   )}
@@ -375,7 +378,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div data-ghost-item="declaration-0" className="pt-1 text-[11px] text-slate-700 space-y-3 break-inside-avoid">
               {text && <p className="leading-relaxed italic">{text}</p>}
               <div className="flex justify-between items-end pt-2">
-                <div className="space-y-0.5 text-[10.5px] text-slate-500">
+                <div className="space-y-0.5 text-[10.5px] text-slate-700 font-medium">
                   {date && <p>Date: {date}</p>}
                   {place && <p>Place: {place}</p>}
                   {!place && !date && personalInfo.location && <p>Place: {personalInfo.location}</p>}
@@ -475,7 +478,7 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
   };
 
   return (
-    <div className="w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans flex flex-col box-border">
+    <div className="w-full h-full min-h-[297mm] bg-white text-[#222222] font-spacegrotesk flex flex-col box-border">
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
         <div
@@ -489,28 +492,28 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
         </div>
       )}
 
-      {/* Curved Deep Violet Header Banner matching PDF Page 3 (Page 1 only) */}
+      {/* Curved Deep Violet Header Banner matching Aurora (Page 1 only) */}
       {isPage1 && (
         <header
           data-ghost-header="true"
-          className="bg-gradient-to-r from-[#29084d] via-[#3d126b] to-[#1c0836] text-white p-6 sm:p-7 rounded-b-[24px] shadow-sm break-inside-avoid"
+          className="bg-gradient-to-r from-[#29084d] via-[#3d126b] to-[#1c0836] text-white p-5 sm:p-6 rounded-b-[20px] shadow-sm break-inside-avoid"
         >
           {personalInfo.jobTitle && (
-            <div className="inline-block px-3 py-0.5 rounded-full border border-purple-400/40 bg-purple-950/40 text-[10px] font-bold tracking-[0.2em] uppercase text-purple-200">
+            <div data-ghost-role="true" className="inline-block px-3 py-0.5 rounded-full border border-purple-400/40 bg-purple-950/40 font-spacegrotesk text-[11px] font-normal tracking-[0.2em] uppercase text-white leading-[16.5px]">
               {personalInfo.jobTitle}
             </div>
           )}
 
-          <h1 className="text-[32px] sm:text-[38px] font-black tracking-tight text-white mt-1.5 leading-tight">
+          <h1 className="font-spacegrotesk text-[58px] font-bold tracking-tight text-white mt-1 leading-[62px]">
             {personalInfo.fullName}
           </h1>
 
           {contactItems.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1.5 mt-3">
+            <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
               {contactItems.map((item, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-0.5 rounded-md bg-white/10 border border-white/10 text-[10.5px] text-purple-100 font-medium"
+                  className="px-2.5 py-0.5 rounded-md bg-white/10 border border-white/10 font-spacegrotesk text-[11px] text-purple-100 font-medium"
                 >
                   {item}
                 </span>
@@ -521,18 +524,18 @@ export const NeonCreativeTemplate: React.FC<TemplateProps> = ({ data }) => {
       )}
 
       {/* 2-Column Body Layout strictly adhering to active sections, ordering and multi-page pagination */}
-      <div className={`${contentPadding} grid grid-cols-1 md:grid-cols-12 gap-7 sm:gap-9 flex-1`}>
+      <div className={`${contentPadding} grid grid-cols-12 gap-7 sm:gap-9 flex-1`}>
         {/* Main Column (Left, ~60-65%) */}
         <div
           data-ghost-col="main"
-          className={hasSidebarContent ? 'md:col-span-7 space-y-1' : 'md:col-span-12 space-y-1'}
+          className={hasSidebarContent ? 'col-span-7 space-y-1' : 'col-span-12 space-y-1'}
         >
           {mainSectionIds.map((secId: ResumeSectionId) => renderSection(secId, false))}
         </div>
 
         {/* Sidebar Column (Right, ~35-40%) with Left Divider */}
         {hasSidebarContent && (
-          <div data-ghost-col="sidebar" className="md:col-span-5 md:border-l md:border-slate-200/80 md:pl-7 space-y-1">
+          <div data-ghost-col="sidebar" className="col-span-5 border-l border-slate-200/80 pl-7 space-y-1">
             {sidebarSectionIds.map((secId: ResumeSectionId) => renderSection(secId, true))}
           </div>
         )}

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { BuilderNavbar } from '@/components/builder/BuilderNavbar';
 import { BuilderForm } from '@/components/builder/BuilderForm';
 import { A4PreviewCanvas } from '@/components/builder/A4PreviewCanvas';
@@ -40,7 +40,6 @@ interface BuilderEditorClientProps {
 export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const { user, openAuthModal, isLoading: authLoading } = useAuth();
 
   const [isResolvingResume, setIsResolvingResume] = useState<boolean>(true);
@@ -65,7 +64,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     redo,
     canUndo,
     canRedo,
-  } = useAutoSaveResume(null, 2500, user?.id);
+  } = useAutoSaveResume(null, 400, user?.id);
 
   const handleCriticalIssuesDetected = (
     criticalIssues: AtsSuggestion[],
@@ -86,108 +85,21 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
     onCriticalIssuesDetected: handleCriticalIssuesDetected,
   });
 
-  // Helper to parse mode ('content' | 'design' | 'check' | 'match') and view ('edit' | 'preview') from URL search params
-  const parseTabFromParams = useCallback((params: ReturnType<typeof useSearchParams>) => {
-    const rawTab = (params.get('tab') || params.get('mode') || '').toLowerCase();
-    const rawView = (params.get('view') || '').toLowerCase();
-
-    let targetMode: 'content' | 'design' | 'check' | 'match' = 'content';
-    let targetTab: 'edit' | 'preview' = 'edit';
-
-    if (rawView === 'preview' || rawTab === 'preview') {
-      targetTab = 'preview';
-    } else if (rawTab === 'design') {
-      targetMode = 'design';
-    } else if (rawTab === 'check' || rawTab === 'ats') {
-      targetMode = 'check';
-    } else if (rawTab === 'match' || rawTab === 'jd-match' || rawTab === 'jd_match' || rawTab === 'tailor') {
-      targetMode = 'match';
-    } else {
-      // 'write' or 'content' or default
-      targetMode = 'content';
-    }
-
-    return { tab: targetTab, mode: targetMode };
-  }, []);
-
-  const initialTabState = useMemo(() => {
-    return parseTabFromParams(searchParams);
-  }, []); // Run on initial render
-
   const [allResumes, setAllResumes] = useState<ResumeData[]>([]);
   const [scale, setScale] = useState<number>(0.75);
-  const [activeTab, setActiveTab] = useState<'edit' | 'preview'>(initialTabState.tab);
-  const [editorMode, setEditorMode] = useState<'content' | 'design' | 'check' | 'match'>(initialTabState.mode);
-  const [isMobileDesignSheetOpen, setIsMobileDesignSheetOpen] = useState(
-    initialTabState.mode === 'design' && typeof window !== 'undefined' && window.innerWidth < 1024
+  const tabParam = searchParams.get('tab') || searchParams.get('view');
+  const [activeTab, setActiveTab] = useState<'edit' | 'preview'>(
+    tabParam === 'preview' ? 'preview' : 'edit'
   );
+  const [editorMode, setEditorMode] = useState<'content' | 'design' | 'check' | 'match'>('content');
   const [isScoreModalOpen, setIsScoreModalOpen] = useState(false);
   const [isGrammarModalOpen, setIsGrammarModalOpen] = useState(false);
   const [isJobTailorModalOpen, setIsJobTailorModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isMobileDesignSheetOpen, setIsMobileDesignSheetOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
-
-  // Synchronize state when query params change externally (browser back/forward button)
-  useEffect(() => {
-    const { tab, mode } = parseTabFromParams(searchParams);
-    setActiveTab(tab);
-    setEditorMode(mode);
-    if (mode === 'design' && typeof window !== 'undefined' && window.innerWidth < 1024) {
-      setIsMobileDesignSheetOpen(true);
-    } else {
-      setIsMobileDesignSheetOpen(false);
-    }
-  }, [searchParams, parseTabFromParams]);
-
-  // Synchronize active mode and tab into URL query parameters
-  const syncTabToUrl = useCallback(
-    (mode: 'content' | 'design' | 'check' | 'match', view: 'edit' | 'preview' = 'edit') => {
-      const newParams = new URLSearchParams(searchParams?.toString() || '');
-      if (view === 'preview') {
-        newParams.set('tab', 'preview');
-        newParams.set('view', 'preview');
-      } else {
-        newParams.delete('view');
-        const tabValue = mode === 'content' ? 'write' : mode;
-        newParams.set('tab', tabValue);
-      }
-      newParams.delete('mode');
-
-      const queryString = newParams.toString();
-      const targetUrl = queryString ? `${pathname}?${queryString}` : pathname;
-      router.push(targetUrl, { scroll: false });
-    },
-    [pathname, router, searchParams]
-  );
-
-  const handleSwitchMode = useCallback(
-    (mode: 'content' | 'design' | 'check' | 'match') => {
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
-      if (isMobile && mode === 'design') {
-        setActiveTab('preview');
-        setIsMobileDesignSheetOpen(true);
-        setEditorMode('design');
-        syncTabToUrl('design', 'preview');
-        return;
-      }
-      setIsMobileDesignSheetOpen(false);
-      setEditorMode(mode);
-      setActiveTab('edit');
-      syncTabToUrl(mode, 'edit');
-    },
-    [syncTabToUrl]
-  );
-
-  const handleMobileDesignClick = useCallback(() => {
-    const willOpen = !isMobileDesignSheetOpen;
-    setIsMobileDesignSheetOpen(willOpen);
-    setActiveTab('preview');
-    const targetMode = willOpen ? 'design' : 'content';
-    setEditorMode(targetMode);
-    syncTabToUrl(targetMode, 'preview');
-  }, [isMobileDesignSheetOpen, syncTabToUrl]);
 
   // Monitor virtual keyboard focus on mobile/tablet to auto-compact headers
   useEffect(() => {
@@ -244,6 +156,22 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
       console.error('Failed to delete resume:', err);
       setIsDeleting(false);
     }
+  };
+
+  const handleSwitchMode = (mode: 'content' | 'design' | 'check' | 'match') => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024 && mode === 'design') {
+      setActiveTab('preview');
+      setIsMobileDesignSheetOpen(true);
+      return;
+    }
+    setIsMobileDesignSheetOpen(false);
+    setEditorMode(mode);
+    setActiveTab('edit');
+  };
+
+  const handleMobileDesignClick = () => {
+    setActiveTab('preview');
+    setIsMobileDesignSheetOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -340,11 +268,9 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
 
   const handleTabSwitch = (tab: 'edit' | 'preview') => {
     setActiveTab(tab);
-    setIsMobileDesignSheetOpen(false);
     if (tab === 'preview' && typeof window !== 'undefined' && window.innerWidth < 1024) {
       setScale(calculateFitScale());
     }
-    syncTabToUrl(editorMode, tab);
   };
 
   const handleApplyTailoredResume = (tailoredResume: ResumeData, isNewClone: boolean) => {
@@ -396,7 +322,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         onChange={handleChange}
         onDownloadPdf={handleDownloadPdf}
         onPrint={handlePrint}
-        onScore={() => handleSwitchMode(editorMode === 'check' ? 'content' : 'check')}
+        onScore={() => setEditorMode((prev) => (prev === 'check' ? 'content' : 'check'))}
         onOpenGrammar={() => setIsGrammarModalOpen(true)}
         onTailorForJob={() => setIsJobTailorModalOpen(true)}
         isDownloading={isDownloading}
@@ -424,7 +350,11 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         <div className="flex bg-slate-100 dark:bg-muted p-0.5 rounded-xl text-xs font-semibold w-full gap-0.5">
           <button
             type="button"
-            onClick={() => handleSwitchMode('content')}
+            onClick={() => {
+              setIsMobileDesignSheetOpen(false);
+              setEditorMode('content');
+              setActiveTab('edit');
+            }}
             className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'edit' && editorMode === 'content' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
@@ -450,7 +380,11 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           </button>
           <button
             type="button"
-            onClick={() => handleSwitchMode('check')}
+            onClick={() => {
+              setIsMobileDesignSheetOpen(false);
+              setEditorMode('check');
+              setActiveTab('edit');
+            }}
             className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'edit' && editorMode === 'check' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
@@ -463,7 +397,11 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           </button>
           <button
             type="button"
-            onClick={() => handleSwitchMode('match')}
+            onClick={() => {
+              setIsMobileDesignSheetOpen(false);
+              setEditorMode('match');
+              setActiveTab('edit');
+            }}
             className={`flex-1 flex items-center justify-center gap-1 py-1 px-1 rounded-lg transition-all cursor-pointer min-h-[30px] sm:min-h-[32px] active:scale-[0.98] whitespace-nowrap ${
               activeTab === 'edit' && editorMode === 'match' && !isMobileDesignSheetOpen
                 ? 'bg-white dark:bg-card text-foreground shadow-xs font-bold'
@@ -509,7 +447,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               onChange={handleChange}
               onDownloadPdf={handleDownloadPdf}
               onPrint={handlePrint}
-              onScore={() => handleSwitchMode('check')}
+              onScore={() => setEditorMode('check')}
               onOpenDesignStudio={() => handleSwitchMode('design')}
               onOpenJobTailor={() => setIsJobTailorModalOpen(true)}
               onOpenGrammar={() => setIsGrammarModalOpen(true)}
@@ -519,20 +457,16 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             <DesignStudioPanel
               resume={resume}
               onChange={handleChange}
-              onClose={() => handleSwitchMode('content')}
+              onClose={() => setEditorMode('content')}
             />
           ) : editorMode === 'check' ? (
             <CheckAuditPanel
               resume={resume}
               onChange={handleChange}
-              onClose={() => handleSwitchMode('content')}
+              onClose={() => setEditorMode('content')}
               onNavigateSection={(sec) => {
-                handleSwitchMode('content');
-                const newParams = new URLSearchParams(searchParams?.toString() || '');
-                newParams.set('tab', 'write');
-                newParams.set('step', sec);
-                newParams.delete('view');
-                router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+                setEditorMode('content');
+                router.push(`/builder/${id}?step=${sec}`);
               }}
             />
           ) : (
@@ -541,14 +475,10 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
               onChange={handleChange}
               onOpenTailorStudio={() => setIsJobTailorModalOpen(true)}
               onNavigateSection={(sec) => {
-                handleSwitchMode('content');
-                const newParams = new URLSearchParams(searchParams?.toString() || '');
-                newParams.set('tab', 'write');
-                newParams.set('step', sec);
-                newParams.delete('view');
-                router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+                setEditorMode('content');
+                router.push(`/builder/${id}?step=${sec}`);
               }}
-              onClose={() => handleSwitchMode('content')}
+              onClose={() => setEditorMode('content')}
             />
           )}
         </div>
@@ -593,10 +523,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
           {/* Top Sheet Drag/Indicator Handle */}
           <div
             className="w-full flex items-center justify-center pt-2 pb-1 bg-white dark:bg-[#161614] shrink-0 cursor-pointer"
-            onClick={() => {
-              setIsMobileDesignSheetOpen(false);
-              syncTabToUrl('content', 'preview');
-            }}
+            onClick={() => setIsMobileDesignSheetOpen(false)}
             title="Click to collapse"
           >
             <div className="w-10 h-1 bg-slate-300 dark:bg-white/20 rounded-full" />
@@ -606,10 +533,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             <DesignStudioPanel
               resume={resume}
               onChange={handleChange}
-              onClose={() => {
-                setIsMobileDesignSheetOpen(false);
-                syncTabToUrl('content', 'preview');
-              }}
+              onClose={() => setIsMobileDesignSheetOpen(false)}
               isMinimal={true}
             />
           </div>
@@ -622,12 +546,8 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         onClose={() => setIsScoreModalOpen(false)}
         resumes={resume ? [resume, ...allResumes.filter((r) => r.id !== resume.id)] : allResumes}
         onNavigateSection={(sec) => {
-          handleSwitchMode('content');
-          const newParams = new URLSearchParams(searchParams?.toString() || '');
-          newParams.set('tab', 'write');
-          newParams.set('step', sec);
-          newParams.delete('view');
-          router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
+          setActiveTab('edit');
+          router.push(`/builder/${id}?step=${sec}`);
         }}
         onAddSkill={(skillName) => {
           if (!resume) return;

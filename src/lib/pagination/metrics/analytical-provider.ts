@@ -89,8 +89,15 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
     const mainCol = this.measureColumn(data, mainOrder, 'main', false, false, spacing);
     const sidebarCol = this.measureColumn(data, sidebarOrder, 'sidebar', true, false, spacing);
 
+    const headerHeightMainPage1 =
+      templateId === 'competency_radar' ? 70 : capacityMetrics.headerHeightPage1;
+    const headerHeightSidebarPage1 =
+      templateId === 'competency_radar' ? 275 : capacityMetrics.headerHeightPage1;
+
     return {
-      headerHeightPage1: capacityMetrics.headerHeightPage1,
+      headerHeightPage1: Math.max(headerHeightMainPage1, headerHeightSidebarPage1),
+      headerHeightMainPage1,
+      headerHeightSidebarPage1,
       runningHeaderHeight: capacityMetrics.runningHeaderHeight,
       paddingVertical: capacityMetrics.pagePaddingVertical,
       columns: {
@@ -222,13 +229,15 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
           const h = Math.max(18, textH + 4) * mult;
           return { id: itemId, sectionId, height: Math.ceil(h), bullets: [], splitStrategy: 'atomic' };
         }
-        const badgesPerLine = isSidebar ? 2.5 : 4.5;
+        const isProgressBar = templateId === 'neon_creative' || templateId === 'stamp';
+        const badgesPerLine = isProgressBar ? 1 : (isSidebar ? 2.5 : 4.5);
         const bullets: NormalizedBulletMetric[] = [];
-        const rowHeight = Math.ceil(26 * mult);
+        const rowHeight = Math.ceil((isProgressBar ? 24 : 26) * mult);
         const headerH = Math.ceil(24 * mult);
 
         items.forEach((_, idx) => {
           const isNewLine =
+            isProgressBar ||
             idx === 0 ||
             Math.floor(idx / badgesPerLine) !== Math.floor((idx - 1) / badgesPerLine);
           bullets.push({
@@ -237,7 +246,7 @@ export class AnalyticalMetricsProvider implements IMetricsProvider {
           });
         });
 
-        const badgeLines = Math.max(1, Math.ceil(count / badgesPerLine));
+        const badgeLines = isProgressBar ? count : Math.max(1, Math.ceil(count / badgesPerLine));
         const totalH = headerH + badgeLines * rowHeight;
         return {
           id: itemId,

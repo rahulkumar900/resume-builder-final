@@ -11,7 +11,9 @@ import { TEMPLATES } from './definitions';
 import { isSectionPopulated } from './content-check';
 export const getTemplateLayout = (templateId: TemplateId): 'single' | 'double' => {
   const t = TEMPLATES.find((item) => item.id === templateId);
-  return t ? t.layout : 'single';
+  if (t) return t.layout;
+  const contract = TEMPLATE_COLUMN_CONTRACTS[templateId];
+  return contract && contract.sidebarSections.length > 0 ? 'double' : 'single';
 };
 
 export const getTemplateSidebarPosition = (templateId: TemplateId): 'left' | 'right' => {
@@ -242,10 +244,10 @@ export const getEffectiveSectionOrder = (
     // Migrate from main/sidebar to single
     return migrateSectionOrder(sectionOrder, templateId);
   } else {
-    const hasMain = Array.isArray(sectionOrder.mainColumn) && sectionOrder.mainColumn.length > 0;
-    const hasSidebar = Array.isArray(sectionOrder.sidebarColumn) && sectionOrder.sidebarColumn.length > 0;
+    const hasMainArray = Array.isArray(sectionOrder.mainColumn);
+    const hasSidebarArray = Array.isArray(sectionOrder.sidebarColumn);
 
-    if (hasMain && hasSidebar) {
+    if (hasMainArray && hasSidebarArray) {
       return {
         mainColumn: [...(sectionOrder.mainColumn || [])],
         sidebarColumn: [...(sectionOrder.sidebarColumn || [])],
@@ -307,22 +309,26 @@ export const getResolvedTemplateSectionOrder = (
       }
     }
 
-    // Auto-append any populated sections in data that are not yet in list and not hidden
-    const contract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
-    contract.mainSections.forEach((secId) => {
-      if (
-        !list.includes(secId) &&
-        !data.hiddenSections?.includes(secId) &&
-        isSectionPopulated(data, secId)
-      ) {
-        const declIdx = list.indexOf('declaration');
-        if (declIdx !== -1) {
-          list.splice(declIdx, 0, secId);
-        } else {
-          list.push(secId);
+    // Auto-append any populated sections in data that are not yet in list and not hidden.
+    // In multi-page paginated views, strictly preserve the partitioner's per-page distribution.
+    const isPaginatedPage = Boolean(data.pageNumber && data.totalPages && data.totalPages > 1);
+    if (!isPaginatedPage) {
+      const contract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
+      contract.mainSections.forEach((secId) => {
+        if (
+          !list.includes(secId) &&
+          !data.hiddenSections?.includes(secId) &&
+          isSectionPopulated(data, secId)
+        ) {
+          const declIdx = list.indexOf('declaration');
+          if (declIdx !== -1) {
+            list.splice(declIdx, 0, secId);
+          } else {
+            list.push(secId);
+          }
         }
-      }
-    });
+      });
+    }
 
     return { singleColumn: list };
   } else {
@@ -352,22 +358,27 @@ export const getResolvedTemplateSectionOrder = (
       }
     }
 
-    const doubleContract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
-    const allCandidateSections = [...doubleContract.mainSections, ...doubleContract.sidebarSections];
-    allCandidateSections.forEach((secId) => {
-      if (
-        !mainList.includes(secId) &&
-        !sidebarList.includes(secId) &&
-        !data.hiddenSections?.includes(secId) &&
-        isSectionPopulated(data, secId)
-      ) {
-        if (doubleContract.sidebarSections.includes(secId)) {
-          sidebarList.push(secId);
-        } else {
-          mainList.push(secId);
+    // Auto-append unplaced populated candidate sections on unpaginated data.
+    // In multi-page paginated views, strictly preserve the partitioner's per-page distribution.
+    const isPaginatedPage = Boolean(data.pageNumber && data.totalPages && data.totalPages > 1);
+    if (!isPaginatedPage) {
+      const doubleContract = TEMPLATE_COLUMN_CONTRACTS[templateId] || TEMPLATE_COLUMN_CONTRACTS.prawira;
+      const allCandidateSections = [...doubleContract.mainSections, ...doubleContract.sidebarSections];
+      allCandidateSections.forEach((secId) => {
+        if (
+          !mainList.includes(secId) &&
+          !sidebarList.includes(secId) &&
+          !data.hiddenSections?.includes(secId) &&
+          isSectionPopulated(data, secId)
+        ) {
+          if (doubleContract.sidebarSections.includes(secId)) {
+            sidebarList.push(secId);
+          } else {
+            mainList.push(secId);
+          }
         }
-      }
-    });
+      });
+    }
 
     return { mainColumn: mainList, sidebarColumn: sidebarList };
   }

@@ -1,175 +1,225 @@
 import React from 'react';
-import { ResumeData, FontFamily } from '@/types/resume';
-import { getEffectiveTemplateConfig } from '@/lib/templates/template-config';
+import { FontFamily, FontWeight, ResumeData } from '@/types/resume';
+import { getTemplateSignatureFont, isLegacyDummySizes } from '@/lib/templates';
 
 interface CustomThemeStylesProps {
   resume: ResumeData;
   containerId?: string;
 }
 
-const getFontFamilyStack = (font: FontFamily): string => {
-  switch (font) {
-    case 'roboto':
-      return "var(--font-roboto), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-    case 'sourcesans':
-      return "var(--font-sourcesans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-    case 'poppins':
-      return "var(--font-poppins), sans-serif";
-    case 'montserrat':
-      return "var(--font-montserrat), sans-serif";
-    case 'lato':
-      return "var(--font-lato), sans-serif";
-    case 'raleway':
-      return "var(--font-raleway), sans-serif";
-    case 'rubik':
-      return "var(--font-rubik), sans-serif";
-    case 'opensans':
-      return "var(--font-opensans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-    case 'times':
-      return "'Times New Roman', Times, 'EB Garamond', Georgia, serif";
-    case 'garamond':
-      return "var(--font-garamond), 'EB Garamond', 'Times New Roman', serif";
-    case 'playfair':
-      return "var(--font-playfair), Georgia, Cambria, serif";
-    case 'merriweather':
-      return "var(--font-merriweather), Georgia, Cambria, serif";
-    case 'outfit':
-      return "var(--font-outfit), sans-serif";
-    case 'jakarta':
-      return "var(--font-jakarta), sans-serif";
-    case 'manrope':
-      return "'Manrope', var(--font-manrope), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-    case 'space_grotesk':
-      return "'Space Grotesk', var(--font-space-grotesk), sans-serif";
-    case 'inter':
-    default:
-      return "var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
-  }
-};
-
 export const CustomThemeStyles: React.FC<CustomThemeStylesProps> = ({ resume, containerId }) => {
-  const config = getEffectiveTemplateConfig(resume);
+  const { typography, layout, fontFamily, templateId } = resume;
+  if (!typography && !layout && !fontFamily && !templateId) return null;
 
-  // Single unified font stack across the entire resume
-  const fontStack = getFontFamilyStack(config.fontFamily);
+  const roots = containerId
+    ? [`#${containerId}`, '[data-ghost-measurer="true"]']
+    : ['.resume-canvas-content', '[data-ghost-measurer="true"]', '#a4-resume-document'];
 
-  const scope = containerId ? `#${containerId}` : '.resume-canvas-content';
+  const scope = (...targetSelectors: string[]) => {
+    return roots
+      .flatMap((root) => targetSelectors.map((target) => `${root} ${target}`))
+      .join(',\n  ');
+  };
 
-  const cssText = `
-    ${scope}, [data-ghost-measurer="true"] {
-      --resume-accent: ${config.accentColor};
-      --resume-font: ${fontStack};
-      --font-header: ${fontStack};
-      --font-sub-header: ${fontStack};
-      --font-section-header: ${fontStack};
-      --font-body: ${fontStack};
+  const rootRule = roots.join(',\n  ');
 
-      --size-header: ${config.headerSize}pt;
-      --size-sub-header: ${config.subHeaderSize}pt;
-      --size-section-header: ${config.sectionHeaderSize}pt;
-      --size-body: ${config.bodySize}pt;
+  const isLegacy = isLegacyDummySizes(typography?.sizes);
+  const tSizes = isLegacy ? {} : (typography?.sizes || {});
+  const tWeights = isLegacy ? {} : (typography?.weights || {});
+  const lMargins = layout?.margins || {};
+  const lSpacing = layout?.spacing || {};
+  const signatureFont = templateId ? getTemplateSignatureFont(templateId) : undefined;
+  const activeFont =
+    typography?.primaryFont ||
+    (fontFamily && fontFamily !== 'inter'
+      ? fontFamily
+      : signatureFont || fontFamily || 'inter');
 
-      --resume-line-height: ${config.lineHeight};
-      --space-section: ${config.sectionSpacing}pt;
-      --page-padding: ${config.pagePadding}px;
+  const mapWeight = (w: FontWeight | string | undefined, defaultW: string) => {
+    if (!w) return defaultW;
+    if (w === 'light') return '300';
+    if (w === 'normal') return '400';
+    if (w === 'medium') return '500';
+    if (w === 'semibold') return '600';
+    if (w === 'bold') return '700';
+    return w;
+  };
 
-      /* Backwards-compatibility token mappings */
-      --text-primary: ${config.headerSize}pt;
-      --text-secondary: ${config.subHeaderSize}pt;
-      --text-title: ${config.sectionHeaderSize}pt;
-      --text-body: ${config.bodySize}pt;
-      --line-height: ${config.lineHeight};
+  const getFontFamilyCss = (font?: FontFamily, fallback?: string): string => {
+    if (!font) return fallback || 'inherit';
+    switch (font) {
+      case 'space_grotesk':
+        return "var(--font-space-grotesk), 'Space Grotesk', sans-serif";
+      case 'fraunces':
+        return "var(--font-fraunces), 'Fraunces', Georgia, serif";
+      case 'dm_serif':
+        return "var(--font-dm-serif), 'DM Serif Display', Georgia, serif";
+      case 'times':
+        return "'Times New Roman', Times, 'EB Garamond', Georgia, serif";
+      case 'garamond':
+        return "var(--font-garamond), 'EB Garamond', 'Times New Roman', serif";
+      case 'playfair':
+        return "var(--font-playfair), 'Playfair Display', Georgia, Cambria, serif";
+      case 'merriweather':
+        return "var(--font-merriweather), 'Merriweather', Georgia, Cambria, serif";
+      case 'outfit':
+        return "var(--font-outfit), 'Outfit', sans-serif";
+      case 'jakarta':
+        return "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif";
+      case 'manrope':
+        return "var(--font-manrope), 'Manrope', sans-serif";
+      case 'roboto':
+        return "var(--font-roboto), Roboto, sans-serif";
+      case 'sourcesans':
+        return "var(--font-sourcesans), 'Source Sans 3', sans-serif";
+      case 'poppins':
+        return "var(--font-poppins), Poppins, sans-serif";
+      case 'montserrat':
+        return "var(--font-montserrat), Montserrat, sans-serif";
+      case 'lato':
+        return "var(--font-lato), Lato, sans-serif";
+      case 'raleway':
+        return "var(--font-raleway), Raleway, sans-serif";
+      case 'rubik':
+        return "var(--font-rubik), Rubik, sans-serif";
+      case 'opensans':
+        return "var(--font-opensans), 'Open Sans', sans-serif";
+      case 'inter':
+      default:
+        return "var(--font-inter), Inter, sans-serif";
     }
+  };
 
-    /* Universal font family application */
-    ${scope},
-    [data-ghost-measurer="true"],
-    ${scope} * {
-      font-family: var(--resume-font);
-    }
+  const primaryFontCss = getFontFamilyCss(activeFont);
+  const headingFontCss = getFontFamilyCss(typography?.headingFont, primaryFontCss);
+  const roleFontCss = getFontFamilyCss(typography?.roleFont, primaryFontCss);
+  const sectionFontCss = getFontFamilyCss(typography?.sectionFont, primaryFontCss);
+  const bodyFontCss = getFontFamilyCss(typography?.bodyFont, primaryFontCss);
 
-    /* 1. Header (Candidate Name) Size */
-    ${scope} [data-ghost-header="true"] h1,
-    [data-ghost-measurer="true"] [data-ghost-header="true"] h1,
-    ${scope} [data-ghost-header="true"] .text-3xl,
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-3xl,
-    ${scope} [data-ghost-header="true"] .text-2xl,
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-2xl,
-    ${scope} [data-ghost-header="true"] .text-4xl,
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-4xl,
-    ${scope} [data-ghost-header="true"] .text-\\[32px\\],
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-\\[32px\\],
-    ${scope} [data-ghost-header="true"] .text-\\[35px\\],
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-\\[35px\\],
-    ${scope} [data-ghost-header="true"] .text-\\[38px\\],
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-\\[38px\\],
-    ${scope} [data-ghost-header="true"] .text-\\[28px\\],
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-\\[28px\\],
-    ${scope} [data-ghost-header="true"] .text-\\[26px\\],
-    [data-ghost-measurer="true"] [data-ghost-header="true"] .text-\\[26px\\],
-    ${scope} [data-ghost-header="true"] [data-candidate-name="true"],
-    [data-ghost-measurer="true"] [data-ghost-header="true"] [data-candidate-name="true"] {
-      font-size: var(--size-header) !important;
-      line-height: 1.15 !important;
+  const formatSize = (size: number | undefined, defaultPx: string) => {
+    if (size === undefined) return defaultPx;
+    if (typeof size === 'number') {
+      return `${size}px`;
     }
+    return String(size);
+  };
 
-    /* 2. Sub-Header (Roles, Institutions, Degrees inside item headers) Size */
-    ${scope} [data-ghost-item-header="true"] h3,
-    [data-ghost-measurer="true"] [data-ghost-item-header="true"] h3,
-    ${scope} [data-ghost-item-header="true"] .font-bold:not(.text-xs):not(.text-\\[11px\\]):not(.text-\\[10\\.5px\\]):not(.text-\\[10px\\]),
-    [data-ghost-measurer="true"] [data-ghost-item-header="true"] .font-bold:not(.text-xs):not(.text-\\[11px\\]):not(.text-\\[10\\.5px\\]):not(.text-\\[10px\\]),
-    ${scope} [data-ghost-item-header="true"] .font-semibold:not(.text-xs):not(.text-\\[11px\\]):not(.text-\\[10\\.5px\\]):not(.text-\\[10px\\]),
-    [data-ghost-measurer="true"] [data-ghost-item-header="true"] .font-semibold:not(.text-xs):not(.text-\\[11px\\]):not(.text-\\[10\\.5px\\]):not(.text-\\[10px\\]) {
-      font-size: var(--size-sub-header) !important;
-    }
+  const isCustomPrimaryFont = Boolean(
+    typography?.primaryFont &&
+    typography.primaryFont !== 'inter' &&
+    typography.primaryFont !== signatureFont
+  );
 
-    /* 3. Section Header (Headings like "EXPERIENCE", "EDUCATION", "SKILLS") Size */
-    ${scope} [data-ghost-section-title="true"],
-    [data-ghost-measurer="true"] [data-ghost-section-title="true"],
-    ${scope} [data-ghost-section-title="true"] h2,
-    [data-ghost-measurer="true"] [data-ghost-section-title="true"] h2,
-    ${scope} [data-ghost-section-title="true"] div,
-    [data-ghost-measurer="true"] [data-ghost-section-title="true"] div,
-    ${scope} [data-ghost-section-title="true"] span,
-    [data-ghost-measurer="true"] [data-ghost-section-title="true"] span {
-      font-size: var(--size-section-header) !important;
-    }
+  const isCustomBodyFont = Boolean(
+    typography?.bodyFont &&
+    typography.bodyFont !== signatureFont
+  );
 
-    /* 4. Normal Body Text (Paragraphs, Bullet points, Summaries, Descriptions) Size & Line Height */
-    ${scope} [data-ghost-section] p,
-    [data-ghost-measurer="true"] [data-ghost-section] p,
-    ${scope} [data-ghost-section] li,
-    [data-ghost-measurer="true"] [data-ghost-section] li,
-    ${scope} [data-ghost-section] .rich-text,
-    [data-ghost-measurer="true"] [data-ghost-section] .rich-text,
-    ${scope} [data-ghost-item] p,
-    [data-ghost-measurer="true"] [data-ghost-item] p,
-    ${scope} [data-ghost-item] li,
-    [data-ghost-measurer="true"] [data-ghost-item] li,
-    ${scope} [data-ghost-bullet],
-    [data-ghost-measurer="true"] [data-ghost-bullet],
-    ${scope} .resume-highlights,
-    [data-ghost-measurer="true"] .resume-highlights {
-      font-size: var(--size-body) !important;
-      line-height: var(--resume-line-height) !important;
-    }
+  let cssText = `${rootRule} {
+    --resume-font: ${primaryFontCss};
+    --font-heading: ${headingFontCss};
+    --font-role: ${roleFontCss};
+    --font-section: ${sectionFontCss};
+    --font-body: ${bodyFontCss};
 
-    /* 5. Section Spacing */
-    ${scope} [data-ghost-section],
-    [data-ghost-measurer="true"] [data-ghost-section] {
-      margin-bottom: var(--space-section) !important;
-    }
+    ${isCustomBodyFont || isCustomPrimaryFont ? `font-family: ${bodyFontCss};` : ''}
 
-    /* 6. Page Padding */
-    ${scope} .a4-page-sheet > div[class*="p-"],
-    [data-ghost-measurer="true"] > div[class*="p-"],
-    ${scope} [data-template-padding="true"],
-    [data-ghost-measurer="true"] [data-template-padding="true"] {
-      padding-top: var(--page-padding) !important;
-      padding-bottom: var(--page-padding) !important;
-      padding-left: var(--page-padding) !important;
-      padding-right: var(--page-padding) !important;
-    }
+    ${tSizes.primaryHeading ? `--text-primary: ${formatSize(tSizes.primaryHeading, '25px')};` : ''}
+    ${tSizes.secondaryHeading ? `--text-secondary: ${formatSize(tSizes.secondaryHeading, '14.7px')};` : ''}
+    ${tSizes.sectionTitle ? `--text-title: ${formatSize(tSizes.sectionTitle, '18.7px')};` : ''}
+    ${tSizes.body ? `--text-body: ${formatSize(tSizes.body, '14.7px')};` : ''}
+    
+    ${tWeights.primaryHeading ? `--weight-primary: ${mapWeight(tWeights.primaryHeading, '700')};` : ''}
+    ${tWeights.secondaryHeading ? `--weight-secondary: ${mapWeight(tWeights.secondaryHeading, '600')};` : ''}
+    ${tWeights.sectionTitle ? `--weight-title: ${mapWeight(tWeights.sectionTitle, '700')};` : ''}
+    ${tWeights.body ? `--weight-body: ${mapWeight(tWeights.body, '400')};` : ''}
+    
+    --line-height: ${typography?.lineHeight ?? 1.5};
+    
+    --margin-y: ${lMargins.topBottom ?? 0.5}in;
+    --margin-x: ${lMargins.leftRight ?? 0.5}in;
+    
+    --space-section: ${lSpacing.betweenSections ?? 24}pt;
+    --space-title-content: ${lSpacing.betweenTitlesContent ?? 12}pt;
+    --space-block: ${lSpacing.betweenBlocks ?? 12}pt;
+    --space-inside: ${lSpacing.insideBlock ?? 4}pt;
+  }
+
+  ${tSizes.primaryHeading || typography?.headingFont || tWeights.primaryHeading ? `
+  ${scope(
+    'h1',
+    '[data-ghost-header] h1',
+    '[data-ghost-header="true"] h1',
+    'header h1',
+    'aside h1',
+    '.resume-name',
+    '[data-ghost-header="true"] .text-3xl'
+  )} {
+    ${tSizes.primaryHeading ? `font-size: ${formatSize(tSizes.primaryHeading, '25px')} !important;` : ''}
+    ${typography?.headingFont ? `font-family: ${headingFontCss} !important;` : ''}
+    ${tWeights.primaryHeading ? `font-weight: ${mapWeight(tWeights.primaryHeading, '700')} !important;` : ''}
+  }` : ''}
+
+  ${tSizes.secondaryHeading || typography?.roleFont || tWeights.secondaryHeading ? `
+  ${scope(
+    '[data-ghost-role="true"]',
+    '[data-ghost-header="true"] [data-ghost-role="true"]',
+    'header [data-ghost-role="true"]',
+    'aside [data-ghost-role="true"]'
+  )} {
+    ${tSizes.secondaryHeading ? `font-size: ${formatSize(tSizes.secondaryHeading, '14.7px')} !important;` : ''}
+    ${typography?.roleFont ? `font-family: ${roleFontCss} !important;` : ''}
+    ${tWeights.secondaryHeading ? `font-weight: ${mapWeight(tWeights.secondaryHeading, '600')} !important;` : ''}
+  }` : ''}
+
+  ${tSizes.sectionTitle || typography?.sectionFont || tWeights.sectionTitle ? `
+  ${scope(
+    '[data-ghost-section-title="true"]',
+    '[data-ghost-section-title="true"] > div',
+    '[data-ghost-section-title="true"] > h2',
+    '[data-ghost-section-title="true"] > h3',
+    '[data-ghost-section-title="true"] > span:not([class*="rounded"]):not([class*="w-"])',
+    '[data-ghost-section] h2',
+    '[data-ghost-section] h3'
+  )} {
+    ${tSizes.sectionTitle ? `font-size: ${formatSize(tSizes.sectionTitle, '18.7px')} !important;` : ''}
+    ${typography?.sectionFont ? `font-family: ${sectionFontCss} !important;` : ''}
+    ${tWeights.sectionTitle ? `font-weight: ${mapWeight(tWeights.sectionTitle, '700')} !important;` : ''}
+  }` : ''}
+
+  ${tSizes.body || typography?.bodyFont || tWeights.body || (typography?.lineHeight && typography.lineHeight !== 1.5) ? `
+  ${scope(
+    '[data-ghost-bullet]',
+    'ul[data-ghost-bullets] > li',
+    '[data-ghost-item] li',
+    '.rich-text-block li',
+    '[data-ghost-section="summary"] .rich-text-content',
+    '[data-ghost-section="summary"] p',
+    '[data-ghost-section="summary"] > div:not([data-ghost-section-title="true"])',
+    '[data-ghost-item] .rich-text-content',
+    '[data-ghost-item] .rich-text-content p',
+    '[data-ghost-item] .rich-text-content li',
+    '[data-ghost-item] > p',
+    '.resume-highlights li',
+    '[data-ghost-section="certifications"] li',
+    '[data-ghost-section="languages"] li',
+    '[data-ghost-section="skills"] li'
+  )} {
+    ${tSizes.body ? `font-size: ${formatSize(tSizes.body, '14.7px')} !important;` : ''}
+    ${typography?.bodyFont ? `font-family: ${bodyFontCss} !important;` : ''}
+    ${tWeights.body ? `font-weight: ${mapWeight(tWeights.body, '400')} !important;` : ''}
+    ${typography?.lineHeight && typography.lineHeight !== 1.5 ? `line-height: ${typography.lineHeight} !important;` : ''}
+  }
+
+  ${scope(
+    '[data-ghost-item] b',
+    '[data-ghost-item] strong',
+    '[data-ghost-item] .font-bold',
+    '.rich-text-content b',
+    '.rich-text-content strong'
+  )} {
+    font-weight: 700 !important;
+  }` : ''}
   `;
 
   return <style dangerouslySetInnerHTML={{ __html: cssText }} />;

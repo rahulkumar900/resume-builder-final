@@ -55,7 +55,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
     personalInfo.github,
   ].filter(Boolean);
 
-  // Left-Rail Row Container matching PDF Page 9: Left rail has uppercase label (125-140px), Right has content
+  // Left-Rail Row Container matching PDF Page 9: Left rail has uppercase label (115px), Right has content
   const renderLeftRailRow = (
     secId: ResumeSectionId,
     title: string,
@@ -64,13 +64,14 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div
       key={secId}
       data-ghost-section={secId}
-      className={`flex flex-col sm:flex-row gap-3 sm:gap-6 border-b border-neutral-200 last:border-b-0 ${sectionSpacingClass} break-inside-avoid`}
+      className={`flex flex-col sm:flex-row gap-3 sm:gap-5 border-b border-neutral-200 last:border-b-0 ${sectionSpacingClass} break-inside-avoid`}
     >
       {/* Left Rail: Uppercase wide-tracked section title */}
-      <div className="w-full sm:w-[130px] shrink-0">
+      <div className="w-full sm:w-[115px] shrink-0">
         <h2
           data-ghost-section-title="true"
-          className="text-[11px] font-black uppercase tracking-[0.2em] text-neutral-900 font-sans"
+          className="text-[11px] font-bold uppercase tracking-[0.2em] font-manrope leading-[16.5px]"
+          style={{ color: themeColor }}
         >
           {title}
         </h2>
@@ -90,7 +91,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
         return renderLeftRailRow(
           'summary',
           'Profile',
-          <div data-ghost-item="summary-0" className="text-[12px] text-neutral-800 leading-relaxed font-sans">
+          <div data-ghost-item="summary-0" className="text-[12.5px] text-[#222222] leading-[18.8px] font-manrope">
             <RichText content={rawSummary} />
           </div>
         );
@@ -121,7 +122,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                     {item.title}
                   </div>
                   {item.description && (
-                    <div className="text-[10.5px] text-neutral-700 font-sans mt-1 leading-snug">
+                    <div className="text-[11px] text-[#222222] font-manrope mt-1 leading-snug">
                       {item.description}
                     </div>
                   )}
@@ -136,7 +137,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                     {item.title}
                   </div>
                   {item.description && (
-                    <div className="text-[11px] text-neutral-700 font-sans">
+                    <div className="text-[11.5px] text-[#222222] font-manrope">
                       {item.description}
                     </div>
                   )}
@@ -167,22 +168,37 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                 data-ghost-item={exp.id}
                 className="flex flex-col sm:flex-row gap-2 sm:gap-4 break-inside-avoid"
               >
-                {/* Left sub-rail: Date range */}
-                <div className="w-full sm:w-[95px] shrink-0">
-                  <div className="text-[11px] font-bold text-neutral-800 font-sans whitespace-nowrap">
+                {/* Left sub-rail: Date range with generous width and padding to never collide with timeline bullet */}
+                <div className="w-full sm:w-[130px] shrink-0 text-left sm:text-right pr-3.5">
+                  <div
+                    className="text-[12px] font-bold font-manrope leading-[18.8px]"
+                    style={{ color: themeColor || '#E4572E' }}
+                  >
                     {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                   </div>
+                </div>
+
+                {/* Timeline node */}
+                <div className="hidden sm:flex flex-col items-center shrink-0">
+                  <div
+                    className="w-2.5 h-2.5 rounded-full shrink-0 mt-1"
+                    style={{ backgroundColor: themeColor || '#E4572E' }}
+                  />
+                  <div
+                    className="w-[1.5px] flex-1 my-0.5 min-h-[24px]"
+                    style={{ backgroundColor: `${themeColor || '#E4572E'}40` }}
+                  />
                 </div>
 
                 {/* Right sub-content: Role, Company & Highlights */}
                 <div className="flex-1 min-w-0 space-y-1">
                   <div data-ghost-item-header="true">
-                    <div className="text-[12.5px] font-bold text-neutral-900 font-sans leading-snug">
+                    <div className="text-[13px] font-bold text-[#222222] font-manrope leading-[18.8px]">
                       {exp.role}
                     </div>
                     {exp.company && (
                       <div
-                        className="text-[11px] tracking-wider uppercase font-semibold font-sans mt-0.5"
+                        className="text-[12px] tracking-wider uppercase font-semibold font-manrope mt-0.5"
                         style={{ color: themeColor }}
                       >
                         {exp.company}
@@ -192,7 +208,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                   </div>
 
                   {(exp as any).description && (
-                    <div className="text-[11px] text-neutral-800 font-sans leading-normal pt-0.5">
+                    <div className="text-[12.5px] text-[#222222] font-manrope leading-[18.8px] pt-0.5">
                       {(exp as any).description}
                     </div>
                   )}
@@ -201,7 +217,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                     <div className="pt-0.5">
                       <ResumeHighlights
                         highlights={exp.highlights}
-                        className="text-neutral-800 text-[11px] leading-relaxed font-sans space-y-1"
+                        className="text-[#222222] text-[12.5px] leading-[18.8px] font-manrope space-y-1"
                       />
                     </div>
                   )}
@@ -232,13 +248,13 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                     {proj.title}
                   </span>
                   {(proj as any).year || (proj as any).date ? (
-                    <span className="text-[11px] text-neutral-600 font-medium font-sans whitespace-nowrap">
+                    <span className="text-[11px] text-neutral-800 font-medium font-sans whitespace-nowrap">
                       {(proj as any).year || (proj as any).date}
                     </span>
                   ) : null}
                 </div>
                 {(proj as any).description && (
-                  <div className="text-[11px] text-neutral-700 font-sans leading-normal">
+                  <div className="text-[11px] text-[#222222] font-sans leading-normal">
                     {(proj as any).description}
                   </div>
                 )}
@@ -269,12 +285,12 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                     {edu.degree}
                   </span>
                   {edu.graduationDate && (
-                    <span className="text-[11px] text-neutral-600 font-medium font-sans whitespace-nowrap">
+                    <span className="text-[11px] text-neutral-800 font-medium font-sans whitespace-nowrap">
                       {edu.graduationDate}
                     </span>
                   )}
                 </div>
-                <div className="text-[11.5px] text-neutral-700 font-sans">
+                <div className="text-[11.5px] text-[#222222] font-sans">
                   {edu.school}
                   {edu.location ? `, ${edu.location}` : ''}
                   {edu.gpa ? ` · ${edu.gpa}` : ''}
@@ -320,7 +336,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
             {certifications.map((cert) => (
               <div key={cert.id} data-ghost-item={cert.id} className="flex justify-between items-baseline break-inside-avoid">
                 <span className="font-semibold text-neutral-900">{cert.name}</span>
-                {cert.date && <span className="text-neutral-600 font-medium">({cert.date})</span>}
+                {cert.date && <span className="text-neutral-800 font-medium">({cert.date})</span>}
               </div>
             ))}
           </div>
@@ -337,10 +353,10 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
               <div key={award.id} data-ghost-item={award.id} className="break-inside-avoid">
                 <span className="font-semibold text-neutral-900">{award.title}</span>
                 {(award as any).date && (
-                  <span className="text-neutral-600 ml-1">({(award as any).date})</span>
+                  <span className="text-neutral-800 font-medium ml-1">({(award as any).date})</span>
                 )}
                 {(award as any).description && (
-                  <div className="text-[11px] text-neutral-700 mt-0.5 font-sans">
+                  <div className="text-[11px] text-[#222222] mt-0.5 font-manrope">
                     {(award as any).description}
                   </div>
                 )}
@@ -422,13 +438,13 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
                           {item.title}
                         </span>
                         {item.date && (
-                          <span className="text-[11px] text-neutral-600 font-medium font-sans whitespace-nowrap">
+                          <span className="text-[11px] text-neutral-800 font-medium font-sans whitespace-nowrap">
                             {item.date}
                           </span>
                         )}
                       </div>
                       {item.subtitle && (
-                        <div className="text-[11px] italic text-neutral-700 font-sans">
+                        <div className="text-[11px] italic text-[#222222] font-manrope">
                           {item.subtitle}
                         </div>
                       )}
@@ -482,7 +498,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
     >
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-b border-neutral-300 pb-2 mb-4 flex items-center justify-between text-[11px] text-neutral-700 break-inside-avoid">
+        <div className="border-b border-neutral-300 pb-2 mb-4 flex items-center justify-between text-[11px] text-neutral-800 break-inside-avoid">
           <span className="font-bold uppercase tracking-wider">
             {personalInfo.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
@@ -501,13 +517,15 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
             {/* Candidate Name & Job Title */}
             <div>
               <h1
-                className="text-[34px] sm:text-[40px] font-bold tracking-tight text-neutral-900 leading-none"
-                style={{ fontFamily: "'Fraunces', Georgia, 'Times New Roman', serif" }}
+                className="font-fraunces text-[42px] font-bold tracking-tight text-[#222222] leading-[42px]"
               >
                 {personalInfo.fullName || 'Candidate Name'}
               </h1>
               {personalInfo.jobTitle && (
-                <div className="text-[12.5px] font-bold uppercase tracking-wider text-neutral-700 mt-2">
+                <div
+                  className="font-manrope text-[12.5px] font-bold uppercase tracking-wider mt-2 leading-[18.8px]"
+                  style={{ color: themeColor }}
+                >
                   {personalInfo.jobTitle}
                 </div>
               )}
@@ -515,7 +533,7 @@ export const EditorialHrTemplate: React.FC<TemplateProps> = ({ data }) => {
 
             {/* Right-aligned Contact Information */}
             {contactItems.length > 0 && (
-              <div className="text-[11px] text-neutral-700 flex flex-col sm:items-end gap-1">
+              <div className="text-[11.5px] text-[#222222] font-medium flex flex-col sm:items-end gap-1">
                 {contactItems.map((item, idx) => (
                   <span key={idx}>{item}</span>
                 ))}

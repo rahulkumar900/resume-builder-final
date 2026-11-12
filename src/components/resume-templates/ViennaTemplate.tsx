@@ -32,11 +32,11 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
       case 'summary':
         if (!personalInfo.summary) return null;
         return (
-          <div key="summary" data-ghost-section="summary" className="pt-1.5">
+          <div key="summary" data-ghost-section="summary" className="pt-1">
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
-                className="text-[13px] text-slate-700 leading-relaxed text-justify italic font-serif"
+                className="text-[13.5px] text-slate-800 leading-[21px] text-justify italic font-serif"
               />
             </div>
           </div>
@@ -45,7 +45,7 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!experience || experience.length === 0) return null;
         return (
           <div key="experience" data-ghost-section="experience" className="space-y-3">
-            <div data-ghost-section-title="true" className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300">
+            <div data-ghost-section-title="true" className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900">
               Professional Experience
             </div>
             <div className={itemSpacing}>
@@ -53,16 +53,16 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={exp.id} data-ghost-item={exp.id} className="space-y-1 break-inside-avoid">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
-                      <span className="font-bold text-[13.5px] text-slate-900">{exp.role}</span>
-                      <span className="font-sans text-[11.5px] text-slate-500 font-medium">
+                      <span className="font-bold text-[14px] text-slate-900">{exp.role}</span>
+                      <span className="font-sans text-[12.5px] text-slate-700 font-medium whitespace-nowrap">
                         {exp.startDate} &mdash; {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
-                    <div className="font-sans text-[12px] font-semibold text-slate-700">
+                    <div className="font-sans text-[13px] font-semibold text-slate-800">
                       {exp.company} {exp.location ? `• ${exp.location}` : ''}
                     </div>
                   </div>
-                  <ResumeHighlights highlights={exp.highlights} className="font-sans text-[12px] text-slate-700 pt-0.5 leading-relaxed" />
+                  <ResumeHighlights highlights={exp.highlights} className="font-sans text-[13px] text-slate-800 pt-0.5 leading-[20px]" />
                 </div>
               ))}
             </div>
@@ -72,19 +72,19 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!education || education.length === 0) return null;
         return (
           <div key="education" data-ghost-section="education" className="space-y-3">
-            <div data-ghost-section-title="true" className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300">
+            <div data-ghost-section-title="true" className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900">
               Education
             </div>
             <div className={itemSpacing}>
               {education.map((edu) => (
                 <div key={edu.id} data-ghost-item={edu.id} className="flex justify-between items-baseline break-inside-avoid">
                   <div data-ghost-item-header="true">
-                    <div className="font-bold text-[13px] text-slate-900">{edu.degree}</div>
-                    <div className="font-sans text-[12px] text-slate-600">
+                    <div className="font-bold text-[14px] text-slate-900">{edu.degree}</div>
+                    <div className="font-sans text-[13px] text-slate-700">
                       {edu.school} {edu.location ? `• ${edu.location}` : ''}
                     </div>
                   </div>
-                  <div className="font-sans text-[11.5px] text-slate-500">{edu.graduationDate}</div>
+                  <div className="font-sans text-[12.5px] text-slate-700 font-medium whitespace-nowrap">{edu.graduationDate}</div>
                 </div>
               ))}
             </div>
@@ -94,14 +94,14 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!skills || skills.length === 0) return null;
         return (
           <div key="skills" data-ghost-section="skills" className="space-y-2.5">
-            <div data-ghost-section-title="true" className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300">
+            <div data-ghost-section-title="true" className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900">
               Skills &amp; Competencies
             </div>
-            <div className="space-y-1.5 font-sans text-[12px]">
+            <div className="space-y-1.5 font-sans text-[13px]">
               {skills.map((cat) => (
                 <div key={cat.id} data-ghost-item={cat.id} className="flex gap-2">
-                  {cat.category ? <span className="font-bold text-slate-800 shrink-0">{cat.category}:</span> : null}
-                  <span className="text-slate-600">{cat.items.join(', ')}</span>
+                  {cat.category ? <span className="font-bold text-slate-900 shrink-0">{cat.category}:</span> : null}
+                  <span className="text-slate-800">{cat.items.join(', ')}</span>
                 </div>
               ))}
             </div>
@@ -111,7 +111,7 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!projects || projects.length === 0) return null;
         return (
           <div key="projects" data-ghost-section="projects" className="space-y-3">
-            <div data-ghost-section-title="true" className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300">
+            <div data-ghost-section-title="true" className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900">
               Key Projects
             </div>
             <div className={itemSpacing}>
@@ -119,15 +119,15 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={p.id} data-ghost-item={p.id} className="space-y-1 break-inside-avoid">
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline">
-                      <span className="font-bold text-[13px] text-slate-900">{p.title}</span>
+                      <span className="font-bold text-[14px] text-slate-900">{p.title}</span>
                       {p.link && (
-                        <span className="font-sans text-[11px] text-slate-500">
+                        <span className="font-sans text-[12px] text-slate-700">
                           {p.link.replace(/^https?:\/\//, '')}
                         </span>
                       )}
                     </div>
                   </div>
-                  <ResumeHighlights highlights={p.highlights} className="font-sans text-[12px] text-slate-700" />
+                  <ResumeHighlights highlights={p.highlights} className="font-sans text-[13px] text-slate-800 leading-[20px]" />
                 </div>
               ))}
             </div>
@@ -137,13 +137,13 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!certifications || certifications.length === 0) return null;
         return (
           <div key="certifications" data-ghost-section="certifications" className="space-y-2.5">
-            <div data-ghost-section-title="true" className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300">
+            <div data-ghost-section-title="true" className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900">
               Certifications
             </div>
-            <div className="text-[12px] font-sans space-y-1 text-slate-700">
+            <div className="text-[13px] font-sans space-y-1 text-slate-800">
               {certifications.map((c) => (
                 <div key={c.id} data-ghost-item={c.id} className="break-inside-avoid">
-                  <span className="font-bold">{c.name}</span> &mdash; {c.issuer} {c.date ? `(${c.date})` : ''}
+                  <span className="font-bold text-slate-900">{c.name}</span> &mdash; {c.issuer} {c.date ? `(${c.date})` : ''}
                 </div>
               ))}
             </div>
@@ -153,13 +153,13 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
         if (!languages || languages.length === 0) return null;
         return (
           <div key="languages" data-ghost-section="languages" className="space-y-2">
-            <div data-ghost-section-title="true" className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300">
+            <div data-ghost-section-title="true" className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900">
               Languages
             </div>
-            <div className="flex flex-wrap gap-x-4 gap-y-1 font-sans text-[12px] text-slate-700">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 font-sans text-[13px] text-slate-800">
               {languages.map((l) => (
                 <span key={l.id} data-ghost-item={l.id} className="break-inside-avoid">
-                  <span className="font-bold">{l.language}:</span> {l.proficiency}
+                  <span className="font-bold text-slate-900">{l.language}:</span> {l.proficiency}
                 </span>
               ))}
             </div>
@@ -172,8 +172,9 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
             secId={secId}
             data={data}
             renderHeader={(title) => (
-              <div                data-ghost-section-title="true"
-                className="text-xs font-sans font-black uppercase tracking-widest text-slate-900 pb-1 border-b border-slate-300"
+              <div
+                data-ghost-section-title="true"
+                className="text-[16px] font-sans font-bold uppercase tracking-widest text-slate-900 pb-1 border-b-[1.5px] border-slate-900"
               >
                 {title}
               </div>
@@ -188,7 +189,7 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 flex flex-col font-serif ${paddingClass} text-[13px] leading-normal box-border`}>
       {/* Running Header */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="pb-3 border-b border-slate-300 mb-5 break-inside-avoid flex items-center justify-between text-[11.5px] font-sans text-slate-500">
+        <div className="pb-3 border-b border-slate-300 mb-5 break-inside-avoid flex items-center justify-between text-[12px] font-sans text-slate-700 font-medium">
           <span>
             {personalInfo.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
@@ -198,18 +199,21 @@ export const ViennaTemplate: React.FC<TemplateProps> = ({ data }) => {
 
       {/* Classic Centered Header */}
       {(!data.pageNumber || data.pageNumber === 1) && (
-        <div data-ghost-header="true" className={`text-center ${headerPadding} border-b-2 border-slate-900 break-inside-avoid`}>
-          <div className="text-4xl font-normal tracking-wide text-slate-900 mb-1.5 uppercase">
+        <div data-ghost-header="true" className={`text-center ${headerPadding} border-b-[2px] border-slate-900 break-inside-avoid`}>
+          <h1 className="text-[28px] font-normal tracking-wide text-slate-900 mb-1 uppercase">
             {personalInfo.fullName || 'Target Candidate'}
-          </div>
-          <div
-            className="text-sm font-sans font-bold tracking-widest uppercase mb-3"
-            style={{ color: themeColor || '#334155' }}
-          >
-            {personalInfo.jobTitle}
-          </div>
+          </h1>
+          {personalInfo.jobTitle && (
+            <div
+              data-ghost-role="true"
+              className="text-[13px] font-sans font-bold tracking-widest uppercase mb-2.5"
+              style={{ color: themeColor || '#334155' }}
+            >
+              {personalInfo.jobTitle}
+            </div>
+          )}
 
-          <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1 font-sans text-[11.5px] text-slate-600">
+          <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1 font-sans text-[12.5px] text-slate-700 font-medium">
             {personalInfo.location && <span>{personalInfo.location}</span>}
             {personalInfo.email && <span>• {personalInfo.email}</span>}
             {personalInfo.phone && <span>• {personalInfo.phone}</span>}

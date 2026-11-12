@@ -72,7 +72,7 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="flex justify-between items-baseline mb-1">
                       <div className="font-bold text-slate-900 text-base">{exp.role}</div>
-                      <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                      <span className="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
@@ -140,7 +140,7 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div data-ghost-item-header="true">
                     <div className="font-bold text-slate-900 text-[14px] leading-snug">{edu.degree}</div>
                     <div className="text-slate-700 font-medium">{edu.school}</div>
-                    <div className="text-slate-500 text-[12px] flex justify-between mt-0.5">
+                    <div className="text-slate-700 text-[12px] flex justify-between mt-0.5 font-medium">
                       <span>{edu.location}</span>
                       <span>{edu.graduationDate}</span>
                     </div>
@@ -192,7 +192,7 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
               {certifications.map((c, idx) => (
                 <div key={c.id || `cert-${idx}`} data-ghost-item={c.id || `cert-${idx}`} className="text-xs break-inside-avoid">
                   <div className="font-bold text-slate-900">{c.name}</div>
-                  <div className="text-slate-500">{c.issuer} {c.date ? `• ${c.date}` : ''}</div>
+                  <div className="text-slate-700">{c.issuer} {c.date ? `• ${c.date}` : ''}</div>
                 </div>
               ))}
             </div>
@@ -212,7 +212,7 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
               {languages.map((l, idx) => (
                 <div key={l.id || `lang-${idx}`} data-ghost-item={l.id || `lang-${idx}`} className="flex justify-between text-slate-700">
                   <span className="font-semibold">{l.language}</span>
-                  <span className="text-slate-500">{l.proficiency}</span>
+                  <span className="text-slate-700 font-medium">{l.proficiency}</span>
                 </div>
               ))}
             </div>
@@ -242,7 +242,7 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
     <div className={`w-full h-full min-h-[297mm] bg-white text-slate-800 flex flex-col font-sans ${paddingClass} text-sm leading-normal box-border`}>
       {/* Running Header */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-b border-slate-200 pb-3 mb-5 flex items-center justify-between text-xs font-semibold text-slate-500 break-inside-avoid">
+        <div className="border-b border-slate-200 pb-3 mb-5 flex items-center justify-between text-xs font-semibold text-slate-700 break-inside-avoid">
           <span>
             {personalInfo.fullName || 'Muhammad Prawira'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
@@ -262,10 +262,10 @@ export const PrawiraTemplate: React.FC<TemplateProps> = ({ data }) => {
               />
             )}
             <div>
-              <div className="text-3xl font-extrabold tracking-tight text-slate-900 uppercase">
+              <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 uppercase">
                 {personalInfo.fullName || 'Muhammad Prawira'}
-              </div>
-              <div className="text-lg font-bold mt-1" style={{ color: themeColor }}>
+              </h1>
+              <div data-ghost-role="true" className="text-lg font-bold mt-1" style={{ color: themeColor }}>
                 {personalInfo.jobTitle || 'Private Equity & M&A Associate'}
               </div>
             </div>

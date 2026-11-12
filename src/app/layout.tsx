@@ -275,6 +275,12 @@ export default function RootLayout({
       className={`h-full antialiased ${inter.variable} ${roboto.variable} ${sourcesans.variable} ${poppins.variable} ${montserrat.variable} ${lato.variable} ${raleway.variable} ${rubik.variable} ${opensans.variable} ${garamond.variable} ${playfair.variable} ${outfit.variable} ${jakarta.variable}`}
     >
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..800&family=Manrope:wght@200..800&family=Space+Grotesk:wght@400..700&display=swap"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var m=localStorage.getItem('theme')||localStorage.getItem('shadcn-theme-mode');var p=localStorage.getItem('shadcn-theme-preset')||'emerald';var d=m==='dark'||(m!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';}else{document.documentElement.classList.remove('dark');document.documentElement.style.colorScheme='light';}document.documentElement.setAttribute('data-theme',p);}catch(e){}})();`,

@@ -7,14 +7,17 @@ import { ResumeRenderer } from '@/components/resume-templates/ResumeRenderer';
 interface DynamicResumeCardPreviewProps {
   resume: ResumeData;
   className?: string;
+  showAllPages?: boolean;
 }
 
 export const DynamicResumeCardPreview: React.FC<DynamicResumeCardPreviewProps> = ({
   resume,
   className = '',
+  showAllPages = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState<number>(0.28);
+  const [pageCount, setPageCount] = useState<number>(1);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -31,6 +34,29 @@ export const DynamicResumeCardPreview: React.FC<DynamicResumeCardPreviewProps> =
     ro.observe(containerRef.current);
     return () => ro.disconnect();
   }, []);
+
+  if (showAllPages) {
+    const unscaledHeight = pageCount * 1123 + Math.max(0, pageCount - 1) * 32;
+    return (
+      <div
+        ref={containerRef}
+        style={{ height: `${unscaledHeight * scale}px` }}
+        className={`relative w-full overflow-hidden select-none pointer-events-none ${className}`}
+      >
+        <div
+          style={{
+            width: '794px',
+            height: `${unscaledHeight}px`,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+          }}
+          className="absolute top-0 left-0"
+        >
+          <ResumeRenderer data={resume} onPageCountChange={setPageCount} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

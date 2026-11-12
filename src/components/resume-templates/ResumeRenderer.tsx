@@ -102,6 +102,10 @@ export const ResumeRenderer = React.forwardRef<HTMLDivElement, ResumeRendererPro
           return 'font-manrope font-sans';
         case 'space_grotesk':
           return 'font-spacegrotesk font-sans';
+        case 'fraunces':
+          return 'font-fraunces font-serif';
+        case 'dm_serif':
+          return 'font-dmserif font-serif';
         case 'inter':
         default:
           return 'font-inter font-sans';

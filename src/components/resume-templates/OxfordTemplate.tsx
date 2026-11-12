@@ -37,7 +37,7 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   const renderSectionHeader = (title: string) => (
     <div data-ghost-section-title="true" className="border-b-2 pb-1 mb-2.5 flex items-center justify-between" style={{ borderColor: themeColor }}>
-      <div className="text-[13px] font-black uppercase tracking-widest" style={{ color: themeColor }}>
+      <div className="text-[16px] font-bold uppercase tracking-wider" style={{ color: themeColor }}>
         {title}
       </div>
     </div>
@@ -50,7 +50,7 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="summary" data-ghost-section="summary" className={sectionMarginClass}>
             {renderSectionHeader('Executive Profile & Value Proposition')}
-            <div data-ghost-item="summary-0" className="text-[12px] leading-relaxed text-slate-700 font-serif text-justify italic">
+            <div data-ghost-item="summary-0" className="text-[13.5px] leading-[21px] text-slate-800 font-serif text-justify italic">
               <RichText content={personalInfo.summary} />
             </div>
           </div>
@@ -61,11 +61,11 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="skills" data-ghost-section="skills" className={sectionMarginClass}>
             {renderSectionHeader('Core Executive Competencies')}
-            <div className="grid grid-cols-3 gap-2 text-[11px]">
+            <div className="grid grid-cols-3 gap-2 text-[12.5px]">
               {skills.flatMap((cat) => cat.items).map((item, idx) => (
-                <div key={idx} data-ghost-item={`skill-${idx}`} className="flex items-center gap-1.5 p-1.5 rounded bg-slate-50 border border-slate-200/80 break-inside-avoid">
-                  <CheckCircle2 className="w-3 h-3 shrink-0" style={{ color: themeColor }} />
-                  <span className="font-semibold text-slate-800 truncate">{item}</span>
+                <div key={idx} data-ghost-item={`skill-${idx}`} className="flex items-center gap-1.5 p-2 rounded bg-slate-50 border border-slate-200/80 break-inside-avoid">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: themeColor }} />
+                  <span className="font-semibold text-slate-900 truncate">{item}</span>
                 </div>
               ))}
             </div>
@@ -82,19 +82,19 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={exp.id} data-ghost-item={exp.id} className="break-inside-avoid">
                   <div data-ghost-item-header="true" className="mb-1">
                     <div className="flex flex-row items-baseline justify-between gap-1">
-                      <span className="font-black text-[13px] text-slate-900 uppercase tracking-wide">
+                      <span className="font-bold text-[14px] text-slate-900 uppercase tracking-wide">
                         {exp.role}
                       </span>
-                      <span className="text-[11px] font-bold text-slate-600">
+                      <span className="text-[13px] font-bold text-slate-700">
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                       </span>
                     </div>
-                    <div className="flex justify-between text-[11.5px] font-semibold text-slate-700">
+                    <div className="flex justify-between text-[13.5px] font-semibold text-slate-800">
                       <span style={{ color: themeColor }}>{exp.company}</span>
-                      {exp.location && <span className="text-slate-500 font-normal">{exp.location}</span>}
+                      {exp.location && <span className="text-slate-600 font-normal">{exp.location}</span>}
                     </div>
                   </div>
-                  <ResumeHighlights highlights={exp.highlights} className="text-slate-700 text-[11.5px] pl-4" />
+                  <ResumeHighlights highlights={exp.highlights} className="text-slate-800 text-[13.5px] leading-[20px] pl-4" />
                 </div>
               ))}
             </div>
@@ -110,19 +110,19 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
               {projects.map((proj) => (
                 <div key={proj.id} data-ghost-item={proj.id} className="break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline mb-0.5">
-                    <span className="font-bold text-[12px] text-slate-900">
+                    <span className="font-bold text-[14px] text-slate-900">
                       {proj.title}
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="font-normal text-slate-500 text-[11px]">
+                        <span className="font-normal text-slate-700 text-[12.5px]">
                           {' '}— {proj.technologies.join(', ')}
                         </span>
                       )}
                     </span>
                     {proj.link && (
-                      <span className="text-[10.5px] text-blue-600 truncate max-w-[180px]">{proj.link}</span>
+                      <span className="text-[12px] text-blue-600 truncate max-w-[180px]">{proj.link}</span>
                     )}
                   </div>
-                  <ResumeHighlights highlights={proj.highlights} className="text-slate-700 text-[11.5px] pl-4" />
+                  <ResumeHighlights highlights={proj.highlights} className="text-slate-800 text-[13.5px] leading-[20px] pl-4" />
                 </div>
               ))}
             </div>
@@ -139,10 +139,10 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
                 <div key={edu.id} data-ghost-item={edu.id} className="break-inside-avoid">
                   <div data-ghost-item-header="true" className="flex flex-row items-baseline justify-between gap-1">
                     <div>
-                      <span className="font-bold text-[12px] text-slate-900">{edu.degree}</span>
-                      <span className="text-slate-600 text-[11.5px]"> — {edu.school}</span>
+                      <span className="font-bold text-[14px] text-slate-900">{edu.degree}</span>
+                      <span className="text-slate-700 text-[13.5px] font-medium"> — {edu.school}</span>
                     </div>
-                    <span className="text-[11px] font-semibold text-slate-500">
+                    <span className="text-[13px] font-semibold text-slate-700">
                       {edu.graduationDate}
                     </span>
                   </div>
@@ -157,11 +157,11 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="certifications" data-ghost-section="certifications" className={sectionMarginClass}>
             {renderSectionHeader('Board Certifications & Credentials')}
-            <div className="space-y-1 text-[11.5px]">
+            <div className="space-y-1.5 text-[13px]">
               {certifications.map((cert) => (
                 <div key={cert.id} data-ghost-item={cert.id} className="flex justify-between items-baseline break-inside-avoid">
                   <span className="font-semibold text-slate-800">{cert.name} — {cert.issuer}</span>
-                  {cert.date && <span className="text-[10.5px] text-slate-500">{cert.date}</span>}
+                  {cert.date && <span className="text-[12px] text-slate-600 font-medium">{cert.date}</span>}
                 </div>
               ))}
             </div>
@@ -173,11 +173,11 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="languages" data-ghost-section="languages" className={sectionMarginClass}>
             {renderSectionHeader('Languages')}
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11.5px] text-slate-700">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-slate-800">
               {languages.map((l, lidx) => (
                 <div key={l.id || lidx} data-ghost-item={l.id || `lang-${lidx}`} className="break-inside-avoid">
                   <span className="font-bold text-slate-900">{l.language}</span>
-                  {l.proficiency && <span className="text-slate-500"> ({l.proficiency})</span>}
+                  {l.proficiency && <span className="text-slate-700"> ({l.proficiency})</span>}
                 </div>
               ))}
             </div>
@@ -199,14 +199,14 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
   };
 
   return (
-    <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans leading-normal flex flex-col ${paddingClass} box-border`}>
+    <div className={`w-full h-full min-h-[297mm] bg-white text-slate-900 font-sans leading-normal flex flex-col ${paddingClass} text-[13.5px] box-border`}>
       {/* Running Header (Page > 1) */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="pb-2.5 border-b border-slate-300 mb-4 break-inside-avoid flex items-center justify-between text-[11px] font-sans uppercase tracking-wider text-slate-500">
+        <div className="pb-2.5 border-b border-slate-300 mb-4 break-inside-avoid flex items-center justify-between text-[12px] font-sans uppercase tracking-wider text-slate-700 font-medium">
           <span style={{ color: themeColor }} className="font-bold">
             {personalInfo?.fullName || 'Candidate'} &mdash; {personalInfo?.jobTitle || 'Resume'}
           </span>
-          <span className="text-[10px] text-slate-400 font-normal">
+          <span className="text-[11px] text-slate-600 font-normal">
             Page {data.pageNumber} of {data.totalPages || 2}
           </span>
         </div>
@@ -215,43 +215,43 @@ export const OxfordTemplate: React.FC<TemplateProps> = ({ data }) => {
       {/* Main Header (Page 1 only) */}
       {(!data.pageNumber || data.pageNumber === 1) && (
         <div data-ghost-header="true" className="pb-3 mb-4 border-b-4 break-inside-avoid" style={{ borderColor: themeColor }}>
-          <div className="text-[28px] font-black tracking-tight uppercase" style={{ color: themeColor }}>
+          <div className="text-[26px] font-black tracking-tight uppercase" style={{ color: themeColor }}>
             {personalInfo?.fullName || 'Candidate Name'}
           </div>
           {personalInfo?.jobTitle && (
-            <p className="text-[13.5px] font-bold uppercase tracking-widest text-slate-700 mt-0.5">
+            <p className="text-[13.5px] font-bold uppercase tracking-wider text-slate-800 mt-0.5">
               {personalInfo.jobTitle}
             </p>
           )}
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-[11px] text-slate-600 font-medium">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-[12.5px] text-slate-700 font-medium">
             {personalInfo?.location && (
               <div className="flex items-center gap-1">
-                <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                <MapPin className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                 <span>{personalInfo.location}</span>
               </div>
             )}
             {personalInfo?.phone && (
               <div className="flex items-center gap-1">
-                <Phone className="w-3 h-3 text-slate-400 shrink-0" />
+                <Phone className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                 <span>{personalInfo.phone}</span>
               </div>
             )}
             {personalInfo?.email && (
               <div className="flex items-center gap-1">
-                <Mail className="w-3 h-3 text-slate-400 shrink-0" />
+                <Mail className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                 <span>{personalInfo.email}</span>
               </div>
             )}
             {personalInfo?.linkedin && (
               <div className="flex items-center gap-1">
-                <LinkedinIcon className="w-3 h-3 text-slate-400 shrink-0" />
+                <LinkedinIcon className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                 <span>{personalInfo.linkedin.replace(/^https?:\/\/(www\.)?/, '')}</span>
               </div>
             )}
             {personalInfo?.website && (
               <div className="flex items-center gap-1">
-                <Globe className="w-3 h-3 text-slate-400 shrink-0" />
+                <Globe className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                 <span>{personalInfo.website.replace(/^https?:\/\/(www\.)?/, '')}</span>
               </div>
             )}

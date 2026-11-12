@@ -114,8 +114,8 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
     <section key={secId} data-ghost-section={secId} data-section-id={secId} className={sectionMarginClass}>
       {/* Top Split Hairline: Left segment (w-28 sm:w-32) + Right segment (flex-1) */}
       <div className="flex items-center gap-6 sm:gap-8 mb-2">
-        <div className="w-28 sm:w-32 shrink-0 border-t border-neutral-300" />
-        <div className="flex-1 border-t border-neutral-300" />
+        <div className="w-28 sm:w-32 shrink-0 border-t border-neutral-400" />
+        <div className="flex-1 border-t border-neutral-400" />
       </div>
 
       {/* Row: Left Rail Label + Right Content */}
@@ -123,7 +123,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
         <div className="w-28 sm:w-32 shrink-0">
           <h2
             data-ghost-section-title="true"
-            className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.25em] text-neutral-800 uppercase select-none pt-1"
+            className="text-[10px] font-medium tracking-[0.25em] text-[#374151] uppercase select-none pt-1 leading-[14px]"
           >
             {title}
           </h2>
@@ -144,7 +144,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
         return renderSplitSection(
           'PROFILE',
           secId,
-          <div data-ghost-item="summary-0" className="text-[11.5px] sm:text-[12px] leading-[1.65] text-neutral-900 font-normal">
+          <div data-ghost-item="summary-0" className="text-[12.5px] leading-[18.8px] text-[#111111] font-normal">
             <RichText content={rawSummary} />
           </div>
         );
@@ -159,16 +159,16 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
             {experience.map((exp, idx) => (
               <div key={exp.id || idx} data-ghost-item={exp.id || `exp-${idx}`} className="space-y-0.5">
                 <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                  <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{exp.role}</h3>
+                  <h3 className="text-[13px] font-bold text-[#111111] leading-[18.8px]">{exp.role}</h3>
                   {(exp.startDate || exp.endDate) && (
-                    <span className="text-[11px] sm:text-[11.5px] text-neutral-700 shrink-0 font-medium">
+                    <span className="text-[12px] text-[#374151] shrink-0 font-medium leading-[18px]">
                       {exp.startDate} {exp.startDate && (exp.endDate || exp.current) ? '–' : ''}{' '}
                       {exp.current ? 'Present' : exp.endDate}
                     </span>
                   )}
                 </div>
                 {(exp.company || exp.location) && (
-                  <p className="text-[11px] sm:text-[11.5px] text-neutral-700 font-normal">
+                  <p className="text-[12.5px] text-[#111111] font-normal leading-[18.8px]">
                     {exp.company}
                     {exp.company && exp.location ? ', ' : ''}
                     {exp.location}
@@ -178,8 +178,8 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div className="pt-1">
                     <ResumeHighlights
                       highlights={exp.highlights}
-                      className="text-[11.5px] leading-relaxed text-neutral-900 font-normal space-y-1"
-                      itemClassName="text-[11.5px] leading-relaxed text-neutral-900 font-normal"
+                      className="text-[12.5px] leading-[18.8px] text-[#111111] font-normal space-y-1"
+                      itemClassName="text-[12.5px] leading-[18.8px] text-[#111111] font-normal"
                     />
                   </div>
                 )}
@@ -201,7 +201,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
               return (
                 <div key={proj.id || idx} data-ghost-item={proj.id || `proj-${idx}`} className="space-y-0.5">
                   <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                    <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{proj.title}</h3>
+                    <h3 className="text-[16.7px] sm:text-[13px] font-bold text-neutral-900">{proj.title}</h3>
                     {period && (
                       <span className="text-[11px] sm:text-[11.5px] text-neutral-700 shrink-0 font-medium">
                         {period}
@@ -238,7 +238,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
             {education.map((edu, idx) => (
               <div key={edu.id || idx} data-ghost-item={edu.id || `edu-${idx}`} className="space-y-0.5">
                 <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                  <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{edu.degree}</h3>
+                  <h3 className="text-[16.7px] sm:text-[13px] font-bold text-neutral-900">{edu.degree}</h3>
                   {edu.graduationDate && (
                     <span className="text-[11px] sm:text-[11.5px] text-neutral-700 shrink-0 font-medium">
                       {edu.graduationDate}
@@ -359,7 +359,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
             {items.map((v: VolunteerItem, idx: number) => (
               <div key={v.id || idx} data-ghost-item={v.id || `vol-${idx}`} className="space-y-0.5">
                 <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                  <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{v.role}</h3>
+                  <h3 className="text-[16.7px] sm:text-[13px] font-bold text-neutral-900">{v.role}</h3>
                   {(v.startDate || v.endDate) && (
                     <span className="text-[11px] sm:text-[11.5px] text-neutral-700 shrink-0 font-medium">
                       {v.startDate} {v.startDate && (v.endDate || v.current) ? '–' : ''} {v.current ? 'Present' : v.endDate}
@@ -394,7 +394,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
             {items.map((item: InternshipItem, idx: number) => (
               <div key={item.id || idx} data-ghost-item={item.id || `intern-${idx}`} className="space-y-0.5">
                 <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                  <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{item.role || item.title}</h3>
+                  <h3 className="text-[16.7px] sm:text-[13px] font-bold text-neutral-900">{item.role || item.title}</h3>
                   {(item.startDate || item.endDate) && (
                     <span className="text-[11px] sm:text-[11.5px] text-neutral-700 shrink-0 font-medium">
                       {item.startDate} {item.startDate && (item.endDate || item.current) ? '–' : ''} {item.current ? 'Present' : item.endDate}
@@ -465,7 +465,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
             {items.map((pub: PublicationItem, idx: number) => (
               <div key={pub.id || idx} data-ghost-item={pub.id || `pub-${idx}`} className="space-y-0.5">
                 <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                  <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{pub.title}</h3>
+                  <h3 className="text-[16.7px] sm:text-[13px] font-bold text-neutral-900">{pub.title}</h3>
                   {pub.date && <span className="text-[11px] sm:text-[11.5px] text-neutral-700 font-medium">{pub.date}</span>}
                 </div>
                 {pub.publisher && <p className="text-[11px] sm:text-[11.5px] text-neutral-700 font-normal">{pub.publisher}</p>}
@@ -508,7 +508,7 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
                   {(sec.items || []).map((item, idx) => (
                     <div key={item.id || idx} data-ghost-item={item.id || `cs-${idx}`} className="space-y-0.5">
                       <div data-ghost-item-header="true" className="flex items-baseline justify-between gap-2">
-                        <h3 className="text-[12.5px] sm:text-[13px] font-bold text-neutral-900">{item.title}</h3>
+                        <h3 className="text-[16.7px] sm:text-[13px] font-bold text-neutral-900">{item.title}</h3>
                         {item.date && (
                           <span className="text-[11px] sm:text-[11.5px] text-neutral-700 shrink-0 font-medium">
                             {item.date}
@@ -624,21 +624,19 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
         </div>
       )}
 
-      {/* Page 1 Header matching PDF Page 11: ExtraLight/Light Name + Signature Bold Crimson Dot */}
+      {/* Page 1 Header matching Quiet: ExtraLight/Light Name 58px + Signature Bold Crimson Dot */}
       {isPage1 && (
         <header data-ghost-header="true" className="mb-6">
-          <h1 className="text-4xl sm:text-[46px] font-light tracking-tight text-neutral-900 leading-none">
-            {personalInfo.fullName}
+          <h1 className="text-[58px] font-light tracking-tight text-[#111111] leading-[58px] flex items-baseline">
+            <span>{personalInfo.fullName}</span>
             <span
-              className="font-bold inline-block ml-0.5"
-              style={{ color: themeColor && themeColor !== '#2563eb' ? themeColor : '#c1272d' }}
-            >
-              .
-            </span>
+              className="inline-block w-[8px] h-[8px] ml-1 mb-1 shrink-0"
+              style={{ backgroundColor: themeColor && themeColor !== '#2563eb' ? themeColor : '#c1272d' }}
+            />
           </h1>
 
           {personalInfo.jobTitle && (
-            <p className="text-[10px] sm:text-[10.5px] font-semibold tracking-[0.25em] uppercase text-neutral-700 mt-2">
+            <p data-ghost-role="true" className="text-[12px] font-medium tracking-[0.25em] uppercase text-[#374151] mt-2 leading-[18px]">
               {personalInfo.jobTitle}
             </p>
           )}
@@ -649,16 +647,16 @@ export const ExecutiveFinanceTemplate: React.FC<TemplateProps> = ({ data }) => {
       {isPage1 && contactItems.length > 0 && (
         <div className="mb-5">
           <div className="flex items-center gap-6 sm:gap-8 mb-2">
-            <div className="w-28 sm:w-32 shrink-0 border-t border-neutral-300" />
-            <div className="flex-1 border-t border-neutral-300" />
+            <div className="w-28 sm:w-32 shrink-0 border-t border-neutral-400" />
+            <div className="flex-1 border-t border-neutral-400" />
           </div>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
             <div className="w-28 sm:w-32 shrink-0">
-              <span className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.25em] text-neutral-800 uppercase select-none pt-1 block">
+              <span className="text-[10px] font-medium tracking-[0.25em] text-[#374151] uppercase select-none pt-1 block leading-[14px]">
                 CONTACT
               </span>
             </div>
-            <div className="flex-1 min-w-0 text-[11.5px] sm:text-[12px] text-neutral-900 leading-relaxed font-normal pt-0.5">
+            <div className="flex-1 min-w-0 text-[12.5px] text-[#111111] leading-[18.8px] font-normal pt-0.5">
               {contactItems.map((item, idx) => (
                 <React.Fragment key={idx}>
                   {idx > 0 && <span className="mx-2 text-neutral-400">·</span>}

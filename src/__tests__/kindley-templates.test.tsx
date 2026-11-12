@@ -9,6 +9,7 @@ import { CreativePortfolioTemplate } from '@/components/resume-templates/Creativ
 import { ExecutiveFinanceTemplate } from '@/components/resume-templates/ExecutiveFinanceTemplate';
 import { InfrastructureEngineerTemplate } from '@/components/resume-templates/InfrastructureEngineerTemplate';
 import { NeonCreativeTemplate } from '@/components/resume-templates/NeonCreativeTemplate';
+import { CareerGanttTemplate } from '@/components/resume-templates/CareerGanttTemplate';
 import { ResumeData } from '@/types/resume';
 import { paginateResume } from '@/lib/pagination';
 import { sanitizeSkillsForRender } from '@/lib/templates/skills-sanitizer';
@@ -864,5 +865,80 @@ describe('Kindley New Templates Registry & Rendering', () => {
     if (pages.length > 1) {
       expect(pages[1].skills?.length ?? 0).toBe(0);
     }
+  });
+
+  it('should render CareerGanttTemplate with signature timeline bar, axis ticks, and mint underlines', () => {
+    const ganttData: ResumeData = {
+      ...mockResumeData,
+      templateId: 'career_gantt',
+      themeColor: '#0F766E',
+      experience: [
+        {
+          id: 'exp-1',
+          role: 'UI/UX Designer',
+          company: 'Studio Nirman',
+          location: 'Kolkata',
+          startDate: '2016',
+          endDate: '2018',
+          current: false,
+          highlights: ['Delivered web and mobile work.'],
+        },
+        {
+          id: 'exp-2',
+          role: 'Product Designer',
+          company: 'LearnKul',
+          location: 'Kolkata',
+          startDate: '2018',
+          endDate: '2021',
+          current: false,
+          highlights: ['Designed vernacular learning flows.'],
+        },
+        {
+          id: 'exp-3',
+          role: 'Senior Product Designer',
+          company: 'Finova Labs',
+          location: 'Bengaluru',
+          startDate: '2021',
+          endDate: 'Present',
+          current: true,
+          highlights: ['Led redesign of onboarding.'],
+        },
+      ],
+      skills: [
+        {
+          id: 'sk-1',
+          category: 'Skills',
+          items: ['Figma', 'Product strategy', 'Design systems', 'Prototyping'],
+        },
+      ],
+      awards: [
+        {
+          id: 'aw-1',
+          title: 'Red Dot Award',
+          issuer: 'Rupee Pay',
+          date: '2023',
+        },
+      ],
+    };
+
+    // Page 1
+    const p1Html = renderToStaticMarkup(<CareerGanttTemplate data={{ ...ganttData, pageNumber: 1 }} />);
+    expect(p1Html).toContain('data-ghost-header="true"');
+    expect(p1Html).toContain('Career At A Glance');
+    expect(p1Html).toContain('Studio Nirman');
+    expect(p1Html).toContain('LearnKul');
+    expect(p1Html).toContain('Finova Labs');
+    expect(p1Html).toContain('border-[#99F6E4]'); // mint underline
+    expect(p1Html).toContain('rounded-full'); // skill pills
+    expect(p1Html).toContain('data-ghost-col="main"');
+    expect(p1Html).toContain('data-ghost-col="sidebar"');
+
+    // Page 2
+    const p2Html = renderToStaticMarkup(<CareerGanttTemplate data={{ ...ganttData, pageNumber: 2, totalPages: 2 }} />);
+    expect(p2Html).not.toContain('data-ghost-header="true"');
+    expect(p2Html).not.toContain('Career At A Glance');
+    expect(p2Html).toContain('Page 2 of 2');
+    expect(p2Html).toContain('data-ghost-col="main"');
+    expect(p2Html).toContain('data-ghost-col="sidebar"');
   });
 });

@@ -59,11 +59,11 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
     personalInfo.github,
   ].filter(Boolean);
 
-  // Section header badge matching PDF Page 4: Black trapezoid badge, italic yellow text, -skew-x-6
+  // Section header badge matching Brutal: Black trapezoid badge, Space Grotesk 12px / 18px, 700 bold, #FFE14D text, -skew-x-6
   const renderSectionHeader = (title: string, secId?: string) => (
     <div
       data-ghost-section-title="true"
-      className="inline-block bg-black text-[#fed843] px-3.5 py-1 font-black italic text-[11px] uppercase tracking-[0.2em] -skew-x-6 mb-3.5 break-after-avoid"
+      className="inline-block bg-black text-[#FFE14D] px-3.5 py-1 font-spacegrotesk font-bold text-[12px] uppercase tracking-[0.2em] leading-[18px] -skew-x-6 mb-3.5 break-after-avoid"
     >
       <span className="inline-block skew-x-6">{title}</span>
     </div>
@@ -96,35 +96,36 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
                 const bgClass = expCardColors[expIdx % expCardColors.length];
                 return (
                   <div
-                    key={exp.id}
-                    data-ghost-item={exp.id}
+                    key={exp.id || expIdx}
+                    data-ghost-item={exp.id || `exp-${expIdx}`}
                     className={`border-2 border-black p-3.5 sm:p-4 ${bgClass} shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-1.5 break-inside-avoid`}
                   >
                     <div data-ghost-item-header="true">
                       <div className="flex justify-between items-baseline">
-                        <span className="font-bold text-[13px] text-black tracking-tight">
+                        <span className="font-spacegrotesk font-bold text-[12.5px] text-[#111111] leading-[18.8px] tracking-tight">
                           {exp.role}
                         </span>
-                        <span className="text-[11px] text-slate-700 font-medium">
+                        <span className="font-spacegrotesk font-medium text-[12.5px] text-[#111111] leading-[18.8px]">
                           {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                         </span>
                       </div>
                       {(exp.company || exp.location) && (
-                        <div className="text-[11.5px] font-medium text-slate-700 mt-0.5">
+                        <div className="font-spacegrotesk font-normal text-[12.5px] text-[#111111] leading-[18.8px] mt-0.5">
                           {exp.company}
                           {exp.location ? `, ${exp.location}` : ''}
                         </div>
                       )}
                     </div>
                     {(exp as any).description && (
-                      <div className="text-[11px] text-slate-800 leading-normal pt-0.5">
+                      <div className="font-spacegrotesk font-normal text-[12.5px] text-[#111111] leading-[18.8px] pt-0.5">
                         {(exp as any).description}
                       </div>
                     )}
                     {exp.highlights && exp.highlights.length > 0 && (
                       <ResumeHighlights
                         highlights={exp.highlights}
-                        className="text-slate-800 text-[11px] leading-normal pt-0.5 space-y-1"
+                        className="font-spacegrotesk text-[#111111] text-[12.5px] leading-[18.8px] font-normal pt-0.5 space-y-1"
+                        itemClassName="font-spacegrotesk text-[#111111] text-[12.5px] leading-[18.8px] font-normal"
                       />
                     )}
                   </div>
@@ -147,38 +148,39 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="projects" data-ghost-section="projects" className="mb-6">
             {renderSectionHeader('Projects', 'projects')}
             <div className="space-y-3.5">
-              {validProjects.map((proj) => (
+              {validProjects.map((proj, pIdx) => (
                 <div
-                  key={proj.id}
-                  data-ghost-item={proj.id}
+                  key={proj.id || pIdx}
+                  data-ghost-item={proj.id || `proj-${pIdx}`}
                   className="border-2 border-black p-3.5 sm:p-4 bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-1 break-inside-avoid"
                 >
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-[13px] text-black tracking-tight">
+                      <span className="font-spacegrotesk font-bold text-[12.5px] text-[#111111] leading-[18.8px] tracking-tight">
                         {proj.title}
                       </span>
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="text-[10.5px] text-slate-600 font-medium">
+                        <span className="font-spacegrotesk text-[12.5px] text-[#111111]/80 font-normal">
                           ({proj.technologies.join(', ')})
                         </span>
                       )}
                     </div>
                     {(proj.link || (proj as any).date) && (
-                      <span className="text-[11px] text-slate-700 font-medium">
+                      <span className="font-spacegrotesk text-[12.5px] text-[#111111] font-medium leading-[18.8px]">
                         {(proj as any).date || proj.link}
                       </span>
                     )}
                   </div>
                   {(proj as any).description && (
-                    <div className="text-[11px] text-slate-800 leading-normal pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[12.5px] text-[#111111] leading-[18.8px] pt-0.5">
                       {(proj as any).description}
                     </div>
                   )}
                   {proj.highlights && proj.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={proj.highlights}
-                      className="text-slate-800 text-[11px] leading-normal pt-0.5"
+                      className="font-spacegrotesk text-[#111111] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-spacegrotesk text-[#111111] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -242,27 +244,28 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
                   className={`space-y-0.5 break-inside-avoid ${eduIdx > 0 ? 'pt-2.5 border-t border-black/20' : ''}`}
                 >
                   <div data-ghost-item-header="true" className="flex justify-between items-baseline">
-                    <span className="font-bold text-[12.5px] text-black tracking-tight">
+                    <span className="font-spacegrotesk font-bold text-[12.5px] text-[#111111] leading-[18.8px] tracking-tight">
                       {edu.degree}
                     </span>
-                    <span className="text-[11px] text-black font-medium">
+                    <span className="font-spacegrotesk font-medium text-[12.5px] text-[#111111] leading-[18.8px]">
                       {edu.graduationDate}
                     </span>
                   </div>
-                  <div className="text-[11px] text-black/80 font-medium">
+                  <div className="font-spacegrotesk font-normal text-[12.5px] text-[#111111] leading-[18.8px]">
                     {edu.school}
                     {edu.location ? `, ${edu.location}` : ''}
                     {edu.gpa ? ` · CGPA ${edu.gpa}` : ''}
                   </div>
                   {(edu as any).description && (
-                    <div className="text-[10.5px] text-black/90 pt-0.5">
+                    <div className="font-spacegrotesk font-normal text-[12.5px] text-[#111111] leading-[18.8px] pt-0.5">
                       {(edu as any).description}
                     </div>
                   )}
                   {edu.highlights && edu.highlights.length > 0 && (
                     <ResumeHighlights
                       highlights={edu.highlights}
-                      className="text-black text-[10.5px] pt-0.5 leading-normal"
+                      className="font-spacegrotesk text-[#111111] text-[12.5px] leading-[18.8px] font-normal pt-0.5"
+                      itemClassName="font-spacegrotesk text-[#111111] text-[12.5px] leading-[18.8px] font-normal"
                     />
                   )}
                 </div>
@@ -419,35 +422,35 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   return (
     <div
-      className={`w-full h-full min-h-[297mm] bg-[#fefdf9] text-black font-sans flex flex-col box-border ${paddingClass}`}
+      className={`w-full h-full min-h-[297mm] bg-[#fefdf9] text-[#111111] font-spacegrotesk flex flex-col box-border ${paddingClass}`}
     >
       {/* Running Header on Page 2+ */}
       {data.pageNumber && data.pageNumber > 1 && (
-        <div className="border-b-2 border-black pb-2 mb-5 flex items-center justify-between text-[11px] font-black uppercase tracking-wider break-inside-avoid">
+        <div className="border-b-2 border-black pb-2 mb-5 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider break-inside-avoid">
           <span>
             {personalInfo.fullName || 'Candidate'} &mdash; Page {data.pageNumber} of {data.totalPages || 2}
           </span>
           {personalInfo.jobTitle && (
-            <span className="bg-[#fb7185] px-2 py-0.5 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-black">
+            <span className="bg-[#fb7185] px-2 py-0.5 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-[#111111] font-spacegrotesk font-bold text-[13px] leading-[19.5px]">
               {personalInfo.jobTitle}
             </span>
           )}
         </div>
       )}
 
-      {/* Neo-Brutalist Stencil Header matching PDF Page 4 (Page 1 only) */}
+      {/* Neo-Brutalist Stencil Header matching Brutal (Page 1 only) */}
       {isPage1 && (
         <header
           data-ghost-header="true"
           className="mb-6 break-inside-avoid"
         >
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            {/* Stencil & Solid Yellow Name Block */}
+            {/* Stencil & Solid Yellow Name Block (Space Grotesk 76px / 68.4px, 700 bold, #111111) */}
             <div className="flex flex-col">
               <div
-                className="text-[48px] sm:text-[56px] font-black uppercase tracking-tight leading-[0.9] text-transparent"
+                className="font-spacegrotesk text-[64px] sm:text-[76px] font-bold uppercase tracking-tight leading-[68.4px] text-transparent"
                 style={{
-                  WebkitTextStroke: '2.5px black',
+                  WebkitTextStroke: '2.5px #111111',
                   letterSpacing: '-0.02em',
                 }}
               >
@@ -455,18 +458,19 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
               </div>
 
               {remainingWords && (
-                <div className="inline-block bg-[#fed843] px-3.5 py-1 -mt-2 self-start z-10">
-                  <span className="text-[32px] sm:text-[38px] font-black uppercase tracking-tight text-black leading-none">
+                <div className="inline-block bg-[#FFE14D] px-3.5 py-1 -mt-2 self-start z-10 border-2 border-black">
+                  <span className="font-spacegrotesk text-[32px] sm:text-[40px] font-bold uppercase tracking-tight text-[#111111] leading-none">
                     {remainingWords}
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Tilted Pink Title Badge matching PDF Page 4 */}
+            {/* Tilted Pink Title Badge */}
             {personalInfo.jobTitle && (
               <div
-                className="inline-block bg-[#fb7185] text-black font-black text-[12px] px-3.5 py-1.5 uppercase tracking-wide border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] self-start sm:self-auto sm:mt-2 -rotate-2"
+                data-ghost-role="true"
+                className="inline-block bg-[#fb7185] text-[#111111] font-spacegrotesk font-bold text-[13px] px-3.5 py-1.5 uppercase tracking-wide border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] self-start sm:self-auto sm:mt-2 -rotate-2 leading-[19.5px]"
               >
                 {personalInfo.jobTitle}
               </div>
@@ -485,11 +489,11 @@ export const NeoBrutalistTemplate: React.FC<TemplateProps> = ({ data }) => {
             </div>
           )}
 
-          {/* Left Pink Vertical Bar Summary matching PDF Page 4 */}
+          {/* Left Pink Vertical Bar Summary */}
           {hasSummary && (
             <div className="flex items-stretch gap-3 mt-4" data-ghost-item="summary-0">
               <div className="w-[4px] bg-[#fb7185] shrink-0 rounded-[1px]" />
-              <div className="text-[12px] text-slate-800 leading-relaxed font-normal">
+              <div className="font-spacegrotesk text-[13px] text-[#111111] leading-[19.5px] font-normal">
                 <RichText content={rawSummary} />
               </div>
             </div>

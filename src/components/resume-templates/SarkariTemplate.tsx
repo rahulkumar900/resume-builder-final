@@ -45,7 +45,8 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
       className="pb-1 mb-2 border-b-2 border-slate-800 break-after-avoid flex items-center justify-between"
       style={{ borderColor: themeColor }}
     >
-      <div        className="text-[13px] font-black uppercase tracking-wider text-slate-900"
+      <div
+        className="text-[16px] font-bold uppercase tracking-wider text-slate-900"
         style={{ color: themeColor }}
       >
         {title}
@@ -63,7 +64,7 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
             <div data-ghost-item="summary-0">
               <RichText
                 content={personalInfo.summary}
-                className="text-[12px] text-slate-800 leading-relaxed text-justify"
+                className="text-[13.5px] text-slate-800 leading-[21px] text-justify"
               />
             </div>
           </div>
@@ -75,14 +76,14 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div key="education" data-ghost-section="education" className={sectionMarginClass}>
             {renderSectionHeader('Educational & Professional Qualifications')}
             <div className="w-full overflow-x-auto">
-              <table className="w-full text-[11.5px] border-collapse border border-slate-400 text-left">
+              <table className="w-full text-[13px] border-collapse border border-slate-400 text-left">
                 <thead>
-                  <tr className="bg-slate-100 text-slate-900 font-bold border-b border-slate-400 text-[10.5px] uppercase tracking-wider">
-                    <th className="p-1.5 border border-slate-400">Examination Passed</th>
-                    <th className="p-1.5 border border-slate-400">School / College</th>
-                    <th className="p-1.5 border border-slate-400">Board / University</th>
-                    <th className="p-1.5 border border-slate-400 text-center w-16">Year</th>
-                    <th className="p-1.5 border border-slate-400 text-right w-20">Division / %</th>
+                  <tr className="bg-slate-100 text-slate-900 font-bold border-b border-slate-400 text-[12px] uppercase tracking-wider">
+                    <th className="p-2 border border-slate-400">Examination Passed</th>
+                    <th className="p-2 border border-slate-400">School / College</th>
+                    <th className="p-2 border border-slate-400">Board / University</th>
+                    <th className="p-2 border border-slate-400 text-center w-16">Year</th>
+                    <th className="p-2 border border-slate-400 text-right w-24">Division / %</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -94,19 +95,19 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
                         idx % 2 === 1 ? 'bg-slate-50/60' : 'bg-white'
                       }`}
                     >
-                      <td className="p-1.5 border border-slate-400 font-bold text-slate-900">
+                      <td className="p-2 border border-slate-400 font-bold text-slate-900">
                         {edu.degree}
                       </td>
-                      <td className="p-1.5 border border-slate-400 text-slate-800">
+                      <td className="p-2 border border-slate-400 text-slate-800">
                         {edu.school}
                       </td>
-                      <td className="p-1.5 border border-slate-400 text-slate-700">
+                      <td className="p-2 border border-slate-400 text-slate-700">
                         {edu.location || 'Recognized Board / Univ'}
                       </td>
-                      <td className="p-1.5 border border-slate-400 text-center font-medium text-slate-800">
+                      <td className="p-2 border border-slate-400 text-center font-medium text-slate-800">
                         {edu.graduationDate || '—'}
                       </td>
-                      <td className="p-1.5 border border-slate-400 text-right font-bold text-slate-900">
+                      <td className="p-2 border border-slate-400 text-right font-bold text-slate-900">
                         {edu.gpa || '1st Div'}
                       </td>
                     </tr>
@@ -130,23 +131,23 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
                     className="flex flex-row items-baseline justify-between gap-1 mb-1"
                   >
                     <div>
-                      <span className="text-[12.5px] font-bold text-slate-900 uppercase">
+                      <span className="text-[14px] font-bold text-slate-900 uppercase">
                         {exp.role}
                       </span>
-                      <span className="text-[12px] font-semibold text-slate-700">
+                      <span className="text-[13.5px] font-semibold text-slate-800">
                         {' '}— {exp.company}
                       </span>
                       {exp.location && (
-                        <span className="text-slate-500 text-[11px]"> ({exp.location})</span>
+                        <span className="text-slate-600 text-[12.5px]"> ({exp.location})</span>
                       )}
                     </div>
-                    <span className="text-[11px] font-bold text-slate-700 shrink-0">
+                    <span className="text-[12.5px] font-bold text-slate-700 shrink-0">
                       {exp.startDate} to {exp.current ? 'Present' : exp.endDate}
                     </span>
                   </div>
 
                   {exp.highlights && exp.highlights.length > 0 && (
-                    <div className="text-[11.5px] text-slate-700 pl-1">
+                    <div className="text-[13.5px] text-slate-800 leading-[20px] pl-1">
                       <ResumeHighlights highlights={exp.highlights} />
                     </div>
                   )}
@@ -161,11 +162,11 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="skills" data-ghost-section="skills" className={sectionMarginClass}>
             {renderSectionHeader('Technical Skills & Knowledge Areas')}
-            <div className="space-y-1 text-[11.5px]">
+            <div className="space-y-1.5 text-[13px]">
               {skills.map((cat, idx) => (
-                <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-1 break-inside-avoid">
+                <div key={cat.id || idx} data-ghost-item={cat.id || `skill-${idx}`} className="flex flex-row items-baseline gap-1.5 break-inside-avoid">
                   {cat.category ? (
-                    <span className="font-bold min-w-[170px] uppercase text-[10.5px] text-slate-800">
+                    <span className="font-bold min-w-[170px] uppercase text-[12.5px] text-slate-900">
                       {cat.category}:
                     </span>
                   ) : null}
@@ -190,10 +191,10 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
                     data-ghost-item-header="true"
                     className="flex justify-between items-baseline gap-2 mb-0.5"
                   >
-                    <span className="text-[12px] font-bold text-slate-900">
+                    <span className="text-[14px] font-bold text-slate-900">
                       • {proj.title}
                       {proj.technologies && proj.technologies.length > 0 && (
-                        <span className="font-normal text-slate-600 text-[11px]">
+                        <span className="font-normal text-slate-700 text-[12.5px]">
                           {' '}({proj.technologies.join(', ')})
                         </span>
                       )}
@@ -201,7 +202,7 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
                   </div>
 
                   {proj.highlights && proj.highlights.length > 0 && (
-                    <div className="text-[11.5px] text-slate-700 pl-3">
+                    <div className="text-[13.5px] text-slate-800 leading-[20px] pl-3">
                       <ResumeHighlights highlights={proj.highlights} />
                     </div>
                   )}
@@ -216,15 +217,15 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="certifications" data-ghost-section="certifications" className={sectionMarginClass}>
             {renderSectionHeader('Certificates & Qualifying Examinations')}
-            <div className="space-y-1 text-[11.5px]">
+            <div className="space-y-1.5 text-[13px]">
               {certifications.map((cert) => (
                 <div key={cert.id} data-ghost-item={cert.id} className="flex justify-between items-baseline gap-2 break-inside-avoid">
                   <span className="text-slate-800">
-                    <strong className="font-semibold text-slate-900">• {cert.name}</strong>
-                    {cert.issuer && <span className="text-slate-600"> — {cert.issuer}</span>}
+                    <strong className="font-bold text-slate-900">• {cert.name}</strong>
+                    {cert.issuer && <span className="text-slate-700"> — {cert.issuer}</span>}
                   </span>
                   {cert.date && (
-                    <span className="text-[10.5px] text-slate-500 shrink-0">{cert.date}</span>
+                    <span className="text-[12px] text-slate-600 font-medium shrink-0">{cert.date}</span>
                   )}
                 </div>
               ))}
@@ -237,11 +238,11 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
         return (
           <div key="languages" data-ghost-section="languages" className={sectionMarginClass}>
             {renderSectionHeader('Languages Proficiency')}
-            <div className="flex flex-wrap gap-2 text-[11.5px] text-slate-800">
+            <div className="flex flex-wrap gap-2 text-[13px] text-slate-800">
               {languages.map((l, lidx) => (
                 <div key={l.id || lidx} data-ghost-item={l.id || `lang-${lidx}`} className="break-inside-avoid">
                   <span className="font-bold text-slate-900">• {l.language}</span>
-                  {l.proficiency && <span className="text-slate-600"> ({l.proficiency})</span>}
+                  {l.proficiency && <span className="text-slate-700"> ({l.proficiency})</span>}
                 </div>
               ))}
             </div>
@@ -257,7 +258,7 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
           <div
             key="declaration"
             data-ghost-section="declaration"
-            className="mt-8 pt-4 border-t-2 border-slate-400 text-[11px] text-slate-800 break-inside-avoid space-y-4"
+            className="mt-8 pt-4 border-t-2 border-slate-400 text-[12.5px] text-slate-800 break-inside-avoid space-y-4"
           >
             <div data-ghost-item="declaration-0" className="space-y-4 break-inside-avoid">
               {declText && (
@@ -266,8 +267,8 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <span>{declText}</span>
                 </div>
               )}
-              <div className="flex justify-between items-end pt-3 text-[11px]">
-                <div className="space-y-1 text-slate-700">
+              <div className="flex justify-between items-end pt-3 text-[12px]">
+                <div className="space-y-1 text-slate-700 font-medium">
                   <div>Date: {decl?.date || '____________________'}</div>
                   <div>Place: {decl?.place || personalInfo.location || '____________________'}</div>
                 </div>
@@ -275,7 +276,7 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
                   <div className="font-bold text-slate-900 uppercase tracking-wide">
                     ({decl?.signatureName || personalInfo.fullName || 'Candidate Signature'})
                   </div>
-                  <div className="text-[10px] text-slate-500">Signature of the Applicant</div>
+                  <div className="text-[11.5px] text-slate-600 font-medium">Signature of the Applicant</div>
                 </div>
               </div>
             </div>
@@ -302,12 +303,12 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
 
   return (
     <div
-      className={`w-full h-full min-h-[297mm] bg-white text-slate-900 flex flex-col font-sans ${paddingClass} text-[12px] leading-normal box-border`}
+      className={`w-full h-full min-h-[297mm] bg-white text-slate-900 flex flex-col font-sans ${paddingClass} text-[13.5px] leading-normal box-border`}
     >
       {/* Running Header on Page 2+ */}
       {!isFirstPage && (
-        <div className="pb-1.5 border-b border-slate-300 mb-3 break-inside-avoid flex items-center justify-between text-[10.5px] text-slate-600 font-medium">
-          <span className="font-bold uppercase tracking-wider text-slate-800">
+        <div className="pb-1.5 border-b border-slate-300 mb-3 break-inside-avoid flex items-center justify-between text-[12px] text-slate-700 font-medium">
+          <span className="font-bold uppercase tracking-wider text-slate-900">
             {personalInfo.fullName || 'Curriculum Vitae'} • Bharat PSU / Govt Format
           </span>
           <span>
@@ -321,15 +322,16 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
         <div data-ghost-header="true" className={`${headerPadding} border-b-2 border-slate-900 break-inside-avoid`}>
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 space-y-1">
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+              <div className="text-[11px] font-bold uppercase tracking-widest text-slate-600">
                 Curriculum Vitae / Bio-Data
               </div>
-              <div className="text-3xl font-black uppercase tracking-wider text-slate-900">
+              <h1 className="text-[26px] font-black uppercase tracking-wider text-slate-900">
                 {personalInfo.fullName || 'Candidate Name'}
-              </div>
+              </h1>
               {personalInfo.jobTitle && (
                 <div
-                  className="text-sm font-bold uppercase tracking-wider"
+                  data-ghost-role="true"
+                  className="text-[13.5px] font-bold uppercase tracking-wider"
                   style={{ color: themeColor }}
                 >
                   {personalInfo.jobTitle}
@@ -337,34 +339,34 @@ export const SarkariTemplate: React.FC<TemplateProps> = ({ data }) => {
               )}
 
               {/* Formal Contact Information */}
-              <div className="pt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-[11px] text-slate-700 font-medium">
+              <div className="pt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-[12.5px] text-slate-700 font-medium">
                 {personalInfo.phone && (
                   <div className="flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    <Phone className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                     <span>Contact: {personalInfo.phone}</span>
                   </div>
                 )}
                 {personalInfo.email && (
                   <div className="flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    <Mail className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                     <span>Email: {personalInfo.email}</span>
                   </div>
                 )}
                 {personalInfo.location && (
                   <div className="flex items-center gap-1.5 col-span-2">
-                    <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    <MapPin className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                     <span>Address / Location: {personalInfo.location}</span>
                   </div>
                 )}
                 {personalInfo.linkedin && (
                   <div className="flex items-center gap-1.5">
-                    <LinkedinIcon className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    <LinkedinIcon className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                     <span>LinkedIn: {personalInfo.linkedin.replace(/^https?:\/\//, '')}</span>
                   </div>
                 )}
                 {personalInfo.website && (
                   <div className="flex items-center gap-1.5">
-                    <Globe className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                    <Globe className="w-3.5 h-3.5 text-slate-600 shrink-0" />
                     <span>Website / Portfolio: {personalInfo.website.replace(/^https?:\/\//, '')}</span>
                   </div>
                 )}

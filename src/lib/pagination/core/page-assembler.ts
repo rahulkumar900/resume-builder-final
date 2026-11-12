@@ -174,7 +174,102 @@ export class ResumePageAssembler implements IPageAssembler {
       resultPages.push(pageData);
     }
 
-    return resultPages.length > 0 ? resultPages : [data];
+    const pagesToReturn = resultPages.length > 0 ? resultPages : [data];
+
+    // Compute sequential section numbers across all pages monotonically
+    const hasSectionContent = (page: ResumeData, secId: ResumeSectionId | string): boolean => {
+      switch (secId) {
+        case 'summary':
+          return Boolean(page.personalInfo?.summary?.trim());
+        case 'experience':
+          return Boolean(page.experience && page.experience.length > 0);
+        case 'volunteer':
+          return Boolean(page.volunteer && page.volunteer.length > 0);
+        case 'internships':
+          return Boolean(page.internships && page.internships.length > 0);
+        case 'freelance':
+          return Boolean(page.freelance && page.freelance.length > 0);
+        case 'leadership':
+          return Boolean(page.leadership && page.leadership.length > 0);
+        case 'teaching':
+          return Boolean(page.teaching && page.teaching.length > 0);
+        case 'militaryService':
+          return Boolean(page.militaryService && page.militaryService.length > 0);
+        case 'extracurricular':
+          return Boolean(page.extracurricular && page.extracurricular.length > 0);
+        case 'education':
+          return Boolean(page.education && page.education.length > 0);
+        case 'research':
+          return Boolean(page.research && page.research.length > 0);
+        case 'publications':
+          return Boolean(page.publications && page.publications.length > 0);
+        case 'conferences':
+          return Boolean(page.conferences && page.conferences.length > 0);
+        case 'patents':
+          return Boolean(page.patents && page.patents.length > 0);
+        case 'certifications':
+          return Boolean(page.certifications && page.certifications.length > 0);
+        case 'awards':
+          return Boolean(page.awards && page.awards.length > 0);
+        case 'achievements':
+          return Boolean(page.achievements && page.achievements.length > 0);
+        case 'courses':
+          return Boolean(page.courses && page.courses.length > 0);
+        case 'licenses':
+          return Boolean(page.licenses && page.licenses.length > 0);
+        case 'organizations':
+          return Boolean(page.organizations && page.organizations.length > 0);
+        case 'skills':
+          return Boolean(page.skills && page.skills.length > 0);
+        case 'languages':
+          return Boolean(page.languages && page.languages.length > 0);
+        case 'interests':
+          return Boolean(page.interests && page.interests.length > 0);
+        case 'testScores':
+          return Boolean(page.testScores && page.testScores.length > 0);
+        case 'projects':
+          return Boolean(page.projects && page.projects.length > 0);
+        case 'professionalLinks':
+          return Boolean(page.professionalLinks && page.professionalLinks.length > 0);
+        case 'socialLinks':
+          return Boolean(page.socialLinks && page.socialLinks.length > 0);
+        case 'portfolio':
+          return Boolean(page.portfolio && page.portfolio.length > 0);
+        case 'openSource':
+          return Boolean(page.openSource && page.openSource.length > 0);
+        case 'speaking':
+          return Boolean(page.speaking && page.speaking.length > 0);
+        case 'references':
+          return Boolean(page.references && page.references.length > 0);
+        default:
+          if (page.customSections && page.customSections.length > 0) {
+            return page.customSections.some((cs) => cs.id === secId && cs.items && cs.items.length > 0);
+          }
+          return false;
+      }
+    };
+
+    const sectionNumberMap: Record<string, number> = {};
+    let currentGlobalNum = 1;
+
+    for (const page of pagesToReturn) {
+      const order = page.sectionOrder?.singleColumn || [
+        ...(page.sectionOrder?.mainColumn || []),
+        ...(page.sectionOrder?.sidebarColumn || []),
+      ];
+
+      for (const secId of order) {
+        if (!sectionNumberMap[secId] && hasSectionContent(page, secId)) {
+          sectionNumberMap[secId] = currentGlobalNum++;
+        }
+      }
+    }
+
+    for (const page of pagesToReturn) {
+      page.sectionNumberMap = sectionNumberMap;
+    }
+
+    return pagesToReturn;
   }
 
   private buildPageData(
@@ -248,14 +343,19 @@ export class ResumePageAssembler implements IPageAssembler {
       const result: SkillCategory[] = [];
       slots.forEach((slot) => {
         if (slot.sectionId === 'skills' && slot.itemId) {
-          const found = sourceList.find(
-            (item, idx) =>
-              (item.id || `skills-${idx}`) === slot.itemId ||
-              (item.id || `skill-${idx}`) === slot.itemId ||
-              slot.itemId === `skill-${idx}` ||
-              slot.itemId === `skills-${idx}` ||
-              (sourceList.length === 1 && (slot.itemId === 'skills-flat' || slot.itemId === 'skill-flat'))
-          );
+          const found =
+            sourceList.find(
+              (item, idx) =>
+                (item.id || `skills-${idx}`) === slot.itemId ||
+                (item.id || `skill-${idx}`) === slot.itemId ||
+                slot.itemId === `skill-${idx}` ||
+                slot.itemId === `skills-${idx}` ||
+                slot.itemId === item.id
+            ) ||
+            ((slot.itemId === 'skills-flat' || slot.itemId === 'skill-flat') && sourceList.length > 0
+              ? sourceList[0]
+              : undefined);
+
           if (found) {
             const rawItems = found.items || [];
             if (
