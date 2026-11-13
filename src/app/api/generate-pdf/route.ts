@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser } from 'puppeteer';
 import { ResumeData } from '@/types/resume';
 import { getPageFormatConfig, PageFormat } from '@/lib/page-format';
 import { setRenderResume, deleteRenderResume } from '@/lib/render-store';
@@ -8,8 +8,55 @@ import { supabase } from '@/lib/supabaseClient';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
+// Reusable Warm Chromium Browser Singleton (persists across requests in Node.js process)
+let cachedBrowser: Browser | null = null;
+let browserLaunchPromise: Promise<Browser> | null = null;
+
+async function getWarmBrowser(): Promise<Browser> {
+  if (cachedBrowser && cachedBrowser.connected) {
+    return cachedBrowser;
+  }
+
+  if (!browserLaunchPromise) {
+    browserLaunchPromise = puppeteer
+      .launch({
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-accelerated-2d-canvas',
+          '--no-first-run',
+          '--no-zygote',
+          '--disable-gpu',
+          '--disable-extensions',
+          '--disable-background-networking',
+          '--disable-default-apps',
+          '--disable-sync',
+          '--mute-audio',
+          '--hide-scrollbars',
+          '--metrics-recording-only',
+        ],
+      })
+      .then((browser) => {
+        cachedBrowser = browser;
+        browser.on('disconnected', () => {
+          cachedBrowser = null;
+          browserLaunchPromise = null;
+        });
+        return browser;
+      })
+      .catch((err) => {
+        cachedBrowser = null;
+        browserLaunchPromise = null;
+        throw err;
+      });
+  }
+
+  return browserLaunchPromise;
+}
+
 export async function POST(req: NextRequest) {
-  let browser = null;
   let renderId = '';
   try {
     // 1. Enforce Authentication Guard: User must be signed in to export/download PDF
@@ -23,7 +70,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser(token);
     if (authError || !user) {
       return NextResponse.json(
         { error: 'Invalid or expired session. Please sign in to download your resume.' },
@@ -39,8 +89,10 @@ export async function POST(req: NextRequest) {
     }
 
     const origin = req.nextUrl.origin || 'http://localhost:3000';
-    const safeTitle = (resumeData.personalInfo?.fullName || resumeData.title || 'Resume')
-      .replace(/[^a-z0-9]/gi, '_');
+    const safeTitle = (resumeData.personalInfo?.fullName || resumeData.title || 'Resume').replace(
+      /[^a-z0-9]/gi,
+      '_'
+    );
 
     const format: PageFormat = resumeData.layout?.format === 'Letter' ? 'Letter' : 'A4';
     const formatConfig = getPageFormatConfig(format);
@@ -51,7 +103,6 @@ export async function POST(req: NextRequest) {
       workerUrl = `https://${workerUrl}`;
     }
     if (workerUrl) {
-      console.log(`[Next.js API] Offloading PDF generation to external worker: ${workerUrl}`);
       try {
         const workerRes = await fetch(`${workerUrl}/generate-pdf`, {
           method: 'POST',
@@ -89,120 +140,122 @@ export async function POST(req: NextRequest) {
           },
         });
       } catch (workerErr: any) {
-        console.error('[Next.js API] Failed to delegate to PDF Worker:', workerErr);
-        return NextResponse.json(
-          { error: 'PDF Worker Service error', details: workerErr.message },
-          { status: 502 }
-        );
+        console.error('[Next.js API] Failed to delegate to PDF Worker, falling back to local:', workerErr.message);
+        // Fall back to local warm puppeteer below
       }
     }
 
-    // 3. Fallback: Local Puppeteer Execution (for local development or single-server hosting)
-    // Register resume data in the render store
+    // 3. Optimized Local Warm Puppeteer Execution
     renderId = `render_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     setRenderResume(renderId, resumeData);
 
     const targetUrl = `${origin}/print/render?id=${renderId}`;
-
-    // Launch Puppeteer with optimized cross-platform headless flags
-    browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--disable-gpu',
-      ],
-    });
-
+    const browser = await getWarmBrowser();
     const page = await browser.newPage();
 
-    // High-resolution viewport matching the exact target page format
-    await page.setViewport({
-      width: Math.round(formatConfig.widthPx),
-      height: Math.round(formatConfig.heightPx),
-      deviceScaleFactor: 2,
-    });
-
-    // Navigate to the print render page
-    await page.goto(targetUrl, {
-      waitUntil: 'networkidle0',
-      timeout: 25000,
-    });
-
-    // Wait for Ghost DOM measurement to complete
     try {
-      await page.waitForSelector('#a4-resume-document[data-measured-ready="true"]', {
-        timeout: 10000,
+      // High-resolution viewport matching target format
+      await page.setViewport({
+        width: Math.round(formatConfig.widthPx),
+        height: Math.round(formatConfig.heightPx),
+        deviceScaleFactor: 2,
       });
-    } catch {
-      // Fallback to initial pagination ready if measured takes too long
-      await page.waitForSelector('#a4-resume-document[data-pagination-ready="true"]', {
-        timeout: 4000,
+
+      // Block third-party tracking / telemetry scripts from slowing down the render tab
+      await page.setRequestInterception(true);
+      page.on('request', (interceptedReq) => {
+        const url = interceptedReq.url();
+        if (
+          url.includes('google-analytics') ||
+          url.includes('googletagmanager') ||
+          url.includes('clarity.ms') ||
+          url.includes('facebook.net') ||
+          url.includes('doubleclick')
+        ) {
+          interceptedReq.abort();
+        } else {
+          interceptedReq.continue();
+        }
       });
-    }
 
-    // Wait for document fonts to be fully loaded
-    try {
-      await Promise.race([
-        page.evaluate(() => document.fonts.ready),
-        new Promise((resolve) => setTimeout(resolve, 3000)),
-      ]);
-      // Small pause to allow layout settle after fonts/DOM measurement
-      await new Promise((resolve) => setTimeout(resolve, 300));
-    } catch {
-      // Font wait fallback
-    }
+      // Fast navigation: domcontentloaded avoids arbitrary networkidle waiting
+      await page.goto(targetUrl, {
+        waitUntil: 'domcontentloaded',
+        timeout: 15000,
+      });
 
-    // Emulate print media so print stylesheets and page breaks evaluate cleanly
-    await page.emulateMediaType('print');
-
-    // Generate exact PDF matching selected page format (A4 or US Letter)
-    const pdfUint8Array = await page.pdf({
-      format,
-      printBackground: true,
-      preferCSSPageSize: true,
-      margin: {
-        top: '0mm',
-        right: '0mm',
-        bottom: '0mm',
-        left: '0mm',
-      },
-    });
-
-    const pdfBuffer = Buffer.from(pdfUint8Array);
-
-    await browser.close();
-    browser = null;
-
-    // Clean up temporary render data
-    if (renderId) {
-      deleteRenderResume(renderId);
-    }
-
-    return new NextResponse(pdfBuffer, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="${safeTitle}_Resume.pdf"`,
-        'Content-Length': pdfBuffer.length.toString(),
-      },
-    });
-  } catch (error: any) {
-    console.error('Puppeteer PDF Generation Error:', error);
-    if (browser) {
+      // Wait directly for React Ghost DOM pagination measurement
       try {
-        await browser.close();
+        await page.waitForSelector('#a4-resume-document[data-measured-ready="true"]', {
+          timeout: 6000,
+        });
       } catch {
-        // ignore
+        await page.waitForSelector('#a4-resume-document[data-pagination-ready="true"]', {
+          timeout: 2500,
+        });
+      }
+
+      // Ensure fonts are ready without long artificial delays
+      try {
+        await page.evaluate(async () => {
+          if (document.fonts && document.fonts.ready) {
+            await Promise.race([
+              document.fonts.ready,
+              new Promise((resolve) => setTimeout(resolve, 1500)),
+            ]);
+          }
+        });
+      } catch {
+        // Fallback if fonts.ready unsupported
+      }
+
+      // Emulate print media so page breaks and print styles apply cleanly
+      await page.emulateMediaType('print');
+
+      // Generate exact PDF
+      const pdfUint8Array = await page.pdf({
+        format,
+        printBackground: true,
+        preferCSSPageSize: true,
+        margin: {
+          top: '0mm',
+          right: '0mm',
+          bottom: '0mm',
+          left: '0mm',
+        },
+      });
+
+      const pdfBuffer = Buffer.from(pdfUint8Array);
+
+      return new NextResponse(pdfBuffer, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': `attachment; filename="${safeTitle}_Resume.pdf"`,
+          'Content-Length': pdfBuffer.length.toString(),
+          'X-Generated-By': 'warm-puppeteer',
+        },
+      });
+    } finally {
+      // Close only the tab — browser stays alive and warm for subsequent exports!
+      await page.close().catch(() => {});
+      if (renderId) {
+        deleteRenderResume(renderId);
       }
     }
+  } catch (error: any) {
+    console.error('Puppeteer PDF Generation Error:', error);
+
+    // If browser crashed or connection dropped, force restart on next request
+    if (cachedBrowser && !cachedBrowser.connected) {
+      cachedBrowser = null;
+      browserLaunchPromise = null;
+    }
+
     if (renderId) {
       deleteRenderResume(renderId);
     }
+
     return NextResponse.json(
       { error: 'Failed to generate PDF', details: error.message },
       { status: 500 }

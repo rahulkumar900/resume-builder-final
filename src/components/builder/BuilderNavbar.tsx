@@ -411,10 +411,13 @@ export const BuilderNavbar: React.FC<BuilderNavbarProps> = ({
                   setExportMenuOpen(false);
                   onPrint();
                 }}
-                className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-accent hover:text-primary text-left transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-accent hover:text-primary text-left transition-colors cursor-pointer"
               >
-                <Printer className="w-3.5 h-3.5 text-slate-400 dark:text-muted-foreground" />
-                <span>Print Resume</span>
+                <div className="flex items-center gap-2">
+                  <Printer className="w-3.5 h-3.5 text-slate-400 dark:text-muted-foreground" />
+                  <span>Print / Instant PDF</span>
+                </div>
+                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Fast</span>
               </button>
               {onDeleteResume && (
                 <>
