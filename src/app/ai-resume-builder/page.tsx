@@ -1,48 +1,31 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Link from 'next/link';
-import {
-  Sparkles,
-  ShieldCheck,
-  CheckCircle2,
-  ArrowRight,
-  Zap,
-  Target,
-  FileText,
-  Cpu,
-  RefreshCw,
-  Layers,
-  ChevronRight,
-  TrendingUp,
-  BrainCircuit,
-  Bot
-} from 'lucide-react';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
+import { AiResumeBuilderClient } from '@/components/ai-resume-builder/AiResumeBuilderClient';
 
 export const metadata: Metadata = {
-  title: 'Free AI Powered Resume Builder & Writer',
+  title: 'Free AI Resume Builder: ATS Format (2026)',
   description:
-    'Free AI powered resume builder & AI resume writer. Generate tailored bullets with Google XYZ metrics, match job descriptions, and export free vector PDF.',
+    '100% free AI resume builder to create, rewrite, and tailor your resume in minutes. Use our resume builder AI with Google XYZ metrics & download free PDF/DOCX.',
   keywords: [
-    'ai powered resume builder',
-    'ai resume builder',
     'free ai resume builder',
-    'ai resume writer',
+    'ai resume builder',
+    'resume builder ai',
+    'resume ai builder',
     'ai resume builder free',
+    'free ai resume writer',
     'ai resume generator',
-    'generate resume',
-    'ai cv maker',
-    'ai resume maker',
-    'best ai resume builder',
-    'smart resume maker',
-    'ai resume tailoring',
-    'jd to resume ai'
+    'ats resume builder ai',
+    'best free ai resume builder',
+    'ai resume maker 2026',
+    'resume format download word',
+    'resumebabu',
   ],
   openGraph: {
-    title: 'Free AI Powered Resume Builder & AI Resume Writer | ResumeBabu',
+    title: 'Free AI Resume Builder: ATS Format (2026) | ResumeBabu',
     description:
-      'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
+      '100% free AI resume builder to create, rewrite, and tailor your resume in minutes. Use our resume builder AI with Google XYZ metrics & download free PDF/DOCX.',
     type: 'website',
     url: 'https://resumebabu.com/ai-resume-builder',
     images: [
@@ -50,16 +33,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free AI Powered Resume Builder - ResumeBabu',
+        alt: 'Free AI Resume Builder - ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free AI Powered Resume Builder & AI Resume Writer | ResumeBabu',
+    title: 'Free AI Resume Builder: ATS Format (2026) | ResumeBabu',
     description:
-      'Generate high-impact resume bullets with quantifiable metrics and match any job description with real-time AI keyword analysis.',
+      '100% free AI resume builder to create, rewrite, and tailor your resume in minutes. Use our resume builder AI with Google XYZ metrics & download free PDF/DOCX.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {
@@ -71,7 +54,7 @@ export default function AiResumeBabuPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'ResumeBabu AI Resume Generator',
+    name: 'ResumeBabu Free AI Resume Builder',
     operatingSystem: 'All Modern Web Browsers',
     applicationCategory: 'BusinessApplication',
     offers: {
@@ -87,7 +70,7 @@ export default function AiResumeBabuPage() {
       worstRating: '1',
     },
     description:
-      'Section-specific AI resume writer that generates recruiter-grade bullet points with metrics and tailors resumes to job descriptions.',
+      'Free AI resume builder & AI resume writer that generates recruiter-grade bullet points with Google XYZ metrics and tailors resumes to job descriptions.',
   };
 
   const breadcrumbJsonLd = {
@@ -103,8 +86,42 @@ export default function AiResumeBabuPage() {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'AI Resume Builder',
+        name: 'Free AI Resume Builder',
         item: 'https://resumebabu.com/ai-resume-builder',
+      },
+    ],
+  };
+
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to Build an ATS Resume with Our Free AI Resume Builder',
+    description:
+      'Step-by-step guide to generating an ATS-compliant, recruiter-approved resume using ResumeBabu free AI resume builder.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Select an ATS Template',
+        text: 'Choose from 50+ single-column and dual-column layouts designed to parse cleanly across Workday, Taleo, and Greenhouse.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Input Career Background or Job Description',
+        text: 'Paste your raw bullet points or paste your target job description for automated semantic keyword extraction.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Optimize with Resume AI Builder',
+        text: 'Transform passive duties into quantified achievements using Google X-Y-Z formula: Accomplished [X], measured by [Y], by doing [Z].',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Download Free PDF & Word DOCX',
+        text: 'Export your finalized resume in print-ready vector PDF or editable Microsoft Word (.docx) format with zero paywalls.',
       },
     ],
   };
@@ -115,57 +132,65 @@ export default function AiResumeBabuPage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What is an AI powered resume builder?',
+        name: 'What makes ResumeBabu the best free AI resume builder in 2026?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'An AI powered resume builder is an intelligent career platform that leverages specialized language models to write, improve, and format your resume. It analyzes your career history, converts weak duty descriptions into metric-driven bullet points using the Google XYZ formula, and optimizes keyword density for applicant tracking systems.',
+          text: 'ResumeBabu provides an entirely free AI resume builder with zero paywalls. Unlike competitors that charge monthly fees or watermark your files, you get unlimited AI bullet rewrites using Google’s X-Y-Z formula, real-time job description matching, and instant downloads in both vector PDF and Microsoft Word (.docx) ATS formats calibrated for 2026 hiring standards.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How does the AI Job Tailoring engine work?',
+        name: 'Is this AI resume builder really free?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'You paste any target Job Description (JD) into our builder. Our AI parses the required skills, core competencies, and experience qualifications, compares them against your active resume, and pinpoints exact matching keywords (✓) and missing gaps (✗) so you can optimize before applying.',
+          text: 'Yes, ResumeBabu is 100% free. You can generate unlimited bullet points, tailor your resume against target job descriptions, and download your final vector PDF or Word (.docx) file without paying fees, subscribing to monthly plans, or having watermarks stamped on your resume.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Will recruiters know I used an AI resume builder?',
+        name: 'Will ATS software reject a resume written with AI?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. Unlike generic ChatGPT prompts that generate repetitive clichés (like "dynamic go-getter"), our section-specific models are trained strictly on executive recruiter frameworks and the Google XYZ bullet formula: Accomplished [X] as measured by [Y], by doing [Z].',
+          text: 'No. Applicant Tracking Systems (ATS) do not scan for "AI authorship"; they scan for matching keywords, readable font hierarchies, clear job dates, and standardized section headers (Experience, Education, Skills). Because ResumeBabu outputs clean vector text and structured layouts, ATS parsers read it cleanly with high match rates.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Why choose ResumeBabu over Kickresume or Rezi?',
+        name: 'How does the resume builder AI tailor my CV to job descriptions?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Kickresume and Rezi charge $19 to $29 per month and restrict AI rewrite credits or vector PDF downloads behind paywalls. ResumeBabu offers completely free, unlimited AI bullet rewrites, real-time job description matching, and vector PDF exports with zero paywalls.',
+          text: 'You paste the target job description into the studio. Our AI model performs semantic natural language processing to extract primary keywords, core technologies, and required competencies. It then scores your resume in real time, highlighting matching terms (✓) and recommending missing keywords to add naturally.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is the AI Resume Generator free to use?',
+        name: 'Should I download my AI resume in PDF or Word (.docx) format?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! You can generate bullets, tailor your resume to job postings, and download your final vector PDF for free without entering a credit card or dealing with watermarks.',
+          text: 'We recommend downloading both. Use the vector PDF for direct company application portals (Greenhouse, Lever, Workday) to guarantee that margins, fonts, and page breaks remain visually perfect. Use the Word (.docx) file when a recruiter or staffing agency specifically requests an editable document to insert internal agency headers.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Can I use this AI resume builder for international CVs?',
+        name: 'How is ResumeBabu different from copying and pasting with ChatGPT?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. Our AI engine supports both US one-page resumes and international multi-page CV formats (for UK, European, Canadian, and Middle Eastern markets) with automatic A4 page boundary management.',
+          text: 'ChatGPT only outputs unformatted raw text that you must manually copy into Word or Google Docs, where margins, alignment, and formatting often break ATS parsers. ResumeBabu is an end-to-end studio that writes, quantifies with Google’s X-Y-Z formula, checks ATS keywords, manages A4 pagination, and exports print-ready vector PDF and Word documents in one place.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can college freshers use this AI resume builder with no experience?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Our fresher models highlight college coursework, capstone projects, hackathon awards, student club leadership, and technical skill matrices, allowing students and career changers without full-time experience to build strong, credible resumes.',
         },
       },
     ],
   };
 
   return (
-    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans pt-16 transition-colors duration-300 selection:bg-emerald-500 selection:text-white">
+    <div className="min-w-[320px] bg-background text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -176,254 +201,16 @@ export default function AiResumeBabuPage() {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Navbar />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-20 pb-20 sm:pt-28 sm:pb-32">
-          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_25%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
-
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium shadow-2xs mb-6">
-              <Sparkles className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              <span>Section-Specific AI Models · Google XYZ Formula</span>
-            </div>
-
-            <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-normal tracking-tight text-slate-900 dark:text-white leading-[1.08] max-w-4xl mx-auto">
-              Free AI Powered Resume Builder &amp;{' '}
-              <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">
-                AI Resume Writer
-              </span>
-            </h1>
-
-            <p className="mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed">
-              Stop getting ignored with generic AI clichés. Use our free AI resume builder to rewrite work experience into quantified Google XYZ achievements, match target job keywords, and generate an ATS-ready resume in minutes.
-            </p>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link
-                href="/create"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
-              >
-                <span>Generate Resume With AI</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
-              >
-                <span>Check Resume ATS Score</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* AI Bullet Transformation Interactive Demo */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
-              Before &amp; After
-            </span>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              See How Our AI Rewrites Weak Bullets<span className="text-emerald-700 dark:text-emerald-400">.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed mt-4">
-              Recruiters spend 6 seconds scanning. Compare passive duty statements to our metric-driven XYZ bullet rewrites.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-rose-200/80 dark:border-rose-900/40 p-6 sm:p-7 shadow-xs space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-400 text-xs font-mono font-medium">
-                <span>Before (Weak &amp; Passive)</span>
-              </div>
-              <blockquote className="text-slate-600 dark:text-slate-400 italic text-sm sm:text-base border-l-2 border-rose-400 dark:border-rose-700 pl-4 py-1 leading-relaxed">
-                &ldquo;Responsible for managing software updates, helping team members with bug fixes, and improving application speed.&rdquo;
-              </blockquote>
-              <div className="text-xs font-mono text-rose-600 dark:text-rose-400 font-semibold pt-2">
-                Problem: Lacks metrics, action verbs, and business impact.
-              </div>
-            </div>
-
-            <div className="bg-card/90 backdrop-blur-xs rounded-2xl border border-emerald-300 dark:border-emerald-800/80 p-6 sm:p-7 shadow-xs space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 text-xs font-mono font-medium">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
-                <span>After AI Rewriter (Google XYZ Format)</span>
-              </div>
-              <blockquote className="text-slate-800 dark:text-slate-200 font-medium text-sm sm:text-base border-l-2 border-emerald-600 dark:border-emerald-400 pl-4 py-1 leading-relaxed">
-                &ldquo;Architected automated CI/CD deployment pipelines across 6 microservices, reducing deployment cycle times by 42% and eliminating 18 hours of manual overhead per sprint.&rdquo;
-              </blockquote>
-              <div className="text-xs font-mono text-emerald-700 dark:text-emerald-400 font-semibold pt-2">
-                Impact: Recruiter-grade action verb + exact percentage + time saved.
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3 Pillars of Our AI Architecture */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
-              Architecture
-            </span>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Engineered for High ATS Pass Rates<span className="text-emerald-700 dark:text-emerald-400">.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-sans leading-relaxed mt-4">
-              Unlike simple chatbot wrappers, our system uses dedicated micro-models for every resume section.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-card/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
-                <Target className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">JD Semantic Alignment</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Extracts target keywords, core tools, and technical competencies directly from your job description, ensuring 95%+ keyword parity with the recruiter&apos;s ATS filter.
-              </p>
-            </div>
-
-            <div className="bg-card/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
-                <BrainCircuit className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Quantifiable Metric Injector</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Prompts you to add revenue, efficiency percentages, team sizes, and performance velocity so your resume proves real tangible business results.
-              </p>
-            </div>
-
-            <div className="bg-card/90 backdrop-blur-xs p-6 sm:p-7 rounded-2xl border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
-              <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Cliché Elimination Filter</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Automatically flags and replaces overused filler words (&quot;hard worker&quot;, &quot;synergy&quot;, &quot;detail-oriented&quot;) with strong contextual action verbs.
-              </p>
-            </div>
-          </div>
-
-          {/* Comparison Matrix: ResumeBabu vs Kickresume vs Rezi */}
-          <div className="mt-16 bg-card/90 backdrop-blur-xs rounded-2xl border border-border p-6 sm:p-8 shadow-xs">
-            <div className="text-center max-w-2xl mx-auto mb-8">
-              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
-                Market Comparison
-              </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-                ResumeBabu vs. Kickresume vs. Rezi
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 font-sans">
-                Why professionals choose our free AI resume writer over expensive monthly subscription models.
-              </p>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-sans border-collapse">
-                <thead>
-                  <tr className="border-b border-border text-slate-500 dark:text-slate-400">
-                    <th className="py-3 px-4 font-mono font-medium">Feature</th>
-                    <th className="py-3 px-4 font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">ResumeBabu</th>
-                    <th className="py-3 px-4 font-mono font-medium">Kickresume</th>
-                    <th className="py-3 font-mono font-medium px-4">Rezi</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  <tr>
-                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">AI Bullet Rewriting</td>
-                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Unlimited Free (Google XYZ)</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Limited AI Credits</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Limited Free AI Tokens</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Pricing &amp; Subscriptions</td>
-                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">100% Free Forever</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$19/month Subscription</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">$29/month Subscription</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Target Job Description Matching</td>
-                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Real-time Free JD Gap Analysis</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Paid Tier Only</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Limited / Paid Add-on</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">Vector PDF Export Paywalls</td>
-                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">Zero Paywalls &amp; No Watermarks</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Watermarked or Paywalled</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Paid Download Credits</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">ATS Parsing Verification</td>
-                    <td className="py-3 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50/50 dark:bg-emerald-950/20">98%+ Pass Rate (Workday, Taleo)</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Standard Parsing</td>
-                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">95%+ Pass Rate</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQs */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 max-w-7xl mx-auto border-t border-border">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
-                Frequently Asked Questions
-              </span>
-              <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-                Questions About AI Resumes<span className="text-emerald-700 dark:text-emerald-400">.</span>
-              </h2>
-              <p className="text-base text-slate-600 dark:text-slate-400 mt-2 font-sans">
-                Learn how AI transforms your job search without compromising authenticity.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              {faqJsonLd.mainEntity.map((faq, idx) => (
-                <div
-                  key={idx}
-                  className="p-6 sm:p-7 rounded-2xl border border-border bg-white/80 dark:bg-[#141310]/80 backdrop-blur-xs space-y-2"
-                >
-                  <h3 className="font-serif text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span className="text-emerald-700 dark:text-emerald-400 font-serif font-bold">Q:</span>
-                    {faq.name}
-                  </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed pl-6 font-sans">
-                    {faq.acceptedAnswer.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-24 sm:py-32 px-4 sm:px-8 border-t border-border relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.08),rgba(248,247,243,0))] dark:bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(16,185,129,0.06),rgba(16,15,12,0))]" />
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-              Write a Stronger Resume in Seconds <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">with AI.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
-              Experience the difference of AI calibrated by executive recruiters. Free to generate, free to download.
-            </p>
-            <div className="pt-4 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/create"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
-              >
-                <span>Launch AI Resume Writer</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <AiResumeBuilderClient />
       </main>
 
       <Footer />

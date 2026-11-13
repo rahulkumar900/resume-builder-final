@@ -44,3 +44,4 @@ next-env.d.ts
 scratch/*.png
 scratch/*.json
 scratch/*.cjs
+.pup-temp/

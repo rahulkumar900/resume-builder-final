@@ -8,7 +8,7 @@ describe('Sitemap generation', () => {
   const routes = sitemap();
 
   it('should return a non-empty list of sitemap entries', () => {
-    expect(routes.length).toBeGreaterThan(0);
+    expect(routes.length).toBe(63);
   });
 
   it('should have all valid absolute URLs starting with https://resumebabu.com', () => {
@@ -39,6 +39,13 @@ describe('Sitemap generation', () => {
         expect(route.url.startsWith(prefix)).toBe(false);
       }
     }
+  });
+
+  it('should include the ai-resume-builder route with high priority', () => {
+    const aiRoute = routes.find((r) => r.url === 'https://resumebabu.com/ai-resume-builder');
+    expect(aiRoute).toBeDefined();
+    expect(aiRoute?.priority).toBe(0.95);
+    expect(aiRoute?.changeFrequency).toBe('daily');
   });
 
   it('should include all competitor comparison routes', () => {
