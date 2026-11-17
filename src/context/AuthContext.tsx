@@ -100,17 +100,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   useEffect(() => {
-    // 1. Initial session load with safety timeout fallback for offline/guest resilience
-    let isMounted = true;
-    const sessionTimeout = setTimeout(() => {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    }, 2000);
-
+    // 1. Initial session load
     supabase.auth.getSession().then(({ data: { session } }) => {
-      clearTimeout(sessionTimeout);
-      if (!isMounted) return;
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
@@ -122,8 +113,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         ).catch(() => {});
       }
     }).catch((err) => {
-      clearTimeout(sessionTimeout);
-      if (!isMounted) return;
       console.warn('Error fetching Supabase session:', err);
       setIsLoading(false);
     });
@@ -157,8 +146,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     });
 
     return () => {
-      isMounted = false;
-      clearTimeout(sessionTimeout);
       subscription.unsubscribe();
     };
   }, []);

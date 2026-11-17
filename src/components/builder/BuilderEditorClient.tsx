@@ -175,17 +175,9 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
   };
 
   useEffect(() => {
-    const decodedId = decodeURIComponent(id);
-    const local = getResumeById(decodedId) || getResumeById(id);
-
-    // Instant local-first resolution for guest sessions
-    if (local && !user?.id && isResolvingResume) {
-      setResume(local);
-      setIsResolvingResume(false);
-      setNotFoundError(false);
-    }
-
     if (authLoading) return;
+
+    const decodedId = decodeURIComponent(id);
 
     if (user?.id) {
       // Authenticated: Fetch directly from Supabase PostgreSQL database
@@ -198,6 +190,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
             setNotFoundError(false);
           } else {
             // Check fallback for newly cloned local drafts or alternate id format
+            const local = getResumeById(decodedId) || getResumeById(id);
             if (local) {
               setResume(local);
               setIsResolvingResume(false);
@@ -214,6 +207,7 @@ export const BuilderEditorClient: React.FC<BuilderEditorClientProps> = ({ id }) 
         });
     } else {
       // Guest: Fetch from browser local storage
+      const local = getResumeById(decodedId) || getResumeById(id);
       if (local) {
         setResume(local);
         setIsResolvingResume(false);
