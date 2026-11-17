@@ -32,6 +32,7 @@ import { HomeComparisonMatrix } from '@/components/home/HomeComparisonMatrix';
 import { HomeRoleExamplesGallery } from '@/components/home/HomeRoleExamplesGallery';
 import { ScrollStorySection } from '@/components/home/ScrollStorySection';
 import { ScrollReveal } from '@/components/home/ScrollReveal';
+import { SaaSProductTour } from '@/components/home/SaaSProductTour';
 import { RxFooter } from '@/components/common/RxFooter';
 import { TEMPLATES } from '@/lib/templates';
 import { fireConfetti } from '@/lib/confetti';
@@ -260,11 +261,11 @@ export function TechStudioLanding() {
               {/* Clean Hero Screenshot */}
               <div className="relative w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
                 <Image
-                  src="/images/editor-screenshot.png"
+                  src="/images/flow/02-studio-editor.png"
                   alt="ResumeBabu Live Editor Split Screen: Real-Time Form Controls and Vector A4 Preview"
-                  width={1024}
-                  height={500}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px)"
+                  width={1440}
+                  height={900}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1280px)"
                   className="w-full h-auto object-cover sm:object-contain"
                   priority
                 />
@@ -293,6 +294,11 @@ export function TechStudioLanding() {
             </div>
           </div>
         </section>
+
+        {/* =======================================================================
+            INTERACTIVE SAAS PRODUCT TOUR (End-to-End Flow Showcase)
+            ======================================================================= */}
+        <SaaSProductTour />
 
         {/* =======================================================================
             SCROLL-DRIVEN FEATURE STORY ENGINE (100% Screen Height Sections)
