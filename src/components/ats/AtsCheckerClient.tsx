@@ -480,10 +480,10 @@ export const AtsCheckerClient: React.FC = () => {
             </div>
 
             {/* Mode Switcher */}
-            <div className="flex items-center gap-1 bg-white/10 backdrop-blur-md p-1 rounded-xl border border-white/20 text-xs font-bold w-full sm:w-auto overflow-x-auto no-scrollbar">
+            <div className="flex items-center gap-1 bg-white/10 backdrop-blur-md p-1 rounded-xl border border-white/20 text-xs font-bold shrink-0">
               <button
                 onClick={() => setInputMode('upload')}
-                className={`px-3 py-2 sm:px-3.5 sm:py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 flex-1 sm:flex-initial cursor-pointer min-h-[38px] ${
+                className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer min-h-[36px] ${
                   inputMode === 'upload'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-200 hover:text-white'
@@ -495,7 +495,7 @@ export const AtsCheckerClient: React.FC = () => {
 
               <button
                 onClick={() => setInputMode('paste')}
-                className={`px-3 py-2 sm:px-3.5 sm:py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 flex-1 sm:flex-initial cursor-pointer min-h-[38px] ${
+                className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer min-h-[36px] ${
                   inputMode === 'paste'
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-200 hover:text-white'
@@ -505,19 +505,10 @@ export const AtsCheckerClient: React.FC = () => {
                 <span>Paste Text</span>
               </button>
 
-              <button
-                onClick={handleLoadSampleResume}
-                type="button"
-                className="px-3 py-2 sm:px-3.5 sm:py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 flex-1 sm:flex-initial cursor-pointer min-h-[38px] bg-emerald-600/90 hover:bg-emerald-500 text-white font-medium shadow-xs"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-emerald-200" />
-                <span>Load Sample Report</span>
-              </button>
-
               {savedResumes.length > 0 && (
                 <button
                   onClick={() => setInputMode('saved')}
-                  className={`px-3 py-2 sm:px-3.5 sm:py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 flex-1 sm:flex-initial cursor-pointer min-h-[38px] ${
+                  className={`px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer min-h-[36px] ${
                     inputMode === 'saved'
                       ? 'bg-white text-slate-900 shadow-sm'
                       : 'text-slate-200 hover:text-white'
@@ -532,15 +523,20 @@ export const AtsCheckerClient: React.FC = () => {
 
           <div className="p-6 sm:p-8 space-y-6">
             {/* Quick Test Drive Callout */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 px-4 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/60 text-xs">
-              <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>Want to see how the audit works first? Test with an instant sample report.</span>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 px-5 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs shadow-2xs">
+              <div className="flex items-center gap-2.5 text-slate-700 dark:text-slate-300">
+                <div className="w-7 h-7 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="font-semibold text-slate-900 dark:text-white block">Don&apos;t have your resume file ready?</span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">Test-drive the full ATS diagnostic engine with a verified sample report.</span>
+                </div>
               </div>
               <button
                 onClick={handleLoadSampleResume}
                 type="button"
-                className="font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 hover:underline cursor-pointer shrink-0 inline-flex items-center gap-1"
+                className="px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-all cursor-pointer shrink-0 inline-flex items-center gap-1.5 self-stretch sm:self-auto justify-center"
               >
                 <span>Load Sample Report</span>
                 <ArrowRight className="w-3.5 h-3.5" />
