@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
+import { SITE_STATS } from '@/config/site-stats';
 import {
   Sparkles,
   ShieldCheck,
@@ -15,6 +16,9 @@ import {
   Award,
   Layers,
   HeartHandshake,
+  Mail,
+  Lock,
+  Globe2,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -98,17 +102,17 @@ export default function AboutPage() {
             {/* Key Metric Stats Strip */}
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
               <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
-                <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">50,000+</div>
+                <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">{SITE_STATS.resumesCreated}</div>
                 <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">Resumes Crafted</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">By candidates worldwide</div>
               </div>
               <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
-                <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400">98.4%</div>
-                <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">ATS Pass Rate</div>
+                <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400">{SITE_STATS.atsCompatibilityScore}</div>
+                <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">ATS Compliance</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">Tested across major scanners</div>
               </div>
               <div className="bg-card/90 backdrop-blur-xs p-6 rounded-2xl border border-border shadow-xs space-y-1">
-                <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">30+</div>
+                <div className="font-serif text-3xl sm:text-4xl font-bold text-emerald-700 dark:text-emerald-400">{SITE_STATS.templatesCount}</div>
                 <div className="text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">Recruiter Layouts</div>
                 <div className="text-[11px] text-slate-500 dark:text-slate-400">From FAANG to campus TPO</div>
               </div>
@@ -146,7 +150,7 @@ export default function AboutPage() {
               <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-border space-y-2">
                 <div className="font-bold text-slate-900 dark:text-white text-base">Watermark Ransom Paywalls</div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Legacy resume sites let you spend 45 minutes typing, then block your download with a sneaky &quot;$2.99 trial that renews at $39.99/mo&quot; paywall.
+                  Legacy resume sites let you spend 45 minutes typing, then block your download behind a sneaky trial that auto-renews into an expensive monthly subscription.
                 </p>
               </div>
               <div className="p-6 rounded-2xl bg-[#F8F7F3] dark:bg-[#161512] border border-border space-y-2">
@@ -209,6 +213,63 @@ export default function AboutPage() {
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 From Indian campus placement rules (TPO cell compliance, 10th/12th/CGPA tables) to Wall Street Ivy League standards and Silicon Valley tech formats, we support candidates at all milestones.
               </p>
+            </div>
+          </div>
+
+          {/* Transparency & Governance: Team, Data Handling & Contact */}
+          <div className="mt-20 pt-16 border-t border-border space-y-12">
+            <div className="max-w-2xl">
+              <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block mb-2">
+                Trust &amp; Governance
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Built with candidate trust and data ethics<span className="text-emerald-700 dark:text-emerald-400">.</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-6 rounded-2xl bg-card/90 border border-border space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
+                  <Lock className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-slate-900 dark:text-white text-base">Your Data Stays Yours</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Drafts are saved locally in your browser storage. If you sign in, cloud sync is secured with Supabase row-level security. We never sell candidate data or train public models on your resume.
+                </p>
+                <Link href="/privacy" className="inline-flex text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+                  Read our full Privacy Policy &rarr;
+                </Link>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-card/90 border border-border space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
+                  <Globe2 className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-slate-900 dark:text-white text-base">Editorial &amp; Engineering Team</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Engineered by modern software practitioners and technical recruiters across India and globally who experienced broken hiring funnels first-hand.
+                </p>
+                <Link href="/blog" className="inline-flex text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+                  Explore our career research &rarr;
+                </Link>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-card/90 border border-border space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center font-bold border border-emerald-200 dark:border-emerald-800">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <h4 className="font-bold text-slate-900 dark:text-white text-base">Open Contact &amp; Support</h4>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Questions, feedback, or need help with a custom template? Reach our dedicated support team anytime at{' '}
+                  <a href="mailto:support@resumebabu.com" className="font-semibold text-emerald-700 dark:text-emerald-400 hover:underline">
+                    support@resumebabu.com
+                  </a>
+                  .
+                </p>
+                <div className="text-xs text-slate-500 dark:text-slate-400 pt-1">
+                  Average response time: &lt; 24 hours
+                </div>
+              </div>
             </div>
           </div>
 

@@ -437,7 +437,7 @@ export default function GenerateResumePage() {
               Stop Staring at a Blank Screen. <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Generate Your Resume Now.</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
-              Free, fast, and recruiter-approved. Join over 120,000 active job seekers today.
+              Free, fast, and recruiter-focused. Join over 50,000 active job seekers today.
             </p>
             <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link

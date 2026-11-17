@@ -30,29 +30,13 @@ import { Footer } from '@/components/dashboard/Footer';
 import { AtsCheckerClient } from '@/components/ats/AtsCheckerClient';
 
 export const metadata: Metadata = {
-  title: 'Free ATS Resume Checker & Score Audit',
+  title: 'Free ATS Resume Checker: Score & Keyword Gaps',
   description:
-    'Free online ATS resume checker. Scan against Workday, Taleo, and Greenhouse with instant ATS score, keyword gap analysis, and bullet point suggestions.',
-  keywords: [
-    'ats checker',
-    'ats resume checker',
-    'free ats resume checker',
-    'resume score checker',
-    'applicant tracking system test',
-    'check resume ats score',
-    'resume ats scanner',
-    'ats compatibility test',
-    'resume keyword checker',
-    'free resume review',
-    'ats friendly resume test',
-    'workday resume checker',
-    'taleo resume checker',
-    'greenhouse resume checker',
-  ],
+    'Upload your resume and a job description to see formatting issues, missing keywords, and a compatibility score. Free to use.',
   openGraph: {
-    title: 'Free ATS Resume Checker & Score Calculator (2026)',
+    title: 'Free ATS Resume Checker: Score & Keyword Gaps | ResumeBabu',
     description:
-      'Instantly scan your resume for ATS compatibility. Identifies missing keywords, formatting errors, duplicate phrases, and Google X-Y-Z metric density.',
+      'Upload your resume and a job description to see formatting issues, missing keywords, and a compatibility score. Free to use.',
     type: 'website',
     url: 'https://resumebabu.com/ats-checker',
     images: [
@@ -67,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free ATS Resume Checker & Score Calculator (2026)',
+    title: 'Free ATS Resume Checker: Score & Keyword Gaps | ResumeBabu',
     description:
-      'Instantly scan your resume for ATS compatibility. Identifies missing keywords, formatting errors, duplicate phrases, and Google X-Y-Z metric density.',
+      'Upload your resume and a job description to see formatting issues, missing keywords, and a compatibility score. Free to use.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {

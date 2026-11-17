@@ -20,26 +20,13 @@ import { Footer } from '@/components/dashboard/Footer';
 import { TEMPLATES } from '@/lib/templates';
 
 export const metadata: Metadata = {
-  title: 'Free Resume Builder for Freshers & Students',
+  title: 'Resume Builder for Freshers: Free Formats & PDF',
   description:
-    'Free resume builder for freshers & students. Create ATS-friendly entry-level resumes with college project sections, zero experience, and free vector PDF.',
-  keywords: [
-    'resume builder for freshers',
-    'student resume builder',
-    'create resume for freshers',
-    'resume maker online free for freshers',
-    'resume maker for students',
-    'fresher resume builder free',
-    'btech fresher resume builder',
-    'resume maker for freshers',
-    'resume format for freshers 12th pass',
-    'college student resume builder',
-    'resume maker for freshers with no experience'
-  ],
+    'Build a fresher resume with the education, projects, and skills sections campus recruiters look for. Free B.Tech, BCA, B.Com, and MBA templates.',
   openGraph: {
-    title: 'Free Resume Builder for Freshers & Students | ResumeBabu',
+    title: 'Resume Builder for Freshers: Free Formats & PDF | ResumeBabu',
     description:
-      'Land your first campus placement or entry-level job. Pre-built sections for college projects, certifications, degrees, and extracurriculars.',
+      'Build a fresher resume with the education, projects, and skills sections campus recruiters look for. Free B.Tech, BCA, B.Com, and MBA templates.',
     type: 'website',
     url: 'https://resumebabu.com/resume-builder-for-freshers',
     images: [
@@ -47,16 +34,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Free Resume Builder for Freshers - ResumeBabu',
+        alt: 'Resume Builder for Freshers - ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Resume Builder for Freshers & Students | ResumeBabu',
+    title: 'Resume Builder for Freshers: Free Formats & PDF | ResumeBabu',
     description:
-      'Land your first campus placement or entry-level job. Pre-built sections for college projects, certifications, degrees, and extracurriculars.',
+      'Build a fresher resume with the education, projects, and skills sections campus recruiters look for. Free B.Tech, BCA, B.Com, and MBA templates.',
     images: ['https://resumebabu.com/og-image.png'],
   },
   alternates: {

@@ -37,6 +37,7 @@ import { TEMPLATES } from '@/lib/templates';
 import { fireConfetti } from '@/lib/confetti';
 import { useAuth } from '@/context/AuthContext';
 import { getStoredResumes, getAllResumesFromDatabase } from '@/lib/storage';
+import { SITE_STATS } from '@/config/site-stats';
 import type { TemplateId, ResumeData } from '@/types/resume';
 
 export function TechStudioLanding() {
@@ -166,13 +167,13 @@ export function TechStudioLanding() {
           )}
 
           {/* Rating & Social Proof Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 shadow-2xs backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 mb-6 sm:mb-8 shadow-2xs backdrop-blur-md" title={SITE_STATS.ratingDisclaimer}>
             <div className="flex text-amber-500 text-xs tracking-tight">
               ★★★★★
             </div>
-            <span className="font-bold text-slate-900 dark:text-white">4.9/5</span>
+            <span className="font-bold text-slate-900 dark:text-white">{SITE_STATS.userRating}</span>
             <span className="text-slate-400">·</span>
-            <span>45,000+ Resumes Created</span>
+            <span>{SITE_STATS.resumesCreated} Resumes Created</span>
             <span className="text-slate-400">·</span>
             <span className="text-emerald-700 dark:text-emerald-400 font-bold">100% Free Forever</span>
           </div>
@@ -186,7 +187,7 @@ export function TechStudioLanding() {
           </h1>
 
           <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-sans">
-            Build recruiter-tested resumes in minutes with the best free online resume builder. Powered by real-time A4 vector rendering, instant job description tailoring, and a 30-point ATS diagnostic engine.
+            Build clean, recruiter-focused resumes in minutes with the free online resume builder. Powered by real-time A4 vector rendering, instant job description tailoring, and a {SITE_STATS.atsAuditPoints} ATS diagnostic engine.
           </p>
 
           {/* CTA Buttons - Premium Single-Line Responsive Layout */}
@@ -220,11 +221,11 @@ export function TechStudioLanding() {
             </span>
             <span className="flex items-center gap-1.5 font-medium">
               <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
-              98.4% ATS Parsing Rate
+              {SITE_STATS.atsCompatibilityScore} ATS Parsing Compliance
             </span>
             <span className="flex items-center gap-1.5 font-medium">
               <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
-              30 Tested Layouts
+              {SITE_STATS.templatesCount} Tested Layouts
             </span>
             <span className="flex items-center gap-1.5 font-medium">
               <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 stroke-[3]" />
@@ -272,20 +273,20 @@ export function TechStudioLanding() {
         </section>
 
         {/* =======================================================================
-            RECRUITER BENCHMARK LOGOS
+            ATS & RECRUITER BENCHMARK SPECIFICATIONS
             ======================================================================= */}
         <section className="mt-16 sm:mt-24 border-y border-border/60 py-8 sm:py-10 bg-slate-50/50 dark:bg-white/[0.01]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-semibold block mb-4">
-              ENGINEERED TO PASS SCREENING AT TOP GLOBAL COMPANIES
+              CALIBRATED FOR LEADING APPLICANT TRACKING SYSTEMS &amp; ENTERPRISE RECRUITING PARSERS
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16 opacity-60 dark:opacity-40 grayscale hover:grayscale-0 transition-all">
-              {['Google', 'Microsoft', 'Amazon', 'Meta', 'Stripe', 'Apple', 'Goldman Sachs', 'McKinsey'].map((co, idx) => (
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 lg:gap-14 opacity-75 dark:opacity-60">
+              {SITE_STATS.supportedParsers.map((parser, idx) => (
                 <span
                   key={idx}
-                  className="font-serif text-lg sm:text-xl font-bold tracking-tight text-slate-800 dark:text-slate-200 select-none"
+                  className="font-mono text-sm sm:text-base font-semibold tracking-tight text-slate-700 dark:text-slate-300 select-none"
                 >
-                  {co}
+                  {parser}
                 </span>
               ))}
             </div>
@@ -298,14 +299,14 @@ export function TechStudioLanding() {
         <ScrollStorySection />
 
         {/* =======================================================================
-            TEMPLATE SHOWCASE: Fast Filterable Grid (30 Designs)
+            TEMPLATE SHOWCASE: Fast Filterable Grid (50+ Designs)
             ======================================================================= */}
         <section id="templates" className="mt-24 sm:mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal animation="fade-up">
             <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-semibold border border-emerald-300 dark:border-emerald-800 shadow-2xs">
                 <LayoutTemplate className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                <span>30 Tested Designs</span>
+                <span>{SITE_STATS.templatesCount} Tested Designs</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 Free Resume Builder Templates for Every Career Level.

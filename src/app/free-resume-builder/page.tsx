@@ -355,7 +355,7 @@ export default function FreeResumeBabuPage() {
                     <td className="py-3.5 px-4 text-slate-400">Not Available</td>
                   </tr>
                   <tr>
-                    <td className="py-3.5 px-4 font-medium">6-Pillar ATS Scanner</td>
+                    <td className="py-3.5 px-4 font-medium">5-Pillar ATS Scanner</td>
                     <td className="py-3.5 px-4 font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.06]">Included Free</td>
                     <td className="py-3.5 px-4 text-slate-500">Separate Tool ($)</td>
                     <td className="py-3.5 px-4 text-slate-500">Basic Tips</td>
@@ -548,7 +548,7 @@ export default function FreeResumeBabuPage() {
               Stop Paying For Resume Downloads. <span className="italic font-serif text-emerald-700 dark:text-emerald-400 font-medium">Build Yours Free Now.</span>
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
-              Join 120,000+ candidates who got hired without paying a single dollar for resume formatting.
+              Join 50,000+ candidates who got hired without paying a single dollar for resume formatting.
             </p>
             <div className="pt-4 flex flex-wrap justify-center gap-4">
               <Link

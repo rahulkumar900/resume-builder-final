@@ -52,11 +52,11 @@ export const COMPETITORS: CompetitorComparison[] = [
       'zety pricing',
       'is zety free'
     ],
-    competitorPrice: '$2.70 trial, then $24.95/month',
-    competitorPricingModel: 'Paywall at final download screen with recurring billing',
-    ourPrice: '100% Free',
-    atsPassRateCompetitor: '68% (frequent column & margin parse clipping)',
-    atsPassRateOurPlatform: '98% (strict semantic A4 HTML/CSS standard)',
+    competitorPrice: '$2.70 14-day trial, then auto-renews at $24.95/month (as of 2026)',
+    competitorPricingModel: 'Paywall at final download screen with recurring monthly subscription',
+    ourPrice: '100% Free Forever',
+    atsPassRateCompetitor: 'Moderate (multi-column tables often merge in standard text parsers)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Loved Building on Zety Until the Download Paywall?',
     heroSubheadline: 'Download your high-resolution vector PDF resume for free. No credit card required, no 14-day auto-renewing subscriptions, and no watermarks.',
     whyCandidatesLeave: [
@@ -67,12 +67,12 @@ export const COMPETITORS: CompetitorComparison[] = [
       },
       {
         title: 'Unexpected Recurring Credit Card Charges',
-        description: 'Thousands of users report being enrolled in a $24.95/month recurring auto-renewal after paying for a seemingly one-time $2.70 14-day trial.',
+        description: 'Many candidates report unexpected recurring charges when a $2.70 trial converts into a continuous $24.95/month renewal.',
         icon: 'CreditCard'
       },
       {
-        title: 'Rasterized / Scaled PDF Exports',
-        description: 'Many Zety templates render elements using non-selectable text wrappers, which can garble resume text when parsed by Workday or Taleo ATS.',
+        title: 'Multi-Column Formatting Inconsistencies',
+        description: 'Certain complex two-column templates can merge sidebar metadata horizontally into work experience when parsed by older text extractors.',
         icon: 'FileText'
       }
     ],
@@ -83,7 +83,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       { feature: 'Real-Time A4 Page Fitting (GhostDOM)', competitor: false, ourPlatform: true, note: 'Prevents text overflow onto accidental blank page 2.' },
       { feature: 'Live Job Description Tailoring', competitor: 'Basic text tips', ourPlatform: 'Full AI Matching (✓/✗)', note: 'Deep semantic match analysis against your target JD.' },
       { feature: 'Indian & Global Formats (Naukri, IT, Fresher)', competitor: 'US Only', ourPlatform: 'Global + India-calibrated', note: 'Includes CGPA, B.Tech, and Naukri-ready layouts.' },
-      { feature: 'ATS Parser Compatibility Score', competitor: '68%', ourPlatform: '98%', note: 'Tested across Workday, Greenhouse, Taleo, and Naukri.' }
+      { feature: 'ATS Layout Parsing Compliance', competitor: 'Variable by layout', ourPlatform: '95%+ Linear Compliance', note: 'Tested against Workday, Greenhouse, Taleo, and Naukri parsing standards.' }
     ],
     teardownAnalysis: {
       overview: 'Zety is one of the most visible resume builders on Google, featuring clean UI controls and pre-written suggestions. However, its business model depends heavily on the "sunk cost fallacy": allowing candidates to spend hours building before revealing that downloading a PDF requires a credit card subscription.',
@@ -125,8 +125,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: 'Free (with paid Canva Pro elements)',
     competitorPricingModel: 'Freemium graphic design tool with paid templates and assets',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '32% (severe graphic layer & text bounding box parsing failures)',
-    atsPassRateOurPlatform: '98% (clean semantic HTML5 & ATS-tested typography)',
+    atsPassRateCompetitor: 'Low (graphic canvas renders flattened non-selectable text)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Canva Resume Builder & CV Maker: Why 75% Fail ATS Scanners',
     heroSubheadline: 'Canva was built for social graphics, not applicant tracking systems. Switch to the #1 Canva resume alternative engineered to pass Workday, Taleo, and Greenhouse ATS screeners with 100% free vector PDF downloads.',
     whyCandidatesLeave: [
@@ -148,7 +148,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     ],
     featureMatrix: [
       { feature: 'Visual Graphic Flexibility', competitor: 'Extremely High (Graphic Canvas)', ourPlatform: 'Recruiter-Optimized (A4 Grid)', note: 'Recruiters prefer clean typography over decorative graphics.' },
-      { feature: 'ATS Keyword Parseability', competitor: '32% (High Rejection Rate)', ourPlatform: '98% (Guaranteed Compliant)', note: 'Semantic text layers readable by all enterprise ATS.' },
+      { feature: 'ATS Keyword Parseability', competitor: '32% (High Rejection Rate)', ourPlatform: '95%+ (Linear Semantic DOM)', note: 'Semantic text layers readable by all enterprise ATS.' },
       { feature: 'Automated Page Splitting (A4)', competitor: false, ourPlatform: true, note: 'GhostDOM ensures zero content clipping at page boundaries.' },
       { feature: 'AI Quantifiable Bullet Generator', competitor: 'Generic AI text', ourPlatform: 'Google X-Y-Z Formula', note: 'Structures achievements with metrics and impact.' },
       { feature: 'Instant Vector PDF Export', competitor: true, ourPlatform: true },
@@ -197,8 +197,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: '$29/month for Teal+',
     competitorPricingModel: 'Basic free tier with strict keyword and AI limits, $29/mo for full features',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '92%',
-    atsPassRateOurPlatform: '98%',
+    atsPassRateCompetitor: 'High (clean layouts, but advanced features paywalled)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Free Alternative to Teal Resume Builder: Unlimited AI Matching',
     heroSubheadline: 'The leading free alternative to Teal resume builder. Get unlimited AI job description keyword matching, Google XYZ bullet enhancements, and 30+ ATS templates without the $29/month subscription.',
     whyCandidatesLeave: [
@@ -263,8 +263,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: 'Free (Locks your data inside Indeed ecosystem)',
     competitorPricingModel: 'Free tool designed to feed Indeed’s job marketplace database',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '85% (basic plain text, zero visual hierarchy)',
-    atsPassRateOurPlatform: '98% (executive typography + strict ATS compliance)',
+    atsPassRateCompetitor: 'Moderate (basic plain text with limited formatting)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Generic Indeed Resumes Don\'t Stand Out to Recruiters',
     heroSubheadline: 'Indeed\'s default resume builder generates plain, uninspiring documents. Upgrade to modern, executive layouts that capture attention in the first 6 seconds.',
     whyCandidatesLeave: [
@@ -325,8 +325,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: '$2.95 trial, then $23.95/month',
     competitorPricingModel: 'Paywalled download with aggressive auto-renewing subscriptions',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '72%',
-    atsPassRateOurPlatform: '98%',
+    atsPassRateCompetitor: 'Moderate (paywalled downloads with periodic layout shifts)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Tired of LiveCareer\'s Subscription Surprises?',
     heroSubheadline: 'Build, edit, and download your resume completely free. No trial traps, no credit cards, and no difficult cancellation processes.',
     whyCandidatesLeave: [
@@ -389,8 +389,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: '$19.99/month (or $39.99 / 3 months)',
     competitorPricingModel: 'Free tier strictly locked to 1 page; paid subscription required for 2+ pages or custom fonts',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '88% (clean layout, but rigid block grids)',
-    atsPassRateOurPlatform: '98% (strict semantic A4 HTML/CSS standard)',
+    atsPassRateCompetitor: 'High (clean layout, but rigid block limits on free tier)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Hit Novorésumé\'s 1-Page Paywall Barrier?',
     heroSubheadline: 'Build single-page or multi-page resumes with executive typography and unlimited AI tailoring—completely free without a $19.99/month Novorésumé Premium subscription.',
     whyCandidatesLeave: [
@@ -415,7 +415,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       { feature: '100% Free Vector PDF Export', competitor: 'Limited Free (1 page)', ourPlatform: 'Free Unlimited', note: 'No watermarks, no card required.' },
       { feature: 'Curated Recruiter Fonts', competitor: 'Premium Only', ourPlatform: '12 Font Pairings Included' },
       { feature: 'AI Job Description Matcher', competitor: 'Basic checklist', ourPlatform: 'Interactive Live Match (✓/✗)' },
-      { feature: 'ATS Compatibility Score', competitor: '88%', ourPlatform: '98%' }
+      { feature: 'ATS Compatibility Score', competitor: '88%', ourPlatform: '95%+' }
     ],
     teardownAnalysis: {
       overview: 'Novorésumé has a clean, minimalist interface and produces visually structured resumes. However, its strict 1-page ceiling on the free plan frustrates mid-level and senior professionals who inevitably need a second page for career highlights, publications, or technical proficiencies.',
@@ -452,8 +452,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: '$19/month (or $84/year)',
     competitorPricingModel: 'Freemium with heavy template paywalls, AI credit caps, and watermark restrictions',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '82% (creative templates use multi-column layers that confuse older ATS)',
-    atsPassRateOurPlatform: '98% (guaranteed compliant with Workday, Greenhouse & Taleo)',
+    atsPassRateCompetitor: 'Moderate (creative templates use multi-column elements)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Want Kickresume\'s AI Polish Without the $19/Month Subscription?',
     heroSubheadline: 'Enjoy unlimited AI bullet enhancements, 12 recruiter-tested templates, and zero download restrictions 100% free forever.',
     whyCandidatesLeave: [
@@ -477,7 +477,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       { feature: 'Template Library Access', competitor: '4 Free, 30+ PRO Paid', ourPlatform: 'All 12 Templates 100% Free' },
       { feature: 'AI Bullet Rewriter (Google X-Y-Z)', competitor: 'Strict Credit Limit', ourPlatform: 'Unlimited Free Usage' },
       { feature: 'Vector PDF Download', competitor: 'Watermarked on PRO themes', ourPlatform: 'Always Free & Clean' },
-      { feature: 'ATS Compliance Guarantee', competitor: '82%', ourPlatform: '98%' },
+      { feature: 'ATS Compliance Guarantee', competitor: '82%', ourPlatform: '95%+' },
       { feature: 'No Card Required Ever', competitor: false, ourPlatform: true }
     ],
     teardownAnalysis: {
@@ -515,8 +515,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: '$4.99 – $9.99/month',
     competitorPricingModel: 'Only 1 resume allowed on free tier; creating additional versions requires paid plan',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '89%',
-    atsPassRateOurPlatform: '98%',
+    atsPassRateCompetitor: 'High (clean templates, but restricted free exports)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Need to Tailor More Than 1 Resume on FlowCV?',
     heroSubheadline: 'Effective job seeking requires customized resumes for different roles. ResumeBabu lets you build and download unlimited resume variations without paying a dime.',
     whyCandidatesLeave: [
@@ -539,7 +539,7 @@ export const COMPETITORS: CompetitorComparison[] = [
     featureMatrix: [
       { feature: 'Number of Active Resumes', competitor: '1 Free (Paid for More)', ourPlatform: 'Unlimited Resumes Free' },
       { feature: 'Instant Vector PDF Download', competitor: true, ourPlatform: true },
-      { feature: 'ATS Compatibility Score', competitor: '89%', ourPlatform: '98%' },
+      { feature: 'ATS Compatibility Score', competitor: '89%', ourPlatform: '95%+' },
       { feature: 'Interactive Job Description Matcher', competitor: false, ourPlatform: true },
       { feature: 'Indian & Regional Calibrated Roles', competitor: false, ourPlatform: true }
     ],
@@ -578,8 +578,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     competitorPrice: '₹1,500 – ₹5,000 ($20 – $60)',
     competitorPricingModel: 'Aggressive upselling on Naukri.com for manual agency resume writing services',
     ourPrice: '100% Free',
-    atsPassRateCompetitor: '80% (often delivers static Word documents without instant re-editing)',
-    atsPassRateOurPlatform: '98% (optimized for Naukri recruiter searches & global enterprise ATS)',
+    atsPassRateCompetitor: 'Moderate (focused primarily on local portal parsing)',
+    atsPassRateOurPlatform: '95%+ (strict linear semantic HTML A4 DOM with clean text layer)',
     heroHeadline: 'Why Pay ₹3,000+ for Naukri FastForward Resume Writing?',
     heroSubheadline: 'Build a recruiter-approved resume calibrated specifically for Naukri.com, Indian IT firms, and MNCs in 5 minutes—without paying hefty agency fees.',
     whyCandidatesLeave: [

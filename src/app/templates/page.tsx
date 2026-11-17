@@ -3,26 +3,16 @@ import type { Metadata } from 'next';
 import { TemplatesShowcaseClient } from '@/components/templates/TemplatesShowcaseClient';
 
 export const metadata: Metadata = {
-  title: '30+ Free ATS-Friendly Resume Templates',
+  title: 'Free Resume Templates: ATS-Friendly & Fresher',
   description:
-    'Explore 30+ professionally engineered, ATS-compliant resume templates. Tested across Workday and Taleo with instant A4 pagination and free PDF downloads.',
-  keywords: [
-    'resume templates',
-    'free resume templates',
-    'ATS resume templates',
-    'single column resume',
-    'two column resume',
-    'Harvard resume format',
-    'modern CV template',
-    'fresher resume format',
-  ],
+    'Browse free resume templates by role and experience: single-column ATS-safe layouts, fresher and campus formats, and Indian CV styles. Download as PDF.',
   alternates: {
     canonical: 'https://resumebabu.com/templates',
   },
   openGraph: {
-    title: '30+ Free ATS-Friendly Resume Templates | ResumeBabu',
+    title: 'Free Resume Templates: ATS-Friendly & Fresher | ResumeBabu',
     description:
-      'Browse and customize 30+ ATS-optimized resume templates. 100% free with real-time vector PDF export.',
+      'Browse free resume templates by role and experience: single-column ATS-safe layouts, fresher and campus formats, and Indian CV styles. Download as PDF.',
     url: 'https://resumebabu.com/templates',
     siteName: 'ResumeBabu',
     locale: 'en_US',
@@ -32,16 +22,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: '30+ Free ATS-Friendly Resume Templates - ResumeBabu',
+        alt: 'Free Resume Templates - ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '30+ Free ATS-Friendly Resume Templates',
+    title: 'Free Resume Templates: ATS-Friendly & Fresher | ResumeBabu',
     description:
-      'Browse and customize 30+ ATS-optimized resume templates. 100% free with real-time vector PDF export.',
+      'Browse free resume templates by role and experience: single-column ATS-safe layouts, fresher and campus formats, and Indian CV styles. Download as PDF.',
     images: ['https://resumebabu.com/og-image.png'],
   },
 };

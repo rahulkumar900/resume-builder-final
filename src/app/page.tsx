@@ -5,29 +5,17 @@ import { TechStudioLanding } from '@/components/home/TechStudioLanding';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Resume Builder: Free AI Resume Builder & ATS Checker',
+    absolute: 'Free Resume Builder & ATS Checker | ResumeBabu',
   },
   description:
-    'The free resume builder engineered to beat the ATS. Create professional resumes with AI bullet rewriter, 30+ ATS templates, and free vector PDF downloads.',
-  keywords: [
-    'resume builder',
-    'free resume builder',
-    'online resume builder',
-    'best resume builder',
-    'ats resume builder',
-    'ai resume builder',
-    'professional resume builder',
-    'resume builder online free',
-    'easy resume builder',
-    'simple resume builder',
-  ],
+    'Build an ATS-friendly resume free: pick a single-column template, tailor it to a job description, and download a text-selectable PDF. No sign-up to start.',
   alternates: {
     canonical: 'https://resumebabu.com',
   },
   openGraph: {
-    title: 'Resume Builder: Free AI Resume Builder & ATS Checker | ResumeBabu',
+    title: 'Free Resume Builder & ATS Checker | ResumeBabu',
     description:
-      'The free resume builder engineered to beat the ATS. Create professional resumes with AI bullet rewriter, 30+ ATS templates, and free vector PDF downloads.',
+      'Build an ATS-friendly resume free: pick a single-column template, tailor it to a job description, and download a text-selectable PDF. No sign-up to start.',
     url: 'https://resumebabu.com',
     siteName: 'ResumeBabu',
     locale: 'en_US',
@@ -37,16 +25,16 @@ export const metadata: Metadata = {
         url: 'https://resumebabu.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Resume Builder: Free AI Resume Builder & ATS Checker - ResumeBabu',
+        alt: 'Free Resume Builder & ATS Checker - ResumeBabu',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Resume Builder: Free AI Resume Builder & ATS Checker | ResumeBabu',
+    title: 'Free Resume Builder & ATS Checker | ResumeBabu',
     description:
-      'The free resume builder engineered to beat the ATS. Create professional resumes with AI bullet rewriter, 30+ ATS templates, and free vector PDF downloads.',
+      'Build an ATS-friendly resume free: pick a single-column template, tailor it to a job description, and download a text-selectable PDF. No sign-up to start.',
     images: ['https://resumebabu.com/og-image.png'],
   },
 };
