@@ -202,7 +202,7 @@ export default function ResumeMakerPage() {
             {/* Primary CTA */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/builder"
+                href="/create"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
               >
                 <span>Make My Resume Free</span>
@@ -213,7 +213,7 @@ export default function ResumeMakerPage() {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-secondary text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-black/[0.08] dark:hover:bg-white/[0.1] transition border border-black/[0.08] dark:border-white/[0.1]"
               >
                 <Layers className="w-4 h-4 text-slate-500 dark:text-slate-400" />
-                <span>Explore 30+ Templates</span>
+                <span>Explore 50+ Templates</span>
               </Link>
             </div>
 
@@ -368,7 +368,7 @@ export default function ResumeMakerPage() {
             {TEMPLATES.slice(0, 8).map((tpl) => (
               <Link
                 key={tpl.id}
-                href={`/builder?template=${tpl.id}`}
+                href={`/create?template=${tpl.id}`}
                 className="group bg-card/90 backdrop-blur-xs rounded-2xl border border-border overflow-hidden shadow-xs hover:border-emerald-500/40 transition-all flex flex-col"
               >
                 <div className="h-44 bg-background flex items-center justify-center relative overflow-hidden">
@@ -460,10 +460,10 @@ export default function ResumeMakerPage() {
               Ready to Create Your New Resume?<span className="text-emerald-700 dark:text-emerald-400">.</span>
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-              Join thousands of candidates who landed interviews at Google, Amazon, Microsoft, and top startups.
+              Join thousands of candidates who built interview-ready resumes with ResumeBabu.
             </p>
             <Link
-              href="/builder"
+              href="/create"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white font-bold text-sm transition shadow-lg shadow-emerald-700/20 cursor-pointer"
             >
               <span>Launch Free Resume Maker</span>

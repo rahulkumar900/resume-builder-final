@@ -118,7 +118,7 @@ export default function ContactPage() {
                     </li>
                     <li>
                       <Link href="/templates" className="hover:underline flex items-center gap-1">
-                        <span>Explore All 30+ Templates</span> &rarr;
+                        <span>Explore All 50+ Templates</span> &rarr;
                       </Link>
                     </li>
                   </ul>

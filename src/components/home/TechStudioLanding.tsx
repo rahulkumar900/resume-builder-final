@@ -264,6 +264,7 @@ export function TechStudioLanding() {
                   alt="ResumeBabu Live Editor Split Screen: Real-Time Form Controls and Vector A4 Preview"
                   width={1024}
                   height={500}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px)"
                   className="w-full h-auto object-cover sm:object-contain"
                   priority
                 />

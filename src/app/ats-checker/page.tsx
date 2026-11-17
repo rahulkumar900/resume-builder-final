@@ -28,6 +28,7 @@ import {
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 import { AtsCheckerClient } from '@/components/ats/AtsCheckerClient';
+import { SITE_STATS } from '@/config/site-stats';
 
 export const metadata: Metadata = {
   title: 'Free ATS Resume Checker: Score & Keyword Gaps',
@@ -78,8 +79,8 @@ export default function AtsCheckerPage() {
         },
         aggregateRating: {
           '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '18420',
+          ratingValue: '4.8',
+          reviewCount: '1240',
           bestRating: '5',
           worstRating: '1',
         },
@@ -255,10 +256,10 @@ export default function AtsCheckerPage() {
               <div className="p-5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-border space-y-2">
                 <div className="font-serif font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
                   <XCircle className="w-4 h-4 text-rose-500 shrink-0" />
-                  <span>Images &amp; Graphical Charts</span>
+                  <span>Flattened Image Graphics &amp; Rating Stars</span>
                 </div>
                 <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed font-sans">
-                  Skill rating bars (e.g. 4/5 stars) or graphics cannot be read by OCR scanners and register as 0 skills to recruiters.
+                  Graphical skill rating bars or star icons drawn in image tools cannot be extracted as text. Ensure your skills are rendered as real text chips or bullet points.
                 </p>
               </div>
 

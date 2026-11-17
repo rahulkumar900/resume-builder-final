@@ -362,8 +362,13 @@ export const TemplateCardRealPreview: React.FC<TemplateCardRealPreviewProps> = (
           ? {
               width: `${Math.round(794 * explicitScale)}px`,
               height: `${Math.round(1123 * explicitScale)}px`,
+              contentVisibility: 'auto',
+              containIntrinsicSize: `${Math.round(794 * explicitScale)}px ${Math.round(1123 * explicitScale)}px`,
             }
-          : undefined
+          : {
+              contentVisibility: 'auto',
+              containIntrinsicSize: '300px 424px',
+            }
       }
     >
       <div

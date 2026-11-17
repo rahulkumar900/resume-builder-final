@@ -40,8 +40,8 @@ export const COMPETITORS: CompetitorComparison[] = [
     slug: 'zety',
     name: 'Zety',
     tagline: 'The #1 Free Alternative to Zety Resume Builder',
-    title: 'Free Zety Alternative: No Paywall Builder',
-    metaDescription: 'Frustrated by Zety $24.95 download paywall? Switch to our 100% free resume builder. No credit card, no paywalls, instant vector PDF downloads.',
+    title: 'Zety Alternatives: Free Resume Builders Compared',
+    metaDescription: 'Compare free resume builders with Zety on download limits, watermarks, templates, and ATS-friendliness. Pricing and limits last checked 2026.',
     targetKeywords: [
       'zety',
       'zety resume',
@@ -167,7 +167,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       },
       {
         question: 'Can I use ResumeBabu as a Canva CV maker alternative?',
-        answer: 'Yes! ResumeBabu serves as the ultimate Canva CV maker alternative for European, UK, and global corporate roles. Our 30+ templates look clean, modern, and designer-crafted while maintaining strict ATS compliance.'
+        answer: 'Yes! ResumeBabu serves as the ultimate Canva CV maker alternative for European, UK, and global corporate roles. Our 50+ templates look clean, modern, and designer-crafted while maintaining strict ATS compliance.'
       },
       {
         question: 'Can I make my resume look modern without using Canva?',
@@ -474,7 +474,7 @@ export const COMPETITORS: CompetitorComparison[] = [
       }
     ],
     featureMatrix: [
-      { feature: 'Template Library Access', competitor: '4 Free, 30+ PRO Paid', ourPlatform: 'All 12 Templates 100% Free' },
+      { feature: 'Template Library Access', competitor: '4 Free, 30+ PRO Paid', ourPlatform: 'All 50+ Templates 100% Free' },
       { feature: 'AI Bullet Rewriter (Google X-Y-Z)', competitor: 'Strict Credit Limit', ourPlatform: 'Unlimited Free Usage' },
       { feature: 'Vector PDF Download', competitor: 'Watermarked on PRO themes', ourPlatform: 'Always Free & Clean' },
       { feature: 'ATS Compliance Guarantee', competitor: '82%', ourPlatform: '95%+' },

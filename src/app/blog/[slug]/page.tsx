@@ -115,19 +115,29 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
 
   const relatedPosts = getRelatedBlogPosts(post.relatedSlugs);
 
+  const parseIsoDate = (dateStr: string) => {
+    try {
+      const parsed = new Date(dateStr);
+      return !isNaN(parsed.getTime()) ? parsed.toISOString().split('T')[0] : '2026-10-29';
+    } catch {
+      return '2026-10-29';
+    }
+  };
+
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.excerpt,
-    image: 'https://resumebabu.com/opengraph-image',
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt,
+    image: 'https://resumebabu.com/og-image.png',
+    datePublished: parseIsoDate(post.publishedAt),
+    dateModified: parseIsoDate(post.updatedAt),
     url: `https://resumebabu.com/blog/${post.slug}`,
     author: {
       '@type': 'Person',
       name: post.author.name,
       jobTitle: post.author.role,
+      url: 'https://resumebabu.com/about',
     },
     publisher: {
       '@type': 'Organization',
@@ -453,7 +463,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
                     href="/templates"
                     className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition shrink-0 group"
                   >
-                    <span>View all 30+ templates</span>
+                    <span>View all 50+ templates</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>

@@ -4,6 +4,8 @@ const DISALLOWED_PATHS = [
   '/api/',
   '/print/',
   '/auth/',
+  '/builder/',
+  '/create/',
 ];
 
 export default function robots(): MetadataRoute.Robots {

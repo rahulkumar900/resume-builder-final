@@ -181,7 +181,7 @@ export const BlogIndexClient: React.FC<BlogIndexClientProps> = ({ posts }) => {
               href="/templates"
               className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition shrink-0"
             >
-              <span>Explore all 30+ templates</span>
+              <span>Explore all 50+ templates</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

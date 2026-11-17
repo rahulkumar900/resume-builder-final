@@ -260,7 +260,7 @@ export default function DownloadResumeFreePdfPage() {
                 href="/templates"
                 className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition"
               >
-                <span>View all 12 templates</span>
+                <span>View all 50+ templates</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
