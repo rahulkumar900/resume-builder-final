@@ -28,6 +28,7 @@ import {
 import { Navbar } from '@/components/dashboard/Navbar';
 import { Footer } from '@/components/dashboard/Footer';
 import { AtsCheckerClient } from '@/components/ats/AtsCheckerClient';
+import { AtsSampleReportShowcase } from '@/components/ats/AtsSampleReportShowcase';
 import { SITE_STATS } from '@/config/site-stats';
 
 export const metadata: Metadata = {
@@ -179,6 +180,23 @@ export default function AtsCheckerPage() {
           <AtsCheckerClient />
         </section>
 
+        {/* Sample Diagnostic Report Showcase */}
+        <section className="space-y-8 pt-4">
+          <div className="text-center space-y-2 max-w-2xl mx-auto">
+            <span className="font-mono text-xs uppercase tracking-widest text-emerald-700 dark:text-emerald-400 font-semibold block">
+              Sample Diagnostic Report
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
+              What an In-Depth ATS Report Looks Like<span className="text-emerald-700 dark:text-emerald-400">.</span>
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans">
+              Our 30-point parser checks your resume across 5 critical dimensions and surfaces actionable inline fixes.
+            </p>
+          </div>
+
+          <AtsSampleReportShowcase />
+        </section>
+
         {/* Educational Content / Guide Section */}
         <section className="space-y-20 pt-16 border-t border-border">
           {/* The 5 Pillars of ATS Scoring */}
@@ -191,16 +209,16 @@ export default function AtsCheckerPage() {
                 How Our ATS Diagnostic Engine Scores Your Resume<span className="text-emerald-700 dark:text-emerald-400">.</span>
               </h2>
               <p className="text-base text-slate-600 dark:text-slate-400 font-sans">
-                Ground-truth evaluation built on reverse-engineered parsing rules from Workday, Taleo, Greenhouse, iCIMS, and Lever.
+                Evaluation methodology calibrated against enterprise applicant tracking systems including Workday, Taleo, Greenhouse, iCIMS, and Lever.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="p-6 sm:p-7 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
                 <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
                   01
                 </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Keyword &amp; Skill Density</h3>
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Keyword &amp; Skill Taxonomy Density</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   ATS parsers map your skills and job titles against targeted taxonomy dictionaries. We verify essential hard skills, frameworks, cloud platforms, and domain expertise.
                 </p>
@@ -210,7 +228,7 @@ export default function AtsCheckerPage() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
                   02
                 </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Google X-Y-Z Metric Density</h3>
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Google X-Y-Z Metric Impact</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
                   Top tier resumes begin with power action verbs and contain measurable impact: <em>&quot;Accomplished [X] as measured by [Y], by doing [Z]&quot;</em>. We detect numbers, percentages, and scale indicators.
                 </p>
@@ -220,9 +238,29 @@ export default function AtsCheckerPage() {
                 <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
                   03
                 </div>
-                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Duplicate &amp; Quality Audit</h3>
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">ATS Format &amp; DOM Architecture</h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                  Avoid sounding repetitive. Our algorithm highlights overused action verbs, repeated sentences, buzzwords, and fuzzy phrase duplicates that lower recruiter impressions.
+                  Ensures text is rendered in clean, linear vector DOM order without floating text boxes or rasterized images that cause parsers to scramble column text.
+                </p>
+              </div>
+
+              <div className="p-6 sm:p-7 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
+                  04
+                </div>
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Duplicate &amp; Language Quality</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                  Avoid sounding repetitive. Highlights overused action verbs, repeated sentences, buzzwords, and fuzzy phrase duplicates that lower recruiter impressions.
+                </p>
+              </div>
+
+              <div className="p-6 sm:p-7 rounded-2xl bg-card/90 backdrop-blur-xs border border-border shadow-xs space-y-3 hover:border-emerald-500/40 transition md:col-span-2 lg:col-span-1">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100/80 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-300 flex items-center justify-center font-mono font-bold text-sm">
+                  05
+                </div>
+                <h3 className="font-serif text-lg font-bold text-slate-900 dark:text-white">Section &amp; Contact Completeness</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                  Verifies standard H2 section naming conventions and confirms the complete 4-point contact matrix: professional email, phone number, location, and verified portfolio/LinkedIn.
                 </p>
               </div>
             </div>

@@ -505,6 +505,15 @@ export const AtsCheckerClient: React.FC = () => {
                 <span>Paste Text</span>
               </button>
 
+              <button
+                onClick={handleLoadSampleResume}
+                type="button"
+                className="px-3 py-2 sm:px-3.5 sm:py-1.5 rounded-lg transition-all flex items-center justify-center gap-1.5 whitespace-nowrap shrink-0 flex-1 sm:flex-initial cursor-pointer min-h-[38px] bg-emerald-600/90 hover:bg-emerald-500 text-white font-medium shadow-xs"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-emerald-200" />
+                <span>Load Sample Report</span>
+              </button>
+
               {savedResumes.length > 0 && (
                 <button
                   onClick={() => setInputMode('saved')}
@@ -522,6 +531,22 @@ export const AtsCheckerClient: React.FC = () => {
           </div>
 
           <div className="p-6 sm:p-8 space-y-6">
+            {/* Quick Test Drive Callout */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3.5 px-4 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/60 text-xs">
+              <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                <Sparkles className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>Want to see how the audit works first? Test with an instant sample report.</span>
+              </div>
+              <button
+                onClick={handleLoadSampleResume}
+                type="button"
+                className="font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 hover:underline cursor-pointer shrink-0 inline-flex items-center gap-1"
+              >
+                <span>Load Sample Report</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
             {/* Optional Target Job Description Field */}
             <div className="p-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 space-y-2">
               <div className="flex items-center justify-between">
